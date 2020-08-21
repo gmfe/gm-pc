@@ -3,8 +3,8 @@ import { storiesOf } from '@storybook/react'
 import { Sheet, SheetColumn, SheetAction, SheetSelect } from './index'
 import { observable } from 'mobx'
 import _ from 'lodash'
-import Pagination from '@gmfe/react/src/component/pagination/pagination'
-import { Button } from '@gmfe/react/src/component/button'
+import Pagination from '@gm-pc/react/src/component/pagination/pagination'
+import { Button } from '@gm-pc/react/src/component/button'
 
 const list = [
   {

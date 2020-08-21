@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { FlexProps } from '../flex/flex'
 import DefaultContainer from './default_container'
 

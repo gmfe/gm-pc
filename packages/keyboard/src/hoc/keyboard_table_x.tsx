@@ -1,5 +1,5 @@
 import React, { ComponentType, FC, useMemo } from 'react'
-import { TableXProps } from '@gmfe/table-x'
+import { TableXProps } from '@gm-pc/table-x'
 import { devWarnForHook } from '@gm-common/tool'
 
 import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'

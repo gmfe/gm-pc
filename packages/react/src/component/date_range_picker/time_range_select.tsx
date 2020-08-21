@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import { TimeLimit } from '../date_picker/types'
 import moment from 'moment'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { renderTime, setTimes } from './util'
 import TimeSpanPicker from '../time_span/time_span_picker'
 import { Flex } from '../flex'

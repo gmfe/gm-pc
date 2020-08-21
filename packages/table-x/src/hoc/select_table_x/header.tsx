@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react'
 import { SelectTableXProps } from './hoc'
 import SelectTableXContext from './context'
-import { Checkbox } from '@gmfe/react'
+import { Checkbox } from '@gm-pc/react'
 
 const SelectHeader: FC<Pick<SelectTableXProps<any>, 'selectType'>> = ({ selectType }) => {
   if (selectType !== 'checkbox') {

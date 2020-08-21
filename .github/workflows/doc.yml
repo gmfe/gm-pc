@@ -29,10 +29,10 @@ jobs:
 
       - run: |
           pwd
-          git clone https://github.com/gmfe/gmfe.git
+          git clone https://github.com/gmfe/gm-pc.git
 
       - run: |
-          cd gmfe
+          cd gm-pc
           yarn
           npx lerna bootstrap
           npm run build
@@ -40,4 +40,4 @@ jobs:
           git add --all
           git commit -m 'build docs'
           ls
-          git push 'https://liyatang%40qq.com:${{secrets.PASSWORD}}@github.com/gmfe/gmfe-docs.git' master:master -f
+          git push 'https://liyatang%40qq.com:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f

@@ -1,5 +1,5 @@
 import React, { useRef, KeyboardEvent } from 'react'
-import { MoreSelect, TableSelect, TableSelectProps } from '@gmfe/react'
+import { MoreSelect, TableSelect, TableSelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
 import KeyboardCell from './cell'

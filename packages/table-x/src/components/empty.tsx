@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Mask from './mask'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import SVGEmpty from '../../svg/empty.svg'
 
 const Empty: FC = () => (

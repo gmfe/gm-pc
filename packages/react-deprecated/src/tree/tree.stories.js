@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { observable } from 'mobx'
 import Tree from './index'
 import _ from 'lodash'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 
 const store = observable({
   oneData: [

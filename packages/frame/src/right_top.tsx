@@ -1,5 +1,5 @@
 import React, { ReactNode, FC, useContext, ComponentType } from 'react'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import _ from 'lodash'
 import Context from './context'
 

@@ -6,7 +6,7 @@ import { DateRangePickerProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
 import SVGCalendar from '../../../svg/calendar.svg'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { renderTime } from './util'
 import Overlay from './overlay'
 

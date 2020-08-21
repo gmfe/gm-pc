@@ -1,7 +1,7 @@
 import React, { ComponentType, FC, ReactNode, useMemo } from 'react'
 import { TableXProps } from '../../types'
 import SelectTableXContext from './context'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import useGetColumns from './use_get_columns'
 
 export interface SelectTableXProps<Original extends object> {

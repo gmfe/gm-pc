@@ -1,10 +1,10 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Flex, Checkbox, CheckboxGroup } from '@gmfe/react'
+import { Flex, Checkbox, CheckboxGroup } from '@gm-pc/react'
 import { pinYinFilter } from '@gm-common/tool'
 import _ from 'lodash'
-import SearchSvg from '@gmfe/react/svg/search.svg'
+import SearchSvg from '@gm-pc/react/svg/search.svg'
 
 class Box extends React.Component {
   constructor(props) {

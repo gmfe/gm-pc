@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { Flex, Pagination, PaginationDataOptions, Storage } from '@gmfe/react'
+import { Flex, Pagination, PaginationDataOptions, Storage } from '@gm-pc/react'
 import { ManagePaginationParams, ManagePaginationProps } from './types'
 
 interface ManagePaginationState {

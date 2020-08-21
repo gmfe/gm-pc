@@ -1,13 +1,13 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Box from './box'
 import classNames from 'classnames'
-import { filterGroupListLeaf } from '@gmfe/react/src/common/util'
+import { filterGroupListLeaf } from '@gm-pc/react/src/common/util'
 import Tree from '../tree'
 import { getLeaf } from '../tree/util'
-import { Button, Flex } from '@gmfe/react'
+import { Button, Flex } from '@gm-pc/react'
 
 class TransferGroup extends React.Component {
   constructor(props) {

@@ -1,16 +1,16 @@
 import React, { FC, HTMLAttributes, useMemo, useRef } from 'react'
-import { Popover, PopupContentConfirm } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Popover, PopupContentConfirm } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 import classNames from 'classnames'
 import OperationIconTip from './icon_tip'
 import SVGDelete from '../../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
-  onClick(): void
+  onClick (): void
 }
 
 const OperationDelete: FC<OperationDeleteProps> = ({
-  title,
+                                                     title,
   onClick,
   className,
   children,

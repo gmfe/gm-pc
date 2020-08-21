@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import { DiyTableXColumn } from '../types'
-import { Checkbox, Flex } from '@gmfe/react'
+import { Checkbox, Flex } from '@gm-pc/react'
 
 const Item = styled.div`
   width: 25%;

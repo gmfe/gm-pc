@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Flex, Loading, Popover } from '@gmfe/react'
+import { Flex, Loading, Popover } from '@gm-pc/react'
 import classNames from 'classnames'
-import SVGCloseCircle from '@gmfe/react/svg/close-circle.svg'
+import SVGCloseCircle from '@gm-pc/react/svg/close-circle.svg'
 
 class FilterSelect extends React.Component {
   constructor(props) {

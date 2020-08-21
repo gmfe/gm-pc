@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Flex } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Button, Flex } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
@@ -8,8 +8,10 @@ import List from './list'
 interface DiyTableXModalProps<Original extends object> {
   columns: DiyTableXColumn<Original>[]
   diyGroupSorting: string[]
-  onSave(columns: DiyTableXColumn<Original>[]): void
-  onCancel(): void
+
+  onSave (columns: DiyTableXColumn<Original>[]): void
+
+  onCancel (): void
 }
 
 function DiyTableXModal<Original extends object>({

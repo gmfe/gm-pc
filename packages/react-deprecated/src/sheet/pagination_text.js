@@ -1,4 +1,4 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { warn } from '@gm-common/tool'

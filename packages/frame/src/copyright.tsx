@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 
 const Copyright: FC<null> = () => (
   <Flex none justifyCenter alignCenter className='gm-framework-copyright-default'>

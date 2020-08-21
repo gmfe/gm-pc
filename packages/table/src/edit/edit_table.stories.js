@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { EditTable, TableUtil, fixedColumnsTableHOC } from '../index'
 import diyTableHOC from '../hoc/diy_table'
-import { InputNumberV2, MoreSelect } from '@gmfe/react'
+import { InputNumberV2, MoreSelect } from '@gm-pc/react'
 import { observable } from 'mobx'
 import _ from 'lodash'
 

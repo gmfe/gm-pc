@@ -1,5 +1,5 @@
 import React, { FC, useRef, FocusEvent, KeyboardEvent } from 'react'
-import { Input, InputProps } from '@gmfe/react'
+import { Input, InputProps } from '@gm-pc/react'
 
 import KeyboardCell from './cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'

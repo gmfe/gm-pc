@@ -1,4 +1,4 @@
-import { TableXUtil } from '@gmfe/table-x'
+import { TableXUtil } from '@gm-pc/table-x'
 
 import { WrapDataOptions } from '../types'
 const { TABLE_X } = TableXUtil

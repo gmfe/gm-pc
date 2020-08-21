@@ -1,5 +1,5 @@
 import React, { FC, useRef, FocusEvent, KeyboardEvent } from 'react'
-import { InputNumberV2, InputNumberV2Props } from '@gmfe/react'
+import { InputNumberV2, InputNumberV2Props } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
 import KeyboardCell from './cell'

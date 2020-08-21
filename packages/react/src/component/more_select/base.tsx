@@ -20,7 +20,7 @@ import SVGCloseCircle from '../../../svg/close-circle.svg'
 import { renderListFilterDefault, renderListFilterPinYin } from './render_list_filter'
 import { Input } from '../input'
 import { Loading } from '../loading'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { ListBase } from '../list'
 import { findDOMNode } from 'react-dom'
 

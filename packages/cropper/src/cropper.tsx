@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from 'react'
-import { Button, Flex, UploaderFile, Modal } from '@gmfe/react'
+import { Button, Flex, UploaderFile, Modal } from '@gm-pc/react'
 import CropperJS from 'cropperjs'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 const DEFAULT_OPTIONS: CropperJS.Options = {
   aspectRatio: 1,

@@ -1,4 +1,4 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 const COLOR_LIST = [
   {

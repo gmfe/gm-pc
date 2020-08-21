@@ -1,5 +1,5 @@
 import React from 'react'
-import { Checkbox, Radio } from '@gmfe/react'
+import { Checkbox, Radio } from '@gm-pc/react'
 import _ from 'lodash'
 import { referOfWidth } from '../../util'
 import Table from '../../table/base'

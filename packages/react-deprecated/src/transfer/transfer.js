@@ -1,8 +1,8 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Flex, Button } from '@gmfe/react'
+import { Flex, Button } from '@gm-pc/react'
 import Box from './box'
 import classNames from 'classnames'
 

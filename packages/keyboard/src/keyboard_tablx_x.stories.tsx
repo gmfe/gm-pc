@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
 import { storiesOf } from '@storybook/react'
-import { MoreSelectNormalDataOptions } from '@gmfe/react'
+import { MoreSelectNormalDataOptions } from '@gm-pc/react'
 import _ from 'lodash'
 import { action, observable } from 'mobx'
 import {
@@ -9,7 +9,7 @@ import {
   selectTableXHOC,
   TableXProps,
   editTableXHOC,
-} from '@gmfe/table-x'
+} from '@gm-pc/table-x'
 
 import {
   KCMoreSelect,

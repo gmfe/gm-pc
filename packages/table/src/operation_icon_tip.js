@@ -1,6 +1,6 @@
 import React, { cloneElement, useRef } from 'react'
 import PropTypes from 'prop-types'
-import { Tooltip } from '@gmfe/react'
+import { Tooltip } from '@gm-pc/react'
 import styled from 'styled-components'
 
 const Tip = styled.div`

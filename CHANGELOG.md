@@ -2,7 +2,7 @@
 
 ### breaking change
 
-1. gmfe 所有还在维护的仓库代码主要编程语言切换为`TypeScript`，包含以下仓库：
+1. gm-pc 所有还在维护的仓库代码主要编程语言切换为`TypeScript`，包含以下仓库：
    * business
    * cropper
    * keyboard
@@ -20,7 +20,7 @@
     *   `Modal.success` 
     *   `Modal.warning` 
     
-5. InputNumber 废弃，迁移到 `@gmfe/react-deprecated`;
+5. InputNumber 废弃，迁移到 `@gm-pc/react-deprecated`;
 
 6. InputNumberV2 的 `value` 由选传修改为必传；
 
@@ -28,11 +28,11 @@
 
 8. ToolTip 更名为 Tooltip；
 
-9. Sheet 废弃，迁移到 `@gmfe/react-deprecated`；
+9. Sheet 废弃，迁移到 `@gm-pc/react-deprecated`；
 
-10. Dropper 废弃，迁移到 `@gmfe/react-deprecated`；
+10. Dropper 废弃，迁移到 `@gm-pc/react-deprecated`；
 
-11. FilterSelect, MultipleFilter 废弃，迁移到 `@gmfe/react-deprecated`；
+11. FilterSelect, MultipleFilter 废弃，迁移到 `@gm-pc/react-deprecated`；
 
 12. DropDown 系列组件更名：
     * DropDown 更名为 Dropdown;
@@ -43,15 +43,15 @@
 
 14. ImgUploader 的 `data` 类型规定为 `string[]`；
 
-15. Transfer 废弃，迁移到 `@gmfe/react-deprecated`；
+15. Transfer 废弃，迁移到 `@gm-pc/react-deprecated`；
 
-16. Tree 废弃，迁移到 `@gmfe/react-deprecated`；
+16. Tree 废弃，迁移到 `@gm-pc/react-deprecated`；
 
 17. TableSelect 的 `selected` 由选传修改为必传；
 
 18. Pagination 组件修改：
      * Pagination 的 `data` 由选传修改为必传，并增加默认值 `{ offset: 0, limit:10 }`；
-     * PaginationText 废弃，迁移到 `@gmfe/react-deprecated`
+     * PaginationText 废弃，迁移到 `@gm-pc/react-deprecated`
     
 19. Cascader 组件修改：
      * Cascader 的 `filtrable` 更名为 `filterable`；
@@ -62,9 +62,9 @@
 
 21. Sortable 和 GroupSortable 的 `onChange` 由选传修改为必传；
 
-22. `@gmfe/table` 废弃，请使用 `@gmfe/table-x`；
+22. `@gm-pc/table` 废弃，请使用 `@gm-pc/table-x`；
 
-23. `@gmfe/table-x` 的 Th 内部实现的 SortHeader 废弃；
+23. `@gm-pc/table-x` 的 Th 内部实现的 SortHeader 废弃；
 
 24. 由于 TypeScript 目前不支持带泛型参数的`React.memo` [[@type/react] Generic Props lost with React memo](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/37087) ，所以内部包裹了一层实现`typedMemo`；
 
@@ -120,7 +120,7 @@
 
 ### breaking change
 
-废弃 @gmfe/business 的
+废弃 @gm-pc/business 的
 configError
 configProgress
 configHeaders

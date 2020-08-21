@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex, Storage } from '@gmfe/react'
+import { Flex, Storage } from '@gm-pc/react'
 import { ManagePaginationV2Params, ManagePaginationV2Props } from './types'
 import Transform from './transform'
 import { ManagePaginationParams } from '..'

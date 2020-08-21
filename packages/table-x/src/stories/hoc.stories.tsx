@@ -9,7 +9,7 @@ import {
   InputNumberV2,
   MoreSelect,
   MoreSelectNormalDataOptions,
-} from '@gmfe/react'
+} from '@gm-pc/react'
 import { columns, initialData, InitialDataOptions } from './default.stories'
 import {
   fixedColumnsTableXHOC,

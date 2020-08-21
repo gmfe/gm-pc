@@ -1,15 +1,15 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import { pinYinFilter } from '@gm-common/tool'
 import { getLeaf, getUnLeafValues } from './util'
-import { filterGroupListNode } from '@gmfe/react/src/common/util'
+import { filterGroupListNode } from '@gm-pc/react/src/common/util'
 import _ from 'lodash'
 import classNames from 'classnames'
 import Bottom from './bottom'
 import List from './list'
-import SearchSvg from '@gmfe/react/svg/search.svg'
+import SearchSvg from '@gm-pc/react/svg/search.svg'
 
 const filterWithQuery = (list, query, withFilter) => {
   let processList

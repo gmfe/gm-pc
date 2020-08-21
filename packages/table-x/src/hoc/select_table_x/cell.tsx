@@ -3,7 +3,7 @@ import { Row } from 'react-table'
 import _ from 'lodash'
 import { SelectTableXProps } from './hoc'
 import SelectTableXContext from './context'
-import { Checkbox, Radio } from '@gmfe/react'
+import { Checkbox, Radio } from '@gm-pc/react'
 
 interface SelectCellProps<Original extends object>
   extends Required<

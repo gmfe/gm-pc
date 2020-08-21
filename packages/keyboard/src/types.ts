@@ -1,4 +1,4 @@
-import { TableXColumn } from '@gmfe/table-x'
+import { TableXColumn } from '@gm-pc/table-x'
 
 type KeyboardTableXColumn<Original extends object> = {
   isKeyboard?: boolean

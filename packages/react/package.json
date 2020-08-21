@@ -1,9 +1,9 @@
 {
-  "name": "@gmfe/react",
-  "version": "3.0.1",
+  "name": "@gm-pc/react",
+  "version": "0.0.1",
   "description": "观麦科技前端基础组件库",
   "author": "liyatang <liyatang@qq.com>",
-  "homepage": "https://github.com/gmfe/gmfe#readme",
+  "homepage": "https://github.com/gmfe/gm-pc#readme",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
@@ -13,13 +13,13 @@
   "types": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gmfe/gmfe.git"
+    "url": "git+https://github.com/gmfe/gm-pc.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/gmfe/gmfe/issues"
+    "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "peerDependencies": {
     "@svgr/webpack": "^4.3.2",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.4.1",
-    "@gmfe/locales": "^3.0.1",
+    "@gm-pc/locales": "^0.0.1",
     "big.js": "^5.2.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",

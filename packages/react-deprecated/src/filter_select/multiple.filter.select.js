@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { Flex, Loading, Popover } from '@gmfe/react'
+import { Flex, Loading, Popover } from '@gm-pc/react'
 import classNames from 'classnames'
 
 class MultipleFilterSelect extends React.Component {

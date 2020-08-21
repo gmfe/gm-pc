@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import classNames from 'classnames'
 import _ from 'lodash'
 

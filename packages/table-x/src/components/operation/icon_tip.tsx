@@ -1,6 +1,6 @@
 import React, { cloneElement, FC, MouseEvent, ReactElement, useRef } from 'react'
 import styled from 'styled-components'
-import { Tooltip, Popover } from '@gmfe/react'
+import { Tooltip, Popover } from '@gm-pc/react'
 
 const Icon = styled.div`
   padding: 8px;

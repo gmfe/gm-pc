@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import SVGLeftSmall from '../../svg/left-small.svg'
 import SVGRightSmall from '../../svg/right-small.svg'
 

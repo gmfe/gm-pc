@@ -8,9 +8,9 @@ import {
   InputNumberV2,
   Button,
   Input
-} from '@gmfe/react'
+} from '@gm-pc/react'
 import _ from 'lodash'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import SVGMinusSquare from '../svg/minus-square.svg'
 import SVGPlusSquare from '../svg/plus-square.svg'
 import SVGDelete from '../svg/delete.svg'

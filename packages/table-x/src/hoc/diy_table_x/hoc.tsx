@@ -1,6 +1,6 @@
 import React, { ComponentType, FC, useMemo, useRef, useState } from 'react'
-import { Popover, Storage } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Popover, Storage } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
 import { TableXColumn, TableXProps } from '../../types'
 import { generateDiyColumns, getStorageColumns } from './utils'
@@ -9,8 +9,7 @@ import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIconTip } from '../../components/operation'
 
-function diyTableXHOC<
-  Original extends object,
+function diyTableXHOC<Original extends object,
   Props extends TableXProps<Original> = TableXProps<Original>
 >(Table: ComponentType<Props>) {
   const DiyTableX: FC<Props & DiyTableXProps<Original>> = ({

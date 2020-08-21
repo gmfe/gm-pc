@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Flex, Button } from '@gmfe/react'
+import { Flex, Button } from '@gm-pc/react'
 import _ from 'lodash'
 import Selector from './selector'
 import SortList from './sort_list'
 import PropTypes from 'prop-types'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 const DiyTableModal = ({ columns, onSave, diyGroupSorting, onCancel }) => {
   const [diyCols, setDiyCols] = useState(columns)

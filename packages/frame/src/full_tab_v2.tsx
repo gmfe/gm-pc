@@ -1,7 +1,7 @@
 import React, { ComponentType, FC, ReactNode, useMemo, useState } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import Context from './context'
 import { devWarnForHook, warn } from '@gm-common/tool'
 

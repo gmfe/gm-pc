@@ -1,7 +1,7 @@
 import React, { useEffect, useState, CSSProperties, FC } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 import Context from './context'
 
 export interface FullTabProps {

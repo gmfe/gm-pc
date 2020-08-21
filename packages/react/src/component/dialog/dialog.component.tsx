@@ -1,7 +1,7 @@
 import React, { Component, createRef, KeyboardEvent } from 'react'
 import classNames from 'classnames'
 import { DialogState, DialogProps } from './types'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
 import { warn } from '@gm-common/tool'
 import { Modal, ModalProps } from '../modal'

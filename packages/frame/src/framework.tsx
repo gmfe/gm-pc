@@ -1,5 +1,5 @@
 import React, { useEffect, FC, ComponentType, ReactNode } from 'react'
-import { Flex, EVENT_TYPE } from '@gmfe/react'
+import { Flex, EVENT_TYPE } from '@gm-pc/react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import Context from './context'

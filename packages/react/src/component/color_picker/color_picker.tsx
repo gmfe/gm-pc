@@ -2,7 +2,7 @@ import React, { Component, createRef } from 'react'
 import _ from 'lodash'
 import { Popover } from '../popover'
 import { Button } from '../button'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import ColorSelect from './color_select'
 
 export interface ColorPickerProps {

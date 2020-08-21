@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import DateRangePicker from './date_range_picker'
 import { observable } from 'mobx'
 import moment from 'moment'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { QuickSelectListOptions } from './types'
 
 const store = observable({

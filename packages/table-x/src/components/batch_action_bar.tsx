@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from 'react'
 import styled from 'styled-components'
 import _ from 'lodash'
-import { getLocale } from '@gmfe/locales'
-import { Button, Flex, Popover } from '@gmfe/react'
+import { getLocale } from '@gm-pc/locales'
+import { Button, Flex, Popover } from '@gm-pc/react'
 
 import SVGRemove from '../../svg/remove.svg'
 import SVGDelete from '../../svg/delete.svg'

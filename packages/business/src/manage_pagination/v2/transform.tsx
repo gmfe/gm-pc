@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import _ from 'lodash'
-import { PaginationBase, PaginationDataOptions } from '@gmfe/react'
+import { PaginationBase, PaginationDataOptions } from '@gm-pc/react'
 
 interface TransformProps {
   limit: number

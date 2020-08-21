@@ -1,6 +1,6 @@
 import React, { FC, ReactNode, useRef } from 'react'
-import { Popover } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Popover } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 import { OperationIconTip } from '../operation'
 import SVGEditPen from '../../../svg/edit-pen.svg'
 

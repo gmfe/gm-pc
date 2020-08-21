@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import classNames from 'classnames'
 import moment from 'moment'
 import { QuickSelectListOptions } from './types'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { setTimes } from './util'
 
 const defaultQuickList: QuickSelectListOptions[] = [

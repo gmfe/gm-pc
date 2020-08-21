@@ -1,5 +1,5 @@
 import React, { FC, useRef, KeyboardEvent } from 'react'
-import { DatePicker, DatePickerProps } from '@gmfe/react'
+import { DatePicker, DatePickerProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
 import KeyboardCell from './cell'

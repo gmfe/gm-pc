@@ -3,7 +3,7 @@ import _ from 'lodash'
 import COLOR_LIST from './color_list'
 import { Flex } from '../flex'
 import { Button } from '../button'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 export interface ColorSelectProps {
   defaultColor: string

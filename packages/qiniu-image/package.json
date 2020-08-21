@@ -1,9 +1,9 @@
 {
-  "name": "@gmfe/qiniu-image",
-  "version": "3.0.1",
+  "name": "@gm-pc/qiniu-image",
+  "version": "0.0.1",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
-  "homepage": "https://github.com/gmfe/gmfe#readme",
+  "homepage": "https://github.com/gmfe/gm-pc#readme",
   "license": "ISC",
   "publishConfig": {
     "access": "public"
@@ -12,13 +12,13 @@
   "module": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gmfe/gmfe.git"
+    "url": "git+https://github.com/gmfe/gm-pc.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/gmfe/gmfe/issues"
+    "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "dependencies": {
     "lodash": "^4.17.19"

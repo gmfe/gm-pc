@@ -3,9 +3,9 @@
 import React, { Suspense, Fragment, useRef, useState, useEffect } from 'react'
 import { storiesOf } from '@storybook/react'
 import { observable } from 'mobx'
-import { selectTableXHOC, TableX, TableXUtil } from '@gmfe/table-x'
+import { selectTableXHOC, TableX, TableXUtil } from '@gm-pc/table-x'
 
-import { BoxTable, Flex, Button } from '@gmfe/react'
+import { BoxTable, Flex, Button } from '@gm-pc/react'
 import Tour from './tour'
 
 const initData = [

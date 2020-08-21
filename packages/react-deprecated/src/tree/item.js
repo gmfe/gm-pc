@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Checkbox, Flex } from '@gmfe/react'
+import { Checkbox, Flex } from '@gm-pc/react'
 import classNames from 'classnames'
-import SVGPlus from '@gmfe/react/svg/plus.svg'
-import SVGMinus from '@gmfe/react/svg/minus.svg'
+import SVGPlus from '@gm-pc/react/svg/plus.svg'
+import SVGMinus from '@gm-pc/react/svg/minus.svg'
 
 const LeafItem = (props) => {
   const { leaf, checked, onChange, onClickName, renderLeafItem, disabled, _level } = props

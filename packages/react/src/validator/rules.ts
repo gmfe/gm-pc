@@ -1,6 +1,6 @@
 import Validator from './validator'
 import TYPE from './type'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 const pattern = {
   email: /^([a-z0-9_.-]+)@([\da-z.-]+)\.([a-z.]{2,6})$/,

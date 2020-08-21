@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
-import { Flex, Popover, Button } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Flex, Popover, Button } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import SVGRemove from '../../../svg/remove.svg'
@@ -10,8 +10,8 @@ import SvgEdit from '../../../svg/edit-pen.svg'
 import SvgBusiness from '../../../svg/business.svg'
 
 const ICON_MAP = {
-  delete: <SVGDelete />,
-  edit: <SvgEdit />,
+  delete: <SVGDelete/>,
+  edit: <SvgEdit/>,
   business: <SvgBusiness />
 }
 

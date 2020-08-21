@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes, ReactNode, useCallback, useState, MouseEvent } from 'react'
 import { Flex } from '../flex'
 import { Button } from '../button'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
 
 export interface FormPanelProps extends HTMLAttributes<HTMLDivElement> {

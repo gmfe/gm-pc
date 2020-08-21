@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Flex, Popover, List } from '@gmfe/react'
+import { Flex, Popover, List } from '@gm-pc/react'
 import _ from 'lodash'
 import SVGMore from '../svg/more.svg'
 

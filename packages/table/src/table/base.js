@@ -1,13 +1,13 @@
 import React from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
 import { SortHeader } from '../util'
 import ReactTable from 'react-table-v6'
 import { findDOMNode } from 'react-dom'
 import SVGEmpty from '../../svg/empty.svg'
-import { Flex, EVENT_TYPE } from '@gmfe/react'
+import { Flex, EVENT_TYPE } from '@gm-pc/react'
 import { warn } from '@gm-common/tool'
 
 class BaseTable extends React.Component {

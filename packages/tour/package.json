@@ -1,9 +1,9 @@
 {
-  "name": "@gmfe/tour",
-  "version": "3.0.1",
+  "name": "@gm-pc/tour",
+  "version": "0.0.1",
   "description": "观麦科技引导设置",
   "author": "zhongsink <zhongink@gmail.com>",
-  "homepage": "https://github.com/gmfe/gmfe#readme",
+  "homepage": "https://github.com/gmfe/gm-pc#readme",
   "license": "ISC",
   "main": "src/index.ts",
   "module": "src/index.ts",
@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gmfe/gmfe.git"
+    "url": "git+https://github.com/gmfe/gm-pc.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
-    "url": "https://github.com/gmfe/gmfe/issues"
+    "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "peerDependencies": {
     "react": "^16.13.0",
@@ -27,9 +27,9 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@gmfe/locales": "^3.0.1",
-    "@gmfe/react": "^3.0.1",
-    "@gmfe/table-x": "^3.0.1",
+    "@gm-pc/locales": "^0.0.1",
+    "@gm-pc/react": "^0.0.1",
+    "@gm-pc/table-x": "^0.0.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
   }

@@ -1,7 +1,7 @@
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Checkbox, Flex } from '@gmfe/react'
+import { Checkbox, Flex } from '@gm-pc/react'
 
 const Bottom = (props) => {
   const { checkedAll, onChange, selectValuesLength, leafListLength, disabled } = props

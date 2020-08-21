@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react'
 import _ from 'lodash'
 
-const PREFIX = '_react-gm_'
+const PREFIX = '_gm-pc_'
 const { localStorage } = window
 
 interface StorageProps {

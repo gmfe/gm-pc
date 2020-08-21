@@ -1,7 +1,7 @@
 import React, { Component, createRef, ReactNode } from 'react'
 import classNames from 'classnames'
 import { DropSelectDataOptions, DropSelectProps } from './types'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 interface DropSelectState {
   activeIndex: number | null

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
 import { TransferV2Props } from './types'
 import { Flex } from '../flex'

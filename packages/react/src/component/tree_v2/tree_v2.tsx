@@ -15,7 +15,7 @@ import { TreeV2Props } from './types'
 import { Flex } from '../flex'
 import { Input } from '../input'
 import { Button } from '../button'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import Bottom from './bottom'
 import List from './list'
 import {

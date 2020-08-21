@@ -5,7 +5,7 @@ import { withInfo } from '@storybook/addon-info'
 import { Observer } from 'mobx-react'
 import { LayoutRoot } from '../packages/react/src'
 
-// 引入 react-gm 样式
+// 引入样式
 import '../packages/react/src/index.less'
 import '../packages/react-deprecated/src/index.less'
 // 引入 frame 样式

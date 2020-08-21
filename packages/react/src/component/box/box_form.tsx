@@ -4,7 +4,7 @@ import { Form, FormProps } from '../form'
 import { Flex } from '../flex'
 import { Button } from '../button'
 import { IconDownUp } from '../icon_down_up'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 
 interface BoxFormContextOptions {
   open: boolean

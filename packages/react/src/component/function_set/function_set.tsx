@@ -3,7 +3,7 @@ import { FunctionSetDataOptions, FunctionSetProps } from './type'
 import { Popover } from '../popover'
 import Overlay from './overlay'
 import { Button } from '../button'
-import { getLocale } from '@gmfe/locales'
+import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
 
 class FunctionSet extends Component<FunctionSetProps> {

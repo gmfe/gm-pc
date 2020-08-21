@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC } from 'react'
-import { Flex } from '@gmfe/react'
+import { Flex } from '@gm-pc/react'
 
 const Mask: FC<{ style?: CSSProperties }> = ({ style, children }) => {
   return (

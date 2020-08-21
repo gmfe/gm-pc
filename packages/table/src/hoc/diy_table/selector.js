@@ -1,6 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import { Checkbox, Flex } from '@gmfe/react'
+import { Checkbox, Flex } from '@gm-pc/react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 

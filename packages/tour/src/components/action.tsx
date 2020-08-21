@@ -1,11 +1,13 @@
 import React, { FC, MouseEvent } from 'react'
-import { Button } from '@gmfe/react'
-import { getLocale } from '@gmfe/locales'
+import { Button } from '@gm-pc/react'
+import { getLocale } from '@gm-pc/locales'
 
 interface ActionProps {
   isLastItem: boolean
-  onNextStep(): void
-  onClose(event: MouseEvent): void
+
+  onNextStep (): void
+
+  onClose (event: MouseEvent): void
 }
 
 const Action: FC<ActionProps> = ({ isLastItem, onNextStep, onClose }) => {
