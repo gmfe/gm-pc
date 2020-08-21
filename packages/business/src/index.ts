@@ -1,1 +1,2 @@
-export * from './manage_pagination'
+// @ts-ignore
+console.log('a ha')

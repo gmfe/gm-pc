@@ -7,12 +7,8 @@ import { LayoutRoot } from '../packages/react/src'
 
 // 引入样式
 import '../packages/react/src/index.less'
-import '../packages/react-deprecated/src/index.less'
 // 引入 frame 样式
 import '../packages/frame/src/index.less'
-// 引入 react-table 样式
-import 'react-table-v6/react-table.css'
-import '../packages/table/src/index.less'
 // table-x
 import '../packages/table-x/src/index.less'
 // cropper
