@@ -8506,7 +8506,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^16.13.0, react-dom@^16.8.3:
+react-dom@^16.13.1, react-dom@^16.8.3:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
   integrity sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag==
@@ -8638,13 +8638,6 @@ react-syntax-highlighter@^11.0.2:
     prismjs "^1.8.4"
     refractor "^2.4.1"
 
-react-table-v6@6.8.6:
-  version "6.8.6"
-  resolved "https://registry.npmjs.org/react-table-v6/-/react-table-v6-6.8.6.tgz#8362230caa16f8d6abefeedb2d95dd1adb2741e5"
-  integrity sha512-jxo20BTIU/tQxToOZFnfr0V123VSQ2kNdxR+JbA7V4Zfj1jNtBaiFW/lYgVwejnbnUOuj96pV8Dd+yXXMdAMDA==
-  dependencies:
-    classnames "^2.2.5"
-
 react-table@7.0.0-rc.11:
   version "7.0.0-rc.11"
   resolved "https://registry.npmjs.org/react-table/-/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
@@ -8666,7 +8659,7 @@ react-window@^1.8.5:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
-react@^16.13.0, react@^16.8.3:
+react@^16.13.1, react@^16.8.3:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"
   integrity sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w==

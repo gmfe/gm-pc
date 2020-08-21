@@ -2,7 +2,7 @@ import React, { CSSProperties, FC, HTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
 import { Flex, FlexProps } from '../flex'
 
-export interface BoxTableProps {
+interface BoxTableProps {
   info?: ReactNode
   action?: ReactNode
   className?: string
@@ -10,15 +10,20 @@ export interface BoxTableProps {
   headerProps?: FlexProps
 }
 
-interface BoxTableFC extends FC<BoxTableProps> {
-  Info: FC<HTMLAttributes<HTMLDivElement>>
-}
+type BoxTableInfoProps = HTMLAttributes<HTMLDivElement>
 
-const Info: FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...rest }) => (
+const BoxTableInfo: FC<BoxTableInfoProps> = ({ className, ...rest }) => (
   <div {...rest} className={classNames(className, 'gm-box-table-info')} />
 )
 
-const BoxTable: BoxTableFC = ({ info, action, children, className, headerProps = {}, ...rest }) => {
+const BoxTable: FC<BoxTableProps> = ({
+  info,
+  action,
+  children,
+  className,
+  headerProps = {},
+  ...rest
+}) => {
   const { className: headerClassName } = headerProps
 
   return (
@@ -37,5 +42,6 @@ const BoxTable: BoxTableFC = ({ info, action, children, className, headerProps =
   )
 }
 
-BoxTable.Info = Info
+export { BoxTable, BoxTableInfo }
 export default BoxTable
+export type { BoxTableProps, BoxTableInfoProps }

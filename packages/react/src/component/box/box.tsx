@@ -1,9 +1,10 @@
 import React, { FC, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
-export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
+interface BoxProps extends HTMLAttributes<HTMLDivElement> {
   hasGap?: boolean
 }
+
 /** Box，用来包裹一块内容 */
 const Box: FC<BoxProps> = (props) => {
   const { hasGap, className, children, ...rest } = props
@@ -25,3 +26,4 @@ const Box: FC<BoxProps> = (props) => {
 }
 
 export default Box
+export type { BoxProps }

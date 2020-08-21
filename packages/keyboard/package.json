@@ -28,7 +28,6 @@
   "dependencies": {
     "@gm-common/tool": "^2.4.1",
     "@gm-pc/react": "^0.0.1",
-    "@gm-pc/table": "^0.0.1",
     "@gm-pc/table-x": "^0.0.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"

@@ -2,7 +2,6 @@ import { isInputUnBoundary, scrollIntoViewFixedWidth, doFocus } from './utils'
 
 export const KeyboardUtil = { isInputUnBoundary, scrollIntoViewFixedWidth, doFocus }
 
-export { default as keyboardTableHOC } from './hoc/keyboard_table'
 export { default as keyboardTableXHOC } from './hoc/keyboard_table_x'
 export { default as KC } from './components/cell'
 export { default as KCInput } from './components/input'

@@ -1,8 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Affix from './affix'
 
-storiesOf('Affix', module).add('default', () => (
+export const ComAffix = () => (
   <div>
     <div style={{ height: '1500px' }} />
     <Affix bottom={0} top={0}>
@@ -10,4 +9,8 @@ storiesOf('Affix', module).add('default', () => (
     </Affix>
     <div style={{ height: '1500px' }} />
   </div>
-))
+)
+
+export default {
+  title: 'Affix',
+}

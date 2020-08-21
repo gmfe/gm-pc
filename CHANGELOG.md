@@ -1,3 +1,8 @@
+# 0.0.1
+
+全新库
+
+
 # 3.0.0
 
 ### breaking change
@@ -20,19 +25,8 @@
     *   `Modal.success` 
     *   `Modal.warning` 
     
-5. InputNumber 废弃，迁移到 `@gm-pc/react-deprecated`;
 
 6. InputNumberV2 的 `value` 由选传修改为必传；
-
-7. Select 的子组件 Option 废弃，Select 不再兼容老用法；
-
-8. ToolTip 更名为 Tooltip；
-
-9. Sheet 废弃，迁移到 `@gm-pc/react-deprecated`；
-
-10. Dropper 废弃，迁移到 `@gm-pc/react-deprecated`；
-
-11. FilterSelect, MultipleFilter 废弃，迁移到 `@gm-pc/react-deprecated`；
 
 12. DropDown 系列组件更名：
     * DropDown 更名为 Dropdown;
@@ -43,15 +37,10 @@
 
 14. ImgUploader 的 `data` 类型规定为 `string[]`；
 
-15. Transfer 废弃，迁移到 `@gm-pc/react-deprecated`；
-
-16. Tree 废弃，迁移到 `@gm-pc/react-deprecated`；
-
 17. TableSelect 的 `selected` 由选传修改为必传；
 
 18. Pagination 组件修改：
      * Pagination 的 `data` 由选传修改为必传，并增加默认值 `{ offset: 0, limit:10 }`；
-     * PaginationText 废弃，迁移到 `@gm-pc/react-deprecated`
     
 19. Cascader 组件修改：
      * Cascader 的 `filtrable` 更名为 `filterable`；
@@ -112,23 +101,3 @@
 
      [TypeScript 仅仅导入声明语法](https://juejin.im/post/5e0a07c1e51d4575ca50e3b5)
 
-     
-
-
-
-# 2.9.0
-
-### breaking change
-
-废弃 @gm-pc/business 的
-configError
-configProgress
-configHeaders
-configTrace
-转 @gm*common/request
-
-# 2.5.0
-
-### breaking change
-
-Button type 意义变动，即之前原生 type 改 htmlType

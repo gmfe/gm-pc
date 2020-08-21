@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC } from 'react'
 import _ from 'lodash'
 
-export interface AffixProps {
+interface AffixProps {
   top?: number
   bottom?: number
 }
@@ -24,3 +24,4 @@ const Affix: FC<AffixProps> = ({ children, top, bottom }) => {
 }
 
 export default Affix
+export type { AffixProps }

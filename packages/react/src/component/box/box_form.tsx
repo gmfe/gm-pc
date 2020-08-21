@@ -1,4 +1,11 @@
-import React, { createContext, FC, ReactElement, useContext, useState } from 'react'
+import React, {
+  createContext,
+  FC,
+  ReactElement,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import _ from 'lodash'
 import { Form, FormProps } from '../form'
 import { Flex } from '../flex'
@@ -18,20 +25,23 @@ const boxFormContext = createContext<BoxFormContextOptions>({
 
 const { Provider } = boxFormContext
 
-const More: FC = ({ children }) => {
+const BoxFormMore: FC = ({ children }) => {
   const { open, onHasMore } = useContext(boxFormContext)
-  onHasMore()
+
+  useEffect(() => {
+    onHasMore()
+  }, [])
+
   if (!open) {
     return null
   }
+
   return children as ReactElement
 }
 
-interface BoxFormFC extends FC<FormProps> {
-  More: typeof More
-}
+type BoxFormProps = FormProps
 
-const BoxForm: BoxFormFC = ({ children, ...rest }) => {
+const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
   const [hasMore, setHasMore] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -40,9 +50,7 @@ const BoxForm: BoxFormFC = ({ children, ...rest }) => {
   }
 
   const handleHasMore = (): void => {
-    if (!hasMore) {
-      setHasMore(true)
-    }
+    setHasMore(true)
   }
 
   return (
@@ -50,7 +58,7 @@ const BoxForm: BoxFormFC = ({ children, ...rest }) => {
       <Flex>
         <Flex flex column>
           <Provider value={{ open, onHasMore: handleHasMore }}>
-            <Form inline={!open} {...rest}>
+            <Form {...rest} inline={!open}>
               {children}
             </Form>
           </Provider>
@@ -66,6 +74,6 @@ const BoxForm: BoxFormFC = ({ children, ...rest }) => {
   )
 }
 
-BoxForm.More = More
-
+export { BoxForm, BoxFormMore }
 export default BoxForm
+export type { BoxFormProps }
