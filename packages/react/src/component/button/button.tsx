@@ -1,9 +1,25 @@
-import React, { FC, useState, MouseEvent } from 'react'
+import React, { FC, useState, MouseEvent, AnchorHTMLAttributes } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { is } from '@gm-common/tool'
 import { Loading } from '../loading'
-import { ButtonProps } from './types'
+
+type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
+type ButtonSize = 'large'
+type ButtonHTMLType = 'submit' | 'button' | 'reset'
+
+interface ButtonProps
+  extends AnchorHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
+  type?: ButtonType
+  plain?: boolean
+  size?: ButtonSize
+  block?: boolean
+  htmlType?: ButtonHTMLType
+  loading?: boolean
+  href?: string
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+  disabled?: boolean
+}
 
 const Button: FC<ButtonProps> = ({
   type = 'default',
@@ -68,3 +84,4 @@ const Button: FC<ButtonProps> = ({
 }
 
 export default Button
+export type { ButtonProps, ButtonType, ButtonSize, ButtonHTMLType }

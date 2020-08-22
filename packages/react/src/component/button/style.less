@@ -7,13 +7,13 @@
   cursor: pointer;
   border: 1px solid transparent;
   white-space: nowrap;
-  padding: 5px 10px;
+  padding: 0 10px;
   font-size: 12px;
-  line-height: 1.33;
+  line-height: 30px;
   user-select: none;
 
   &.gm-btn-default {
-    .gm-btn-variants(@gm-color-first, white);
+    .gmBtnVariants(@gm-color-first, white);
 
     border-color: @gm-border-color;
 
@@ -24,15 +24,15 @@
   }
 
   &.gm-btn-primary {
-    .gm-btn-variants(white, @gm-color-primary);
+    .gmBtnVariants(white, @gm-color-primary);
   }
 
   &.gm-btn-success {
-    .gm-btn-variants(white, @gm-color-success);
+    .gmBtnVariants(white, @gm-color-success);
   }
 
   &.gm-btn-danger {
-    .gm-btn-variants(white, @gm-color-danger);
+    .gmBtnVariants(white, @gm-color-danger);
   }
 
   &.gm-btn-link {
@@ -46,9 +46,7 @@
 
     &.disabled,
     &[disabled] {
-      cursor: not-allowed;
-      border-color: transparent;
-      color: @gm-color-disabled;
+      .gmDisabled();
     }
   }
 
@@ -83,7 +81,7 @@
   }
 }
 
-.gm-btn-variants(@color; @brand;) {
+.gmBtnVariants(@color; @brand;) {
   background: @brand;
   border-color: @brand;
   color: @color;
@@ -108,11 +106,5 @@
     border-color: @gm-color-primary;
   }
 
-  &.disabled,
-  &[disabled] {
-    background: @gm-bg-disabled;
-    border-color: @gm-border-color;
-    color: @gm-color-disabled;
-    cursor: not-allowed;
-  }
+  .gmDisabledWith();
 }

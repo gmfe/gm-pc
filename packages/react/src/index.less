@@ -1,20 +1,22 @@
-@import 'less/bootstrap.less';
-@import 'css/variables';
-@import 'css/cover.less';
-@import 'css/svg.less';
+//@import 'less/bootstrap';
+@import '~normalize.css/normalize.css';
+@import './var';
+@import 'css/common';
+@import 'css/cover';
+@import 'css/svg';
 @import 'css/text';
 @import 'css/distance';
 @import 'css/bg';
 @import 'css/border';
 @import 'css/display';
-@import 'css/cursor.less';
-@import 'css/overflow.less';
-@import 'css/position.less';
-@import 'css/shadow.less';
-@import 'css/arrow.less';
-@import 'css/rotate.less';
-@import 'css/error.less';
-@import 'css/other.less';
+@import 'css/cursor';
+@import 'css/overflow';
+@import 'css/position';
+@import 'css/shadow';
+@import 'css/arrow';
+@import 'css/rotate';
+@import 'css/error';
+@import 'css/other';
 @import 'component/selection/style';
 @import 'component/icon_down_up/style';
 @import 'component/calendar/style';
@@ -62,18 +64,6 @@
 @import 'component/recommend_input/style';
 @import 'component/label/style';
 
-html,
-body {
-  font-family: 'Segoe UI', 'Lucida Grande', Helvetica, Arial, 'Microsoft YaHei',
-    FreeSans, Arimo, 'Droid Sans', 'wenquanyi micro hei', 'Hiragino Sans GB',
-    'Hiragino Sans GB W3', FontAwesome, sans-serif;
-  // font-family: Helvetica, STHeiti, 'Microsoft YaHei', Verdana, Arial, Tahoma, sans-serif;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -webkit-overflow-scrolling: touch;
-  line-height: 1.33;
-}
-
 .gm-svg-icon {
   vertical-align: -0.125em;
 }
@@ -88,6 +78,8 @@ body {
   background: @gm-bg-disabled;
 }
 
+// stylelint-disable
 .gm-number-family {
   font-family: Helvetica;
 }
+// stylelint-enable

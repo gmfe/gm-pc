@@ -1,0 +1,22 @@
+.gmClearfix() {
+  &:before,
+  &:after {
+    content: ' '; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.gmDisabled() {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.gmDisabledWith() {
+  &.disabled,
+  &[disabled] {
+    .gmDisabled();
+  }
+}
