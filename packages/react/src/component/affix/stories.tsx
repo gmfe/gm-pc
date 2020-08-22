@@ -12,5 +12,5 @@ export const ComAffix = () => (
 )
 
 export default {
-  title: 'Affix',
+  title: '布局/Affix',
 }

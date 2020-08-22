@@ -80,5 +80,5 @@ export const ComBoxPanelWithCollapse = () => (
 )
 
 export default {
-  title: 'Box',
+  title: '布局/Box',
 }

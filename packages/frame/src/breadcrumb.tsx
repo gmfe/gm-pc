@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { CSSProperties, FC } from 'react'
 import _ from 'lodash'
 import { is } from '@gm-common/tool'
 
@@ -13,7 +13,7 @@ interface navConfigSubSubOptions extends baseNavConfigOptions {
 interface navConfigSubOptions {
   name: string
   link: string
-  style?: object
+  style?: CSSProperties
   sub: navConfigSubSubOptions[]
 }
 

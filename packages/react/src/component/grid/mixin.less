@@ -20,7 +20,7 @@
 }
 
 .gm-grid-loop-columns(@index, @class) when (@index > 0) {
-  .gm-grid-col@{class}-@{index} {
+  .gm-grid-col@{class}-span-@{index} {
     display: block;
     box-sizing: border-box;
     width: percentage((@index / @gm-grid-columns));
@@ -33,7 +33,7 @@
 }
 
 .gm-grid-loop-columns(@index, @class) when (@index = 0) {
-  .gm-grid-col@{class}-@{index} {
+  .gm-grid-col@{class}-span-@{index} {
     display: none;
   }
 

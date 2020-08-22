@@ -1,11 +1,4 @@
-import React, {
-  createContext,
-  FC,
-  ReactElement,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import React, { FC, ReactElement, useContext, useEffect, useState } from 'react'
 import _ from 'lodash'
 import { Form, FormProps } from '../form'
 import { Flex } from '../flex'
@@ -13,20 +6,18 @@ import { Button } from '../button'
 import { IconDownUp } from '../icon_down_up'
 import { getLocale } from '@gm-pc/locales'
 
-interface BoxFormContextOptions {
+interface BoxFormContext {
   open: boolean
   onHasMore(): void
 }
 
-const boxFormContext = createContext<BoxFormContextOptions>({
+const BoxFormContext = React.createContext<BoxFormContext>({
   open: false,
   onHasMore: _.noop,
 })
 
-const { Provider } = boxFormContext
-
 const BoxFormMore: FC = ({ children }) => {
-  const { open, onHasMore } = useContext(boxFormContext)
+  const { open, onHasMore } = useContext(BoxFormContext)
 
   useEffect(() => {
     onHasMore()
@@ -57,11 +48,11 @@ const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
     <div className='gm-box gm-box-form'>
       <Flex>
         <Flex flex column>
-          <Provider value={{ open, onHasMore: handleHasMore }}>
+          <BoxFormContext.Provider value={{ open, onHasMore: handleHasMore }}>
             <Form {...rest} inline={!open}>
               {children}
             </Form>
-          </Provider>
+          </BoxFormContext.Provider>
         </Flex>
         {hasMore && (
           <Button type='link' className='gm-padding-right-0' onClick={handleToggle}>

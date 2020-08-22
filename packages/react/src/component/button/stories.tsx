@@ -86,5 +86,5 @@ export const ComButtonWithLoading = () => (
 )
 
 export default {
-  title: 'Button',
+  title: '表单/Button',
 }

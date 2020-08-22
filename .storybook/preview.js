@@ -1,6 +1,6 @@
 import React from 'react'
 import './i18n'
-import { addDecorator } from '@storybook/react'
+import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { Observer } from 'mobx-react'
 import { LayoutRoot } from '../packages/react/src'
@@ -18,6 +18,12 @@ if (process.env.NODE_ENV !== 'production') {
   // const whyDidYouRender = require('@welldone-software/why-did-you-render')
   // whyDidYouRender(React)
 }
+
+addParameters({
+  options: {
+    showRoots: true,
+  },
+})
 
 addDecorator(
   withInfo({

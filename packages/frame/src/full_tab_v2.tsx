@@ -1,4 +1,11 @@
-import React, { ComponentType, FC, ReactNode, useMemo, useState } from 'react'
+import React, {
+  ComponentType,
+  CSSProperties,
+  FC,
+  ReactNode,
+  useMemo,
+  useState,
+} from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { Flex } from '@gm-pc/react'
@@ -18,7 +25,7 @@ export interface FullTabV2Props {
   onChange?(key: string): void
   isLazy?: boolean
   className?: string
-  style?: object
+  style?: CSSProperties
 }
 
 const FullTabV2: FC<FullTabV2Props> = ({

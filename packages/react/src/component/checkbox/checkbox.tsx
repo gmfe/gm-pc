@@ -1,80 +1,80 @@
-import React, { ChangeEvent, CSSProperties, Component } from 'react'
+import React, { FC, ChangeEvent, CSSProperties, useContext } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
+import { CheckboxGroupContext } from './util'
 
-export interface CheckboxProps<P> {
+interface CheckboxProps {
+  value?: any
   checked?: boolean
-  onChange?(event: ChangeEvent<HTMLInputElement>): void
-  value?: P
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   indeterminate?: boolean
-  inline?: boolean
-  block?: boolean
-  col?: number
   name?: string
   className?: string
   style?: CSSProperties
 }
 
-class Checkbox<P extends string | number | string[]> extends Component<CheckboxProps<P>> {
-  static defaultProps = {
-    onChange: _.noop,
-  }
+const Checkbox: FC<CheckboxProps> = ({
+  value,
+  checked,
+  onChange,
+  children,
+  name,
+  disabled,
+  indeterminate,
+  className,
+  style,
+  ...rest
+}) => {
+  const checkBoxGroupContext = useContext(CheckboxGroupContext)
 
-  render() {
-    const {
-      value,
-      checked,
-      onChange,
-      children,
-      name,
-      inline,
-      block,
-      disabled,
-      col,
-      indeterminate,
-      style,
-      className,
-      ...rest
-    } = this.props
-    const inner = (
-      <label
-        {...rest}
-        style={{
-          width: col ? `${100 / col}%` : 'auto',
-          ...style,
-        }}
-        className={classNames(
-          'gm-checkbox',
-          {
-            'gm-checkbox-indeterminate': !checked && indeterminate,
-            'gm-checkbox-inline': inline,
-            'gm-checkbox-block': block,
-            disabled,
-          },
-          className
-        )}
-      >
-        <input
-          className='gm-checkbox-input'
-          type='checkbox'
-          name={name}
-          value={value}
-          checked={checked}
-          onChange={onChange}
-          disabled={disabled}
-        />
-        <span className='gm-checkbox-span' />
-        {children}
-      </label>
-    )
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(event)
 
-    if (!inline) {
-      return <div>{inner}</div>
+    // 代表在 CheckBoxGroup 下
+    if (checkBoxGroupContext.isInCheckboxGroup) {
+      checkBoxGroupContext.onChange(value)
     }
-
-    return inner
   }
+
+  let oName = name
+  let oChecked = checked
+
+  if (checkBoxGroupContext.isInCheckboxGroup) {
+    oName = checkBoxGroupContext.name
+    oChecked = checkBoxGroupContext.value.includes(value)
+
+    if (checked !== undefined || name !== undefined || onChange !== undefined) {
+      console.warn('在 CheckBoxGroup 下，不能提供 checked name onChange')
+    }
+  }
+
+  return (
+    <label
+      {...rest}
+      className={classNames(
+        'gm-checkbox',
+        {
+          'gm-checkbox-indeterminate': !checked && indeterminate,
+          disabled,
+        },
+        className
+      )}
+    >
+      <input
+        className='gm-checkbox-input'
+        type='checkbox'
+        name={oName}
+        value={value}
+        checked={oChecked}
+        onChange={handleChange}
+        disabled={disabled}
+      />
+      <span className='gm-checkbox-span' />
+      <span className='gm-padding-lr-5'>{children}</span>
+    </label>
+  )
 }
 
 export default Checkbox
+export type { CheckboxProps }

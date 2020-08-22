@@ -1,11 +1,17 @@
 import { HTMLAttributes } from 'react'
-import { FlexProps } from '../flex/flex'
 
-type ColSizeType = 'sm' | 'md' | 'lg' | 'xl'
+interface GutterSize {
+  sm?: number
+  md?: number
+  lg?: number
+  xl?: number
+}
 
-type RowProps = FlexProps & {
+type Gutter = number | GutterSize
+
+interface RowProps extends HTMLAttributes<HTMLDivElement> {
   /* 栅栏间隔，可以写成像素值或支持响应式的对象写法，默认为10 */
-  gutter?: number | { [key in ColSizeType]: number }
+  gutter?: Gutter
 }
 
 type ColSize = number | { span?: number; offset?: number }
@@ -25,8 +31,4 @@ interface ColProps extends HTMLAttributes<HTMLDivElement> {
   xl?: ColSize
 }
 
-interface RowContextOptions {
-  gutter?: number | { [key in ColSizeType]: number }
-}
-
-export type { RowProps, ColProps, RowContextOptions }
+export type { Gutter, RowProps, ColProps }
