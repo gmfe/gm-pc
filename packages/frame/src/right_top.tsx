@@ -6,7 +6,7 @@ import Context from './context'
 export interface RightTopProps {
   breadcrumb?: ComponentType | ReactNode
   info?: ComponentType | ReactNode
-  onMenuBtnClick?: void
+  onMenuBtnClick(): void
 }
 
 const RightTop: FC<RightTopProps> = ({ breadcrumb, onMenuBtnClick = _.noop, info }) => {

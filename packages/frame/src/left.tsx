@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import Context from './context'
 
 export interface LeftProps {
-  style: CSSProperties
-  className: string
+  style?: CSSProperties
+  className?: string
   children: React.ReactElement
 }
 

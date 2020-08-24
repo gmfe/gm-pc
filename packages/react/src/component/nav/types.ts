@@ -26,7 +26,7 @@ interface NavProps {
   /* pathname 会匹配到第三级的 link */
   selected: string
   /* 如果是选中一二级，会直接返回改分级下第三级的 item */
-  onSelect(value?: NavData3RdOptions): void
+  onSelect?(value: NavData3RdOptions): void
   /* 控制 浮层的线上，如商品库传 merchandise */
   showActive?: string
   other?: ReactNode
@@ -37,7 +37,7 @@ interface NavProps {
 interface ItemProps {
   data: NavData1stOptions
   selected: string
-  onSelect(data?: NavData1stOptions): void
+  onSelect?(data?: NavData1stOptions): void
   showActive?: string
 }
 
