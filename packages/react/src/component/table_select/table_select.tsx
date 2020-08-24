@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { MoreSelect, MoreSelectGroupDataOptions, MoreSelectNormalDataOptions } from '../more_select'
 import { TableSelectProps } from './types'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import getColumnKey from './get_column_key'
 
 const TableSelect = forwardRef(

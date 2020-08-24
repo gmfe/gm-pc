@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { getLocale } from '@gm-pc/locales'
 import { TreeV2DataOptions } from './types'
 import { getLeafValues } from './utils'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import { Checkbox } from '../checkbox'
 
 interface BottomProps<T> {

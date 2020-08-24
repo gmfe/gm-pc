@@ -2,7 +2,7 @@ import React, { FC, useRef } from 'react'
 import classNames from 'classnames'
 import { DropdownProps } from './types'
 import { Popover } from '../popover'
-import { Button } from '../button'
+import Button from '../button'
 
 const Dropdown: FC<DropdownProps> = ({
   children,

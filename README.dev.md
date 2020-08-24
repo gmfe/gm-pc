@@ -15,11 +15,14 @@ todo react
 - [ ] calendar
 - [x] checkbox
 - [x] collapse
-- [ ] color picker
+- [x] color picker
+- [ ] date picker
+- [ ] date range picker
+- [ ] dialog
 
 - [ ] grid 小的时候会有问题
 
-- [ ] radio
+- [x] radio
 
 其他
 

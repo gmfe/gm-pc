@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Uploader from './uploader'
 import { observable } from 'mobx'
-import { Button } from '../button'
+import Button from '../button'
 const { DefaultImage } = Uploader
 
 const store = observable({

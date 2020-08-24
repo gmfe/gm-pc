@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Tip from './tip'
-import { Button } from '../button'
+import Button from '../button'
 
 storiesOf('Tip', module).add(
   'default',

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import Modal from './modal'
 import CleanModal from './clean_modal'
 import RightSideModal from './right_side_modal'
-import { Button } from '../button'
+import Button from '../button'
 
 storiesOf('Modal', module)
   .add('default', () => (

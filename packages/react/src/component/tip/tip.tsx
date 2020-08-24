@@ -1,7 +1,7 @@
 import React, { Component, PropsWithChildren } from 'react'
 import _ from 'lodash'
 import { TipProps } from './types'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import TipContent from './tip_content'
 import { LayoutRoot } from '../layout_root'
 

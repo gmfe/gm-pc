@@ -12,7 +12,7 @@ import React, {
 import { devWarnForHook, warn } from '@gm-common/tool'
 import Form from './form'
 import Affix from '../affix/affix'
-import { Button } from '../button'
+import Button from '../button'
 import { getLocale } from '@gm-pc/locales'
 import classNames from 'classnames'
 import styled from 'styled-components'

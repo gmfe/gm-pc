@@ -62,7 +62,10 @@ export default class Popover extends Component<PopoverProps, PopoverState> {
 
     LayoutRoot.removeComponentPopup(this._id)
     window.removeEventListener(EVENT_TYPE.MODAL_SCROLL, this._debounceHandleModalScroll)
-    window.removeEventListener(EVENT_TYPE.BROWSER_SCROLL, this._debounceHandleBrowserScroll)
+    window.removeEventListener(
+      EVENT_TYPE.BROWSER_SCROLL,
+      this._debounceHandleBrowserScroll
+    )
     window.removeEventListener(EVENT_TYPE.DRAWER_SCROLL, this._debounceHandleDrawerScroll)
     window.removeEventListener(EVENT_TYPE.TABLE_SCROLL, this._debounceHandleTableScroll)
   }

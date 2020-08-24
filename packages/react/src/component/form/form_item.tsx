@@ -13,7 +13,7 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import formContext from './context'
 import Validator from '../../validator'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import { Tooltip } from '../tooltip'
 
 export interface FormItemProps {

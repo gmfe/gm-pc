@@ -1,11 +1,11 @@
 import React, { Component, createRef } from 'react'
 import _ from 'lodash'
 import COLOR_LIST from './color_list'
-import { Flex } from '../flex'
-import { Button } from '../button'
+import Flex from '../flex'
+import Button from '../button'
 import { getLocale } from '@gm-pc/locales'
 
-export interface ColorSelectProps {
+interface ColorSelectProps {
   defaultColor: string
   onCancel(): void
   onConfirm(color: string): void
@@ -15,7 +15,7 @@ interface ColorSelectState {
   color: string
 }
 
-export default class ColorSelect extends Component<ColorSelectProps, ColorSelectState> {
+class ColorSelect extends Component<ColorSelectProps, ColorSelectState> {
   static defaultProps = {
     defaultColor: '#fff',
     onCancel: _.noop,
@@ -52,7 +52,10 @@ export default class ColorSelect extends Component<ColorSelectProps, ColorSelect
             className='gm-color-picker-color-default-item gm-bg-hover-primary'
             onClick={() => this._handleColorChange(color.value)}
           >
-            <div style={{ background: color.value }} className='gm-color-picker-color-point' />
+            <div
+              style={{ background: color.value }}
+              className='gm-color-picker-color-point'
+            />
             <div className='gm-padding-lr-10'>{color.text}</div>
           </Flex>
         ))}
@@ -89,3 +92,6 @@ export default class ColorSelect extends Component<ColorSelectProps, ColorSelect
     )
   }
 }
+
+export default ColorSelect
+export type { ColorSelectProps }

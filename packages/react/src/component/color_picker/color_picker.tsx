@@ -1,50 +1,45 @@
-import React, { Component, createRef } from 'react'
-import _ from 'lodash'
+import React, { FC, ReactNode, useRef } from 'react'
 import { Popover } from '../popover'
-import { Button } from '../button'
-import { getLocale } from '@gm-pc/locales'
 import ColorSelect from './color_select'
 
-export interface ColorPickerProps {
-  color?: string
-  onChange?(color: string): void
+interface ColorPickerProps {
+  value?: string
+  onChange?: (color: string) => void
+  children: ReactNode
 }
 
-class ColorPicker extends Component<ColorPickerProps> {
-  static defaultProps = {
-    onChange: _.noop,
-  }
+const ColorPicker: FC<ColorPickerProps> = ({ value, onChange, children }) => {
+  const refPopover = useRef<Popover>(null)
 
-  private _popoverRef = createRef<Popover>()
+  const handleConfirm = (color: string): void => {
+    // eslint-disable-next-line no-unused-expressions
+    refPopover.current?.apiDoSetActive(false)
 
-  private _handleConfirm = (color: string): void => {
-    const { onChange } = this.props
     onChange && onChange(color)
-    this._handleCancel()
   }
 
-  private _handleCancel = (): void => {
-    this._popoverRef.current!.apiDoSetActive()
+  const handleCancel = (): void => {
+    // eslint-disable-next-line no-unused-expressions
+    refPopover.current?.apiDoSetActive(false)
   }
 
-  render() {
-    const { color, children } = this.props
-    return (
-      <Popover
-        ref={this._popoverRef}
-        type='click'
-        showArrow
-        popup={
-          <ColorSelect
-            defaultColor={color}
-            onConfirm={this._handleConfirm}
-            onCancel={this._handleCancel}
-          />
-        }
-      >
-        {children ?? <Button>{color ?? getLocale('选择颜色')}</Button>}
-      </Popover>
-    )
-  }
+  return (
+    <Popover
+      ref={refPopover}
+      type='click'
+      showArrow
+      popup={
+        <ColorSelect
+          defaultColor={value}
+          onConfirm={handleConfirm}
+          onCancel={handleCancel}
+        />
+      }
+    >
+      {children}
+    </Popover>
+  )
 }
+
 export default ColorPicker
+export type { ColorPickerProps }

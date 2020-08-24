@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Popover from './popover'
-import { Button } from '../button'
+import Button from '../button'
 
 const renderPopup = () => {
   return (

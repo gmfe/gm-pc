@@ -1,6 +1,13 @@
-import React, { FC, HTMLAttributes, ReactNode, useCallback, useState, MouseEvent } from 'react'
-import { Flex } from '../flex'
-import { Button } from '../button'
+import React, {
+  FC,
+  HTMLAttributes,
+  ReactNode,
+  useCallback,
+  useState,
+  MouseEvent,
+} from 'react'
+import Flex from '../flex'
+import Button from '../button'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
 
@@ -40,7 +47,14 @@ interface FormPanelFC extends FC<FormPanelProps> {
   More: typeof More
 }
 
-const FormPanel: FormPanelFC = ({ title, left, right, children, showBorder = true, ...rest }) => {
+const FormPanel: FormPanelFC = ({
+  title,
+  left,
+  right,
+  children,
+  showBorder = true,
+  ...rest
+}) => {
   return (
     <div {...rest} className='gm-form-panel'>
       <Flex flex justifyBetween alignEnd className='gm-form-panel-header'>

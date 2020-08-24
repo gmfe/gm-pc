@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Flex } from '../flex'
+import Flex from '../flex'
 
 const Divider: FC = ({ children }) => {
   return (

@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, ReactNode, useState } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import Collapse from '../collapse'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import SVGUp from '../../../svg/up.svg'
 import SVGDown from '../../../svg/down.svg'
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Dialog from './dialog'
-import { Button } from '../button'
+import Button from '../button'
 
 storiesOf('Dialog', module)
   .add('JSX', () => (

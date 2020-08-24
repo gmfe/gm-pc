@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC, ReactNode, MouseEvent, useCallback } from 'react'
 import classNames from 'classnames'
 import { Uploader, UploaderFile } from '../uploader'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import SvgCloseCircle from '../../../svg/close-circle.svg'
 
 const { DefaultImage } = Uploader

@@ -14,7 +14,7 @@ import {
   MoreSelectNormalDataOptions,
 } from './types'
 import { Popover } from '../popover'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import SVGRemove from '../../../svg/remove.svg'
 import SVGCloseCircle from '../../../svg/close-circle.svg'
 import { renderListFilterDefault, renderListFilterPinYin } from './render_list_filter'

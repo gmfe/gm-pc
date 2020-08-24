@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { NavFC } from './types'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import Item from './item'
 import SingleItem from './single_item'
 

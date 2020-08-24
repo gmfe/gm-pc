@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 import Loading from './loading'
 import LoadingChunk from './loading_chunk'
 import LoadingFullScreen from './loading_full_screen'
-import { Button } from '../button'
+import Button from '../button'
 
 storiesOf('Loading', module)
   .add('default', () => <Loading />)

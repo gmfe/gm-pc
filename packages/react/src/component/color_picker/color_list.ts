@@ -30,4 +30,5 @@ const COLOR_LIST = [
     text: getLocale('灰色'),
   },
 ]
+
 export default COLOR_LIST

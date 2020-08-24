@@ -61,19 +61,7 @@ const webpackFinal = (config) => {
 
   config.module.rules.push({
     test: /\.tsx?$/,
-    use: [
-      {
-        loader: 'babel-loader',
-        options: { cacheDirectory: true },
-      },
-      'thread-loader',
-      // {
-      //   loader: 'react-docgen-typescript-loader',
-      //   options: {
-      //     tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
-      //   },
-      // },
-    ],
+    use: [require.resolve('babel-loader')],
   })
 
   config.module.rules.unshift({

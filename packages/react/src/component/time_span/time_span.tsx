@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react'
 import moment, { Moment } from 'moment'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Flex } from '../flex'
+import Flex from '../flex'
 
 interface GetTime {
   (time?: Date): Moment | null

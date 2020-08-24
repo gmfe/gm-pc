@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import Tabs from './tabs'
 import { observable } from 'mobx'
-import { Button } from '../button'
+import Button from '../button'
 
 const store = observable({
   active: 0,

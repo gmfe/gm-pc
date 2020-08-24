@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import classNames from 'classnames'
 import { RowProps } from './types'
 import { RowContext } from './util'
-import { Flex } from '../flex'
+import Flex from '../flex'
 
 const Row: FC<RowProps> = ({ gutter = 0, className, style, children, ...rest }) => {
   const rowStyle = style || {}

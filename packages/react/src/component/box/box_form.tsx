@@ -1,17 +1,24 @@
-import React, { FC, ReactElement, useContext, useEffect, useState } from 'react'
+import React, {
+  FC,
+  ReactElement,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import _ from 'lodash'
 import { Form, FormProps } from '../form'
-import { Flex } from '../flex'
+import Flex from '../flex'
 import Button from '../button'
 import { IconDownUp } from '../icon_down_up'
 import { getLocale } from '@gm-pc/locales'
 
 interface BoxFormContext {
   open: boolean
-  onHasMore(): void
+  onHasMore: () => void
 }
 
-const BoxFormContext = React.createContext<BoxFormContext>({
+const BoxFormContext = createContext<BoxFormContext>({
   open: false,
   onHasMore: _.noop,
 })
@@ -21,7 +28,7 @@ const BoxFormMore: FC = ({ children }) => {
 
   useEffect(() => {
     onHasMore()
-  }, [])
+  }, [onHasMore])
 
   if (!open) {
     return null
