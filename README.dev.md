@@ -13,11 +13,14 @@ todo react
 - [x] box
 - [x] button
 - [ ] calendar
-- [ ] checkbox todo story of block inline col
+- [x] checkbox
 - [ ] collapse
 
+* [ ] grid 小的时候会有问题
 
-- [ ] grid
+其他
+
+- [ ] export default
 
 # z-index 层级管理
 

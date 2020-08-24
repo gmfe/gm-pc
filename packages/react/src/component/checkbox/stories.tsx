@@ -1,6 +1,8 @@
 import React from 'react'
 import { Checkbox, CheckboxGroup } from './index'
 import { observable } from 'mobx'
+import { Col, Row } from '../grid'
+import _ from 'lodash'
 
 const store = observable({
   value: [1, 4],
@@ -22,6 +24,14 @@ const store = observable({
       value: 4,
       text: '东莞',
       disabled: true,
+    },
+    {
+      value: 5,
+      text: '珠海',
+    },
+    {
+      value: 6,
+      text: '惠州',
     },
   ],
   setValue(value: any) {
@@ -91,7 +101,38 @@ export const ComCheckboxGroup = () => (
   </CheckboxGroup>
 )
 
-// export const ComCheckboxGroupFor
+export const ComCheckboxGroupForGrid = () => {
+  const two = _.groupBy(store.data, (v) => Math.floor((v.value - 1) / 2))
+  console.log(two)
+  return (
+    <div>
+      <div>垂直布局</div>
+      <div>
+        <CheckboxGroup value={store.value} onChange={(value) => store.setValue(value)}>
+          {_.map(store.data, (v) => (
+            <div>
+              <Checkbox value={v.value}>{v.text}</Checkbox>
+            </div>
+          ))}
+        </CheckboxGroup>
+      </div>
+      <div>两列</div>
+      <div style={{ width: '200px' }}>
+        <CheckboxGroup value={store.value} onChange={(value) => store.setValue(value)}>
+          {_.map(two, (one) => (
+            <Row>
+              {_.map(one, (v) => (
+                <Col span={8} key={v.value}>
+                  <Checkbox value={v.value}>{v.text}</Checkbox>
+                </Col>
+              ))}
+            </Row>
+          ))}
+        </CheckboxGroup>
+      </div>
+    </div>
+  )
+}
 
 export default {
   title: '表单/Checkbox',

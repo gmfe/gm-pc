@@ -6,7 +6,7 @@ import { CheckboxGroupContext } from './util'
 interface CheckboxGroupProps {
   value: any[]
   onChange?: (value: any[]) => void
-  name: string
+  name?: string
   className?: string
   style?: CSSProperties
 }
