@@ -1,9 +1,10 @@
-import React, { CSSProperties, FC } from 'react'
+import React, { CSSProperties, FC, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
-interface CheckboxGroupProps {
+// @ts-ignore
+interface CheckboxGroupProps extends HTMLAttributes<HTMLDivElement> {
   value: any[]
   onChange?: (value: any[]) => void
   name?: string

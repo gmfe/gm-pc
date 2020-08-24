@@ -1,17 +1,15 @@
-import React, { FC, ChangeEvent, CSSProperties, useContext } from 'react'
+import React, { FC, ChangeEvent, useContext, HTMLAttributes } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { CheckboxGroupContext } from './util'
 
-interface CheckboxProps {
+interface CheckboxProps extends HTMLAttributes<HTMLLabelElement> {
   value?: any
   checked?: boolean
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: ChangeEvent<HTMLLabelElement>) => void
   disabled?: boolean
   indeterminate?: boolean
   name?: string
-  className?: string
-  style?: CSSProperties
 }
 
 const Checkbox: FC<CheckboxProps> = ({
@@ -28,7 +26,7 @@ const Checkbox: FC<CheckboxProps> = ({
 }) => {
   const checkBoxGroupContext = useContext(CheckboxGroupContext)
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLLabelElement>) => {
     onChange && onChange(event)
 
     // 代表在 CheckBoxGroup 下
@@ -60,6 +58,7 @@ const Checkbox: FC<CheckboxProps> = ({
         },
         className
       )}
+      onChange={handleChange}
     >
       <input
         className='gm-checkbox-input'
@@ -67,7 +66,6 @@ const Checkbox: FC<CheckboxProps> = ({
         name={oName}
         value={value}
         checked={oChecked}
-        onChange={handleChange}
         disabled={disabled}
       />
       <span className='gm-checkbox-span' />

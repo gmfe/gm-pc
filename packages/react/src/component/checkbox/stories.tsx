@@ -1,5 +1,6 @@
 import React from 'react'
-import { Checkbox, CheckboxGroup } from './index'
+import Checkbox from './checkbox'
+import CheckboxGroup from './checkbox_group'
 import { observable } from 'mobx'
 import { Col, Row } from '../grid'
 import _ from 'lodash'

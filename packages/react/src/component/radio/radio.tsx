@@ -1,74 +1,52 @@
-import React, { ChangeEvent, Component, CSSProperties, MouseEvent } from 'react'
-import _ from 'lodash'
+import React, { ChangeEvent, FC, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 
-export interface RadioProps<R> {
+// 这里怎么解决，先 ts-ignore
+// @ts-ignore
+interface RadioProps extends HTMLAttributes<HTMLLabelElement> {
+  value?: any
   checked?: boolean
-  onChange?(event: ChangeEvent<HTMLInputElement>): void
-  value?: R
+  onChange?: (event: ChangeEvent<HTMLLabelElement>) => void
   disabled?: boolean
-  inline?: boolean
-  block?: boolean
   name?: string
-  onClick?(event: MouseEvent<HTMLInputElement>): void
-  className?: string
-  style?: CSSProperties
 }
 
-class Radio<P extends string | number | string[]> extends Component<RadioProps<P>> {
-  static defaultProps = {
-    onChange: _.noop,
-    onClick: _.noop,
-  }
-
-  render() {
-    const {
-      value,
-      checked,
-      onChange,
-      onClick,
-      children,
-      inline,
-      block,
-      name,
-      disabled,
-      className,
-      ...rest
-    } = this.props
-
-    const inner = (
-      <label
-        {...rest}
-        className={classNames(
-          'gm-radio',
-          {
-            'gm-radio-inline': inline,
-            'gm-radio-block': block,
-            disabled,
-          },
-          className
-        )}
-      >
-        <input
-          type='radio'
-          className='gm-radio-input'
-          name={name}
-          value={value}
-          checked={checked || false}
-          onChange={onChange}
-          onClick={onClick}
-          disabled={disabled}
-        />
-        <span className='gm-radio-span' />
-        {children}
-      </label>
-    )
-
-    if (!inline) {
-      return <div>{inner}</div>
-    }
-    return inner
-  }
+const Radio: FC<RadioProps> = ({
+  value,
+  checked,
+  onChange,
+  onClick,
+  children,
+  name,
+  disabled,
+  className,
+  ...rest
+}) => {
+  return (
+    <label
+      {...rest}
+      className={classNames(
+        'gm-radio',
+        {
+          disabled,
+        },
+        className
+      )}
+      onChange={onChange}
+    >
+      <input
+        type='radio'
+        className='gm-radio-input'
+        name={name}
+        value={value}
+        checked={checked || false}
+        disabled={disabled}
+      />
+      <span className='gm-radio-span' />
+      <span className='gm-padding-lr-5'>{children}</span>
+    </label>
+  )
 }
 
 export default Radio
+export type { RadioProps }

@@ -1,6 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { Radio, RadioGroup } from './'
+import { Radio } from './'
 import { observable } from 'mobx'
 
 const store = observable({
@@ -31,50 +30,38 @@ const store = observable({
   },
 })
 
-storiesOf('Radio', module)
-  .add('default', () => (
+export const ComRadio = () => (
+  <div>
     <div>
-      <div>
-        <h1>常规</h1>
-        <Radio checked>radio</Radio>
-        <Radio>radio</Radio>
-      </div>
-      <div>
-        <h1>disabled</h1>
-        <Radio checked disabled>
-          radio
-        </Radio>
-        <Radio disabled>radio</Radio>
-      </div>
-      <div>
-        <h1>inline</h1>
-        <Radio checked inline>
-          radio
-        </Radio>
-        <Radio inline>radio</Radio>
-      </div>
-      <div>
-        <h1>block</h1>
-        <Radio
-          block
-          checked={store.checked}
-          onChange={() => store.setChecked(!store.checked)}
-        >
-          radio
-        </Radio>
-      </div>
+      <h1>默认</h1>
+      <Radio
+        checked={store.checked}
+        onChange={() => {
+          store.setValue(!store.checked)
+        }}
+      >
+        radio
+      </Radio>
+      <Radio
+        checked={store.checked}
+        onChange={() => {
+          store.setValue(!store.checked)
+        }}
+      >
+        radio
+      </Radio>
     </div>
-  ))
-  .add('RadioGroup', () => (
-    <RadioGroup
-      name='city'
-      value={store.value}
-      onChange={(value) => store.setValue(value)}
-    >
-      {store.data.map((v) => (
-        <Radio key={v.value} value={v.value} disabled={v.disabled}>
-          {v.text}
-        </Radio>
-      ))}
-    </RadioGroup>
-  ))
+    <div>
+      <h1>disabled</h1>
+      <Radio checked disabled>
+        radio
+      </Radio>
+      <Radio disabled>radio</Radio>
+    </div>
+    <div>更多同 checkbox</div>
+  </div>
+)
+
+export default {
+  title: '表单/Radio',
+}
