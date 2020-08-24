@@ -111,7 +111,7 @@ export const ComCheckboxGroupForGrid = () => {
       <div>
         <CheckboxGroup value={store.value} onChange={(value) => store.setValue(value)}>
           {_.map(store.data, (v) => (
-            <div>
+            <div key={v.value}>
               <Checkbox value={v.value}>{v.text}</Checkbox>
             </div>
           ))}

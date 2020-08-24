@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FC, HTMLAttributes } from 'react'
+import React, { ChangeEvent, FC, HTMLAttributes, useContext } from 'react'
 import classNames from 'classnames'
+import _ from 'lodash'
+import { RadioGroupContext } from './util'
 
-// 这里怎么解决，先 ts-ignore
-// @ts-ignore
 interface RadioProps extends HTMLAttributes<HTMLLabelElement> {
   value?: any
   checked?: boolean
@@ -22,6 +22,28 @@ const Radio: FC<RadioProps> = ({
   className,
   ...rest
 }) => {
+  const radioGroupContext = useContext(RadioGroupContext)
+
+  const handleChange = (event: ChangeEvent<HTMLLabelElement>) => {
+    onChange && onChange(event)
+
+    if (radioGroupContext.isInRadioGroup) {
+      radioGroupContext.onChange(value)
+    }
+  }
+
+  let oName = name
+  let oChecked = checked
+
+  if (radioGroupContext.isInRadioGroup) {
+    oName = radioGroupContext.name
+    oChecked = radioGroupContext.value === value
+
+    if (checked !== undefined || name !== undefined || onChange !== undefined) {
+      console.warn('在 RadioGroup 下，不能提供 checked name onChange')
+    }
+  }
+
   return (
     <label
       {...rest}
@@ -32,15 +54,17 @@ const Radio: FC<RadioProps> = ({
         },
         className
       )}
-      onChange={onChange}
+      onChange={handleChange}
     >
       <input
         type='radio'
         className='gm-radio-input'
-        name={name}
+        name={oName}
         value={value}
-        checked={checked || false}
+        checked={oChecked}
         disabled={disabled}
+        // eslint-disable-next-line
+        onChange={_.noop}
       />
       <span className='gm-radio-span' />
       <span className='gm-padding-lr-5'>{children}</span>

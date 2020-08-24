@@ -1,4 +1,6 @@
-export { default as Radio } from './radio'
+import Radio from './radio'
+
+export default Radio
 export { default as RadioGroup } from './radio_group'
 
 export type { RadioProps } from './radio'

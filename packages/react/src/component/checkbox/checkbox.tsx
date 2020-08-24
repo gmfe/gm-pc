@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent, useContext, HTMLAttributes } from 'react'
-import _ from 'lodash'
 import classNames from 'classnames'
+import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
 interface CheckboxProps extends HTMLAttributes<HTMLLabelElement> {
@@ -67,6 +67,8 @@ const Checkbox: FC<CheckboxProps> = ({
         value={value}
         checked={oChecked}
         disabled={disabled}
+        // eslint-disable-next-line
+        onChange={_.noop}
       />
       <span className='gm-checkbox-span' />
       <span className='gm-padding-lr-5'>{children}</span>

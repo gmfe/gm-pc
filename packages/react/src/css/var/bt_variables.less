@@ -13,7 +13,7 @@
 @gray-light: lighten(@gray-base, 46.7%); // #777
 @gray-lighter: lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary: darken(#428bca, 6.5%); // #337ab7
+@gm-color-primary: darken(#428bca, 6.5%); // #337ab7
 @brand-success: #3caa41;
 @brand-info: #5bc0de;
 @brand-warning: #f0ad4e;
@@ -29,7 +29,7 @@
 @text-color: @gray-dark;
 
 //** Global textual link color.
-@link-color: @brand-primary;
+@link-color: @gm-color-primary;
 //** Link hover color set via `darken()` function.
 @link-hover-color: darken(@link-color, 15%);
 //** Link hover decoration.
@@ -104,7 +104,7 @@
 //** Global color for active items (e.g., navs or dropdowns).
 @component-active-color: #fff;
 //** Global background color for active items (e.g., navs or dropdowns).
-@component-active-bg: @brand-primary;
+@component-active-bg: @gm-color-primary;
 
 //** Width of the `border` for generating carets that indicate dropdowns.
 @caret-width-base: 4px;
@@ -142,7 +142,7 @@
 @btn-default-border: #ccc;
 
 @btn-primary-color: #fff;
-@btn-primary-bg: @brand-primary;
+@btn-primary-bg: @gm-color-primary;
 @btn-primary-border: darken(@btn-primary-bg, 5%);
 
 @btn-success-color: #fff;
@@ -439,8 +439,8 @@
 @pagination-hover-border: #ddd;
 
 @pagination-active-color: #fff;
-@pagination-active-bg: @brand-primary;
-@pagination-active-border: @brand-primary;
+@pagination-active-bg: @gm-color-primary;
+@pagination-active-border: @gm-color-primary;
 
 @pagination-disabled-color: @gray-light;
 @pagination-disabled-bg: #fff;
@@ -544,7 +544,7 @@
 //** Default label background color
 @label-default-bg: @gray-light;
 //** Primary label background color
-@label-primary-bg: @brand-primary;
+@label-primary-bg: @gm-color-primary;
 //** Success label background color
 @label-success-bg: @brand-success;
 //** Info label background color
@@ -627,7 +627,7 @@
 @progress-border-radius: @border-radius-base;
 
 //** Default progress bar color
-@progress-bar-bg: @brand-primary;
+@progress-bar-bg: @gm-color-primary;
 //** Success progress bar color
 @progress-bar-success-bg: @brand-success;
 //** Warning progress bar color
@@ -689,8 +689,8 @@
 @panel-default-heading-bg: #f5f5f5;
 
 @panel-primary-text: #fff;
-@panel-primary-border: @brand-primary;
-@panel-primary-heading-bg: @brand-primary;
+@panel-primary-border: @gm-color-primary;
+@panel-primary-heading-bg: @gm-color-primary;
 
 @panel-success-text: @state-success-text;
 @panel-success-border: @state-success-border;

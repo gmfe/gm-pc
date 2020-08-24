@@ -4,15 +4,15 @@ import _ from 'lodash'
 import { RadioGroupContext } from './util'
 
 // @ts-ignore
-interface CheckboxGroupProps extends HTMLAttributes<HTMLDivElement> {
-  value: any[]
-  onChange?: (value: any[]) => void
+interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
+  value?: any
+  onChange?: (value: any) => void
   name?: string
   className?: string
   style?: CSSProperties
 }
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
+const RadioGroup: FC<RadioGroupProps> = ({
   value,
   onChange = _.noop,
   name,
@@ -20,12 +20,8 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   children,
   ...rest
 }) => {
-  const handleChange = (cValue: any): void => {
-    if (value.includes(cValue)) {
-      onChange(_.without(value, cValue))
-    } else {
-      onChange([...value, cValue])
-    }
+  const handleChange = (rValue: any): void => {
+    onChange(rValue)
   }
 
   return (
@@ -44,5 +40,5 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   )
 }
 
-export default CheckboxGroup
-export type { CheckboxGroupProps }
+export default RadioGroup
+export type { RadioGroupProps }
