@@ -1,2 +1,4 @@
-export { default as Collapse } from './collapse'
+import Collapse from './collapse'
+
+export default Collapse
 export type { CollapseProps } from './collapse'

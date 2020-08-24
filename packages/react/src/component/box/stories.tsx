@@ -4,7 +4,8 @@ import { BoxTable, BoxTableInfo } from './box_table'
 import { BoxForm, BoxFormMore } from './box_form'
 import BoxPanel from './box_panel'
 import { FormItem, FormBlock, FormButton } from '../form'
-import { Button } from '../../index'
+import Button from '../button'
+import { Price } from '../price'
 
 export const ComBox = () => (
   <div>
@@ -73,8 +74,21 @@ export const ComBoxForm = () => (
 
 export const ComBoxPanel = () => <BoxPanel title='商品明细'>lalala</BoxPanel>
 
-export const ComBoxPanelWithCollapse = () => (
+export const ComBoxPanelWithCollapseAndRight = () => (
   <BoxPanel title='商品明细' collapse right={<div>233333333</div>}>
+    lalala
+  </BoxPanel>
+)
+export const ComBoxPanelWithSummary = () => (
+  <BoxPanel
+    title='商品明细'
+    collapse
+    summary={[
+      { text: '共计', value: 2 },
+      { text: '合计', value: Price.getCurrency() + 23389 },
+    ]}
+    right={<div>233333333</div>}
+  >
     lalala
   </BoxPanel>
 )

@@ -1,4 +1,6 @@
-export { default as Box } from './box'
+import Box from './box'
+
+export default Box
 export { default as BoxForm, BoxFormMore } from './box_form'
 export { default as BoxPanel } from './box_panel'
 export { default as BoxTable, BoxTableInfo } from './box_table'

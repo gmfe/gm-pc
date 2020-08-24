@@ -1,2 +1,4 @@
-export { default as Affix } from './affix'
+import Affix from './affix'
+
+export default Affix
 export type { AffixProps } from './affix'
