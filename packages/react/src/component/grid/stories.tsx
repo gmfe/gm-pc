@@ -43,15 +43,9 @@ export const ComGrid = () => (
     <br />
     gutter
     <Row gutter={8}>
-      <Col className='gm-bg-primary' style={{ height: '60px' }} span={8}>
-        Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8
-      </Col>
-      <Col className='gm-bg-primary' style={{ height: '60px' }} span={8}>
-        Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8
-      </Col>
-      <Col className='gm-bg-primary' style={{ height: '60px' }} span={8}>
-        Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8Col 8
-      </Col>
+      <ColBlock span={8} />
+      <ColBlock span={8} />
+      <ColBlock span={8} />
     </Row>
   </div>
 )
@@ -60,10 +54,8 @@ export const ComGridForResponsive = () => (
   <div>
     <div>响应式</div>
     <Row>
-      <ColBlock md={12} lg={6} />
-      <ColBlock md={12} lg={6} />
-      <ColBlock md={12} lg={6} />
-      <ColBlock md={12} lg={6} />
+      <ColBlock sm={6} md={8} lg={12} />
+      <ColBlock sm={6} md={8} lg={12} />
     </Row>
   </div>
 )

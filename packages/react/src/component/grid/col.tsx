@@ -8,6 +8,7 @@ const SIZE_LIST = ['sm', 'md', 'lg', 'xl']
 const Col: FC<ColProps> = ({ span, offset, style, className, children, ...rest }) => {
   const { gutter } = useContext(RowContext)
 
+  // 这段有点看不懂
   let sizeClasses: object = {}
   SIZE_LIST.forEach((size) => {
     let sizeProps: ColProps = {}
