@@ -1,7 +1,7 @@
 import React, { Children, CSSProperties, FC, useContext } from 'react'
 import classNames from 'classnames'
 import formContext from './context'
-import Flex from '../flex'
+import { Flex } from '../flex'
 
 export interface FormBlockProps {
   /* 占用栏数 */

@@ -4,7 +4,7 @@ import { BoxTable, BoxTableInfo } from './box_table'
 import { BoxForm, BoxFormMore } from './box_form'
 import BoxPanel from './box_panel'
 import { FormItem, FormBlock, FormButton } from '../form'
-import Button from '../button'
+import { Button } from '../button'
 import { Price } from '../price'
 
 export const ComBox = () => (

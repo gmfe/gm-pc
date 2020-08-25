@@ -1,16 +1,29 @@
-import { CSSProperties } from 'react'
-
-type ModalSize = 'lg' | 'md' | 'sm'
+import { CSSProperties, ReactNode } from 'react'
+import { Size as ModalSize } from '../../common/enum'
 
 interface CommonModalProps {
-  show: boolean
+  title?: string
+  size?: ModalSize
   onHide?(): void
   disableMaskClose?: boolean
-  size?: ModalSize
-  title?: string
   style?: CSSProperties
   okBtnClassName?: string
   noContentPadding?: boolean
+  children: ReactNode
 }
 
-export type { ModalSize, CommonModalProps }
+interface ModalProps extends CommonModalProps {
+  opacityMask?: boolean
+  noCloseBtn?: boolean
+  onCancel?(): void
+  onOk?(): void
+  className?: string
+}
+
+interface ModalStatic {
+  render(props: ModalProps): void
+  hide(): void
+}
+
+export type { ModalProps, ModalStatic }
+export { ModalSize }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Flex from '../flex'
+import { Flex } from '../flex'
 import classNames from 'classnames'
 
 const radius = 110 // 半径r

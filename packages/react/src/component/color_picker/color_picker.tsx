@@ -12,15 +12,13 @@ const ColorPicker: FC<ColorPickerProps> = ({ value, onChange, children }) => {
   const refPopover = useRef<Popover>(null)
 
   const handleConfirm = (color: string): void => {
-    // eslint-disable-next-line no-unused-expressions
-    refPopover.current?.apiDoSetActive(false)
+    refPopover.current && refPopover.current.apiDoSetActive(false)
 
     onChange && onChange(color)
   }
 
   const handleCancel = (): void => {
-    // eslint-disable-next-line no-unused-expressions
-    refPopover.current?.apiDoSetActive(false)
+    refPopover.current && refPopover.current.apiDoSetActive(false)
   }
 
   return (

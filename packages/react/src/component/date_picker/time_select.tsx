@@ -2,10 +2,10 @@ import React, { FC } from 'react'
 import { TimeLimit } from './types'
 import moment from 'moment'
 import classNames from 'classnames'
-import Flex from '../flex'
+import { Flex } from '../flex'
 import { getLocale } from '@gm-pc/locales'
 import TimeSpanPicker from '../time_span/time_span_picker'
-import Button from '../button'
+import { Button } from '../button'
 import { setTimes } from '../date_range_picker/util'
 
 interface TimeSelectProps {

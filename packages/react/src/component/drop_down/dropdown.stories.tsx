@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dropdown, DropdownItems, DropdownItem } from './'
-import Button from '../button'
+import { Button } from '../button'
 
 export const normal = () => {
   return (

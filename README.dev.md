@@ -22,6 +22,8 @@ todo react
 
 - [ ] grid 小的时候会有问题
 
+- [ ] modal
+
 - [x] radio
 
 其他
@@ -29,6 +31,3 @@ todo react
 - [ ] export default
 - [ ] docgen
 
-# z-index 层级管理
-
-Affix

@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { warn } from '@gm-common/tool'
 import { Modal, ModalProps } from '../modal'
 import { Input } from '../input'
-import Button from '../button'
+import { Button } from '../button'
 
 class DialogComponent extends Component<DialogProps, DialogState> {
   static defaultProps = {

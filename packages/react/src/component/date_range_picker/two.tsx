@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import moment from 'moment'
 import { isNull } from 'lodash'
-import Flex from '../flex'
+import { Flex } from '../flex'
 import { RangeCalendar } from '../calendar'
 
 interface TwoProps {

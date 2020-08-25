@@ -1,13 +1,17 @@
-import { CommonModalProps } from './types'
 import Modal from './modal'
-import { PropsWithChildren } from 'react'
+import { ModalStatic, ModalProps } from './types'
+import classNames from 'classnames'
 
-export default class RightSideModal {
-  static render(props: Partial<PropsWithChildren<CommonModalProps>>): void {
-    Modal.render({ ...props, className: 'gm-modal-right-side' })
-  }
-
-  static hide(): void {
+const RightSideModal: ModalStatic = {
+  render(props: ModalProps): void {
+    Modal.render({
+      ...props,
+      className: classNames('gm-modal-right-side', props.className),
+    })
+  },
+  hide(): void {
     Modal.hide()
-  }
+  },
 }
+
+export default RightSideModal

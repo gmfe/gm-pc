@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import Flex from '../flex'
+import { Flex } from '../flex'
 import classNames from 'classnames'
 import _ from 'lodash'
 

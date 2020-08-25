@@ -1,7 +1,7 @@
 import React, { FC, useLayoutEffect, useRef, useState } from 'react'
 import { NavData2RdOptions, NavData3RdOptions } from './types'
 import classNames from 'classnames'
-import Flex from '../flex'
+import { Flex } from '../flex'
 import A from './a'
 
 interface PopupProps {

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { LevelListDataOptions, LevelListProps } from './types'
 import { getLevel } from './utils'
 import LevelItem from './level_item'
-import Flex from '../flex'
+import { Flex } from '../flex'
 
 class LevelList<V> extends Component<LevelListProps<V>> {
   static defaultProps = {

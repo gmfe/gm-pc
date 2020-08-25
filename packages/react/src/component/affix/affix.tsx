@@ -20,7 +20,11 @@ const Affix: FC<AffixProps> = ({ children, top, bottom }) => {
     style.bottom = `${bottom}px`
   }
 
-  return <div style={style}>{children}</div>
+  return (
+    <div className='gm-affix' style={style}>
+      {children}
+    </div>
+  )
 }
 
 export default Affix
