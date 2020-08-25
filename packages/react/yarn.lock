@@ -9,12 +9,27 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@gm-common/hooks@^2.5.1-alpha.1":
+  version "2.5.1-alpha.1"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.5.1-alpha.1.tgz#54d324b4b7e9496438bdfbc5b4786ed25dd26526"
+  integrity sha512-v9AOCgjVToifo0ilUpezEIjM6FZxdvSKgqABL8orgZfwoMcStr9626yaAvNyX+qfBXgYI3fUh+ek691u1YOFoA==
+  dependencies:
+    "@gm-common/tool" "^2.5.0"
+    ts-config-gm-react-app "^3.0.6"
+
 "@gm-common/tool@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.4.1.tgz#3c7010f91364bbd0ee8dd38f64137adc2019588a"
   integrity sha512-WIb15kzx3BiAnsMW6a/cdB17zxi9Xc4P1GaXHg8ssaW1o5myxohCY+dSZhygRkk7Cm/5RaeWPR6iH5IBuduVvQ==
   dependencies:
     lodash "^4.17.15"
+
+"@gm-common/tool@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.5.0.tgz#629ca4acb6653546a90b0beb3721b6b52719e1be"
+  integrity sha512-Ujxs3vfoUH5RQEZFqNbFxzwZc1ts3YeiyIIYEN6oO6CliiO0rHhGCXY2z+Z00N+lJdFQC4NUXqoy8iPVyYYtJw==
+  dependencies:
+    lodash "^4.17.19"
 
 big.js@^5.2.2:
   version "5.2.2"
@@ -121,3 +136,8 @@ scheduler@^0.19.1:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+ts-config-gm-react-app@^3.0.6:
+  version "3.3.1"
+  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.3.1.tgz#22bcc87cade46363c519a94305ff25aba0032b2e"
+  integrity sha512-a9BwPLCErHXcZFdVG2GvdzS2/0UyYVqyS2oAMHXF/jEmarYIp0dt5UnVIL6KylSRQ9BnQXRrVtlkZqepKg9bzA==

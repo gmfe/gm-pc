@@ -1,24 +1,50 @@
-type DialogType = 'alert' | 'confirm' | 'prompt'
-type DialogSize = 'sm' | 'md' | 'lg'
+import { HTMLAttributes, ReactNode } from 'react'
+import { Size as DialogSize } from '../../common/enum'
+import { ButtonType } from '../button'
+
+interface DialogPromptProps extends HTMLAttributes<HTMLInputElement> {}
+
+interface DialogButtonProps {
+  text: string
+  onClick(event?: Event): void
+  btnType?: ButtonType
+}
 
 interface DialogProps {
-  show: boolean
   title?: string
-  type?: DialogType
-  onCancel?(): void
-  onOK?(value?: string): Promise<string | void> | false | undefined
   size?: DialogSize
-  promptDefaultValue?: string
-  promptPlaceholder?: string
-  cancelBtn?: string | boolean
-  OKBtn?: string | boolean
-  disableMaskClose?: boolean
-  _from?: string
+  buttons: DialogButtonProps[]
+  children: ReactNode
 }
 
-interface DialogState {
-  show: boolean
-  isLoading: boolean
+interface DialogStatic {
+  render(props: DialogProps): void
+  hide(): void
 }
 
-export type { DialogType, DialogState, DialogSize, DialogProps }
+interface AlertOptions {
+  okBtnText?: string
+  children: ReactNode
+}
+
+type AlertProps = string | AlertOptions
+
+interface ConfirmOptions {
+  okBtnText?: string
+  cancelBtnText?: string
+  children: ReactNode
+}
+
+type ConfirmProps = string | ConfirmOptions
+
+export type {
+  DialogProps,
+  DialogButtonProps,
+  DialogPromptProps,
+  DialogStatic,
+  AlertProps,
+  AlertOptions,
+  ConfirmProps,
+  ConfirmOptions,
+}
+export { DialogSize }

@@ -1,60 +1,51 @@
-import React, { PropsWithChildren } from 'react'
-import { DialogProps } from './types'
-import { LayoutRoot } from '../layout_root'
+import React, { FC } from 'react'
+import { DialogProps, DialogSize, DialogStatic } from './types'
+import { getLocale } from '@gm-pc/locales'
+import _ from 'lodash'
+import { Modal } from '../modal'
+import { Button } from '../button'
+import { Flex } from '../flex'
 import EVENT_TYPE from '../../event_type'
-import DialogComponent from './dialog.component'
+import { LayoutRoot } from '../layout_root'
 
-export default class Dialog extends DialogComponent {
-  static dialog(options: Partial<PropsWithChildren<DialogProps>>): Promise<string> {
-    options = Object.assign({ _from: 'DialogStatics', size: 'sm' }, options)
-    return new Promise((resolve) => {
-      const _OK = options.onOK
-      options.onOK = (value) => {
-        const result = _OK && _OK(value)
-
-        if (result && result.then) {
-          // 简单判断是否promise
-          return result.then((v) => {
-            LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-            window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-
-            return v
-          })
-        } else if (result !== false) {
-          resolve(value)
-        }
-
-        if (result !== false) {
-          LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-          window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-        }
-        return result
-      }
-      options.onCancel = () => {
-        LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
-        window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-      }
-
-      LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <DialogComponent {...options} show />)
-      window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
-    })
-  }
-
-  static alert(options: Partial<PropsWithChildren<DialogProps>>) {
-    options.type = 'alert'
-    options.size = options.size ?? 'sm'
-    return this.dialog(options)
-  }
-
-  static confirm(options: Partial<PropsWithChildren<DialogProps>>) {
-    options.type = 'confirm'
-    options.size = options.size ?? 'sm'
-    return this.dialog(options)
-  }
-
-  static prompt(options: Partial<PropsWithChildren<DialogProps>>) {
-    options.type = 'prompt'
-    options.size = options.size ?? 'sm'
-    return this.dialog(options)
-  }
+const Dialog: FC<DialogProps> & DialogStatic = ({
+  title = getLocale('提示'),
+  size = DialogSize.SM,
+  buttons,
+  children,
+}) => {
+  return (
+    <Modal title={title} size={size} className='gm-dialog' disableMaskClose noCloseBtn>
+      <div>{children}</div>
+      <div className='gm-gap-10' />
+      <Flex justifyEnd className='gm-dialog-buttons'>
+        {_.map(buttons, (btn) => (
+          <Button
+            key={btn.text}
+            type={btn.btnType}
+            onClick={() => {
+              btn.onClick()
+            }}
+            className='gm-margin-left-5'
+          >
+            {btn.text}
+          </Button>
+        ))}
+      </Flex>
+    </Modal>
+  )
 }
+
+Dialog.render = function (props: DialogProps): void {
+  window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
+  LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...props} />)
+}
+
+Dialog.hide = function (): void {
+  window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
+  LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
+}
+
+// input key down
+
+export default Dialog

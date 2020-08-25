@@ -22,7 +22,7 @@ todo react
 
 - [ ] grid 小的时候会有问题
 
-- [ ] modal
+- [x] modal
 
 - [x] radio
 
