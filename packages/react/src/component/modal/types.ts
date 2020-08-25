@@ -1,5 +1,6 @@
 import { CSSProperties, ReactNode } from 'react'
-import { Size as ModalSize } from '../../common/enum'
+
+type ModalSize = 'sm' | 'md' | 'lg' | 'xl'
 
 interface ModalProps {
   title?: string
@@ -19,5 +20,4 @@ interface ModalStatic {
   hide(): void
 }
 
-export type { ModalProps, ModalStatic }
-export { ModalSize }
+export type { ModalProps, ModalSize, ModalStatic }

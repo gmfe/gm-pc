@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { DialogProps, DialogSize, DialogStatic } from './types'
+import { DialogProps, DialogStatic } from './types'
 import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
 import { Modal } from '../modal'
@@ -10,7 +10,7 @@ import { LayoutRoot } from '../layout_root'
 
 const Dialog: FC<DialogProps> & DialogStatic = ({
   title = getLocale('提示'),
-  size = DialogSize.SM,
+  size = 'sm',
   buttons,
   children,
 }) => {

@@ -4,12 +4,11 @@ import _ from 'lodash'
 import { ModalProps, ModalStatic } from './types'
 import EVENT_TYPE from '../../event_type'
 import { LayoutRoot } from '../layout_root'
-import { Size } from '../../common/enum'
 import SVGRemove from '../../../svg/remove.svg'
 
 const Modal: FC<ModalProps> & ModalStatic = ({
   title,
-  size = Size.MD,
+  size = 'md',
   disableMaskClose,
   noContentPadding,
   noCloseBtn,

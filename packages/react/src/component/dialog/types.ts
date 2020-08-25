@@ -1,8 +1,9 @@
 import { HTMLAttributes, ReactNode } from 'react'
-import { Size as DialogSize } from '../../common/enum'
 import { ButtonType } from '../button'
 
-interface DialogPromptProps extends HTMLAttributes<HTMLInputElement> {}
+type DialogSize = 'sm' | 'md' | 'lg' | 'xl'
+
+type DialogPromptProps = HTMLAttributes<HTMLInputElement>
 
 interface DialogButtonProps {
   text: string
@@ -41,10 +42,10 @@ export type {
   DialogProps,
   DialogButtonProps,
   DialogPromptProps,
+  DialogSize,
   DialogStatic,
   AlertProps,
   AlertOptions,
   ConfirmProps,
   ConfirmOptions,
 }
-export { DialogSize }

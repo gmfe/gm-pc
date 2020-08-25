@@ -6,8 +6,6 @@ import RightSideModal from './right_side_modal'
 import { Button } from '../button'
 import { ModalSize } from './types'
 
-console.log(ModalSize)
-
 export const ComModal = () => (
   <div>
     <Button
@@ -38,7 +36,7 @@ export const ComModalWithSize = () => {
   return (
     <div>
       会根据屏幕自适应
-      {_.map(ModalSize, (size) => (
+      {_.map(['sm', 'md', 'lg', 'xl'], (size: ModalSize) => (
         <Button type='primary' onClick={() => render(size)}>
           size {size}
         </Button>
@@ -53,7 +51,7 @@ export const ComModalWithNoContentPadding = () => (
     onClick={() => {
       Modal.render({
         noContentPadding: true,
-        size: ModalSize.LG,
+        size: 'lg',
         children: '我是内容',
         title: '我是标题',
         onHide: Modal.hide,
@@ -70,7 +68,7 @@ export const ComModalWithOpacityMask = () => (
     onClick={() => {
       Modal.render({
         opacityMask: true,
-        size: ModalSize.LG,
+        size: 'lg',
         children: '我是内容',
         title: '我是标题',
         onHide: Modal.hide,
