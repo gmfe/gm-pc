@@ -33,10 +33,18 @@ type AlertProps = string | AlertOptions
 interface ConfirmOptions {
   okBtnText?: string
   cancelBtnText?: string
+  onValidate?: (value: string) => boolean | void
   children: ReactNode
 }
 
 type ConfirmProps = string | ConfirmOptions
+
+interface PromptOptions extends ConfirmOptions {
+  defaultValue?: string
+  placeholder?: string
+}
+
+type PromptProps = string | PromptOptions
 
 export type {
   DialogProps,
@@ -48,4 +56,6 @@ export type {
   AlertOptions,
   ConfirmProps,
   ConfirmOptions,
+  PromptOptions,
+  PromptProps,
 }

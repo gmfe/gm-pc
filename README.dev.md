@@ -18,9 +18,11 @@ todo react
 - [x] color picker
 - [ ] date picker
 - [ ] date range picker
-- [ ] dialog
+- [x] dialog
 
 - [ ] grid 小的时候会有问题
+
+- [x] input
 
 - [x] modal
 

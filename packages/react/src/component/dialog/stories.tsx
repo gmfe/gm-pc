@@ -2,6 +2,7 @@ import React from 'react'
 import Dialog from './dialog'
 import Alert from './alert'
 import Confirm from './confirm'
+import Prompt from './prompt'
 
 export const ComDialog = () => {
   return (
@@ -90,6 +91,37 @@ export const ComConfirm = () => {
         }}
       >
         confirm okBtnText cancelBtnText
+      </button>
+    </div>
+  )
+}
+
+export const ComPrompt = () => {
+  return (
+    <div>
+      <button
+        onClick={() => {
+          Prompt({
+            children: '请填写，< 5 不通过',
+            // @ts-ignore
+            onValidate(value) {
+              if (parseInt(value, 10) < 5) {
+                console.log(value, '<5')
+                return false
+              }
+            },
+          }).then(
+            (value) => {
+              console.log('ok', value)
+              return false
+            },
+            () => {
+              console.log('cancel')
+            }
+          )
+        }}
+      >
+        prompt
       </button>
     </div>
   )
