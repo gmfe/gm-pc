@@ -1,10 +1,5 @@
 // stylelint-disable
 
-/* color */
-@gm-color-primary: #56a3f2;
-@gm-color-success: #3caa41;
-@gm-color-danger: #fc887f;
-
 // 左侧导航背景色、panel标题、页面正文文字、列表表头文字
 @gm-color-first: #000923;
 @gm-color-second: rgba(36, 51, 81, 0.8);
@@ -41,7 +36,7 @@
 
 // focus 用
 .gm-form-control-focus() {
-  border-color: @gm-color-primary;
+  border-color: var(--gm-color-primary);
 }
 
 @gm-screen-sm: 768px;
@@ -77,13 +72,40 @@
   --gm-color-bg-back: #f7f8fa; // 背景色
   --gm-color-bg-primary: #56a3f2;
 
+  // active
+  --gm-color-primary-active: darken(#56a3f2, 10%);
+  --gm-color-bg-primary-active: darken(#56a3f2, 10%);
+
   // border
   --gm-color-border-primary: #56a3f2;
+
+  // table
+  --gm-color-table-td-active: #b2d5ff;
 }
 
+// 不变的
 :root {
   // color
+  --gm-color-placeholder: #b2b2b2;
+  --gm-color-accent: #ff6500;
+  --gm-color-success: #1eac52;
+  --gm-color-danger: #fa5151;
+  --gm-color-link: #576b95;
+  --gm-color-red: red;
+  --gm-color-true-white: white; // 一定是白色
+  --gm-color-true-black: black; // 一定是黑色
+
   --gm-color-border: #d4d8d8;
+
+  // bg
+  --gm-color-bg-success: #1eac52;
+  --gm-color-bg-danger: #fa5151;
+
+  // active
+  --gm-color-success-active: darken(#1eac52, 10%);
+  --gm-color-danger-active: darken(#fa5151, 10%);
+  --gm-color-bg-success-active: darken(#1eac52, 10%);
+  --gm-color-bg-danger-active: darken(#fa5151, 10%);
 
   // 字体尺寸
   --gm-size-text-12: 12px;

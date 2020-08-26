@@ -2,7 +2,7 @@
 
 todo
 
-- [ ] 移除 bootstrap
+- [x] 移除 bootstrap
 - [ ] react-table 上正式
 - [ ] z-index 梳理
 - [ ] css variables 整理
@@ -23,6 +23,7 @@ todo react
 - [ ] grid 小的时候会有问题
 
 - [x] input
+- [ ] input number
 
 - [x] modal
 

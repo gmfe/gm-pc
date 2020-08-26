@@ -100,7 +100,7 @@ class Switch extends Component<SwitchProps, SwitchState> {
           data-text={this.state.checked ? on : off}
           ref={this._inputOffRef}
           className={classNames('gm-switch gm-switch-' + type, className, {
-            'gm-switch-disabled': disabled,
+            disabled,
           })}
           style={style}
           data-attr={this.state.labelWidth}

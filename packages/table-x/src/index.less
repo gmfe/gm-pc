@@ -50,7 +50,7 @@
           padding-right: 5px;
           padding-left: 5px;
           .gm-table-x-icon.gm-popover-active {
-            color: @gm-color-primary;
+            color: var(--gm-color-primary);
           }
         }
 
@@ -99,7 +99,7 @@
         &.sortable-chosen {
           .gm-table-x-tr {
             .gm-table-x-td {
-              background-color: @table-bg-hover;
+              background-color: var(--gm-color-table-td-active);
             }
           }
         }
@@ -115,7 +115,7 @@
       // 高亮
       .gm-table-x-tr-highlight.gm-table-x-tr {
         .gm-table-x-td {
-          background-color: @table-bg-hover !important;
+          background-color: var(--gm-color-table-td-active) !important;
         }
       }
 
@@ -124,7 +124,7 @@
         .gm-table-x-tr {
           &:hover {
             .gm-table-x-td {
-              background-color: @table-bg-hover;
+              background-color: var(--gm-color-table-td-active);
             }
           }
         }
@@ -244,12 +244,12 @@
     }
 
     &:hover {
-      color: @gm-color-primary;
+      color: var(--gm-color-primary);
     }
 
     &.gm-popover-active {
       visibility: visible;
-      color: @gm-color-primary;
+      color: var(--gm-color-primary);
     }
   }
 
@@ -277,7 +277,7 @@
 }
 
 .gm-table-x-sub-table {
-  border: 1px solid @gm-color-primary;
+  border: 1px solid var(--gm-color-primary);
   background: @gm-back-body-bg;
 
   .gm-table-x-th {
@@ -305,7 +305,7 @@
     display: inline-block;
     margin-right: 18px;
     cursor: pointer;
-    color: @gm-color-primary;
+    color: var(--gm-color-primary);
 
     svg {
       width: 20px;
@@ -313,14 +313,14 @@
     }
 
     &.disabled {
-      color: fadeout(@gm-color-primary, 50%);
+      opacity: 0.5;
       cursor: not-allowed;
     }
   }
 
   .gm-table-x-edit-action-delete {
     display: inline-block;
-    color: @brand-danger;
+    color: var(--gm-color-danger);
     cursor: pointer;
 
     svg {
@@ -329,7 +329,7 @@
     }
 
     &.disabled {
-      color: fadeout(@brand-danger, 50%);
+      opacity: 0.5;
       cursor: not-allowed;
     }
   }
@@ -390,12 +390,12 @@
   .gm-react-edit-table-action-add {
     width: 20px;
     height: 20px;
-    color: @gm-color-primary;
+    color: var(--gm-color-primary);
     margin-right: 18px;
     cursor: pointer;
 
     &.disabled {
-      color: fadeout(@gm-color-primary, 50%);
+      opacity: 0.5;
       cursor: not-allowed;
     }
   }
@@ -403,11 +403,11 @@
   .gm-react-edit-table-action-delete {
     width: 20px;
     height: 20px;
-    color: @brand-danger;
+    color: var(--gm-color-danger);
     cursor: pointer;
 
     &.disabled {
-      color: fadeout(@brand-danger, 50%);
+      opacity: 0.5;
       cursor: not-allowed;
     }
   }
@@ -419,7 +419,7 @@
   .gm-react-table-x-diy-modal-header {
     .gm-react-table-x-diy-modal-header-title {
       font-size: 14px;
-      border-left: 3px solid @gm-color-primary;
+      border-left: 3px solid var(--gm-color-primary);
     }
 
     .gm-react-table-x-diy-modal-header-close {
@@ -432,7 +432,7 @@
     }
   }
 
-  .gm-react-table-x-diy-modal-content{
+  .gm-react-table-x-diy-modal-content {
     border-top: 1px solid @gm-table-x-border-color;
     border-bottom: 1px solid @gm-table-x-border-color;
   }

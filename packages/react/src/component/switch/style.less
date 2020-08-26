@@ -31,7 +31,7 @@ input.gm-switch {
 }
 
 .gm-switch:checked {
-  background-color: @gm-color-primary;
+  background-color: var(--gm-color-primary);
 
   &::before {
     left: 100%;
@@ -43,28 +43,17 @@ input.gm-switch {
     padding-left: 6px;
   }
 
-  &.gm-switch-disabled {
-    cursor: @cursor-disabled;
-    opacity: 0.6;
-  }
+  .gmDisabledWith();
 
   &.gm-switch-primary {
-    background-color: @gm-color-primary;
+    background-color: var(--gm-color-primary);
   }
 
   &.gm-switch-success {
-    background-color: @brand-success;
-  }
-
-  &.gm-switch-info {
-    background-color: @brand-info;
-  }
-
-  &.gm-switch-warning {
-    background-color: @brand-warning;
+    background-color: var(--gm-color-success);
   }
 
   &.gm-switch-danger {
-    background-color: @brand-danger;
+    background-color: var(--gm-color-bg-danger);
   }
 }

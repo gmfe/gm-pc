@@ -10,7 +10,7 @@
     border-radius: @gm-border-radius;
 
     &.gm-popover-active {
-      border-color: @gm-color-primary;
+      border-color: var(--gm-color-primary);
     }
   }
 
@@ -91,7 +91,7 @@
 
       &.active {
         z-index: inherit;
-        color: @selected-primary;
+        color: var(--gm-color-primary-active);
       }
 
       &:first-child {
@@ -111,7 +111,7 @@
       .list-group-label-item {
         padding: 5px 10px;
         border-top: 1px solid @gm-border-color;
-        color: @input-color-placeholder;
+        color: var(--gm-color-placeholder);
       }
 
       .list-group-item {

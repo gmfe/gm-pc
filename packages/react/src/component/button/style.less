@@ -13,7 +13,7 @@
   user-select: none;
 
   &.gm-btn-default {
-    .gmBtnVariants(@gm-color-first, white);
+    .gmBtnVariants(@gm-color-first, white, white);
 
     border-color: @gm-border-color;
 
@@ -24,15 +24,15 @@
   }
 
   &.gm-btn-primary {
-    .gmBtnVariants(white, @gm-color-primary);
+    .gmBtnVariants(white, var(--gm-color-primary), var(--gm-color-primary-active));
   }
 
   &.gm-btn-success {
-    .gmBtnVariants(white, @gm-color-success);
+    .gmBtnVariants(white, var(--gm-color-success), var(--gm-color-success-active));
   }
 
   &.gm-btn-danger {
-    .gmBtnVariants(white, @gm-color-danger);
+    .gmBtnVariants(white, var(--gm-color-danger), var(--gm-color-danger-active));
   }
 
   &.gm-btn-link {
@@ -81,7 +81,7 @@
   }
 }
 
-.gmBtnVariants(@color; @brand;) {
+.gmBtnVariants(@color; @brand; @brandActive) {
   background: @brand;
   border-color: @brand;
   color: @color;
@@ -97,13 +97,13 @@
   }
 
   &:hover {
-    background: darken(@brand, 10%);
+    background: @brandActive;
   }
 
   &.gm-btn-default:not([disabled]):hover {
     background: white;
-    color: @gm-color-primary;
-    border-color: @gm-color-primary;
+    color: var(--gm-color-primary);
+    border-color: var(--gm-color-primary);
   }
 
   .gmDisabledWith();
