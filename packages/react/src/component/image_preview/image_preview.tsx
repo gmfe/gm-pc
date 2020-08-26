@@ -8,7 +8,6 @@ const ImagePreview = (props: PropsWithChildren<PreviewModalProps>): void => {
   }
 
   CleanModal.render({
-    show: true,
     children: <PreviewModal {...props} onHide={handleHide} />,
     disableMaskClose: true,
     style: {

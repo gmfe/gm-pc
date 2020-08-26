@@ -2,7 +2,7 @@ import React, { FC, useState, MouseEvent, AnchorHTMLAttributes } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { is } from '@gm-common/tool'
-import { LoadingIcon } from '../loading'
+import { Loading } from '../loading'
 
 type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
 type ButtonSize = 'large'
@@ -77,7 +77,7 @@ const Button: FC<ButtonProps> = ({
       disabled={loadFlag || disabled}
       onClick={handleClick}
     >
-      {loadFlag && <LoadingIcon size='1em' />}
+      {loadFlag && <Loading size='1em' />}
       {children}
     </Tag>
   )

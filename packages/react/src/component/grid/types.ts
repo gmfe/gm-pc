@@ -1,7 +1,8 @@
 import { HTMLAttributes } from 'react'
 
 interface GutterSize {
-  sm?: number
+  /** 需要提供最小尺寸，小的时候才不会乱。暂时这么解决 */
+  sm: number
   md?: number
   lg?: number
   xl?: number

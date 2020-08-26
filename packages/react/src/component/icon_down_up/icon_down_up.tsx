@@ -2,14 +2,20 @@ import React, { CSSProperties, FC } from 'react'
 import SVGDown from '../../../svg/down.svg'
 import classNames from 'classnames'
 
-export interface IconDownUpProps {
+interface IconDownUpProps {
   active?: boolean
   className?: string
   style?: CSSProperties
 }
 
-const IconDownUp: FC<IconDownUpProps> = ({ active, className, ...rest }) => {
-  return <SVGDown {...rest} className={classNames('gm-icon-down-up', { active }, className)} />
+const IconDownUp: FC<IconDownUpProps> = ({ active, className, style }) => {
+  return (
+    <SVGDown
+      className={classNames('gm-icon-down-up', { active }, className)}
+      style={style}
+    />
+  )
 }
 
 export default IconDownUp
+export type { IconDownUpProps }

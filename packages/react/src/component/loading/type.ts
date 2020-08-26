@@ -1,11 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react'
 
-interface LoadingIconProps {
-  size?: string
-}
-
-interface LoadingProps extends HTMLAttributes<HTMLSpanElement> {
-  text?: string
+interface LoadingProps {
   size?: string
 }
 
@@ -27,7 +22,6 @@ interface LoadingFullScreenStatic {
 }
 
 export type {
-  LoadingIconProps,
   LoadingProps,
   LoadingChunkProps,
   LoadingFullScreenProps,

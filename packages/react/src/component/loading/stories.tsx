@@ -1,20 +1,15 @@
 import React from 'react'
-import LoadingIcon from './loading_icon'
 import Loading from './loading'
 import LoadingChunk from './loading_chunk'
 import LoadingFullScreen from './loading_full_screen'
 import { Button } from '../button'
 
-export const ComLoading = () => <Loading text='加载中...' />
-
-export const ComLoadingIcon = () => (
+export const ComLoading = () => (
   <div>
-    <LoadingIcon />
-    <LoadingIcon size='5em' />
+    <Loading />
+    <Loading size='5em' />
   </div>
 )
-
-export const ComLoadingWithSize = () => <Loading size='100px' />
 
 export const ComLoadingChunk = () => (
   <LoadingChunk loading text='加载中...'>
@@ -36,7 +31,7 @@ export const ComLoadingFullScreen = () => (
       })
       setTimeout(() => {
         LoadingFullScreen.hide()
-      }, 3000)
+      }, 10000)
     }}
   >
     整页加载

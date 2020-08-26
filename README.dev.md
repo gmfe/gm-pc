@@ -26,13 +26,16 @@ todo react
 - [ ] flip_number
 - [ ] form
 - [ ] function_set
-
-- [ ] grid 小的时候会有问题
+- [x] grid
+- [x] icon_down_up
+- [ ] image_preview
+- [ ] img_uploader
 
 - [x] input
 - [ ] input number
 
 - [x] loading
+- [x] mask
 
 - [x] modal
 

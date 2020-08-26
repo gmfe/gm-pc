@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 import Loading from './loading'
+import { Flex } from '../flex'
 import { LoadingChunkProps } from './type'
 
 const LoadingChunk: FC<LoadingChunkProps> = ({
@@ -21,18 +22,12 @@ const LoadingChunk: FC<LoadingChunkProps> = ({
     >
       {children}
       {loading && (
-        <div className='gm-loading-mask'>
-          <Loading
-            style={{
-              ...style,
-              width: size + 'px',
-              height: size + 'px',
-            }}
-            text={text}
-            size={size}
-            className='gm-loading-position'
-          />
-        </div>
+        <Flex alignCenter justifyCenter className='gm-loading-mask'>
+          <Flex column alignCenter>
+            <Loading size={size} />
+            {text && <span className='gm-loading-text'>{text}</span>}
+          </Flex>
+        </Flex>
       )}
     </div>
   )

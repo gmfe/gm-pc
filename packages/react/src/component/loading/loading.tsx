@@ -1,14 +1,18 @@
 import React, { FC } from 'react'
-import classNames from 'classnames'
-import LoadingIcon from './loading_icon'
 import { LoadingProps } from './type'
 
-const Loading: FC<LoadingProps> = ({ size, text, className, ...rest }) => {
+const Loading: FC<LoadingProps> = ({ size = '1em' }) => {
   return (
-    <span {...rest} className={classNames('gm-loading', className)}>
-      <LoadingIcon size={size} />
-      {text && <span className='gm-loading-text gm-text-primary'>{text}</span>}
-    </span>
+    <svg
+      className='gm-loading'
+      style={{
+        width: size,
+        height: size,
+      }}
+      viewBox='0 0 50 50'
+    >
+      <circle className='gm-loading-path' cx='25' cy='25' r='20' fill='none' />
+    </svg>
   )
 }
 

@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react'
 import Loading from './loading'
 import { LayoutRoot } from '../layout_root'
+import { Flex } from '../flex'
 import EVENT_TYPE from '../../event_type'
 import { LoadingFullScreenProps, LoadingFullScreenStatic } from './type'
 
@@ -9,9 +10,12 @@ const LoadingFullScreen: FC<LoadingFullScreenProps> & LoadingFullScreenStatic = 
   size = '40px',
 }) => {
   return (
-    <div className='gm-loading-full-screen'>
-      <Loading text={text} size={size} className='gm-loading-spinner' />
-    </div>
+    <Flex alignCenter justifyCenter className='gm-loading-full-screen'>
+      <Flex column alignCenter>
+        <Loading size={size} />
+        {text && <span className='gm-loading-text'>{text}</span>}
+      </Flex>
+    </Flex>
   )
 }
 
