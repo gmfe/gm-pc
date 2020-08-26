@@ -4,12 +4,26 @@
   }
 
   .gm-divider-line::before {
-    content: " ";
+    content: ' ';
     position: absolute;
     left: 0;
     top: 50%;
     width: 100%;
     height: 1px;
-    background: @gm-border-color;
+    background: var(--gm-color-border);
+  }
+
+  &.gm-divider-left {
+    .gm-divider-line:first-child {
+      width: 1em;
+      max-width: 1em;
+    }
+  }
+
+  &.gm-divider-right {
+    .gm-divider-line:last-child {
+      width: 1em;
+      max-width: 1em;
+    }
   }
 }

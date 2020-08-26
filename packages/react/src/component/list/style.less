@@ -1,7 +1,7 @@
 // 注意注意
 // gm-list gm-list-item.active 被 Select 使用
 .gm-list {
-  border: 1px solid @gm-border-color;
+  border: 1px solid var(--gm-color-border);
   background: white;
   // 注意，overflow-y 会被 FunctionSet 覆盖
   overflow-y: auto;
@@ -39,7 +39,7 @@
     line-height: 1;
 
     .gm-list-group-item {
-      border-bottom: 1px solid @gm-border-color;
+      border-bottom: 1px solid var(--gm-color-border);
 
       &:last-child {
         border-bottom: none;

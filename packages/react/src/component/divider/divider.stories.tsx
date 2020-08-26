@@ -1,5 +1,14 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Divider from './divider'
 
-storiesOf('Divider', module).add('default', () => <Divider>lalala</Divider>)
+export const ComDivider = () => (
+  <div>
+    <Divider>Align Center</Divider>
+    <Divider align='left'>Align Left</Divider>
+    <Divider align='right'>Align Right</Divider>
+  </div>
+)
+
+export default {
+  title: '布局/Divider',
+}
