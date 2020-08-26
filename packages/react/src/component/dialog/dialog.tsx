@@ -38,12 +38,12 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
 
 Dialog.render = function (props: DialogProps): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
-  LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Dialog {...props} />)
+  LayoutRoot.setComponent(LayoutRoot.Type.MODAL, <Dialog {...props} />)
 }
 
 Dialog.hide = function (): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-  LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
+  LayoutRoot.removeComponent(LayoutRoot.Type.MODAL)
 }
 
 // input key down

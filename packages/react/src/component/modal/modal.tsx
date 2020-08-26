@@ -110,12 +110,12 @@ Modal.render = function (props: ModalProps): void {
     Modal.hide()
     onHide && onHide()
   }
-  LayoutRoot.setComponent(LayoutRoot.TYPE.MODAL, <Modal onHide={handleHide} {...rest} />)
+  LayoutRoot.setComponent(LayoutRoot.Type.MODAL, <Modal onHide={handleHide} {...rest} />)
 }
 
 Modal.hide = function (): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-  LayoutRoot.removeComponent(LayoutRoot.TYPE.MODAL)
+  LayoutRoot.removeComponent(LayoutRoot.Type.MODAL)
 }
 
 export default Modal

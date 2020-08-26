@@ -1,7 +1,7 @@
 import React from 'react'
 import Label from './index'
 
-export const Normal = () => {
+export const ComLabel = () => {
   return (
     <div>
       <Label>标签</Label>
@@ -13,5 +13,5 @@ export const Normal = () => {
 }
 
 export default {
-  title: 'Label',
+  title: '基础/Label',
 }

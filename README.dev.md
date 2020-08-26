@@ -33,6 +33,9 @@ todo react
 
 - [x] input
 - [ ] input number
+- [x] label
+- [x] layout root
+- [ ] lazy_img
 
 - [x] loading
 - [x] mask

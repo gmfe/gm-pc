@@ -1,4 +1,10 @@
-import React, { Component, createRef, CSSProperties, MouseEvent, PropsWithChildren } from 'react'
+import React, {
+  Component,
+  createRef,
+  CSSProperties,
+  MouseEvent,
+  PropsWithChildren,
+} from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import EVENT_TYPE from '../../event_type'
@@ -18,12 +24,12 @@ class Drawer extends Component<DrawerProps> {
 
   static render(options: PropsWithChildren<DrawerProps>): void {
     window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
-    LayoutRoot.setComponent(LayoutRoot.TYPE.DRAWER, <Drawer {...options} />)
+    LayoutRoot.setComponent(LayoutRoot.Type.DRAWER, <Drawer {...options} />)
   }
 
   static hide(): void {
     window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-    LayoutRoot.removeComponent(LayoutRoot.TYPE.DRAWER)
+    LayoutRoot.removeComponent(LayoutRoot.Type.DRAWER)
   }
 
   private _drawerRef = createRef<HTMLDivElement>()

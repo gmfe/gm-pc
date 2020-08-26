@@ -17,12 +17,12 @@ export default class Tip extends Component<TipProps> {
     const id = +new Date() + '' + Math.random()
     const _onClose = options.onClose
     options.onClose = () => {
-      LayoutRoot.removeComponentTip(id)
+      LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
       if (_onClose) {
         _onClose()
       }
     }
-    LayoutRoot.setComponentTip(id, <Tip {...options} />)
+    LayoutRoot.setComponentArray(LayoutRoot.Type.TIP, id, <Tip {...options} />)
     return id
   }
 
@@ -67,11 +67,11 @@ export default class Tip extends Component<TipProps> {
   }
 
   static clear(id: string): void {
-    LayoutRoot.removeComponentTip(id)
+    LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
   }
 
   static clearAll(): void {
-    LayoutRoot.removeComponentTipAll()
+    LayoutRoot.clearComponentArray(LayoutRoot.Type.TIP)
   }
 
   private _timer: number | undefined

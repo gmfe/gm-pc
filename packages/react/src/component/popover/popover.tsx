@@ -60,7 +60,7 @@ export default class Popover extends Component<PopoverProps, PopoverState> {
       window.document.body.removeEventListener('focusout', this._handleBodyFocusOut)
     }
 
-    LayoutRoot.removeComponentPopup(this._id)
+    LayoutRoot.removeComponentArray(LayoutRoot.Type.POPOVER, this._id)
     window.removeEventListener(EVENT_TYPE.MODAL_SCROLL, this._debounceHandleModalScroll)
     window.removeEventListener(
       EVENT_TYPE.BROWSER_SCROLL,
@@ -183,7 +183,8 @@ export default class Popover extends Component<PopoverProps, PopoverState> {
     } = this.props
     const disabled = this._getDisabled()
     if (active) {
-      LayoutRoot.setComponentPopup(
+      LayoutRoot.setComponentArray(
+        LayoutRoot.Type.POPOVER,
         this._id,
         <Popup
           key={`popup_${this._id}`}

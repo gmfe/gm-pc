@@ -18,7 +18,7 @@ NProgress.start = function (): void {
       clearTimeout(timer)
       timer = null
     }
-    LayoutRoot.setComponent(LayoutRoot.TYPE.NPROGRESS, <NProgress />)
+    LayoutRoot.setComponent(LayoutRoot.Type.N_PROGRESS, <NProgress />)
   }
 }
 
@@ -28,7 +28,7 @@ NProgress.done = function (): void {
   if (!reqLength && !timer) {
     nProgress && (nProgress.className = 'gm-nprogress gm-nprogress-completed')
     timer = window.setTimeout(function () {
-      LayoutRoot.removeComponent(LayoutRoot.TYPE.NPROGRESS)
+      LayoutRoot.removeComponent(LayoutRoot.Type.N_PROGRESS)
       timer = null
     }, 250)
   }

@@ -23,7 +23,7 @@ LoadingFullScreen.render = function (
   props: PropsWithChildren<LoadingFullScreenProps>
 ): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.FULL_LOADING_SHOW))
-  LayoutRoot.setComponent(LayoutRoot.TYPE.FULLLOADING, <LoadingFullScreen {...props} />)
+  LayoutRoot.setComponent(LayoutRoot.Type.FULL_LOADING, <LoadingFullScreen {...props} />)
 
   const documentBody = window.document.body
 
@@ -34,7 +34,7 @@ LoadingFullScreen.render = function (
 
 LoadingFullScreen.hide = function () {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.FULL_LOADING_HIDE))
-  LayoutRoot.removeComponent(LayoutRoot.TYPE.FULLLOADING)
+  LayoutRoot.removeComponent(LayoutRoot.Type.FULL_LOADING)
 
   const documentBody = window.document.body
   if (documentBody) {
