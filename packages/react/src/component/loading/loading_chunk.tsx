@@ -1,20 +1,13 @@
-import React, { CSSProperties, FC, HTMLAttributes } from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
 import Loading from './loading'
-
-export interface LoadingChunkProps extends HTMLAttributes<HTMLDivElement> {
-  loading?: boolean
-  text?: string
-  size?: number
-  className?: string
-  style?: CSSProperties
-}
+import { LoadingChunkProps } from './type'
 
 const LoadingChunk: FC<LoadingChunkProps> = ({
   loading,
   className,
   children,
-  size = 50,
+  size = '40px',
   style,
   text,
   ...rest
@@ -26,7 +19,7 @@ const LoadingChunk: FC<LoadingChunkProps> = ({
         'gm-loading-chunk': loading,
       })}
     >
-      {children || <div style={{ height: (size || 50) + 'px' }} />}
+      {children}
       {loading && (
         <div className='gm-loading-mask'>
           <Loading
