@@ -22,7 +22,10 @@ todo react
 - [x] divider
 - [ ] drawer
 - [ ] editable_text
-- [ ] flex
+- [x] flex
+- [ ] flip_number
+- [ ] form
+- [ ] function_set
 
 - [ ] grid 小的时候会有问题
 
@@ -37,4 +40,3 @@ todo react
 
 - [ ] export default
 - [ ] docgen
-

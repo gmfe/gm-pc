@@ -1,9 +1,10 @@
-import React, { Component, HTMLAttributes } from 'react'
+import React, { HTMLAttributes, forwardRef } from 'react'
 import classNames from 'classnames'
 
-export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   flex?: number | boolean
   auto?: boolean
+  /** flex 会坍缩，提供 none 则不会坍缩 */
   none?: boolean
   width?: string
   height?: string
@@ -29,100 +30,100 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   alignContentStretch?: boolean
 }
 
-class Flex extends Component<FlexProps> {
-  render() {
-    const {
-      flex,
+const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
+  const {
+    flex,
 
-      auto,
-      none,
-      width,
-      height,
+    auto,
+    none,
+    width,
+    height,
 
-      row,
-      column,
+    row,
+    column,
 
-      wrap,
-      nowrap,
+    wrap,
+    nowrap,
 
-      justifyStart,
-      justifyEnd,
-      justifyCenter,
-      justifyBetween,
-      justifyAround,
+    justifyStart,
+    justifyEnd,
+    justifyCenter,
+    justifyBetween,
+    justifyAround,
 
-      alignStart,
-      alignEnd,
-      alignCenter,
-      alignBaseline,
-      alignStretch,
+    alignStart,
+    alignEnd,
+    alignCenter,
+    alignBaseline,
+    alignStretch,
 
-      alignContentStart,
-      alignContentEnd,
-      alignContentCenter,
-      alignContentBetween,
-      alignContentAround,
-      alignContentStretch,
+    alignContentStart,
+    alignContentEnd,
+    alignContentCenter,
+    alignContentBetween,
+    alignContentAround,
+    alignContentStretch,
 
-      className,
-      style,
+    className,
+    style,
+    children,
 
-      ...rest
-    } = this.props
-    const cn = classNames(
-      {
-        'gm-flex': true,
+    ...rest
+  } = props
+  const cn = classNames(
+    {
+      'gm-flex': true,
 
-        'gm-flex-flex': flex,
-        'gm-flex-auto': auto,
-        'gm-flex-none': none || width || height,
+      'gm-flex-flex': flex,
+      'gm-flex-auto': auto,
+      'gm-flex-none': none || width || height,
 
-        'gm-flex-row': row,
-        'gm-flex-column': column,
+      'gm-flex-row': row,
+      'gm-flex-column': column,
 
-        'gm-flex-wrap': wrap,
-        'gm-flex-nowrap': nowrap,
+      'gm-flex-wrap': wrap,
+      'gm-flex-nowrap': nowrap,
 
-        'gm-flex-justify-start': justifyStart,
-        'gm-flex-justify-end': justifyEnd,
-        'gm-flex-justify-center': justifyCenter,
-        'gm-flex-justify-between': justifyBetween,
-        'gm-flex-justify-around': justifyAround,
+      'gm-flex-justify-start': justifyStart,
+      'gm-flex-justify-end': justifyEnd,
+      'gm-flex-justify-center': justifyCenter,
+      'gm-flex-justify-between': justifyBetween,
+      'gm-flex-justify-around': justifyAround,
 
-        'gm-flex-align-start': alignStart,
-        'gm-flex-align-end': alignEnd,
-        'gm-flex-align-center': alignCenter,
-        'gm-flex-align-baseline': alignBaseline,
-        'gm-flex-align-stretch': alignStretch,
+      'gm-flex-align-start': alignStart,
+      'gm-flex-align-end': alignEnd,
+      'gm-flex-align-center': alignCenter,
+      'gm-flex-align-baseline': alignBaseline,
+      'gm-flex-align-stretch': alignStretch,
 
-        'gm-flex-align-content-start': alignContentStart,
-        'gm-flex-align-content-end': alignContentEnd,
-        'gm-flex-align-content-center': alignContentCenter,
-        'gm-flex-align-content-between': alignContentBetween,
-        'gm-flex-align-content-around': alignContentAround,
-        'gm-flex-align-content-stretch': alignContentStretch,
-      },
-      className
-    )
+      'gm-flex-align-content-start': alignContentStart,
+      'gm-flex-align-content-end': alignContentEnd,
+      'gm-flex-align-content-center': alignContentCenter,
+      'gm-flex-align-content-between': alignContentBetween,
+      'gm-flex-align-content-around': alignContentAround,
+      'gm-flex-align-content-stretch': alignContentStretch,
+    },
+    className
+  )
 
-    const s = Object.assign({}, style)
-    if (flex) {
-      s.flex = typeof flex === 'boolean' ? 1 : flex
-      s.WebkitFlex = typeof flex === 'boolean' ? 1 : flex
-    }
-    if (height) {
-      s.height = height
-    }
-    if (width) {
-      s.width = width
-    }
-
-    return (
-      <div {...rest} className={cn} style={s}>
-        {this.props.children}
-      </div>
-    )
+  const s = Object.assign({}, style)
+  if (flex) {
+    s.flex = typeof flex === 'boolean' ? 1 : flex
+    s.WebkitFlex = typeof flex === 'boolean' ? 1 : flex
   }
-}
+  if (height) {
+    s.height = height
+  }
+  if (width) {
+    s.width = width
+  }
+
+  return (
+    <div ref={ref} {...rest} className={cn} style={s}>
+      {children}
+    </div>
+  )
+})
 
 export default Flex
+export type { FlexProps }

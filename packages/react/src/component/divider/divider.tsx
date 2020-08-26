@@ -22,3 +22,4 @@ const Divider: FC<DividerProps> = ({ align = 'center', children }) => {
 }
 
 export default Divider
+export type { DividerProps }
