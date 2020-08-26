@@ -11,7 +11,7 @@ todo react
 
 - [x] affix
 - [x] box
-- [ ] button loading
+- [x] button
 - [ ] calendar
 - [x] checkbox
 - [x] collapse
@@ -31,6 +31,8 @@ todo react
 
 - [x] input
 - [ ] input number
+
+- [x] loading
 
 - [x] modal
 
