@@ -1,10 +1,8 @@
 .gmClearfix() {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: ' '; // 1
     display: table; // 2
-  }
-  &:after {
     clear: both;
   }
 }
@@ -21,4 +19,31 @@
   }
 }
 
+.gmBorderRadius() {
+  border-radius: 2px;
+}
 
+// form
+.gmFormControl() {
+  // 布局
+  vertical-align: middle;
+  display: inline-block;
+  outline: none;
+  // color
+  color: var(--gm-color-default);
+  font-size: var(--gm-size-text-12);
+  background: var(--gm-color-bg-white);
+  border: 1px solid var(--gm-color-border);
+  border-radius: 2px;
+  // size
+  height: var(--gm-size-form-height);
+  line-height: var(--gm-size-form-height);
+  padding: 5px 10px;
+  margin: 0;
+  width: 100%;
+
+  // status
+  &:focus {
+    border-color: var(--gm-color-border-primary);
+  }
+}
