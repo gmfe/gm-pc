@@ -1,10 +1,8 @@
 import React, { CSSProperties, FC, ReactNode, MouseEvent, useCallback } from 'react'
 import classNames from 'classnames'
-import { Uploader, UploaderFile } from '../uploader'
+import { Uploader, UploaderFile, DefaultImage } from '../uploader'
 import { Flex } from '../flex'
 import SvgCloseCircle from '../../svg/close-circle.svg'
-
-const { DefaultImage } = Uploader
 
 export interface ImgUploaderProps {
   /* 已上传图片 URL 集合 */
@@ -49,6 +47,7 @@ const ImgUploader: FC<ImgUploaderProps> = ({
       if (result && result.then) {
         result.then((urls) => {
           onChange(data.concat(urls))
+          return urls
         })
       }
     },
@@ -64,6 +63,8 @@ const ImgUploader: FC<ImgUploaderProps> = ({
           newData[index] = urls[0]
 
           onChange(newData)
+
+          return urls
         })
       }
     },
@@ -89,7 +90,9 @@ const ImgUploader: FC<ImgUploaderProps> = ({
             disabled={disabled}
             className='gm-img-uploader-item'
           >
-            <DefaultImage style={{ width: contentSize!.width, height: contentSize!.height }}>
+            <DefaultImage
+              style={{ width: contentSize!.width, height: contentSize!.height }}
+            >
               {imgRender ? (
                 imgRender(item)
               ) : (

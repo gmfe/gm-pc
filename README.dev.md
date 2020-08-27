@@ -27,8 +27,8 @@ todo react
 - [ ] form
 - [ ] function_set
 - [x] grid
-- [ ] icon_down_up
-- [ ] img_uploader
+- [x] icon_down_up
+- [x] img_uploader
 - [x] input
 - [ ] input number
 - [x] label
