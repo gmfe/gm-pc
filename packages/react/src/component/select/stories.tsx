@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Select from './select'
 import { observable } from 'mobx'
 
@@ -34,35 +33,37 @@ const store = observable({
   },
 })
 
-storiesOf('Select', module)
-  .add('default', () => (
-    <Select<number>
+export const ComSelect = () => (
+  <div>
+    <Select
       data={list}
       value={store.value}
       onChange={(value) => store.setValue(value!)}
     />
-  ))
-  .add('disabled', () => (
-    <Select<number>
+    <div>disabled</div>
+    <Select
       data={list}
       value={store.value}
       onChange={(value) => store.setValue(value!)}
       disabled
     />
-  ))
-  .add('canShowClose', () => (
-    <Select<number>
+    <div>canShowClose</div>
+    <Select
       data={list}
       value={store.value}
       onChange={(value) => store.setValue(value!)}
       canShowClose
     />
-  ))
-  .add('clean 模式', () => (
-    <Select<number>
+    <div>clean</div>
+    <Select
       clean
       data={list}
       value={store.value}
       onChange={(value) => store.setValue(value!)}
     />
-  ))
+  </div>
+)
+
+export default {
+  title: '表单/Select',
+}

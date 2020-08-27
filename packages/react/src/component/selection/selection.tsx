@@ -13,26 +13,34 @@ import classNames from 'classnames'
 import SVGCloseCircle from '../../svg/close-circle.svg'
 import { IconDownUp } from '../icon_down_up'
 
-export interface SelectionProps<T> {
-  selected?: T
-  onSelect(selected: null): void
+type Selected = any
+
+interface SelectionProps {
+  selected?: Selected
+  onSelect(selected?: Selected): void
+
   disabled?: boolean
-  renderSelected?(value: T): ReactNode
   placeholder?: string
-  /* 代替默认的Icon */
+
+  /** 自定义 selected */
+  renderSelected?(value?: Selected): ReactNode
+  /** 代替默认的 Icon */
   funIcon?: ReactNode
-  /* 无边框 */
+  /** 无边框 */
   clean?: boolean
-  /* 禁用清除 */
+  /** 禁用清除 */
   disabledClose?: boolean
+
+  /** 给键盘用 */
   onKeyDown?(event: KeyboardEvent): void
   className?: string
   style?: CSSProperties
-  /* 给Select定制 */
-  isForSelect?: boolean
+
+  /** 给 Select 定制 */
+  noInput?: boolean
 }
 
-export default class Selection<T> extends Component<SelectionProps<T>> {
+class Selection extends Component<SelectionProps> {
   static defaultProps = {
     renderSelected: (value: { text: string }) => value.text,
   }
@@ -63,7 +71,7 @@ export default class Selection<T> extends Component<SelectionProps<T>> {
       disabledClose,
       className,
       onKeyDown,
-      isForSelect,
+      noInput,
       ...rest
     } = this.props
     let text = ''
@@ -84,12 +92,12 @@ export default class Selection<T> extends Component<SelectionProps<T>> {
           className
         )}
       >
-        {isForSelect ? (
+        {noInput ? (
           <div
             ref={this._inputRef}
             // @ts-ignore
             disabled={disabled}
-            className='form-control gm-selection-selected'
+            className='gm-form-control gm-selection-selected'
             tabIndex={0}
             onKeyDown={onKeyDown}
           >
@@ -104,7 +112,7 @@ export default class Selection<T> extends Component<SelectionProps<T>> {
             onChange={() => _.noop()}
             onKeyDown={onKeyDown}
             placeholder={placeholder}
-            className='form-control gm-selection-selected'
+            className='gm-form-control gm-selection-selected'
           />
         )}
         {selected && !disabledClose && !clean && (
@@ -125,6 +133,7 @@ export default class Selection<T> extends Component<SelectionProps<T>> {
           })
         ) : (
           <IconDownUp
+            disabled={disabled}
             active={(className ?? '').includes('gm-popover-active')}
             className={classNames('gm-selection-icon', 'gm-selection-down-up', {
               'gm-selection-fun-icon': selected && !disabledClose && !clean,
@@ -135,3 +144,6 @@ export default class Selection<T> extends Component<SelectionProps<T>> {
     )
   }
 }
+
+export default Selection
+export type { SelectionProps }

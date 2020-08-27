@@ -40,18 +40,17 @@ todo react
 - [x] mask
 - [x] modal
 - [ ] more_select
-- [ ] n_pregress
+- [ ] n_progress
 - [ ] nav
 - [ ] pagination
 - [ ] popover
 - [ ] popup
-- [ ] price
 - [ ] progress
 - [ ] progress_circle
 - [x] radio
 - [ ] recommend_input
-- [ ] select
-- [ ] selection
+- [x] select
+- [x] selection
 - [ ] steps
 - [ ] storage
 - [ ] switch
@@ -68,3 +67,6 @@ todo react
 
 - [ ] export default
 - [ ] docgen
+
+todo price
+price 单独

@@ -1,7 +1,7 @@
 import React, { Component, createRef, KeyboardEvent } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { SelectDataOptions, SelectProps } from './types'
+import { Value, SelectProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
 import { List } from '../list'
@@ -10,7 +10,7 @@ interface SelectState {
   willActiveIndex: number
 }
 
-class Select<V> extends Component<SelectProps<V>, SelectState> {
+class Select extends Component<SelectProps, SelectState> {
   static defaultProps = {
     canShowClose: false,
     onKeyDown: _.noop,
@@ -22,7 +22,7 @@ class Select<V> extends Component<SelectProps<V>, SelectState> {
   }
 
   private _popupRef = createRef<Popover>()
-  private _selectionRef = createRef<Selection<SelectDataOptions<V>>>()
+  private _selectionRef = createRef<Selection>()
 
   public apiDoFocus = (): void => {
     this._selectionRef.current!.apiDoFocus()
@@ -36,7 +36,7 @@ class Select<V> extends Component<SelectProps<V>, SelectState> {
     }
   }
 
-  private _handleChange = (selected: V): void => {
+  private _handleChange = (selected: Value): void => {
     const { onChange } = this.props
     this._popupRef.current!.apiDoSetActive()
     onChange(selected)
@@ -105,6 +105,11 @@ class Select<V> extends Component<SelectProps<V>, SelectState> {
         style={{ maxHeight: '250px', ...listStyle }}
       />
     )
+
+    const handleChange = (selected: Value) => {
+      onChange(selected)
+    }
+
     return (
       <Popover
         ref={this._popupRef}
@@ -117,12 +122,12 @@ class Select<V> extends Component<SelectProps<V>, SelectState> {
           ref={this._selectionRef}
           {...rest}
           selected={selected}
-          onSelect={onChange}
+          onSelect={handleChange}
           disabled={disabled}
           disabledClose={!canShowClose}
           clean={clean}
           className={classNames('gm-select', className)}
-          isForSelect
+          noInput
           onKeyDown={this._handleKeyDown}
         />
       </Popover>

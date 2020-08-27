@@ -1,11 +1,10 @@
 .gm-selection {
   position: relative;
   vertical-align: middle;
-  height: 30px;
+  height: var(--gm-size-form-height);
 
   .gm-selection-selected {
-    display: block;
-    padding-right: 24px;
+    padding-right: 20px;
     cursor: pointer;
     line-height: 18px;
   }
@@ -16,7 +15,7 @@
     line-height: 1;
     top: 9px;
     right: 6px;
-    color: @gm-color-fourth;
+    color: var(--gm-color-desc);
     cursor: pointer;
   }
 
@@ -40,15 +39,8 @@
   }
 
   &.disabled {
-    cursor: not-allowed;
-
-    .gm-selection-selected {
-      cursor: not-allowed;
-      border: 1px solid var(--gm-color-border);
-    }
-
     .gm-selection-close-icon {
-      cursor: not-allowed;
+      .gmDisabled();
     }
   }
 
