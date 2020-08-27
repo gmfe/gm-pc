@@ -4,7 +4,7 @@ import { Input } from '../input'
 import { List } from '../list'
 import _ from 'lodash'
 import { pinYinFilter } from '@gm-common/tool'
-import SVGCloseCircle from '../../../svg/close-circle.svg'
+import SVGCloseCircle from '../../svg/close-circle.svg'
 import classNames from 'classnames'
 
 interface dataOptions {

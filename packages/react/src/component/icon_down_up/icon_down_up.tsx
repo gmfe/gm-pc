@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC } from 'react'
-import SVGDown from '../../../svg/down.svg'
+import SVGDown from '../../svg/down.svg'
 import classNames from 'classnames'
 
 interface IconDownUpProps {

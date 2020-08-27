@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, CSSProperties, FC } from 'react'
 import classNames from 'classnames'
-import SVGRemove from '../../../svg/remove.svg'
+import SVGRemove from '../../svg/remove.svg'
 import { Button, ButtonType } from '../button'
 import { getLocale } from '@gm-pc/locales'
 

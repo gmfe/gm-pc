@@ -1,8 +1,8 @@
 import React, { CSSProperties, MouseEvent, ReactNode, useCallback } from 'react'
 import classNames from 'classnames'
 import { Flex } from '../flex'
-import SVGExpand from '../../../svg/expand.svg'
-import SVGCloseup from '../../../svg/closeup.svg'
+import SVGExpand from '../../svg/expand.svg'
+import SVGCloseup from '../../svg/closeup.svg'
 import { Checkbox } from '../checkbox'
 import { TreeV2DataOptions } from './types'
 

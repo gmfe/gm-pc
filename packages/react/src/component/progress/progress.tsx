@@ -1,7 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
 import classNames from 'classnames'
-import SVGSuccessCircle from '../../../svg/success-circle.svg'
-import SVGCloseCircle from '../../../svg/close-circle.svg'
+import SVGSuccessCircle from '../../svg/success-circle.svg'
+import SVGCloseCircle from '../../svg/close-circle.svg'
 
 export interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
   percentage: number

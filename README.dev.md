@@ -58,7 +58,7 @@ todo react
 - [ ] table_select
 - [ ] tabs
 - [ ] time_span
-- [ ] tip
+- [x] tip
 - [ ] tooltip
 - [ ] transfer
 - [ ] tree

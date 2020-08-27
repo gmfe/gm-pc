@@ -4,8 +4,8 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
 import { Flex } from '../flex'
-import SVGCalendarYear from '../../../svg/calendar-year.svg'
-import SVGCalendarMonth from '../../../svg/calendar-month.svg'
+import SVGCalendarYear from '../../svg/calendar-year.svg'
+import SVGCalendarMonth from '../../svg/calendar-month.svg'
 import { DisabledYearAndMonth } from './types'
 
 const months = [

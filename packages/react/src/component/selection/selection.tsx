@@ -10,7 +10,7 @@ import React, {
 } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import SVGCloseCircle from '../../../svg/close-circle.svg'
+import SVGCloseCircle from '../../svg/close-circle.svg'
 import { IconDownUp } from '../icon_down_up'
 
 export interface SelectionProps<T> {

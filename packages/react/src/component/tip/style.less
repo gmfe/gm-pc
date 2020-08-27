@@ -1,41 +1,50 @@
 .gm-tip {
-  position: relative;
   display: inline-block;
   min-width: 250px;
-  cursor: pointer;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: white;
+  margin: 20px auto 0;
+  pointer-events: all;
+
+  .gm-tip-icon {
+    vertical-align: middle;
+    font-size: 1.3em;
+    margin-right: 5px;
+  }
+
+  .gm-tip-text {
+    vertical-align: middle;
+  }
+
+  &.gm-tip-success {
+    .gm-tip-icon {
+      color: var(--gm-color-success);
+    }
+  }
+
+  &.gm-tip-danger {
+    .gm-tip-icon {
+      color: var(--gm-color-danger);
+    }
+  }
 }
 
-.gm-tip .panel-body {
-  padding-left: 40px;
+.gm-tip-warp {
 }
 
-.gm-tip .close {
-  margin-right: 5px;
-}
-
-.gm-tip i {
-  top: 50%;
-  position: absolute;
-  margin-top: -0.5em;
-  margin-left: 10px;
-  font-size: 2em;
-}
-
+// 在 LayoutRoot 内
 .gm-tips {
   position: fixed;
-  right: 10px;
+  left: 0;
+  right: 0;
   top: 10px;
-  z-index: 7000;
-  max-width: 450px;
-}
-
-.gm-tips-cell {
-  float: right;
-  clear: both;
+  z-index: var(--gm-z-index-tips);
+  pointer-events: none;
 }
 
 @media print {
-  .gm-tip {
+  .gm-tips {
     display: none;
   }
 }

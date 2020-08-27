@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { ModalProps, ModalStatic } from './types'
 import EVENT_TYPE from '../../event_type'
 import { LayoutRoot } from '../layout_root'
-import SVGRemove from '../../../svg/remove.svg'
+import SVGRemove from '../../svg/remove.svg'
 
 const Modal: FC<ModalProps> & ModalStatic = ({
   title,

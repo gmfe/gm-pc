@@ -11,7 +11,7 @@ import _ from 'lodash'
 import { Popover, PopoverTrigger } from '../popover'
 import { Selection } from '../selection'
 import { TimeLimit } from './types'
-import SVGCalendar from '../../../svg/calendar.svg'
+import SVGCalendar from '../../svg/calendar.svg'
 import Overlay from './overlay'
 
 export interface DatePickerProps {

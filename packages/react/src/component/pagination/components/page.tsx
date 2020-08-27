@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import paginationContext, { PaginationContextOptions } from '../utils/context'
 import getInfo from '../utils/get_info'
 import { Flex } from '../../flex'
-import SVGLeftSmall from '../../../../svg/left-small.svg'
-import SVGRightSmall from '../../../../svg/right-small.svg'
+import SVGLeftSmall from '../../../svg/left-small.svg'
+import SVGRightSmall from '../../../svg/right-small.svg'
 
 const Page: FC = () => {
   const { data, onChange } = useContext(paginationContext) as PaginationContextOptions

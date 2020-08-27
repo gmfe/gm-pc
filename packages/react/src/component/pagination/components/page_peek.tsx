@@ -4,8 +4,8 @@ import _ from 'lodash'
 import paginationContext, { PaginationContextOptions } from '../utils/context'
 import getIndex from '../utils/get_index'
 import { Flex } from '../../flex'
-import SVGLeftSmall from '../../../../svg/left-small.svg'
-import SVGRightSmall from '../../../../svg/right-small.svg'
+import SVGLeftSmall from '../../../svg/left-small.svg'
+import SVGRightSmall from '../../../svg/right-small.svg'
 
 interface PagePeekProps {
   _peekInfo: {

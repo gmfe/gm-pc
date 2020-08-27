@@ -1,9 +1,9 @@
 import React, { FC, useCallback, useState, KeyboardEvent, ChangeEvent } from 'react'
 import classNames from 'classnames'
 import { Input } from '../input'
-import SvgOK from '../../../svg/ok.svg'
-import SvgRemove from '../../../svg/remove.svg'
-import SvgEdit from '../../../svg/edit.svg'
+import SvgOK from '../../svg/ok.svg'
+import SvgRemove from '../../svg/remove.svg'
+import SvgEdit from '../../svg/edit.svg'
 
 export interface EditableTextProps {
   /* 组件显示的内容 */

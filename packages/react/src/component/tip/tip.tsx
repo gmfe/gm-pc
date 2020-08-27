@@ -1,112 +1,97 @@
-import React, { Component, PropsWithChildren } from 'react'
+import React, { FC, useEffect } from 'react'
 import _ from 'lodash'
-import { TipProps } from './types'
+import { TipProps, TipStatic } from './types'
 import { Flex } from '../flex'
-import TipContent from './tip_content'
 import { LayoutRoot } from '../layout_root'
+import SVGSuccess from '../../svg/success-circle.svg'
+import SVGDanger from '../../svg/close-circle.svg'
+import SVGRemove from '../../svg/remove.svg'
 
-export default class Tip extends Component<TipProps> {
-  static defaultProps = {
-    title: '',
-    type: 'info',
-    onClose: _.noop,
-    time: 3000,
-  }
-
-  static tip(options: PropsWithChildren<Partial<TipProps>>): string {
-    const id = +new Date() + '' + Math.random()
-    const _onClose = options.onClose
-    options.onClose = () => {
-      LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
-      if (_onClose) {
-        _onClose()
-      }
-    }
-    LayoutRoot.setComponentArray(LayoutRoot.Type.TIP, id, <Tip {...options} />)
-    return id
-  }
-
-  static success(options: PropsWithChildren<Partial<TipProps>> | string) {
-    if (typeof options === 'string') {
-      options = {
-        children: options,
-      }
-    }
-    options.type = 'success'
-    return this.tip(options)
-  }
-
-  static info(options: PropsWithChildren<Partial<TipProps>> | string) {
-    if (typeof options === 'string') {
-      options = {
-        children: options,
-      }
-    }
-    options.type = 'info'
-    return this.tip(options)
-  }
-
-  static warning(options: PropsWithChildren<Partial<TipProps>> | string) {
-    if (typeof options === 'string') {
-      options = {
-        children: options,
-      }
-    }
-    options.type = 'warning'
-    return this.tip(options)
-  }
-
-  static danger(options: PropsWithChildren<Partial<TipProps>> | string) {
-    if (typeof options === 'string') {
-      options = {
-        children: options,
-      }
-    }
-    options.type = 'danger'
-    return this.tip(options)
-  }
-
-  static clear(id: string): void {
-    LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
-  }
-
-  static clearAll(): void {
-    LayoutRoot.clearComponentArray(LayoutRoot.Type.TIP)
-  }
-
-  private _timer: number | undefined
-  private _hasClosed = false
-
-  componentDidMount() {
-    const { time } = this.props
+const Tip: FC<TipProps> & TipStatic = ({
+  type,
+  time = 3000,
+  onClose = _.noop,
+  children,
+}) => {
+  useEffect(() => {
+    let timer: number
     if (time) {
-      this._timer = window.setTimeout(() => this._fadeOut(), time)
+      timer = setTimeout(() => {
+        onClose()
+      }, time)
     }
-  }
 
-  componentWillUnmount() {
-    window.clearTimeout(this._timer)
-  }
-
-  private _handleClose = (): void => {
-    this._fadeOut()
-  }
-
-  private _fadeOut(): void {
-    if (!this._hasClosed) {
-      this._hasClosed = true
-      this.props.onClose()
+    return () => {
+      if (time) {
+        if (time) {
+          clearTimeout(timer)
+        }
+      }
     }
-  }
+  }, [])
 
-  render() {
-    const { title, type, children } = this.props
-    return (
-      <Flex justifyEnd>
-        <TipContent title={title} type={type} onClose={this._handleClose}>
-          {children}
-        </TipContent>
+  return (
+    <Flex justifyCenter className='gm-tip-warp'>
+      <Flex className={`gm-tip gm-tip-${type} level`}>
+        <Flex flex>
+          <span className='gm-tip-icon'>
+            {type === 'success' && <SVGSuccess />}
+            {type === 'danger' && <SVGDanger />}
+          </span>
+          <span className='gm-tip-text'>{children}</span>
+        </Flex>
+        {!time && (
+          <span
+            className='gm-tip-close gm-margin-left-5 gm-cursor'
+            onClick={() => {
+              onClose()
+            }}
+          >
+            <SVGRemove />
+          </span>
+        )}
       </Flex>
-    )
-  }
+    </Flex>
+  )
 }
+
+Tip.tip = (options, type) => {
+  if (typeof options === 'string') {
+    options = {
+      children: options,
+    }
+  }
+  options.type = type
+
+  const id = +new Date() + '' + Math.random()
+
+  const _onClose = options.onClose
+  options.onClose = () => {
+    LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
+    if (_onClose) {
+      _onClose()
+    }
+  }
+
+  LayoutRoot.setComponentArray(LayoutRoot.Type.TIP, id, <Tip {...options} />)
+
+  return id
+}
+
+Tip.success = (options) => {
+  return Tip.tip(options, 'success')
+}
+
+Tip.danger = (options) => {
+  return Tip.tip(options, 'danger')
+}
+
+Tip.clear = (id) => {
+  LayoutRoot.removeComponentArray(LayoutRoot.Type.TIP, id)
+}
+
+Tip.clearAll = () => {
+  LayoutRoot.clearComponentArray(LayoutRoot.Type.TIP)
+}
+
+export default Tip

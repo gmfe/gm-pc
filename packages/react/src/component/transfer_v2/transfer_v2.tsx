@@ -6,8 +6,8 @@ import { Flex } from '../flex'
 import { TreeV2 } from '../tree_v2'
 import getLeftAndRightList from './get_left_and_right_list'
 import { Button } from '../button'
-import SvgRightSmall from '../../../svg/right-small.svg'
-import SvgLeftSmall from '../../../svg/left-small.svg'
+import SvgRightSmall from '../../svg/right-small.svg'
+import SvgLeftSmall from '../../svg/left-small.svg'
 
 interface TransferV2State<T> {
   lefts: T[]

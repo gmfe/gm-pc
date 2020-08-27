@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { LevelListDataOptions } from './types'
-import SVGRightSmall from '../../../svg/right-small.svg'
+import SVGRightSmall from '../../svg/right-small.svg'
 import { List } from '../list'
 
 interface LevelItemProps<V> {

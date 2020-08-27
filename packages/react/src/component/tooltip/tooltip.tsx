@@ -1,7 +1,7 @@
 import React, { CSSProperties, forwardRef, ReactElement, ReactNode } from 'react'
 import classNames from 'classnames'
 import { Popover } from '../popover'
-import SVGQuestionCircle from '../../../svg/question-circle-o.svg'
+import SVGQuestionCircle from '../../svg/question-circle-o.svg'
 
 export interface TooltipProps {
   popup: ReactNode
