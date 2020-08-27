@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from 'react'
-import { FunctionSetDataOptions } from './type'
+import { FunctionSetDataOptions } from './types'
 import { processDataWithValue } from './utils'
 import { LevelList } from '../level_list'
 

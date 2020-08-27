@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { LoadingProps } from './type'
+import { LoadingProps } from './types'
 
 const Loading: FC<LoadingProps> = ({ size = '1em' }) => {
   return (

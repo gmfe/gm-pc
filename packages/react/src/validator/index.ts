@@ -2,7 +2,7 @@ import OriginalValidator from './validator'
 
 // 初始化默认规则
 import './rules'
-import TYPE from './type'
+import TYPE from './types'
 
 type OriginalValidatorType = typeof OriginalValidator
 type ValidatorType = typeof TYPE

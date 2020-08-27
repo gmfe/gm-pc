@@ -1,4 +1,4 @@
-import { FunctionSetDataOptions } from './type'
+import { FunctionSetDataOptions } from './types'
 import { LevelListDataOptions } from '../level_list'
 
 interface ProcessDataWithValue {

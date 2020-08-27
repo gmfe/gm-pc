@@ -115,5 +115,5 @@ export const ComRightSideModal = () => (
 )
 
 export default {
-  title: '浮层/Modal',
+  title: '反馈/Modal',
 }

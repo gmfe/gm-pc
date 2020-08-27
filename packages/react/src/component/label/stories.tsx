@@ -13,5 +13,5 @@ export const ComLabel = () => {
 }
 
 export default {
-  title: '基础/Label',
+  title: '其他/Label',
 }

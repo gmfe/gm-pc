@@ -7,4 +7,4 @@ export type {
   LoadingChunkProps,
   LoadingFullScreenProps,
   LoadingFullScreenStatic,
-} from './type'
+} from './types'

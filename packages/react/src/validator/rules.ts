@@ -1,5 +1,5 @@
 import Validator from './validator'
-import TYPE from './type'
+import TYPE from './types'
 import { getLocale } from '@gm-pc/locales'
 
 const pattern = {

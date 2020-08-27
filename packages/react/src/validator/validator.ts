@@ -1,4 +1,4 @@
-import TYPE from './type'
+import TYPE from './types'
 
 type ValidatorType = typeof TYPE[keyof typeof TYPE]
 

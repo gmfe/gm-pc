@@ -1,5 +1,5 @@
 import React, { Component, createRef, FC, HTMLAttributes } from 'react'
-import { FunctionSetDataOptions, FunctionSetProps } from './type'
+import { FunctionSetDataOptions, FunctionSetProps } from './types'
 import { Popover } from '../popover'
 import Overlay from './overlay'
 import { Button } from '../button'

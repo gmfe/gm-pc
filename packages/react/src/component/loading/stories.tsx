@@ -39,5 +39,5 @@ export const ComLoadingFullScreen = () => (
 )
 
 export default {
-  title: '基础/Loading',
+  title: '反馈/Loading',
 }

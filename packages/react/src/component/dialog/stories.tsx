@@ -128,5 +128,5 @@ export const ComPrompt = () => {
 }
 
 export default {
-  title: '浮层/Dialog',
+  title: '反馈/Dialog',
 }

@@ -27,22 +27,42 @@ todo react
 - [ ] form
 - [ ] function_set
 - [x] grid
-- [x] icon_down_up
-- [ ] image_preview
+- [ ] icon_down_up
 - [ ] img_uploader
-
 - [x] input
 - [ ] input number
 - [x] label
 - [x] layout root
-- [ ] lazy_img
-
+- [ ] level_list
+- [ ] level_select
+- [ ] list
 - [x] loading
 - [x] mask
-
 - [x] modal
-
+- [ ] more_select
+- [ ] n_pregress
+- [ ] nav
+- [ ] pagination
+- [ ] popover
+- [ ] popup
+- [ ] price
+- [ ] progress
+- [ ] progress_circle
 - [x] radio
+- [ ] recommend_input
+- [ ] select
+- [ ] selection
+- [ ] steps
+- [ ] storage
+- [ ] switch
+- [ ] table_select
+- [ ] tabs
+- [ ] time_span
+- [ ] tip
+- [ ] tooltip
+- [ ] transfer
+- [ ] tree
+- [ ] uploader
 
 其他
 

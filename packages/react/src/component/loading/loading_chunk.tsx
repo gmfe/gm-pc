@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import classNames from 'classnames'
 import Loading from './loading'
 import { Flex } from '../flex'
-import { LoadingChunkProps } from './type'
+import { LoadingChunkProps } from './types'
 
 const LoadingChunk: FC<LoadingChunkProps> = ({
   loading,

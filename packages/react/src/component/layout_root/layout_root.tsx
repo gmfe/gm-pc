@@ -6,7 +6,7 @@ import {
   State,
   LayoutRootStatic,
   ComponentListItem,
-} from './type'
+} from './types'
 
 let setComponentFunc: SetComponentFunc = null
 

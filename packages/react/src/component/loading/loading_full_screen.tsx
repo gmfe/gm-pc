@@ -3,7 +3,7 @@ import Loading from './loading'
 import { LayoutRoot } from '../layout_root'
 import { Flex } from '../flex'
 import EVENT_TYPE from '../../event_type'
-import { LoadingFullScreenProps, LoadingFullScreenStatic } from './type'
+import { LoadingFullScreenProps, LoadingFullScreenStatic } from './types'
 
 const LoadingFullScreen: FC<LoadingFullScreenProps> & LoadingFullScreenStatic = ({
   text,
