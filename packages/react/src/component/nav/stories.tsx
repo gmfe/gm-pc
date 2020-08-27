@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Nav from './nav'
 import { observable } from 'mobx'
 import { NavData3RdOptions } from './types'
@@ -104,7 +103,7 @@ const store = observable({
   },
 })
 
-storiesOf('Nav', module).add('default', () => (
+export const ComNav = () => (
   <div style={{ height: '700px' }}>
     <Nav
       logo={
@@ -131,4 +130,8 @@ storiesOf('Nav', module).add('default', () => (
       点击显示 loading
     </Nav>
   </div>
-))
+)
+
+export default {
+  title: '布局/Nav',
+}
