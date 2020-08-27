@@ -1,4 +1,5 @@
 import { ChangeEvent, CSSProperties, DragEvent } from 'react'
+import { FlexProps } from '../flex'
 
 interface UploaderFile extends File {
   preview: string
@@ -16,4 +17,9 @@ interface UploaderProps {
   style?: CSSProperties
 }
 
-export type { UploaderProps, UploaderFile }
+// FlexProps 有待考虑
+type DefaultContainerProps = FlexProps
+
+type DefaultImageProps = DefaultContainerProps
+
+export type { UploaderProps, UploaderFile, DefaultContainerProps, DefaultImageProps }

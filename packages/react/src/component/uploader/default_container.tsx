@@ -1,9 +1,14 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
-import { Flex, FlexProps } from '../flex'
+import { Flex } from '../flex'
 import SVGPlus from '../../svg/plus.svg'
+import { DefaultContainerProps } from './types'
 
-const DefaultContainer: FC<FlexProps> = ({ className, children, ...rest }) => {
+const DefaultContainer: FC<DefaultContainerProps> = ({
+  className,
+  children,
+  ...rest
+}) => {
   return (
     <Flex
       {...rest}

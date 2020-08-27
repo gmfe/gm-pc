@@ -3,14 +3,8 @@ import { is } from '@gm-common/tool'
 import classNames from 'classnames'
 import { UploaderFile, UploaderProps } from './types'
 import DefaultContainer from './default_container'
-import DefaultImage from './default_image'
 
-interface UploaderFC extends FC<UploaderProps> {
-  Default: typeof DefaultContainer
-  DefaultImage: typeof DefaultImage
-}
-
-const Uploader: UploaderFC = ({
+const Uploader: FC<UploaderProps> = ({
   onUpload,
   accept,
   multiple,
@@ -19,18 +13,19 @@ const Uploader: UploaderFC = ({
   disabled,
   ...rest
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const refInput = useRef<HTMLInputElement>(null)
 
   const handleClick = useCallback((): void => {
     if (disabled) {
       return
     }
-    inputRef.current!.click()
+    refInput.current!.click()
   }, [disabled])
 
   const handleUpload = useCallback(
     (event: ChangeEvent<HTMLInputElement> | DragEvent<HTMLInputElement>) => {
       event.preventDefault()
+
       const uploadFiles = (event as DragEvent<HTMLInputElement>).dataTransfer
         ? (event as DragEvent<HTMLInputElement>).dataTransfer.files
         : (event as ChangeEvent<HTMLInputElement>).target.files!
@@ -41,6 +36,7 @@ const Uploader: UploaderFC = ({
     },
     [onUpload]
   )
+
   return (
     <div
       {...rest}
@@ -49,7 +45,7 @@ const Uploader: UploaderFC = ({
     >
       {children ?? <DefaultContainer />}
       <input
-        ref={inputRef}
+        ref={refInput}
         type='file'
         className='gm-uploader-input'
         multiple={!is.weixin() && multiple}
@@ -59,8 +55,5 @@ const Uploader: UploaderFC = ({
     </div>
   )
 }
-
-Uploader.Default = DefaultContainer
-Uploader.DefaultImage = DefaultImage
 
 export default Uploader

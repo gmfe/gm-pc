@@ -62,7 +62,7 @@ todo react
 - [x] tooltip
 - [ ] transfer
 - [ ] tree
-- [ ] uploader
+- [x] uploader
 
 其他
 
