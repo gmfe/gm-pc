@@ -1,13 +1,13 @@
-import React, { CSSProperties, ReactNode, Component, ChangeEvent, createRef } from 'react'
+import React, { CSSProperties, Component, ChangeEvent, createRef } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 
-export interface SwitchProps {
+interface SwitchProps {
   type?: string
   checked: boolean
   disabled?: boolean
-  on?: ReactNode
-  off?: ReactNode
+  on?: string
+  off?: string
   onChange?(checked: boolean): void
   className?: string
   style?: CSSProperties
@@ -90,7 +90,7 @@ class Switch extends Component<SwitchProps, SwitchState> {
     }
 
     if ('style' in rest) {
-      style = Object.assign(style, rest.style)
+      style = Object.assign({}, style, rest.style)
     }
 
     return (
@@ -124,3 +124,4 @@ class Switch extends Component<SwitchProps, SwitchState> {
 }
 
 export default Switch
+export type { SwitchProps }
