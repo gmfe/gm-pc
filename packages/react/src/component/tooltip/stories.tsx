@@ -1,8 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Tooltip from './tooltip'
 
-storiesOf('Tooltip', module).add('default', () => (
+export const ComTooltip = () => (
   <div style={{ padding: '100px' }}>
     <Tooltip popup={<div style={{ width: '100px', height: '100px' }}>hello</div>} />
     <Tooltip popup={<div style={{ width: '100px', height: '100px' }}>hello</div>}>
@@ -20,4 +19,8 @@ storiesOf('Tooltip', module).add('default', () => (
       <span>top hover tip</span>
     </Tooltip>
   </div>
-))
+)
+
+export default {
+  title: '反馈/Tooltip',
+}

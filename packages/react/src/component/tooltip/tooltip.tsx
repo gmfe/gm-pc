@@ -1,17 +1,14 @@
-import React, { CSSProperties, forwardRef, ReactElement, ReactNode } from 'react'
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import classNames from 'classnames'
 import { Popover } from '../popover'
 import SVGQuestionCircle from '../../svg/question-circle-o.svg'
 
-export interface TooltipProps {
+interface TooltipProps extends HTMLAttributes<HTMLSpanElement> {
   popup: ReactNode
   right?: boolean
   top?: boolean
   center?: boolean
   showArrow?: boolean
-  className?: string
-  style?: CSSProperties
-  children?: ReactElement
 }
 
 const Tooltip = forwardRef<Popover, TooltipProps>(
@@ -35,6 +32,5 @@ const Tooltip = forwardRef<Popover, TooltipProps>(
   )
 )
 
-Tooltip.displayName = 'Tooltip'
-
 export default Tooltip
+export type { TooltipProps }

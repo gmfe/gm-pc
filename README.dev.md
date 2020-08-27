@@ -59,7 +59,7 @@ todo react
 - [ ] tabs
 - [ ] time_span
 - [x] tip
-- [ ] tooltip
+- [x] tooltip
 - [ ] transfer
 - [ ] tree
 - [ ] uploader

@@ -212,7 +212,7 @@ export default class Popover extends Component<PopoverProps, PopoverState> {
         </Popup>
       )
     } else {
-      LayoutRoot.removeComponentPopup(this._id)
+      LayoutRoot.removeComponentArray(LayoutRoot.Type.POPOVER, this._id)
     }
   }
 
