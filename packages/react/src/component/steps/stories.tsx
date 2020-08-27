@@ -1,8 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Steps from './steps'
 
-storiesOf('Steps', module).add('default', () => (
+export const ComSteps = () => (
   <Steps
     data={[
       { title: '第一步' },
@@ -12,4 +11,8 @@ storiesOf('Steps', module).add('default', () => (
     ]}
     style={{ width: '300px' }}
   />
-))
+)
+
+export default {
+  title: '布局/Steps',
+}

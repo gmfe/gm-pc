@@ -51,8 +51,8 @@ todo react
 - [ ] recommend_input
 - [x] select
 - [x] selection
-- [ ] steps
-- [ ] storage
+- [x] steps
+- [x] storage
 - [ ] switch
 - [ ] table_select
 - [ ] tabs

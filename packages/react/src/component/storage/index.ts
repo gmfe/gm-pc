@@ -1,2 +1,1 @@
-export { default as Storage } from './storage'
-export type { StorageValue, StorageProps } from './storage'
+export { default as Storage, LocalStorage, SessionStorage } from './storage'

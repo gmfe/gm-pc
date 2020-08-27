@@ -3,14 +3,14 @@ import { CSSProperties, KeyboardEvent } from 'react'
 
 type Value = any
 
-interface SelectDataOptions {
+interface SelectDataItem {
   text: string
   value: Value
   disabled?: boolean
 }
 
 interface SelectProps {
-  data: SelectDataOptions[]
+  data: SelectDataItem[]
   value: Value
   onChange(selected: Value): void
   disabled?: boolean
@@ -24,4 +24,4 @@ interface SelectProps {
   style?: CSSProperties
 }
 
-export type { Value, SelectDataOptions, SelectProps }
+export type { Value, SelectDataItem, SelectProps }
