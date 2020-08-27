@@ -10,17 +10,14 @@
   .gm-list-item {
     line-height: 1;
     cursor: pointer;
-    padding: 9px 10px;
-    background: #fff;
+    padding: 10px;
+    background: white;
 
     &.active {
       color: var(--gm-color-primary-active);
     }
 
-    &.disabled {
-      cursor: not-allowed;
-      color: @gm-color-fourth;
-    }
+    .gmDisabledWith();
 
     &.will-active {
       background-color: @gm-list-bg-hover;
@@ -28,10 +25,6 @@
 
     &:hover {
       background-color: @gm-list-bg-hover;
-
-      &.disabled {
-        color: @gm-color-third;
-      }
     }
   }
 

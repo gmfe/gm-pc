@@ -1,12 +1,12 @@
 import React, { Component, createRef } from 'react'
 import classNames from 'classnames'
 import { xor, flatMap, isNil, noop } from 'lodash'
-import { BaseListDataOptions, BaseListProps } from './types'
+import { ListBaseDataItem, ListBaseProps } from './types'
 
-class Base<V> extends Component<BaseListProps<V>> {
+class Base extends Component<ListBaseProps> {
   static defaultProps = {
     onSelect: noop,
-    renderItem: (value: BaseListDataOptions<any>) => value.text,
+    renderItem: (value: ListBaseDataItem) => value.text,
     getItemProps: () => ({}),
   }
 
@@ -52,7 +52,7 @@ class Base<V> extends Component<BaseListProps<V>> {
     }
   }
 
-  private _handleSelect = (value: BaseListDataOptions<V>): void => {
+  private _handleSelect = (value: ListBaseDataItem): void => {
     if (value.disabled) {
       return
     }

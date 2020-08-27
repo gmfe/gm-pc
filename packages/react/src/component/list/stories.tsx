@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import List from './list'
 import { observable } from 'mobx'
 
@@ -41,8 +40,8 @@ const store = observable({
   },
 })
 
-storiesOf('List', module)
-  .add('default', () => (
+export const ComList = () => (
+  <div>
     <div className='gm-inline-block'>
       <List
         data={data}
@@ -50,37 +49,7 @@ storiesOf('List', module)
         onSelect={(selected: string) => store.setSelected(selected)}
       />
     </div>
-  ))
-  .add('disabled', () => (
-    <div className='gm-inline-block'>
-      <List
-        data={data}
-        selected={store.selected}
-        onSelect={(selected: string) => store.setSelected(selected)}
-      />
-    </div>
-  ))
-  .add('multiple', () => (
-    <div className='gm-inline-block'>
-      <List
-        multiple
-        data={data}
-        selected={store.selected}
-        onSelect={(selected: string[]) => store.setSelected(selected)}
-      />
-    </div>
-  ))
-  .add('group', () => (
-    <div className='gm-inline-block'>
-      <List
-        data={groupData}
-        isGroupList
-        selected={store.selected}
-        onSelect={(selected: string) => store.setSelected(selected)}
-      />
-    </div>
-  ))
-  .add('自定义 item', () => (
+    <div>renderItem</div>
     <div className='gm-inline-block'>
       <List
         data={data}
@@ -89,18 +58,45 @@ storiesOf('List', module)
         renderItem={(item, index) => item.text + index}
       />
     </div>
-  ))
-  .add('isScrollTo', () => (
-    <div className='gm-inline-block'>
-      <List
-        data={data}
-        selected='罗湖5'
-        onSelect={(selected) => store.setSelected(selected)}
-        renderItem={(item, index) => item.text + index}
-        isScrollTo
-        style={{
-          maxHeight: '100px',
-        }}
-      />
-    </div>
-  ))
+  </div>
+)
+export const ComListWithMultiple = () => (
+  <div className='gm-inline-block'>
+    <List
+      multiple
+      data={data}
+      selected={store.selected}
+      onSelect={(selected: string[]) => store.setSelected(selected)}
+    />
+  </div>
+)
+
+export const ComListWithIsGroupList = () => (
+  <div className='gm-inline-block'>
+    <List
+      data={groupData}
+      isGroupList
+      selected={store.selected}
+      onSelect={(selected: string) => store.setSelected(selected)}
+    />
+  </div>
+)
+
+export const ComListWithIsScrollTo = () => (
+  <div className='gm-inline-block'>
+    <List
+      data={data}
+      selected='罗湖5'
+      onSelect={(selected) => store.setSelected(selected)}
+      renderItem={(item, index) => item.text + index}
+      isScrollTo
+      style={{
+        maxHeight: '100px',
+      }}
+    />
+  </div>
+)
+
+export default {
+  title: '表单/List',
+}

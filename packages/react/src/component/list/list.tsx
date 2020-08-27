@@ -1,19 +1,19 @@
 import React, { Component, createRef } from 'react'
-import { ListProps, BaseListDataOptions, BaseListGroupDataOptions } from './types'
+import { Value, ListProps, ListBaseDataItem, ListBaseGroupDataItem } from './types'
 import Base from './base'
 import { warn, devWarn } from '@gm-common/tool'
 import _ from 'lodash'
 
-class List<V> extends Component<ListProps<V>> {
+class List extends Component<ListProps> {
   static defaultProps = {
     onSelect: _.noop,
-    renderItem: (value: BaseListDataOptions<any>) => value.text,
+    renderItem: (value: ListBaseDataItem) => value.text,
     getItemProps: () => ({}),
   }
 
-  private _baseRef = createRef<Base<V>>()
+  private _baseRef = createRef<Base>()
 
-  constructor(props: ListProps<V>) {
+  constructor(props: ListProps) {
     super(props)
     devWarn(() => {
       if (props.multiple && !_.isArray(props.selected)) {
@@ -27,7 +27,7 @@ class List<V> extends Component<ListProps<V>> {
     this._baseRef.current!.apiDoSelectWillActive()
   }
 
-  private _handleSelect = (selected: V[]): void => {
+  private _handleSelect = (selected: Value[]): void => {
     const { multiple, onSelect } = this.props
     if (multiple) {
       onSelect && onSelect(selected)
@@ -38,18 +38,18 @@ class List<V> extends Component<ListProps<V>> {
 
   render() {
     const { data, selected, multiple, isGroupList, ...rest } = this.props
-    let oData: BaseListGroupDataOptions<V>[]
+    let oData: ListBaseGroupDataItem[]
     if (isGroupList) {
-      oData = data as BaseListGroupDataOptions<V>[]
+      oData = data as ListBaseGroupDataItem[]
     } else {
-      oData = [{ label: '', children: data as BaseListDataOptions<V>[] }]
+      oData = [{ label: '', children: data as ListBaseDataItem[] }]
     }
 
-    let oSelected: V[]
+    let oSelected: Value[]
     if (multiple) {
-      oSelected = (selected as V[]) ?? []
+      oSelected = (selected as Value[]) ?? []
     } else {
-      oSelected = _.isNil(selected) ? [] : [selected as V]
+      oSelected = _.isNil(selected) ? [] : [selected as Value]
     }
     return (
       <Base

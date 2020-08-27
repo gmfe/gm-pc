@@ -1,7 +1,7 @@
-import { BaseListDataOptions } from '../list'
+import { ListBaseDataItem } from '../list'
 import { CSSProperties } from 'react'
 
-interface LevelListDataOptions<V> extends BaseListDataOptions<V> {
+interface LevelListDataOptions<V> extends ListBaseDataItem<V> {
   children?: LevelListDataOptions<V>[]
 }
 
