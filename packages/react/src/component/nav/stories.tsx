@@ -1,7 +1,8 @@
 import React from 'react'
 import Nav from './nav'
+import NavSingleItem from './nav_single_item'
 import { observable } from 'mobx'
-import { NavData3RdOptions } from './types'
+import { NavDataLevel3 } from './types'
 
 const data = [
   {
@@ -97,7 +98,7 @@ const application = {
 
 const store = observable({
   selected: '/merchandise/manage/tax_rate',
-  setSelect(selected: NavData3RdOptions) {
+  setSelect(selected: NavDataLevel3) {
     console.log(selected)
     this.selected = selected.link
   },
@@ -120,7 +121,7 @@ export const ComNav = () => (
       selected={store.selected}
       onSelect={store.setSelect.bind(store)}
       other={
-        <Nav.SingleItem
+        <NavSingleItem
           data={application}
           selected={store.selected}
           onSelect={store.setSelect.bind(store)}

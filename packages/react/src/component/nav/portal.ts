@@ -6,7 +6,9 @@ const Portal: FC = ({ children }) => {
 
   useEffect(() => {
     const container = document.getElementById('gmNavPopupContainer')
-    container?.append(navContent)
+    if (container) {
+      container.append(navContent)
+    }
   }, [navContent])
 
   return createPortal(children, navContent)

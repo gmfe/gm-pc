@@ -40,8 +40,8 @@ todo react
 - [x] mask
 - [x] modal
 - [ ] more_select
-- [ ] n_progress
-- [ ] nav
+- [x] n_progress
+- [x] nav
 - [ ] pagination
 - [ ] popover
 - [ ] popup

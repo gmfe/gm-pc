@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
-import { NavFC } from './types'
+import { NavProps } from './types'
 import { Flex } from '../flex'
-import Item from './item'
-import SingleItem from './single_item'
+import NavItem from './nav_item'
+import NavSingleItem from './nav_single_item'
 
-const Nav: NavFC = ({
+const Nav: FC<NavProps> = ({
   logo,
-  logoActive,
   data,
   selected,
   onSelect,
@@ -18,11 +17,11 @@ const Nav: NavFC = ({
   ...rest
 }) => (
   <Flex column {...rest} className={classNames('gm-nav', className)}>
-    <div className={classNames('gm-nav-logo', { active: logoActive })}>{logo}</div>
+    <div className='gm-nav-logo'>{logo}</div>
     <Flex flex column className='gm-nav-content'>
-      {data.map((one, index) => (
-        <Item
-          key={index}
+      {data.map((one) => (
+        <NavItem
+          key={one.link}
           showActive={showActive}
           data={one}
           selected={selected}
@@ -36,7 +35,5 @@ const Nav: NavFC = ({
   </Flex>
 )
 
-Nav.Item = Item
-Nav.SingleItem = SingleItem
-
+export { NavItem, NavSingleItem }
 export default Nav

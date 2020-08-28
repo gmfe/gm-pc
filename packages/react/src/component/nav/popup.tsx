@@ -1,15 +1,8 @@
 import React, { FC, useLayoutEffect, useRef, useState } from 'react'
-import { NavData2RdOptions, NavData3RdOptions } from './types'
+import { PopupProps } from './types'
 import classNames from 'classnames'
 import { Flex } from '../flex'
 import A from './a'
-
-interface PopupProps {
-  parentRect: DOMRect
-  data: NavData2RdOptions[]
-  selected: string
-  onSelect(data?: NavData3RdOptions): void
-}
 
 const Popup: FC<PopupProps> = ({ parentRect, data, selected, onSelect }) => {
   const refDom = useRef<HTMLDivElement>(null)
@@ -56,4 +49,5 @@ const Popup: FC<PopupProps> = ({ parentRect, data, selected, onSelect }) => {
     </div>
   )
 }
+
 export default Popup

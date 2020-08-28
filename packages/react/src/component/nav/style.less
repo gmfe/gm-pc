@@ -1,24 +1,5 @@
-@gm-nav-width: 60px;
-
-@keyframes hover-padding {
-  0% {
-    margin-bottom: 0;
-    padding-bottom: 100px;
-  }
-
-  99% {
-    margin-bottom: 0;
-    padding-bottom: 100px;
-  }
-
-  100% {
-    margin-bottom: 100px;
-    padding-bottom: 0;
-  }
-}
-
 .gm-nav {
-  width: @gm-nav-width;
+  width: var(--gm-size-nav-width);
   height: 100vh;
   background: #243351;
 
@@ -70,11 +51,11 @@
   }
 
   .gm-nav-popup {
-    color: @gm-color-first;
+    color: var(--gm-color-default);
     background: white;
     position: absolute;
     top: 0;
-    left: @gm-nav-width;
+    left: var(--gm-size-nav-width);
     box-shadow: 1px 1px 6px 1px rgba(36, 51, 81, 0.2);
   }
 
@@ -123,7 +104,7 @@
     padding: 20px 10px 20px;
 
     .gm-nav-two-title {
-      color: @gm-color-first;
+      color: var(--gm-color-default);
       padding: 0 0 10px;
       font-weight: 600;
       font-size: 14px;
@@ -139,18 +120,18 @@
     font-size: 14px;
     line-height: 30px;
     text-decoration: none;
-    color: @gm-color-first;
+    color: var(--gm-color-default);
     border-radius: 2px;
     white-space: nowrap;
 
     &:hover {
       color: var(--gm-color-primary);
-      background-color: @gm-back-body-bg;
+      background-color: var(--gm-color-bg-back);
     }
 
     &.active {
       color: var(--gm-color-primary-active);
-      background-color: @gm-back-body-bg;
+      background-color: var(--gm-color-bg-back);
     }
   }
 }

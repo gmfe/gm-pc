@@ -1,9 +1,9 @@
 import React, { FC, useCallback, MouseEvent } from 'react'
 import classNames from 'classnames'
 import A from './a'
-import { SingleItemProps } from './types'
+import { NavSingleItemProps } from './types'
 
-const SingleItem: FC<SingleItemProps> = ({ data, selected, onSelect }) => {
+const NavSingleItem: FC<NavSingleItemProps> = ({ data, selected, onSelect }) => {
   const { link, name, icon } = data
   const active = selected === link
 
@@ -25,4 +25,4 @@ const SingleItem: FC<SingleItemProps> = ({ data, selected, onSelect }) => {
   )
 }
 
-export default SingleItem
+export default NavSingleItem
