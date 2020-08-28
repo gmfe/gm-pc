@@ -3,6 +3,8 @@ import classNames from 'classnames'
 
 interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   flex?: number | boolean
+  /** 本身是 display:flex，flex 会使子元素 flex-item。设置 block 即可 */
+  block?: boolean
   auto?: boolean
   /** flex 会坍缩，提供 none 则不会坍缩 */
   none?: boolean
@@ -33,6 +35,7 @@ interface FlexProps extends HTMLAttributes<HTMLDivElement> {
 const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
     flex,
+    block,
 
     auto,
     none,
@@ -73,6 +76,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const cn = classNames(
     {
       'gm-flex': true,
+      'gm-flex-block': block,
 
       'gm-flex-flex': flex,
       'gm-flex-auto': auto,

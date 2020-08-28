@@ -1,17 +1,21 @@
-.gm-progress-circle-success {
-  stroke: var(--gm-color-primary);
-}
+.gm-progress-circle {
+  circle {
+    stroke: #e4e8f1;
+  }
 
-.gm-progress-circle-exception {
-  stroke: var(--gm-color-danger);
-}
+  .gm-progress-circle-color {
+    stroke: var(--gm-color-primary);
+  }
 
-.gm-progress-circle-innerText-right {
-  font-size: 12px;
-  margin-left: 5px;
-}
+  &.gm-progress-circle-success {
+    .gm-progress-circle-color {
+      stroke: var(--gm-color-success);
+    }
+  }
 
-.gm-progress-circle-innerText-left {
-  font-size: 12px;
-  margin-right: 5px;
+  &.gm-progress-circle-danger {
+    .gm-progress-circle-color {
+      stroke: var(--gm-color-danger);
+    }
+  }
 }

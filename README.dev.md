@@ -45,8 +45,8 @@ todo react
 - [ ] pagination
 - [ ] popover
 - [ ] popup
-- [ ] progress
-- [ ] progress_circle
+- [x] progress
+- [x] progress_circle
 - [x] radio
 - [ ] recommend_input
 - [x] select
