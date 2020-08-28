@@ -1,7 +1,7 @@
 import { ListBaseDataItem } from '../list'
 import { CSSProperties } from 'react'
 
-interface LevelListDataOptions<V> extends ListBaseDataItem<V> {
+interface LevelListDataOptions<V> extends ListBaseDataItem {
   children?: LevelListDataOptions<V>[]
 }
 

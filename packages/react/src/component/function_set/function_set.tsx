@@ -1,10 +1,41 @@
 import React, { Component, createRef, FC, HTMLAttributes } from 'react'
-import { FunctionSetDataOptions, FunctionSetProps } from './types'
+import { FunctionSetData, FunctionSetProps } from './types'
 import { Popover } from '../popover'
 import Overlay from './overlay'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
+
+interface InnerProps extends HTMLAttributes<HTMLDivElement> {
+  disabled: boolean
+}
+
+const Inner: FC<InnerProps> = ({ disabled, className, children, ...rest }) => {
+  return (
+    <div className='gm-inline-block' {...rest}>
+      {children ?? (
+        <Default
+          active={(className ?? '').includes('gm-popover-active')}
+          disabled={disabled}
+        />
+      )}
+    </div>
+  )
+}
+
+interface DefaultProps {
+  disabled: boolean
+  active: boolean
+}
+
+const Default: FC<DefaultProps> = ({ disabled, active }) => {
+  return (
+    <Button type='primary' plain disabled={disabled}>
+      {getLocale('更多功能')} &nbsp;
+      <IconDownUp active={active} />
+    </Button>
+  )
+}
 
 class FunctionSet extends Component<FunctionSetProps> {
   private _popoverRef = createRef<Popover>()
@@ -13,7 +44,7 @@ class FunctionSet extends Component<FunctionSetProps> {
     this._popoverRef.current!.apiDoSetActive(active)
   }
 
-  private _handleSelect = (select: FunctionSetDataOptions): void => {
+  private _handleSelect = (select: FunctionSetData): void => {
     if (!select.onClick) {
       return
     }
@@ -41,31 +72,3 @@ class FunctionSet extends Component<FunctionSetProps> {
   }
 }
 export default FunctionSet
-
-interface InnerProps extends HTMLAttributes<HTMLDivElement> {
-  disabled: boolean
-}
-
-const Inner: FC<InnerProps> = ({ disabled, className, children, ...rest }) => {
-  return (
-    <div className='gm-inline-block' {...rest}>
-      {children ?? (
-        <Default active={(className ?? '').includes('gm-popover-active')} disabled={disabled} />
-      )}
-    </div>
-  )
-}
-
-interface DefaultProps {
-  disabled: boolean
-  active: boolean
-}
-
-const Default: FC<DefaultProps> = ({ disabled, active }) => {
-  return (
-    <Button type='primary' plain disabled={disabled}>
-      {getLocale('更多功能')} &nbsp;
-      <IconDownUp active={active} />
-    </Button>
-  )
-}

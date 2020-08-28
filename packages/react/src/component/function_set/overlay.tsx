@@ -1,11 +1,11 @@
 import React, { FC, useCallback, useState } from 'react'
-import { FunctionSetDataOptions } from './types'
+import { FunctionSetData } from './types'
 import { processDataWithValue } from './utils'
 import { LevelList } from '../level_list'
 
 interface OverlayProps {
-  data: FunctionSetDataOptions[]
-  onSelect(selected: FunctionSetDataOptions): void
+  data: FunctionSetData[]
+  onSelect(selected: FunctionSetData): void
   isReverse?: boolean
 }
 
@@ -13,7 +13,7 @@ const Overlay: FC<OverlayProps> = ({ data, onSelect, isReverse }) => {
   const [will, setWill] = useState<string[]>([])
 
   // 做个map存起来，方便快速通过 value 找到 item
-  const map: { [key: string]: FunctionSetDataOptions } = {}
+  const map: { [key: string]: FunctionSetData } = {}
   const newData = processDataWithValue(data, map)
 
   const handleSelect = useCallback(

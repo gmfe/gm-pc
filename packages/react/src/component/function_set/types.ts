@@ -1,15 +1,15 @@
-interface FunctionSetDataOptions {
+interface FunctionSetData {
   text: string
   onClick?(): void
   show?: boolean
   disabled?: boolean
-  children?: FunctionSetDataOptions[]
+  children?: FunctionSetData[]
 }
 
 interface FunctionSetProps {
-  data: FunctionSetDataOptions[]
+  data: FunctionSetData[]
   right?: boolean
   disabled?: boolean
 }
 
-export type { FunctionSetDataOptions, FunctionSetProps }
+export type { FunctionSetData, FunctionSetProps }

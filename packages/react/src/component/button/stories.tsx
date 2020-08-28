@@ -52,6 +52,21 @@ export const ComButton = () => (
       <Button disabled type='link'>
         Link
       </Button>
+      <Button disabled plain>
+        默认
+      </Button>
+      <Button disabled plain type='primary'>
+        主色
+      </Button>
+      <Button disabled plain type='success'>
+        成功
+      </Button>
+      <Button disabled plain type='danger'>
+        危险
+      </Button>
+      <Button disabled plain type='link'>
+        Link
+      </Button>
     </>
     <br />
     size

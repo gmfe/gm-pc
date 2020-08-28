@@ -1,2 +1,2 @@
 export { default as FunctionSet } from './function_set'
-export * from './types'
+export type { FunctionSetProps } from './types'

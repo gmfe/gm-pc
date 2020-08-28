@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/react'
 import React from 'react'
 import FunctionSet from './function_set'
 
@@ -53,29 +52,20 @@ const data = [
   },
 ]
 
-storiesOf('FunctionSet', module)
-  .add('default', () => (
-    <div style={{ padding: '50px' }}>
-      <FunctionSet data={data} />
-    </div>
-  ))
-  .add('自定义', () => (
-    <div style={{ padding: '50px' }}>
-      <FunctionSet data={data}>自定义</FunctionSet>
-    </div>
-  ))
-  .add('disabled', () => (
-    <div style={{ padding: '50px' }}>
-      <FunctionSet data={data} disabled />
-    </div>
-  ))
-  .add('right', () => (
-    <div style={{ padding: '50px 0 50px 300px' }}>
-      <FunctionSet data={data} right />
-    </div>
-  ))
-  .add('data 为空数组', () => (
-    <div style={{ padding: '50px' }}>
-      <FunctionSet data={[]} />
-    </div>
-  ))
+export const ComFunctionSet = () => (
+  <div style={{ padding: '50px' }}>
+    <FunctionSet data={data} />
+    <div>disabled</div>
+    <FunctionSet data={data} disabled />
+    <div>children</div>
+    <FunctionSet data={data}>自定义 children</FunctionSet>
+    <div>right</div>
+    <FunctionSet data={data} right />
+    <div>data [] 不显示</div>
+    <FunctionSet data={[]} />
+  </div>
+)
+
+export default {
+  title: '表单/FunctionSet',
+}

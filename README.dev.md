@@ -25,7 +25,7 @@ todo react
 - [x] flex
 - [ ] flip_number
 - [ ] form
-- [ ] function_set
+- [x] function_set
 - [x] grid
 - [x] icon_down_up
 - [x] img_uploader
