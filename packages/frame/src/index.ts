@@ -1,15 +1,13 @@
-export { default as Framework } from './framework'
+export { default as Breadcrumb } from './component/breadcrumb'
+export { default as Framework } from './component/framework'
+export { default as FullTabs } from './component/full_tabs'
+export { default as Info } from './component/info'
+export { default as Left } from './component/left'
+export { default as RightTop } from './component/right_top'
 
-export { default as CopyRight } from './copyright'
-
-export { default as Info } from './info'
-
-export { default as Breadcrumb } from './breadcrumb'
-
-export { default as Left } from './left'
-
-export { default as RightTop } from './right_top'
-
-export { default as FullTab } from './full_tab'
-
-export { default as FullTabV2 } from './full_tab_v2'
+export type { BreadcrumbProps } from './component/breadcrumb'
+export type { FrameworkProps, FrameworkStatic } from './component/framework'
+export type { FullTabsProps, FullTabsItem } from './component/full_tabs'
+export type { InfoProps, InfoMore } from './component/info'
+export type { LeftProps } from './component/left'
+export type { RightTopProps } from './component/right_top'

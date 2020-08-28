@@ -1,32 +1,44 @@
-.gm-tabs-container {
-  overflow-x: auto;
-
-  .gm-tabs {
-    white-space: nowrap;
-    border-bottom: 1px solid fadeout(@gm-frame-border-color, 50%);
+// 请谨慎，改动需要考虑 full_tab，具体看 frame/index.less
+.gm-tabs {
+  .gm-tabs-head-fix {
     height: 40px;
+  }
 
-    .gm-tab {
-      display: inline-block;
-      border-radius: 4px 4px 0 0;
-      height: 40px;
+  .gm-tabs-head {
+    height: 40px;
+    padding: 0 20px;
+    background: var(--gm-color-bg-back);
+    border-bottom: 1px solid var(--gm-color-border);
+
+    .gm-tabs-head-item {
       font-size: 14px;
-      color: @gm-color-fourth;
-      border: 1px solid fadeout(@gm-frame-border-color, 50%);
-      margin-right: 1px;
-      background-color: #e8eaf0;
+      line-height: 28px;
+      padding: 0 10px;
+      position: relative;
       cursor: pointer;
-      padding: 8px 12px;
-      transition: background-color 0.4s;
-
-      &:hover {
-        color: @gm-color-first;
-      }
+      color: var(--gm-color-default);
+      border-left: 1px solid transparent;
+      border-top: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-bottom: none;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
 
       &.active {
-        color: @gm-color-first;
-        background-color: #fff;
-        border-bottom: 1px solid transparent;
+        background: white;
+        border-left: 1px solid var(--gm-color-border);
+        border-top: 1px solid var(--gm-color-border);
+        border-right: 1px solid var(--gm-color-border);
+
+        &::after {
+          content: '';
+          height: 1px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -1px;
+          background: white;
+        }
       }
     }
   }

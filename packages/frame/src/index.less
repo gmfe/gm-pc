@@ -1,38 +1,47 @@
 @import '~@gm-pc/react/src/var.less';
 
-@gm-framework-top-right-default-height: 50px;
+:root {
+  --gm-framework-size-left-width: 60px;
+  --gm-framework-size-top-right-height: 50px;
+  --gm-framework-z-index-tabs-head: 101;
+}
 
 .gm-framework {
   // 满足内容区域最小一屏
-  &-full-height {
+  .gm-framework-full-height {
     min-height: 100vh;
   }
 
-  &-left {
+  .gm-framework-left {
     z-index: 990; // 需要少于1000大于950。1000-浮层的最小值，950-stick的值，先取990
-    &-default {
-      &-inner {
+    .gm-framework-left-default {
+      width: var(--gm-framework-size-left-width);
+
+      .gm-framework-left-default-inner {
         z-index: 110;
         position: fixed;
         height: 100vh;
+        width: var(--gm-framework-size-left-width);
       }
     }
   }
 
-  &-right {
-    &-top {
-      &-default {
-        height: @gm-framework-top-right-default-height;
+  .gm-framework-right {
+    width: var(--gm-framework-size-left-width);
 
-        &-inner {
+    .gm-framework-right-top {
+      .gm-framework-right-top-default {
+        height: var(--gm-framework-size-top-right-height);
+
+        .gm-framework-right-top-default-inner {
           position: fixed;
           top: 0;
-          left: 0;
+          left: var(--gm-framework-size-left-width);
           right: 0;
           z-index: 101;
           background: white;
           border-bottom: 1px solid fadeout(@gm-frame-border-color, 50%);
-          height: @gm-framework-top-right-default-height;
+          height: var(--gm-framework-size-top-right-height);
 
           .gm-framework-right-top-default-mobile-nav {
             display: none;
@@ -43,36 +52,41 @@
   }
 
   // breadcrumb
-  &-breadcrumb {
-    &-default {
-      background: none;
+  .gm-framework-breadcrumb {
+    .gm-framework-breadcrumb-default {
       position: relative;
       margin-bottom: 0;
       padding: 0 20px 0 20px;
       line-height: 1;
       font-size: 12px;
 
-      li {
-        a {
-          color: @gm-color-first;
-          text-decoration: none;
+      a {
+        display: inline-block;
+        color: var(--gm-color-default);
+        text-decoration: none;
 
-          &:hover {
-            color: var(--gm-color-primary);
-          }
+        &:hover {
+          color: var(--gm-color-primary);
         }
 
-        &:last-child,
-        &:last-child > a {
-          color: var(--gm-color-primary);
+        &::before {
+          content: '/\00a0';
+          padding: 0 5px;
+          color: #ccc;
+        }
+      }
+
+      a:first-child {
+        &::before {
+          display: none;
         }
       }
     }
   }
 
-  &-info {
-    &-default {
-      &-item {
+  .gm-framework-info {
+    .gm-framework-info-default {
+      .gm-framework-info-default-item {
         cursor: pointer;
         width: 30px;
         height: 30px;
@@ -87,11 +101,11 @@
         }
       }
 
-      &-setting-popover {
+      .gm-framework-info-default-setting-popover {
         min-width: 100px;
       }
 
-      &-mobile-nav {
+      .gm-framework-info-default-mobile-nav {
         display: none;
         line-height: 30px;
       }
@@ -100,62 +114,18 @@
 
   // 暴露给外面用
   .gm-framework-content-full {
-    height: ~'calc(100vh - 50px)';
+    height: calc(100vh - var(--gm-framework-size-top-right-height));
   }
 
   .gm-framework-full-tabs {
-    .gm-framework-full-tabs-list-box {
-      height: 40px;
+    min-height: calc(100% - var(--gm-framework-size-top-right-height));
 
-      .gm-framework-full-tabs-list {
-        height: 40px;
-        background: white;
-        position: fixed;
-        right: 0;
-        z-index: 101;
-
-        .gm-framework-full-tabs-list-inner {
-          padding: 10px 20px 0;
-          background: @gm-back-body-bg;
-          border-bottom: 1px solid fadeout(@gm-frame-border-color, 50%);
-
-          .gm-framework-full-tabs-item {
-            font-size: 14px;
-            line-height: 28px;
-            padding: 0 10px;
-            position: relative;
-            cursor: pointer;
-            color: @gm-color-first;
-            border-left: 1px solid transparent;
-            border-top: 1px solid transparent;
-            border-right: 1px solid transparent;
-            border-bottom: none;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-
-            &.active {
-              background: white;
-              border-left: 1px solid fadeout(@gm-frame-border-color, 50%);
-              border-top: 1px solid fadeout(@gm-frame-border-color, 50%);
-              border-right: 1px solid fadeout(@gm-frame-border-color, 50%);
-
-              &::after {
-                content: '';
-                height: 1px;
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: -1px;
-                background: white;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .gm-framework-full-tabs-content {
-      min-height: ~'calc(100% - 50px)';
+    .gm-tabs-head {
+      position: fixed;
+      right: 0;
+      top: var(--gm-framework-size-top-right-height);
+      left: var(--gm-framework-size-left-width);
+      z-index: var(--gm-framework-z-index-tabs-head);
     }
   }
 }

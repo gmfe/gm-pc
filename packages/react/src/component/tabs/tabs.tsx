@@ -1,86 +1,84 @@
-import React, { Component, ReactNode, Children } from 'react'
+import React, { FC, CSSProperties, ReactNode, useState } from 'react'
 import classNames from 'classnames'
+import _ from 'lodash'
+import { Flex } from '../flex'
 
-export interface TabsProps {
-  tabs: string[]
-  active?: number
-  defaultActive?: number
-  lazy?: boolean
-  onChange?(active: number): void
+interface TabsItem {
+  text: string
+  value: string
+  children: ReactNode
 }
 
-interface TabsState {
-  selected: number
+interface TabsProps {
+  tabs: TabsItem[]
+  defaultActive?: string
+  active?: string
+  onChange?(value: string): void
+  keep?: boolean
+  className?: string
+  style?: CSSProperties
 }
 
-class Tabs extends Component<TabsProps, TabsState> {
-  static getDerivedStateFromProps(
-    props: TabsProps,
-    state: TabsState
-  ): TabsState {
-    if ('active' in props) {
-      return { selected: props.active as number }
-    }
-    return { selected: state.selected }
+const Tabs: FC<TabsProps> = (props) => {
+  const { tabs, active, defaultActive, keep, onChange, className, ...rest } = props
+  if (active !== undefined && defaultActive !== undefined) {
+    console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
   }
 
-  readonly state: TabsState = {
-    selected: this.props.defaultActive ?? 0,
+  if (active !== undefined && !onChange) {
+    console.warn('prop `active` `onChange` must exist at the same time!')
   }
 
-  private _renderChildren = (): ReactNode => {
-    const { children } = this.props
-    const { selected } = this.state
-    return Children.map(children, (child, index) => (
-      <div
-        key={index}
-        className={classNames({
-          hidden: selected !== index,
-        })}
-      >
-        {child}
-      </div>
-    ))
+  const [selected, setSelected] = useState(defaultActive || active)
+
+  const handleClick = (value: string) => {
+    setSelected(value)
+    onChange && onChange(value)
   }
 
-  private _renderChildrenLazy = (): ReactNode => {
-    const { children } = this.props
-    const { selected } = this.state
-    const elements = React.Children.toArray(children)
-    return <div>{elements[selected]}</div>
-  }
-
-  private _handleClick = (index: number): void => {
-    if (!('active' in this.props)) {
-      this.setState({ selected: index })
-    }
-    const { onChange } = this.props
-    onChange && onChange(index)
-  }
-
-  render() {
-    const { tabs, lazy } = this.props
-    const { selected } = this.state
-    return (
-      <>
-        <div className='gm-tabs-container'>
-          <div className='gm-tabs'>
-            {tabs.map((tab, index) => (
-              <div
-                className={classNames('gm-tab', {
-                  active: index === selected,
-                })}
-                key={index}
-                onClick={(): void => this._handleClick(index)}
-              >
-                {tab}
-              </div>
-            ))}
-          </div>
+  const tabsChildrenKeep = () => (
+    <>
+      {_.map(tabs, (tab: TabsItem) => (
+        <div
+          key={tab.value}
+          className={classNames('gm-tabs-content-item', {
+            hidden: selected !== tab.value,
+          })}
+        >
+          {tab.children}
         </div>
-        {lazy ? this._renderChildrenLazy() : this._renderChildren()}
-      </>
-    )
+      ))}
+    </>
+  )
+
+  const tabsChildren = () => {
+    const item = _.find(tabs, (tab) => tab.value === selected)
+    return <div className='gm-tabs-content-item'>{item && item.children}</div>
   }
+
+  return (
+    <Flex column {...rest} className={classNames('gm-tabs', className)}>
+      <div className='gm-tabs-head-fix'>
+        <Flex alignEnd className='gm-tabs-head'>
+          {_.map(tabs, (tab) => (
+            <div
+              key={tab.value}
+              className={classNames('gm-tabs-head-item', {
+                active: selected === tab.value,
+              })}
+              onClick={() => handleClick(tab.value)}
+            >
+              {tab.text}
+            </div>
+          ))}
+        </Flex>
+      </div>
+      <Flex flex column className='gm-tabs-content'>
+        {keep ? tabsChildrenKeep() : tabsChildren()}
+      </Flex>
+    </Flex>
+  )
 }
+
 export default Tabs
+export type { TabsProps, TabsItem }

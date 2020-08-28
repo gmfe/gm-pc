@@ -3,13 +3,13 @@ import { Flex, Popover, List } from '@gm-pc/react'
 import _ from 'lodash'
 import SVGMore from '../svg/more.svg'
 
-interface moreOptions {
+interface InfoMore {
   text: string
   onClick(): void
 }
 
-export interface InfoProps {
-  more: moreOptions[]
+interface InfoProps {
+  more: InfoMore[]
   children?: any
 }
 
@@ -42,3 +42,4 @@ const Info: FC<InfoProps> = ({ more, children }) => {
 }
 
 export default Info
+export type { InfoProps, InfoMore }

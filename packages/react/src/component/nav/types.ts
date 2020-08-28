@@ -5,9 +5,9 @@ interface NavData3RdOptions {
   name: string
 }
 
-interface NavData1stOptions extends NavData3RdOptions {
+interface NavData extends NavData3RdOptions {
   icon?: ReactNode
-  sub?: NavData2RdOptions[]
+  sub: NavData2RdOptions[]
 }
 
 interface NavData2RdOptions extends NavData3RdOptions {
@@ -22,7 +22,7 @@ interface NavProps {
    * 三级菜单
    * 没有sub就没有浮层
    */
-  data: NavData1stOptions[]
+  data: NavData[]
   /* pathname 会匹配到第三级的 link */
   selected: string
   /* 如果是选中一二级，会直接返回改分级下第三级的 item */
@@ -35,13 +35,13 @@ interface NavProps {
 }
 
 interface ItemProps {
-  data: NavData1stOptions
+  data: NavData
   selected: string
-  onSelect?(data?: NavData1stOptions): void
+  onSelect?(data?: NavData): void
   showActive?: string
 }
 
-type SingleItemData = Omit<NavData1stOptions, 'sub'>
+type SingleItemData = Omit<NavData, 'sub'>
 
 interface SingleItemProps {
   data: SingleItemData
@@ -56,7 +56,7 @@ interface NavFC extends FC<NavProps> {
 
 export type {
   NavProps,
-  NavData1stOptions,
+  NavData,
   NavData2RdOptions,
   NavData3RdOptions,
   ItemProps,
