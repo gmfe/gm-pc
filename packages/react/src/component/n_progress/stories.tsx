@@ -1,8 +1,7 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import NProgress from './n_progress'
 
-storiesOf('NProgress', module).add('default', () => (
+export const ComNProgress = () => (
   <div>
     <button
       onClick={() => {
@@ -19,4 +18,8 @@ storiesOf('NProgress', module).add('default', () => (
       end
     </button>
   </div>
-))
+)
+
+export default {
+  title: '反馈/NProgress',
+}

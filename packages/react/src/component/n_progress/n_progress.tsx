@@ -6,12 +6,14 @@ interface NProgressFC extends FC {
   done(): void
 }
 
-const NProgress: NProgressFC = () => <div className='gm-nprogress gm-nprogress-loading' />
+const NProgress: NProgressFC = () => (
+  <div className='gm-n-progress gm-n-progress-loading' />
+)
 
 let timer: number | null
 let reqLength = 0
 
-NProgress.start = function (): void {
+NProgress.start = function () {
   reqLength = reqLength + 1
   if (reqLength === 1) {
     if (timer) {
@@ -22,11 +24,11 @@ NProgress.start = function (): void {
   }
 }
 
-NProgress.done = function (): void {
+NProgress.done = function () {
   reqLength = reqLength - 1
-  const nProgress = document.querySelector('.gm-nprogress')
+  const nProgress = document.querySelector('.gm-n-progress')
   if (!reqLength && !timer) {
-    nProgress && (nProgress.className = 'gm-nprogress gm-nprogress-completed')
+    nProgress && (nProgress.className = 'gm-n-progress gm-n-progress-completed')
     timer = window.setTimeout(function () {
       LayoutRoot.removeComponent(LayoutRoot.Type.N_PROGRESS)
       timer = null

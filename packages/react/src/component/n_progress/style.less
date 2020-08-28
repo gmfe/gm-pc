@@ -1,4 +1,4 @@
-.gm-nprogress {
+.gm-n-progress {
   transition: all 200ms ease;
   height: 2px;
   background: var(--gm-color-primary);
@@ -10,17 +10,17 @@
   z-index: 9999;
 }
 
-.gm-nprogress-loading {
-  animation: gm-nprogress-loading 1s linear;
+.gm-n-progress-loading {
+  animation: gm-n-progress-loading 1s linear;
   animation-fill-mode: forwards;
 }
 
-.gm-nprogress-completed {
+.gm-n-progress-completed {
   transform: translateX(0);
   visibility: hidden;
 }
 
-@keyframes gm-nprogress-loading {
+@keyframes gm-n-progress-loading {
   0% {
     transform: translateX(-100%);
   }
