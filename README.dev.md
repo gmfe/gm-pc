@@ -54,7 +54,7 @@ todo react
 - [x] steps
 - [x] storage
 - [x] switch
-- [ ] table_select
+- [x] table_select
 - [x] tabs
 - [ ] time_span
 - [x] tip

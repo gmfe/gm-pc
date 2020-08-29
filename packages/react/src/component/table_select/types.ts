@@ -1,23 +1,29 @@
 import { ReactNode } from 'react'
-import { MoreSelectCommonProps, MoreSelectNormalDataOptions } from '../more_select'
+import { MoreSelectProps } from '../more_select'
 
-interface TableSelectColumnOptions<T = any> {
+interface TableSelectDataItem {
+  value: any
+  text: string
+}
+
+interface TableSelectColumnCellProps {
+  original: TableSelectDataItem
+  index: number
+}
+
+interface TableSelectColumn {
   id?: string
-  accessor?: string | ((data: MoreSelectNormalDataOptions<T>) => ReactNode)
+  accessor?: string | ((data: TableSelectDataItem) => ReactNode)
   width: number
   Header: ReactNode
-  Cell?: (cellProps: {
-    original: MoreSelectNormalDataOptions<T>
-    index: number
-  }) => ReactNode
+  Cell?: (cellProps: TableSelectColumnCellProps) => ReactNode
 }
 
-interface TableSelectProps<T = any>
-  extends Omit<MoreSelectCommonProps<T>, 'isGroupList' | 'multiple'> {
-  data: MoreSelectNormalDataOptions<T>[]
-  selected: MoreSelectNormalDataOptions<T>
-  onSelect(selected: MoreSelectNormalDataOptions<T>): void
-  columns: TableSelectColumnOptions<T>[]
+interface TableSelectProps extends MoreSelectProps<any> {
+  data: TableSelectDataItem[]
+  selected: TableSelectDataItem
+  onSelect(selected: TableSelectDataItem): void
+  columns: TableSelectColumn[]
 }
 
-export type { TableSelectProps, TableSelectColumnOptions }
+export type { TableSelectProps, TableSelectColumn, TableSelectDataItem }

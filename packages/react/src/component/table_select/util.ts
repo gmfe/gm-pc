@@ -16,4 +16,4 @@ const getColumnKey: GetColumnKey = (column) => {
   return null
 }
 
-export default getColumnKey
+export { getColumnKey }

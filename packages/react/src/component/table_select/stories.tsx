@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import TableSelect from './table_select'
 import { observable } from 'mobx'
 import _ from 'lodash'
@@ -80,11 +79,17 @@ const store = observable({
   },
 })
 
-storiesOf('TableSelect', module).add('default', () => (
-  <TableSelect
-    data={mapData}
-    columns={columns}
-    selected={store.selected}
-    onSelect={(selected) => store.setSelect(selected)}
-  />
-))
+export const ComTableSelect = () => (
+  <div style={{ width: '600px' }}>
+    <TableSelect
+      data={mapData}
+      columns={columns}
+      selected={store.selected}
+      onSelect={(selected) => store.setSelect(selected)}
+    />
+  </div>
+)
+
+export default {
+  title: '表单/TableSelect',
+}
