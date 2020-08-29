@@ -47,6 +47,7 @@ class Base extends Component<ListBaseProps> {
     if (!this._isUnMounted) {
       const $active = this._listRef.current!.querySelector(selector)
       if ($active) {
+        // @ts-ignore
         $active.scrollIntoViewIfNeeded(false)
       }
     }

@@ -6,6 +6,7 @@ interface ListBaseDataItem {
   value: Value
   text: string
   disabled?: boolean
+  [key: string]: any
 }
 
 interface ListBaseGroupDataItem {

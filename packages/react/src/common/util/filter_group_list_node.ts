@@ -1,19 +1,15 @@
-interface FilterGroupListNodeOptions {
+interface ListItem {
   value: any
   text: string
   disabled?: boolean
-  children?: FilterGroupListNodeOptions[]
+  children?: ListItem[]
   [key: string]: any
 }
 
-interface FilterGroupListNode {
-  (
-    /* 树状数组 */
-    list: FilterGroupListNodeOptions[],
-    /* 判断方法 */
-    predicate: (item: FilterGroupListNodeOptions) => boolean
-  ): FilterGroupListNodeOptions[]
-}
+type FilterGroupListNode = (
+  list: ListItem[],
+  predicate: (item: ListItem) => boolean
+) => ListItem[]
 
 /**
  * 筛选所有节点，满足返回 predicate 条件的树

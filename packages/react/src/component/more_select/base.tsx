@@ -54,7 +54,9 @@ class MoreSelectBase<T> extends Component<MoreSelectBaseProps<T>, MoreSelectBase
     if (props.selected.length) {
       this._getFilterData()
       const flatList = this._getFlatFilterData()
-      this.state.willActiveIndex = flatList.findIndex((v) => v.value === props.selected[0].value)
+      this.state.willActiveIndex = flatList.findIndex(
+        (v) => v.value === props.selected[0].value
+      )
     }
   }
 
@@ -144,7 +146,10 @@ class MoreSelectBase<T> extends Component<MoreSelectBaseProps<T>, MoreSelectBase
 
   private _debounceDoSearch = _.debounce(this._doSearch, this.props.delay)
 
-  private _handleClear = (clearItem: MoreSelectNormalDataOptions<T>, event: MouseEvent): void => {
+  private _handleClear = (
+    clearItem: MoreSelectNormalDataOptions<T>,
+    event: MouseEvent
+  ): void => {
     event.stopPropagation()
     const { onSelect, selected } = this.props
     const willSelected = selected.filter((item) => item.value !== clearItem.value)
@@ -291,7 +296,12 @@ class MoreSelectBase<T> extends Component<MoreSelectBaseProps<T>, MoreSelectBase
           isInPopup={isInPopup}
         >
           {children ?? (
-            <Flex ref={this._selectionRef} tabIndex={0} wrap className='gm-more-select-selected'>
+            <Flex
+              ref={this._selectionRef}
+              tabIndex={0}
+              wrap
+              className='gm-more-select-selected'
+            >
               {selected.length !== 0 ? (
                 selected.map((item) => (
                   <Flex key={item.value as any} className='gm-more-select-selected-item'>

@@ -4,6 +4,7 @@ import { MoreSelectProps } from '../more_select'
 interface TableSelectDataItem {
   value: any
   text: string
+  [key: string]: any
 }
 
 interface TableSelectColumnCellProps {

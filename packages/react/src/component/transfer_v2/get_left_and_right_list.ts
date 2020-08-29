@@ -1,4 +1,4 @@
-import { TreeV2DataOptions } from '../tree_v2'
+import { TreeV2DataOptions } from '../tree'
 import { filterGroupListLeaf } from '../../common/util'
 
 function getLeftAndRightList<T>(

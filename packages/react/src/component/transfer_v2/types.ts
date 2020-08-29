@@ -1,4 +1,4 @@
-import { TreeV2DataOptions } from '../tree_v2'
+import { TreeV2DataOptions } from '../tree'
 import { CSSProperties, ReactNode } from 'react'
 import { FlexProps } from '../flex'
 

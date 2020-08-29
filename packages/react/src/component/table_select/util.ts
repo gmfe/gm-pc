@@ -1,8 +1,8 @@
 import _ from 'lodash'
-import { TableSelectColumnOptions } from './types'
+import { TableSelectColumn } from './types'
 
 interface GetColumnKey {
-  (column: TableSelectColumnOptions<any>): string | null
+  (column: TableSelectColumn): string | null
 }
 
 const getColumnKey: GetColumnKey = (column) => {

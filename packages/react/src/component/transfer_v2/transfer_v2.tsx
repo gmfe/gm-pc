@@ -3,7 +3,7 @@ import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
 import { TransferV2Props } from './types'
 import { Flex } from '../flex'
-import { TreeV2 } from '../tree_v2'
+import { Tree } from '../tree'
 import getLeftAndRightList from './get_left_and_right_list'
 import { Button } from '../button'
 import SvgRightSmall from '../../svg/right-small.svg'
@@ -61,7 +61,7 @@ const TransferV2 = <T,>({
 
   return (
     <Flex {...rest}>
-      <TreeV2
+      <Tree
         list={leftList}
         selectedValues={lefts}
         onSelectValues={handleLefts}
@@ -87,7 +87,7 @@ const TransferV2 = <T,>({
         </Button>
       </Flex>
       <div className='gm-gap-5' />
-      <TreeV2
+      <Tree
         list={rightList}
         selectedValues={rights}
         onSelectValues={handleRights}

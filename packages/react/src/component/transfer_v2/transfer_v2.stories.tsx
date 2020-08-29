@@ -3,7 +3,7 @@ import { observable, toJS } from 'mobx'
 import { observer } from 'mobx-react'
 import _ from 'lodash'
 import TransferV2 from './transfer_v2'
-import { TreeV2DataOptions } from '../tree_v2'
+import { TreeV2DataOptions } from '../tree'
 
 function inherit(list: TreeV2DataOptions<string>[], parent?: any) {
   return list.map((item) => {
