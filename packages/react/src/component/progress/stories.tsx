@@ -10,8 +10,8 @@ export const ComProgress = () => (
     <Progress percentage={100} type='success' />
     <Progress percentage={50} type='danger' />
 
-    <div>text</div>
-    <Progress percentage={20} text='20斤/100斤' />
+    <div>disabledText</div>
+    <Progress percentage={20} disabledText />
   </div>
 )
 

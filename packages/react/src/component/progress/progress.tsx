@@ -6,11 +6,17 @@ import { Flex } from '../flex'
 
 interface ProgressProps extends HTMLAttributes<HTMLDivElement> {
   percentage: number
-  text?: string
   type?: 'success' | 'danger'
+  disabledText?: boolean
 }
 
-const Progress: FC<ProgressProps> = ({ percentage, type, text, className, ...rest }) => {
+const Progress: FC<ProgressProps> = ({
+  percentage,
+  type,
+  disabledText,
+  className,
+  ...rest
+}) => {
   return (
     <Flex
       alignCenter
@@ -19,7 +25,6 @@ const Progress: FC<ProgressProps> = ({ percentage, type, text, className, ...res
         'gm-progress',
         {
           [`gm-progress-${type}`]: type,
-          'gm-progress-text': !!text,
         },
         className
       )}
@@ -37,7 +42,9 @@ const Progress: FC<ProgressProps> = ({ percentage, type, text, className, ...res
         {type === 'success' && <SVGSuccessCircle className='gm-text-success' />}
         {type === 'danger' && <SVGCloseCircle className='gm-text-danger' />}
       </div>
-      {!type && <div className='gm-progress-text'>{text || `${percentage}%`}</div>}
+      {!type && !disabledText && (
+        <div className='gm-progress-text'>{`${percentage}%`}</div>
+      )}
     </Flex>
   )
 }
