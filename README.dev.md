@@ -24,7 +24,7 @@ todo react
 - [ ] editable_text
 - [x] flex
 - [x] flip_number
-- [ ] form
+- [x] form
 - [x] function_set
 - [x] grid
 - [x] icon_down_up

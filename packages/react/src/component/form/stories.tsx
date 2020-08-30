@@ -314,7 +314,7 @@ export const ComFormPanel = () => {
           <FormItem label='名字' colWidth='700px' required>
             <input
               type='text'
-              className='form-control'
+              className='gm-form-control'
               value={store.name}
               onChange={(e) => store.setData('name', e.target.value)}
             />
@@ -346,7 +346,7 @@ export const ComFormPanel = () => {
               <Flex alignCenter>
                 <input
                   type='text'
-                  className='form-control'
+                  className='gm-form-control'
                   value={store.name}
                   onChange={(e) => store.setData('name', e.target.value)}
                 />
