@@ -1,2 +1,2 @@
 export { default as Tree } from './tree'
-export * from './types'
+export type { TreeListItem, TreeProps, TreeStatic, TreeWithFilter } from './types'

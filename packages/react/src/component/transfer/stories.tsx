@@ -1,19 +1,6 @@
 import React from 'react'
 import { observable, toJS } from 'mobx'
-import { observer } from 'mobx-react'
-import _ from 'lodash'
-import TransferV2 from './transfer_v2'
-import { TreeV2DataOptions } from '../tree'
-
-function inherit(list: TreeV2DataOptions<string>[], parent?: any) {
-  return list.map((item) => {
-    const copy = Object.assign({ parent: _.omit(parent, 'children') }, item)
-    if (copy.children) {
-      copy.children = inherit(copy.children, copy)
-    }
-    return copy
-  })
-}
+import Transfer from './transfer'
 
 const store = observable({
   treeData: [
@@ -117,94 +104,37 @@ const store = observable({
   },
 })
 
-const Wrap = observer(() => {
-  return (
-    <div>
-      <TransferV2
-        list={toJS(store.flatData)}
-        selectedValues={store.selected}
-        onSelectValues={(selected) => store.onSelected(selected)}
-        rightTree
-      />
-    </div>
-  )
-})
-const TreeWrap = observer(() => {
-  return (
-    <div>
-      <TransferV2
-        list={toJS(store.treeData)}
-        selectedValues={store.selected}
-        onSelectValues={(selected) => store.onSelected(selected)}
-      />
-    </div>
-  )
-})
-const TreeWrap2 = observer(() => {
-  return (
-    <div>
-      <TransferV2
-        list={toJS(store.treeData)}
-        selectedValues={store.selected}
-        onSelectValues={(selected) => store.onSelected(selected)}
-        rightTree
-      />
-    </div>
-  )
-})
-const TreePropsWrap = observer(() => {
-  return (
-    <div>
-      <TransferV2
-        list={inherit(store.treeData)}
-        selectedValues={store.selected}
-        onSelectValues={(selected) => store.onSelected(selected)}
-        leftTitle='修改左边的标题'
-        leftRenderGroupItem={(data) => (
-          <div>
-            <img
-              src='https://img.guanmai.cn/product_pic/cdd0870bc403069b.jpeg'
-              style={{ width: '30px', height: '30px' }}
-              alt=''
-            />
-            {`${data.text}`}
-          </div>
-        )}
-        rightStyle={{ width: '500px', height: '500px' }}
-        rightTitle='修改左边的标题'
-        rightRenderLeafItem={(data: any) => (
-          <div>
-            {data.parent.parent.text} -- {data.parent.text} -- {data.text}
-          </div>
-        )}
-      />
-    </div>
-  )
-})
-
-export const Default = () => (
-  <div>
-    <Wrap />
-  </div>
+export const ComTransfer = () => (
+  <Transfer
+    list={toJS(store.flatData)}
+    selectedValues={store.selected}
+    onSelectValues={(selected) => store.onSelected(selected)}
+    rightTree
+  />
 )
-export const TreeData = () => (
+
+export const ComTransferWithRightTree = () => (
   <div style={{ display: 'flex' }}>
     <div style={{ marginRight: '30px' }}>
       <p>右边非树结构</p>
-      <TreeWrap />
+      <Transfer
+        list={toJS(store.treeData)}
+        selectedValues={store.selected}
+        onSelectValues={(selected) => store.onSelected(selected)}
+      />
     </div>
     <div>
       <p>右边树结构</p>
-      <TreeWrap2 />
+      <Transfer
+        list={toJS(store.treeData)}
+        selectedValues={store.selected}
+        onSelectValues={(selected) => store.onSelected(selected)}
+        rightTree
+      />
     </div>
-  </div>
-)
-export const TreeProps = () => (
-  <div>
-    <TreePropsWrap />
   </div>
 )
 
 export default {
-  title: 'TransferV2',
+  title: '表单/Transfer',
 }
