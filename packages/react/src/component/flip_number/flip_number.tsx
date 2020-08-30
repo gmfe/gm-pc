@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { filterForNum, formatNum, getNumLength, getRawArray } from './utils'
 import _ from 'lodash'
 
-export interface FlipNumberProps {
+interface FlipNumberProps {
   /* 最后显示的数字 */
   to: number
   /* 起始数字，默认为 0 */
@@ -147,8 +147,7 @@ class FlipNumber extends Component<FlipNumberProps, FlipNumberState> {
     const tick = (now) => {
       const timeConsuming = now - startTime
       draw(timeConsuming / duration)
-      if (timeConsuming < duration)
-        this.requestId = window.requestAnimationFrame(tick)
+      if (timeConsuming < duration) this.requestId = window.requestAnimationFrame(tick)
       else {
         draw(1)
       }
@@ -198,14 +197,13 @@ class FlipNumber extends Component<FlipNumberProps, FlipNumberState> {
           this.wrap = rel
         }}
         style={{ height: `${this.height}px` }}
-        className={classNames(
-          'gm-position-relative gm-overflow-hidden',
-          className
-        )}
+        className={classNames('gm-position-relative gm-overflow-hidden', className)}
       >
         {this.renderDigitAxis()}
       </div>
     )
   }
 }
+
 export default FlipNumber
+export type { FlipNumberProps }
