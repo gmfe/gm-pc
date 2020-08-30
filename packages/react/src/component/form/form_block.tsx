@@ -1,18 +1,8 @@
 import React, { Children, CSSProperties, FC, useContext } from 'react'
 import classNames from 'classnames'
-import formContext from './context'
+import FormContext from './context'
 import { Flex } from '../flex'
-
-export interface FormBlockProps {
-  /* 占用栏数 */
-  col?: 1 | 2 | 3
-  /* 默认由 Form 透传下来 */
-  disabledCol?: boolean
-  /* 默认由 Form 透传下来 */
-  inline?: boolean
-  className?: string
-  style?: CSSProperties
-}
+import { FormBlockProps } from './types'
 
 const FormBlock: FC<FormBlockProps> = ({
   col = 1,
@@ -22,7 +12,7 @@ const FormBlock: FC<FormBlockProps> = ({
   style,
   children,
 }) => {
-  const context = useContext(formContext)
+  const context = useContext(FormContext)
   disabledCol = disabledCol ?? context.disabledCol
   inline = inline ?? context.inline
   const { colWidth } = context

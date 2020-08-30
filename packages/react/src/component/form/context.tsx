@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { FormBtnPosition } from './form_btn_position'
+import { FormBtnPosition } from './types'
 
 export interface FormContextOptions {
   labelWidth?: string
@@ -10,6 +10,6 @@ export interface FormContextOptions {
   canValidate?: boolean
 }
 
-const formContext = createContext<Readonly<FormContextOptions>>({})
+const FormContext = createContext<Readonly<FormContextOptions>>({})
 
-export default formContext
+export default FormContext

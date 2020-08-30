@@ -1,16 +1,12 @@
 import React, {
   BaseSyntheticEvent,
   FC,
-  HTMLAttributes,
-  ReactNode,
-  RefObject,
   useCallback,
   useEffect,
   useRef,
   useState,
 } from 'react'
 import { devWarnForHook, warn } from '@gm-common/tool'
-import Form from './form'
 import Affix from '../affix/affix'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
@@ -18,7 +14,7 @@ import classNames from 'classnames'
 import styled from 'styled-components'
 import _ from 'lodash'
 import { useMutationObserver } from '../../common/hooks'
-
+import { FormGroupProps } from './types'
 const AFFIX_HEIGHT = 40
 
 const StyledAffix = styled(Affix)`
@@ -31,16 +27,6 @@ const options = {
   attributes: true, // 观察属性变动
   subtree: true,
   characterData: false,
-}
-export interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
-  formRefs: RefObject<Form>[]
-  onSubmit?(): void
-  onSubmitValidated?(): void
-  onCancel?(): void
-  disabled?: boolean
-  /* 确定按钮的文案，默认为保存 */
-  saveText?: string
-  actions?: ReactNode
 }
 
 const FormGroup: FC<FormGroupProps> = ({

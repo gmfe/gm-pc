@@ -1,24 +1,11 @@
-import React, {
-  FC,
-  HTMLAttributes,
-  ReactNode,
-  useCallback,
-  useState,
-  MouseEvent,
-} from 'react'
+import React, { FC, useCallback, useState, MouseEvent } from 'react'
 import { Flex } from '../flex'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
+import { FormPanelProps } from './types'
 
-export interface FormPanelProps extends HTMLAttributes<HTMLDivElement> {
-  title?: string
-  left?: ReactNode
-  right?: ReactNode
-  showBorder?: boolean
-}
-
-const More: FC = ({ children }) => {
+const FormPanelMore: FC = ({ children }) => {
   const [open, setOpen] = useState(false)
 
   const handleToggle = useCallback(
@@ -43,11 +30,7 @@ const More: FC = ({ children }) => {
   )
 }
 
-interface FormPanelFC extends FC<FormPanelProps> {
-  More: typeof More
-}
-
-const FormPanel: FormPanelFC = ({
+const FormPanel: FC<FormPanelProps> = ({
   title,
   left,
   right,
@@ -76,6 +59,5 @@ const FormPanel: FormPanelFC = ({
   )
 }
 
-FormPanel.More = More
-
+export { FormPanelMore }
 export default FormPanel

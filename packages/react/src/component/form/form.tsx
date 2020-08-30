@@ -1,7 +1,6 @@
 import React, {
   Component,
   FormEvent,
-  FormHTMLAttributes,
   PropsWithChildren,
   ReactElement,
   ReactNode,
@@ -9,33 +8,10 @@ import React, {
   Children,
 } from 'react'
 import classNames from 'classnames'
-import { FormBtnPosition } from './form_btn_position'
-import formContext from './context'
-import { FormItemProps } from './form_item'
+import FormContext from './context'
 import Validator from '../../validator'
-
-const { Provider } = formContext
-
-export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
-  /* 默认处理了 event.preventDefault，避免犯低级错误 */
-  onSubmit?(event: FormEvent<HTMLFormElement>): void
-  /* 在通过所有 FormItem 定义的 validate 之后调用 */
-  onSubmitValidated?(): void
-  /**
-   * 行内模式，一般用不到。目前在 BoxForm 内部自动使用
-   * @deprecated
-   */
-  inline?: boolean
-  /* 去除 FormItem 默认一栏宽度的限制 */
-  disabledCol?: boolean
-  /* 自定义列宽 */
-  colWidth?: string
-  /* 标题宽度 */
-  labelWidth?: string
-  /* 只在 FormGroup 下用，用于添加一个隐藏的按钮，来响应 Enter */
-  hasButtonInGroup?: boolean
-  btnPosition?: FormBtnPosition
-}
+import { FormProps, FormItemProps } from './types'
+const { Provider } = FormContext
 
 interface FormState {
   canValidate: boolean
@@ -132,7 +108,9 @@ class Form extends Component<FormProps, FormState> {
     } = this.props
     const { canValidate } = this.state
     return (
-      <Provider value={{ labelWidth, disabledCol, inline, btnPosition, colWidth, canValidate }}>
+      <Provider
+        value={{ labelWidth, disabledCol, inline, btnPosition, colWidth, canValidate }}
+      >
         <form
           {...rest}
           className={classNames('gm-form', { 'form-inline': inline }, className)}

@@ -3,7 +3,6 @@ import React, {
   ComponentType,
   CSSProperties,
   FC,
-  ReactNode,
   useContext,
   ReactElement,
   cloneElement,
@@ -11,42 +10,11 @@ import React, {
 import { devWarnForHook, warn } from '@gm-common/tool'
 import classNames from 'classnames'
 import _ from 'lodash'
-import formContext from './context'
+import FormContext from './context'
 import Validator from '../../validator'
 import { Flex } from '../flex'
 import { Tooltip } from '../tooltip'
-
-export interface FormItemProps {
-  /* 占用栏数 */
-  col?: 1 | 2 | 3
-  /* 默认从 Form 透传下来 */
-  disabledCol?: boolean
-  /* 标题，自带`:` */
-  label?: string | ReactNode
-  tooltip?: ReactNode
-  /* 必传，会自动带上校验器 */
-  required?: boolean
-  /* 去除 label 为了和表单元素对齐的上边距 */
-  unLabelTop?: boolean
-  /* 自定义表单验证器，优先级高于 error 和 help，低于 required */
-  validate?(validator?: (value: any) => string): string
-  /**
-   * 少用，用于内部展示
-   * @deprecated
-   */
-  error?: boolean
-  /**
-   * 少用，用于内部展示
-   * @deprecated
-   */
-  help?: string
-  /* 默认由 Form 透传下来 */
-  labelWidth?: string
-  /* 默认由 Form 透传下来 */
-  colWidth?: string
-  className?: string
-  style?: CSSProperties
-}
+import { FormItemProps } from './types'
 
 const FormItem: FC<FormItemProps> = ({
   label,
@@ -64,7 +32,7 @@ const FormItem: FC<FormItemProps> = ({
   style,
   tooltip,
 }) => {
-  const context = useContext(formContext)
+  const context = useContext(FormContext)
   labelWidth = labelWidth ?? context.labelWidth
   disabledCol = disabledCol ?? context.disabledCol
   colWidth = colWidth ?? context.colWidth
@@ -164,7 +132,7 @@ const FormControl: FC = (props) => {
         'file')
   ) {
     return cloneElement(children, {
-      className: classNames('form-control', className),
+      className: classNames('gm-form-control', className),
     })
   }
   return children
