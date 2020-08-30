@@ -8,10 +8,7 @@ function getElementPositionWithScroll(element: HTMLElement) {
   return { left, top }
 }
 
-function isContains(
-  target: HTMLElement,
-  fc: (node: HTMLElement) => boolean
-): boolean {
+function isContains(target: HTMLElement, fc: (node: HTMLElement) => boolean): boolean {
   let node = target
   while (node) {
     if (fc(node)) {

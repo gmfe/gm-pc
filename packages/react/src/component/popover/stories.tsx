@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import Popover from './popover'
 import { Button } from '../button'
 
@@ -13,7 +12,7 @@ const renderPopup = () => {
   )
 }
 
-storiesOf('Popover', module).add('default', () => (
+export const ComPopover = () => (
   <div>
     <div>四种行为 focus click hover realFocus</div>
     <div>
@@ -98,4 +97,8 @@ storiesOf('Popover', module).add('default', () => (
       </Popover>
     </div>
   </div>
-))
+)
+
+export default {
+  title: '反馈/Popover',
+}

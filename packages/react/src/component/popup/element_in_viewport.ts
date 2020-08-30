@@ -12,16 +12,10 @@ interface ElementInView {
   ): ElementInViewportReturnOptions
 }
 
-const elementInView: ElementInView = (
-  top,
-  dom,
-  targetHeight,
-  predictingHeight
-) => {
+const elementInView: ElementInView = (top, dom, targetHeight, predictingHeight) => {
   const buf = 5
   const rect = dom.getBoundingClientRect()
-  const windowHeight =
-    window.innerHeight ?? document.documentElement.clientHeight
+  const windowHeight = window.innerHeight ?? document.documentElement.clientHeight
   const domHeight = predictingHeight ?? rect.height
 
   if (top) {
@@ -35,4 +29,5 @@ const elementInView: ElementInView = (
     bottomInViewport: rect.top + domHeight + buf <= windowHeight,
   }
 }
+
 export default elementInView

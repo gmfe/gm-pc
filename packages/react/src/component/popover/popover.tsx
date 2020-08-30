@@ -21,7 +21,7 @@ interface PopoverState {
   active: boolean
 }
 
-export default class Popover extends Component<PopoverProps, PopoverState> {
+class Popover extends Component<PopoverProps, PopoverState> {
   static defaultProps = {
     type: 'focus',
   }
@@ -283,3 +283,5 @@ export default class Popover extends Component<PopoverProps, PopoverState> {
     })
   }
 }
+
+export default Popover

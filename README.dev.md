@@ -43,8 +43,8 @@ todo react
 - [x] n_progress
 - [x] nav
 - [ ] pagination
-- [ ] popover
-- [ ] popup
+- [x] popover
+- [x] popup
 - [x] progress
 - [x] progress_circle
 - [x] radio

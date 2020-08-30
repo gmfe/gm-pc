@@ -1,14 +1,12 @@
 import { CSSProperties, ReactNode } from 'react'
 
 type PopoverTrigger = 'focus' | 'click' | 'hover' | 'realFocus'
-type PopupType = (() => ReactNode) | ReactNode
+type Popup = (() => ReactNode) | ReactNode
 
 interface PopoverProps {
   type?: PopoverTrigger
-  popup: PopupType
+  popup: Popup
   disabled?: boolean
-  className?: string
-  style?: CSSProperties
   right?: boolean
   top?: boolean
   center?: boolean
@@ -18,6 +16,8 @@ interface PopoverProps {
   pureContainer?: boolean
   isInPopup?: boolean
   predictingHeight?: number
+  className?: string
+  style?: CSSProperties
 }
 
-export type { PopupType, PopoverTrigger, PopoverProps }
+export type { Popup, PopoverTrigger, PopoverProps }
