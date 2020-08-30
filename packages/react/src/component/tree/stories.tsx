@@ -4,6 +4,7 @@ import { observable } from 'mobx'
 import { pinYinFilter } from '@gm-common/tool'
 import Tree from './tree'
 import { Flex } from '../flex'
+import { TreeListItem } from './types'
 
 const treeData = [
   {
@@ -97,10 +98,10 @@ const treeData = [
 ]
 
 const flatData = (() => {
-  const flat = []
+  const flat: TreeListItem[] = []
   _.each(treeData, (one) => {
     if (one.children) {
-      _.each(one.children, (two) => {
+      _.each(one.children, (two: TreeListItem) => {
         if (two.children) {
           _.each(two.children, (there) => {
             flat.push(there)

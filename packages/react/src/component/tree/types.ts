@@ -1,4 +1,5 @@
-import { CSSProperties, ReactNode } from 'react'
+import { CSSProperties, ReactNode, RefObject } from 'react'
+import { FixedSizeList } from 'react-window'
 
 type Value = any
 
@@ -62,14 +63,49 @@ interface BottomProps {
   onChange(checkedAll: boolean): void
 }
 
+interface ListProps {
+  list: TreeListItem[]
+  groupSelected: Value[]
+  onGroupSelect(selected: Value[]): void
+  selectedValues: Value[]
+  onSelectValues(values: Value[]): void
+  listHeight: number
+  renderLeafItem(item: TreeListItem): ReactNode
+  renderGroupItem(item: TreeListItem): ReactNode
+  activeValue?: Value
+  onActiveValues(activeValues: Value[]): void
+  indeterminateList?: Value[]
+  listRef: RefObject<FixedSizeList>
+}
+
+interface ItemProps {
+  isGrouped: boolean
+  onGroup(data: TreeListItem): void
+  isSelected: boolean
+  isIndeterminate: boolean
+  onSelect(data: TreeListItem, isSelected: boolean): void
+  flatItem: {
+    isLeaf: boolean
+    level: number
+    data: TreeListItem
+  }
+  style: CSSProperties
+  renderLeafItem?(item: TreeListItem): ReactNode
+  renderGroupItem?(item: TreeListItem): ReactNode
+  onActive(data: TreeListItem): void
+  active?: boolean
+}
+
 export type {
   Value,
   FindItem,
   TreeListItem,
+  BottomProps,
+  ListProps,
+  ItemProps,
   TreeWithFindFilter,
   TreeWithFilter,
   TreeWithFilterFun,
   TreeProps,
   TreeStatic,
-  BottomProps,
 }

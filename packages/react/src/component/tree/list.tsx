@@ -1,15 +1,15 @@
-import React, { useMemo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+import React, { useMemo, useState, useEffect, FC, MouseEvent } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { Flex } from '../flex'
 import { Checkbox } from '../checkbox'
 import { listToFlatFilterWithGroupSelected, getLeafValues, listToFlat } from './util'
-import { FixedSizeList } from 'react-window'
+import { FixedSizeList, ListChildComponentProps } from 'react-window'
 import SVGExpand from '../../svg/expand.svg'
 import SVGCloseup from '../../svg/closeup.svg'
+import { ListProps, TreeListItem, ItemProps } from './types'
 
-const Item = ({
+const Item: FC<ItemProps> = ({
   isGrouped,
   onGroup,
   isSelected,
@@ -17,14 +17,14 @@ const Item = ({
   onSelect,
   flatItem: { isLeaf, level, data },
   style,
-  renderLeafItem,
-  renderGroupItem,
-  active,
+  renderLeafItem = (data) => data.text,
+  renderGroupItem = (data) => data.text,
+  active = false,
   onActive,
 }) => {
-  const handleGroup = (e) => {
+  const handleGroup = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
-    onGroup(data, !isGrouped)
+    onGroup(data)
   }
 
   const handleRadio = () => {
@@ -67,30 +67,7 @@ const Item = ({
   )
 }
 
-Item.propTypes = {
-  isGrouped: PropTypes.bool.isRequired,
-  onGroup: PropTypes.func.isRequired,
-  isSelected: PropTypes.bool.isRequired,
-  isIndeterminate: PropTypes.bool.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  flatItem: PropTypes.shape({
-    isLeaf: PropTypes.bool.isRequired,
-    level: PropTypes.number.isRequired,
-    data: PropTypes.object.isRequired,
-  }),
-  style: PropTypes.object.isRequired,
-  renderLeafItem: PropTypes.func,
-  renderGroupItem: PropTypes.func,
-  onActive: PropTypes.func.isRequired,
-  active: PropTypes.bool,
-}
-Item.defaultProps = {
-  renderLeafItem: (data) => data.text,
-  renderGroupItem: (data) => data.text,
-  active: false,
-}
-
-const List = ({
+const List: FC<ListProps> = ({
   list,
   groupSelected,
   onGroupSelect,
@@ -121,11 +98,11 @@ const List = ({
     return listToFlatFilterWithGroupSelected(list, groupSelected)
   }, [list, groupSelected])
 
-  const handleGroup = (data) => {
+  const handleGroup = (data: TreeListItem) => {
     onGroupSelect(_.xor(groupSelected, [data.value]))
   }
 
-  const handleSelect = (data, isSelected) => {
+  const handleSelect = (data: TreeListItem, isSelected: boolean) => {
     const values = getLeafValues([data])
 
     if (isSelected) {
@@ -135,15 +112,14 @@ const List = ({
     }
   }
 
-  const handleActive = (data) => {
+  const handleActive = (data: TreeListItem) => {
     const values = getLeafValues([data])
 
     setActive(data.value)
     onActiveValues(values)
   }
 
-  // eslint-disable-next-line
-  const Row = ({ index, style }) => {
+  const Row: FC<ListChildComponentProps> = ({ index, style }) => {
     const flatItem = flatList[index]
     const isGrouped = groupSelected.includes(flatItem.data.value)
 
@@ -186,27 +162,13 @@ const List = ({
     <FixedSizeList
       ref={listRef}
       height={listHeight}
+      width='100%'
       itemCount={flatList.length}
       itemSize={28}
     >
       {Row}
     </FixedSizeList>
   )
-}
-
-List.propTypes = {
-  list: PropTypes.array.isRequired,
-  groupSelected: PropTypes.array.isRequired,
-  onGroupSelect: PropTypes.func.isRequired,
-  selectedValues: PropTypes.array.isRequired,
-  onSelectValues: PropTypes.func.isRequired,
-  listHeight: PropTypes.number.isRequired,
-  renderLeafItem: PropTypes.func,
-  renderGroupItem: PropTypes.func,
-  onActiveValues: PropTypes.func.isRequired,
-  indeterminateList: PropTypes.array,
-  activeValue: PropTypes.string,
-  listRef: PropTypes.object,
 }
 
 export default List
