@@ -1,4 +1,4 @@
-.gmClearfix() {
+.gmClearFix() {
   &::before,
   &::after {
     content: ' '; // 1
@@ -16,6 +16,18 @@
   &.disabled,
   &[disabled] {
     .gmDisabled();
+  }
+}
+
+.gmDisabledBg() {
+  cursor: not-allowed !important;
+  background: var(--gm-color-bg-disabled);
+}
+
+.gmDisabledBgWith() {
+  &.disabled,
+  &[disabled] {
+    .gmDisabledBg();
   }
 }
 

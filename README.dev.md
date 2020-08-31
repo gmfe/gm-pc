@@ -30,7 +30,7 @@ todo react
 - [x] icon_down_up
 - [x] img_uploader
 - [x] input
-- [ ] input number
+- [ ] input number @王彬
 - [x] label
 - [x] layout root
 - [ ] level_list
@@ -42,7 +42,7 @@ todo react
 - [ ] more_select
 - [x] n_progress
 - [x] nav
-- [ ] pagination
+- [x] pagination
 - [x] popover
 - [x] popup
 - [x] progress

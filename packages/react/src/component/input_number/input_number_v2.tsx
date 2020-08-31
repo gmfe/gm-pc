@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { checkValue, fixNumber, processPropsValue, text2Number } from './utils'
+import { Input } from '../input'
 
 export interface InputNumberV2Props
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
@@ -96,7 +97,7 @@ export default class InputNumberV2 extends Component<
   render() {
     const { value, onChange, max, min, precision, className, ...rest } = this.props
     return (
-      <input
+      <Input
         {...rest}
         ref={this._inputRef}
         value={this.state.value}

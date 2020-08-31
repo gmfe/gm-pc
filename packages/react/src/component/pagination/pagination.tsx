@@ -1,39 +1,29 @@
-import React, { FC, useCallback } from 'react'
-import _ from 'lodash'
-import { PaginationDataOptions, PaginationProps } from './utils/types'
-import PaginationBase from './pagination_base'
+import React, { FC } from 'react'
+import Left from './left'
+import Right from './right'
+import PageNeedCount from './page_need_count'
+import PageWithoutCount from './page_without_count'
+import { InnerPaging, PaginationProps } from './types'
+import { Flex } from '../flex'
 
-const Pagination: FC<PaginationProps> = ({
-  data = { offset: 0, limit: 10 },
-  toPage,
-  nextDisabled,
-  ...rest
-}) => {
-  const handleChange = useCallback(
-    (pagination: PaginationDataOptions) => {
-      toPage(pagination)
-    },
-    [toPage]
+const Pagination: FC<PaginationProps> = ({ paging, onChange }) => {
+  const p: InnerPaging = {
+    ...paging,
+    offset: paging.offset || 0,
+    limit: paging.limit || 10,
+  }
+
+  return (
+    <Flex wrap className='gm-pagination'>
+      <Left paging={p} onChange={onChange} />
+      {paging.need_count ? (
+        <PageNeedCount paging={p} onChange={onChange} />
+      ) : (
+        <PageWithoutCount paging={p} onChange={onChange} />
+      )}
+      {paging.need_count && <Right paging={p} onChange={onChange} />}
+    </Flex>
   )
-
-  if (!_.isNil(data.count)) {
-    return (
-      <PaginationBase
-        {...rest}
-        data={data as Required<PaginationDataOptions>}
-        onChange={handleChange}
-        showCount
-      />
-    )
-  }
-  let count = data.offset + data.limit * 2
-  if (nextDisabled) {
-    count = data.offset + data.limit
-  }
-
-  return <PaginationBase {...rest} data={{ ...data, count }} onChange={handleChange} />
 }
-
-Pagination.displayName = 'Pagination'
 
 export default Pagination
