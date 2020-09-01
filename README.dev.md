@@ -21,7 +21,6 @@ todo react
 - [x] dialog
 - [x] divider
 - [x] drawer
-- [ ] editable_text
 - [x] flex
 - [x] flip_number
 - [x] form
