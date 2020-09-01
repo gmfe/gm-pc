@@ -1,34 +1,23 @@
-import React, {
-  Component,
-  createRef,
-  CSSProperties,
-  MouseEvent,
-  PropsWithChildren,
-} from 'react'
+import React, { Component, createRef, MouseEvent, PropsWithChildren } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import EVENT_TYPE from '../../event_type'
 import { LayoutRoot } from '../layout_root'
-
-export interface DrawerProps {
-  onHide?(): void
-  className?: string
-  style?: CSSProperties
-  opacityMask?: boolean
-}
+import { DrawerProps } from './types'
 
 class Drawer extends Component<DrawerProps> {
   static defaultProps = {
     onHide: _.noop,
+    size: 'md',
   }
 
   static render(options: PropsWithChildren<DrawerProps>): void {
-    window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
+    window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.DRAWER_SHOW))
     LayoutRoot.setComponent(LayoutRoot.Type.DRAWER, <Drawer {...options} />)
   }
 
   static hide(): void {
-    window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
+    window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.DRAWER_HIDE))
     LayoutRoot.removeComponent(LayoutRoot.Type.DRAWER)
   }
 
@@ -66,7 +55,7 @@ class Drawer extends Component<DrawerProps> {
   private _throttleDoScroll = _.throttle(this._doScroll, 200)
 
   render() {
-    const { children, style, className, opacityMask } = this.props
+    const { children, style, className, opacityMask, size } = this.props
     return (
       <div>
         <div
@@ -81,7 +70,7 @@ class Drawer extends Component<DrawerProps> {
           onClick={this._handleMask}
         >
           <div
-            className={classNames('gm-drawer-content', {
+            className={classNames('gm-drawer-content', 'gm-drawer-' + size, {
               'gm-border': opacityMask,
               'gm-box-shadow-bottom': opacityMask,
             })}
