@@ -1,20 +1,20 @@
 import { ListBaseDataItem } from '../list'
 import { CSSProperties } from 'react'
 
-interface LevelListDataOptions<V> extends ListBaseDataItem {
-  children?: LevelListDataOptions<V>[]
+type Value = any
+
+interface LevelListDataItem extends ListBaseDataItem {
+  children?: LevelListDataItem[]
 }
 
-interface LevelListProps<V> {
-  data: LevelListDataOptions<V>[]
-  selected: V[]
-  onSelect(selected: V[]): void
-  willActiveSelected: V[]
-  onWillActiveSelect(selected: V[]): void
+interface LevelListProps {
+  data: LevelListDataItem[]
+  selected: Value[]
+  onSelect(selected: Value[]): void
+  willActiveSelected: Value[]
+  onWillActiveSelect(selected: Value[]): void
   titles?: string[]
-  /**
-   * @todo 未完成
-   */
+  // @todo 未完成
   onlySelectLeaf?: boolean
   isReverse?: boolean
   className?: string
@@ -23,4 +23,4 @@ interface LevelListProps<V> {
   isForFunctionSet?: boolean
 }
 
-export type { LevelListDataOptions, LevelListProps }
+export type { Value, LevelListDataItem, LevelListProps }

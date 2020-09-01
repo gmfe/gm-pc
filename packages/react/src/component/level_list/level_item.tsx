@@ -1,38 +1,31 @@
-import React, {
-  CSSProperties,
-  HTMLAttributes,
-  ReactElement,
-  useCallback,
-  useMemo,
-} from 'react'
+import React, { CSSProperties, HTMLAttributes, FC, useCallback, useMemo } from 'react'
 import classNames from 'classnames'
-import { LevelListDataOptions } from './types'
+import { Value, LevelListDataItem } from './types'
 import SVGRightSmall from '../../svg/right-small.svg'
 import { List } from '../list'
 
-interface LevelItemProps<V> {
+interface LevelItemProps {
   title?: string
-  data: LevelListDataOptions<V>[]
-  selected?: V
-  onSelect?(selected: V): void
-  onListItemMouseEnter?(value: LevelListDataOptions<V>): void
-  willActiveSelected?: V
+  data: LevelListDataItem[]
+  selected?: Value
+  onSelect?(selected: Value): void
+  onListItemMouseEnter?(value: LevelListDataItem): void
+  willActiveSelected?: Value
   className?: string
   style?: CSSProperties
 }
 
-function LevelItem<V>(props: LevelItemProps<V>): ReactElement {
-  const {
-    title,
-    data,
-    selected,
-    onSelect,
-    onListItemMouseEnter,
-    willActiveSelected,
-    className,
-    style,
-  } = props
-  const renderItem = useCallback((item: LevelListDataOptions<V>) => {
+const LevelItem: FC<LevelItemProps> = ({
+  title,
+  data,
+  selected,
+  onSelect,
+  onListItemMouseEnter,
+  willActiveSelected,
+  className,
+  style,
+}) => {
+  const renderItem = useCallback((item: LevelListDataItem) => {
     const hasChildren = item.children && !!item.children.length
     return (
       <div className='gm-position-relative'>
@@ -45,7 +38,7 @@ function LevelItem<V>(props: LevelItemProps<V>): ReactElement {
   }, [])
 
   const getItemProps = useCallback(
-    (item: LevelListDataOptions<V>): HTMLAttributes<HTMLDivElement> => ({
+    (item: LevelListDataItem): HTMLAttributes<HTMLDivElement> => ({
       onMouseEnter: () => onListItemMouseEnter && onListItemMouseEnter(item),
     }),
     [onListItemMouseEnter]

@@ -32,7 +32,7 @@ todo react
 - [x] input number
 - [x] label
 - [x] layout root
-- [ ] level_list
+- [x] level_list
 - [ ] level_select
 - [x] list
 - [x] loading
