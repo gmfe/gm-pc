@@ -129,7 +129,7 @@ class DateRangePicker extends Component<DateRangePickerProps> {
             disabledClose={!canClear}
             className={classNames('gm-range-range-picker', className)}
             funIcon={<SVGCalendar />}
-            isForSelect
+            noInput
           />
         )}
       </Popover>

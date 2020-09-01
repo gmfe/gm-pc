@@ -60,6 +60,7 @@ class FunctionSet extends Component<FunctionSetProps> {
     }
     return (
       <Popover
+        ref={this._popoverRef}
         popup={<Overlay data={newData} onSelect={this._handleSelect} isReverse={right} />}
         right={right}
         type='hover'
