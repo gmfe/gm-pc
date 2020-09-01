@@ -15,7 +15,12 @@ interface TimeSelectProps {
   onSelectTime?(value: Date): void
 }
 
-const TimeSelect: FC<TimeSelectProps> = ({ date, timeLimit, onSelectTime, enabledTimeSelect }) => {
+const TimeSelect: FC<TimeSelectProps> = ({
+  date,
+  timeLimit,
+  onSelectTime,
+  enabledTimeSelect,
+}) => {
   if (!enabledTimeSelect) {
     return null
   }
@@ -41,7 +46,9 @@ const TimeSelect: FC<TimeSelectProps> = ({ date, timeLimit, onSelectTime, enable
           disabledSpan={handleDisabledSpan}
           isInPopup
         >
-          <Button className='gm-date-picker-select-time'>{moment(date).format('HH:mm')}</Button>
+          <Button className='gm-date-picker-select-time'>
+            {moment(date).format('HH:mm')}
+          </Button>
         </TimeSpanPicker>
       )}
     </Flex>

@@ -4,7 +4,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 
 import { Flex } from '../flex'
-import { TimeSpanProps } from './type'
+import { TimeSpanProps } from './types'
 import { getTime, renderItemFunc } from './util'
 
 const initMin = moment().startOf('day').toDate()

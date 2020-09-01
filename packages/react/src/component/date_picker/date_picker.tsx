@@ -8,13 +8,18 @@ import React, {
 import classNames from 'classnames'
 import moment from 'moment'
 import _ from 'lodash'
-import { Popover, PopoverTrigger } from '../popover'
+
+import { Popover } from '../popover'
 import { Selection } from '../selection'
 import { TimeLimit } from './types'
 import SVGCalendar from '../../svg/calendar.svg'
 import Overlay from './overlay'
 
-export interface DatePickerProps {
+interface DatePickerState {
+  willActiveSelected: Date | null
+}
+
+interface DatePickerProps {
   /* 选择的日期 */
   date?: Date | null
   /* 选择日期的回调函数 */
@@ -31,8 +36,6 @@ export interface DatePickerProps {
   disabledDate?(date: Date): boolean
   /* 自定义日期展示格式 */
   renderDate?(date: Date): ReactNode
-  /* 触发方式 */
-  popoverType?: PopoverTrigger
   style?: CSSProperties
   className?: string
   onKeyDown?(event: KeyboardEvent): void
@@ -40,10 +43,6 @@ export interface DatePickerProps {
   enabledTimeSelect?: boolean
   /* 时间选择限制 */
   timeLimit?: TimeLimit
-}
-
-interface DatePickerState {
-  willActiveSelected: Date | null
 }
 
 class DatePicker extends Component<DatePickerProps, DatePickerState> {
@@ -59,7 +58,7 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
   }
 
   private _popoverRef = createRef<Popover>()
-  private _selectionRef = createRef<Selection<Date>>()
+  private _selectionRef = createRef<Selection>()
 
   public apiDoFocus(): void {
     this._selectionRef.current!.apiDoFocus()
@@ -130,7 +129,6 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
       disabledDate,
       className,
       renderDate,
-      popoverType,
       onKeyDown,
       timeLimit,
       enabledTimeSelect,
@@ -155,11 +153,11 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
         popup={popup}
         ref={this._popoverRef}
         disabled={disabled}
-        type={popoverType}
+        type='focus'
         style={{ minWidth: '200px' }}
       >
         {children ?? (
-          <Selection<Date>
+          <Selection
             ref={this._selectionRef}
             {...rest}
             selected={date!}
@@ -176,4 +174,5 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
     )
   }
 }
+
 export default DatePicker

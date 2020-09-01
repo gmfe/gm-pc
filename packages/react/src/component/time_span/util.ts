@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { GetTime } from './type'
+import { GetTime } from './types'
 
 const renderItemFunc = (date: Date): React.ReactNode => {
   return moment(date).format('HH:mm')

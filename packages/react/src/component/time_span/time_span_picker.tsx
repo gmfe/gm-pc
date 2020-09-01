@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
 import TimeSpan from './time_span'
-import { TimeSpanPickerProps } from './type'
+import { TimeSpanPickerProps } from './types'
 import { renderItemFunc } from './util'
 
 const TimeSpanPicker: FC<TimeSpanPickerProps> = ({
