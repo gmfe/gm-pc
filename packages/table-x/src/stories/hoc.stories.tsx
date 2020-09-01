@@ -6,7 +6,7 @@ import { VariableSizeList } from 'react-window'
 import {
   Button,
   Input,
-  InputNumberV2,
+  InputNumber,
   MoreSelect,
   MoreSelectNormalDataOptions,
 } from '@gm-pc/react'
@@ -133,7 +133,7 @@ const editColumns: TableXColumn<InitialDataOptions>[] = [
     Cell: (cellProps: {
       row: { original: { totalMoney: number | null | undefined } }
     }) => (
-      <InputNumberV2
+      <InputNumber
         value={cellProps.row.original.totalMoney}
         onChange={(value) => console.log(value)}
       />

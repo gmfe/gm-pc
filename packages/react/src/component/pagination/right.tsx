@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC, KeyboardEvent } from 'react'
-import InputNumberV2 from '../input_number/input_number_v2'
+import { InputNumber } from '../input_number'
 import { Flex } from '../flex'
 import { CommonProps } from './types'
 import { getIndex } from './util'
@@ -43,7 +43,7 @@ const Right: FC<CommonProps> = ({ paging, onChange }) => {
 
   return (
     <Flex className='gm-pagination-right'>
-      <InputNumberV2
+      <InputNumber
         precision={0}
         value={index}
         onChange={handleInput}

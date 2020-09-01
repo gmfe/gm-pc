@@ -9,38 +9,35 @@ import classNames from 'classnames'
 import { checkValue, fixNumber, processPropsValue, text2Number } from './utils'
 import { Input } from '../input'
 
-export interface InputNumberV2Props
+interface InputNumberProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
-  max?: number
-  min?: number
   value: number | null
-  placeholder?: string
   onChange(value: number | null): void
+  disabled?: boolean
+  placeholder?: string
+  min?: number
+  max?: number
   precision?: number
   className?: string
   style?: CSSProperties
-  disabled?: boolean
 }
 
-interface InputNumberV2State {
+interface InputNumberState {
   value: string
 }
 
-export default class InputNumberV2 extends Component<
-  InputNumberV2Props,
-  InputNumberV2State
-> {
+class InputNumber extends Component<InputNumberProps, InputNumberState> {
   static defaultProps = {
     value: null,
     precision: 2,
   }
 
-  static displayName = 'InputNumberV2'
+  static displayName = 'InputNumber'
 
   static getDerivedStateFromProps(
-    props: InputNumberV2Props,
-    state: InputNumberV2State
-  ): InputNumberV2State | null {
+    props: InputNumberProps,
+    state: InputNumberState
+  ): InputNumberState | null {
     // 一旦不一致就应该改，要比较 number 形式
     if (props.value !== text2Number(state.value)) {
       return {
@@ -54,7 +51,7 @@ export default class InputNumberV2 extends Component<
   private _inputRef = createRef<HTMLInputElement>()
   private _isUnmount = false
 
-  readonly state: InputNumberV2State = {
+  readonly state: InputNumberState = {
     value: processPropsValue(this.props.value as number),
   }
 
@@ -108,3 +105,6 @@ export default class InputNumberV2 extends Component<
     )
   }
 }
+
+export default InputNumber
+export type { InputNumberProps }

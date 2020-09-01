@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import FlipNumber from './flip_number'
 import { observable } from 'mobx'
 
@@ -13,7 +12,7 @@ setTimeout(() => {
   store.to = 709394
 })
 
-storiesOf('FlipNumber', module).add('default', () => (
+export const ComFlipNumber = () => (
   <FlipNumber
     useGroup
     delay={1000}
@@ -22,4 +21,8 @@ storiesOf('FlipNumber', module).add('default', () => (
     to={store.to}
     className='gm-text-20'
   />
-))
+)
+
+export default {
+  title: '反馈/FlipNumber',
+}

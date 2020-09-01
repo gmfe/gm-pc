@@ -19,7 +19,7 @@ import {
   KCInput,
   KCDatePicker,
   KCSelect,
-  KCInputNumberV2,
+  KCInputNumber,
 } from './'
 import { observer } from 'mobx-react'
 
@@ -181,7 +181,7 @@ const Wrap: FC = observer(() => {
             index,
           } = cellProps.row
           return (
-            <KCInputNumberV2
+            <KCInputNumber
               value={age}
               onChange={(value) => {
                 store.handleSetDataItem(index, { age: value })

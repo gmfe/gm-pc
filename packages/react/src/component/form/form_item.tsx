@@ -124,8 +124,6 @@ const FormControl: FC = (props) => {
     children.type === 'select' ||
     (children as ReactElement<FormControlChildrenProps, ComponentType>).type
       .displayName === 'InputNumber' ||
-    (children as ReactElement<FormControlChildrenProps, ComponentType>).type
-      .displayName === 'InputNumberV2' ||
     ((children as ReactElement<FormControlChildrenProps, ComponentType>).type
       .displayName === 'Input' &&
       (children as ReactElement<FormControlChildrenProps, ComponentType>).props.type !==

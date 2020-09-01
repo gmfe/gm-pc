@@ -16,7 +16,7 @@ import {
   Radio,
   CheckboxGroup,
   Checkbox,
-  InputNumberV2,
+  InputNumber,
   Flex,
   Button,
 } from '../../index'
@@ -166,7 +166,7 @@ export const ComFormWithDisabledCol = () => (
         </div>
       </FormItem>
       <FormItem label='身高'>
-        <InputNumberV2
+        <InputNumber
           value={store.height}
           onChange={(value) => store.setData('height', value)}
         />
@@ -206,7 +206,7 @@ export const ComFormBlock = () => (
         />
       </FormItem>
       <FormItem label='身高'>
-        <InputNumberV2
+        <InputNumber
           value={store.height}
           onChange={(value) => store.setData('height', value)}
         />

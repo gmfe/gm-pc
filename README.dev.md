@@ -30,7 +30,7 @@ todo react
 - [x] icon_down_up
 - [x] img_uploader
 - [x] input
-- [ ] input number @王彬
+- [x] input number
 - [x] label
 - [x] layout root
 - [ ] level_list

@@ -1,2 +1,2 @@
-export { default as InputNumberV2 } from './input_number_v2'
-export type { InputNumberV2Props } from './input_number_v2'
+export { default as InputNumber } from './input_number'
+export type { InputNumberProps } from './input_number'
