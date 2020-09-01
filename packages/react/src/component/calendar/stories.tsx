@@ -1,9 +1,9 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import Calendar from './calendar'
-import RangeCalendar from './range_calendar'
 import { observable } from 'mobx'
 import moment from 'moment'
+
+import Calendar from './calendar'
+import RangeCalendar from './range_calendar'
 
 const store = observable({
   selected: null,
@@ -22,19 +22,23 @@ const rangeStore = observable({
   },
 })
 
-storiesOf('Calendar', module)
-  .add('default', () => (
-    <Calendar selected={store.selected} onSelect={(selected) => store.setSelected(selected)} />
-  ))
-  .add('min max', () => (
+export const ComCaledar = () => (
+  <Calendar
+    selected={store.selected}
+    onSelect={(selected) => store.setSelected(selected)}
+  />
+)
+
+export const ComCalendarWithMinAndMax = () => (
+  <>
+    设置min, max
     <Calendar
       selected={store.selected}
       onSelect={(selected) => store.setSelected(selected)}
       min={moment().toDate()}
       max={moment().add(10, 'd').toDate()}
     />
-  ))
-  .add('custom disabledDate', () => (
+    设置disabledDate
     <Calendar
       selected={store.selected}
       onSelect={(selected) => store.setSelected(selected)}
@@ -42,11 +46,17 @@ storiesOf('Calendar', module)
         return moment(d).get('day') === 5
       }}
     />
-  ))
-  .add('RangeCalendar', () => (
-    <RangeCalendar
-      begin={rangeStore.begin}
-      end={rangeStore.end}
-      onSelect={(begin, end) => rangeStore.setSelected(begin, end)}
-    />
-  ))
+  </>
+)
+
+export const ComRangeCalendar = () => (
+  <RangeCalendar
+    begin={rangeStore.begin}
+    end={rangeStore.end}
+    onSelect={(begin, end) => rangeStore.setSelected(begin, end)}
+  />
+)
+
+export default {
+  title: '表单/Calendar',
+}

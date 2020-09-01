@@ -84,11 +84,11 @@ const Day: FC<DayProps> = ({
     'gm-calendar-day-now': nowStart === valueStart,
     // 键盘
     'gm-calendar-day-will': willStart === valueStart,
-    // 选中态
+    // 选中日期中间态
     active: isActive(),
     'gm-calendar-day-begin': beginStart === valueStart,
     'gm-calendar-day-end': endStart === valueStart,
-    // hover态
+    // hover日期中间态
     'gm-calendar-day-hover': isHover(),
     'gm-calendar-day-hover-end':
       ((begin && !end) || (!begin && end)) && hoverStart === valueStart,

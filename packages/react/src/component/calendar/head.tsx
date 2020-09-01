@@ -3,6 +3,7 @@ import moment, { Moment } from 'moment'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
+
 import { Flex } from '../flex'
 import SVGCalendarYear from '../../svg/calendar-year.svg'
 import SVGCalendarMonth from '../../svg/calendar-month.svg'
@@ -157,7 +158,10 @@ const Head: FC<HeadProps> = (props) => {
 
     // 正常展示年份
     return (
-      <span className='gm-calendar-head-text' onClick={() => handleSelectTypeChange('year')}>
+      <span
+        className='gm-calendar-head-text'
+        onClick={() => handleSelectTypeChange('year')}
+      >
         {value.year()}
         {getLocale('年')}
       </span>
@@ -168,7 +172,10 @@ const Head: FC<HeadProps> = (props) => {
     // 年月选择不需要展示月份
     return (
       !selectType && (
-        <span className='gm-calendar-head-text' onClick={() => handleSelectTypeChange('month')}>
+        <span
+          className='gm-calendar-head-text'
+          onClick={() => handleSelectTypeChange('month')}
+        >
           {months[value.month()]}
         </span>
       )
@@ -177,7 +184,7 @@ const Head: FC<HeadProps> = (props) => {
 
   return (
     <>
-      <Flex alignCenter className='gm-calendar-head gm-border-bottom clearfix'>
+      <Flex alignCenter className='gm-calendar-head gm-border-bottom'>
         <div>
           <span
             className={classNames('gm-calendar-head-icon', {

@@ -1,39 +1,12 @@
-import React, { useState, useEffect, CSSProperties, KeyboardEvent, FC } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import moment, { Moment } from 'moment'
 import classNames from 'classnames'
 import _ from 'lodash'
+
 import Week from './week'
 import Content from './content'
 import Head from './head'
-import { DisabledYearAndMonth } from './types'
-
-export interface RangeCalendarProps {
-  /* 开始日期 */
-  begin?: Date | null
-  /* 结束日期 */
-  end?: Date | null
-  /* 日期选中回调函数 */
-  onSelect?(begin: Date | null, end: Date | null): void
-  /* 键盘 和 日期显示的月份 */
-  willActiveSelected?: Date
-  onWillActiveSelected?(value: Date): void
-  /* 可选最小日期 */
-  min?: Date
-  /* 可选最大日期 */
-  max?: Date
-  /* 自定义日期可选，优先度大于max，min */
-  disabledDate?(date: Date, selected: { begin?: Date; end?: Date }): boolean
-  /* 禁用年 / 月 切换按钮，可以通过 onWillActiveSelected 变更此设置 */
-  disabledYearAndMonth?: DisabledYearAndMonth
-  className?: string
-  style?: CSSProperties
-  /* 当前鼠标hover日期 */
-  hoverDay?: Moment | null
-  /* 鼠标hover回调 */
-  onHoverDay?(value: Moment | null): void
-  /* 键盘用 */
-  onKeyDown?(event: KeyboardEvent<HTMLDivElement>): void
-}
+import { RangeCalendarProps } from './types'
 
 const RangeCalendar: FC<RangeCalendarProps> = (props) => {
   const {
@@ -74,6 +47,7 @@ const RangeCalendar: FC<RangeCalendarProps> = (props) => {
     if (!onSelect) {
       return
     }
+
     // 如果都有，则当做选 begin
     if (begin && end) {
       onSelect(m.toDate(), null)
@@ -93,7 +67,6 @@ const RangeCalendar: FC<RangeCalendarProps> = (props) => {
       // 如果相等，选中同一天
       if (+end === +m) {
         onSelect(m.toDate(), m.toDate())
-        // return
       }
 
       // 根据大小调整 begin end
@@ -136,12 +109,6 @@ const RangeCalendar: FC<RangeCalendarProps> = (props) => {
       />
     </div>
   )
-}
-
-RangeCalendar.defaultProps = {
-  onSelect: _.noop,
-  onWillActiveSelected: _.noop,
-  onKeyDown: _.noop,
 }
 
 export default RangeCalendar

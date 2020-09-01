@@ -31,7 +31,7 @@ const Content: FC<ContentProps> = (props) => {
 
   const group = _.groupBy(_.range(42), (v) => parseInt(`${v / 7}`))
 
-  const getDisabled = (m: Moment): boolean => {
+  const isDisabledDay = (m: Moment): boolean => {
     const { disabledDate } = props
     let min: Moment | null = null
     if (props.min) {
@@ -70,7 +70,7 @@ const Content: FC<ContentProps> = (props) => {
                 value={mm}
                 begin={begin}
                 end={end}
-                disabled={getDisabled(mm)}
+                disabled={isDisabledDay(mm)}
                 onClick={onSelect}
                 will={will}
                 hoverDay={hoverDay}
