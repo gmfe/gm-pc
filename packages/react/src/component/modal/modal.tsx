@@ -103,17 +103,28 @@ const Modal: FC<ModalProps> & ModalStatic = ({
   )
 }
 
+// 做warning用
+let closeFlag = false
+
 Modal.render = function (props: ModalProps): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
   const { onHide, ...rest } = props
+
   function handleHide(): void {
-    Modal.hide()
+    closeFlag = false
     onHide && onHide()
+    if (!closeFlag) {
+      console.warn('请在 onHide 里调用 Modal.hide。这次帮你hide')
+      Modal.hide()
+    }
   }
   LayoutRoot.setComponent(LayoutRoot.Type.MODAL, <Modal onHide={handleHide} {...rest} />)
 }
 
 Modal.hide = function (): void {
+  console.log('hide')
+  closeFlag = true
+
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
   LayoutRoot.removeComponent(LayoutRoot.Type.MODAL)
 }
