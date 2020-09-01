@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import Left from './left'
 import Right from './right'
-import PageNeedCount from './page_need_count'
+import PageWithCount from './page_with_count'
 import PageWithoutCount from './page_without_count'
 import { InnerPaging, PaginationProps } from './types'
 import { Flex } from '../flex'
@@ -17,7 +17,7 @@ const Pagination: FC<PaginationProps> = ({ paging, onChange }) => {
     <Flex wrap className='gm-pagination'>
       <Left paging={p} onChange={onChange} />
       {paging.need_count ? (
-        <PageNeedCount paging={p} onChange={onChange} />
+        <PageWithCount paging={p} onChange={onChange} />
       ) : (
         <PageWithoutCount paging={p} onChange={onChange} />
       )}

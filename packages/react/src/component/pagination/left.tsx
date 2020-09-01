@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Select } from '../select'
 import { Flex } from '../flex'
-import { CommonProps } from './types'
+import { InnerProps } from './types'
 
 const limitData = [
   { value: 10, text: '10' },
@@ -9,7 +9,7 @@ const limitData = [
   { value: 50, text: '50' },
 ]
 
-const Left: FC<CommonProps> = ({ paging, onChange }) => {
+const Left: FC<InnerProps> = ({ paging, onChange }) => {
   const { need_count, count, limit } = paging
 
   const handleChange = (limit: number) => {

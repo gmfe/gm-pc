@@ -3,18 +3,23 @@ import SVGLeftSmall from '../../svg/left-small.svg'
 import SVGRightSmall from '../../svg/right-small.svg'
 import { Flex } from '../flex'
 import classNames from 'classnames'
-import { CommonProps, InnerPaging } from './types'
+import { InnerProps, InnerPaging } from './types'
 import { getIndex } from './util'
 
 function getInfo(paging: InnerPaging) {
   const index = getIndex(paging)
-  const all = Math.ceil((paging.count || 0) / paging.limit)
 
+  // 一共多少页
+  const all = Math.ceil((paging.count || 0) / paging.limit)
+  // 要左右额外展示多少个页码，比如当前 index=5 diff=2,那么展示页码是 3 4 5 6 7
   const diff = 2
+  // 展示出来的页码数组
   let pages = []
 
+  // 开始页码
   let begin = Math.max(index - diff, 1)
 
+  // 结束页码
   let end = Math.min(index + diff, all)
 
   if (all > diff * 2 + 1) {
@@ -43,7 +48,7 @@ function getInfo(paging: InnerPaging) {
   }
 }
 
-const PageNeedCount: FC<CommonProps> = ({ paging, onChange }) => {
+const PageWithCount: FC<InnerProps> = ({ paging, onChange }) => {
   const { index, all, begin, end, pages } = getInfo(paging)
 
   const handlePage = (_index: number) => {
@@ -107,4 +112,4 @@ const PageNeedCount: FC<CommonProps> = ({ paging, onChange }) => {
   )
 }
 
-export default PageNeedCount
+export default PageWithCount

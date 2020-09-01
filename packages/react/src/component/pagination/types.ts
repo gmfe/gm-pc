@@ -8,8 +8,8 @@ interface InnerPaging {
   count?: number
 }
 
-interface CommonProps {
-  //
+// Pagination 内部传递的 props，paging 的 offset limit 都有
+interface InnerProps {
   paging: InnerPaging
   onChange(paging: Paging): void
 }
@@ -28,4 +28,4 @@ interface PaginationProps {
   onChange(paging: Paging): void
 }
 
-export type { CommonProps, PaginationProps, InnerPaging, Paging }
+export type { InnerProps, PaginationProps, InnerPaging, Paging }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, FC, KeyboardEvent } from 'react'
 import { InputNumber } from '../input_number'
 import { Flex } from '../flex'
-import { CommonProps } from './types'
+import { InnerProps } from './types'
 import { getIndex } from './util'
 
-const Right: FC<CommonProps> = ({ paging, onChange }) => {
+const Right: FC<InnerProps> = ({ paging, onChange }) => {
   const [index, setIndex] = useState<number>(getIndex(paging))
 
   // 响应外部的 index 变化
