@@ -40,5 +40,5 @@ export const ComDrawerWithSize = () => {
 }
 
 export default {
-  title: '其他/Drawer',
+  title: '反馈/Drawer',
 }
