@@ -1,26 +1,26 @@
 import { ReactNode, KeyboardEvent } from 'react'
 
-interface LevelSelectDataOptions<V> {
-  value: V
+type Value = any
+
+interface LevelSelectDataItem {
+  value: Value
   text: string
-  children?: LevelSelectDataOptions<V>[]
+  children?: LevelSelectDataItem[]
   disabled?: boolean
 }
 
-interface LevelSelectProps<V> {
+interface LevelSelectProps {
   titles?: string[]
-  data: LevelSelectDataOptions<V>[]
-  selected: V[]
-  onSelect(selected: V[]): void
+  data: LevelSelectDataItem[]
+  selected: Value[]
+  onSelect(selected: Value[]): void
   disabled?: boolean
-  renderSelected(selected: LevelSelectDataOptions<V>[]): ReactNode
-  /**
-   * @todo 只能选叶子节点
-   */
+  renderSelected(selected: LevelSelectDataItem[]): ReactNode
+  // @todo 只能选叶子节点
   onlySelectLeaf?: boolean
   popoverType: 'focus' | 'realFocus'
   right?: boolean
   onKeyDown?(event: KeyboardEvent): void
 }
 
-export type { LevelSelectDataOptions, LevelSelectProps }
+export type { Value, LevelSelectDataItem, LevelSelectProps }

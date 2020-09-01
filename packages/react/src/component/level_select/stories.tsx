@@ -1,5 +1,4 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
 import LevelSelect from './level_select'
 import { observable } from 'mobx'
 
@@ -49,19 +48,23 @@ const store = observable({
   },
 })
 
-storiesOf('LevelSelect', module)
-  .add('common', () => (
-    <LevelSelect
-      selected={store.selected}
-      data={data}
-      onSelect={(value) => store.changeSelect(value)}
-    />
-  ))
-  .add('right', () => (
-    <LevelSelect
-      selected={store.selected}
-      data={data}
-      onSelect={(value) => store.changeSelect(value)}
-      right
-    />
-  ))
+export const ComLevelSelect = () => (
+  <LevelSelect
+    selected={store.selected}
+    data={data}
+    onSelect={(value) => store.changeSelect(value)}
+  />
+)
+
+export const ComLevelSelectWithRight = () => (
+  <LevelSelect
+    selected={store.selected}
+    data={data}
+    onSelect={(value) => store.changeSelect(value)}
+    right
+  />
+)
+
+export default {
+  title: '表单/LevelSelect',
+}

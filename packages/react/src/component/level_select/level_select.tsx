@@ -1,5 +1,5 @@
 import React, { Component, createRef, ReactNode, KeyboardEvent } from 'react'
-import { LevelSelectDataOptions, LevelSelectProps } from './types'
+import { Value, LevelSelectDataItem, LevelSelectProps } from './types'
 import { Selection } from '../selection'
 import { Popover } from '../popover'
 import { Flex } from '../flex'
@@ -7,24 +7,24 @@ import { LevelList } from '../level_list'
 import { getLevel } from '../level_list/utils'
 import _ from 'lodash'
 
-interface LevelSelectState<V> {
-  willActiveSelected: V[]
+interface LevelSelectState {
+  willActiveSelected: Value[]
   search: string
 }
 
-class LevelSelect<V> extends Component<LevelSelectProps<V>, LevelSelectState<V>> {
+class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
   static defaultProps = {
-    renderSelected: (item: LevelSelectDataOptions<any>[]) => item.map((v) => v.text).join(','),
+    renderSelected: (item: LevelSelectDataItem[]) => item.map((v) => v.text).join(','),
     onKeyDown: _.noop,
     popoverType: 'focus',
   }
 
-  readonly state: LevelSelectState<V> = {
+  readonly state: LevelSelectState = {
     willActiveSelected: this.props.selected,
     search: '',
   }
 
-  private _selectionRef = createRef<Selection<V[]>>()
+  private _selectionRef = createRef<Selection>()
   private _popoverRef = createRef<Popover>()
 
   public apiDoFocus = (): void => {
@@ -37,13 +37,13 @@ class LevelSelect<V> extends Component<LevelSelectProps<V>, LevelSelectState<V>>
     onSelect(willActiveSelected)
   }
 
-  private _handleSelect = (selected: V[]): void => {
+  private _handleSelect = (selected: Value[]): void => {
     const { onSelect } = this.props
     this._popoverRef.current!.apiDoSetActive(false)
     onSelect(selected)
   }
 
-  private _handleWillActiveSelect = (willActiveSelected: V[]): void => {
+  private _handleWillActiveSelect = (willActiveSelected: Value[]): void => {
     this.setState({ willActiveSelected })
   }
 
@@ -76,9 +76,9 @@ class LevelSelect<V> extends Component<LevelSelectProps<V>, LevelSelectState<V>>
     return renderSelected(selectedItems)
   }
 
-  private _getSelectedItem = (): LevelSelectDataOptions<V>[] => {
+  private _getSelectedItem = (): LevelSelectDataItem[] => {
     const { data, selected } = this.props
-    const items: LevelSelectDataOptions<V>[] = []
+    const items: LevelSelectDataItem[] = []
     selected.forEach((value, index) => {
       const match = (index === 0 ? data : items[index - 1].children)!.find(
         (item) => item.value === value

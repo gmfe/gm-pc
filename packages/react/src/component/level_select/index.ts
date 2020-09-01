@@ -1,2 +1,2 @@
 export { default as LevelSelect } from './level_select'
-export * from './types'
+export type { LevelSelectProps, LevelSelectDataItem } from './types'
