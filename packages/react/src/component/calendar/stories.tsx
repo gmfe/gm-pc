@@ -31,14 +31,14 @@ export const ComCaledar = () => (
 
 export const ComCalendarWithMinAndMax = () => (
   <>
-    设置min, max
+    <div className='gm-margin-tb-10'>设置min, max</div>
     <Calendar
       selected={store.selected}
       onSelect={(selected) => store.setSelected(selected)}
       min={moment().toDate()}
       max={moment().add(10, 'd').toDate()}
     />
-    设置disabledDate
+    <div className='gm-margin-tb-10'>设置disabledDate</div>
     <Calendar
       selected={store.selected}
       onSelect={(selected) => store.setSelected(selected)}

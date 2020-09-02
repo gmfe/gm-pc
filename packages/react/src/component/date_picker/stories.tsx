@@ -22,13 +22,13 @@ const addTimeStore = observable(datepickerStatus)
 export const ComDatePicker = () => {
   return (
     <>
-      normal
+      <div className='gm-margin-tb-10'>normal</div>
       <DatePicker
         date={commonStore.date}
         placeholder='请选择日期'
         onChange={(date) => commonStore.setDate(date)}
       />
-      自定义日期展示形式
+      <div className='gm-margin-tb-10'>自定义日期展示形式</div>
       <DatePicker
         date={inputValueRenderStore.date}
         placeholder='请选择日期'
@@ -42,14 +42,14 @@ export const ComDatePicker = () => {
 export const ComDatePickerWithDisabled = () => {
   return (
     <>
-      禁止点击选择
+      <div className='gm-margin-tb-10'>禁止点击选择</div>
       <DatePicker
         date={disabledStore1.date}
         placeholder='请选择日期'
         disabled
         onChange={(date) => disabledStore1.setDate(date)}
       />
-      自定义禁止选择的日期段
+      <div className='gm-margin-tb-10'>自定义禁止选择的日期段</div>
       <div>
         <div className='gm-text-20 gm-margin-10'>只能选择非周五的日期</div>
         <DatePicker
@@ -74,7 +74,7 @@ export const ComDatePickerWithDisabled = () => {
 
 export const ComDatePickerWithCustomChildren = () => (
   <>
-    自定义children
+    <div className='gm-margin-tb-10'>自定义children</div>
     <DatePicker
       date={withNoInputStatus.date}
       onChange={(date) => withNoInputStatus.setDate(date)}
@@ -90,7 +90,7 @@ export const ComDatePickerWithCustomChildren = () => (
 
 export const ComDatePickerWithTimeSelect = () => (
   <>
-    增加时间选择
+    <div className='gm-margin-tb-10'>增加时间选择</div>
     <DatePicker
       date={addTimeStore.date}
       placeholder='请选择日期'
