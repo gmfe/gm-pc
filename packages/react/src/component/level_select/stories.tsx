@@ -49,20 +49,24 @@ const store = observable({
 })
 
 export const ComLevelSelect = () => (
-  <LevelSelect
-    selected={store.selected}
-    data={data}
-    onSelect={(value) => store.changeSelect(value)}
-  />
+  <div style={{ width: '200px' }}>
+    <LevelSelect
+      selected={store.selected}
+      data={data}
+      onSelect={(value) => store.changeSelect(value)}
+    />
+  </div>
 )
 
 export const ComLevelSelectWithRight = () => (
-  <LevelSelect
-    selected={store.selected}
-    data={data}
-    onSelect={(value) => store.changeSelect(value)}
-    right
-  />
+  <div style={{ width: '200px' }}>
+    <LevelSelect
+      selected={store.selected}
+      data={data}
+      onSelect={(value) => store.changeSelect(value)}
+      right
+    />
+  </div>
 )
 
 export default {

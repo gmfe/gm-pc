@@ -1,13 +1,13 @@
 import React, { Component, createRef } from 'react'
 import _ from 'lodash'
-import { MoreSelectBaseDataOptions, MoreSelectNormalDataOptions, MoreSelectProps } from './types'
+import { MoreSelectDataItem, MoreSelectGroupDataItem, MoreSelectProps } from './types'
 import MoreSelectBase from './base'
 
-class MoreSelect<T> extends Component<MoreSelectProps<T>> {
+class MoreSelect<T> extends Component<MoreSelectProps> {
   static defaultProps = {
-    renderSelected: (item: MoreSelectNormalDataOptions<any>) => item.text,
+    renderSelected: (item: MoreSelectDataItem) => item.text,
     delay: 500,
-    renderListItem: (item: MoreSelectNormalDataOptions<any>) => item.text,
+    renderListItem: (item: MoreSelectDataItem) => item.text,
     listHeight: '180px',
     renderListFilterType: 'default',
     popoverType: 'focus',
@@ -24,7 +24,7 @@ class MoreSelect<T> extends Component<MoreSelectProps<T>> {
     this._moreSelectBaseRef.current!.apiDoSelectWillActive()
   }
 
-  private _handleSelect = (selected: MoreSelectNormalDataOptions<T>[]): void => {
+  private _handleSelect = (selected: MoreSelectDataItem[]): void => {
     const { onSelect, multiple } = this.props
     if (multiple) {
       onSelect(selected)
@@ -35,22 +35,22 @@ class MoreSelect<T> extends Component<MoreSelectProps<T>> {
 
   render() {
     const { data, selected, multiple, isGroupList, ...rest } = this.props
-    let oData: MoreSelectBaseDataOptions<T>[]
+    let oData: MoreSelectGroupDataItem[]
     if (isGroupList) {
-      oData = data as MoreSelectBaseDataOptions<T>[]
+      oData = data as MoreSelectGroupDataItem[]
     } else {
       oData = [
         {
           label: '',
-          children: data as MoreSelectNormalDataOptions<T>[],
+          children: data as MoreSelectDataItem[],
         },
       ]
     }
-    let oSelected: MoreSelectNormalDataOptions<T>[]
+    let oSelected: MoreSelectDataItem[]
     if (multiple) {
-      oSelected = selected as MoreSelectNormalDataOptions<T>[]
+      oSelected = selected as MoreSelectDataItem[]
     } else {
-      oSelected = selected ? [selected as MoreSelectNormalDataOptions<T>] : []
+      oSelected = selected ? [selected as MoreSelectDataItem] : []
     }
     return (
       <MoreSelectBase

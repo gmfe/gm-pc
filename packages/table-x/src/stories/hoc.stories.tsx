@@ -8,7 +8,7 @@ import {
   Input,
   InputNumber,
   MoreSelect,
-  MoreSelectNormalDataOptions,
+  MoreSelectDataItem,
 } from '@gm-pc/react'
 import { columns, initialData, InitialDataOptions } from './default.stories'
 import {
@@ -29,7 +29,7 @@ const SortableTableX = sortableTableXHOC<InitialDataOptions>(TableX)
 const EditTableX = editTableXHOC<InitialDataOptions>(TableX)
 const DiyTableX = diyTableXHOC<InitialDataOptions>(TableX)
 
-const selectData: MoreSelectNormalDataOptions<number>[] = [
+const selectData: MoreSelectDataItem<number>[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '罗湖' },
@@ -116,8 +116,8 @@ const editColumns: TableXColumn<InitialDataOptions>[] = [
       row: {
         original: {
           address:
-            | MoreSelectNormalDataOptions<number>
-            | MoreSelectNormalDataOptions<number>[]
+            | MoreSelectDataItem<number>
+            | MoreSelectDataItem<number>[]
         }
       }
     }) => (

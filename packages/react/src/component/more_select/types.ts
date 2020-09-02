@@ -1,81 +1,88 @@
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
 
+type Value = any
+
 /* 普通的数据格式 */
-interface MoreSelectNormalDataOptions<T> {
-  value: T
+interface MoreSelectDataItem {
+  value: Value
   text: string
   disabled?: boolean
   [key: string]: any
 }
 
 /* 分组的数据格式 */
-interface MoreSelectGroupDataOptions<T> {
-  label: ReactNode
-  children: MoreSelectNormalDataOptions<T>[]
+interface MoreSelectGroupDataItem {
+  label: string
+  children: MoreSelectDataItem[]
 }
 
-type MoreSelectDataOptions<T> =
-  | MoreSelectNormalDataOptions<T>
-  | MoreSelectGroupDataOptions<T>
-
-/* 换个皮给 MoreSelectBase 用 */
-type MoreSelectBaseDataOptions<T> = MoreSelectGroupDataOptions<T>
-
-interface MoreSelectCommonProps<T> {
+interface MoreSelectCommonProps {
   multiple?: boolean
+
   disabled?: boolean
-  /* 单选禁止显示关闭按钮 */
+  /** 单选禁止显示关闭按钮 */
   disabledClose?: boolean
-  /* 搜索回调 */
-  onSearch?(
-    searchWord: string,
-    data: MoreSelectBaseDataOptions<T>[]
-  ): Promise<void> | void
+
   delay?: number
   searchPlaceholder?: string
-  /* 自定义搜索过滤展示的数据 */
-  renderListFilter?(
-    data: MoreSelectBaseDataOptions<T>[],
-    searchValue: string
-  ): MoreSelectBaseDataOptions<T>[]
-  /* 过滤方式 */
+
+  /** 过滤方式 */
   renderListFilterType?: 'default' | 'pinyin'
+
   placeholder?: string
-  /* 自定义渲染已选择项 */
-  renderSelected?(selected: MoreSelectNormalDataOptions<T>): ReactNode
-  /* 自定义渲染列表项 */
-  renderListItem?(value: MoreSelectNormalDataOptions<T>, index: number): ReactNode
+
+  /** 自定义渲染已选择项 */
+  renderSelected?(selected: MoreSelectDataItem): ReactNode
+  /** 自定义渲染列表项 */
+  renderListItem?(value: MoreSelectDataItem, index: number): ReactNode
+
   listHeight?: string
   isGroupList?: boolean
   popoverType?: 'focus' | 'realFocus'
+
+  isInPopup?: boolean
+
+  popupClassName?: string
+
   className?: string
   style?: CSSProperties
-  popupClassName?: string
-  isInPopup?: boolean
+
+  /** 目前为了 keyboard */
   isKeyboard?: boolean
   onKeyDown?(event: KeyboardEvent): void
 }
 
-interface MoreSelectBaseProps<T> extends MoreSelectCommonProps<T> {
-  data: MoreSelectBaseDataOptions<T>[]
-  selected: MoreSelectNormalDataOptions<T>[]
-  onSelect(selected: MoreSelectNormalDataOptions<T>[]): void
+interface MoreSelectBaseProps extends MoreSelectCommonProps {
+  data: MoreSelectGroupDataItem[]
+  selected: MoreSelectDataItem[]
+  onSelect(selected: MoreSelectDataItem[]): void
+
+  /** 搜索回调 */
+  onSearch?(searchWord: string, data: MoreSelectGroupDataItem[]): Promise<void> | void
+
+  /** 自定义搜索过滤展示的数据 */
+  renderListFilter?(
+    data: MoreSelectGroupDataItem[],
+    searchValue: string
+  ): MoreSelectGroupDataItem[]
 }
 
-interface MoreSelectProps<T> extends MoreSelectCommonProps<T> {
-  data: MoreSelectDataOptions<T>[]
-  selected: MoreSelectNormalDataOptions<T> | MoreSelectNormalDataOptions<T>[] | null
-  onSelect(
-    selected: MoreSelectNormalDataOptions<T> | MoreSelectNormalDataOptions<T>[]
-  ): void
+interface MoreSelectProps extends MoreSelectCommonProps {
+  data: MoreSelectDataItem[] | MoreSelectGroupDataItem[]
+  selected?: MoreSelectDataItem[] | MoreSelectDataItem
+  onSelect(selected?: MoreSelectDataItem[] | MoreSelectDataItem): void
+
+  /** 搜索回调 */
+  onSearch?(searchWord: string, data: MoreSelectDataItem[]): Promise<void> | void
+
+  /** 自定义搜索过滤展示的数据 */
+  renderListFilter?(data: MoreSelectDataItem[], searchValue: string): MoreSelectDataItem[]
 }
 
 export type {
-  MoreSelectBaseDataOptions,
-  MoreSelectGroupDataOptions,
-  MoreSelectNormalDataOptions,
-  MoreSelectDataOptions,
+  Value,
+  MoreSelectGroupDataItem,
+  MoreSelectDataItem,
   MoreSelectBaseProps,
-  MoreSelectCommonProps,
   MoreSelectProps,
 }

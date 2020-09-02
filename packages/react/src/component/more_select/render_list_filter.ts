@@ -1,11 +1,11 @@
 import { pinYinFilter } from '@gm-common/tool'
-import { MoreSelectBaseDataOptions, MoreSelectNormalDataOptions } from './types'
+import { MoreSelectGroupDataItem, MoreSelectDataItem } from './types'
 
-function renderListFilterDefault<T>(
-  data: MoreSelectBaseDataOptions<T>[],
+function renderListFilterDefault(
+  data: MoreSelectGroupDataItem[],
   query: string
-): MoreSelectBaseDataOptions<T>[] {
-  const result: MoreSelectBaseDataOptions<T>[] = []
+): MoreSelectGroupDataItem[] {
+  const result: MoreSelectGroupDataItem[] = []
   data.forEach((item) => {
     const list = item.children.filter((child) => child.text.includes(query))
     if (list.length) {
@@ -15,21 +15,17 @@ function renderListFilterDefault<T>(
   return result
 }
 
-function renderListFilterPinYin<T>(
-  data: MoreSelectBaseDataOptions<T>[],
+function renderListFilterPinYin(
+  data: MoreSelectGroupDataItem[],
   query: string
-): MoreSelectBaseDataOptions<T>[] {
-  const result: MoreSelectBaseDataOptions<T>[] = []
+): MoreSelectGroupDataItem[] {
+  const result: MoreSelectGroupDataItem[] = []
   data.forEach((item) => {
-    const list = pinYinFilter(
-      item.children,
-      query,
-      (v) => (v as MoreSelectNormalDataOptions<T>).text
-    )
+    const list = pinYinFilter(item.children, query, (v) => (v as MoreSelectDataItem).text)
     if (list.length) {
       result.push({
         ...item,
-        children: list as MoreSelectNormalDataOptions<T>[],
+        children: list as MoreSelectDataItem[],
       })
     }
   })

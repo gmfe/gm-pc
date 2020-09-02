@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react'
 import { storiesOf } from '@storybook/react'
-import { MoreSelectNormalDataOptions } from '@gm-pc/react'
+import { MoreSelectDataItem } from '@gm-pc/react'
 import _ from 'lodash'
 import { action, observable } from 'mobx'
 import {
@@ -31,14 +31,14 @@ const SelectKeyboardTableX = selectTableXHOC<
 
 export interface InitialDataOptions {
   id: number
-  position: MoreSelectNormalDataOptions<number> | null
+  position: MoreSelectDataItem<number> | null
   name: string
   age: number | null
   date: Date | null
   status: number | null
 }
 
-export const selectData: MoreSelectNormalDataOptions<number>[] = [
+export const selectData: MoreSelectDataItem<number>[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '宝安' },
@@ -133,7 +133,7 @@ const Wrap: FC = observer(() => {
         isKeyboard: true,
         Cell: (cellProps: {
           row: {
-            original: { position: MoreSelectNormalDataOptions<number> }
+            original: { position: MoreSelectDataItem<number> }
             index: number
           }
         }) => {
@@ -145,7 +145,7 @@ const Wrap: FC = observer(() => {
             <KCMoreSelect<number>
               data={selectData}
               selected={position}
-              onSelect={(selected: MoreSelectNormalDataOptions<number>) => {
+              onSelect={(selected: MoreSelectDataItem<number>) => {
                 store.handleSetDataItem(index, { position: selected })
               }}
             />

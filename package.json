@@ -69,7 +69,7 @@
     "lint-staged": "^10.2.11",
     "lodash": "^4.17.20",
     "mobx": "^5.15.6",
-    "mobx-react": "^6.2.5",
+    "mobx-react": "^6.3.0",
     "moment": "^2.27.0",
     "path": "^0.12.7",
     "prettier": "^2.0.4",
