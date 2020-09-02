@@ -1,15 +1,15 @@
 import React, {
-  CSSProperties,
   ReactNode,
   KeyboardEvent,
   Component,
   createRef,
+  CSSProperties,
 } from 'react'
 import classNames from 'classnames'
 import moment from 'moment'
 import _ from 'lodash'
 
-import { Popover } from '../popover'
+import { Popover, PopoverTrigger } from '../popover'
 import { Selection } from '../selection'
 import { TimeLimit } from './types'
 import SVGCalendar from '../../svg/calendar.svg'
@@ -19,7 +19,7 @@ interface DatePickerState {
   willActiveSelected: Date | null
 }
 
-interface DatePickerProps {
+export interface DatePickerProps {
   /* 选择的日期 */
   date?: Date | null
   /* 选择日期的回调函数 */
@@ -43,6 +43,8 @@ interface DatePickerProps {
   enabledTimeSelect?: boolean
   /* 时间选择限制 */
   timeLimit?: TimeLimit
+  /* 目前内部用，触发方式 */
+  popoverType?: PopoverTrigger
 }
 
 class DatePicker extends Component<DatePickerProps, DatePickerState> {
@@ -89,9 +91,11 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
       onKeyDown && onKeyDown(event)
       return
     }
+
     const { date } = this.props
     const { willActiveSelected } = this.state
     let will = moment(willActiveSelected ?? date ?? undefined)
+
     if (event.key === 'ArrowUp') {
       will = will.subtract(1, 'days')
     } else if (event.key === 'ArrowDown') {
@@ -132,6 +136,7 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
       onKeyDown,
       timeLimit,
       enabledTimeSelect,
+      popoverType,
       children,
       ...rest
     } = this.props
@@ -153,7 +158,7 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
         popup={popup}
         ref={this._popoverRef}
         disabled={disabled}
-        type='focus'
+        type={popoverType}
         style={{ minWidth: '200px' }}
       >
         {children ?? (

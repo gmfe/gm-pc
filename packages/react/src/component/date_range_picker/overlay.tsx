@@ -90,10 +90,10 @@ const Overlay: FC<OverlayProps> = ({
       }
       return cells[index].toDate()
     }
-    return undefined // 原代码没有，转成ts后加上
+
+    return cells[0].toDate()
   }
 
-  // 第三个字段没有找到传入的地方
   const handleSelect = (begin: Date, end: Date, updateEndTime?: boolean): void => {
     let b = begin
     let e = end
@@ -148,7 +148,6 @@ const Overlay: FC<OverlayProps> = ({
             min={min}
             max={max}
             disabledDate={disabledDate}
-            enabledTimeSelect={enabledTimeSelect}
           />
           <TimeRangeSelect
             begin={_begin}

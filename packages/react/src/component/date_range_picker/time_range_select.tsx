@@ -10,11 +10,6 @@ interface TimeRangeSelectProps {
   begin?: Date | null
   end?: Date | null
   enabledTimeSelect?: boolean
-  /**
-   * 组件代码没有找到这个方法使用的地方
-   * @deprecated
-   */
-  onSelectDateAndTime?(): void
   onSelect?(begin: Date | null, end: Date, updateEndTime: boolean): void
   renderTime?(date: Date): ReactNode
   timeSpan?: number

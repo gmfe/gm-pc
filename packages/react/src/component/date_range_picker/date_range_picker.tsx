@@ -2,11 +2,12 @@ import React, { Component, createRef, ReactNode } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import moment from 'moment'
+import { getLocale } from '@gm-pc/locales'
+
 import { DateRangePickerProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
 import SVGCalendar from '../../svg/calendar.svg'
-import { getLocale } from '@gm-pc/locales'
 import { renderTime } from './util'
 import Overlay from './overlay'
 
@@ -19,7 +20,7 @@ class DateRangePicker extends Component<DateRangePickerProps> {
   }
 
   private _popoverRef = createRef<Popover>()
-  private _selectionRef = createRef<Selection<{ begin: Date; end: Date }>>()
+  private _selectionRef = createRef<Selection>()
 
   public apiDoFocus = (): void => {
     this._selectionRef.current!.apiDoFocus()

@@ -14,15 +14,7 @@ interface TwoProps {
   enabledTimeSelect?: boolean
 }
 
-const Two: FC<TwoProps> = ({
-  begin,
-  end,
-  onSelect,
-  min,
-  max,
-  disabledDate,
-  enabledTimeSelect,
-}) => {
+const Two: FC<TwoProps> = ({ begin, end, onSelect, min, max, disabledDate }) => {
   const _will = begin ?? moment().toDate()
   // eslint-disable-next-line camelcase
   let _will_end: Date
@@ -47,26 +39,20 @@ const Two: FC<TwoProps> = ({
 
   // 可以选择时间时，针对快速选择日期想需要更新日历
   useEffect(() => {
-    const beginMonth = moment(begin ?? undefined).month()
-    const endMonth = moment(end ?? undefined).month()
-
-    if (enabledTimeSelect && begin && end) {
-      // begin && end 同月份
-      if (beginMonth === endMonth) {
-        const willMonth = moment(will).month()
-        const willEndMonth = moment(will_end).month()
-        // 当前选择月份不在展示中 -- 针对快速选择
-        if (beginMonth !== willMonth && beginMonth !== willEndMonth) {
-          setWill(begin)
-          setWillEnd(moment(begin).add(1, 'month').toDate)
-        }
+    if (begin && end) {
+      let _end: Date
+      if (begin && end) {
+        const isSameMonth = moment(begin).month() === moment(end).month()
+        // eslint-disable-next-line camelcase
+        _end = isSameMonth ? moment(begin).add(1, 'month').toDate() : end
       } else {
-        setWill(begin)
-        setWillEnd(end)
+        // eslint-disable-next-line camelcase
+        _end = moment().add(1, 'month').toDate()
       }
+      setWill(begin)
+      setWillEnd(_end)
     }
-    // eslint-disable-next-line camelcase
-  }, [begin, end, enabledTimeSelect, will, will_end])
+  }, [begin, end])
 
   const handleWillChange = (date: Date): void => {
     setWill(date)
@@ -113,7 +99,7 @@ const Two: FC<TwoProps> = ({
         disabledDate={disabledDate}
         disabledYearAndMonth={disabledYearOrMonth() ? 'left' : undefined}
         hoverDay={isNull(hoverDay) ? hoverDay : moment(hoverDay)}
-        onHoverDay={(moment) => setHoverDay(moment ? moment.toDate() : moment)}
+        onHoverDay={(m) => setHoverDay(m ? moment(m).toDate() : m)}
       />
     </Flex>
   )

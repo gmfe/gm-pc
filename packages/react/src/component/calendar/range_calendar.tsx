@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useState, FC, useEffect } from 'react'
 import moment, { Moment } from 'moment'
 import classNames from 'classnames'
 import _ from 'lodash'
@@ -29,7 +29,7 @@ const RangeCalendar: FC<RangeCalendarProps> = (props) => {
     ...rest
   } = props
 
-  // 如果 willActiveSelected 就取 begin，否则当前
+  // 取值优先 willActiveSelected > begin > 当前
   const _will = willActiveSelected
     ? moment(willActiveSelected)
     : begin
@@ -40,8 +40,15 @@ const RangeCalendar: FC<RangeCalendarProps> = (props) => {
   const [will, setWill] = useState(_will)
   // 响应 willActiveSelected 的变化，重新设置 will
   useEffect(() => {
-    setWill(_will)
-  }, [willActiveSelected])
+    const new_will = willActiveSelected
+      ? moment(willActiveSelected)
+      : begin
+      ? moment(begin)
+      : moment()
+    if (willActiveSelected) {
+      setWill(new_will)
+    }
+  }, [willActiveSelected, begin])
 
   const handleSelectDay = (m: Moment): void => {
     if (!onSelect) {
