@@ -116,4 +116,4 @@ const Breadcrumb: FC<BreadcrumbProps> = ({
 }
 
 export default Breadcrumb
-export type { BreadcrumbProps }
+export type { BreadcrumbProps, BreadCrumbsOptions }
