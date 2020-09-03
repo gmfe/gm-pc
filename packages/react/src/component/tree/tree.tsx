@@ -165,7 +165,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
   return (
     <Flex {...rest} column className={classNames('gm-tree-v2', className)}>
       {title && (
-        <div className='gm-padding-5 gm-back-bg text-center gm-border-bottom'>
+        <div className='gm-padding-5 gm-back-bg gm-text-center gm-border-bottom'>
           {title}
         </div>
       )}
@@ -187,9 +187,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
             onChange={handleFindQuery}
             value={findQuery}
           />
-          <Button onClick={handleNext}>
-            {getLocale('定位')}
-          </Button>
+          <Button onClick={handleNext}>{getLocale('定位')}</Button>
         </Flex>
       )}
       <div className='gm-flex-flex' ref={refList}>

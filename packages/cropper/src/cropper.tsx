@@ -70,7 +70,7 @@ const Cropper: FC<CropperProps> & CropperStatic = ({
         </div>
         <div>
           <div ref={imgPreviewRef} className='gm-cropper-preview' />
-          <div className='gm-text-desc text-center gm-margin-top-10'>
+          <div className='gm-text-desc gm-text-center gm-margin-top-10'>
             {getLocale('预览')}
           </div>
         </div>

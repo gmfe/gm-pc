@@ -108,7 +108,7 @@ const FormGroup: FC<FormGroupProps> = ({
       <StyledAffix bottom={0}>
         <div
           className={classNames(
-            'gm-padding-tb-5 gm-margin-top-20 text-center', // 统一padding,margin样式，保证affix切换时正常切换
+            'gm-padding-tb-5 gm-margin-top-20 gm-text-center', // 统一padding,margin样式，保证affix切换时正常切换
             {
               'gm-form-group-sticky-box': affix, // 仅处理粘底样式
             }
