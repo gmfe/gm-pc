@@ -7,12 +7,12 @@ import { pinYinFilter } from '@gm-common/tool'
 import SVGCloseCircle from '../../svg/close-circle.svg'
 import classNames from 'classnames'
 
-interface dataOptions {
+interface DataItem {
   text: string
 }
 
 export interface RecommendInputProps {
-  data: dataOptions[]
+  data: DataItem[]
   onChange(value: string): void
   value: string
   disabled?: boolean
@@ -34,7 +34,7 @@ const RecommendInput: FC<RecommendInputProps> = ({
 
   // 构造list需要的数据结构
   const _data = useMemo(() => {
-    return _.map(data, (item: dataOptions) => {
+    return _.map(data, (item: DataItem) => {
       return {
         ...item,
         value: item.text,
@@ -43,7 +43,7 @@ const RecommendInput: FC<RecommendInputProps> = ({
   }, [data])
 
   const searchData = useMemo(() => {
-    return pinYinFilter(_data, value, (item: dataOptions) => item.text)
+    return pinYinFilter(_data, value, (item: DataItem) => item.text)
   }, [value, _data])
 
   const handleChange = (event: FocusEvent<HTMLInputElement>) => {
@@ -68,23 +68,22 @@ const RecommendInput: FC<RecommendInputProps> = ({
       type='realFocus'
       popup={
         searchData.length > 0 ? (
-          <List data={searchData} onSelect={handleSelect} style={{ height: listHeight }} />) : (
-                 <></> // 需要element
+          <List
+            data={searchData}
+            onSelect={handleSelect}
+            style={{ height: listHeight }}
+          />
+        ) : (
+          <></> // 需要element
         )
       }
       disabled={disabled}
     >
       <div
         {...rest}
-        className={classNames('gm-recommend-input', className, { disabled: disabled })}
+        className={classNames('gm-recommend-input', className, { disabled })}
       >
-        <Input
-          value={value}
-          onChange={handleChange}
-          type='text'
-          disabled={disabled}
-          className='form-control'
-        />
+        <Input value={value} onChange={handleChange} type='text' disabled={disabled} />
         <SVGCloseCircle
           onClick={disabled ? _.noop : handleClear}
           className='gm-cursor gm-recommend-input-clear-btn'

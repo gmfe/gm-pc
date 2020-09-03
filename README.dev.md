@@ -20,9 +20,5 @@ todo frame
 - [ ] framework todo useEventListener
 
 其他
-
-- [ ] export default
-- [ ] docgen
-
 todo price
 price 单独

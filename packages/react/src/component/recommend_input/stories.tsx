@@ -1,6 +1,5 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import RecommendInput  from './recommend_input'
+import RecommendInput from './recommend_input'
 import { observable } from 'mobx'
 
 const store = observable({
@@ -15,7 +14,7 @@ const store = observable({
     { text: '神厨小富贵' },
     { text: '虹猫蓝兔七侠传' },
     { text: '蓝猫淘气三千问' },
-    { text: '四驱兄弟' }
+    { text: '四驱兄弟' },
   ],
   value: '',
   setValue(value: string) {
@@ -23,24 +22,26 @@ const store = observable({
   },
 })
 
-storiesOf('RecommendInput', module)
-  .add('default', () => {
-    return (
+export const ComRecommendInput = () => {
+  return (
+    <div style={{ width: '200px' }}>
       <RecommendInput
         data={store.data}
         value={store.value}
-        onChange={value => store.setValue(value)}
+        onChange={(value) => store.setValue(value)}
         placeholder='请输入'
       />
-    )
-  })
-  .add('disabled', () => {
-    return (
+      <div>disabled</div>
       <RecommendInput
         data={store.data}
         value={store.value}
-        onChange={value => store.setValue(value)}
+        onChange={(value) => store.setValue(value)}
         disabled
       />
-    )
-  })
+    </div>
+  )
+}
+
+export default {
+  title: '表单/RecommendInput',
+}

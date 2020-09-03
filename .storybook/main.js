@@ -116,7 +116,7 @@ module.exports = {
   // 写清晰一点，否则容易碰到 node_modules 里的 stories
   stories: [
     // '../packages/business/src/**/*stories.tsx',
-    // '../packages/cropper/src/**/*stories.tsx',
+    '../packages/cropper/src/**/*stories.tsx',
     '../packages/frame/src/**/*stories.tsx',
     // '../packages/keyboard/src/**/*stories.tsx',
     // '../packages/locales/src/**/*stories.js',
