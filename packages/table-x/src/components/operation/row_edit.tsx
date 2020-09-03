@@ -34,7 +34,7 @@ const OperationRowEdit: FC<OperationRowEditProps> = ({
     onCancel && onCancel()
   }
 
-  return !isEditing ? (
+  return isEditing ? (
     <OperationCell>
       <Button type='link' onClick={handleSave}>
         {getLocale('保存')}
