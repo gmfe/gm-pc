@@ -4,20 +4,20 @@ import { observable } from 'mobx'
 
 import DatePicker from './date_picker'
 
-const datepickerStatus = {
+const datePickerStatus = {
   date: null,
   setDate(date: Date | null) {
     this.date = date as any
   },
 }
 
-const commonStore = observable(datepickerStatus)
-const inputValueRenderStore = observable(datepickerStatus)
-const disabledStore1 = observable(datepickerStatus)
-const disabledStore2 = observable(datepickerStatus)
-const disabledStore3 = observable(datepickerStatus)
-const withNoInputStatus = observable(datepickerStatus)
-const addTimeStore = observable(datepickerStatus)
+const commonStore = observable(datePickerStatus)
+const inputValueRenderStore = observable(datePickerStatus)
+const disabledStore1 = observable(datePickerStatus)
+const disabledStore2 = observable(datePickerStatus)
+const disabledStore3 = observable(datePickerStatus)
+const withNoInputStatus = observable(datePickerStatus)
+const addTimeStore = observable(datePickerStatus)
 
 export const ComDatePicker = () => {
   return (

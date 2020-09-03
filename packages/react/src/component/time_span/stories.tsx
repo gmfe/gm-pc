@@ -44,20 +44,21 @@ export const ComTimeSpanPickerWithSpan = () => (
   />
 )
 
-export const ComTimeSpanPickerWithChildren = () => (
-  <TimeSpanPicker date={store.date} onChange={(date) => store.setDate(date)}>
-    <span>{store.date ? moment(store.date).format('HH:mm') : '请点击选择'}</span>
-  </TimeSpanPicker>
-)
-
-export const ComTimeSpanPickerWithCustomTime = () => (
-  <TimeSpanPicker
-    date={store.customDate}
-    beginTime={moment().hour(8).minute(30).toDate()}
-    endTime={moment().hour(22).minute(30).toDate()}
-    span={60 * 60 * 1000}
-    onChange={(date) => store.setCustomDate(date)}
-  />
+export const ComTimeSpanPickerWithCustom = () => (
+  <>
+    <div className='gm-margin-tb-10'>自定义children</div>
+    <TimeSpanPicker date={store.date} onChange={(date) => store.setDate(date)}>
+      <span>{store.date ? moment(store.date).format('HH:mm') : '请点击选择'}</span>
+    </TimeSpanPicker>
+    <div className='gm-margin-tb-10'>自定义开始时间跟结束时间</div>
+    <TimeSpanPicker
+      date={store.customDate}
+      beginTime={moment().hour(8).minute(30).toDate()}
+      endTime={moment().hour(22).minute(30).toDate()}
+      span={60 * 60 * 1000}
+      onChange={(date) => store.setCustomDate(date)}
+    />
+  </>
 )
 
 export default {

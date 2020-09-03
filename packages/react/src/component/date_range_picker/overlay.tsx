@@ -5,8 +5,9 @@ import { TimeLimit } from '../date_picker/types'
 import { Flex } from '../flex'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
+
 import Left from './left'
-import { getTimeCells, setTimes } from './util'
+import { getTimeCells, setTimes } from '../../common/util'
 import Two from './two'
 import TimeRangeSelect from './time_range_select'
 

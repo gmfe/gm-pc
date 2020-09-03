@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import moment from 'moment'
 import { QuickSelectListOptions } from './types'
 import { getLocale } from '@gm-pc/locales'
-import { setTimes } from './util'
+import { setTimes } from '../../common/util'
 
 const defaultQuickList: QuickSelectListOptions[] = [
   {
