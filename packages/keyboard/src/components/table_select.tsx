@@ -6,9 +6,9 @@ import KeyboardCell from './cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { WrapDataOptions } from '../types'
 
-function KCTableSelect<V>({ disabled, onKeyDown, ...rest }: TableSelectProps<V>) {
+function KCTableSelect({ disabled, onKeyDown, ...rest }: TableSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<MoreSelect<V>>(null)
+  const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()
 
   const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
@@ -16,6 +16,7 @@ function KCTableSelect<V>({ disabled, onKeyDown, ...rest }: TableSelectProps<V>)
   }
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
@@ -30,12 +31,15 @@ function KCTableSelect<V>({ disabled, onKeyDown, ...rest }: TableSelectProps<V>)
       event.key === 'ArrowRight'
     ) {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

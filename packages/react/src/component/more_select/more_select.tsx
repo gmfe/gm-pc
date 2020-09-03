@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { MoreSelectDataItem, MoreSelectGroupDataItem, MoreSelectProps } from './types'
 import MoreSelectBase from './base'
 
-class MoreSelect<T> extends Component<MoreSelectProps> {
+class MoreSelect extends Component<MoreSelectProps> {
   static defaultProps = {
     renderSelected: (item: MoreSelectDataItem) => item.text,
     delay: 500,
@@ -14,7 +14,7 @@ class MoreSelect<T> extends Component<MoreSelectProps> {
     onKeyDown: _.noop,
   }
 
-  private _moreSelectBaseRef = createRef<MoreSelectBase<T>>()
+  private _moreSelectBaseRef = createRef<MoreSelectBase>()
 
   public apiDoFocus = (): void => {
     this._moreSelectBaseRef.current!.apiDoFocus()
@@ -52,6 +52,7 @@ class MoreSelect<T> extends Component<MoreSelectProps> {
     } else {
       oSelected = selected ? [selected as MoreSelectDataItem] : []
     }
+
     return (
       <MoreSelectBase
         {...rest}

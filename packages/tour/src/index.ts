@@ -1,2 +1,2 @@
 export { default as Tour } from './tour'
-export * from './types'
+export type { TourProps, TourStepItem } from './types'

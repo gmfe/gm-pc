@@ -6,12 +6,13 @@ import KeyboardCell from './cell'
 import { scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { WrapDataOptions } from '../types'
 
-function KCSelect<V>({ disabled, onKeyDown, ...rest }: SelectProps<V>) {
+function KCSelect({ disabled, onKeyDown, ...rest }: SelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<Select<V>>(null)
+  const targetRef = useRef<Select>(null)
   const { wrapData, cellKey } = useContextData()
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
@@ -30,14 +31,18 @@ function KCSelect<V>({ disabled, onKeyDown, ...rest }: SelectProps<V>) {
       // 需要阻止
       // 如果下一个是 input，切过去的时候光标会右移一位
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
       // Enter 要选择
+      // eslint-disable-next-line
       targetRef.current?.apiDoSelectWillActive()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

@@ -1,9 +1,9 @@
 import React, { useMemo, useRef } from 'react'
 import _ from 'lodash'
-import { GroupSortableProps, SortableDataOptions } from './types'
+import { GroupSortableProps, SortableDataItem } from './types'
 import Sortable from './sortable'
 
-const GroupSortable = <T,>({
+const GroupSortable = ({
   data,
   onChange,
   renderItem,
@@ -11,14 +11,14 @@ const GroupSortable = <T,>({
   tag,
   options,
   children,
-}: GroupSortableProps<T>) => {
+}: GroupSortableProps) => {
   /**
    * 两个列表之间的拖动，中间变量
    */
-  const dataRef = useRef<SortableDataOptions<T>[][]>([])
+  const dataRef = useRef<SortableDataItem[][]>([])
   const flatData = useMemo(() => _.flatten(data), [data])
   const items = data.map((subData, index) => {
-    const handleChange = (newSubData: SortableDataOptions<T>[]): void => {
+    const handleChange = (newSubData: SortableDataItem[]): void => {
       // 变化的才会触发 change，
       // 单个列表内拖动只一次 change，此时 newSubData 长度和原先一样
       // 如果列表之间拖动，当且仅当两次 change，此时 newSubData 长度和原先不一样

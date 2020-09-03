@@ -31,6 +31,7 @@
     "@gm-pc/react": "^0.0.2",
     "@gm-pc/table-x": "^0.0.2",
     "classnames": "^2.2.5",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "styled-components": "^5.1.0"
   }
 }

@@ -16,7 +16,9 @@ const KCDatePicker: FC<DatePickerProps> = ({ disabled, onKeyDown, ...rest }) => 
   }
 
   const handleFocus = () => {
-    targetRef.current?.apiDoFocus()
+    if (targetRef.current) {
+      targetRef.current.apiDoFocus()
+    }
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -28,13 +30,17 @@ const KCDatePicker: FC<DatePickerProps> = ({ disabled, onKeyDown, ...rest }) => 
       event.key === 'ArrowRight'
     ) {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // eslint-disable-next-line
       targetRef.current?.apiDoSelectWillActive()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

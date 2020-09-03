@@ -5,9 +5,9 @@ import { getLocale } from '@gm-pc/locales'
 interface ActionProps {
   isLastItem: boolean
 
-  onNextStep (): void
+  onNextStep(): void
 
-  onClose (event: MouseEvent): void
+  onClose(event: MouseEvent): void
 }
 
 const Action: FC<ActionProps> = ({ isLastItem, onNextStep, onClose }) => {

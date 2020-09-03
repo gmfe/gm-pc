@@ -6,12 +6,13 @@ import KeyboardCell from './cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { WrapDataOptions } from '../types'
 
-function KCLevelSelect<V>({ disabled, onKeyDown, ...rest }: LevelSelectProps<V>) {
+function KCLevelSelect({ disabled, onKeyDown, ...rest }: LevelSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<LevelSelect<V>>(null)
+  const targetRef = useRef<LevelSelect>(null)
   const { wrapData, cellKey } = useContextData()
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
@@ -30,12 +31,15 @@ function KCLevelSelect<V>({ disabled, onKeyDown, ...rest }: LevelSelectProps<V>)
       event.key === 'ArrowDown'
     ) {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

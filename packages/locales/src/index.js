@@ -9,20 +9,20 @@ const moduleMap = {
   zh: lng1,
   'zh-HK': lng2,
   en: lng3,
-  th: lng4
+  th: lng4,
 }
 let _language = window.localStorage.getItem(LOCALES_LNG) || 'zh'
 
-const setLocaleAndStorage = lng => {
+const setLocaleAndStorage = (lng) => {
   setLocale(lng)
   window.localStorage.setItem(LOCALES_LNG, lng)
 }
 
-const setLocale = lng => {
+const setLocale = (lng) => {
   _language = lng
 }
 
-const getLocale = text => {
+const getLocale = (text) => {
   const languageMap = moduleMap[_language] || moduleMap.zh
   let result = languageMap[text]
 

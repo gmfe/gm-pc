@@ -11,6 +11,7 @@ const KCInput: FC<InputProps> = ({ disabled, onKeyDown, onFocus, ...rest }) => {
   const { wrapData, cellKey } = useContextData()
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.focus()
   }
 
@@ -38,13 +39,16 @@ const KCInput: FC<InputProps> = ({ disabled, onKeyDown, onFocus, ...rest }) => {
       // 需要阻止
       // 如果下一个是 input，切换过去的时候光标会右移一位
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       // 要阻止默认
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       // 要阻止默认
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

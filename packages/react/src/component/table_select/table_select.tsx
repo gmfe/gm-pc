@@ -7,7 +7,7 @@ import classNames from 'classnames'
 import { TableSelectProps, TableSelectDataItem } from './types'
 
 /** 和 MoreSelect 类似。多了 columns */
-const TableSelect = React.forwardRef<MoreSelect<any>, TableSelectProps>((props, ref) => {
+const TableSelect = React.forwardRef<MoreSelect, TableSelectProps>((props, ref) => {
   const { data, columns, className, ...rest } = props
 
   const Title = (

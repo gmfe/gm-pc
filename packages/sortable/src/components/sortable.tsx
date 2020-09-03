@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import classNames from 'classnames'
 import { devWarnForHook } from '@gm-common/tool'
-import { SortableDataOptions, SortableProps } from './types'
+import { SortableDataItem, SortableProps } from './types'
 import SortableBase from './sortable_base'
 
 const Sortable = <T,>({
@@ -28,11 +28,13 @@ const Sortable = <T,>({
   const handleChange = (values: string[]) => {
     // 因为 SortableJS 默认吐出来都是 string，所以需要反编译拿回原来的类型
     const newValues: T[] = values.map((value) => JSON.parse(value))
-    const newValuesMap = new Map<T, SortableDataOptions<T>>()
+    const newValuesMap = new Map<T, SortableDataItem<T>>()
     data.forEach((value) => {
       newValuesMap.set(value.value, value)
     })
-    const newData: SortableDataOptions<T>[] = newValues.map((value) => newValuesMap.get(value)!)
+    const newData: SortableDataItem<T>[] = newValues.map(
+      (value) => newValuesMap.get(value)!
+    )
     onChange(newData)
   }
 
@@ -43,7 +45,10 @@ const Sortable = <T,>({
           key={value.value as any}
           data-id={JSON.stringify(value.value)}
           {...itemProps}
-          className={classNames({ 'gm-cursor-grab': !options.handle }, itemProps.className)}
+          className={classNames(
+            { 'gm-cursor-grab': !options.handle },
+            itemProps.className
+          )}
         >
           {renderItem(value, index)}
         </div>

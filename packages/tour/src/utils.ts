@@ -4,10 +4,17 @@ import _ from 'lodash'
 const isNumeric = (n: ReactText): boolean =>
   !isNaN(parseFloat(n as string)) && isFinite(n as number)
 
-const setPosition = (begin: number, end: number, elapsed: number, duration: number): number => {
+const setPosition = (
+  begin: number,
+  end: number,
+  elapsed: number,
+  duration: number
+): number => {
   const easeInOutCubic = (t: number) =>
     t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
-  return elapsed > duration ? end : begin + (end - begin) * easeInOutCubic(elapsed / duration)
+  return elapsed > duration
+    ? end
+    : begin + (end - begin) * easeInOutCubic(elapsed / duration)
 }
 
 const calcEndPoint = (
@@ -85,7 +92,10 @@ const style = function (node: Element, prop: string): string {
 }
 
 const overflow = function (node: Element): string {
-  return `${style(node, 'overflow')} ${style(node, 'overflow-y')} ${style(node, 'overflow-x')}`
+  return `${style(node, 'overflow')} ${style(node, 'overflow-y')} ${style(
+    node,
+    'overflow-x'
+  )}`
 }
 
 const scroll = function (node: Element): boolean {
@@ -138,7 +148,9 @@ export function inView({
 }
 
 export function isBody(node: HTMLElement) {
-  return node === document.querySelector('body') || node === document.querySelector('html')
+  return (
+    node === document.querySelector('body') || node === document.querySelector('html')
+  )
 }
 
 export const isHoriz = (pos: string) => /(left|right)/.test(pos)

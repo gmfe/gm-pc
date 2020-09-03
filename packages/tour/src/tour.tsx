@@ -10,7 +10,7 @@ import React, {
   ReactText,
 } from 'react'
 import _ from 'lodash'
-import { TourRefOptions, TourProps, TourStepOptions } from './types'
+import { TourRefOptions, TourProps, TourStepItem } from './types'
 import reducer, { initialState, ReducerState } from './reducer'
 import { useMutationObserver } from './hook'
 import { Portal } from './components'
@@ -140,7 +140,9 @@ const Tour = forwardRef<TourRefOptions, TourProps>(
           const parentScroll = scrollParent(node)
           const offset = nodeRect.height > h ? -25 : -(h / 2) + nodeRect.height / 2
           scrollSmooth(node as HTMLElement, {
-            context: isBody(parentScroll as HTMLElement) ? window : (parentScroll as HTMLElement),
+            context: isBody(parentScroll as HTMLElement)
+              ? window
+              : (parentScroll as HTMLElement),
             duration: scrollDuration,
             offset,
             callback(target: ReactText | HTMLElement) {
@@ -163,7 +165,7 @@ const Tour = forwardRef<TourRefOptions, TourProps>(
 
     function makeCalculation(
       nodeRect: Partial<GetNodeRectOptions>,
-      helperPosition?: TourStepOptions['position']
+      helperPosition?: TourStepItem['position']
     ) {
       const { w, h } = getWindow()
       const { width: helperWidth, height: helperHeight } = getNodeRect(
@@ -181,7 +183,7 @@ const Tour = forwardRef<TourRefOptions, TourProps>(
       })
     }
 
-    function getNode(step: TourStepOptions) {
+    function getNode(step: TourStepItem) {
       return step.selector ? document.querySelector(step.selector) : null
     }
 

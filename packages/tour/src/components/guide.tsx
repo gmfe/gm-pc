@@ -2,9 +2,9 @@ import { FC, HTMLAttributes, RefObject } from 'react'
 import styled from 'styled-components'
 import * as utils from '../utils'
 import { ReducerState } from '../reducer'
-import { TourStepOptions } from '../types'
+import { TourStepItem } from '../types'
 
-type Position = TourStepOptions['position']
+type Position = TourStepItem['position']
 
 interface GuideProps extends HTMLAttributes<HTMLDivElement> {
   ref: RefObject<HTMLDivElement>
@@ -64,7 +64,9 @@ const Guide: FC<GuideProps> = styled.div`
     const couldPositionAt = (position: Position) => {
       return (
         available[position as Exclude<Position, undefined | number[] | 'center'>] >
-        (utils.isHoriz(position as string) ? helperWidth + padding * 2 : helperHeight + padding * 2)
+        (utils.isHoriz(position as string)
+          ? helperWidth + padding * 2
+          : helperHeight + padding * 2)
       )
     }
 
@@ -78,13 +80,15 @@ const Guide: FC<GuideProps> = styled.div`
       const positionsOrder = utils.bestPositionOf(available)
       for (let j = 0; j < positionsOrder.length; j++) {
         if (couldPositionAt(positionsOrder[j] as Position)) {
-          return coords[positionsOrder[j] as 'left' | 'right' | 'top' | 'bottom' | 'center']
+          return coords[
+            positionsOrder[j] as 'left' | 'right' | 'top' | 'bottom' | 'center'
+          ]
         }
       }
       return coords.center
     }
 
-    const pos = (helperPosition: TourStepOptions['position']) => {
+    const pos = (helperPosition: TourStepItem['position']) => {
       if (Array.isArray(helperPosition)) {
         const isOutX = utils.isOutsideX(helperPosition[0], windowWidth)
         const isOutY = utils.isOutsideY(helperPosition[1], windowHeight)

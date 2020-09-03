@@ -66,15 +66,22 @@ class SortableBase extends Component<SortableBaseProps> {
           const remote = store.activeComponent
           const remoteItems = remote?._sortable?.toArray()
           const referenceNode =
-            store.nextSibling && store.nextSibling.parentNode !== null ? store.nextSibling : null
+            store.nextSibling && store.nextSibling.parentNode !== null
+              ? store.nextSibling
+              : null
           _evt.from.insertBefore(_evt.item, referenceNode)
           if (remote !== this) {
             const remoteOptions = remote?.props.options ?? {}
-            if (typeof remoteOptions.group === 'object' && remoteOptions.group.pull === 'clone') {
+            if (
+              typeof remoteOptions.group === 'object' &&
+              remoteOptions.group.pull === 'clone'
+            ) {
               // remove the node with the same data-id
+              // eslint-disable-next-line
               _evt.item.parentNode?.removeChild(_evt.item)
             }
-            remote?.props.onChange && remote.props.onChange(remoteItems!, remote._sortable!, _evt)
+            remote?.props.onChange &&
+              remote.props.onChange(remoteItems!, remote._sortable!, _evt)
           }
           this.props.onChange && this.props.onChange(items!, this._sortable!, _evt)
         }
@@ -93,6 +100,7 @@ class SortableBase extends Component<SortableBaseProps> {
   // eslint-disable-next-line camelcase
   UNSAFE_componentWillReceiveProps(nextProps: Readonly<SortableBaseProps>) {
     if (nextProps.disabled !== this.props.disabled) {
+      // eslint-disable-next-line
       this._sortable?.option('disabled', nextProps.disabled)
     }
   }

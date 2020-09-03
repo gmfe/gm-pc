@@ -21,6 +21,7 @@ const KCInputNumber: FC<InputNumberProps> = ({
   }
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
@@ -43,12 +44,15 @@ const KCInputNumber: FC<InputNumberProps> = ({
       event.key === 'ArrowLeft'
     ) {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

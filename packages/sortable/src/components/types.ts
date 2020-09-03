@@ -1,6 +1,8 @@
 import Sortable, { Options, SortableEvent } from 'sortablejs'
 import { ElementType, HTMLAttributes, ReactElement, ReactNode } from 'react'
 
+type Value = any
+
 interface SortableBaseProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   options: Options
   onChange?(remoteItems: string[], sortable: Sortable, event: SortableEvent): void
@@ -8,35 +10,35 @@ interface SortableBaseProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'
   disabled?: boolean
 }
 
-interface SortableDataOptions<T> {
-  value: T
+interface SortableDataItem {
+  value: Value
   text: string
   [key: string]: any
 }
 
-interface SortableCommonProps<T> extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
+interface SortableCommonProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   /**
    * options.group 有值的时候要传。
    * 此时 data 是 group 集合数据，groupValues 是当前组件的数据
    */
-  groupValues?: T[]
-  renderItem?(value: SortableDataOptions<T>, index: number): ReactNode
+  groupValues?: Value[]
+  renderItem?(value: SortableDataItem, index: number): ReactNode
   itemProps?: HTMLAttributes<HTMLDivElement>
   tag?: ElementType
   options?: Options
   disabled?: boolean
 }
 
-interface SortableProps<T> extends SortableCommonProps<T> {
-  data: SortableDataOptions<T>[]
-  onChange(data: SortableDataOptions<T>[]): void
+interface SortableProps extends SortableCommonProps {
+  data: SortableDataItem[]
+  onChange(data: SortableDataItem[]): void
 }
 
-interface GroupSortableProps<T> extends SortableCommonProps<T> {
+interface GroupSortableProps extends SortableCommonProps {
   /* 二维数组 */
-  data: SortableDataOptions<T>[][]
-  onChange(data: SortableDataOptions<T>[][]): void
-  children: (items: ReactElement<SortableProps<T>>[]) => ReactElement
+  data: SortableDataItem[][]
+  onChange(data: SortableDataItem[][]): void
+  children: (items: ReactElement<SortableProps>[]) => ReactElement
 }
 
-export type { SortableBaseProps, SortableDataOptions, SortableProps, GroupSortableProps }
+export type { SortableBaseProps, SortableDataItem, SortableProps, GroupSortableProps }

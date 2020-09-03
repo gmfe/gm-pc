@@ -70,8 +70,8 @@ interface ListProps {
   selectedValues: Value[]
   onSelectValues(values: Value[]): void
   listHeight: number
-  renderLeafItem(item: TreeListItem): ReactNode
-  renderGroupItem(item: TreeListItem): ReactNode
+  renderLeafItem?(item: TreeListItem): ReactNode
+  renderGroupItem?(item: TreeListItem): ReactNode
   activeValue?: Value
   onActiveValues(activeValues: Value[]): void
   indeterminateList?: Value[]

@@ -20,7 +20,7 @@ interface TableSelectColumn {
   Cell?: (cellProps: TableSelectColumnCellProps) => ReactNode
 }
 
-interface TableSelectProps extends MoreSelectProps<any> {
+interface TableSelectProps extends MoreSelectProps {
   data: TableSelectDataItem[]
   selected: TableSelectDataItem
   onSelect(selected: TableSelectDataItem): void

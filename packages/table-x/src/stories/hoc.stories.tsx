@@ -3,13 +3,7 @@ import { action, computed, observable } from 'mobx'
 import { storiesOf } from '@storybook/react'
 import _ from 'lodash'
 import { VariableSizeList } from 'react-window'
-import {
-  Button,
-  Input,
-  InputNumber,
-  MoreSelect,
-  MoreSelectDataItem,
-} from '@gm-pc/react'
+import { Button, Input, InputNumber, MoreSelect, MoreSelectDataItem } from '@gm-pc/react'
 import { columns, initialData, InitialDataOptions } from './default.stories'
 import {
   fixedColumnsTableXHOC,
@@ -29,7 +23,7 @@ const SortableTableX = sortableTableXHOC<InitialDataOptions>(TableX)
 const EditTableX = editTableXHOC<InitialDataOptions>(TableX)
 const DiyTableX = diyTableXHOC<InitialDataOptions>(TableX)
 
-const selectData: MoreSelectDataItem<number>[] = [
+const selectData: MoreSelectDataItem[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '罗湖' },
@@ -115,9 +109,7 @@ const editColumns: TableXColumn<InitialDataOptions>[] = [
     Cell: (cellProps: {
       row: {
         original: {
-          address:
-            | MoreSelectDataItem<number>
-            | MoreSelectDataItem<number>[]
+          address: MoreSelectDataItem | MoreSelectDataItem[]
         }
       }
     }) => (

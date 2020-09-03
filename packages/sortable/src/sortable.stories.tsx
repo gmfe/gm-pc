@@ -66,7 +66,11 @@ const store = observable({
 // eslint-disable-next-line react/display-name
 const Wrap = React.forwardRef<HTMLDivElement, { className?: string }>(
   ({ className, ...rest }, ref) => (
-    <div {...rest} ref={ref} className={classNames('gm-border gm-padding-10 gm-flex', className)} />
+    <div
+      {...rest}
+      ref={ref}
+      className={classNames('gm-border gm-padding-10 gm-flex', className)}
+    />
   )
 )
 
@@ -91,7 +95,9 @@ storiesOf('Sortable|Sortable', module)
 `,
     },
   })
-  .add('default', () => <Sortable data={store.data} onChange={(data) => store.setData(data)} />)
+  .add('default', () => (
+    <Sortable data={store.data} onChange={(data) => store.setData(data)} />
+  ))
   .add('disabled', () => (
     <Sortable
       disabled={store.disabled}

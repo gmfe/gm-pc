@@ -1,5 +1,4 @@
-import React, { FC, useMemo } from 'react'
-import { storiesOf } from '@storybook/react'
+import React, { useMemo } from 'react'
 import { MoreSelectDataItem } from '@gm-pc/react'
 import _ from 'lodash'
 import { action, observable } from 'mobx'
@@ -21,7 +20,6 @@ import {
   KCSelect,
   KCInputNumber,
 } from './'
-import { observer } from 'mobx-react'
 
 const { OperationCell, OperationHeader, EditOperation, TABLE_X } = TableXUtil
 const SelectKeyboardTableX = selectTableXHOC<
@@ -29,16 +27,16 @@ const SelectKeyboardTableX = selectTableXHOC<
   KeyboardTableXProps<InitialDataOptions> & TableXProps<InitialDataOptions>
 >(keyboardTableXHOC<InitialDataOptions>(editTableXHOC<InitialDataOptions>(TableX)))
 
-export interface InitialDataOptions {
+interface InitialDataOptions {
   id: number
-  position: MoreSelectDataItem<number> | null
+  position: MoreSelectDataItem | null
   name: string
   age: number | null
   date: Date | null
   status: number | null
 }
 
-export const selectData: MoreSelectDataItem<number>[] = [
+const selectData: MoreSelectDataItem[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '宝安' },
@@ -89,7 +87,7 @@ class Store {
 
 const store = new Store()
 
-const Wrap: FC = observer(() => {
+export const ComKeyboard = () => {
   const columns: KeyboardTableXColumn<InitialDataOptions>[] = useMemo(
     (): KeyboardTableXColumn<InitialDataOptions>[] => [
       {
@@ -133,7 +131,7 @@ const Wrap: FC = observer(() => {
         isKeyboard: true,
         Cell: (cellProps: {
           row: {
-            original: { position: MoreSelectDataItem<number> }
+            original: { position: MoreSelectDataItem }
             index: number
           }
         }) => {
@@ -142,10 +140,10 @@ const Wrap: FC = observer(() => {
             index,
           } = cellProps.row
           return (
-            <KCMoreSelect<number>
+            <KCMoreSelect
               data={selectData}
               selected={position}
-              onSelect={(selected: MoreSelectDataItem<number>) => {
+              onSelect={(selected: MoreSelectDataItem) => {
                 store.handleSetDataItem(index, { position: selected })
               }}
             />
@@ -225,7 +223,7 @@ const Wrap: FC = observer(() => {
                 { value: 1, text: '已验收' },
               ]}
               value={status}
-              onChange={(value) => {
+              onChange={(value: any) => {
                 store.handleSetDataItem(index, { status: value })
               }}
             />
@@ -253,18 +251,8 @@ const Wrap: FC = observer(() => {
       />
     </div>
   )
-})
+}
 
-storiesOf('全键盘|Keyboard TableX', module)
-  .add('Info', () => <div />, {
-    info: {
-      text: `
-    各单元格宽度 具体见 TableX.TABLE_X。
-    
-    上述都是建议宽度，具体根据实际业务场景各自调整。
-    
-    具体用法看代码。
-    `,
-    },
-  })
-  .add('hoc', () => <Wrap />)
+export default {
+  title: 'Keyboard/Keyboard',
+}

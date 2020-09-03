@@ -30,6 +30,7 @@ interface WrapDataOptions {
     rightFixedWidth: number
   }
 }
+
 export type {
   KeyboardTableXProps,
   KeyboardTableXColumn,

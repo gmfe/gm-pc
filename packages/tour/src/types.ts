@@ -1,6 +1,6 @@
 import { CSSProperties, MouseEvent, ReactNode } from 'react'
 
-interface TourStepOptions {
+interface TourStepItem {
   selector?: string
   content: ReactNode
   observe?: string
@@ -33,7 +33,7 @@ interface TourProps {
   /* 蒙层是否触发关闭 */
   closeWithMask?: boolean
   /* 步骤设置 */
-  steps?: TourStepOptions[]
+  steps?: TourStepItem[]
   /* 禁用按钮 */
   disableButtons?: boolean
   /* 禁用互动 */
@@ -49,4 +49,4 @@ interface TourRefOptions {
   apiRecalculate(): void
 }
 
-export type { TourProps, TourStepOptions, TourRefOptions }
+export type { TourProps, TourStepItem, TourRefOptions }

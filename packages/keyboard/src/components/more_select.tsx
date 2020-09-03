@@ -6,12 +6,13 @@ import KeyboardCell from './cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { WrapDataOptions } from '../types'
 
-function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
+function KCMoreSelect({ disabled, onKeyDown, ...rest }: MoreSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<MoreSelect<V>>(null)
+  const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()
 
   const handleFocus = () => {
+    // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
@@ -29,13 +30,17 @@ function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
       event.key === 'ArrowDown'
     ) {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
     } else if (event.key === 'Tab') {
       event.preventDefault()
+      // eslint-disable-next-line
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // eslint-disable-next-line
       targetRef.current?.apiDoSelectWillActive()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }

@@ -118,7 +118,7 @@ module.exports = {
     // '../packages/business/src/**/*stories.tsx',
     '../packages/cropper/src/**/*stories.tsx',
     '../packages/frame/src/**/*stories.tsx',
-    // '../packages/keyboard/src/**/*stories.tsx',
+    '../packages/keyboard/src/**/*stories.tsx',
     // '../packages/locales/src/**/*stories.js',
     '../packages/react/src/**/*stories.tsx',
     // '../packages/sortable/src/**/*stories.tsx',
