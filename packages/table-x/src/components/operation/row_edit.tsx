@@ -8,11 +8,11 @@ import SVGPen from '../../svg/pen.svg'
 interface OperationRowEditProps {
   isEditing: boolean
 
-  onClick? (): void
+  onClick?(): void
 
-  onSave? (): void
+  onSave?(): void
 
-  onCancel? (): void
+  onCancel?(): void
 }
 
 const OperationRowEdit: FC<OperationRowEditProps> = ({
@@ -36,6 +36,16 @@ const OperationRowEdit: FC<OperationRowEditProps> = ({
 
   return isEditing ? (
     <OperationCell>
+      <Button type='link' onClick={handleSave}>
+        {getLocale('保存')}
+      </Button>
+      <span className='gm-padding-lr-5'>|</span>
+      <Button type='link' onClick={handleCancel}>
+        {getLocale('取消')}
+      </Button>
+    </OperationCell>
+  ) : (
+    <OperationCell>
       <OperationIconTip tip={getLocale('编辑')}>
         <span className='gm-padding-5'>
           <SVGPen
@@ -45,16 +55,6 @@ const OperationRowEdit: FC<OperationRowEditProps> = ({
         </span>
       </OperationIconTip>
       {children}
-    </OperationCell>
-  ) : (
-    <OperationCell>
-      <Button type='link' onClick={handleSave}>
-        {getLocale('保存')}
-      </Button>
-      <span className='gm-padding-lr-5'>|</span>
-      <Button type='link' onClick={handleCancel}>
-        {getLocale('取消')}
-      </Button>
     </OperationCell>
   )
 }
