@@ -2,17 +2,7 @@ import React from 'react'
 import Cropper from './cropper'
 import { Uploader } from '@gm-pc/react'
 
-export const readme = () => {
-  return (
-    <div>
-      {`
-TODO
-    `}
-    </div>
-  )
-}
-
-export const Default = () => {
+export const ComCropper = () => {
   return (
     <Uploader
       accept='image/*'
@@ -32,7 +22,7 @@ export const Default = () => {
   )
 }
 
-export const size = () => {
+export const ComCropperWithSize = () => {
   return (
     <Uploader
       accept='image/*'
@@ -55,7 +45,7 @@ export const size = () => {
   )
 }
 
-export const aspectRatio = () => {
+export const ComCropperWithAspectRatio = () => {
   return (
     <Uploader
       accept='image/*'

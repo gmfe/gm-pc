@@ -17,7 +17,7 @@ export interface CropperProps {
   onOK(blob: Blob | null): void
 }
 
-interface CropperFC extends FC<CropperProps> {
+interface CropperStatic {
   SIZE: {
     SKU: { width: number; height: number }
     LOGO: { width: number; height: number }
@@ -26,7 +26,14 @@ interface CropperFC extends FC<CropperProps> {
   hide: typeof Modal.hide
 }
 
-const Cropper: CropperFC = ({ file, url, options, croppedOptions, onCancel, onOK }) => {
+const Cropper: FC<CropperProps> & CropperStatic = ({
+  file,
+  url,
+  options,
+  croppedOptions,
+  onCancel,
+  onOK,
+}) => {
   const imageRef = useRef<HTMLImageElement>(null)
   const imgPreviewRef = useRef<HTMLDivElement>(null)
   const cropperRef = useRef<CropperJS>()
