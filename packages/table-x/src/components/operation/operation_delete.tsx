@@ -3,7 +3,7 @@ import { Popover, PopupContentConfirm } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import classNames from 'classnames'
 import OperationIconTip from './icon_tip'
-import SVGDelete from '../../../svg/delete.svg'
+import SVGDelete from '../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
   onClick (): void

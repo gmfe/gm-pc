@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react'
 import { DiyTableXColumn } from '../types'
-import SVGRemove from '../../../../svg/remove.svg'
+import SVGRemove from '../../../svg/remove.svg'
 
 interface ListProps<Original extends object> {
   columns: DiyTableXColumn<Original>[]

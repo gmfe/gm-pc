@@ -217,7 +217,7 @@ export const ComKeyboard = () => {
             index,
           } = cellProps.row
           return (
-            <KCSelect<number>
+            <KCSelect
               data={[
                 { value: 0, text: '未验收' },
                 { value: 1, text: '已验收' },

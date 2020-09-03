@@ -4,10 +4,10 @@ import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
 import { Button, Flex, Popover } from '@gm-pc/react'
 
-import SVGRemove from '../../svg/remove.svg'
-import SVGDelete from '../../svg/delete.svg'
-import SVGEdit from '../../svg/edit-pen.svg'
-import SVGBusiness from '../../svg/business.svg'
+import SVGRemove from '../svg/remove.svg'
+import SVGDelete from '../svg/delete.svg'
+import SVGEdit from '../svg/edit-pen.svg'
+import SVGBusiness from '../svg/business.svg'
 import { TableXBatchActionOptions } from '../types'
 
 interface BatchActionBarProps {

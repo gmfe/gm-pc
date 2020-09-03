@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useRef } from 'react'
 import { Popover } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { OperationIconTip } from '../operation'
-import SVGEditPen from '../../../svg/edit-pen.svg'
+import SVGEditPen from '../../svg/edit-pen.svg'
 
 interface EditButtonProps {
   popupRender: (closePopup: () => void) => ReactNode

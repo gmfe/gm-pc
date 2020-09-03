@@ -3,7 +3,7 @@ import { Button } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import OperationCell from './cell'
 import OperationIconTip from './icon_tip'
-import SVGPen from '../../../svg/pen.svg'
+import SVGPen from '../../svg/pen.svg'
 
 interface OperationRowEditProps {
   isEditing: boolean

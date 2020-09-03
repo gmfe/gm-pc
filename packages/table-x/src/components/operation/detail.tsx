@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, MouseEvent } from 'react'
 import classNames from 'classnames'
 import { getLocale } from '@gm-pc/locales'
 import OperationIconTip from './icon_tip'
-import SVGCheckDetail from '../../../svg/check-detail.svg'
+import SVGCheckDetail from '../../svg/check-detail.svg'
 
 interface OperationDetailProps extends HTMLAttributes<HTMLDivElement> {
   href?: string

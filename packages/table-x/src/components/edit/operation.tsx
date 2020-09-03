@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import { Popover } from '@gm-pc/react'
 import classNames from 'classnames'
 import { OperationCell } from '../operation'
-import SVGPlusSquare from '../../../svg/plus-square.svg'
-import SVGMinusSquare from '../../../svg/minus-square.svg'
+import SVGPlusSquare from '../../svg/plus-square.svg'
+import SVGMinusSquare from '../../svg/minus-square.svg'
 
 interface EditOperationProps {
   onAddRow?(): void

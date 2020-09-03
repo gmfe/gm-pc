@@ -96,27 +96,31 @@ storiesOf('Sortable|Sortable', module)
     },
   })
   .add('default', () => (
-    <Sortable data={store.data} onChange={(data) => store.setData(data)} />
+    <Sortable data={store.data} onChange={(data: any) => store.setData(data)} />
   ))
   .add('disabled', () => (
     <Sortable
       disabled={store.disabled}
       data={store.data}
-      onChange={(data) => store.setData(data)}
+      onChange={(data: any) => store.setData(data)}
     />
   ))
   .add('renderItem', () => (
     <Sortable
       data={store.data}
-      onChange={(data) => store.setData(data)}
-      renderItem={(item) => <div className='gm-border gm-padding-10'>{item.text}</div>}
+      onChange={(data: any) => store.setData(data)}
+      renderItem={(item: any) => (
+        <div className='gm-border gm-padding-10'>{item.text}</div>
+      )}
     />
   ))
   .add('限定高', () => (
     <Sortable
       data={store.data}
-      onChange={(data) => store.setData(data)}
-      renderItem={(item) => <div className='gm-border gm-padding-10'>{item.text}</div>}
+      onChange={(data: any) => store.setData(data)}
+      renderItem={(item: any) => (
+        <div className='gm-border gm-padding-10'>{item.text}</div>
+      )}
       style={{
         height: '100px',
         overflow: 'auto',
@@ -126,11 +130,11 @@ storiesOf('Sortable|Sortable', module)
   .add('指定拖动单元', () => (
     <Sortable
       data={store.data}
-      onChange={(data) => store.setData(data)}
+      onChange={(data: any) => store.setData(data)}
       options={{
         handle: '.b-sortable-handle',
       }}
-      renderItem={(item) => (
+      renderItem={(item: any) => (
         <div className='gm-border gm-padding-10'>
           <span className='b-sortable-handle gm-cursor-grab'>move</span>
           &nbsp;&nbsp;
@@ -140,7 +144,11 @@ storiesOf('Sortable|Sortable', module)
     />
   ))
   .add('tag', () => (
-    <Sortable tag={Wrap} data={store.data} onChange={(data) => store.setData(data)} />
+    <Sortable
+      tag={Wrap}
+      data={store.data}
+      onChange={(data: any) => store.setData(data)}
+    />
   ))
 
 storiesOf('Sortable|GroupSortable', module).add('default', () => (

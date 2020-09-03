@@ -26,7 +26,7 @@ const Overlay: FC<OverlayProps> = ({ data, onSelect, isReverse }) => {
   )
 
   return (
-    <LevelList<string>
+    <LevelList
       data={newData}
       selected={[]}
       onSelect={handleSelect}

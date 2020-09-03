@@ -1,19 +1,19 @@
 import React, { useMemo } from 'react'
 import classNames from 'classnames'
 import { devWarnForHook } from '@gm-common/tool'
-import { SortableDataItem, SortableProps } from './types'
+import { Value, SortableDataItem, SortableProps } from './types'
 import SortableBase from './sortable_base'
 
-const Sortable = <T,>({
+const Sortable = ({
   data,
   onChange,
   groupValues,
-  renderItem = (item) => item.text,
+  renderItem = (item: SortableDataItem) => item.text,
   itemProps = {},
   tag,
   options = {},
   ...rest
-}: SortableProps<T>) => {
+}: SortableProps) => {
   devWarnForHook(() => {
     if (groupValues && !options.group) {
       console.warn('groupValues need options.group')
@@ -27,14 +27,12 @@ const Sortable = <T,>({
 
   const handleChange = (values: string[]) => {
     // 因为 SortableJS 默认吐出来都是 string，所以需要反编译拿回原来的类型
-    const newValues: T[] = values.map((value) => JSON.parse(value))
-    const newValuesMap = new Map<T, SortableDataItem<T>>()
+    const newValues: Value[] = values.map((value) => JSON.parse(value))
+    const newValuesMap = new Map<string, SortableDataItem>()
     data.forEach((value) => {
       newValuesMap.set(value.value, value)
     })
-    const newData: SortableDataItem<T>[] = newValues.map(
-      (value) => newValuesMap.get(value)!
-    )
+    const newData: SortableDataItem[] = newValues.map((value) => newValuesMap.get(value)!)
     onChange(newData)
   }
 

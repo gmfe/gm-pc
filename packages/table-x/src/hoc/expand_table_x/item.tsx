@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import SVGCloseup from '../../../svg/closeup.svg'
-import SVGExpand from '../../../svg/expand.svg'
+import SVGCloseup from '../../svg/closeup.svg'
+import SVGExpand from '../../svg/expand.svg'
 
 interface ExpandItemProps {
   active: boolean

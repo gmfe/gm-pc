@@ -1,15 +1,8 @@
 @import '~@gm-pc/react/src/var.less';
 @import './variables.less';
 
-@gm-table-x-header-bg: #e8eaf0;
-@gm-table-x-border-color: rgba(216, 222, 231, 0.5);
-@gm-table-x-sort-color: #ccc;
-@gm-table-x-sort-active-color: #999;
-@gm-table-x-select-color: rgba(36, 51, 81, 0.8);
-@gm-table-x-select-action-bar-height: 50px;
-
 .gm-table-x {
-  border-bottom: 1px solid @gm-table-x-border-color;
+  border-bottom: 1px solid var(--gm-color-border);
   overflow: auto;
   position: relative;
 
@@ -24,11 +17,11 @@
       min-height: 60px;
 
       .gm-table-x-th {
-        background: @gm-table-x-header-bg;
+        background: var(--gm-table-color-bg-head);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        color: @gm-color-first;
+        color: var(--gm-color-default);
         font-weight: bold;
       }
 
@@ -49,6 +42,7 @@
         &.gm-table-x-icon-column {
           padding-right: 5px;
           padding-left: 5px;
+
           .gm-table-x-icon.gm-popover-active {
             color: var(--gm-color-primary);
           }
@@ -146,7 +140,7 @@
         height: 0;
         border-top: 4px solid transparent;
         border-right: 4px solid transparent;
-        border-bottom: 6px solid @gm-table-x-sort-color;
+        border-bottom: 6px solid var(--gm-table-color-bg-head-action);
         border-left: 4px solid transparent;
       }
 
@@ -157,7 +151,7 @@
         bottom: -3px;
         width: 0;
         height: 0;
-        border-top: 6px solid @gm-table-x-sort-color;
+        border-top: 6px solid var(--gm-table-color-bg-head-action);
         border-right: 4px solid transparent;
         border-bottom: 4px solid transparent;
         border-left: 4px solid transparent;
@@ -165,13 +159,13 @@
 
       &.gm-table-x-sort-header-asc {
         &::before {
-          border-bottom: 5px solid @gm-table-x-sort-active-color;
+          border-bottom: 5px solid var(--gm-table-color-bg-head-action-active);
         }
       }
 
       &.gm-table-x-sort-header-desc {
         &::after {
-          border-top: 5px solid @gm-table-x-sort-active-color;
+          border-top: 5px solid var(--gm-table-color-bg-head-action-active);
         }
       }
     }
@@ -213,11 +207,11 @@
       }
 
       &.gm-table-x-fixed-left {
-        border-right: 1px solid @gm-table-x-border-color !important;
+        border-right: 1px solid var(--gm-color-border) !important;
       }
 
       &.gm-table-x-fixed-right {
-        border-left: 1px solid @gm-table-x-border-color !important;
+        border-left: 1px solid var(--gm-color-border) !important;
       }
     }
   }
@@ -227,8 +221,8 @@
   }
 
   &.gm-table-x-tiled {
-    border-left: 1px solid @gm-table-x-border-color;
-    border-right: 1px solid @gm-table-x-border-color;
+    border-left: 1px solid var(--gm-color-border);
+    border-right: 1px solid var(--gm-color-border);
   }
 
   // edit button 和 gm-table-x-edit 没有关系，只是名字相近
@@ -272,7 +266,7 @@
     z-index: 10;
     padding-left: 20px;
     background: @gm-back-body-bg;
-    height: @gm-table-x-select-action-bar-height;
+    height: var(--gm-table-size-height-action-bar);
   }
 }
 
@@ -282,7 +276,7 @@
 
   .gm-table-x-th {
     background: @gm-back-body-bg !important;
-    border-bottom: 1px solid @gm-table-x-border-color;
+    border-bottom: 1px solid var(--gm-color-border);
 
     &:first-child {
       border-bottom: transparent !important;
@@ -290,7 +284,7 @@
   }
 
   .gm-table-x-td {
-    border-bottom: 1px solid @gm-table-x-border-color;
+    border-bottom: 1px solid var(--gm-color-border);
     background: transparent !important;
 
     &:first-child {
@@ -337,16 +331,16 @@
   // 耦合其他组件
   .gm-table-x-td {
     .gm-input {
-      .gm-table-x-edit-table-common-input();
+      .gmTableXEditTableCommonInput();
     }
 
     .gm-input-number {
-      .gm-table-x-edit-table-common-input();
+      .gmTableXEditTableCommonInput();
     }
 
     .gm-more-select {
       .gm-more-select-selected {
-        .gm-table-x-edit-table-common-input();
+        .gmTableXEditTableCommonInput();
 
         padding-top: 0;
         padding-bottom: 0;
@@ -362,7 +356,7 @@
       display: block;
 
       .gm-selection-selected {
-        .gm-table-x-edit-table-common-input();
+        .gmTableXEditTableCommonInput();
 
         line-height: 22px;
         padding-right: 20px;
@@ -371,7 +365,7 @@
 
     .gm-selected {
       input {
-        .gm-table-x-edit-table-common-input();
+        .gmTableXEditTableCommonInput();
 
         padding-right: 20px;
       }
@@ -379,7 +373,7 @@
 
     .gm-selection {
       input {
-        .gm-table-x-edit-table-common-input();
+        .gmTableXEditTableCommonInput();
 
         padding-right: 20px;
       }
@@ -433,13 +427,13 @@
   }
 
   .gm-react-table-x-diy-modal-content {
-    border-top: 1px solid @gm-table-x-border-color;
-    border-bottom: 1px solid @gm-table-x-border-color;
+    border-top: 1px solid var(--gm-color-border);
+    border-bottom: 1px solid var(--gm-color-border);
   }
 
   .gm-react-table-x-diy-modal-title {
     background-color: @gm-back-body-bg;
-    border-bottom: 1px solid @gm-table-x-border-color;
+    border-bottom: 1px solid var(--gm-color-border);
   }
 
   .gm-react-table-x-diy-modal-selector {
@@ -448,7 +442,7 @@
     }
 
     width: 80%;
-    border-right: 1px solid @gm-table-x-border-color;
+    border-right: 1px solid var(--gm-color-border);
   }
 
   .gm-react-table-x-diy-modal-list {
@@ -499,17 +493,5 @@
 @media (max-width: 768px) {
   .gm-react-table-x-diy-modal {
     width: 600px;
-  }
-}
-
-/* 耦合其他组件 */
-
-// stylelint-disable-next-line
-.gm-table-x {
-  // select 样式
-  .gm-table-x-select:not(.disabled) {
-    input:not(:checked) + span {
-      border-color: @gm-table-x-select-color;
-    }
   }
 }
