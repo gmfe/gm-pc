@@ -77,7 +77,6 @@ class Selection extends Component<SelectionProps> {
     let text = ''
     if (renderSelected && !_.isNil(selected)) {
       text = renderSelected(selected) as string
-      console.log(text, selected)
     }
 
     return (

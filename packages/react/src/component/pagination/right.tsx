@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, KeyboardEvent } from 'react'
+import React, { useState, useEffect, FC, KeyboardEvent, useRef } from 'react'
 import { InputNumber } from '../input_number'
 import { Flex } from '../flex'
 import { InnerProps } from './types'
@@ -6,6 +6,9 @@ import { getIndex } from './util'
 
 const Right: FC<InnerProps> = ({ paging, onChange }) => {
   const [index, setIndex] = useState<number>(getIndex(paging))
+
+  // input focus 的时候存起来，blur 的时候如果一样就不更新
+  const refIndex = useRef<number | null>(null)
 
   // 响应外部的 index 变化
   useEffect(() => {
@@ -29,7 +32,18 @@ const Right: FC<InnerProps> = ({ paging, onChange }) => {
     })
   }
 
+  const handleFocus = () => {
+    refIndex.current = index
+  }
+
   const handleBlur = () => {
+    // 和 focus 一样，值没变，就不触发更新了
+    if (index === refIndex.current) {
+      return
+    }
+
+    refIndex.current = index
+
     doEnsureIndex()
   }
 
@@ -49,6 +63,7 @@ const Right: FC<InnerProps> = ({ paging, onChange }) => {
         onChange={handleInput}
         min={1}
         max={all}
+        onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         className='form-control'
