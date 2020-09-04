@@ -5,7 +5,7 @@ export { default as Info } from './component/info'
 export { default as Left } from './component/left'
 export { default as RightTop } from './component/right_top'
 
-export type { BreadcrumbProps, BreadCrumbsOptions } from './component/breadcrumb'
+export type { BreadcrumbProps, BreadCrumbsItem } from './component/breadcrumb'
 export type { FrameworkProps, FrameworkStatic } from './component/framework'
 export type { FullTabsProps, FullTabsItem } from './component/full_tabs'
 export type { InfoProps, InfoMore } from './component/info'

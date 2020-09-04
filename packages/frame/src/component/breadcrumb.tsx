@@ -5,27 +5,27 @@ import { NavData } from '@gm-pc/react'
 
 type NavConfig = NavData
 
-interface BreadCrumbsOptions {
+interface BreadCrumbsItem {
   name: string
   link?: string
-  sub?: BreadCrumbsOptions[]
+  sub?: BreadCrumbsItem[]
 }
 
-type BreadCrumb = string[] | BreadCrumbsOptions[]
+type BreadCrumb = string[] | BreadCrumbsItem[]
 
 interface BreadcrumbProps {
   breadcrumbs: BreadCrumb
   pathname: string
   navConfig: NavConfig[]
-  onSelect(selected: BreadCrumbsOptions): void
+  onSelect(selected: BreadCrumbsItem): void
 }
 
 const nav2BreadCrumb = (
   breadcrumbs: BreadCrumb,
   pathname: string,
   navConfig: NavConfig[]
-): BreadCrumbsOptions[] => {
-  const result: BreadCrumbsOptions[] = []
+): BreadCrumbsItem[] => {
+  const result: BreadCrumbsItem[] = []
 
   _.find(navConfig, (one) => {
     _.find(one.sub, (two) => {
@@ -116,4 +116,4 @@ const Breadcrumb: FC<BreadcrumbProps> = ({
 }
 
 export default Breadcrumb
-export type { BreadcrumbProps, BreadCrumbsOptions }
+export type { BreadcrumbProps, BreadCrumbsItem }
