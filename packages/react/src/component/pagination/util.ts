@@ -1,6 +1,6 @@
-import { InnerPaging } from './types'
+import { PaginationPaging } from './types'
 
-function getIndex(paging: InnerPaging): number {
+function getIndex(paging: PaginationPaging): number {
   return paging.offset / paging.limit + 1
 }
 

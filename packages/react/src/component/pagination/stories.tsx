@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Pagination from './pagination'
 import { observable } from 'mobx'
-import { Paging } from './types'
+import { PaginationPaging } from './types'
 import { usePagination } from '@gm-common/hooks'
 import { Button } from '../button'
 
@@ -13,7 +13,7 @@ const store = observable({
     count: 100,
     has_more: true,
   },
-  setPaging(paging: Paging) {
+  setPaging(paging: PaginationPaging) {
     console.log(paging)
     // @ts-ignore
     this.paging = paging
@@ -28,7 +28,7 @@ const oStore = observable({
     count: undefined,
     has_more: true,
   },
-  setPaging(paging: Paging) {
+  setPaging(paging: PaginationPaging) {
     console.log(paging)
     // @ts-ignore
     this.paging = paging
