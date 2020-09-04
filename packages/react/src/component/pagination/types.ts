@@ -2,7 +2,7 @@
 interface InnerPaging {
   offset: number
   limit: number
-  need_count?: boolean
+  need_count: boolean
 
   has_more: boolean
   count?: number
@@ -19,7 +19,7 @@ interface Paging {
   limit?: number
   need_count?: boolean
 
-  has_more: boolean
+  has_more?: boolean
   count?: number
 }
 
