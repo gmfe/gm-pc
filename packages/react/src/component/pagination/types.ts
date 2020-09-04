@@ -1,31 +1,16 @@
-// 内部的， offset limit 都有
-interface InnerPaging {
+interface PaginationPaging {
   offset: number
   limit: number
-  need_count?: boolean
+  need_count: boolean
 
-  has_more: boolean
-  count?: number
-}
-
-// Pagination 内部传递的 props，paging 的 offset limit 都有
-interface InnerProps {
-  paging: InnerPaging
-  onChange(paging: Paging): void
-}
-
-interface Paging {
-  offset?: number
-  limit?: number
-  need_count?: boolean
-
-  has_more: boolean
+  /** 没有 count 的时候用 */
+  has_more?: boolean
   count?: number
 }
 
 interface PaginationProps {
-  paging: Paging
-  onChange(paging: Paging): void
+  paging: PaginationPaging
+  onChange(paging: PaginationPaging): void
 }
 
-export type { InnerProps, PaginationProps, InnerPaging, Paging }
+export type { PaginationProps, PaginationPaging }

@@ -90,7 +90,7 @@ export const PaginationHook = () => {
   const { loading, runChangePaging, paging, run } = usePagination(
     (params) => paginationHookStore.fetchData(params as Params),
     {
-      defaultParams: { paging: { ...defaultPagingWithCount } },
+      defaultParams: { paging: { need_count: true, limit: 20 } },
       manual: true,
     }
   )
@@ -103,7 +103,7 @@ export const PaginationHook = () => {
     manual: true,
   })
   useEffect(() => {
-    run({ ...req, paging: { ...defaultPagingWithCount } })
+    run({ ...req })
     ncRun({ ...req })
   }, [])
 

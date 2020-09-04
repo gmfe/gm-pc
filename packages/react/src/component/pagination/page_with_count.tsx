@@ -3,10 +3,10 @@ import SVGLeftSmall from '../../svg/left-small.svg'
 import SVGRightSmall from '../../svg/right-small.svg'
 import { Flex } from '../flex'
 import classNames from 'classnames'
-import { InnerProps, InnerPaging } from './types'
+import { PaginationProps, PaginationPaging } from './types'
 import { getIndex } from './util'
 
-function getInfo(paging: InnerPaging) {
+function getInfo(paging: PaginationPaging) {
   const index = getIndex(paging)
 
   // 一共多少页
@@ -48,7 +48,7 @@ function getInfo(paging: InnerPaging) {
   }
 }
 
-const PageWithCount: FC<InnerProps> = ({ paging, onChange }) => {
+const PageWithCount: FC<PaginationProps> = ({ paging, onChange }) => {
   const { index, all, begin, end, pages } = getInfo(paging)
 
   const handlePage = (_index: number) => {

@@ -5,7 +5,7 @@
     .gm-pagination-page-item {
       margin: 0 5px;
       border: 1px solid var(--gm-color-border);
-      border-radius: @gm-border-radius;
+      border-radius: var(--gm-size-border-radius);
       height: 30px;
       line-height: 30px;
       min-width: 30px;
@@ -24,15 +24,15 @@
       }
 
       &.disabled {
-        cursor: not-allowed;
-        background-color: #f0f1f3;
+        .gmDisabledBg();
+
         border: 1px solid var(--gm-color-border);
         color: var(--gm-color-default);
       }
     }
 
     .gm-pagination-page-text {
-      color: @gm-color-third;
+      color: var(--gm-color-desc);
     }
   }
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, FC, KeyboardEvent, useRef } from 'react'
 import { InputNumber } from '../input_number'
 import { Flex } from '../flex'
-import { InnerProps } from './types'
+import { PaginationProps } from './types'
 import { getIndex } from './util'
 
-const Right: FC<InnerProps> = ({ paging, onChange }) => {
+const Right: FC<PaginationProps> = ({ paging, onChange }) => {
   const [index, setIndex] = useState<number>(getIndex(paging))
 
   // input focus 的时候存起来，blur 的时候如果一样就不更新
@@ -47,6 +47,7 @@ const Right: FC<InnerProps> = ({ paging, onChange }) => {
     doEnsureIndex()
   }
 
+  // TODO useKeyPress
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       doEnsureIndex()

@@ -5,9 +5,9 @@ import { Flex } from '../flex'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { getIndex } from './util'
-import { InnerProps } from './types'
+import { PaginationProps } from './types'
 
-const PageWithoutCount: FC<InnerProps> = ({ paging, onChange }) => {
+const PageWithoutCount: FC<PaginationProps> = ({ paging, onChange }) => {
   const index = getIndex(paging)
 
   // 往前显示4个页码
