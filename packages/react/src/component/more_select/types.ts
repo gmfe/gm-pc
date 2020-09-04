@@ -67,16 +67,19 @@ interface MoreSelectBaseProps extends MoreSelectCommonProps {
   ): MoreSelectGroupDataItem[]
 }
 
+type MoreSelectData = MoreSelectDataItem[] | MoreSelectGroupDataItem[]
+type MoreSelectSelected = MoreSelectDataItem[] | MoreSelectDataItem
+
 interface MoreSelectProps extends MoreSelectCommonProps {
-  data: MoreSelectDataItem[] | MoreSelectGroupDataItem[]
-  selected?: MoreSelectDataItem[] | MoreSelectDataItem
-  onSelect(selected?: MoreSelectDataItem[] | MoreSelectDataItem): void
+  data: MoreSelectData
+  selected?: MoreSelectSelected
+  onSelect(selected?: MoreSelectSelected): void
 
   /** 搜索回调 */
-  onSearch?(searchWord: string, data: MoreSelectDataItem[]): Promise<void> | void
+  onSearch?(searchWord: string, data: MoreSelectData): Promise<void> | void
 
   /** 自定义搜索过滤展示的数据 */
-  renderListFilter?(data: MoreSelectDataItem[], searchValue: string): MoreSelectDataItem[]
+  renderListFilter?(data: MoreSelectData, searchValue: string): MoreSelectData
 }
 
 export type {

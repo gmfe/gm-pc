@@ -6,8 +6,8 @@ import MoreSelectBase from './base'
 class MoreSelect extends Component<MoreSelectProps> {
   static defaultProps = {
     renderSelected: (item: MoreSelectDataItem) => item.text,
-    delay: 500,
     renderListItem: (item: MoreSelectDataItem) => item.text,
+    delay: 500,
     listHeight: '180px',
     renderListFilterType: 'default',
     popoverType: 'focus',
@@ -33,8 +33,47 @@ class MoreSelect extends Component<MoreSelectProps> {
     }
   }
 
+  _handleSearch = (searchWord: string, data: MoreSelectGroupDataItem[]) => {
+    const { onSearch, isGroupList } = this.props
+    if (!onSearch) {
+      return
+    }
+
+    let oData
+
+    if (isGroupList) {
+      oData = data
+    } else {
+      oData = data[0].children
+    }
+
+    return onSearch(searchWord, oData)
+  }
+
+  _renderListFilter = (data: MoreSelectGroupDataItem[], searchValue: string) => {
+    const { renderListFilter, isGroupList } = this.props
+    if (!renderListFilter) {
+      return data
+    }
+
+    if (isGroupList) {
+      return renderListFilter(data, searchValue) as MoreSelectGroupDataItem[]
+    } else {
+      const list = renderListFilter(data[0].children, searchValue)
+      return [{ label: '', children: list }] as MoreSelectGroupDataItem[]
+    }
+  }
+
   render() {
-    const { data, selected, multiple, isGroupList, ...rest } = this.props
+    const {
+      data,
+      selected,
+      multiple,
+      isGroupList,
+      onSearch,
+      renderListFilter,
+      ...rest
+    } = this.props
     let oData: MoreSelectGroupDataItem[]
     if (isGroupList) {
       oData = data as MoreSelectGroupDataItem[]
@@ -62,6 +101,8 @@ class MoreSelect extends Component<MoreSelectProps> {
         onSelect={this._handleSelect}
         multiple={multiple}
         isGroupList={isGroupList}
+        onSearch={this._handleSearch}
+        renderListFilter={this._renderListFilter}
       />
     )
   }
