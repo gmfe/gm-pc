@@ -1,28 +1,26 @@
-.gm-panel {
-  width: calc(100% - 20px);
+.gm-card {
   border: solid 1px var(--gm-color-border);
   border-radius: 3px;
-  cursor: pointer;
 
-  .gm-panel-header {
+  .gm-card-header {
     border-bottom: solid 1px var(--gm-color-border);
     background-color: var(--gm-color-bg-back);
     padding: 10px;
     font-size: 16px;
 
-    .gm-panel-header-more {
+    .gm-card-header-action-icon {
       font-size: 18px;
     }
   }
 
-  .gm-panel-content {
+  .gm-card-content {
     padding: 10px;
   }
 
   &:hover {
     border-color: var(--gm-color-border-primary);
 
-    .gm-panel-header {
+    .gm-card-header {
       border-color: var(--gm-color-border-primary);
       background-color: @gm-list-bg-hover;
       color: var(--gm-color-primary);

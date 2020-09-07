@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties, useRef } from 'react'
+import React, { FC, useRef, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 
@@ -10,51 +10,50 @@ import SVGMore from '../../svg/more.svg'
 
 type LabelType = 'default' | 'primary' | 'success' | 'danger'
 
-interface PanelMore {
+interface CardActions {
   text: string
   onClick(): void
 }
 
-export interface PanelProps {
-  className?: string
-  style?: CSSProperties
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
   title?: string
   labelType?: LabelType
   labelText?: string
   /** 右上角功能定义 */
-  more?: PanelMore[]
-  children?: any
+  actions?: CardActions[]
 }
 
-const Panel: FC<PanelProps> = ({
+const Card: FC<CardProps> = ({
   className,
   title,
-  more,
+  actions,
   labelType,
   labelText,
   children,
   ...rest
 }) => {
   const popoverRef = useRef<Popover>(null)
-  const moreList = _.map(more || [], (v, i) => ({ value: i, text: v.text }))
+  const moreList = _.map(actions || [], (v, i) => ({ value: i, text: v.text }))
 
   const handleSelect = (value: number): void => {
     popoverRef.current!.apiDoSetActive(false)
-    more && more[value].onClick()
+    actions && actions[value].onClick()
   }
 
   return (
-    <div {...rest} className={classNames('gm-panel', className)}>
-      <Flex alignCenter className='gm-panel-header'>
+    <div {...rest} className={classNames('gm-card', className)}>
+      <Flex alignCenter className='gm-card-header'>
         <Flex flex alignCenter>
-          {title || '-'}
-          {labelText && (
-            <Label className='gm-margin-lr-10' type={labelType}>
-              {labelText}
-            </Label>
-          )}
+          <div className='gm-inline-block gm-margin-right-10'>
+            {title || '-'}
+            {labelText && (
+              <Label className='gm-margin-lr-10' type={labelType}>
+                {labelText}
+              </Label>
+            )}
+          </div>
         </Flex>
-        {more && (
+        {actions && (
           <Flex justifyEnd alignStart>
             <Popover
               ref={popoverRef}
@@ -70,16 +69,17 @@ const Panel: FC<PanelProps> = ({
                 />
               }
             >
-              <div className='gm-panel-header-more'>
+              <div className='gm-card-header-action-icon'>
                 <SVGMore />
               </div>
             </Popover>
           </Flex>
         )}
       </Flex>
-      <div className='gm-panel-content'>{children}</div>
+      <div className='gm-card-content'>{children}</div>
     </div>
   )
 }
 
-export default Panel
+export default Card
+export type { CardProps }
