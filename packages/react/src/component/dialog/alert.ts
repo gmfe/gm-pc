@@ -11,7 +11,7 @@ const Alert = (props: AlertProps): Promise<void> => {
     }
   }
 
-  const { okBtnText, children } = p as AlertOptions
+  const { okBtnText, children, ...rest } = p as AlertOptions
 
   return new Promise((resolve) => {
     Dialog.render({
@@ -26,6 +26,7 @@ const Alert = (props: AlertProps): Promise<void> => {
           },
         },
       ],
+      ...rest,
     })
   })
 }

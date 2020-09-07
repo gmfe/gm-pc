@@ -10,7 +10,7 @@ const Confirm = (props: ConfirmProps): Promise<void> => {
       children: props,
     }
   }
-  const { children, okBtnText, cancelBtnText } = p as ConfirmOptions
+  const { children, okBtnText, cancelBtnText, ...rest } = p as ConfirmOptions
 
   return new Promise((resolve, reject) => {
     Dialog.render({
@@ -32,6 +32,7 @@ const Confirm = (props: ConfirmProps): Promise<void> => {
           },
         },
       ],
+      ...rest,
     })
   })
 }

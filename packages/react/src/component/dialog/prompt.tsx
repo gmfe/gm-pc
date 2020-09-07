@@ -19,6 +19,7 @@ const prompt = (props: PromptProps) => {
     defaultValue,
     placeholder,
     onValidate,
+    ...rest
   } = p as PromptOptions
 
   return new Promise((resolve, reject) => {
@@ -77,6 +78,7 @@ const prompt = (props: PromptProps) => {
           onClick: handleOk,
         },
       ],
+      ...rest,
     })
   })
 }

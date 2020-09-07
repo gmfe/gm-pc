@@ -77,6 +77,7 @@ export const ComConfirm = () => {
       <button
         onClick={() => {
           Confirm({
+            title: 'hello',
             children: '这是alert',
             okBtnText: '点我',
             cancelBtnText: '不点我',
@@ -102,6 +103,7 @@ export const ComPrompt = () => {
       <button
         onClick={() => {
           Prompt({
+            size: 'sm',
             children: '请填写，< 5 不通过',
             // @ts-ignore
             onValidate(value) {

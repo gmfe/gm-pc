@@ -18,23 +18,23 @@ interface DialogProps {
   children: ReactNode
 }
 
+type SpecificDialogProps = Omit<DialogProps, 'buttons'>
+
 interface DialogStatic {
   render(props: DialogProps): void
   hide(): void
 }
 
-interface AlertOptions {
+interface AlertOptions extends SpecificDialogProps {
   okBtnText?: string
-  children: ReactNode
 }
 
 type AlertProps = string | AlertOptions
 
-interface ConfirmOptions {
+interface ConfirmOptions extends SpecificDialogProps {
   okBtnText?: string
   cancelBtnText?: string
   onValidate?: (value: string) => boolean | void
-  children: ReactNode
 }
 
 type ConfirmProps = string | ConfirmOptions
