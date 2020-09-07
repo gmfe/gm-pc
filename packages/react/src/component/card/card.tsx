@@ -43,37 +43,43 @@ const Card: FC<CardProps> = ({
   return (
     <div {...rest} className={classNames('gm-card', className)}>
       <Flex alignCenter className='gm-card-header'>
-        <Flex flex alignCenter>
-          <div className='gm-inline-block gm-margin-right-10'>
-            {title || '-'}
-            {labelText && (
-              <Label className='gm-margin-lr-10' type={labelType}>
-                {labelText}
-              </Label>
-            )}
-          </div>
-        </Flex>
+        <Popover
+          right
+          showArrow
+          type='hover'
+          style={{ minWidth: 0, maxWidth: '300px' }}
+          popup={
+            <div className='gm-bg gm-padding-10' style={{ wordBreak: 'break-all' }}>
+              {title || '-'}
+            </div>
+          }
+        >
+          <div className='gm-card-header-title'>{title || '-'}</div>
+        </Popover>
+        {labelText && (
+          <Label className='gm-margin-lr-10' type={labelType}>
+            {labelText}
+          </Label>
+        )}
         {actions && (
-          <Flex justifyEnd alignStart>
-            <Popover
-              ref={popoverRef}
-              showArrow
-              type='hover'
-              right
-              popup={
-                <List
-                  data={moreList}
-                  onSelect={handleSelect}
-                  className='gm-border-0'
-                  style={{ minWidth: '30px' }}
-                />
-              }
-            >
-              <div className='gm-card-header-action-icon'>
-                <SVGMore />
-              </div>
-            </Popover>
-          </Flex>
+          <Popover
+            ref={popoverRef}
+            showArrow
+            type='hover'
+            right
+            popup={
+              <List
+                data={moreList}
+                onSelect={handleSelect}
+                className='gm-border-0'
+                style={{ minWidth: '30px' }}
+              />
+            }
+          >
+            <div className='gm-card-header-action-icon'>
+              <SVGMore />
+            </div>
+          </Popover>
         )}
       </Flex>
       <div className='gm-card-content'>{children}</div>

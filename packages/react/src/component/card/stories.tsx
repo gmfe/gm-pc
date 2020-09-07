@@ -6,7 +6,7 @@ export const ComCard = () => (
   <>
     <Card
       className='gm-margin-10'
-      title='标题标题'
+      title='标题标题标题标题标题标题'
       labelText='默认'
       labelType='primary'
       style={{ width: '250px' }}
