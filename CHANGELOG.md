@@ -19,14 +19,14 @@
     ```typescript
     import { Columns } from 'react-table'
 
-    interface InitialDataOptions {
+    interface InitialDataItem {
       address: {
         text: string
         value: number
       }
     }
 
-    const columns: Columns<InitialDataOptions>[] = [
+    const columns: Columns<InitialDataItem>[] = [
       {
         ...
         accessor: 'address.text' as any // 使用断言的方式绕过 TSC 对类型的校验

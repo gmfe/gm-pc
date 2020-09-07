@@ -1,30 +1,20 @@
-import React, { CSSProperties, HTMLAttributes, ReactNode } from 'react'
-import { Row } from 'react-table'
+import React, { FC } from 'react'
 import classNames from 'classnames'
-import { typedMemo } from '../utils'
 import Td from './td'
+import { TableXTrProps } from './types'
+import _ from 'lodash'
 
-export interface TrProps<Original extends object> {
-  row: Row<Original>
-  SubComponent?(row: Row<Original>): ReactNode
-  keyField: keyof Original
-  style: CSSProperties
-  totalWidth: number
-  isTrDisable(original: Original, index: number): boolean
-  isTrHighlight(original: Original, index: number): boolean
-}
-
-function Tr<Original extends object>({
+const Tr: FC<TableXTrProps> = ({
   row,
   SubComponent,
   keyField,
   style,
   totalWidth,
-  isTrDisable,
-  isTrHighlight,
-}: TrProps<Original>) {
+  isTrDisable = _.noop,
+  isTrHighlight = _.noop,
+}) => {
   // 手动设置active态
-  const props: HTMLAttributes<HTMLTableRowElement> = {
+  const props = {
     ...row.getRowProps(),
     style,
     className: classNames('gm-table-x-tr', {
@@ -35,11 +25,12 @@ function Tr<Original extends object>({
     }),
   }
 
-  // 目前视为了 sortable 用。值可能是 undefined，keyField 没作用的情况
-  const dataId = row.original[keyField]
+  // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
+  const trId = row.original[keyField]
+
   return (
     <>
-      <tr data-id={dataId} {...props}>
+      <tr {...props} data-id={trId}>
         {row.cells.map((cell, index) => (
           <Td key={index} totalWidth={totalWidth} cell={cell} />
         ))}
@@ -49,6 +40,4 @@ function Tr<Original extends object>({
   )
 }
 
-Tr.whyDidYouRender = true
-
-export default typedMemo(Tr)
+export default React.memo(Tr)

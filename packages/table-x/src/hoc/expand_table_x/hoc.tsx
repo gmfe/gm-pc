@@ -1,32 +1,30 @@
-import React, { ComponentType, FC, ReactNode, useState } from 'react'
-import { devWarnForHook } from '@gm-common/tool'
+import React, { ComponentType, FC, useMemo, useState } from 'react'
 import _ from 'lodash'
 import { Row } from 'react-table'
-import { TableXProps } from '../../types'
+import { TableXProps, TableXColumn, TableXVirtualizedProps, TableXCell } from '../../base'
 import ExpandTableXContext from './context'
-import useGetColumns from './use_get_columns'
+import { ExpandTableXProps } from './types'
+import { TABLE_X, TABLE_X_EXPAND_ID } from '../../utils'
+import ExpandHeader from './header'
+import ExpandCell from './cell'
 
-export interface ExpandTableXProps<Original extends object> {
-  fixedExpand?: boolean
-  SubComponent(row: Row<Original>): ReactNode
-  /* 传了 expanded，组件 expand 状态交给 props 控制，则必须同时传 onExpand */
-  expanded?: { [key: number]: boolean }
-  onExpand?(expanded: { [key: number]: boolean }): void
+function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXColumn[] {
+  return [
+    {
+      id: TABLE_X_EXPAND_ID,
+      width: TABLE_X.WIDTH_FUN,
+      maxWidth: TABLE_X.WIDTH_FUN,
+      fixed: fixedExpand ? 'left' : undefined,
+      Header: () => <ExpandHeader />,
+      Cell: ({ row }: TableXCell) => <ExpandCell row={row} />,
+    },
+    ...columns,
+  ]
 }
 
-function expandTableXHOC<
-  Original extends object,
-  Props extends TableXProps<Original> = TableXProps<Original>
->(Table: ComponentType<Props>) {
-  const ExpandTableX: FC<Props & ExpandTableXProps<Original>> = (props) => {
+function expandTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+  const ExpandTableX: FC<ExpandTableXProps> = (props) => {
     const isControlByProps = 'expanded' in props
-    devWarnForHook(() => {
-      if (isControlByProps) {
-        if (!('onExpand' in props)) {
-          console.error('If pass in `expanded`, please pass `onExpand`')
-        }
-      }
-    })
 
     const {
       columns,
@@ -60,7 +58,7 @@ function expandTableXHOC<
       }
     }
 
-    const renderSubComponent = (row: Row<Original>) => {
+    const renderSubComponent = (row: Row) => {
       const isExpanded = expanded[row.index]
       if (!isExpanded) {
         return null
@@ -68,14 +66,21 @@ function expandTableXHOC<
       return SubComponent(row)
     }
 
-    const newColumns = useGetColumns<Original>(columns, !!fixedExpand)
+    const newColumns = useMemo(() => {
+      return getNewColumns(columns, !!fixedExpand)
+    }, [columns, fixedExpand])
 
     return (
       <ExpandTableXContext.Provider
-        value={{ expanded, isExpandAll, onExpand: handleExpand, onExpandAll: handleExpandAll }}
+        value={{
+          expanded,
+          isExpandAll,
+          onExpand: handleExpand,
+          onExpandAll: handleExpandAll,
+        }}
       >
         <Table
-          {...(rest as Props)}
+          {...rest}
           data={data}
           columns={newColumns}
           SubComponent={renderSubComponent}

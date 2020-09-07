@@ -9,17 +9,13 @@ const Item = styled.div`
   padding: 5px 0;
 `
 
-interface SelectorProps<Original extends object> {
-  columns: DiyTableXColumn<Original>[]
+interface SelectorProps {
+  columns: DiyTableXColumn[]
   diyGroupSorting: string[]
   onColumnsChange(key: string, show: boolean): void
 }
 
-function Selector<Original extends object>({
-  columns,
-  diyGroupSorting,
-  onColumnsChange,
-}: SelectorProps<Original>) {
+function Selector({ columns, diyGroupSorting, onColumnsChange }: SelectorProps) {
   const colGroup = _.groupBy(columns, 'diyGroupName')
   return (
     <div>

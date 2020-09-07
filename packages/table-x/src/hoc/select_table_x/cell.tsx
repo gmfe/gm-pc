@@ -1,23 +1,17 @@
-import React from 'react'
-import { Row } from 'react-table'
+import React, { FC } from 'react'
 import _ from 'lodash'
-import { SelectTableXProps } from './hoc'
+import { SelectTableXCellProps } from './types'
 import SelectTableXContext from './context'
 import { Checkbox, Radio } from '@gm-pc/react'
 
-interface SelectCellProps<Original extends object>
-  extends Required<
-    Pick<SelectTableXProps<Original>, 'selectType' | 'keyField' | 'isSelectorDisable'>
-  > {
-  row: Row<Original>
-}
+const returnFalse = () => false
 
-function SelectCell<Original extends object>({
+const SelectCell: FC<SelectTableXCellProps> = ({
   selectType,
   keyField,
-  isSelectorDisable,
+  isSelectorDisable = returnFalse,
   row,
-}: SelectCellProps<Original>) {
+}) => {
   const value = row.original[keyField]
 
   return (

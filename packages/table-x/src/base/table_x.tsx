@@ -1,26 +1,30 @@
-import React, { HTMLAttributes, TableHTMLAttributes, UIEvent, CSSProperties } from 'react'
+import React, {
+  HTMLAttributes,
+  TableHTMLAttributes,
+  CSSProperties,
+  FC,
+  UIEvent,
+} from 'react'
 import classNames from 'classnames'
-import _ from 'lodash'
-import { TableXProps } from '../types'
 import { useInitTable, afterScroll } from '../utils'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
+import { TableXProps } from './types'
 
-function TableX<Original extends object>({
+const TableX: FC<TableXProps> = ({
   columns,
   data,
   loading,
   SubComponent,
-  keyField = 'value' as keyof Original,
-  className,
+  keyField = 'value',
   tiled,
+  isTrHighlight,
+  isTrDisable,
   onScroll,
-  isTrHighlight = () => false,
-  isTrDisable = () => false,
-  id = _.uniqueId('TABLE-X-'),
+  className,
   ...rest
-}: TableXProps<Original>) {
+}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -28,7 +32,7 @@ function TableX<Original extends object>({
     prepareRow,
     headerGroups,
     rows,
-  } = useInitTable<Original>(columns, data)
+  } = useInitTable(columns, data)
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
@@ -68,7 +72,7 @@ function TableX<Original extends object>({
 
   return (
     <div
-      id={id}
+      {...rest}
       className={classNames(
         'gm-table-x',
         {
@@ -77,7 +81,6 @@ function TableX<Original extends object>({
         },
         className
       )}
-      {...rest}
       onScroll={handleScroll}
     >
       <table {...tableProps}>

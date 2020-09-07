@@ -1,16 +1,20 @@
 import React, { FC, memo } from 'react'
-import { SelectTableXProps } from './hoc'
+import { SelectTableXHeaderProps } from './types'
 import SelectTableXContext from './context'
 import { Checkbox } from '@gm-pc/react'
 
-const SelectHeader: FC<Pick<SelectTableXProps<any>, 'selectType'>> = ({ selectType }) => {
+const SelectHeader: FC<SelectTableXHeaderProps> = ({ selectType }) => {
   if (selectType !== 'checkbox') {
     return null
   }
   return (
     <SelectTableXContext.Consumer>
       {({ isSelectAll, onSelectAll }) => (
-        <Checkbox onChange={onSelectAll} checked={isSelectAll} className='gm-table-x-select' />
+        <Checkbox
+          onChange={onSelectAll}
+          checked={isSelectAll}
+          className='gm-table-x-select'
+        />
       )}
     </SelectTableXContext.Consumer>
   )

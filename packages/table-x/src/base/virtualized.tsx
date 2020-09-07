@@ -1,5 +1,6 @@
 import React, {
   CSSProperties,
+  FC,
   forwardRef,
   HTMLAttributes,
   memo,
@@ -11,12 +12,16 @@ import { areEqual, ReactElementType, VariableSizeList } from 'react-window'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { useInitTable, afterScroll, TABLE_X } from '../utils'
-import { TableXVirtualizedProps } from '../types'
+import { TableXVirtualizedProps } from './types'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
 
-function TableXVirtualized<Original extends object>({
+// 见
+// https://react-window.now.sh/#/api/FixedSizeList innerElementType
+// https://react-window.now.sh/#/examples/list/memoized-list-items
+
+const TableXVirtualized: FC<TableXVirtualizedProps> = ({
   columns,
   data,
   loading,
@@ -25,14 +30,15 @@ function TableXVirtualized<Original extends object>({
   className,
   tiled,
   onScroll,
-  isTrDisable = () => false,
-  isTrHighlight = () => false,
+  isTrDisable,
+  isTrHighlight,
 
   virtualizedHeight,
   virtualizedItemSize,
   refVirtualized,
+
   ...rest
-}: TableXVirtualizedProps<Original>) {
+}) => {
   const {
     getTableBodyProps,
     getTableProps,
@@ -40,7 +46,7 @@ function TableXVirtualized<Original extends object>({
     prepareRow,
     headerGroups,
     totalWidth,
-  } = useInitTable<Original>(columns, data)
+  } = useInitTable(columns, data)
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {

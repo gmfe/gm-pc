@@ -1,51 +1,78 @@
-import React, { ComponentType, FC, ReactNode, useMemo } from 'react'
-import { TableXProps } from '../../types'
+import React, { ComponentType, FC, useMemo } from 'react'
+import { SelectTableXProps, SelectTableXValue } from './types'
+import {
+  TableXColumn,
+  TableXProps,
+  TableXVirtualizedProps,
+  TableXDataItem,
+  TableXCell,
+} from '../../base/types'
 import SelectTableXContext from './context'
 import { Flex } from '@gm-pc/react'
-import useGetColumns from './use_get_columns'
+import { TABLE_X, TABLE_X_SELECT_ID } from '../../utils'
+import SelectHeader from './header'
+import SelectCell from './cell'
 
-export interface SelectTableXProps<Original extends object> {
-  keyField: keyof Original
-  selected: Original[keyof Original][]
-  onSelect(selected: Original[keyof Original][]): void
-  batchActionBar?: ReactNode
-  isSelectorDisable?(item: Original): boolean
-  selectType?: 'checkbox' | 'radio'
-  fixedSelect?: boolean
+const returnFalse = () => false
+
+function getNewColumns(
+  columns: TableXColumn[],
+  fixedSelect: boolean,
+  selectType: 'checkbox' | 'radio',
+  keyField: string,
+  isSelectorDisable: (item: TableXDataItem) => boolean
+): TableXColumn[] {
+  const selectColumn: TableXColumn = {
+    id: TABLE_X_SELECT_ID,
+    width: TABLE_X.WIDTH_FUN,
+    maxWidth: TABLE_X.WIDTH_FUN,
+    fixed: fixedSelect ? 'left' : undefined,
+    Header: () => <SelectHeader selectType={selectType} />,
+    Cell: ({ row }: TableXCell) => (
+      <SelectCell
+        keyField={keyField}
+        selectType={selectType}
+        row={row}
+        isSelectorDisable={isSelectorDisable}
+      />
+    ),
+  }
+
+  return [selectColumn, ...columns]
 }
 
-function selectTableXHOC<
-  Original extends object,
-  Props extends TableXProps<Original> = TableXProps<Original>
->(Table: ComponentType<Props>) {
-  const SelectTableX: FC<Props & SelectTableXProps<Original>> = ({
+function selectTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+  const SelectTableX: FC<SelectTableXProps> = ({
     selected,
     onSelect,
     batchActionBar,
-    isSelectorDisable = () => false,
+    isSelectorDisable = returnFalse,
     selectType = 'checkbox',
-    keyField = 'value' as keyof Original,
+    keyField = 'value',
     fixedSelect,
     columns,
     data,
     ...rest
   }) => {
-    const canSelectData = useMemo(() => data.filter((item) => !isSelectorDisable(item)), [
-      data,
-    ])
+    // 不响应 isSelectorDisable
+    const canSelectData = useMemo(() => {
+      return data.filter((item) => !isSelectorDisable(item))
+    }, [data])
+
+    // 不响应 isSelectorDisable
+    const newColumns = useMemo(() => {
+      return getNewColumns(
+        columns,
+        !!fixedSelect,
+        selectType,
+        keyField,
+        isSelectorDisable
+      )
+    }, [columns])
+
     const isSelectAll = !!selected.length && selected.length === canSelectData.length
 
-    const newColumns = useGetColumns<Original>(
-      columns,
-      !!fixedSelect,
-      selectType,
-      keyField,
-      isSelectorDisable
-    )
-
-    const handleSelect = (
-      selected: Original[SelectTableXProps<Original>['keyField']][]
-    ): void => {
+    const handleSelect = (selected: SelectTableXValue[]): void => {
       onSelect(selected)
     }
 
@@ -70,7 +97,7 @@ function selectTableXHOC<
               </Flex>
             </div>
           )}
-          <Table {...(rest as Props)} columns={newColumns} data={data} />
+          <Table {...rest} columns={newColumns} data={data} />
         </div>
       </SelectTableXContext.Provider>
     )

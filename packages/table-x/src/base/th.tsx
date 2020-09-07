@@ -1,26 +1,19 @@
-import React, { ThHTMLAttributes } from 'react'
+import React, { FC, ThHTMLAttributes } from 'react'
 import classNames from 'classnames'
-import { TableXColumnInstance } from '../types'
-import { getColumnStyle, typedMemo } from '../utils'
+import { TableXThProps } from './types'
+import { getColumnStyle } from '../utils'
 
-interface ThProps<Original extends object> {
-  column: TableXColumnInstance<Original>
-  totalWidth: number
-}
-
-function Th<Original extends object>({ column, totalWidth }: ThProps<Original>) {
+const Th: FC<TableXThProps> = ({ column, totalWidth }) => {
   const hp = column.getHeaderProps()
-  const { thClassName, style } = column
 
   const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = {
     ...hp,
-    className: classNames('gm-table-x-th', hp.className, thClassName, {
+    className: classNames('gm-table-x-th', hp.className, {
       'gm-table-x-fixed-left': column.fixed === 'left',
       'gm-table-x-fixed-right': column.fixed === 'right',
     }),
     style: {
       ...hp.style,
-      ...style,
       ...getColumnStyle(column),
     },
   }
@@ -34,6 +27,4 @@ function Th<Original extends object>({ column, totalWidth }: ThProps<Original>) 
   return <th {...thProps}>{column.render('Header')}</th>
 }
 
-Th.whyDidYouRender = true
-
-export default typedMemo(Th)
+export default React.memo(Th)

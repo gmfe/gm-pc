@@ -1,13 +1,13 @@
-import { TableXColumn } from '@gm-pc/table-x'
+import { TableXColumn, TableXProps } from '@gm-pc/table-x'
 
-type KeyboardTableXColumn<Original extends object> = {
+type KeyboardTableXColumn = {
   isKeyboard?: boolean
-} & TableXColumn<Original>
+} & TableXColumn
 
-interface KeyboardTableXProps<Original extends object> {
+interface KeyboardTableXProps extends TableXProps {
   /* 通过 id 来确定本单元格内通信，避免多表格时混了。请确保 id 唯一 */
   id: string
-  columns: KeyboardTableXColumn<Original>[]
+  columns: KeyboardTableXColumn[]
   /* 增加一行数据 */
   onAddRow(): void
   onBeforeDispatch?(options: {

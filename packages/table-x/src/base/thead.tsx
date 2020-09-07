@@ -1,14 +1,8 @@
-import React from 'react'
-import { HeaderGroup } from 'react-table'
+import React, { FC } from 'react'
 import Th from './th'
-import { typedMemo } from '../utils'
+import { TableXTheadProps } from './types'
 
-interface TheadProps<Original extends object> {
-  headerGroups: HeaderGroup<Original>[]
-  totalWidth: number
-}
-
-function Thead<Original extends object>({ headerGroups, totalWidth }: TheadProps<Original>) {
+const Thead: FC<TableXTheadProps> = ({ headerGroups, totalWidth }) => {
   return (
     <thead className='gm-table-x-thead'>
       {headerGroups.map((headerGroup, groupIndex) => (
@@ -22,6 +16,4 @@ function Thead<Original extends object>({ headerGroups, totalWidth }: TheadProps
   )
 }
 
-Thead.whyDidYouRender = true
-
-export default typedMemo(Thead)
+export default React.memo(Thead)

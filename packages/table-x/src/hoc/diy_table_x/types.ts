@@ -1,6 +1,6 @@
-import { TableXColumn } from '../../types'
+import { TableXColumn, TableXProps } from '../../base'
 
-type DiyTableXColumn<Original extends object> = TableXColumn<Original> & {
+type DiyTableXColumn = TableXColumn & {
   diyEnable?: boolean
   diyItemText?: string
   diyGroupName: string
@@ -12,11 +12,11 @@ type DiyTableXColumn<Original extends object> = TableXColumn<Original> & {
   show?: boolean
 }
 
-interface DiyTableXProps<Original extends object> {
+interface DiyTableXProps extends TableXProps {
   id: string
   /* 分组排序 */
   diyGroupSorting: string[]
-  columns: DiyTableXColumn<Original>[]
+  columns: DiyTableXColumn[]
 }
 
 export type { DiyTableXColumn, DiyTableXProps }
