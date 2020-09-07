@@ -1,4 +1,4 @@
-import { TableXColumn } from '../types'
+import { TableXDataItem, TableXColumn } from '../base'
 import { __DEFAULT_COLUMN } from './constant'
 import { useMemo } from 'react'
 import { useTable } from 'react-table'
@@ -6,17 +6,16 @@ import { useTable } from 'react-table'
 // 给定初始值，交由getColumnStyle控制。width逻辑保持跟react-table（v6）的用法一致。
 const defaultColumn = __DEFAULT_COLUMN
 
-function useInitTable<Original extends object>(
-  columns: TableXColumn<Original>[],
-  data: Original[]
-) {
-  // 自己实现隐藏显示
+function useInitTable(columns: TableXColumn[], data: TableXDataItem[]) {
+  // fixed(最新rc12不支持column.show,自己实现)
   columns = useMemo(() => columns.filter((column) => column.show !== false), [columns])
-  const { getTableProps, getTableBodyProps, rows, prepareRow, headerGroups } = useTable<Original>({
+
+  const { getTableProps, getTableBodyProps, rows, prepareRow, headerGroups } = useTable({
     data,
     columns,
     defaultColumn,
   })
+
   let totalWidth = 0
   if (rows[0] && rows[0].cells.length > 0) {
     prepareRow(rows[0])

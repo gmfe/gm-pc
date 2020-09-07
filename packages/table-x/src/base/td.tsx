@@ -1,23 +1,16 @@
-import React, { Component, TdHTMLAttributes } from 'react'
-import { Cell } from 'react-table'
+import React, { FC } from 'react'
 import classNames from 'classnames'
-import { typedMemo, getColumnStyle } from '../utils'
-import { TableXColumnInstance } from '../types'
+import { getColumnStyle } from '../utils'
+import { TableXTdProps } from './types'
+import Catch from '../utils/catch'
 
-interface TdProps<Original extends object> {
-  cell: Cell<Original>
-  totalWidth: number
-}
-
-function Td<Original extends object>({ cell, totalWidth }: TdProps<Original>) {
-  const column = cell.column as TableXColumnInstance<Original>
-  const { tdClassName } = column
+const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
   const cp = cell.getCellProps()
-  const tdProps: TdHTMLAttributes<HTMLTableDataCellElement> = {
+  const tdProps = {
     ...cp,
-    className: classNames('gm-table-x-td', tdClassName, {
-      'gm-table-x-fixed-left': column.fixed === 'left',
-      'gm-table-x-fixed-right': column.fixed === 'right',
+    className: classNames('gm-table-x-td', {
+      'gm-table-x-fixed-left': cell.column.fixed === 'left',
+      'gm-table-x-fixed-right': cell.column.fixed === 'right',
     }),
     style: {
       ...cp.style,
@@ -25,31 +18,18 @@ function Td<Original extends object>({ cell, totalWidth }: TdProps<Original>) {
     },
   }
 
-  if (column.fixed === 'left') {
+  if (cell.column.fixed === 'left') {
     // 用到 fixed，可以利用 totalLeft
-    tdProps.style!.left = cell.column.totalLeft
-  } else if (column.fixed === 'right') {
-    tdProps.style!.right = totalWidth - cell.column.totalLeft - cell.column.totalWidth
+    tdProps.style.left = cell.column.totalLeft
+  } else if (cell.column.fixed === 'right') {
+    tdProps.style.right = totalWidth - cell.column.totalLeft - cell.column.totalWidth
   }
 
   return (
     <td {...tdProps}>
-      <TdCacheError>{cell.render('Cell')}</TdCacheError>
+      <Catch>{cell.render('Cell')}</Catch>
     </td>
   )
 }
 
-Td.whyDidYouRender = true
-
-export default typedMemo(Td)
-
-class TdCacheError extends Component {
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.warn(`name: ${error.name}; message: ${error.message}; stack: ${error.stack}`)
-    console.warn(errorInfo.componentStack)
-  }
-
-  render() {
-    return this.props.children
-  }
-}
+export default React.memo(Td)

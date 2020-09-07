@@ -2,15 +2,12 @@ import React, { MouseEvent } from 'react'
 import { DiyTableXColumn } from '../types'
 import SVGRemove from '../../../svg/remove.svg'
 
-interface ListProps<Original extends object> {
-  columns: DiyTableXColumn<Original>[]
+interface ListProps {
+  columns: DiyTableXColumn[]
   onColumnsRemove(key: string): void
 }
 
-function List<Original extends object>({
-  columns,
-  onColumnsRemove,
-}: ListProps<Original>) {
+function List({ columns, onColumnsRemove }: ListProps) {
   const onRemove = (event: MouseEvent<SVGElement>, key: string): void => {
     event.stopPropagation()
     onColumnsRemove(key)

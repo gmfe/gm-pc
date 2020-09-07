@@ -1,18 +1,15 @@
 import React, { ComponentType, FC, useMemo } from 'react'
 import classNames from 'classnames'
-import { TABLE_X, TABLE_X_SUB_TABLE_ID } from '../utils'
-import { TableXProps } from '../types'
+import { TABLE_X, TABLE_X_SUB_TABLE_ID } from '../../utils'
+import { TableXProps, TableXVirtualizedProps } from '../../base'
 
-export interface SubTableXProps {
+interface SubTableXProps extends TableXProps {
   /* 默认功能区宽度 */
   subTableIndent?: number
 }
 
-function subTableXHOC<
-  Original extends object,
-  Props extends TableXProps<Original> = TableXProps<Original>
->(Table: ComponentType<Props>) {
-  const SubTableX: FC<Props & SubTableXProps> = ({
+function subTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+  const SubTableX: FC<SubTableXProps> = ({
     columns,
     subTableIndent = TABLE_X.WIDTH_FUN,
     className,
@@ -33,7 +30,7 @@ function subTableXHOC<
 
     return (
       <Table
-        {...(rest as Props)}
+        {...rest}
         columns={_columns}
         className={classNames('gm-table-x-sub-table', className)}
       />
@@ -44,3 +41,4 @@ function subTableXHOC<
 }
 
 export default subTableXHOC
+export type { SubTableXProps }

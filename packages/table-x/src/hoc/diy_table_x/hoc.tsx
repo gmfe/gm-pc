@@ -2,32 +2,21 @@ import React, { ComponentType, FC, useMemo, useRef, useState } from 'react'
 import { Popover, Storage } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
-import { TableXColumn, TableXProps } from '../../types'
+import { TableXColumn, TableXProps, TableXVirtualizedProps } from '../../base'
 import { generateDiyColumns, getStorageColumns } from './utils'
 import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIconTip } from '../../components/operation'
 
-function diyTableXHOC<Original extends object,
-  Props extends TableXProps<Original> = TableXProps<Original>
->(Table: ComponentType<Props>) {
-  const DiyTableX: FC<Props & DiyTableXProps<Original>> = ({
-    id,
-    columns,
-    diyGroupSorting,
-    ...rest
-  }) => {
+function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+  const DiyTableX: FC<DiyTableXProps> = ({ id, columns, diyGroupSorting, ...rest }) => {
     const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
-      () =>
-        generateDiyColumns<Original>(
-          columns,
-          (Storage.get(id) ?? []) as DiyTableXColumn<Original>[]
-        )[1]
+      () => generateDiyColumns(columns, (Storage.get(id) ?? []) as DiyTableXColumn[])[1]
     )
 
-    const handleDiyColumnsSave = (columns: DiyTableXColumn<Original>[]): void => {
+    const handleDiyColumnsSave = (columns: DiyTableXColumn[]): void => {
       setDiyCols(columns)
       Storage.set(id, getStorageColumns(columns))
     }
@@ -36,14 +25,14 @@ function diyTableXHOC<Original extends object,
       diyModalRef.current!.apiDoSetActive()
     }
 
-    const newColumns: TableXColumn<Original>[] = useMemo(() => {
-      const [notDiyCols, cols] = generateDiyColumns<Original>(columns, diyCols)
+    const newColumns: TableXColumn[] = useMemo(() => {
+      const [notDiyCols, cols] = generateDiyColumns(columns, diyCols)
       return [
         {
           id: TABLE_X_DIY_ID,
           width: TABLE_X.WIDTH_FUN,
           maxWidth: TABLE_X.WIDTH_FUN,
-          accessor: TABLE_X_DIY_ID as keyof Original,
+          accessor: TABLE_X_DIY_ID,
           fixed: 'left',
           thClassName: 'gm-table-x-icon-column',
           tdClassName: 'gm-table-x-icon-column',

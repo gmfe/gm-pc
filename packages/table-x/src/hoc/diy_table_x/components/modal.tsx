@@ -5,21 +5,21 @@ import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
 
-interface DiyTableXModalProps<Original extends object> {
-  columns: DiyTableXColumn<Original>[]
+interface DiyTableXModalProps {
+  columns: DiyTableXColumn[]
   diyGroupSorting: string[]
 
-  onSave (columns: DiyTableXColumn<Original>[]): void
+  onSave(columns: DiyTableXColumn[]): void
 
-  onCancel (): void
+  onCancel(): void
 }
 
-function DiyTableXModal<Original extends object>({
+function DiyTableXModal({
   columns,
   diyGroupSorting,
   onSave,
   onCancel,
-}: DiyTableXModalProps<Original>) {
+}: DiyTableXModalProps) {
   const [diyCols, setDiyCols] = useState(columns)
   const [showCols, setShowCols] = useState(columns.filter((v) => v.show))
 

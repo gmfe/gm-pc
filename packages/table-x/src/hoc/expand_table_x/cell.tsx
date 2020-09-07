@@ -1,10 +1,9 @@
 import React from 'react'
 import { Row } from 'react-table'
-import { typedMemo } from '../../utils'
 import ExpandTableXContext from './context'
 import ExpandItem from './item'
 
-function ExpandCell<Original extends object>({ row }: { row: Row<Original> }) {
+function ExpandCell({ row }: { row: Row }) {
   return (
     <ExpandTableXContext.Consumer>
       {({ expanded, onExpand }) => {
@@ -22,4 +21,4 @@ function ExpandCell<Original extends object>({ row }: { row: Row<Original> }) {
   )
 }
 
-export default typedMemo(ExpandCell)
+export default React.memo(ExpandCell)

@@ -1,41 +1,20 @@
 import React, { FC, ReactNode } from 'react'
-import styled from 'styled-components'
-import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
 import { Button, Flex, Popover } from '@gm-pc/react'
 
-import SVGRemove from '../svg/remove.svg'
-import SVGDelete from '../svg/delete.svg'
-import SVGEdit from '../svg/edit-pen.svg'
-import SVGBusiness from '../svg/business.svg'
-import { TableXBatchActionOptions } from '../types'
+import SVGRemove from '../../svg/remove.svg'
+import SVGDelete from '../../svg/delete.svg'
+import SVGEdit from '../../svg/edit-pen.svg'
+import SVGBusiness from '../../svg/business.svg'
+import { TableXBatchActionBarProps } from './types'
 
-interface BatchActionBarProps {
-  /* pure=true，不展示[勾选所有页内容]按钮，也没有勾选所有页相关操作 */
-  pure?: boolean
-  /* 是否选中所有页 */
-  isSelectAll?: boolean
-  /* 选中多少项 */
-  count: number
-  /* 批量操作按钮 */
-  batchActions: TableXBatchActionOptions[]
-  /* 所有页/当前页 切换函数 */
-  toggleSelectAll?(isSelectAll: boolean): void
-  /* 点击关闭 BatchActionBar 的回调函数 */
-  onClose?(): void
-}
-
-const ICON_MAP = {
+const ICON_MAP: { [key: string]: ReactNode } = {
   delete: <SVGDelete />,
   edit: <SVGEdit />,
   business: <SVGBusiness />,
 }
 
-const Icon = styled.span`
-  padding-right: 4px;
-`
-
-const BatchActionBar: FC<BatchActionBarProps> = ({
+const TableXBatchActionBar: FC<TableXBatchActionBarProps> = ({
   isSelectAll,
   pure,
   count,
@@ -85,7 +64,7 @@ const BatchActionBar: FC<BatchActionBarProps> = ({
             style={{ marginLeft: '30px' }}
             className='gm-text-hover-primary gm-cursor gm-text-bold'
           >
-            <Icon>{ICON_MAP[item.type]}</Icon>
+            <span className='gm-padding-right-5'>{ICON_MAP[item.type]}</span>
             {item.name}
           </div>
         ))}
@@ -93,4 +72,4 @@ const BatchActionBar: FC<BatchActionBarProps> = ({
   )
 }
 
-export default BatchActionBar
+export default TableXBatchActionBar

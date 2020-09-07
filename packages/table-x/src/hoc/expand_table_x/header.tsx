@@ -4,7 +4,9 @@ import ExpandItem from './item'
 
 const ExpandHeader: FC = () => (
   <ExpandTableXContext.Consumer>
-    {({ isExpandAll, onExpandAll }) => <ExpandItem active={isExpandAll} onChange={onExpandAll} />}
+    {({ isExpandAll, onExpandAll }) => (
+      <ExpandItem active={isExpandAll} onChange={onExpandAll} />
+    )}
   </ExpandTableXContext.Consumer>
 )
 

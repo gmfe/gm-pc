@@ -2,19 +2,12 @@ import React, { useMemo } from 'react'
 import { MoreSelectDataItem } from '@gm-pc/react'
 import _ from 'lodash'
 import { action, observable } from 'mobx'
-import {
-  TableX,
-  TableXUtil,
-  selectTableXHOC,
-  TableXProps,
-  editTableXHOC,
-} from '@gm-pc/table-x'
+import { TableX, TableXUtil, selectTableXHOC, editTableXHOC } from '@gm-pc/table-x'
 
 import {
   KCMoreSelect,
   KeyboardTableXColumn,
   keyboardTableXHOC,
-  KeyboardTableXProps,
   KCInput,
   KCDatePicker,
   KCSelect,
@@ -22,12 +15,11 @@ import {
 } from './'
 
 const { OperationCell, OperationHeader, EditOperation, TABLE_X } = TableXUtil
-const SelectKeyboardTableX = selectTableXHOC<
-  InitialDataOptions,
-  KeyboardTableXProps<InitialDataOptions> & TableXProps<InitialDataOptions>
->(keyboardTableXHOC<InitialDataOptions>(editTableXHOC<InitialDataOptions>(TableX)))
+const SelectKeyboardTableX = selectTableXHOC(
+  keyboardTableXHOC<InitialDataItem>(editTableXHOC(TableX))
+)
 
-interface InitialDataOptions {
+interface InitialDataItem {
   id: number
   position: MoreSelectDataItem | null
   name: string
@@ -49,7 +41,7 @@ const selectData: MoreSelectDataItem[] = [
   { value: 10, text: '大鹏新区' },
 ]
 
-const initialDataItem: InitialDataOptions = {
+const initialDataItem: InitialDataItem = {
   id: Math.floor(Math.random() * 10),
   name: '',
   position: null,
@@ -58,10 +50,7 @@ const initialDataItem: InitialDataOptions = {
   status: 1,
 }
 
-const initialData: InitialDataOptions[] = _.times(
-  5,
-  (): InitialDataOptions => initialDataItem
-)
+const initialData: InitialDataItem[] = _.times(5, (): InitialDataItem => initialDataItem)
 
 class Store {
   @observable data = initialData
@@ -80,7 +69,7 @@ class Store {
     this.data.splice(index, 1)
   }
 
-  @action handleSetDataItem = (index: number, item: Partial<InitialDataOptions>) => {
+  @action handleSetDataItem = (index: number, item: Partial<InitialDataItem>) => {
     this.data[index] = { ...this.data[index], ...item }
   }
 }
@@ -88,8 +77,8 @@ class Store {
 const store = new Store()
 
 export const ComKeyboard = () => {
-  const columns: KeyboardTableXColumn<InitialDataOptions>[] = useMemo(
-    (): KeyboardTableXColumn<InitialDataOptions>[] => [
+  const columns: KeyboardTableXColumn<InitialDataItem>[] = useMemo(
+    (): KeyboardTableXColumn<InitialDataItem>[] => [
       {
         Header: '编号',
         id: 'no',

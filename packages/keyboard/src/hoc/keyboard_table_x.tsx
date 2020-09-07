@@ -6,16 +6,13 @@ import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
 import { getColumnKey, CellKeyContext } from '../utils'
 import Wrap from '../components/wrap'
 
-function keyboardTableXHOC<
-  Original extends object,
-  Props extends TableXProps<Original> = TableXProps<Original>
->(Table: ComponentType<Props>) {
+function keyboardTableXHOC(Table: ComponentType<TableXProps>) {
   /**
    * 要求 props 是 id 和 onAddRow。
    * and column 需要标志 isKeyboard，同时需要 accessor or id
    * and 如果是 fixed，则需要提供 width，focus 的时候如果在 fixed 遮挡则需要滚动到可视区域，这时候就要用到 width 了
    * */
-  const KeyboardTableX: FC<Props & KeyboardTableXProps<Original>> = ({
+  const KeyboardTableX: FC<KeyboardTableXProps> = ({
     id,
     onAddRow,
     onBeforeDispatch,
@@ -27,9 +24,9 @@ function keyboardTableXHOC<
     // 需要提供能够 accessor or id
     // 用 isKeyboard 也必要会用到了 Cell
     devWarnForHook(() => {
-      columns.forEach((column: KeyboardTableXColumn<Original>) => {
+      columns.forEach((column: KeyboardTableXColumn) => {
         if (column.isKeyboard && column.show !== false) {
-          if (getColumnKey<Original>(column) === null) {
+          if (getColumnKey(column) === null) {
             console.error('column need accessor or id', column)
           } else if (!column.Cell) {
             console.error('column need Cell', column)
@@ -45,9 +42,9 @@ function keyboardTableXHOC<
     // Cell 会产生新组建，所以需要 useMemo
     const { columnKeys, newColumns } = useMemo(() => {
       const columnKeys: string[] = []
-      const newColumns = columns.map((column: KeyboardTableXColumn<Original>) => {
+      const newColumns = columns.map((column: KeyboardTableXColumn) => {
         if (!column.isKeyboard && column.show !== false) return column
-        const columnKey: string = getColumnKey<Original>(column) as string
+        const columnKey: string = getColumnKey(column) as string
         columnKeys.push(columnKey)
 
         const oldCell = column.Cell
@@ -71,7 +68,7 @@ function keyboardTableXHOC<
     let leftFixedWidth = 0
     let rightFixedWidth = 0
     useMemo(() => {
-      columns.forEach((column: KeyboardTableXColumn<Original>) => {
+      columns.forEach((column: KeyboardTableXColumn) => {
         if (column.show !== false) {
           if (column.fixed === 'left' && column.width) {
             leftFixedWidth += column.width as number
