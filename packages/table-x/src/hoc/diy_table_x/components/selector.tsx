@@ -11,16 +11,34 @@ const Item = styled.div`
 
 interface SelectorProps {
   columns: DiyTableXColumn[]
-  diyGroupSorting: string[]
   onColumnsChange(key: string, show: boolean): void
 }
 
-function Selector({ columns, diyGroupSorting, onColumnsChange }: SelectorProps) {
-  const colGroup = _.groupBy(columns, 'diyGroupName')
+function Selector({ columns, onColumnsChange }: SelectorProps) {
+  const arr: string[] = ['']
+  const map: { [key: string]: DiyTableXColumn[] } = {
+    '': [],
+  }
+
+  _.each(columns, (column) => {
+    if (column.diyGroupName) {
+      if (!arr.includes(column.diyGroupName)) {
+        arr.push(column.diyGroupName)
+      }
+      if (!map[column.diyGroupName]) {
+        map[column.diyGroupName] = []
+      }
+
+      map[column.diyGroupName].push(column)
+    } else {
+      map[''].push(column)
+    }
+  })
+
   return (
     <div>
-      {diyGroupSorting.map((groupName) => {
-        const cols = colGroup[groupName]
+      {arr.map((groupName) => {
+        const cols = map[groupName]
         return (
           <div key={groupName}>
             <div className='gm-margin-tb-5'>{groupName}</div>

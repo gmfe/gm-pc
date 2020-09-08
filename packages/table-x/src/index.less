@@ -411,6 +411,9 @@
   width: 900px;
 
   .gm-react-table-x-diy-modal-header {
+    position: relative;
+    height: var(--gm-modal-size-title-height);
+
     .gm-react-table-x-diy-modal-header-title {
       font-size: 14px;
       border-left: 3px solid var(--gm-color-primary);
@@ -418,11 +421,10 @@
 
     .gm-react-table-x-diy-modal-header-close {
       font-size: 16px;
-      color: #000923;
-      text-shadow: 0 1px 0 #fff;
-      font-weight: bold;
-      transition: color 0.5s;
-      border: none;
+      padding: 10px;
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 

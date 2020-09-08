@@ -10,7 +10,7 @@ import DiyTableXModal from './components/modal'
 import { OperationIconTip } from '../../components/operation'
 
 function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
-  const DiyTableX: FC<DiyTableXProps> = ({ id, columns, diyGroupSorting, ...rest }) => {
+  const DiyTableX: FC<DiyTableXProps> = ({ id, columns, ...rest }) => {
     const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
       () => generateDiyColumns(columns, (Storage.get(id) ?? []) as DiyTableXColumn[])[1]
@@ -34,8 +34,6 @@ function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>
           maxWidth: TABLE_X.WIDTH_FUN,
           accessor: TABLE_X_DIY_ID,
           fixed: 'left',
-          thClassName: 'gm-table-x-icon-column',
-          tdClassName: 'gm-table-x-icon-column',
           Cell: () => null,
           Header: () => (
             <Popover
@@ -45,7 +43,6 @@ function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>
               popup={
                 <DiyTableXModal
                   columns={cols}
-                  diyGroupSorting={diyGroupSorting}
                   onSave={handleDiyColumnsSave}
                   onCancel={handleCancel}
                 />
@@ -66,7 +63,7 @@ function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>
       ]
     }, [columns, diyCols])
 
-    return <Table {...(rest as any)} id={id} columns={newColumns} />
+    return <Table {...rest} id={id} columns={newColumns} />
   }
 
   return DiyTableX

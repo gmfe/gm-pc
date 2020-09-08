@@ -1,17 +1,16 @@
 import React from 'react'
 import { diyTableXHOC } from '../hoc'
 import { TableX } from '../base'
-import { store, diyColumns } from './data'
+import { store, columns, diyColumns } from './data'
 
 const DiyTableX = diyTableXHOC(TableX)
 
 export const ComDiyTableX = () => (
-  <DiyTableX
-    data={store.data}
-    id='default'
-    diyGroupSorting={['基础', '其他']}
-    columns={diyColumns}
-  />
+  <div>
+    <DiyTableX data={store.data} id='columns' columns={columns} />
+    <div>column with diyGroupName</div>
+    <DiyTableX data={store.data} id='diyColumns' columns={diyColumns} />
+  </div>
 )
 
 export default {

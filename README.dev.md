@@ -16,11 +16,7 @@ react done
 - [ ] input clean
 
 table-x
-diy 和 select 第一列的样式问题。 可以用 css 解决。 tdClassName thClassName
-
-getColumnStyle memo lodash
-
-edit hoc
+select 第一列的样式问题。 可以用 css 解决。 tdClassName thClassName
 
 其他
 todo price

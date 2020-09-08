@@ -4,22 +4,15 @@ import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
+import SVGRemove from '@gm-pc/react/src/svg/remove.svg'
 
 interface DiyTableXModalProps {
   columns: DiyTableXColumn[]
-  diyGroupSorting: string[]
-
   onSave(columns: DiyTableXColumn[]): void
-
   onCancel(): void
 }
 
-function DiyTableXModal({
-  columns,
-  diyGroupSorting,
-  onSave,
-  onCancel,
-}: DiyTableXModalProps) {
+function DiyTableXModal({ columns, onSave, onCancel }: DiyTableXModalProps) {
   const [diyCols, setDiyCols] = useState(columns)
   const [showCols, setShowCols] = useState(columns.filter((v) => v.show))
 
@@ -59,21 +52,17 @@ function DiyTableXModal({
         <div className='gm-react-table-x-diy-modal-header-title gm-margin-left-10 gm-padding-left-5'>
           {getLocale('表头设置')}
         </div>
-        <button
-          className='gm-react-table-x-diy-modal-header-close gm-margin-right-10'
+        <div
+          className='gm-react-table-x-diy-modal-header-close gm-cursor'
           onClick={onCancel}
         >
-          ×
-        </button>
+          <SVGRemove />
+        </div>
       </Flex>
       <Flex className='gm-react-table-x-diy-modal-content'>
         <div className='gm-react-table-x-diy-modal-selector'>
           <div className='gm-react-table-x-diy-modal-title'>{getLocale('可选字段')}</div>
-          <Selector
-            columns={diyCols}
-            diyGroupSorting={diyGroupSorting}
-            onColumnsChange={handleColumnsChange}
-          />
+          <Selector columns={diyCols} onColumnsChange={handleColumnsChange} />
         </div>
         <div className='gm-react-table-x-diy-modal-list'>
           <div className='gm-react-table-x-diy-modal-title'>
