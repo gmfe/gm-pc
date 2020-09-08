@@ -179,26 +179,26 @@ const fixedColumns = [
     width: 150,
     Cell: (cellProps: { row: { index: number } }) => cellProps.row.index + 1,
   },
-  { Header: '编号', accessor: 'id', width: 100, fixed: 'left' },
-  { Header: '地址', accessor: 'address.text' as any, width: 500 },
-  { Header: '商品价格', accessor: 'skuMoney', width: 300 },
-  { Header: '供应商编号', accessor: 'supplierCustomerId', width: 300 },
-  { Header: '提交时间', accessor: 'submitTime', width: 300 },
-  { Header: 'delta money', accessor: 'deltaMoney', width: 300 },
-  {
-    Header: '供应商信息',
-    width: 500,
-    accessor: (data: any) => data.supplierName,
-    id: 'supplierName',
-  },
-  {
-    Header: '入库金额',
-    width: 200,
-    fixed: 'right',
-    Cell: (cellProps: { row: { original: { totalMoney: React.ReactNode } } }) => (
-      <div>{cellProps.row.original.totalMoney}</div>
-    ),
-  },
+  // { Header: '编号', accessor: 'id', width: 100, fixed: 'left' },
+  // { Header: '地址', accessor: 'address.text' as any, width: 500 },
+  // { Header: '商品价格', accessor: 'skuMoney', width: 300 },
+  // { Header: '供应商编号', accessor: 'supplierCustomerId', width: 300 },
+  // { Header: '提交时间', accessor: 'submitTime', width: 300 },
+  // { Header: 'delta money', accessor: 'deltaMoney', width: 300 },
+  // {
+  //   Header: '供应商信息',
+  //   width: 500,
+  //   accessor: (data: any) => data.supplierName,
+  //   id: 'supplierName',
+  // },
+  // {
+  //   Header: '入库金额',
+  //   width: 200,
+  //   fixed: 'right',
+  //   Cell: (cellProps: { row: { original: { totalMoney: React.ReactNode } } }) => (
+  //     <div>{cellProps.row.original.totalMoney}</div>
+  //   ),
+  // },
 ]
 
 const editColumns = [

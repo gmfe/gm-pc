@@ -1,13 +1,13 @@
 import React, { ComponentType, FC, useEffect } from 'react'
 import SortableJS from 'sortablejs'
-import { TableXDataItem, TableXProps } from '../../base'
+import { TableXDataItem, TableXPropsType } from '../../base'
 import _ from 'lodash'
 
-interface SortableTableXProps extends TableXProps {
+type SortableTableXProps = TableXPropsType & {
   onSortChange(data: TableXDataItem[]): void
 }
 
-function sortableTableXHOC(Table: ComponentType<TableXProps>) {
+function sortableTableXHOC(Table: ComponentType<TableXPropsType>) {
   const SortableTableX: FC<SortableTableXProps> = ({
     id,
     data,

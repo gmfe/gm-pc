@@ -6,11 +6,11 @@ import OperationIconTip from './icon_tip'
 import SVGDelete from '../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
-  onClick (): void
+  onClick(): void
 }
 
 const OperationDelete: FC<OperationDeleteProps> = ({
-                                                     title,
+  title,
   onClick,
   className,
   children,

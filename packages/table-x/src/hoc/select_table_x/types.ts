@@ -1,9 +1,10 @@
 import { MouseEvent, ReactNode } from 'react'
 import { Row } from 'react-table'
-import { TableXProps, TableXDataItem } from '../../base/types'
+import { TableXPropsType, TableXDataItem } from '../../base/types'
 
 type SelectTableXValue = any
-interface SelectTableXProps extends TableXProps {
+
+type SelectTableXProps = TableXPropsType & {
   selected: SelectTableXValue[]
   onSelect(selected: SelectTableXValue[]): void
   batchActionBar?: ReactNode

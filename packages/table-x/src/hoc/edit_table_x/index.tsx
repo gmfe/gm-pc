@@ -1,9 +1,9 @@
 import React, { ComponentType, FC } from 'react'
 import classNames from 'classnames'
-import { TableXProps, TableXVirtualizedProps } from '../../base'
+import { TableXPropsType } from '../../base'
 
-function editTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
-  const EditTableX: FC<TableXProps> = ({ className, ...rest }) => (
+function editTableXHOC(Table: ComponentType<TableXPropsType>) {
+  const EditTableX: FC<TableXPropsType> = ({ className, ...rest }) => (
     <Table {...rest} className={classNames('gm-table-x-edit-table', className)} />
   )
   return EditTableX

@@ -1,10 +1,8 @@
 import React, { ComponentType, FC } from 'react'
-import { TableXProps, TableXVirtualizedProps } from '../../base'
+import { TableXPropsType } from '../../base'
 
-function fixedColumnsTableXHOC(
-  Table: ComponentType<TableXProps | TableXVirtualizedProps>
-) {
-  const FixedColumnsTableX: FC<TableXProps> = (props) => <Table {...props} />
+function fixedColumnsTableXHOC(Table: ComponentType<TableXPropsType>) {
+  const FixedColumnsTableX: FC<TableXPropsType> = (props) => <Table {...props} />
   return FixedColumnsTableX
 }
 

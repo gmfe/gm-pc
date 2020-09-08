@@ -9,4 +9,5 @@ export type {
   TableXColumn,
   TableXProps,
   TableXVirtualizedProps,
+  TableXPropsType,
 } from './types'

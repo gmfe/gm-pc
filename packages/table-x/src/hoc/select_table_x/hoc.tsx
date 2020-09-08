@@ -2,10 +2,9 @@ import React, { ComponentType, FC, useMemo } from 'react'
 import { SelectTableXProps, SelectTableXValue } from './types'
 import {
   TableXColumn,
-  TableXProps,
-  TableXVirtualizedProps,
   TableXDataItem,
   TableXCell,
+  TableXPropsType,
 } from '../../base/types'
 import SelectTableXContext from './context'
 import { Flex } from '@gm-pc/react'
@@ -41,7 +40,7 @@ function getNewColumns(
   return [selectColumn, ...columns]
 }
 
-function selectTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+function selectTableXHOC(Table: ComponentType<TableXPropsType>) {
   const SelectTableX: FC<SelectTableXProps> = ({
     selected,
     onSelect,

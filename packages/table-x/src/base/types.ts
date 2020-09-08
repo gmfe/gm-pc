@@ -77,6 +77,8 @@ interface TableXVirtualizedProps extends TableXProps {
 
 type TableXSortType = 'desc' | 'asc' | undefined
 
+type TableXPropsType = TableXProps | TableXVirtualizedProps
+
 export type {
   TableXDataItem,
   TableXCell,
@@ -88,4 +90,5 @@ export type {
   TableXProps,
   TableXVirtualizedProps,
   TableXSortType,
+  TableXPropsType,
 }

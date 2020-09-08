@@ -2,14 +2,14 @@ import React, { ComponentType, FC, useMemo, useRef, useState } from 'react'
 import { Popover, Storage } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
-import { TableXColumn, TableXProps, TableXVirtualizedProps } from '../../base'
+import { TableXColumn, TableXPropsType } from '../../base'
 import { generateDiyColumns, getStorageColumns } from './utils'
 import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIconTip } from '../../components/operation'
 
-function diyTableXHOC(Table: ComponentType<TableXProps | TableXVirtualizedProps>) {
+function diyTableXHOC(Table: ComponentType<TableXPropsType>) {
   const DiyTableX: FC<DiyTableXProps> = ({ id, columns, ...rest }) => {
     const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
