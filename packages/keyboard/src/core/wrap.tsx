@@ -10,28 +10,7 @@ import {
   KeyboardActionsName,
   WrapContext,
 } from '../utils'
-import { KeyboardCustomEvent } from '../types'
-
-interface WrapProps {
-  /* 通过 id 来确定本单元格内通信，避免多表格时混了，请确保 id 唯一 */
-  id: string
-  /* 增加一行数据 */
-  onAddRow(): void
-  onBeforeDispatch?(options: {
-    actionName: string
-    to: { rowKey: number; columnKey: string }
-    from: { rowKey: number; columnKey: string }
-  }): boolean
-
-  /* Wrap 需要知道字段集合，以便能找到相应的单元格，请确保表格的顺序一致 */
-  columnKeys: string[]
-  /* Wrap 需要知道有多少行，以便能找到相应的单元格，同时必要时会触发 onAddRow，告知调用方需要增加一行数据 */
-  dataLength: number
-  fixedWidths: {
-    leftFixedWidth: number
-    rightFixedWidth: number
-  }
-}
+import { KeyboardCustomEvent, WrapProps } from '../types'
 
 /**
  * 包裹 Table，使 Table 具有键盘响应能力
@@ -67,7 +46,10 @@ const Wrap: FC<WrapProps> = ({
       })
 
     // 返回 false 组织默认行为
-    if (result === false) return
+    if (result === false) {
+      return
+    }
+
     doFocus(id, rowKey, columnKey)
   }
 

@@ -15,9 +15,7 @@ import {
 } from './'
 
 const { OperationCell, OperationHeader, EditOperation, TABLE_X } = TableXUtil
-const SelectKeyboardTableX = selectTableXHOC(
-  keyboardTableXHOC<InitialDataItem>(editTableXHOC(TableX))
-)
+const SelectKeyboardTableX = selectTableXHOC(keyboardTableXHOC(editTableXHOC(TableX)))
 
 interface InitialDataItem {
   id: number
@@ -77,8 +75,8 @@ class Store {
 const store = new Store()
 
 export const ComKeyboard = () => {
-  const columns: KeyboardTableXColumn<InitialDataItem>[] = useMemo(
-    (): KeyboardTableXColumn<InitialDataItem>[] => [
+  const columns: KeyboardTableXColumn[] = useMemo(
+    (): KeyboardTableXColumn[] => [
       {
         Header: '编号',
         id: 'no',

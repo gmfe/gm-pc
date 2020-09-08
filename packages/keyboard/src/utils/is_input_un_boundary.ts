@@ -1,6 +1,6 @@
 import { KeyboardEvent } from 'react'
 
-function isInputUnBoundary(event: KeyboardEvent<HTMLElement>): boolean {
+function is_input_un_boundary(event: KeyboardEvent<HTMLElement>): boolean {
   const { key, target } = event
   const {
     tagName,
@@ -26,4 +26,4 @@ function isInputUnBoundary(event: KeyboardEvent<HTMLElement>): boolean {
   return false
 }
 
-export default isInputUnBoundary
+export default is_input_un_boundary

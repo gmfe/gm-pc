@@ -1,11 +1,11 @@
 import { TableXUtil } from '@gm-pc/table-x'
 
-import { WrapDataOptions } from '../types'
+import { KeyboardWrapData } from '../types'
 const { TABLE_X } = TableXUtil
 
 function scrollIntoViewFixedWidth(
   dom: HTMLElement,
-  fixedWidth: WrapDataOptions['fixedWidths']
+  fixedWidth: KeyboardWrapData['fixedWidths']
 ) {
   const td = getTd(dom)
   if (!td) return

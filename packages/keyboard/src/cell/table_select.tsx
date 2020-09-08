@@ -1,35 +1,35 @@
 import React, { useRef, KeyboardEvent } from 'react'
-import { Select, SelectProps } from '@gm-pc/react'
+import { MoreSelect, TableSelect, TableSelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
-import KeyboardCell from './cell'
-import { scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { WrapDataOptions } from '../types'
+import KeyboardCell from '../core/cell'
+import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
+import { KeyboardWrapData } from '../types'
 
-function KCSelect({ disabled, onKeyDown, ...rest }: SelectProps) {
+function KCTableSelect({ disabled, onKeyDown, ...rest }: TableSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<Select>(null)
+  const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()
+
+  const handleScroll = (fixedWidths: KeyboardWrapData['fixedWidths']) => {
+    scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
+  }
 
   const handleFocus = () => {
     // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
-  const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
-    scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
-  }
-
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     onKeyDown && onKeyDown(event)
+    if (isInputUnBoundary(event)) return
+
     if (
       event.key === 'ArrowUp' ||
-      event.key === 'ArrowRight' ||
       event.key === 'ArrowDown' ||
-      event.key === 'ArrowLeft'
+      event.key === 'ArrowLeft' ||
+      event.key === 'ArrowRight'
     ) {
-      // 需要阻止
-      // 如果下一个是 input，切过去的时候光标会右移一位
       event.preventDefault()
       // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
@@ -39,9 +39,6 @@ function KCSelect({ disabled, onKeyDown, ...rest }: SelectProps) {
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
-      // Enter 要选择
-      // eslint-disable-next-line
-      targetRef.current?.apiDoSelectWillActive()
       // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
@@ -49,22 +46,23 @@ function KCSelect({ disabled, onKeyDown, ...rest }: SelectProps) {
 
   return (
     <KeyboardCell
+      disabled={disabled}
       ref={cellRef}
       wrapData={wrapData}
       cellKey={cellKey}
-      disabled={disabled}
       onFocus={handleFocus}
       onScroll={handleScroll}
     >
-      <Select
-        {...rest}
+      <TableSelect
+        {...(rest as any)}
         ref={targetRef}
         popoverType='realFocus'
-        disabled={disabled}
         onKeyDown={handleKeyDown}
+        isKeyboard
+        disabled={disabled}
       />
     </KeyboardCell>
   )
 }
 
-export default KCSelect
+export default KCTableSelect

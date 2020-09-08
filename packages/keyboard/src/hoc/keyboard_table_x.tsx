@@ -1,12 +1,12 @@
-import React, { ComponentType, FC, useMemo } from 'react'
-import { TableXProps } from '@gm-pc/table-x'
+import React, { ComponentType, FC, ReactNode, useMemo } from 'react'
+import { TableXCell, TableXPropsType } from '@gm-pc/table-x'
 import { devWarnForHook } from '@gm-common/tool'
 
 import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
 import { getColumnKey, CellKeyContext } from '../utils'
-import Wrap from '../components/wrap'
+import Wrap from '../core/wrap'
 
-function keyboardTableXHOC(Table: ComponentType<TableXProps>) {
+function keyboardTableXHOC(Table: ComponentType<TableXPropsType>) {
   /**
    * 要求 props 是 id 和 onAddRow。
    * and column 需要标志 isKeyboard，同时需要 accessor or id
@@ -25,6 +25,7 @@ function keyboardTableXHOC(Table: ComponentType<TableXProps>) {
     // 用 isKeyboard 也必要会用到了 Cell
     devWarnForHook(() => {
       columns.forEach((column: KeyboardTableXColumn) => {
+        console.log(column)
         if (column.isKeyboard && column.show !== false) {
           if (getColumnKey(column) === null) {
             console.error('column need accessor or id', column)
@@ -47,14 +48,14 @@ function keyboardTableXHOC(Table: ComponentType<TableXProps>) {
         const columnKey: string = getColumnKey(column) as string
         columnKeys.push(columnKey)
 
-        const oldCell = column.Cell
+        const oldCell: (props: TableXCell) => ReactNode = column.Cell
 
         // Cell 是个方法
         // 用 <Cell {...cellProps}/> 会导致重新渲染组件，不知道为什么
 
         return {
           ...column,
-          Cell: (cellProps: any) => (
+          Cell: (cellProps: TableXCell) => (
             <CellKeyContext.Provider value={`${cellProps.row.index}_${columnKey}`}>
               {oldCell(cellProps)}
             </CellKeyContext.Provider>

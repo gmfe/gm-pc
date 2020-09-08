@@ -1,34 +1,35 @@
-import React, { FC, useRef, KeyboardEvent } from 'react'
-import { DatePicker, DatePickerProps } from '@gm-pc/react'
+import React, { useRef, KeyboardEvent } from 'react'
+import { Select, SelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
-import KeyboardCell from './cell'
+import KeyboardCell from '../core/cell'
 import { scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { WrapDataOptions } from '../types'
+import { KeyboardWrapData } from '../types'
 
-const KCDatePicker: FC<DatePickerProps> = ({ disabled, onKeyDown, ...rest }) => {
+function KCSelect({ disabled, onKeyDown, ...rest }: SelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
-  const targetRef = useRef<DatePicker>(null)
+  const targetRef = useRef<Select>(null)
   const { wrapData, cellKey } = useContextData()
 
-  const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
-    scrollIntoViewFixedWidth(findDOMNode(targetRef.current) as HTMLElement, fixedWidths)
+  const handleFocus = () => {
+    // eslint-disable-next-line
+    targetRef.current?.apiDoFocus()
   }
 
-  const handleFocus = () => {
-    if (targetRef.current) {
-      targetRef.current.apiDoFocus()
-    }
+  const handleScroll = (fixedWidths: KeyboardWrapData['fixedWidths']) => {
+    scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
     onKeyDown && onKeyDown(event)
     if (
       event.key === 'ArrowUp' ||
+      event.key === 'ArrowRight' ||
       event.key === 'ArrowDown' ||
-      event.key === 'ArrowLeft' ||
-      event.key === 'ArrowRight'
+      event.key === 'ArrowLeft'
     ) {
+      // 需要阻止
+      // 如果下一个是 input，切过去的时候光标会右移一位
       event.preventDefault()
       // eslint-disable-next-line
       cellRef.current?.apiDoDirectionByEventKey(event.key)
@@ -38,6 +39,7 @@ const KCDatePicker: FC<DatePickerProps> = ({ disabled, onKeyDown, ...rest }) => 
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // Enter 要选择
       // eslint-disable-next-line
       targetRef.current?.apiDoSelectWillActive()
       // eslint-disable-next-line
@@ -47,22 +49,22 @@ const KCDatePicker: FC<DatePickerProps> = ({ disabled, onKeyDown, ...rest }) => 
 
   return (
     <KeyboardCell
-      disabled={disabled}
       ref={cellRef}
       wrapData={wrapData}
       cellKey={cellKey}
+      disabled={disabled}
       onFocus={handleFocus}
       onScroll={handleScroll}
     >
-      <DatePicker
-        disabled={disabled}
+      <Select
         {...rest}
-        popoverType='realFocus'
-        onKeyDown={handleKeyDown}
         ref={targetRef}
+        popoverType='realFocus'
+        disabled={disabled}
+        onKeyDown={handleKeyDown}
       />
     </KeyboardCell>
   )
 }
 
-export default KCDatePicker
+export default KCSelect

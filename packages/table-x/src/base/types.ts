@@ -11,10 +11,12 @@ interface TableXCustomerColumn {
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
+  /** KeyboardTableX 用 */
+  Cell(props: TableXCell): ReactNode
 }
 
 // useTable 生成的 columns
-interface TableXColumnInstance extends ColumnInstance, TableXCustomerColumn {}
+type TableXColumnInstance = ColumnInstance & TableXCustomerColumn
 
 interface TableXCell extends Omit<Cell, 'column'> {
   column: TableXColumnInstance
@@ -77,6 +79,7 @@ interface TableXVirtualizedProps extends TableXProps {
 
 type TableXSortType = 'desc' | 'asc' | undefined
 
+// 不知道叫什么名字好
 type TableXPropsType = TableXProps | TableXVirtualizedProps
 
 export type {

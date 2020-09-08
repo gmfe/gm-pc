@@ -2,9 +2,9 @@ import React, { FC, useRef, FocusEvent, KeyboardEvent } from 'react'
 import { InputNumber, InputNumberProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
-import KeyboardCell from './cell'
+import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { WrapDataOptions } from '../types'
+import { KeyboardWrapData } from '../types'
 
 const KCInputNumber: FC<InputNumberProps> = ({
   disabled,
@@ -16,7 +16,7 @@ const KCInputNumber: FC<InputNumberProps> = ({
   const targetRef = useRef<InputNumber>(null)
   const { cellKey, wrapData } = useContextData()
 
-  const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
+  const handleScroll = (fixedWidths: KeyboardWrapData['fixedWidths']) => {
     scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
   }
 

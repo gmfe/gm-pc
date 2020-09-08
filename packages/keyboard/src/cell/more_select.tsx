@@ -1,34 +1,33 @@
 import React, { useRef, KeyboardEvent } from 'react'
-import { MoreSelect, TableSelect, TableSelectProps } from '@gm-pc/react'
+import { MoreSelect, MoreSelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
-import KeyboardCell from './cell'
+import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { WrapDataOptions } from '../types'
+import { KeyboardWrapData } from '../types'
 
-function KCTableSelect({ disabled, onKeyDown, ...rest }: TableSelectProps) {
+function KCMoreSelect({ disabled, onKeyDown, ...rest }: MoreSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()
-
-  const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
-    scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
-  }
 
   const handleFocus = () => {
     // eslint-disable-next-line
     targetRef.current?.apiDoFocus()
   }
 
+  const handleScroll = (fixedWidths: KeyboardWrapData['fixedWidths']) => {
+    scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
+  }
+
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     onKeyDown && onKeyDown(event)
     if (isInputUnBoundary(event)) return
-
     if (
       event.key === 'ArrowUp' ||
-      event.key === 'ArrowDown' ||
       event.key === 'ArrowLeft' ||
-      event.key === 'ArrowRight'
+      event.key === 'ArrowRight' ||
+      event.key === 'ArrowDown'
     ) {
       event.preventDefault()
       // eslint-disable-next-line
@@ -40,29 +39,31 @@ function KCTableSelect({ disabled, onKeyDown, ...rest }: TableSelectProps) {
     } else if (event.key === 'Enter') {
       event.preventDefault()
       // eslint-disable-next-line
+      targetRef.current?.apiDoSelectWillActive()
+      // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
   }
 
   return (
     <KeyboardCell
-      disabled={disabled}
       ref={cellRef}
+      disabled={disabled}
       wrapData={wrapData}
       cellKey={cellKey}
       onFocus={handleFocus}
       onScroll={handleScroll}
     >
-      <TableSelect
-        {...(rest as any)}
+      <MoreSelect
+        {...rest}
+        disabled={disabled}
         ref={targetRef}
         popoverType='realFocus'
         onKeyDown={handleKeyDown}
         isKeyboard
-        disabled={disabled}
       />
     </KeyboardCell>
   )
 }
 
-export default KCTableSelect
+export default KCMoreSelect

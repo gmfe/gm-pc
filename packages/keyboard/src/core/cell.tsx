@@ -5,24 +5,12 @@ import {
   KEYBOARD_ONFOCUS,
   KEYBOARD_TAB,
 } from '../utils'
-import { KeyboardCustomEvent, KeyboardDirection, WrapDataOptions } from '../types'
+import { KeyboardCustomEvent, KeyboardDirection, KeyboardCellProps } from '../types'
 
 // 缓存起来，方便 Cell 不可用时把命令传给下一个响应者
 const dispatchCache: {
   [id: string]: { eventName: string; detail?: Partial<KeyboardCustomEvent> }
 } = {}
-
-export interface KeyboardCellProps {
-  wrapData: WrapDataOptions
-  /* Cell 的身份标志，让 Wrap 更方便找到 */
-  cellKey: string
-  /* Wrap 要 focus 到单元格的时候触发 onFocus，请实现此功能 */
-  onFocus(): void
-  /* 表格多的时候需要滚到视窗 */
-  onScroll(data: WrapDataOptions['fixedWidths']): void
-  /* 是否具有响应能力 */
-  disabled?: boolean
-}
 
 /**
  * Cell 和 Wrap 配合使用，使单元格具有响应键盘能力
@@ -63,7 +51,11 @@ class KeyboardCell extends Component<KeyboardCellProps> {
 
   private _handleFocus = (event: CustomEvent<KeyboardCustomEvent>) => {
     const { wrapData, onFocus, onScroll, cellKey, disabled } = this.props
-    if (event.detail.cellKey !== cellKey) return
+
+    if (event.detail.cellKey !== cellKey) {
+      return
+    }
+
     if (!disabled) {
       onFocus()
       onScroll(wrapData.fixedWidths)
@@ -100,4 +92,5 @@ class KeyboardCell extends Component<KeyboardCellProps> {
     })
   }
 }
+
 export default KeyboardCell

@@ -2,9 +2,9 @@ import React, { useRef, KeyboardEvent } from 'react'
 import { LevelSelect, LevelSelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
-import KeyboardCell from './cell'
+import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { WrapDataOptions } from '../types'
+import { KeyboardWrapData } from '../types'
 
 function KCLevelSelect({ disabled, onKeyDown, ...rest }: LevelSelectProps) {
   const cellRef = useRef<KeyboardCell>(null)
@@ -16,7 +16,7 @@ function KCLevelSelect({ disabled, onKeyDown, ...rest }: LevelSelectProps) {
     targetRef.current?.apiDoFocus()
   }
 
-  const handleScroll = (fixedWidths: WrapDataOptions['fixedWidths']) => {
+  const handleScroll = (fixedWidths: KeyboardWrapData['fixedWidths']) => {
     scrollIntoViewFixedWidth(findDOMNode(targetRef.current!) as HTMLElement, fixedWidths)
   }
 
