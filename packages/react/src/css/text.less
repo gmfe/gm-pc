@@ -1,5 +1,5 @@
 .gm-text {
-  color: @gm-color-first !important;
+  color: var(--gm-color-default) !important;
 }
 
 .gm-text-red {
@@ -19,7 +19,7 @@
 }
 
 .gm-text-desc {
-  color: @gm-color-fourth !important;
+  color: var(--gm-color-desc) !important;
 }
 
 .gm-text-black {
@@ -39,23 +39,6 @@
 .gm-text-helper {
   color: var(--gm-color-secondary) !important;
   font-size: 12px !important;
-}
-
-// 会和上面重复
-.gm-text-first {
-  color: @gm-color-first !important;
-}
-
-.gm-text-second {
-  color: var(--gm-color-secondary) !important;
-}
-
-.gm-text-third {
-  color: @gm-color-third !important;
-}
-
-.gm-text-fourth {
-  color: @gm-color-fourth !important;
 }
 
 .gm-text-center {
@@ -121,7 +104,7 @@
 
 .gm-placeholder-text {
   &::placeholder {
-    color: @gm-color-fourth;
+    color: var(--gm-color-desc);
   }
 }
 

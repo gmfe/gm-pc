@@ -80,7 +80,7 @@
       .gm-table-x-tr {
         &.gm-table-x-tr-even {
           .gm-table-x-td {
-            background: @gm-back-body-bg;
+            background: var(--gm-color-bg-back);
           }
         }
 
@@ -102,7 +102,7 @@
       // disable
       .gm-table-x-tr-disable.gm-table-x-tr {
         .gm-table-x-td {
-          background-color: @gm-bg-disabled !important;
+          background-color: var(--gm-color-bg-disabled) !important;
         }
       }
 
@@ -265,17 +265,17 @@
     width: 100%;
     z-index: 10;
     padding-left: 20px;
-    background: @gm-back-body-bg;
+    background: var(--gm-color-bg-back);
     height: var(--gm-table-size-height-action-bar);
   }
 }
 
 .gm-table-x-sub-table {
   border: 1px solid var(--gm-color-primary);
-  background: @gm-back-body-bg;
+  background: var(--gm-color-bg-back);
 
   .gm-table-x-th {
-    background: @gm-back-body-bg !important;
+    background: var(--gm-color-bg-back) !important;
     border-bottom: 1px solid var(--gm-color-border);
 
     &:first-child {
@@ -434,7 +434,7 @@
   }
 
   .gm-react-table-x-diy-modal-title {
-    background-color: @gm-back-body-bg;
+    background-color: var(--gm-color-bg-back);
     border-bottom: 1px solid var(--gm-color-border);
   }
 

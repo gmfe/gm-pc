@@ -7,7 +7,7 @@
     background-color: white;
     min-height: 30px;
     padding: 5px 25px 5px 10px;
-    border-radius: @gm-border-radius;
+    border-radius: var(--gm-size-border-radius);
 
     &.gm-popover-active {
       border-color: var(--gm-color-primary);
@@ -20,7 +20,7 @@
     right: 5px;
     top: 7px;
     cursor: pointer;
-    color: @gm-color-third;
+    color: var(--gm-color-desc);
   }
 
   &:hover {
@@ -99,11 +99,11 @@
       }
 
       &.active.line-selected {
-        background-color: @gm-list-bg-hover;
+        background-color: var(--gm-color-bg-primary-light);
       }
 
       &.line-selected {
-        background-color: @gm-list-bg-hover;
+        background-color: var(--gm-color-bg-primary-light);
       }
     }
 

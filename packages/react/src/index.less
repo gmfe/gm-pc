@@ -66,13 +66,15 @@
 }
 
 ::-webkit-input-placeholder {
-  color: @gm-color-fourth;
+  color: var(--gm-color-desc);
 }
 
 .gm-disabled {
-  cursor: not-allowed;
-  color: @gm-color-third;
-  background: @gm-bg-disabled;
+  .gmDisabledWith();
+}
+
+.gm-disabled-bg {
+  .gmDisabledBgWith();
 }
 
 // stylelint-disable

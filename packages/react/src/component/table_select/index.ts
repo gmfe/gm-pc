@@ -1,2 +1,2 @@
 export { default as TableSelect } from './table_select'
-export * from './types'
+export type { TableSelectProps, TableSelectDataItem, TableSelectColumn } from './types'

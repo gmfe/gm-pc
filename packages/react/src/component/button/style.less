@@ -13,13 +13,13 @@
   user-select: none;
 
   &.gm-btn-default {
-    .gmBtnVariants(@gm-color-first, white, white);
+    .gmBtnVariants(var(--gm-color-default), white, white);
 
     border-color: var(--gm-color-border);
 
     &.gm-btn-plain {
       border-color: var(--gm-color-border);
-      color: @gm-color-first;
+      color: var(--gm-color-default);
     }
   }
 
@@ -38,7 +38,7 @@
   &.gm-btn-link {
     background: transparent;
     border-color: transparent;
-    color: @gm-color-link;
+    color: var(--gm-color-link);
 
     &:hover {
       text-decoration: underline;

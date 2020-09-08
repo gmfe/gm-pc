@@ -93,7 +93,7 @@ const Day: FC<DayProps> = ({
     'gm-calendar-day-hover-end':
       ((begin && !end) || (!begin && end)) && hoverStart === valueStart,
     // 不可用
-    'gm-calendar-day-disabled': disabled,
+    disabled,
   })
 
   return (

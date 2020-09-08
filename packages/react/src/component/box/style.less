@@ -2,14 +2,14 @@
   background: white;
 
   & + .gm-box {
-    border-top: 1px solid fadeout(@gm-frame-border-color, 50%);
+    border-top: 1px solid var(--gm-color-border);
   }
 
   &.gm-box-table {
     .gm-box-table-header {
       padding: 10px 20px;
       height: 50px;
-      background-color: @gm-back-body-bg;
+      background-color: var(--gm-color-bg-back);
     }
   }
 
@@ -30,7 +30,7 @@
       }
 
       .gm-box-panel-summary {
-        border-left: 1px solid @gm-frame-border-color;
+        border-left: 1px solid var(--gm-color-border);
         margin-left: 10px;
         padding-left: 10px;
       }
