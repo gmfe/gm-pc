@@ -175,7 +175,7 @@ const fixedColumns = [
   {
     Header: '序号',
     id: 'index',
-    fixed: 'left',
+    fixed: 'left' as 'left',
     width: 150,
     Cell: (cellProps: { row: { index: number } }) => cellProps.row.index + 1,
   },
