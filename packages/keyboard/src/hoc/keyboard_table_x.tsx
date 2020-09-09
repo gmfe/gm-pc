@@ -1,5 +1,5 @@
 import React, { ComponentType, FC, useMemo } from 'react'
-import { TableXCellProps, TableXPropsType } from '@gm-pc/table-x'
+import { TableXCellProps, TableXProps } from '@gm-pc/table-x'
 import { devWarnForHook } from '@gm-common/tool'
 
 import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
@@ -7,13 +7,15 @@ import { getColumnKey, CellKeyContext } from '../utils'
 import Wrap from '../core/wrap'
 import _ from 'lodash'
 
-function keyboardTableXHOC(Table: ComponentType<TableXPropsType>) {
+function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
   /**
    * 要求 props 是 id 和 onAddRow。
    * and column 需要标志 isKeyboard，同时需要 accessor or id
    * and 如果是 fixed，则需要提供 width，focus 的时候如果在 fixed 遮挡则需要滚动到可视区域，这时候就要用到 width 了
    * */
-  const KeyboardTableX: FC<KeyboardTableXProps> = ({
+  const KeyboardTableX: FC<Props & KeyboardTableXProps> = ({
     id,
     onAddRow,
     onBeforeDispatch,
@@ -90,7 +92,7 @@ function keyboardTableXHOC(Table: ComponentType<TableXPropsType>) {
         onAddRow={onAddRow}
         onBeforeDispatch={onBeforeDispatch}
       >
-        <Table {...(tableProps as any)} id={id} columns={newColumns} />
+        <Table {...(tableProps as Props)} id={id} columns={newColumns} />
       </Wrap>
     )
   }

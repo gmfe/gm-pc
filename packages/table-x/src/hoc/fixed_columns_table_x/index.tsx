@@ -1,8 +1,12 @@
 import React, { ComponentType, FC } from 'react'
-import { TableXPropsType } from '../../base'
+import { TableXProps, TableXPropsType } from '../../base'
 
-function fixedColumnsTableXHOC(Table: ComponentType<TableXPropsType>) {
-  const FixedColumnsTableX: FC<TableXPropsType> = (props) => <Table {...props} />
+function fixedColumnsTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  const FixedColumnsTableX: FC<TableXPropsType> = (props) => (
+    <Table {...(props as Props)} />
+  )
   return FixedColumnsTableX
 }
 

@@ -1,10 +1,6 @@
 import React, { ComponentType, FC, useMemo } from 'react'
 import { SelectTableXProps, SelectTableXValue } from './types'
-import {
-  TableXColumn,
-  TableXDataItem,
-  TableXPropsType,
-} from '../../base/types'
+import { TableXColumn, TableXDataItem, TableXProps } from '../../base/types'
 import SelectTableXContext from './context'
 import { Flex } from '@gm-pc/react'
 import { TABLE_X, TABLE_X_SELECT_ID } from '../../utils'
@@ -40,8 +36,10 @@ function getNewColumns(
   return [selectColumn, ...columns]
 }
 
-function selectTableXHOC(Table: ComponentType<TableXPropsType>) {
-  const SelectTableX: FC<SelectTableXProps> = ({
+function selectTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  const SelectTableX: FC<Props & SelectTableXProps> = ({
     selected,
     onSelect,
     batchActionBar,
@@ -96,7 +94,7 @@ function selectTableXHOC(Table: ComponentType<TableXPropsType>) {
               </Flex>
             </div>
           )}
-          <Table {...rest} columns={newColumns} data={data} />
+          <Table {...(rest as Props)} columns={newColumns} data={data} />
         </div>
       </SelectTableXContext.Provider>
     )

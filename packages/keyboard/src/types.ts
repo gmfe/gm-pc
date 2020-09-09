@@ -1,10 +1,10 @@
-import { TableXColumn, TableXPropsType } from '@gm-pc/table-x'
+import { TableXColumn } from '@gm-pc/table-x'
 
 type KeyboardTableXColumn = {
   isKeyboard?: boolean
 } & TableXColumn
 
-type KeyboardTableXProps = TableXPropsType & {
+interface KeyboardTableXProps {
   /* 通过 id 来确定本单元格内通信，避免多表格时混了。请确保 id 唯一 */
   id: string
   columns: KeyboardTableXColumn[]

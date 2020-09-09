@@ -1,4 +1,4 @@
-import { TableXColumn, TableXPropsType } from '../../base'
+import { TableXColumn } from '../../base'
 
 type DiyTableXColumn = TableXColumn & {
   /** 默认 true，开启 */
@@ -13,7 +13,7 @@ type DiyTableXColumn = TableXColumn & {
   show?: boolean
 }
 
-type DiyTableXProps = TableXPropsType & {
+interface DiyTableXProps {
   /** 存储 */
   id: string
   // /** 分组排序 */

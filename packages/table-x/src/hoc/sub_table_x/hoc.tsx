@@ -1,14 +1,16 @@
 import React, { ComponentType, FC, useMemo } from 'react'
 import classNames from 'classnames'
 import { TABLE_X, TABLE_X_SUB_TABLE_ID } from '../../utils'
-import { TableXPropsType } from '../../base'
+import { TableXProps } from '../../base'
 
-type SubTableXProps = TableXPropsType & {
+type SubTableXProps = {
   subTableIndent?: number
 }
 
-function subTableXHOC(Table: ComponentType<TableXPropsType>) {
-  const SubTableX: FC<SubTableXProps> = ({
+function subTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  const SubTableX: FC<Props & SubTableXProps> = ({
     columns,
     subTableIndent = TABLE_X.WIDTH_FUN,
     className,
@@ -29,7 +31,7 @@ function subTableXHOC(Table: ComponentType<TableXPropsType>) {
 
     return (
       <Table
-        {...rest}
+        {...(rest as Props)}
         columns={_columns}
         className={classNames('gm-table-x-sub-table', className)}
       />

@@ -1,7 +1,7 @@
 import React, { ComponentType, FC, useMemo, useState } from 'react'
 import _ from 'lodash'
 import { CellProps, Row } from 'react-table'
-import { TableXPropsType, TableXColumn } from '../../base'
+import { TableXColumn, TableXProps } from '../../base'
 import ExpandTableXContext from './context'
 import { ExpandTableXProps } from './types'
 import { TABLE_X, TABLE_X_EXPAND_ID } from '../../utils'
@@ -22,8 +22,10 @@ function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXCol
   ]
 }
 
-function expandTableXHOC(Table: ComponentType<TableXPropsType>) {
-  const ExpandTableX: FC<ExpandTableXProps> = (props) => {
+function expandTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  const ExpandTableX: FC<Props & ExpandTableXProps> = (props) => {
     const isControlByProps = 'expanded' in props
 
     const {
@@ -80,7 +82,7 @@ function expandTableXHOC(Table: ComponentType<TableXPropsType>) {
         }}
       >
         <Table
-          {...rest}
+          {...(rest as Props)}
           data={data}
           columns={newColumns}
           SubComponent={renderSubComponent}

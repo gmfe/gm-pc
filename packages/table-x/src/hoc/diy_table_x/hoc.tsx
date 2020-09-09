@@ -2,15 +2,17 @@ import React, { ComponentType, FC, useMemo, useRef, useState } from 'react'
 import { Popover, Storage } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
-import { TableXColumn, TableXPropsType } from '../../base'
+import { TableXColumn, TableXProps } from '../../base'
 import { generateDiyColumns, getStorageColumns } from './utils'
 import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIconTip } from '../../components/operation'
 
-function diyTableXHOC(Table: ComponentType<TableXPropsType>) {
-  const DiyTableX: FC<DiyTableXProps> = ({ id, columns, ...rest }) => {
+function diyTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  const DiyTableX: FC<Props & DiyTableXProps> = ({ id, columns, ...rest }) => {
     const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
       () => generateDiyColumns(columns, (Storage.get(id) ?? []) as DiyTableXColumn[])[1]
@@ -63,7 +65,7 @@ function diyTableXHOC(Table: ComponentType<TableXPropsType>) {
       ]
     }, [columns, diyCols])
 
-    return <Table {...rest} id={id} columns={newColumns} />
+    return <Table {...(rest as Props)} id={id} columns={newColumns} />
   }
 
   return DiyTableX
