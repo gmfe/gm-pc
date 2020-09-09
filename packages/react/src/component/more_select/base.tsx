@@ -32,7 +32,7 @@ interface MoreSelectBaseState {
   willActiveIndex: number | null
 }
 
-// TODO keydown item disabled
+// @todo keydown item disabled
 // 目前全键盘还没有这种场景，暂时不管
 class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState> {
   static renderListFilterDefault = renderListFilterDefault

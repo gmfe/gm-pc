@@ -12,7 +12,7 @@ interface MoreSelectDataItem {
 
 /* 分组的数据格式 */
 interface MoreSelectGroupDataItem {
-  label: string
+  label: string | ReactNode
   children: MoreSelectDataItem[]
 }
 

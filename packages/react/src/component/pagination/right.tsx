@@ -47,7 +47,7 @@ const Right: FC<PaginationProps> = ({ paging, onChange }) => {
     doEnsureIndex()
   }
 
-  // TODO useKeyPress
+  // @todo useKeyPress
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       doEnsureIndex()

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MoreSelect } from '../more_select'
+import { MoreSelect, MoreSelectGroupDataItem } from '../more_select'
 import { Flex } from '../flex'
 import _ from 'lodash'
 import { getColumnKey } from './util'
@@ -28,8 +28,7 @@ const TableSelect = React.forwardRef<MoreSelect, TableSelectProps>((props, ref) 
     </Flex>
   )
 
-  // TODO
-  let newData: any[] = []
+  let newData: MoreSelectGroupDataItem[] = []
   if (data.length !== 0) {
     newData = [
       {

@@ -41,7 +41,7 @@ const oStore = observable({
   },
 })
 
-// todo 临时自己定义，后面以组件提供为准
+// 临时自己定义，后面以组件提供为准
 interface PagingRequest {
   offset?: number
   limit?: number
