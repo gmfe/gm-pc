@@ -8,7 +8,7 @@ const store = observable({
 
 export const ComInput = () => {
   return (
-    <div className='gm-padding-10'>
+    <div className='gm-padding-10' style={{ width: '200px' }}>
       <Input
         placeholder='请输入'
         value={store.value}
