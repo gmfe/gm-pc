@@ -1,12 +1,13 @@
 import React, { ComponentType, FC, useMemo, useState } from 'react'
 import _ from 'lodash'
-import { CellProps, Row } from 'react-table'
+import { CellProps } from 'react-table'
 import { TableXColumn, TableXProps } from '../../base'
 import ExpandTableXContext from './context'
 import { ExpandTableXProps } from './types'
 import { TABLE_X, TABLE_X_EXPAND_ID } from '../../utils'
 import ExpandHeader from './header'
 import ExpandCell from './cell'
+import { TableXRow } from '../../base/types'
 
 function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXColumn[] {
   return [
@@ -60,12 +61,12 @@ function expandTableXHOC<Props extends TableXProps = TableXProps>(
       }
     }
 
-    const renderSubComponent = (row: Row) => {
+    const renderSubComponent = (row: TableXRow) => {
       const isExpanded = expanded[row.index]
       if (!isExpanded) {
         return null
       }
-      return SubComponent(row)
+      return SubComponent ? SubComponent(row) : null
     }
 
     const newColumns = useMemo(() => {

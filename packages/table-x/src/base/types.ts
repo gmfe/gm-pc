@@ -53,7 +53,7 @@ interface TableXTrProps {
   keyField: string
   style: CSSProperties
   totalWidth: number
-  SubComponent?(row: Row): ReactNode
+  SubComponent?(row: TableXRow): ReactNode
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
 }
