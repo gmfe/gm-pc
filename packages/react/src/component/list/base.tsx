@@ -88,7 +88,7 @@ class Base extends Component<ListBaseProps> {
         className={classNames('gm-list', { 'gm-list-group': isGroupList }, className)}
       >
         {data.map((group, gIndex) => (
-          <div key={gIndex + (group.label as string)} className='gm-list-group-item'>
+          <div key={gIndex} className='gm-list-group-item'>
             <div className='gm-list-label'>{group.label}</div>
             {group.children.map((value, index) => {
               sequenceDataIndex++

@@ -10,7 +10,7 @@ interface ListBaseDataItem {
 }
 
 interface ListBaseGroupDataItem {
-  label: string
+  label: string | ReactNode
   children: ListBaseDataItem[]
 }
 
