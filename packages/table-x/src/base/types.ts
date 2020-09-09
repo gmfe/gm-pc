@@ -6,7 +6,7 @@ interface TableXDataItem {
   [key: string]: any
 }
 
-interface TableXCellProps extends CellProps<TableXDataItem> {}
+type TableXCellProps = CellProps<TableXDataItem>
 
 // 自定义的 props
 interface TableXCustomerColumn {
@@ -68,7 +68,7 @@ interface TableXProps {
   columns: TableXColumn[]
   data: TableXDataItem[]
   loading?: boolean
-  SubComponent?(row: Row<TableXDataItem>): ReactNode
+  SubComponent?(row: TableXRow): ReactNode
   /** 目前由 HOC 透传下来 */
   keyField?: string
   /** table 是否平铺，准确意思应该是是否有边框 */

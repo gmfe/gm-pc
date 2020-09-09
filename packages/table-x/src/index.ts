@@ -25,3 +25,4 @@ export const TableXUtil = {
 
 export * from './base'
 export * from './hoc'
+export * from './get_table_x_child'

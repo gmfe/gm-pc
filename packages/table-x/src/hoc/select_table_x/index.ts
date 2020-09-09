@@ -6,4 +6,5 @@ export type {
   SelectTableXHeaderProps,
   TableXBatchActionBarProps,
   TableXBatchActionBarItem,
+  SelectTableXValue,
 } from './types'
