@@ -116,12 +116,7 @@ export const ComKeyboard = () => {
         id: 'position',
         width: TABLE_X.WIDTH_SELECT,
         isKeyboard: true,
-        Cell: (cellProps: {
-          row: {
-            original: { position: MoreSelectDataItem }
-            index: number
-          }
-        }) => {
+        Cell: (cellProps: any) => {
           const {
             original: { position },
             index,
@@ -141,7 +136,7 @@ export const ComKeyboard = () => {
         Header: '名字',
         id: 'name',
         isKeyboard: true,
-        Cell: (cellProps: { row: { original: { name: string }; index: number } }) => {
+        Cell: (cellProps: any) => {
           const {
             original: { name },
             index,
@@ -160,7 +155,7 @@ export const ComKeyboard = () => {
         Header: '年龄',
         id: 'age',
         isKeyboard: true,
-        Cell: (cellProps: { row: { original: { age: number }; index: number } }) => {
+        Cell: (cellProps: any) => {
           const {
             original: { age },
             index,
@@ -179,7 +174,7 @@ export const ComKeyboard = () => {
         Header: '日期',
         id: 'date',
         isKeyboard: true,
-        Cell: (cellProps: { row: { original: { date: Date }; index: number } }) => {
+        Cell: (cellProps: any) => {
           const {
             original: { date },
             index,
@@ -198,7 +193,7 @@ export const ComKeyboard = () => {
         Header: '状态',
         id: 'status',
         isKeyboard: true,
-        Cell: (cellProps: { row: { original: { status: number }; index: number } }) => {
+        Cell: (cellProps: any) => {
           const {
             original: { status },
             index,

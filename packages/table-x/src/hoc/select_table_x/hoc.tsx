@@ -3,7 +3,6 @@ import { SelectTableXProps, SelectTableXValue } from './types'
 import {
   TableXColumn,
   TableXDataItem,
-  TableXCell,
   TableXPropsType,
 } from '../../base/types'
 import SelectTableXContext from './context'
@@ -11,6 +10,7 @@ import { Flex } from '@gm-pc/react'
 import { TABLE_X, TABLE_X_SELECT_ID } from '../../utils'
 import SelectHeader from './header'
 import SelectCell from './cell'
+import { CellProps } from 'react-table'
 
 const returnFalse = () => false
 
@@ -27,7 +27,7 @@ function getNewColumns(
     maxWidth: TABLE_X.WIDTH_FUN,
     fixed: fixedSelect ? 'left' : undefined,
     Header: () => <SelectHeader selectType={selectType} />,
-    Cell: ({ row }: TableXCell) => (
+    Cell: ({ row }: CellProps<any>) => (
       <SelectCell
         keyField={keyField}
         selectType={selectType}

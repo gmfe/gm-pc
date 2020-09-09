@@ -1,7 +1,7 @@
 import React, { ComponentType, FC, useMemo, useState } from 'react'
 import _ from 'lodash'
-import { Row } from 'react-table'
-import { TableXPropsType, TableXColumn, TableXCell } from '../../base'
+import { CellProps, Row } from 'react-table'
+import { TableXPropsType, TableXColumn } from '../../base'
 import ExpandTableXContext from './context'
 import { ExpandTableXProps } from './types'
 import { TABLE_X, TABLE_X_EXPAND_ID } from '../../utils'
@@ -16,7 +16,7 @@ function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXCol
       maxWidth: TABLE_X.WIDTH_FUN,
       fixed: fixedExpand ? 'left' : undefined,
       Header: () => <ExpandHeader />,
-      Cell: ({ row }: TableXCell) => <ExpandCell row={row} />,
+      Cell: ({ row }: CellProps<any>) => <ExpandCell row={row} />,
     },
     ...columns,
   ]

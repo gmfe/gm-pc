@@ -8,6 +8,7 @@ export type {
   // 换个名字出去
   TableXColumn,
   TableXProps,
+  TableXCellProps,
   TableXVirtualizedProps,
   TableXPropsType,
 } from './types'

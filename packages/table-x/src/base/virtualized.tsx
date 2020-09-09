@@ -12,7 +12,7 @@ import { areEqual, ReactElementType, VariableSizeList } from 'react-window'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { useInitTable, afterScroll, TABLE_X } from '../utils'
-import { TableXVirtualizedProps } from './types'
+import { TableXHeaderGroup, TableXVirtualizedProps } from './types'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
@@ -85,7 +85,10 @@ const TableXVirtualized: FC<TableXVirtualizedProps> = ({
             {...tableProps}
             style={{ ...style, minWidth: `${totalWidth}px` }}
           >
-            <Thead totalWidth={totalWidth} headerGroups={headerGroups} />
+            <Thead
+              totalWidth={totalWidth}
+              headerGroups={headerGroups as TableXHeaderGroup[]}
+            />
             <tbody {...tableBodyProps}>{children}</tbody>
           </table>
         )

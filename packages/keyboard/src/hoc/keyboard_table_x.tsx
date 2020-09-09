@@ -1,10 +1,11 @@
-import React, { ComponentType, FC, ReactNode, useMemo } from 'react'
-import { TableXCell, TableXPropsType } from '@gm-pc/table-x'
+import React, { ComponentType, FC, useMemo } from 'react'
+import { TableXCellProps, TableXPropsType } from '@gm-pc/table-x'
 import { devWarnForHook } from '@gm-common/tool'
 
 import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
 import { getColumnKey, CellKeyContext } from '../utils'
 import Wrap from '../core/wrap'
+import _ from 'lodash'
 
 function keyboardTableXHOC(Table: ComponentType<TableXPropsType>) {
   /**
@@ -48,16 +49,16 @@ function keyboardTableXHOC(Table: ComponentType<TableXPropsType>) {
         const columnKey: string = getColumnKey(column) as string
         columnKeys.push(columnKey)
 
-        const oldCell: (props: TableXCell) => ReactNode = column.Cell
+        const oldCell = column.Cell
 
         // Cell 是个方法
         // 用 <Cell {...cellProps}/> 会导致重新渲染组件，不知道为什么
 
         return {
           ...column,
-          Cell: (cellProps: TableXCell) => (
+          Cell: (cellProps: TableXCellProps) => (
             <CellKeyContext.Provider value={`${cellProps.row.index}_${columnKey}`}>
-              {oldCell(cellProps)}
+              {oldCell && oldCell(cellProps)}
             </CellKeyContext.Provider>
           ),
         }

@@ -1,4 +1,4 @@
-import { TableXDataItem, TableXColumn } from '../base'
+import { TableXDataItem, TableXColumn } from '../base/types'
 import { __DEFAULT_COLUMN } from './constant'
 import { useMemo } from 'react'
 import { useTable } from 'react-table'

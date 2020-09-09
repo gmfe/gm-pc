@@ -1,4 +1,4 @@
-import { Cell, Column, ColumnInstance, HeaderGroup, Row } from 'react-table'
+import { Cell, CellProps, Column, ColumnInstance, Row } from 'react-table'
 import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
 import { VariableSizeList } from 'react-window'
 
@@ -6,20 +6,31 @@ interface TableXDataItem {
   [key: string]: any
 }
 
+interface TableXCellProps extends CellProps<TableXDataItem> {}
+
 // 自定义的 props
 interface TableXCustomerColumn {
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
   /** KeyboardTableX 用 */
-  Cell(props: TableXCell): ReactNode
+  Cell?(props: TableXCellProps): ReactNode
 }
 
 // useTable 生成的 columns
-type TableXColumnInstance = ColumnInstance & TableXCustomerColumn
+type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
 
-interface TableXCell extends Omit<Cell, 'column'> {
+interface TableXCell extends Omit<Cell<TableXDataItem>, 'column'> {
   column: TableXColumnInstance
+}
+
+interface TableXRow extends Row<TableXDataItem> {
+  cells: TableXCell[]
+}
+
+// 简单处理
+interface TableXHeaderGroup {
+  headers: TableXColumnInstance[]
 }
 
 interface TableXThProps {
@@ -33,13 +44,12 @@ interface TableXTdProps {
 }
 
 interface TableXTheadProps {
-  headerGroups: HeaderGroup[]
+  headerGroups: TableXHeaderGroup[]
   totalWidth: number
 }
 
 interface TableXTrProps {
-  // TODO
-  row: Row<TableXDataItem>
+  row: TableXRow
   keyField: string
   style: CSSProperties
   totalWidth: number
@@ -47,6 +57,8 @@ interface TableXTrProps {
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
 }
+
+/** 对外 */
 
 // 对外 props columns
 type TableXColumn = Column<TableXDataItem> & TableXCustomerColumn
@@ -85,11 +97,15 @@ type TableXPropsType = TableXProps | TableXVirtualizedProps
 export type {
   TableXDataItem,
   TableXCell,
+  TableXRow,
+  TableXHeaderGroup,
   TableXThProps,
   TableXTdProps,
   TableXTheadProps,
   TableXTrProps,
+  // 对外
   TableXColumn,
+  TableXCellProps,
   TableXProps,
   TableXVirtualizedProps,
   TableXSortType,

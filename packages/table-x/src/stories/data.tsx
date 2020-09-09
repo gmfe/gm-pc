@@ -1,10 +1,9 @@
 import React from 'react'
 import { action, computed, observable } from 'mobx'
-import { TableXSortType } from '../base'
+import { TableXColumn, TableXSortType } from '../base'
 import moment from 'moment'
 import { observer } from 'mobx-react'
 import { EditOperation, OperationHeader, SortHeader } from '../components'
-import { CellProps } from 'react-table'
 import _ from 'lodash'
 import { TABLE_X } from '../utils'
 import { Input, InputNumber, MoreSelect, MoreSelectDataItem } from '@gm-pc/react'
@@ -144,7 +143,7 @@ const groupColumns = [
   },
 ]
 
-const sortColumns = [
+const sortColumns: TableXColumn[] = [
   {
     Header: observer(() => (
       <div>
@@ -165,7 +164,7 @@ const sortColumns = [
   {
     Header: '入库金额',
     accessor: 'totalMoney',
-    Cell: (cellProps: CellProps<any>) => {
+    Cell: (cellProps: any) => {
       return <div>{cellProps.row.original.totalMoney}</div>
     },
   },

@@ -10,7 +10,7 @@ import { useInitTable, afterScroll } from '../utils'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
-import { TableXProps } from './types'
+import { TableXHeaderGroup, TableXProps, TableXRow } from './types'
 
 const TableX: FC<TableXProps> = ({
   columns,
@@ -59,7 +59,7 @@ const TableX: FC<TableXProps> = ({
     return (
       <Tr
         key={row.index}
-        row={row}
+        row={row as TableXRow}
         SubComponent={SubComponent}
         keyField={keyField}
         style={style}
@@ -84,7 +84,10 @@ const TableX: FC<TableXProps> = ({
       onScroll={handleScroll}
     >
       <table {...tableProps}>
-        <Thead headerGroups={headerGroups} totalWidth={totalWidth} />
+        <Thead
+          headerGroups={headerGroups as TableXHeaderGroup[]}
+          totalWidth={totalWidth}
+        />
         <tbody {...tableBodyProps}>
           {rows.map((row) => renderRow({ index: row.index, style: {} }))}
         </tbody>
