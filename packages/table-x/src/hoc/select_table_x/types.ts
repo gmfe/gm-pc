@@ -10,7 +10,6 @@ interface SelectTableXProps {
   batchActionBar?: ReactNode
   isSelectorDisable?(item: TableXDataItem): boolean
   selectType?: 'checkbox' | 'radio'
-  keyField?: string
   fixedSelect?: boolean
 }
 
@@ -29,6 +28,7 @@ interface TableXBatchActionBarItem {
   name: string
   type: 'delete' | 'edit' | 'business'
   show?: boolean
+  /** 目前为了新手引导 */
   dataId?: string
   onClick?(event: MouseEvent): void
 }
