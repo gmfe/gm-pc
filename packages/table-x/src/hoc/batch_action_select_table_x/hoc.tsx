@@ -1,30 +1,17 @@
-import React, { FC, ComponentType, useState, ReactNode } from 'react'
+import React, { FC, ComponentType, useState } from 'react'
 import { TableXProps } from '../../base'
-import TableXBatchActionBar from '../select_table_x/batch_action_bar'
+import BatchActionBar from './bar'
 import _ from 'lodash'
 import { selectTableXHOC } from '../select_table_x'
+import { Value, BatchActionSelectTableXProps, BatchActionBarItem } from './types'
 
-interface Table extends TableXProps {}
-
-type Value = any
-
-interface BatchActionTableXBatchActionsItem {
-  /** 如果需要 dataId，用 ReactNode 调用方自己弄 */
-  children: string | ReactNode
-  onAction(selected: Value[], isSelectAll: boolean): void
-  show?: boolean
-}
-
-interface BatchActionTableX {
-  /** 重新定义 batchActions */
-  batchActions: BatchActionTableXBatchActionsItem[]
-  batchActionBarPure?: boolean
-}
-
-function batchActionTableXHOC<Props extends Table = Table>(Table: ComponentType<Props>) {
+function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
+  Table: ComponentType<Props>
+) {
+  // 基于 SelectTableX
   const SelectTable = selectTableXHOC(Table)
 
-  const BatchActionTable: FC<Props & BatchActionTableX> = ({
+  const BatchActionSelectTableX: FC<Props & BatchActionSelectTableXProps> = ({
     data,
     keyField = 'value',
     batchActions,
@@ -53,13 +40,11 @@ function batchActionTableXHOC<Props extends Table = Table>(Table: ComponentType<
       setIsSelectAll(false)
     }
 
-    // @todo
-    const newBatchActions: any = _.map(
+    const newBatchActions: BatchActionBarItem[] = _.map(
       _.filter(batchActions, (v) => v.show !== false),
       (v) => {
         return {
-          name: v.children,
-          type: 'business',
+          children: v.children,
           onClick: () => {
             v.onAction(selected, isSelectAll)
           },
@@ -76,7 +61,7 @@ function batchActionTableXHOC<Props extends Table = Table>(Table: ComponentType<
         onSelect={handleSelect}
         batchActionBar={
           selected.length > 0 && (
-            <TableXBatchActionBar
+            <BatchActionBar
               isSelectAll={isSelectAll}
               count={selected.length}
               batchActions={newBatchActions}
@@ -90,8 +75,7 @@ function batchActionTableXHOC<Props extends Table = Table>(Table: ComponentType<
     )
   }
 
-  return BatchActionTable
+  return BatchActionSelectTableX
 }
 
-export default batchActionTableXHOC
-export type { BatchActionTableX, BatchActionTableXBatchActionsItem }
+export default batchActionSelectTableXHOC

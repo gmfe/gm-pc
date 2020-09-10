@@ -5,7 +5,7 @@ export { default as sortableTableXHOC } from './sortable_table_x'
 export * from './diy_table_x'
 export * from './expand_table_x'
 export * from './select_table_x'
+export * from './batch_action_select_table_x'
 export * from './sub_table_x'
-export * from './batch_action_table_x'
 
 export type { SortableTableXProps } from './sortable_table_x'
