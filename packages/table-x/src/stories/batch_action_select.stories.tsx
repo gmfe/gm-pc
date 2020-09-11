@@ -6,6 +6,7 @@ import {
   BatchActionDelete,
   BatchActionEdit,
 } from '../hoc'
+import { Button } from '@gm-pc/react'
 import { columns, store } from './data'
 
 const Table = batchActionSelectTableXHOC(TableX)
@@ -31,6 +32,12 @@ export const ComSelectTableX = () => (
         },
         {
           children: <BatchActionEdit>编辑</BatchActionEdit>,
+          onAction: (selected, isSelectAll) => {
+            console.log(selected, isSelectAll)
+          },
+        },
+        {
+          children: <Button>上架</Button>,
           onAction: (selected, isSelectAll) => {
             console.log(selected, isSelectAll)
           },
