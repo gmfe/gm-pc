@@ -101,8 +101,8 @@ class MoreSelect extends Component<MoreSelectProps> {
         onSelect={this._handleSelect}
         multiple={multiple}
         isGroupList={isGroupList}
-        onSearch={this._handleSearch}
-        renderListFilter={this._renderListFilter}
+        onSearch={onSearch && this._handleSearch}
+        renderListFilter={renderListFilter && this._renderListFilter}
       />
     )
   }
