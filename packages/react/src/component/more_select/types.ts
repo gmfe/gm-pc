@@ -46,6 +46,7 @@ interface MoreSelectCommonProps {
 
   className?: string
   style?: CSSProperties
+  children?: ReactNode
 
   /** 目前为了 keyboard */
   isKeyboard?: boolean

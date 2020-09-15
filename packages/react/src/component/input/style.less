@@ -3,3 +3,26 @@
 
   .gmDisabledBgWith();
 }
+
+.gm-input-close {
+  position: relative;
+
+  .gm-input {
+    padding-right: 20px;
+  }
+
+  .gm-input-close-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 9px;
+    color: var(--gm-color-desc);
+    font-size: 12px;
+  }
+
+  &.disabled {
+    .gm-input-close-icon {
+      display: none;
+    }
+  }
+}
