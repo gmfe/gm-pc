@@ -182,7 +182,7 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
   }
 
   render() {
-    const { disabled, children, popoverType, right, className, style } = this.props
+    const { disabled, children, popoverType, right } = this.props
     return (
       <Popover
         ref={this._popoverRef}
@@ -192,9 +192,7 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
         type={popoverType}
         pureContainer
       >
-        <div style={style} className={className}>
-          {children ?? this._renderTarget()}
-        </div>
+        {children ?? this._renderTarget()}
       </Popover>
     )
   }
