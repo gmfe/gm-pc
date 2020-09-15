@@ -1,4 +1,4 @@
-import { ReactNode, KeyboardEvent } from 'react'
+import { ReactNode, KeyboardEvent, CSSProperties } from 'react'
 
 type Value = any
 
@@ -21,6 +21,8 @@ interface LevelSelectProps {
   popoverType: 'focus' | 'realFocus'
   right?: boolean
   onKeyDown?(event: KeyboardEvent): void
+  style?: CSSProperties
+  className?: string
 }
 
 export type { Value, LevelSelectDataItem, LevelSelectProps }
