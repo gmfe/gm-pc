@@ -223,7 +223,6 @@ class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState>
         <div className='gm-more-select-popup-input'>
           <Input
             autoFocus
-            className='form-control'
             value={searchValue}
             onChange={this._handleChange}
             placeholder={searchPlaceholder}

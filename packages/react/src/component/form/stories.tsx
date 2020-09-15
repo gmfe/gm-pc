@@ -107,8 +107,8 @@ export const ComFormWithDisabledCol = () => (
   <div>
     <pre>
       ` Form 包住。一栏用法需要提供 disableCol。 FormItem 包住表单元素 - 可以简单包住
-      input 即可，FormItem 会自动去识别常用的表单元素，并添加 form-control 类名，以便撑开
-      - children 可以是数组，FormItem 读到第一个表单元素，做上面的操作 `
+      input 即可，FormItem 会自动去识别常用的表单元素，并添加 gm-form-control
+      类名，以便撑开 - children 可以是数组，FormItem 读到第一个表单元素，做上面的操作 `
     </pre>
     <Form disabledCol labelWidth='100px' onSubmit={() => console.log('onSubmit')}>
       <FormItem label='名字' required>

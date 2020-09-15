@@ -67,7 +67,6 @@ const Right: FC<PaginationProps> = ({ paging, onChange }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
-        className='form-control'
         style={{ width: '40px' }}
       />
       <div className='gm-pagination-right-total-page'>{`/${all}页`}</div>
