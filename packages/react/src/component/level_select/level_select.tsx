@@ -65,15 +65,15 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
     )
   }
 
-  private _handleSelectionSelect = (): void => {
+  private _handleSelectionSelect = (selected: Value[] | null): void => {
     const { onSelect } = this.props
-    onSelect([])
+    onSelect(selected === null ? [] : selected)
   }
 
   private _getSelectItemText = (): ReactNode => {
     const { renderSelected } = this.props
     const selectedItems = this._getSelectedItem()
-    return renderSelected(selectedItems)
+    return renderSelected!(selectedItems)
   }
 
   private _getSelectedItem = (): LevelSelectDataItem[] => {
@@ -91,9 +91,6 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
   private _handleKeyDown = (event: KeyboardEvent): void => {
     const { data, onKeyDown } = this.props
     const { willActiveSelected } = this.state
-    if (!onKeyDown) {
-      return
-    }
 
     // 不是方向键，不用拦截
     if (
@@ -102,13 +99,13 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
       event.key !== 'ArrowLeft' &&
       event.key !== 'ArrowRight'
     ) {
-      onKeyDown(event)
+      onKeyDown!(event)
       return
     }
 
     // 没有数据，不拦截
     if (data.length === 0) {
-      onKeyDown(event)
+      onKeyDown!(event)
       return
     }
 
@@ -121,7 +118,7 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
       (event.key === 'ArrowLeft' && newWill.length === 0) ||
       (event.key === 'ArrowRight' && newWill.length >= level.length)
     ) {
-      onKeyDown(event)
+      onKeyDown!(event)
       return
     }
 

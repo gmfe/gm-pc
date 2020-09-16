@@ -61,7 +61,7 @@
     "cropperjs": "^1.5.6",
     "css-loader": "^3.4.2",
     "eslint": "^6.8.0",
-    "eslint-plugin-gm-react-app": "^3.3.1",
+    "eslint-plugin-gm-react-app": "^3.3.2-beta.6",
     "file-loader": "^5.1.0",
     "husky": "^4.2.3",
     "less": "^3.12.2",

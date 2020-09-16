@@ -15,10 +15,10 @@ interface LevelSelectProps {
   selected: Value[]
   onSelect(selected: Value[]): void
   disabled?: boolean
-  renderSelected(selected: LevelSelectDataItem[]): ReactNode
+  renderSelected?(selected: LevelSelectDataItem[]): ReactNode
   // @todo 只能选叶子节点
   onlySelectLeaf?: boolean
-  popoverType: 'focus' | 'realFocus'
+  popoverType?: 'focus' | 'realFocus'
   right?: boolean
   onKeyDown?(event: KeyboardEvent): void
   style?: CSSProperties
