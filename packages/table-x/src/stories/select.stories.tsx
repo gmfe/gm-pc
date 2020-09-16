@@ -1,6 +1,6 @@
 import React from 'react'
 import { TableX } from '../base'
-import { selectTableXHOC, TableXBatchActionBar } from '../hoc'
+import { selectTableXHOC } from '../hoc'
 import { columns, store } from './data'
 
 const SelectTableX = selectTableXHOC(TableX)
@@ -13,29 +13,6 @@ export const ComSelectTableX = () => (
     onSelect={(selected: any) => store.setSelected(selected)}
     selected={store.selected}
   />
-)
-export const ComWithBatchActionBar = () => (
-  <div style={{ paddingTop: '50px' }}>
-    <SelectTableX
-      columns={columns}
-      data={store.data}
-      keyField='id'
-      selected={store.selected}
-      onSelect={(selected: string[]) => store.setSelected(selected)}
-      batchActionBar={
-        <TableXBatchActionBar
-          isSelectAll={store.isSelectedAll}
-          count={store.selected.length}
-          toggleSelectAll={store.setIsSelectedAll}
-          batchActions={[
-            { name: '批量删除', type: 'delete' },
-            { name: '批量修改', type: 'edit' },
-            { name: '批量打印', type: 'business' },
-          ]}
-        />
-      }
-    />
-  </div>
 )
 export const ComWithFixedSelect = () => (
   <SelectTableX
