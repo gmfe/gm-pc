@@ -10,6 +10,8 @@ import { ListBase } from '../list'
 import { SearchSelectProps, SearchSelectListProps } from './types'
 import { isGroupData } from './util'
 
+import SVGCloseCircle from '../../svg/close-circle.svg'
+
 const SearchSelectList: FC<SearchSelectListProps> = ({
   data,
   loading,
@@ -69,6 +71,10 @@ const SearchSelect: FC<SearchSelectProps> = ({
     _popoverRef.current && _popoverRef.current.apiDoSetActive(false)
   }
 
+  const _handleClear = () => {
+    setInputValue('')
+  }
+
   return (
     <div ref={_baseRef}>
       <Popover
@@ -83,7 +89,15 @@ const SearchSelect: FC<SearchSelectProps> = ({
           />
         }
       >
-        <Input value={inputValue} onChange={_handleChange} placeholder={placeholder} />
+        <div className='gm-search-select-input-wrap'>
+          <Input value={inputValue} onChange={_handleChange} placeholder={placeholder} />
+          {!!inputValue && (
+            <SVGCloseCircle
+              onClick={_handleClear}
+              className='gm-cursor gm-search-select-clear-btn'
+            />
+          )}
+        </div>
       </Popover>
     </div>
   )

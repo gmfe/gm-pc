@@ -18,3 +18,22 @@
     position: relative;
   }
 }
+
+.gm-search-select-input-wrap {
+  position: relative;
+
+  .gm-search-select-clear-btn {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    cursor: pointer;
+    color: var(--gm-color-desc);
+  }
+
+  &:hover {
+    .gm-search-select-clear-btn {
+      display: block;
+    }
+  }
+}
