@@ -1,5 +1,6 @@
 import React, { FC, ChangeEvent, useRef, useState } from 'react'
 import _ from 'lodash'
+import classNames from 'classnames'
 
 import { useFilterData } from './hooks/use_filter_data'
 import { Input } from '../input'
@@ -48,6 +49,8 @@ const SearchSelect: FC<SearchSelectProps> = ({
   withFilter,
   placeholder,
   keyField,
+  className,
+  style,
 }) => {
   const [inputValue, setInputValue] = useState('')
 
@@ -68,7 +71,9 @@ const SearchSelect: FC<SearchSelectProps> = ({
   }
 
   const _handleSelect = () => {
-    _popoverRef.current && _popoverRef.current.apiDoSetActive(false)
+    setTimeout(() => {
+      _popoverRef.current && _popoverRef.current.apiDoSetActive(false)
+    }, 0)
   }
 
   const _handleClear = () => {
@@ -89,7 +94,10 @@ const SearchSelect: FC<SearchSelectProps> = ({
           />
         }
       >
-        <div className='gm-search-select-input-wrap'>
+        <div
+          className={classNames('gm-search-select-input-wrap', className)}
+          style={style}
+        >
           <Input value={inputValue} onChange={_handleChange} placeholder={placeholder} />
           {!!inputValue && (
             <SVGCloseCircle

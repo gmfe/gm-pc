@@ -116,17 +116,24 @@ const store = observable({
       Cell: (cellProps: any) => {
         return (
           <div>
-            <Button>+1</Button>
+            <Button onClick={() => {}}>button</Button>
           </div>
         )
       },
     },
   ],
+  selected: [],
+  setSelect(id) {
+    this.selected.push(id)
+  },
   setFilterData(data) {
     this.filterData = data
   },
   setFilterTableData(data) {
     this.filterTableData = data
+  },
+  _handleAdd() {
+    console.log(111)
   },
 })
 
@@ -220,6 +227,13 @@ const TabelSelect = observer(() => {
       }, 1000)
     })
   }
+
+  const handleAdd = (item) => {
+    console.log(item.original.sku_id)
+    const id = item.original.sku_id
+    store.setSelect(id)
+  }
+
   return (
     <div>
       <h1>SearchTableSelect 组件</h1>
@@ -237,6 +251,54 @@ const TabelSelect = observer(() => {
         columns={store.tableColumn}
         placeholder='请求服务器数据(根据sku_id搜索)'
       />
+      <h3>业务</h3>
+      <div>
+        <SearchTableSelect
+          data={toJS(store.filterTableData)}
+          onSearch={_handleSearch}
+          columns={[
+            {
+              Header: 'id',
+              accessor: 'sku_id',
+              width: 100,
+            },
+            {
+              Header: '名字',
+              accessor: 'sku_name',
+              width: 100,
+            },
+            {
+              Header: '供应商',
+              accessor: 'settle_supplier_name',
+              width: 100,
+            },
+            {
+              Header: '加粗',
+              accessor: 'sku_name',
+              width: 100,
+              Cell: (cellProps) => {
+                return (
+                  <div>
+                    {store.selected.includes(cellProps.original.sku_id) ? (
+                      <Button disabled>已经添加</Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          handleAdd(cellProps)
+                        }}
+                      >
+                        添加
+                      </Button>
+                    )}
+                  </div>
+                )
+              },
+            },
+          ]}
+          placeholder='请求服务器数据(根据sku_id搜索)'
+        />
+        <div>当前添加: {JSON.stringify(store.selected)}</div>
+      </div>
     </div>
   )
 })

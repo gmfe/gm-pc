@@ -1,5 +1,5 @@
 import { UseAsyncService } from '@gm-common/hooks'
-import { ReactNode } from 'react'
+import { ReactNode, CSSProperties } from 'react'
 import { ListBaseDataItem } from '../list'
 import { ListBaseGroupDataItem } from '../list/types'
 
@@ -34,6 +34,8 @@ export interface SearchSelectProps {
   placeholder?: string
   isGroupList?: boolean
   keyField?: string
+  className?: string
+  style: CSSProperties
 }
 
 export type SearchTableSelectProps = SearchTableSelectLocal | SearchTableSelectServer
