@@ -17,7 +17,7 @@ const List = React.forwardRef<ListApi, ListProps>(
       listWidth,
       renderLeafItem,
       renderGroupItem,
-      indeterminateList,
+      leafIndeterminateValues,
       activeValue,
       onActiveValue,
       findValue,
@@ -30,6 +30,7 @@ const List = React.forwardRef<ListApi, ListProps>(
       return listToFlatFilterWithGroupSelected(list, groupSelected)
     }, [list, groupSelected])
 
+    // 暴露api
     useImperativeHandle(
       ref,
       () => {
@@ -65,24 +66,28 @@ const List = React.forwardRef<ListApi, ListProps>(
       const flatItem = flatList[index]
       const isGrouped = groupSelected.includes(flatItem.data.value)
 
-      const selectedLeafValues = _.intersection(selectedValues, flatItem.leafValues)
-      const indeterminateLeafValues = _.intersection(
-        indeterminateList,
-        flatItem.leafValues
-      )
-
       let isSelected
       let isIndeterminate
       if (flatItem.isLeaf) {
         isSelected = selectedValues.includes(flatItem.data.value)
-        isIndeterminate = _.includes(indeterminateList, flatItem.data.value)
+        isIndeterminate = _.includes(leafIndeterminateValues, flatItem.data.value)
       } else {
+        // 取交集，即 item 范围内被选的 values
+        const selectedLeafValues = _.intersection(selectedValues, flatItem.leafValues)
+        const indeterminateLeafValues = _.intersection(
+          leafIndeterminateValues,
+          flatItem.leafValues
+        )
+
         isSelected =
           flatItem.leafValues.length !== 0 &&
           flatItem.leafValues.length === selectedLeafValues.length
+        // 两种情况
+        // 1 selectedLeafValues 有，代表了子有勾选
+        // 2 子没有勾选的时候，看 传入的 indeterminateLeafValues 是否有
         isIndeterminate =
-          (selectedLeafValues.length !== 0 || indeterminateLeafValues.length !== 0) &&
-          !isSelected
+          !isSelected &&
+          (selectedLeafValues.length !== 0 || indeterminateLeafValues.length !== 0)
       }
 
       const handleActive = (item: TreeListItem) => {

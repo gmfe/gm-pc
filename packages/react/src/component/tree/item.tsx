@@ -66,4 +66,4 @@ const Item: FC<ItemProps> = ({
   )
 }
 
-export default Item
+export default React.memo(Item)

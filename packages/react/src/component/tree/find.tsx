@@ -75,9 +75,7 @@ const Find: FC<FindProps> = ({ placeholder, filterList, onGroupSelected, onFind 
   return (
     <Flex>
       <Input placeholder={placeholder} onChange={handleChange} value={query} />
-      <Button type='primary' onClick={handleFind}>
-        {getLocale('定位')}
-      </Button>
+      <Button onClick={handleFind}>{getLocale('定位')}</Button>
     </Flex>
   )
 }

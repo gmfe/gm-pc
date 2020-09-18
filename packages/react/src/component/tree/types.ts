@@ -38,8 +38,8 @@ interface TreeProps {
   placeholder?: string
   /** 是否显示全选 */
   showAllCheck?: boolean
-  /** 半选 value 列表 */
-  indeterminateList?: Value[]
+  /** 叶子原生的半选 value 列表 */
+  leafIndeterminateValues?: Value[]
   showFind?: boolean
   findPlaceholder?: string
   className?: string
@@ -72,7 +72,7 @@ interface ListProps {
   renderGroupItem?(item: TreeListItem): ReactNode
   activeValue?: Value
   onActiveValue?(activeValue: Value, item: TreeListItem): void
-  indeterminateList?: Value[]
+  leafIndeterminateValues?: Value[]
   findValue?: any
 }
 

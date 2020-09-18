@@ -1,5 +1,5 @@
 import { getLocale } from '@gm-pc/locales'
-import React, { FC, useEffect, useRef, useState, useMemo, useCallback } from 'react'
+import React, { FC, useEffect, useRef, useState, useMemo } from 'react'
 import classNames from 'classnames'
 import { Flex } from '../flex'
 import { filterGroupListLeaf } from '../../common/util'
@@ -22,7 +22,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
   renderGroupItem,
   className,
   showAllCheck = true,
-  indeterminateList = [],
+  leafIndeterminateValues = [],
   activeValue = null,
   onActiveValue,
   showFind,
@@ -59,28 +59,25 @@ const Tree: FC<TreeProps> & TreeStatic = ({
     return getGroupSelected(filterList, query)
   }, [filterList, query])
 
-  const handleSelectAll = useCallback(
-    (checked: boolean) => {
-      onSelectValues(checked ? getLeafValues(list) : [])
-    },
-    [onSelectValues]
-  )
+  const handleSelectAll = (checked: boolean) => {
+    onSelectValues(checked ? getLeafValues(list) : [])
+  }
 
-  const handleQuery = useCallback((value: string) => {
+  const handleQuery = (value: string) => {
     setQuery(value)
-  }, [])
+  }
 
-  const handleFind = useCallback((value: any) => {
+  const handleFind = (value: any) => {
     setFindValue(value)
-  }, [])
+  }
 
-  const handleGroupSelect = useCallback((groupSelected: Value[]) => {
+  const handleGroupSelect = (groupSelected: Value[]) => {
     setGroupSelected(groupSelected)
-  }, [])
+  }
 
-  const handleFindGroupSelect = useCallback((findGroupSelected: Value[]) => {
+  const handleFindGroupSelect = (findGroupSelected: Value[]) => {
     setFindGroupSelected(findGroupSelected)
-  }, [])
+  }
 
   // 优先 find
   let newGS = groupSelected
@@ -120,7 +117,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
               onSelectValues={onSelectValues}
               renderLeafItem={renderLeafItem}
               renderGroupItem={renderGroupItem}
-              indeterminateList={indeterminateList}
+              leafIndeterminateValues={leafIndeterminateValues}
               onActiveValue={onActiveValue}
               activeValue={activeValue}
               findValue={findValue}
