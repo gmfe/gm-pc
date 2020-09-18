@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { Value, BTreeBatchSelectProps, BTreeBatchSelectItem } from './types'
-import { Flex, Tree, Button } from '@gm-pc/react'
+import { Flex, Tree, Button, LoadingChunk } from '@gm-pc/react'
 import { useAsync } from '@gm-common/hooks'
 import _ from 'lodash'
 
@@ -34,16 +34,18 @@ const BTreeBatchSelect: FC<BTreeBatchSelectProps> = ({
   return (
     <div className='gm-b-batch-select-tree gm-padding-10'>
       <Flex style={{ height: '600px' }}>
-        <div style={{ width: '210px' }}>
+        <LoadingChunk loading={treeAsync.loading} style={{ width: '220px' }}>
           <Tree
             list={treeAsync.data}
             selectedValues={selectedValues}
             onSelectValues={handleSelectValues}
             showAllCheck={false}
             withFilter={false}
+            showFind
+            className='gm-border-0'
           />
-        </div>
-        <div className='gm-margin-lr-20 gm-border-right' />
+        </LoadingChunk>
+        <div className='gm-margin-lr-10 gm-border-right' />
         <Flex block flex>
           data
         </Flex>

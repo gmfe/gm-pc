@@ -9,7 +9,6 @@ const LoadingChunk: FC<LoadingChunkProps> = ({
   className,
   children,
   size = '40px',
-  style,
   text,
   ...rest
 }) => {
