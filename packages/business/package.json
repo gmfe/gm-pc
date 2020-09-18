@@ -26,7 +26,9 @@
     "react-dom": "^16.13.1"
   },
   "dependencies": {
+    "@gm-common/hooks": "^2.5.1-alpha.3",
     "@gm-common/tool": "^2.4.1",
-    "@gm-pc/react": "^0.0.2"
+    "@gm-pc/react": "^0.0.2",
+    "@gm-pc/table-x": "^0.0.2"
   }
 }

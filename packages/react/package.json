@@ -22,8 +22,8 @@
     "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "dependencies": {
-    "@gm-common/hooks": "^2.5.1-alpha.1",
-    "@gm-common/tool": "^2.5.1-alpha.1",
+    "@gm-common/hooks": "^2.5.1-alpha.3",
+    "@gm-common/tool": "^2.5.1-alpha.3",
     "@gm-pc/locales": "^0.0.2",
     "big.js": "^5.2.2",
     "classnames": "^2.2.5",

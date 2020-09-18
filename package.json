@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
-    "@gm-common/tool": "^2.5.0",
+    "@gm-common/tool": "^2.5.1-alpha.3",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-storysource": "^5.3.19",
     "@storybook/preset-typescript": "^3.0.0",

@@ -9,18 +9,18 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@gm-common/hooks@^2.5.1-alpha.1":
-  version "2.5.1-alpha.2"
-  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.5.1-alpha.2.tgz#8c33582f99634e0c878aa5fbee8c8a159db21355"
-  integrity sha512-eubagyssd7ZZ9oWH1SAXnhhAzppH8sdYqRp5mw6JLC56GA+8D0ddpSx6QArt8JmwkRRispcikDlI9o8gxCI1/g==
+"@gm-common/hooks@^2.5.1-alpha.3":
+  version "2.5.1-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.5.1-alpha.3.tgz#a2ffc3ce30ae3aad0c19706db1daac24e59d40e4"
+  integrity sha512-KkcD0NAi/lMvTNdcFjlKUhh6a5rWovvBKZHpzjVjgHi4M7BT73G6aepTBGCvFvugNu+ZmwocHTA6z4Ur8witpA==
   dependencies:
-    "@gm-common/tool" "^2.5.1-alpha.2"
+    "@gm-common/tool" "^2.5.1-alpha.3"
     ts-config-gm-react-app "^3.0.6"
 
-"@gm-common/tool@^2.5.1-alpha.1", "@gm-common/tool@^2.5.1-alpha.2":
-  version "2.5.1-alpha.2"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.5.1-alpha.2.tgz#b5461d0992dbf13e82b1b7e1c7349b724a43773a"
-  integrity sha512-ybtWVqDmcD+KhEwuE651hItzugA6w/QzmagfXytLaKnTrTcvY0glliUxwwV+Gy865MUh+JHUZ3r55TYItc95ug==
+"@gm-common/tool@^2.5.1-alpha.3":
+  version "2.5.1-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.5.1-alpha.3.tgz#5d488e8d72c252e45b768f6d115654b4fd98dd31"
+  integrity sha512-+YSz7kfd9eLo6TxIj6KNL1M8/0t+j3zZKOim1DiRyp9B1oT75+chiHFjJthMWKqAK3MH94Z06YVu0ox5IEy0jg==
   dependencies:
     lodash "^4.17.19"
 

@@ -1,5 +1,4 @@
-import { CSSProperties, ReactNode, RefObject } from 'react'
-import { FixedSizeList } from 'react-window'
+import { CSSProperties, ReactNode } from 'react'
 
 type Value = any
 
@@ -20,8 +19,6 @@ type TreeWithFilterFun = (list: TreeListItem[], query: string) => TreeListItem[]
 
 type TreeWithFilter = boolean | TreeWithFilterFun
 
-type TreeWithFindFilter = TreeWithFilter
-
 interface TreeProps {
   /** 树状列表 */
   list: TreeListItem[]
@@ -32,7 +29,7 @@ interface TreeProps {
   /** 点击选中的数据 */
   activeValue?: Value
   /** 点击选中回调 */
-  onActiveValues?(activeValues: Value[]): void
+  onActiveValue?(activeValue: Value, item: TreeListItem): void
 
   title?: string
   withFilter?: TreeWithFilter
@@ -43,7 +40,7 @@ interface TreeProps {
   showAllCheck?: boolean
   /** 半选 value 列表 */
   indeterminateList?: Value[]
-  withFindFilter?: TreeWithFindFilter
+  showFind?: boolean
   findPlaceholder?: string
   className?: string
   style?: CSSProperties
@@ -70,12 +67,17 @@ interface ListProps {
   selectedValues: Value[]
   onSelectValues(values: Value[]): void
   listHeight: number
+  listWidth: number
   renderLeafItem?(item: TreeListItem): ReactNode
   renderGroupItem?(item: TreeListItem): ReactNode
   activeValue?: Value
-  onActiveValues(activeValues: Value[]): void
+  onActiveValue?(activeValue: Value, item: TreeListItem): void
   indeterminateList?: Value[]
-  listRef: RefObject<FixedSizeList>
+  findValue?: any
+}
+
+interface ListApi {
+  apiDoScrollToValue(value: any): void
 }
 
 interface ItemProps {
@@ -94,6 +96,19 @@ interface ItemProps {
   renderGroupItem?(item: TreeListItem): ReactNode
   onActive(data: TreeListItem): void
   active?: boolean
+  findActive?: boolean
+}
+
+interface SearchProps {
+  placeholder?: string
+  onChange(value: string): void
+}
+
+interface FindProps {
+  placeholder?: string
+  filterList: TreeListItem[]
+  onGroupSelected(selected: Value[]): void
+  onFind(value: any): void
 }
 
 export type {
@@ -101,9 +116,11 @@ export type {
   FindItem,
   TreeListItem,
   BottomProps,
+  SearchProps,
+  FindProps,
   ListProps,
+  ListApi,
   ItemProps,
-  TreeWithFindFilter,
   TreeWithFilter,
   TreeWithFilterFun,
   TreeProps,

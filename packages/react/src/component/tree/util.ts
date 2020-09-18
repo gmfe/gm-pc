@@ -161,29 +161,21 @@ function getItemOffsetHeight(
   return item_scroll_height
 }
 
-/**
- * getFindGroupSelected 获取定位的展开id
- * @param {object} list 列表到数据
- * @param {object} find_list 搜索的数据
- * @return 对应到树节点到id数组
- */
-function getFindGroupSelected(list: TreeListItem[], find_list: TreeListItem[]) {
-  const flat = listToFlat(
-    list,
-    () => true,
-    () => true
-  )
-  const find_list_value = _.map(find_list, (i) => i.value)
+function getFilterList(list: TreeListItem[], query: string, withFilter: TreeWithFilter) {
+  if (query === '') {
+    return list
+  }
 
-  return _.reduce(
-    flat,
-    // @ts-ignore
-    (res, item) => {
-      const same = _.intersection(item.leafValues, find_list_value)
-      return same.length > 0 ? _.concat(res, item.data.value) : res
-    },
-    []
-  )
+  return filterWithQuery(list, query, withFilter)
+}
+
+// 就是把 list 全展开
+function getGroupSelected(list: TreeListItem[], query: string) {
+  if (query === '') {
+    return []
+  }
+
+  return getUnLeafValues(list)
 }
 
 export {
@@ -194,5 +186,6 @@ export {
   unSelectAll,
   getItemOffsetHeight,
   listToFlat,
-  getFindGroupSelected,
+  getFilterList,
+  getGroupSelected,
 }

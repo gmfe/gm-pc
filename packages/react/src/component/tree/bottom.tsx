@@ -31,4 +31,4 @@ const Bottom: FC<BottomProps> = ({ list, selectedValues, onChange }) => {
   )
 }
 
-export default Bottom
+export default React.memo(Bottom)

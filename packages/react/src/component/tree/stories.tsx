@@ -1,7 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
 import { observable } from 'mobx'
-import { pinYinFilter } from '@gm-common/tool'
 import Tree from './tree'
 import { Flex } from '../flex'
 import { TreeListItem } from './types'
@@ -122,6 +121,10 @@ const store = observable({
   setSelectedValues(values: any) {
     this.selectedValues = values
   },
+  activeValue: null,
+  setActiveValue(value: any) {
+    this.activeValue = value
+  },
 })
 
 export const ComTree = () => (
@@ -132,7 +135,6 @@ export const ComTree = () => (
         list={treeData}
         selectedValues={store.selectedValues.slice()}
         onSelectValues={(values) => store.setSelectedValues(values)}
-        onActiveValues={(data) => console.log(data)}
       />
     </div>
     <div style={{ height: '500px', width: '300px' }}>
@@ -141,34 +143,26 @@ export const ComTree = () => (
         list={flatData}
         selectedValues={store.selectedValues.slice()}
         onSelectValues={(values) => store.setSelectedValues(values)}
-        onActiveValues={(data) => console.log(data)}
       />
     </div>
   </Flex>
 )
 
 export const ComTreeWithFindFilter = () => {
-  const handleFind = (data: any, searchText: any): any => {
-    const findList: any = pinYinFilter(data, searchText, (v: any) => v.text)
-    let res = findList
-    _.forEach(data, (item) => {
-      if (item.children && item.children.length) {
-        res = _.concat(res, handleFind(item.children, searchText))
-      }
-    })
-    return res
-  }
-
   return (
     <div style={{ height: '500px', width: '300px' }}>
       <Tree
         list={treeData}
         selectedValues={store.selectedValues.slice()}
         onSelectValues={(values) => store.setSelectedValues(values)}
-        onActiveValues={(data) => console.log(data)}
-        title='withFindFilter'
-        withFindFilter={handleFind}
+        title='showFind'
+        showFind
         withFilter={false}
+        activeValue={store.activeValue}
+        onActiveValue={(value, item) => {
+          store.setActiveValue(value)
+          console.log(value, item)
+        }}
       />
     </div>
   )
@@ -181,7 +175,6 @@ export const ComTreeForRenderItem = () => (
       list={treeData}
       selectedValues={store.selectedValues.slice()}
       onSelectValues={(values) => store.setSelectedValues(values)}
-      onActiveValues={(data) => console.log(data)}
       title='renderLeafItem renderGroupItem'
       renderLeafItem={(data) => (
         <div>
@@ -218,7 +211,6 @@ export const ComTreeWithWithFilter = () => (
       list={treeData}
       selectedValues={store.selectedValues.slice()}
       onSelectValues={(values) => store.setSelectedValues(values)}
-      onActiveValues={(data) => console.log(data)}
       title='withFilter'
       withFilter={(list, query) => {
         let result = list
@@ -264,7 +256,6 @@ export const ComTreeForStatic = () => (
         list={treeData}
         selectedValues={store.selectedValues.slice()}
         onSelectValues={(values) => store.setSelectedValues(values)}
-        onActiveValues={(data) => console.log(data)}
       />
     </div>
     <button
