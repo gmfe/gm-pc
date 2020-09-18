@@ -63,7 +63,7 @@ const Find: FC<FindProps> = ({ placeholder, filterList, onGroupSelected, onFind 
     } else {
       refIndex.current++
     }
-    if (refIndex.current > items.length) {
+    if (refIndex.current >= items.length) {
       refIndex.current = 0
     }
 
