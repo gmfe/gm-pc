@@ -69,7 +69,7 @@ interface TableXProps {
   data: TableXDataItem[]
   loading?: boolean
   SubComponent?(row: TableXRow): ReactNode
-  /** 目前由 HOC 透传下来 */
+  /** 默认 value */
   keyField?: string
   /** table 是否平铺，准确意思应该是是否有边框 */
   tiled?: boolean

@@ -86,7 +86,7 @@ const columns = [
   {
     Header: '序号',
     id: 'index',
-    Cell: (cellProps: { row: { index: number } }) => cellProps.row.index + 1,
+    Cell: (cellProps: any) => cellProps.row.index + 1,
     width: 50,
   },
   { Header: '建单时间', show: false, accessor: 'submitTime' },
@@ -178,26 +178,26 @@ const fixedColumns = [
     width: 150,
     Cell: (cellProps: { row: { index: number } }) => cellProps.row.index + 1,
   },
-  // { Header: '编号', accessor: 'id', width: 100, fixed: 'left' },
-  // { Header: '地址', accessor: 'address.text' as any, width: 500 },
-  // { Header: '商品价格', accessor: 'skuMoney', width: 300 },
-  // { Header: '供应商编号', accessor: 'supplierCustomerId', width: 300 },
-  // { Header: '提交时间', accessor: 'submitTime', width: 300 },
-  // { Header: 'delta money', accessor: 'deltaMoney', width: 300 },
-  // {
-  //   Header: '供应商信息',
-  //   width: 500,
-  //   accessor: (data: any) => data.supplierName,
-  //   id: 'supplierName',
-  // },
-  // {
-  //   Header: '入库金额',
-  //   width: 200,
-  //   fixed: 'right',
-  //   Cell: (cellProps: { row: { original: { totalMoney: React.ReactNode } } }) => (
-  //     <div>{cellProps.row.original.totalMoney}</div>
-  //   ),
-  // },
+  { Header: '编号', accessor: 'id', width: 100, fixed: 'left' },
+  { Header: '地址', accessor: 'address.text' as any, width: 500 },
+  { Header: '商品价格', accessor: 'skuMoney', width: 300 },
+  { Header: '供应商编号', accessor: 'supplierCustomerId', width: 300 },
+  { Header: '提交时间', accessor: 'submitTime', width: 300 },
+  { Header: 'delta money', accessor: 'deltaMoney', width: 300 },
+  {
+    Header: '供应商信息',
+    width: 500,
+    accessor: (data: any) => data.supplierName,
+    id: 'supplierName',
+  },
+  {
+    Header: '入库金额',
+    width: 200,
+    fixed: 'right',
+    Cell: (cellProps: { row: { original: { totalMoney: React.ReactNode } } }) => (
+      <div>{cellProps.row.original.totalMoney}</div>
+    ),
+  },
 ]
 
 const editColumns = [

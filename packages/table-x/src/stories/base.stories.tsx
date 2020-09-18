@@ -13,6 +13,38 @@ export const ComTableX = () => (
   </div>
 )
 
+export const ComTableXTd = () => {
+  return (
+    <TableX
+      columns={[
+        {
+          Header: '成熟',
+          accessor: 'city',
+        },
+        {
+          Header: '区域',
+          id: 'area',
+          Cell: (cellprops) => {
+            return (
+              <div>
+                {cellprops.row.original.area.map((v: any) => (
+                  <div key={v}>{v}</div>
+                ))}
+              </div>
+            )
+          },
+        },
+      ]}
+      data={[
+        {
+          city: '深圳',
+          area: ['南山', '福田', '宝安'],
+        },
+      ]}
+    />
+  )
+}
+
 export const ComTableXVirtualized = () => {
   const ref = useRef<VariableSizeList>(null)
   const height =
