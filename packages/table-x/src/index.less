@@ -23,6 +23,7 @@
         justify-content: center;
         color: var(--gm-color-default);
         font-weight: bold;
+        text-align: left;
       }
 
       .gm-table-x-td {
@@ -39,6 +40,10 @@
         word-wrap: break-word;
         word-break: break-all;
 
+        .gm-table-x-cell-full {
+          margin: -8px;
+        }
+
         // @todo 自测
         &.gm-table-x-icon-column {
           padding-right: 5px;
@@ -51,10 +56,18 @@
 
         &:first-child {
           padding-left: 20px;
+
+          .gm-table-x-cell-full {
+            margin-left: -20px;
+          }
         }
 
         &:last-child {
           padding-right: 20px;
+
+          .gm-table-x-cell-full {
+            margin-right: -20px;
+          }
         }
 
         .gm-table-x-expand {
@@ -224,6 +237,22 @@
   &.gm-table-x-tiled {
     border-left: 1px solid var(--gm-color-border);
     border-right: 1px solid var(--gm-color-border);
+  }
+
+  &.gm-table-x-border {
+    border: 1px solid var(--gm-color-border);
+
+    .gm-table-x-th:not(:last-child) {
+      border-right: 1px solid var(--gm-color-border);
+    }
+
+    .gm-table-x-td {
+      border-top: 1px solid var(--gm-color-border);
+
+      &:not(:last-child) {
+        border-right: 1px solid var(--gm-color-border);
+      }
+    }
   }
 
   // edit button 和 gm-table-x-edit 没有关系，只是名字相近

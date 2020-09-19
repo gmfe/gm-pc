@@ -73,6 +73,7 @@ interface TableXProps {
   keyField?: string
   /** table 是否平铺，准确意思应该是是否有边框 */
   tiled?: boolean
+  border?: boolean
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean

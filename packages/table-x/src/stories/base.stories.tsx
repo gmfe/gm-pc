@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
-import { TableX, TableXVirtualized } from '../base'
+import { TableX, TableXCellFull, TableXVirtualized } from '../base'
 import { columns, groupColumns, sortColumns, store } from './data'
 import { TABLE_X } from '../utils'
 import { VariableSizeList } from 'react-window'
+import classNames from 'classnames'
 
 export const ComTableX = () => (
   <div>
@@ -15,33 +16,48 @@ export const ComTableX = () => (
 
 export const ComTableXTd = () => {
   return (
-    <TableX
-      columns={[
-        {
-          Header: '成熟',
-          accessor: 'city',
-        },
-        {
-          Header: '区域',
-          id: 'area',
-          Cell: (cellprops) => {
-            return (
-              <div>
-                {cellprops.row.original.area.map((v: any) => (
-                  <div key={v}>{v}</div>
-                ))}
-              </div>
-            )
+    <div className='gm-padding-10'>
+      <TableX
+        columns={[
+          {
+            Header: '成熟',
+            accessor: 'city',
           },
-        },
-      ]}
-      data={[
-        {
-          city: '深圳',
-          area: ['南山', '福田', '宝安'],
-        },
-      ]}
-    />
+          {
+            Header: '区域',
+            id: 'area',
+            Cell: (cellProps: any) => {
+              return (
+                <TableXCellFull>
+                  {cellProps.row.original.area.map((v: any, i: number) => (
+                    <div
+                      key={v}
+                      style={{ padding: '8px' }}
+                      className={classNames({
+                        'gm-border-bottom': i !== cellProps.row.original.area.length - 1,
+                      })}
+                    >
+                      {v}
+                    </div>
+                  ))}
+                </TableXCellFull>
+              )
+            },
+          },
+        ]}
+        data={[
+          {
+            city: '深圳',
+            area: ['南山', '福田', '宝安'],
+          },
+          {
+            city: '广州',
+            area: ['番禺', '白云', '黄埔'],
+          },
+        ]}
+        border
+      />
+    </div>
   )
 }
 

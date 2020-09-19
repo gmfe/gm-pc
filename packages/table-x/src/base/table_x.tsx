@@ -19,6 +19,7 @@ const TableX: FC<TableXProps> = ({
   SubComponent,
   keyField = 'value',
   tiled,
+  border,
   isTrHighlight,
   isTrDisable,
   onScroll,
@@ -78,6 +79,7 @@ const TableX: FC<TableXProps> = ({
         {
           'gm-table-x-empty': data.length === 0,
           'gm-table-x-tiled': tiled,
+          'gm-table-x-border': border,
         },
         className
       )}
