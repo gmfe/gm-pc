@@ -5,10 +5,9 @@ import { getLocale } from '@gm-pc/locales'
 import { Flex } from '../flex'
 import { FindProps } from './types'
 import _ from 'lodash'
-import { getFilterList, getGroupSelected, listToFlat } from './util'
 import { pinYinFilter } from '@gm-common/tool/src/index'
 
-const Find: FC<FindProps> = ({ placeholder, filterList, onGroupSelected, onFind }) => {
+const Find: FC<FindProps> = ({ placeholder, flatList, onFind }) => {
   const [query, setQuery] = useState('')
   // 用 ref，因为不影响 UI
   const refIndex = useRef(-1)
@@ -34,28 +33,17 @@ const Find: FC<FindProps> = ({ placeholder, filterList, onGroupSelected, onFind 
       return
     }
 
-    // 匹配的数据树
-    // filterList => matchList，获取到匹配的数据
-    const matchList = getFilterList(filterList, query, true)
+    const matchFlatList = _.filter(flatList, (item) => {
+      return pinYinFilter([item], query, (v) => v.data.text).length > 0
+    })
 
     // 没有数据返回
-    if (matchList.length === 0) {
+    if (matchFlatList.length === 0) {
       return
     }
 
-    // 处理 groupSelected
-    const gs = getGroupSelected(matchList, query)
-    onGroupSelected(gs)
-
-    // 匹配的 flat 数据
-    const flatMatchList = listToFlat(
-      matchList,
-      (item) => pinYinFilter([item], query, (v) => v.text).length > 0,
-      () => true
-    )
-
     // 匹配的原始数据
-    const items = _.map(flatMatchList, (v) => v.data)
+    const items = _.map(matchFlatList, (v) => v.data)
 
     // 处理下索引
     if (refIndex.current === -1) {
@@ -75,9 +63,7 @@ const Find: FC<FindProps> = ({ placeholder, filterList, onGroupSelected, onFind 
   return (
     <Flex>
       <Input placeholder={placeholder} onChange={handleChange} value={query} />
-      <Button type='primary' onClick={handleFind}>
-        {getLocale('定位')}
-      </Button>
+      <Button onClick={handleFind}>{getLocale('定位')}</Button>
     </Flex>
   )
 }

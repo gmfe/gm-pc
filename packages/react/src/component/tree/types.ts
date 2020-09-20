@@ -10,11 +10,6 @@ interface TreeListItem {
   [key: string]: any
 }
 
-interface FindItem {
-  height: number
-  value: Value
-}
-
 type TreeWithFilterFun = (list: TreeListItem[], query: string) => TreeListItem[]
 
 type TreeWithFilter = boolean | TreeWithFilterFun
@@ -39,7 +34,7 @@ interface TreeProps {
   /** 是否显示全选 */
   showAllCheck?: boolean
   /** 半选 value 列表 */
-  indeterminateList?: Value[]
+  indeterminateValues?: Value[]
   showFind?: boolean
   findPlaceholder?: string
   className?: string
@@ -61,7 +56,7 @@ interface BottomProps {
 }
 
 interface ListProps {
-  list: TreeListItem[]
+  flatList: FlatListItem[]
   groupSelected: Value[]
   onGroupSelect(selected: Value[]): void
   selectedValues: Value[]
@@ -72,8 +67,8 @@ interface ListProps {
   renderGroupItem?(item: TreeListItem): ReactNode
   activeValue?: Value
   onActiveValue?(activeValue: Value, item: TreeListItem): void
-  indeterminateList?: Value[]
   findValue?: any
+  checkboxStatusMap: CheckboxStatusMap
 }
 
 interface ListApi {
@@ -81,11 +76,11 @@ interface ListApi {
 }
 
 interface ItemProps {
-  isGrouped: boolean
-  onGroup(data: TreeListItem): void
-  isSelected: boolean
-  isIndeterminate: boolean
-  onSelect(data: TreeListItem, isSelected: boolean): void
+  expand: boolean
+  onExpand(): void
+  checked: boolean
+  indeterminate: boolean
+  onCheck(): void
   flatItem: {
     isLeaf: boolean
     level: number
@@ -106,14 +101,33 @@ interface SearchProps {
 
 interface FindProps {
   placeholder?: string
-  filterList: TreeListItem[]
-  onGroupSelected(selected: Value[]): void
+  flatList: FlatListItem[]
   onFind(value: any): void
+}
+
+interface FlatListItem {
+  data: TreeListItem
+  value: Value
+  /** 父亲节点的 values */
+  pValues: Value[]
+  /** 是否叶子节点 */
+  isLeaf: boolean
+  /** 层级 */
+  level: number
+  /** 当前节点的所有叶子节点 */
+  leafValues: Value[]
+}
+
+interface CheckboxStatusMap {
+  [value: string]: {
+    expand: boolean
+    checked: boolean
+    indeterminate: boolean
+  }
 }
 
 export type {
   Value,
-  FindItem,
   TreeListItem,
   BottomProps,
   SearchProps,
@@ -125,4 +139,6 @@ export type {
   TreeWithFilterFun,
   TreeProps,
   TreeStatic,
+  FlatListItem,
+  CheckboxStatusMap,
 }

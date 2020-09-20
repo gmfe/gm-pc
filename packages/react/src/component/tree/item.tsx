@@ -6,11 +6,11 @@ import { Checkbox } from '../checkbox'
 import { IconExpand } from '../icon_expand'
 
 const Item: FC<ItemProps> = ({
-  isGrouped,
-  onGroup,
-  isSelected,
-  isIndeterminate,
-  onSelect,
+  expand,
+  onExpand,
+  checked,
+  indeterminate,
+  onCheck,
   flatItem: { isLeaf, level, data },
   renderLeafItem = (data) => data.text,
   renderGroupItem = (data) => data.text,
@@ -21,11 +21,11 @@ const Item: FC<ItemProps> = ({
 }) => {
   const handleGroup = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
-    onGroup(data)
+    onExpand()
   }
 
   const handleRadio = () => {
-    onSelect(data, !isSelected)
+    onCheck()
   }
 
   const handleActive = () => {
@@ -46,17 +46,13 @@ const Item: FC<ItemProps> = ({
       data-value={data.value}
     >
       {!isLeaf && (
-        <IconExpand
-          className='gm-margin-left-5'
-          onClick={handleGroup}
-          active={isGrouped}
-        />
+        <IconExpand className='gm-margin-left-5' onClick={handleGroup} active={expand} />
       )}
       {level > 0 && isLeaf && <div style={{ width: '2em' }} />}
       <Checkbox
-        checked={isSelected}
+        checked={checked}
         onChange={handleRadio}
-        indeterminate={isIndeterminate}
+        indeterminate={indeterminate}
         className='gm-padding-left-5'
       />
       <Flex flex column onClick={handleActive} justifyCenter style={{ height: '100%' }}>
@@ -66,4 +62,4 @@ const Item: FC<ItemProps> = ({
   )
 }
 
-export default Item
+export default React.memo(Item)

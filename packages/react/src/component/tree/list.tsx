@@ -1,6 +1,6 @@
 import React, { useMemo, FC, useImperativeHandle, useRef } from 'react'
 import _ from 'lodash'
-import { listToFlatFilterWithGroupSelected, getLeafValues } from './util'
+import { flatListFilterWithGroupSelected } from './util'
 import { FixedSizeList, ListChildComponentProps } from 'react-window'
 import { ListProps, TreeListItem, ListApi } from './types'
 import Item from './item'
@@ -8,7 +8,7 @@ import Item from './item'
 const List = React.forwardRef<ListApi, ListProps>(
   (
     {
-      list,
+      flatList,
       groupSelected,
       onGroupSelect,
       selectedValues,
@@ -17,87 +17,72 @@ const List = React.forwardRef<ListApi, ListProps>(
       listWidth,
       renderLeafItem,
       renderGroupItem,
-      indeterminateList,
       activeValue,
       onActiveValue,
       findValue,
+      checkboxStatusMap,
     },
     ref
   ) => {
     const refList = useRef<FixedSizeList>(null)
 
-    const flatList = useMemo(() => {
-      return listToFlatFilterWithGroupSelected(list, groupSelected)
-    }, [list, groupSelected])
+    const showFlatList = useMemo(() => {
+      return flatListFilterWithGroupSelected(flatList, groupSelected)
+    }, [flatList, groupSelected])
 
     useImperativeHandle(
       ref,
       () => {
         return {
           apiDoScrollToValue: (value: any) => {
-            const index = _.findIndex(flatList, (v) => v.data.value === value)
+            const index = _.findIndex(showFlatList, (v) => v.data.value === value)
 
             if (refList.current) {
               refList.current.scrollToItem(index)
             }
-            console.log(value, index, flatList)
           },
         }
       },
-      [flatList]
+      [showFlatList]
     )
 
-    const handleGroup = (data: TreeListItem) => {
-      onGroupSelect(_.xor(groupSelected, [data.value]))
-    }
-
-    const handleSelect = (data: TreeListItem, isSelected: boolean) => {
-      const values = getLeafValues([data])
-
-      if (isSelected) {
-        onSelectValues(_.uniq(selectedValues.concat(values)))
-      } else {
-        onSelectValues(_.difference(selectedValues, values))
-      }
-    }
-
     const Row: FC<ListChildComponentProps> = ({ index, style }) => {
-      const flatItem = flatList[index]
-      const isGrouped = groupSelected.includes(flatItem.data.value)
-
-      const selectedLeafValues = _.intersection(selectedValues, flatItem.leafValues)
-      const indeterminateLeafValues = _.intersection(
-        indeterminateList,
-        flatItem.leafValues
-      )
-
-      let isSelected
-      let isIndeterminate
-      if (flatItem.isLeaf) {
-        isSelected = selectedValues.includes(flatItem.data.value)
-        isIndeterminate = _.includes(indeterminateList, flatItem.data.value)
-      } else {
-        isSelected =
-          flatItem.leafValues.length !== 0 &&
-          flatItem.leafValues.length === selectedLeafValues.length
-        isIndeterminate =
-          (selectedLeafValues.length !== 0 || indeterminateLeafValues.length !== 0) &&
-          !isSelected
-      }
+      const flatItem = showFlatList[index]
+      const status = checkboxStatusMap[flatItem.value]
 
       const handleActive = (item: TreeListItem) => {
         onActiveValue && onActiveValue(item.value, item)
       }
 
+      const handleExpand = () => {
+        onGroupSelect(_.xor(groupSelected, [flatItem.value]))
+      }
+
+      const handleCheck = () => {
+        if (flatItem.isLeaf) {
+          if (!status.checked) {
+            onSelectValues(_.uniq(selectedValues.concat([flatItem.value])))
+          } else {
+            onSelectValues(_.difference(selectedValues, [flatItem.value]))
+          }
+        } else {
+          if (!status.checked) {
+            onSelectValues(_.uniq(selectedValues.concat(flatItem.leafValues)))
+          } else {
+            onSelectValues(_.difference(selectedValues, flatItem.leafValues))
+          }
+        }
+      }
+
       return (
         <Item
           key={flatItem.data.value}
-          isGrouped={isGrouped}
-          onGroup={handleGroup}
-          onSelect={handleSelect}
-          isSelected={isSelected}
-          isIndeterminate={isIndeterminate}
           flatItem={flatItem}
+          expand={status.expand}
+          onExpand={handleExpand}
+          checked={status.checked}
+          onCheck={handleCheck}
+          indeterminate={status.indeterminate}
           style={style}
           renderLeafItem={renderLeafItem}
           renderGroupItem={renderGroupItem}
@@ -113,7 +98,7 @@ const List = React.forwardRef<ListApi, ListProps>(
         ref={refList}
         height={listHeight}
         width={listWidth}
-        itemCount={flatList.length}
+        itemCount={showFlatList.length}
         itemSize={28}
       >
         {Row}

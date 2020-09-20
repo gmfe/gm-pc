@@ -4,7 +4,14 @@ import classNames from 'classnames'
 import { Flex } from '../flex'
 import { filterGroupListLeaf } from '../../common/util'
 import { AutoFull } from '../auto_full'
-import { getLeafValues, getFilterList, getGroupSelected } from './util'
+import {
+  getLeafValues,
+  getFilterList,
+  getQueryGroupSelected,
+  listToFlat,
+  getFindGroupSelected,
+  getCheckboxStatusMap,
+} from './util'
 import Bottom from './bottom'
 import List from './list'
 import { Value, TreeProps, TreeStatic, ListApi } from './types'
@@ -22,7 +29,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
   renderGroupItem,
   className,
   showAllCheck = true,
-  indeterminateList = [],
+  indeterminateValues = [],
   activeValue = null,
   onActiveValue,
   showFind,
@@ -33,16 +40,37 @@ const Tree: FC<TreeProps> & TreeStatic = ({
 
   // 搜索
   const [query, setQuery] = useState<string>('')
-  // 定位
-  const [findValue, setFindValue] = useState<any>(null)
-  // 区分正常的 展开收起 和 搜索导致的展开收起 和 定位展开收起
+  // query 后的树状数据
+  const filterList = useMemo(() => {
+    return getFilterList(list, query, withFilter)
+  }, [list, query, withFilter])
+  // 经 query 后扁平的数据
+  const filterFlatList = useMemo(() => {
+    return listToFlat(
+      filterList,
+      () => true,
+      () => true
+    )
+  }, [filterList])
+
+  // 手动的 groupSelected
   const [groupSelected, setGroupSelected] = useState<Value[]>([])
+
+  // 搜索的 groupSelected
+  const queryGroupSelected = useMemo(() => {
+    return getQueryGroupSelected(filterFlatList, query)
+  }, [filterFlatList, query])
+
+  // 定位相关
+  const [findValue, setFindValue] = useState<any>(null)
   // 定位的 groupSelected
-  const [findGroupSelected, setFindGroupSelected] = useState<Value[]>([])
+  const findGroupSelected = useMemo(() => {
+    return getFindGroupSelected(filterFlatList, findValue)
+  }, [filterFlatList, findValue])
 
   // 处理findValue滚动
   useEffect(() => {
-    if (findValue === null) {
+    if (!findValue) {
       return
     }
 
@@ -51,13 +79,17 @@ const Tree: FC<TreeProps> & TreeStatic = ({
     }
   }, [findValue])
 
-  const filterList = useMemo(() => {
-    return getFilterList(list, query, withFilter)
-  }, [list, query, withFilter])
-
-  const queryGroupSelected = useMemo(() => {
-    return getGroupSelected(filterList, query)
-  }, [filterList, query])
+  // 提供给 list
+  const checkboxStatusMap = useMemo(
+    () =>
+      getCheckboxStatusMap(
+        filterFlatList,
+        groupSelected,
+        selectedValues,
+        indeterminateValues
+      ),
+    [filterFlatList, groupSelected, selectedValues, indeterminateValues]
+  )
 
   const handleSelectAll = useCallback(
     (checked: boolean) => {
@@ -66,21 +98,26 @@ const Tree: FC<TreeProps> & TreeStatic = ({
     [onSelectValues]
   )
 
-  const handleQuery = useCallback((value: string) => {
-    setQuery(value)
-  }, [])
+  const handleQuery = useCallback(
+    (value: string) => {
+      setQuery(value)
+    },
+    [setQuery]
+  )
 
-  const handleFind = useCallback((value: any) => {
-    setFindValue(value)
-  }, [])
+  const handleFind = useCallback(
+    (value: any) => {
+      setFindValue(value)
+    },
+    [setFindValue]
+  )
 
-  const handleGroupSelect = useCallback((groupSelected: Value[]) => {
-    setGroupSelected(groupSelected)
-  }, [])
-
-  const handleFindGroupSelect = useCallback((findGroupSelected: Value[]) => {
-    setFindGroupSelected(findGroupSelected)
-  }, [])
+  const handleGroupSelect = useCallback(
+    (groupSelected: Value[]) => {
+      setGroupSelected(groupSelected)
+    },
+    [setGroupSelected]
+  )
 
   // 优先 find
   let newGS = groupSelected
@@ -101,8 +138,7 @@ const Tree: FC<TreeProps> & TreeStatic = ({
       {showFind && (
         <Find
           placeholder={findPlaceholder}
-          filterList={filterList}
-          onGroupSelected={handleFindGroupSelect}
+          flatList={filterFlatList}
           onFind={handleFind}
         />
       )}
@@ -113,25 +149,25 @@ const Tree: FC<TreeProps> & TreeStatic = ({
               ref={refList}
               listHeight={size.height}
               listWidth={size.width}
-              list={filterList}
+              flatList={filterFlatList}
               groupSelected={newGS}
               onGroupSelect={handleGroupSelect}
               selectedValues={selectedValues}
               onSelectValues={onSelectValues}
               renderLeafItem={renderLeafItem}
               renderGroupItem={renderGroupItem}
-              indeterminateList={indeterminateList}
               onActiveValue={onActiveValue}
               activeValue={activeValue}
               findValue={findValue}
+              checkboxStatusMap={checkboxStatusMap}
             />
           )}
         </AutoFull>
       </div>
 
-      {showAllCheck ? (
+      {showAllCheck && (
         <Bottom list={list} selectedValues={selectedValues} onChange={handleSelectAll} />
-      ) : null}
+      )}
     </Flex>
   )
 }
