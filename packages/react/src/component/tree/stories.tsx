@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { observable } from 'mobx'
-import Tree from './tree'
+import Tree, { TreeUtil } from './tree'
 import { Flex } from '../flex'
 import { TreeListItem } from './types'
 
@@ -228,7 +228,7 @@ export const ComTreeWithWithFilter = () => (
         console.log(label, search)
 
         if (label || search) {
-          result = Tree.filterGroupList(result, (v) => {
+          result = TreeUtil.filterGroupList(result, (v) => {
             let flag = true
             if (label && v.label !== label) {
               flag = false
@@ -261,7 +261,7 @@ export const ComTreeForStatic = () => (
     <button
       onClick={() => {
         console.log(
-          Tree.selectedValues2SelectedList(treeData, store.selectedValues.slice())
+          TreeUtil.selectedValues2SelectedList(treeData, store.selectedValues.slice())
         )
       }}
     >
@@ -269,6 +269,25 @@ export const ComTreeForStatic = () => (
     </button>
   </div>
 )
+
+export const ComTreeWithDisabledCheckbox = () => {
+  return (
+    <div style={{ height: '500px', width: '300px' }}>
+      <Tree
+        title='树状数据'
+        list={treeData}
+        selectedValues={store.selectedValues.slice()}
+        onSelectValues={(values) => store.setSelectedValues(values)}
+        disabledCheckbox
+        activeValue={store.activeValue}
+        onActiveValue={(value, item) => {
+          store.setActiveValue(value)
+          console.log(value, item)
+        }}
+      />
+    </div>
+  )
+}
 
 export default {
   title: '表单/Tree',

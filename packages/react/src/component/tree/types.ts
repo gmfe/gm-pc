@@ -33,6 +33,8 @@ interface TreeProps {
   placeholder?: string
   /** 是否显示全选 */
   showAllCheck?: boolean
+  /** 没有勾选框 */
+  disabledCheckbox?: boolean
   /** 半选 value 列表 */
   indeterminateValues?: Value[]
   showFind?: boolean
@@ -73,6 +75,7 @@ interface ListProps {
   onActiveValue?(activeValue: Value, item: TreeListItem): void
   findValue?: any
   checkboxStatusMap: CheckboxStatusMap
+  disabledCheckbox?: boolean
 }
 
 interface ListApi {
@@ -96,6 +99,7 @@ interface ItemProps {
   onActive(data: TreeListItem): void
   active?: boolean
   findActive?: boolean
+  disabledCheckbox?: boolean
 }
 
 interface SearchProps {

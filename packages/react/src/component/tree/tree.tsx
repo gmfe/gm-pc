@@ -22,7 +22,7 @@ import {
 } from './util'
 import Bottom from './bottom'
 import List from './list'
-import { Value, TreeProps, TreeRefApi, ListApi } from './types'
+import { Value, TreeProps, TreeRefApi, ListApi, TreeListItem } from './types'
 import Search from './search'
 import Find from './find'
 
@@ -44,6 +44,7 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
       onActiveValue,
       showFind,
       findPlaceholder = getLocale('定位信息'),
+      disabledCheckbox,
       ...rest
     },
     ref
@@ -190,12 +191,13 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
                 activeValue={activeValue}
                 findValue={findValue}
                 checkboxStatusMap={checkboxStatusMap}
+                disabledCheckbox={disabledCheckbox}
               />
             )}
           </AutoFull>
         </div>
 
-        {showAllCheck && (
+        {!disabledCheckbox && showAllCheck && (
           <Bottom
             list={list}
             selectedValues={selectedValues}
@@ -209,12 +211,15 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
 
 // 哎呀，暴露了两个方法出去，请小心
 // @ts-ignore
-Tree.filterGroupList = filterGroupListLeaf
-// @ts-ignore
-Tree.selectedValues2SelectedList = (list, selectValues) => {
-  const selectedList = filterGroupListLeaf(list, (v) => selectValues.includes(v.value))
+const TreeUtil = {
+  filterGroupList: filterGroupListLeaf,
+  selectedValues2SelectedList: (list: TreeListItem[], selectValues: Value[]) => {
+    const selectedList = filterGroupListLeaf(list, (v) => selectValues.includes(v.value))
 
-  return selectedList
+    return selectedList
+  },
 }
+
+export { TreeUtil }
 
 export default Tree

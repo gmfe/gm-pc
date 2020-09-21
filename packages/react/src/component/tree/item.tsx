@@ -17,6 +17,7 @@ const Item: FC<ItemProps> = ({
   active = false,
   onActive,
   findActive,
+  disabledCheckbox,
   style,
 }) => {
   const handleGroup = (e: MouseEvent<HTMLDivElement>) => {
@@ -49,13 +50,22 @@ const Item: FC<ItemProps> = ({
         <IconExpand className='gm-margin-left-5' onClick={handleGroup} active={expand} />
       )}
       {level > 0 && isLeaf && <div style={{ width: '2em' }} />}
-      <Checkbox
-        checked={checked}
-        onChange={handleRadio}
-        indeterminate={indeterminate}
-        className='gm-padding-left-5'
-      />
-      <Flex flex column onClick={handleActive} justifyCenter style={{ height: '100%' }}>
+      {!disabledCheckbox && (
+        <Checkbox
+          checked={checked}
+          onChange={handleRadio}
+          indeterminate={indeterminate}
+          className='gm-padding-left-5'
+        />
+      )}
+      <Flex
+        flex
+        column
+        onClick={handleActive}
+        justifyCenter
+        style={{ height: '100%' }}
+        className='gm-margin-left-5'
+      >
         {isLeaf ? renderLeafItem(data) : renderGroupItem(data)}
       </Flex>
     </Flex>

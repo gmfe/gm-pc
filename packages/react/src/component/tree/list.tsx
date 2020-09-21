@@ -21,6 +21,7 @@ const List = React.forwardRef<ListApi, ListProps>(
       onActiveValue,
       findValue,
       checkboxStatusMap,
+      disabledCheckbox,
     },
     ref
   ) => {
@@ -89,6 +90,7 @@ const List = React.forwardRef<ListApi, ListProps>(
           active={flatItem.data.value === activeValue}
           onActive={handleActive}
           findActive={findValue === flatItem.data.value}
+          disabledCheckbox={disabledCheckbox}
         />
       )
     }

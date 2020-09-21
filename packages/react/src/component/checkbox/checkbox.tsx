@@ -71,7 +71,7 @@ const Checkbox: FC<CheckboxProps> = ({
         onChange={_.noop}
       />
       <span className='gm-checkbox-span' />
-      <span className='gm-padding-lr-5'>{children}</span>
+      {children && <span className='gm-padding-lr-5'>{children}</span>}
     </label>
   )
 }
