@@ -41,6 +41,10 @@ interface TreeProps {
   style?: CSSProperties
 }
 
+interface TreeRefApi {
+  apiDoScrollToValue(value: any): void
+}
+
 interface TreeStatic {
   filterGroupList(
     list: TreeListItem[],
@@ -141,4 +145,5 @@ export type {
   TreeStatic,
   FlatListItem,
   CheckboxStatusMap,
+  TreeRefApi,
 }
