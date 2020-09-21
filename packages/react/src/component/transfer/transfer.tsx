@@ -6,7 +6,7 @@ import SvgRightSmall from '../../svg/right-small.svg'
 import SvgLeftSmall from '../../svg/left-small.svg'
 import { Button } from '../button'
 import _ from 'lodash'
-import { filterGroupListLeaf } from '../../common/util'
+import filterGroupListLeaf from '../../common/utils/filter_group_list_leaf'
 import { Value, TransferListItem, TransferProps } from './types'
 
 function getLeftAndRightList(

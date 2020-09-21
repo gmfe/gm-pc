@@ -2,7 +2,7 @@ import { getLocale } from '@gm-pc/locales'
 import React, { FC, useEffect, useRef, useState, useMemo, useCallback } from 'react'
 import classNames from 'classnames'
 import { Flex } from '../flex'
-import { filterGroupListLeaf } from '../../common/util'
+import filterGroupListLeaf from '../../common/utils/filter_group_list_leaf'
 import { AutoFull } from '../auto_full'
 import {
   getLeafValues,

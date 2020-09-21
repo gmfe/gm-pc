@@ -7,7 +7,7 @@ import { Flex } from '../flex'
 import { Calendar } from '../calendar'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
-import { getTimeCells, setTimes } from '../../common/util'
+import { getTimeCells, setTimes } from '../../common/utils/date'
 import TimeSelect from './time_select'
 
 interface OverlayProps {

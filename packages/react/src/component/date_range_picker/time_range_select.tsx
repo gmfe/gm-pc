@@ -6,7 +6,7 @@ import { getLocale } from '@gm-pc/locales'
 import { renderTime } from './util'
 import TimeSpanPicker from '../time_span/time_span_picker'
 import { Flex } from '../flex'
-import { setTimes } from '../../common/util'
+import { setTimes } from '../../common/utils/date'
 
 interface TimeRangeSelectProps {
   begin?: Date | null

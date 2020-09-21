@@ -7,7 +7,7 @@ import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 
 import Left from './left'
-import { getTimeCells, setTimes } from '../../common/util'
+import { getTimeCells, setTimes } from '../../common/utils/date'
 import Two from './two'
 import TimeRangeSelect from './time_range_select'
 

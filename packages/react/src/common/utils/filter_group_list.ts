@@ -1,4 +1,4 @@
-interface ListGroupItem<V> {
+interface GroupListItem<V> {
   children?: V[]
   [key: string]: any
 }
@@ -6,7 +6,7 @@ interface ListGroupItem<V> {
 /**
  * 筛选所有节点，满足返回 predicate 条件的树
  */
-function filterGroupList<V extends ListGroupItem<V>>(
+function filterGroupList<V extends GroupListItem<V>>(
   list: V[],
   predicate: (item: V) => boolean
 ): V[] {
