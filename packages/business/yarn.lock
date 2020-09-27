@@ -2,6 +2,24 @@
 # yarn lockfile v1
 
 
+"@gm-common/analyse@^2.5.1-alpha.2":
+  version "2.5.1-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.5.1-alpha.3.tgz#7a810dff70d71a67696da414b9b5364112774bad"
+  integrity sha512-9xcDt0+oHCpKsYxFgd52wHbOq1tsehyqxecDA+RLQrMVlX5NvtiC+/EFp8KL8eva09blXq4cg3YjC6v6wZ39Qg==
+  dependencies:
+    "@gm-common/fingerprint" "^2.5.1-alpha.3"
+    axios "^0.19.2"
+    query-string "^6.12.1"
+
+"@gm-common/fingerprint@^2.5.1-alpha.2", "@gm-common/fingerprint@^2.5.1-alpha.3":
+  version "2.5.1-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.5.1-alpha.3.tgz#0ee80ce553564cca57b549e307393ee51d6ab963"
+  integrity sha512-x61C1X8Mos/owBwTbZ5A1mlhMkg0W5Rb8qFtPOSuWcMyzk36uWYxN7OPKhOgL2R4Nv2u9BOemjJPov18sPl55w==
+  dependencies:
+    "@gm-common/tool" "^2.5.1-alpha.3"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.0"
+
 "@gm-common/hooks@^2.5.1-alpha.3":
   version "2.5.1-alpha.3"
   resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.5.1-alpha.3.tgz#a2ffc3ce30ae3aad0c19706db1daac24e59d40e4"
@@ -10,6 +28,11 @@
     "@gm-common/tool" "^2.5.1-alpha.3"
     ts-config-gm-react-app "^3.0.6"
 
+"@gm-common/locales@^2.5.1-alpha.2":
+  version "2.5.1-alpha.3"
+  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.5.1-alpha.3.tgz#0bad8eaa4127b7e38192c6a7555ce4319196bdc7"
+  integrity sha512-dSQozOi0rMSvUUm4Jy7XK9lRAynDIA4FAcgtIbUqwcKhV4fv96K9pNt28iUc0d+99ipM6bK7tyBftgBMuK/1Yg==
+
 "@gm-common/tool@^2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.4.1.tgz#3c7010f91364bbd0ee8dd38f64137adc2019588a"
@@ -17,22 +40,112 @@
   dependencies:
     lodash "^4.17.15"
 
-"@gm-common/tool@^2.5.1-alpha.3":
+"@gm-common/tool@^2.5.1-alpha.2", "@gm-common/tool@^2.5.1-alpha.3":
   version "2.5.1-alpha.3"
   resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.5.1-alpha.3.tgz#5d488e8d72c252e45b768f6d115654b4fd98dd31"
   integrity sha512-+YSz7kfd9eLo6TxIj6KNL1M8/0t+j3zZKOim1DiRyp9B1oT75+chiHFjJthMWKqAK3MH94Z06YVu0ox5IEy0jg==
   dependencies:
     lodash "^4.17.19"
 
+"@gm-common/x-request@^2.5.1-alpha.2":
+  version "2.5.1-alpha.2"
+  resolved "https://registry.npmjs.org/@gm-common/x-request/-/x-request-2.5.1-alpha.2.tgz#aa380844cc8b059359b5b680d534db9c2b431acd"
+  integrity sha512-1DSuifgA/H63rcYGOc9fhuk1YUUfIZgwx3cJYSqzBuyKTG4zJsu2sFoqUKcDOxHE11swHdaQd/xqIfjXrlzq2Q==
+  dependencies:
+    "@gm-common/analyse" "^2.5.1-alpha.2"
+    "@gm-common/fingerprint" "^2.5.1-alpha.2"
+    "@gm-common/locales" "^2.5.1-alpha.2"
+    "@gm-common/tool" "^2.5.1-alpha.2"
+    axios "^0.19.2"
+    lodash "^4.17.19"
+
+"@types/fingerprintjs2@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/@types/fingerprintjs2/-/fingerprintjs2-2.0.0.tgz#3af76e165416fa75261bbce4393f5445fca4cadd"
+  integrity sha512-isSTwNnW5I6zGZnpkinmVcV9pJqr7cLELns+tXDYzskIOAb2J+iCQ0mQJ9bRjHJhZfdlTFXZoCYK9ZgT3oMWXQ==
+
+"@types/lodash@^4.14.161":
+  version "4.14.161"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
+  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
+
+axios@^0.19.2:
+  version "0.19.2"
+  resolved "https://registry.npmjs.org/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
+
+debug@=3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
+  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+  dependencies:
+    ms "2.0.0"
+
+decode-uri-component@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+  integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
+
+fingerprintjs2@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/fingerprintjs2/-/fingerprintjs2-2.1.2.tgz#d4812e627356f04b279c63b995b72591b2ab5ed5"
+  integrity sha512-ZPsLgjziFRbUb5tXWpEMtWp4XFnzSah8SiNfl3aoURDZ+2zi2tuIOYUULqDBV+Cb6paN+raWT+Q2qpOaCbX/Yw==
+
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
+
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#50676b1fa9821a5aa8af91ed74d639d10168df7c":
+  version "1.0.0"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#50676b1fa9821a5aa8af91ed74d639d10168df7c"
+  dependencies:
+    "@gm-common/x-request" "^2.5.1-alpha.2"
+    "@types/lodash" "^4.14.161"
+    lodash "^4.17.20"
+    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#eeaedd6a6f8ce457f036c0123601d4addcfa748e"
+
 lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^4.17.19:
+lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+
+ms@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
+  integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+
+"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#eeaedd6a6f8ce457f036c0123601d4addcfa748e":
+  version "0.1.0"
+  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#eeaedd6a6f8ce457f036c0123601d4addcfa748e"
+
+query-string@^6.12.1:
+  version "6.13.2"
+  resolved "https://registry.npmjs.org/query-string/-/query-string-6.13.2.tgz#3585aa9412c957cbd358fd5eaca7466f05586dda"
+  integrity sha512-BMmDaUiLDFU1hlM38jTFcRt7HYiGP/zt1sRzrIWm5zpeEuO1rkbPS0ELI3uehoLuuhHDCS8u8lhFN3fEN4JzPQ==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
+
+split-on-first@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/split-on-first/-/split-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
+  integrity sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
+
+strict-uri-encode@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
+  integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
 
 ts-config-gm-react-app@^3.0.6:
   version "3.3.1"

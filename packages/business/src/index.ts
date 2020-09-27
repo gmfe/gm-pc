@@ -1,2 +1,1 @@
-// @ts-ignore
-console.log('a ha')
+export * from './data_category_tree'

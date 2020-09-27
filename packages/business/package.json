@@ -29,6 +29,7 @@
     "@gm-common/hooks": "^2.5.1-alpha.3",
     "@gm-common/tool": "^2.4.1",
     "@gm-pc/react": "^0.0.2",
-    "@gm-pc/table-x": "^0.0.2"
+    "@gm-pc/table-x": "^0.0.2",
+    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#d1b260fac6d06ad6cc97da2ee8c33725398c7add"
   }
 }
