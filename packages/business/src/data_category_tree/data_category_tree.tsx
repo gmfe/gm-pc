@@ -13,8 +13,8 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({ onReady, onActiveValue })
   const { data, loading } = useAsync(GMGetCategoryTree, {
     manual: false,
     cacheKey: 'GMGetCategoryTree',
-    onSuccess(data?: Data, params?: UseAsyncParams) {
-      onReady(data)
+    onSuccess(data) {
+      onReady && onReady(data)
     },
   })
 
