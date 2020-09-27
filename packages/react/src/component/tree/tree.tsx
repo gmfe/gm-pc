@@ -25,14 +25,15 @@ import List from './list'
 import { Value, TreeProps, TreeRefApi, ListApi, TreeListItem } from './types'
 import Search from './search'
 import Find from './find'
+import _ from 'lodash'
 
 const Tree = forwardRef<TreeRefApi, TreeProps>(
   (
     {
       title,
       list,
-      selectedValues,
-      onSelectValues,
+      selectedValues = [],
+      onSelectValues = _.noop,
       placeholder = getLocale('搜索'),
       withFilter = true,
       renderLeafItem,

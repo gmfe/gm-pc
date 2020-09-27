@@ -19,6 +19,7 @@ const LoadingChunk: FC<LoadingChunkProps> = ({
       className={classNames(className, {
         'gm-loading-chunk': loading,
       })}
+      style={style}
     >
       {children}
       {loading && (

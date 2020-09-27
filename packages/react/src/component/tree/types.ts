@@ -18,9 +18,9 @@ interface TreeProps {
   /** 树状列表 */
   list: TreeListItem[]
   /** 已勾选的数据 */
-  selectedValues: Value[]
+  selectedValues?: Value[]
   /** 勾选回调 */
-  onSelectValues(selectedValues: Value[]): void
+  onSelectValues?(selectedValues: Value[]): void
   /** 点击选中的数据 */
   activeValue?: Value
   /** 点击选中回调 */
