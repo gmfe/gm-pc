@@ -95,7 +95,7 @@ const FormGroup: FC<FormGroupProps> = ({
           isPass = false
         }
       })
-      if (!isPass) {
+      if (isPass) {
         onSubmitValidated && onSubmitValidated()
       }
     },
