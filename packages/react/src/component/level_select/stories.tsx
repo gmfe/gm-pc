@@ -44,6 +44,7 @@ const data = [
 const store = observable({
   selected: [] as string[],
   changeSelect(value: string[]) {
+    console.log(value)
     this.selected = value
   },
 })

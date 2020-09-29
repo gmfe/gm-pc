@@ -99,6 +99,7 @@ export const ComMoreSelect = () => (
       data={store.data}
       selected={store.selected}
       onSelect={(selected) => {
+        console.log({ selected })
         store.setSelected(selected)
       }}
     />
