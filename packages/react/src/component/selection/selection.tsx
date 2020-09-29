@@ -101,7 +101,7 @@ class Selection extends Component<SelectionProps> {
             tabIndex={0}
             onKeyDown={onKeyDown}
           >
-            {text || placeholder}
+            {text || <span className='gm-text-desc'>{placeholder}</span>}
           </div>
         ) : (
           <input
