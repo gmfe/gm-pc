@@ -12,6 +12,9 @@ interface SelectDataItem {
 interface SelectProps {
   data: SelectDataItem[]
   value: Value
+  all?: Boolean
+  allText?: string
+  placeholder?: string
   onChange(selected: Value): void
   disabled?: boolean
   listProps?: ListProps

@@ -1,6 +1,7 @@
 import React, { Component, createRef, KeyboardEvent } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
+import { getLocale } from '@gm-pc/locales'
 import { Value, SelectProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
@@ -15,6 +16,9 @@ class Select extends Component<SelectProps, SelectState> {
     canShowClose: false,
     onKeyDown: _.noop,
     popoverType: 'focus',
+    all: false,
+    allText: getLocale('选择全部'),
+    placeholder: '',
   }
 
   readonly state: SelectState = {
@@ -79,6 +83,9 @@ class Select extends Component<SelectProps, SelectState> {
     const {
       data,
       value,
+      all,
+      allText,
+      placeholder,
       onChange,
       children,
       disabled,
@@ -91,13 +98,14 @@ class Select extends Component<SelectProps, SelectState> {
       ...rest
     } = this.props
     const { willActiveIndex } = this.state
-    const selected = data.find((v) => v.value === value)
+    const newData = all ? [{ text: allText!, value: null }, ...data] : [...data]
+    const selected = newData.find((v) => v.value === value)
     const listStyle = listProps?.style ?? {}
 
     const popup = (
       <List
         {...listProps}
-        data={data}
+        data={newData}
         selected={value}
         onSelect={this._handleChange}
         willActiveIndex={willActiveIndex}
@@ -121,6 +129,7 @@ class Select extends Component<SelectProps, SelectState> {
         <Selection
           ref={this._selectionRef}
           {...rest}
+          placeholder={placeholder}
           selected={selected}
           onSelect={handleChange}
           disabled={disabled}
