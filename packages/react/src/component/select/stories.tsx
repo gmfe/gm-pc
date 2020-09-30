@@ -85,31 +85,6 @@ export const ComSelect = () => (
         disabled
       />
     </div>
-    <div>
-      <h3>canShowClose</h3>
-      <Select
-        data={list}
-        value={store.value}
-        onChange={(value) => {
-          console.log({ value })
-          store.setValue(value!)
-        }}
-        canShowClose
-      />
-    </div>
-    <div>
-      <h3>placeholder</h3>
-      <Select
-        data={list}
-        placeholder='请选择一个地址'
-        value={store.value}
-        onChange={(value) => {
-          console.log({ value })
-          store.setValue(value!)
-        }}
-        canShowClose
-      />
-    </div>
     <h3>clean</h3>
     <Select
       clean

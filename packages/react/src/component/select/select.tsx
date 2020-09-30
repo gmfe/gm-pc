@@ -85,20 +85,16 @@ class Select extends Component<SelectProps, SelectState> {
       value,
       all,
       allText,
-      placeholder,
       onChange,
-      children,
       disabled,
       listProps,
-      canShowClose,
       clean,
       className,
       popoverType,
       isInPopup,
-      ...rest
     } = this.props
     const { willActiveIndex } = this.state
-    const newData = all ? [{ text: allText!, value: null }, ...data] : [...data]
+    const newData = all ? [{ text: allText!, value: 0 }, ...data] : [...data]
     const selected = newData.find((v) => v.value === value)
     const listStyle = listProps?.style ?? {}
 
@@ -128,12 +124,10 @@ class Select extends Component<SelectProps, SelectState> {
       >
         <Selection
           ref={this._selectionRef}
-          {...rest}
-          placeholder={placeholder}
           selected={selected}
           onSelect={handleChange}
           disabled={disabled}
-          disabledClose={!canShowClose}
+          disabledClose
           clean={clean}
           className={classNames('gm-select', className)}
           noInput

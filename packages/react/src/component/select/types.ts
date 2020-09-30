@@ -14,11 +14,9 @@ interface SelectProps {
   value: Value
   all?: Boolean
   allText?: string
-  placeholder?: string
   onChange(selected: Value): void
   disabled?: boolean
   listProps?: ListProps
-  canShowClose?: boolean
   clean?: boolean
   popoverType?: 'focus' | 'realFocus'
   isInPopup?: boolean
