@@ -1,6 +1,7 @@
 const path = require('path')
 const WebpackBar = require('webpackbar')
 const _ = require('lodash')
+const webpack = require('webpack')
 
 const webpackFinal = (config) => {
   config.resolve.extensions = ['.tsx', '.ts', '.js', '.json']
@@ -81,7 +82,21 @@ const webpackFinal = (config) => {
     ],
   })
 
-  config.plugins.push(new WebpackBar())
+  // 为 gm-common
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      __DEBUG__: true,
+      __DEVELOPMENT__: true,
+      __TEST__: false,
+      __PRODUCTION__: false,
+      __VERSION__: JSON.stringify('1.0.0'),
+      __NAME__: JSON.stringify('none'),
+      __CLIENT_NAME__: JSON.stringify('none'),
+      __BRANCH__: JSON.stringify('none'),
+      __COMMIT__: JSON.stringify('none'),
+      __AUTO_ROUTER_REG__: '/index\\.page\\./',
+    })
+  )
 
   return config
 }
@@ -116,14 +131,14 @@ module.exports = {
   // 写清晰一点，否则容易碰到 node_modules 里的 stories
   stories: [
     '../packages/business/src/**/*stories.tsx',
-    '../packages/cropper/src/**/*stories.tsx',
-    '../packages/frame/src/**/*stories.tsx',
-    '../packages/keyboard/src/**/*stories.tsx',
-    '../packages/locales/src/**/*stories.js',
     '../packages/react/src/**/*stories.tsx',
-    '../packages/sortable/src/**/*stories.tsx',
     '../packages/table-x/src/**/*stories.tsx',
+    '../packages/keyboard/src/**/*stories.tsx',
+    '../packages/frame/src/**/*stories.tsx',
+    '../packages/sortable/src/**/*stories.tsx',
     '../packages/tour/src/**/*stories.tsx',
+    '../packages/cropper/src/**/*stories.tsx',
+    '../packages/locales/src/**/*stories.js',
     '../demo/**/*stories.js',
   ],
   webpackFinal,

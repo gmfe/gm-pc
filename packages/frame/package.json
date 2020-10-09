@@ -22,7 +22,7 @@
     "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "dependencies": {
-    "@gm-common/tool": "^2.5.1-alpha.3",
+    "@gm-common/tool": "^2.6.1",
     "@gm-pc/react": "^0.0.6",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"

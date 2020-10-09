@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.11.1",
-    "@gm-common/tool": "^2.5.1-alpha.3",
+    "@gm-common/tool": "^2.6.1",
+    "@gm-common/x-request": "^2.6.1",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-storysource": "^5.3.19",
     "@storybook/preset-typescript": "^3.0.0",
@@ -63,6 +64,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-gm-react-app": "^3.3.2-beta.6",
     "file-loader": "^5.1.0",
+    "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.3",
     "less": "^3.12.2",
     "less-loader": "^5.0.0",
@@ -90,6 +92,7 @@
     "typescript": "^3.9.7",
     "url-loader": "^3.0.0",
     "webpack": "^4.44.1",
-    "webpackbar": "^4.0.0"
+    "webpackbar": "^4.0.0",
+    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#7314597e5382403088d539417fcad629cca1768d"
   }
 }
