@@ -65,7 +65,12 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
           <Button className='gm-margin-right-5' onClick={onCancel}>
             {getLocale('取消')}
           </Button>
-          <Button type={buttonMap[type].type} onClick={() => buttonMap[type].onClick}>
+          <Button
+            type={buttonMap[type].type}
+            onClick={() => {
+              buttonMap[type].onClick()
+            }}
+          >
             {buttonMap[type].text}
           </Button>
         </div>
