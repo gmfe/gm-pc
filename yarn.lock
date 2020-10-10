@@ -1192,7 +1192,7 @@
   dependencies:
     lodash "^4.17.19"
 
-"@gm-common/x-request@^2.5.1-alpha.2", "@gm-common/x-request@^2.6.1":
+"@gm-common/x-request@^2.6.1":
   version "2.6.1"
   resolved "https://registry.npmjs.org/@gm-common/x-request/-/x-request-2.6.1.tgz#ed7983a54dba14ac67991b0239be75f529c989ba"
   integrity sha512-wdCMMPpDq94eTk2yyZUKsXYh2cKoeSH675RVw4FwurFCfPGcxY7vKfOUs9V4cmZIcxl5ccKUgqftDxVpAHG/Lw==
@@ -2993,32 +2993,6 @@ babel-preset-gm-react-app@^3.3.1:
   version "3.4.0"
   resolved "https://registry.npmjs.org/babel-preset-gm-react-app/-/babel-preset-gm-react-app-3.4.0.tgz#671277882fadf3a6cece27db6b2895915e2f8cf2"
   integrity sha512-/Lajln08zZm9HIOSKdzqTGg5jcK8ttFBTpoOZN1Q7xGky3ARfk0yR8Al9BAKofdYCFAz6bmvv1u0t//EOhhiWw==
-  dependencies:
-    "@babel/cli" "^7.10.5"
-    "@babel/core" "^7.11.1"
-    "@babel/plugin-proposal-class-properties" "^7.10.4"
-    "@babel/plugin-proposal-decorators" "^7.10.5"
-    "@babel/plugin-proposal-function-bind" "^7.10.5"
-    "@babel/plugin-proposal-nullish-coalescing-operator" "^7.10.4"
-    "@babel/plugin-proposal-object-rest-spread" "^7.11.0"
-    "@babel/plugin-proposal-optional-chaining" "^7.11.0"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-    "@babel/plugin-transform-runtime" "^7.11.0"
-    "@babel/preset-env" "^7.11.0"
-    "@babel/preset-react" "^7.10.4"
-    "@babel/preset-typescript" "^7.10.4"
-    "@babel/runtime" "^7.11.2"
-    "@babel/runtime-corejs3" "^7.11.2"
-    babel-plugin-lodash "^3.3.4"
-    babel-plugin-mobx-deep-action "^1.6.1"
-    core-js "^3.6.5"
-    react-hot-loader "^4.12.19"
-    styled-jsx "^3.2.4"
-
-babel-preset-gm-react-app@^3.4.0:
-  version "3.4.3"
-  resolved "https://registry.npmjs.org/babel-preset-gm-react-app/-/babel-preset-gm-react-app-3.4.3.tgz#ab82c1974c63af2b4b90299b048152d9e53c43c4"
-  integrity sha512-5VmUD0VhWXXuff/Q1JXLCxKX4W3q8OADlm7fSU7agqgk7ITwaWCnyX9lpzTZSJs+vvmEGYR0jTnOSKN0KXlLiQ==
   dependencies:
     "@babel/cli" "^7.10.5"
     "@babel/core" "^7.11.1"
@@ -5754,15 +5728,14 @@ globjoin@^0.1.4:
   resolved "https://registry.npmjs.org/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#7314597e5382403088d539417fcad629cca1768d":
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#df49a815abc428b9583eb9107c93f88aa2a1cc74":
   version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#7314597e5382403088d539417fcad629cca1768d"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#df49a815abc428b9583eb9107c93f88aa2a1cc74"
   dependencies:
-    "@gm-common/x-request" "^2.5.1-alpha.2"
+    "@gm-common/x-request" "^2.6.1"
     "@types/lodash" "^4.14.161"
-    babel-preset-gm-react-app "^3.4.0"
     lodash "^4.17.20"
-    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#e51af084bd23049dd0a7538ccc33987e51e18dc4"
+    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc"
 
 gonzales-pe@^4.3.0:
   version "4.3.0"
@@ -8422,9 +8395,9 @@ progress@^2.0.0:
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#e51af084bd23049dd0a7538ccc33987e51e18dc4":
+"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc":
   version "0.1.0"
-  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#e51af084bd23049dd0a7538ccc33987e51e18dc4"
+  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc"
 
 promise-inflight@^1.0.1:
   version "1.0.1"

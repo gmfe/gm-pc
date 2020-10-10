@@ -93,6 +93,6 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.44.1",
     "webpackbar": "^4.0.0",
-    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#7314597e5382403088d539417fcad629cca1768d"
+    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#df49a815abc428b9583eb9107c93f88aa2a1cc74"
   }
 }

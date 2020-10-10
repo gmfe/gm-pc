@@ -18,7 +18,9 @@ import { instance, configError } from '@gm-common/x-request'
 
 instance.defaults.headers.authorization = '6dd24a47dd6b444f941cc86adc8e80df'
 // 后面要移除
-configError(() => {})
+configError((message) => {
+  console.error(message)
+})
 
 if (process.env.NODE_ENV !== 'production') {
   // const whyDidYouRender = require('@welldone-software/why-did-you-render')
