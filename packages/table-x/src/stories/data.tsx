@@ -150,7 +150,9 @@ const sortColumns: TableXColumn[] = [
         建单时间
         <SortHeader
           type={store.sortType}
-          onChange={(type: any) => store.setSortType(type)}
+          onChange={(type: any) => {
+            store.setSortType(type)
+          }}
         />
       </div>
     )),
@@ -170,7 +172,7 @@ const sortColumns: TableXColumn[] = [
   },
 ]
 
-const fixedColumns = [
+const fixedColumns: TableXColumn[] = [
   {
     Header: '序号',
     id: 'index',
@@ -194,9 +196,7 @@ const fixedColumns = [
     Header: '入库金额',
     width: 200,
     fixed: 'right',
-    Cell: (cellProps: { row: { original: { totalMoney: React.ReactNode } } }) => (
-      <div>{cellProps.row.original.totalMoney}</div>
-    ),
+    Cell: (cellProps: any) => <div>{cellProps.row.original.totalMoney}</div>,
   },
 ]
 
@@ -240,7 +240,9 @@ const editColumns = [
       <MoreSelect
         selected={cellProps.row.original.address}
         data={selectData}
-        onSelect={(selected) => console.log(selected)}
+        onSelect={(selected) => {
+          console.log(selected)
+        }}
       />
     ),
   },
@@ -251,7 +253,9 @@ const editColumns = [
     }) => (
       <InputNumber
         value={cellProps.row.original.totalMoney}
-        onChange={(value) => console.log(value)}
+        onChange={(value) => {
+          console.log(value)
+        }}
       />
     ),
   },
@@ -262,7 +266,9 @@ const editColumns = [
     }) => (
       <Input
         value={cellProps.row.original.skuMoney}
-        onChange={(event) => console.log(event.target.value)}
+        onChange={(event) => {
+          console.log(event.target.value)
+        }}
       />
     ),
   },
