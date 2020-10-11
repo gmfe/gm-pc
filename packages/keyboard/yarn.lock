@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@gm-common/tool@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.1.tgz#8fc621ad278821773605a16543ece836de5e8f16"
-  integrity sha512-+Uq5zvu+fFNq/Z1ePA6IYScJKksQkKyybjjnNi447vfTJW+dBSI1q+QWY8d/j9jb7n5200ukHOkMzeNrdGGaZg==
+"@gm-common/tool@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.2.tgz#d77b105b15e97bc91fa80e25f2b0afb46a8a7a25"
+  integrity sha512-hW1fecMMVIZ+aR5afeLYQOEPkjoq1Ff81RvdIzEkt8Ose7wEAr+UADD0gPwLErkF27qL1FT013mb5u3NNalgLw==
   dependencies:
     lodash "^4.17.19"
 

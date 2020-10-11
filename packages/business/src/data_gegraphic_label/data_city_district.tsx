@@ -16,7 +16,7 @@ const DataCityDistrict: FC<DataCityDistrictProps> = ({
     },
   })
 
-  return <LevelSelect data={data} selected={selected} onSelect={onSelect} />
+  return <LevelSelect data={data || []} selected={selected} onSelect={onSelect} />
 }
 
 export default DataCityDistrict

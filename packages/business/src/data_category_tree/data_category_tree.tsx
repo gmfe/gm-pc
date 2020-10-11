@@ -5,7 +5,7 @@ import { useAsync } from '@gm-common/hooks'
 import { Value } from '@gm-pc/react/src/component/tree/types'
 
 interface DataCategoryTreeProps {
-  onReady?(data: CategoryItem[]): void
+  onReady?(data?: CategoryItem[]): void
   onActiveValue?(activeValue: Value, item: CategoryItem | SpuItem): void
 }
 

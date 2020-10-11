@@ -2,8 +2,8 @@ import _ from 'lodash'
 import { ListCity, ListDistrict } from 'gm_api/src/enterprise'
 import { CityItem } from './types'
 
-async function fetchCityDistrict(params: { city_ids: string[] }): Promise<CityItem[]> {
-  const { city_ids } = params
+async function fetchCityDistrict(params?: { city_ids: string[] }): Promise<CityItem[]> {
+  const { city_ids } = params!
 
   const [cityRes, districtRes] = await Promise.all([
     ListCity({

@@ -27,7 +27,7 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@gm-common/tool": "^2.6.1",
+    "@gm-common/tool": "^2.6.2",
     "@gm-pc/locales": "^1.0.0",
     "@gm-pc/react": "^1.0.0",
     "classnames": "^2.2.5",

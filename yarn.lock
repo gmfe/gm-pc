@@ -1171,6 +1171,15 @@
     axios "^0.19.2"
     query-string "^6.12.1"
 
+"@gm-common/analyse@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.6.2.tgz#4604dc275efd8665546b4831f675c3daf8df9d63"
+  integrity sha512-abyVOffrSEyhmFzqMRoYVkUYjJIUBSPruEgjwFV9im0J30s/euLXUZRzLVH1uJlq9mWGPgRIk6pVzstDVSw5xw==
+  dependencies:
+    "@gm-common/fingerprint" "^2.6.2"
+    axios "^0.19.2"
+    query-string "^6.12.1"
+
 "@gm-common/fingerprint@^2.6.1":
   version "2.6.1"
   resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.6.1.tgz#7d13368663e7d0f3cecf16882b7313c9b86d55b9"
@@ -1180,15 +1189,36 @@
     "@types/fingerprintjs2" "^2.0.0"
     fingerprintjs2 "^2.1.0"
 
+"@gm-common/fingerprint@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.6.2.tgz#611c3adb4dab9bfa98bafd40ac4d6893e4e5f22d"
+  integrity sha512-3z7ADXY0AIrUlJtB/20oaBIt1mjreBSqlqWbzrNOAg8KwXCkgZWE6vD7GknLMLIq0XWmMyISJ7HzNgsTyEslaw==
+  dependencies:
+    "@gm-common/tool" "^2.6.2"
+    "@types/fingerprintjs2" "^2.0.0"
+    fingerprintjs2 "^2.1.0"
+
 "@gm-common/locales@^2.6.1":
   version "2.6.1"
   resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.6.1.tgz#21ed4ca79c6aba2c9885fcd02e88ade0a9bfdace"
   integrity sha512-7C6jteNOKOp9tanh3lezv2fJgHQ1BA2pSz5J3Bk/yobz7Tn8fZXl8u9UXfKTym4ozxjypQDMqGje0YPaDyLHUA==
 
+"@gm-common/locales@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.6.2.tgz#ffe0fa12cb1a2db2f64edfdf679087dee45ceee5"
+  integrity sha512-LiDPJ/Ul4fhMVzvJKcjN87UTxOkWxjBfMs+Ovdw6Y+ecws399lJsPUkjyf2HLX97WufLeqDArXSL5eWI2KChtg==
+
 "@gm-common/tool@^2.6.1":
   version "2.6.1"
   resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.1.tgz#8fc621ad278821773605a16543ece836de5e8f16"
   integrity sha512-+Uq5zvu+fFNq/Z1ePA6IYScJKksQkKyybjjnNi447vfTJW+dBSI1q+QWY8d/j9jb7n5200ukHOkMzeNrdGGaZg==
+  dependencies:
+    lodash "^4.17.19"
+
+"@gm-common/tool@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.2.tgz#d77b105b15e97bc91fa80e25f2b0afb46a8a7a25"
+  integrity sha512-hW1fecMMVIZ+aR5afeLYQOEPkjoq1Ff81RvdIzEkt8Ose7wEAr+UADD0gPwLErkF27qL1FT013mb5u3NNalgLw==
   dependencies:
     lodash "^4.17.19"
 
@@ -1201,6 +1231,18 @@
     "@gm-common/fingerprint" "^2.6.1"
     "@gm-common/locales" "^2.6.1"
     "@gm-common/tool" "^2.6.1"
+    axios "^0.19.2"
+    lodash "^4.17.19"
+
+"@gm-common/x-request@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/@gm-common/x-request/-/x-request-2.6.2.tgz#ed30785db02b5b9551927c350853a7d55e43ef2e"
+  integrity sha512-c+UtXIC7mcXFrjHT/Zq/oY3CRSobvfG6k5dsTa8ymR4gZEEzXUnVIp2HgdlE4w89jpHrK8spDztI6fdO8+2GKQ==
+  dependencies:
+    "@gm-common/analyse" "^2.6.2"
+    "@gm-common/fingerprint" "^2.6.2"
+    "@gm-common/locales" "^2.6.2"
+    "@gm-common/tool" "^2.6.2"
     axios "^0.19.2"
     lodash "^4.17.19"
 

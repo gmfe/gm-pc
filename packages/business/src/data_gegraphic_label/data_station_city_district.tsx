@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
-import { GetStation } from 'gm_api/src/enterprise'
+import { GetStation, Station } from 'gm_api/src/enterprise'
 import DataCityDistrict from './data_city_district'
 import { useAsync } from '@gm-common/hooks'
 import { DataStationCityDistrictProps } from './types'
 
-async function getStation({ station_id }: { station_id: string }) {
+async function getStation(params?: { station_id: string }): Promise<Station> {
+  const { station_id } = params!
   const res = await GetStation({ station_id })
-  return res.response.station
+  return res.response.station!
 }
 
 // TODO 通过登录态获得 站点id
@@ -23,7 +24,9 @@ const DataStationCityDistrict: FC<DataStationCityDistrictProps> = ({ ...rest }) 
     return null
   }
 
-  return <DataCityDistrict {...rest} city_ids={data.attrs.available_city_ids} />
+  const city_ids = data?.attrs?.available_city_ids || []
+
+  return <DataCityDistrict {...rest} city_ids={city_ids} />
 }
 
 export default DataStationCityDistrict
