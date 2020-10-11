@@ -1,12 +1,13 @@
 import React, { Component, createRef } from 'react'
 import classNames from 'classnames'
 import { xor, flatMap, isNil, noop } from 'lodash'
-import { ListBaseDataItem, ListBaseProps } from './types'
+import { ListBaseProps } from './types'
+import { ListDataItem } from '../../types'
 
-class Base extends Component<ListBaseProps> {
+class Base<V = any> extends Component<ListBaseProps<V>> {
   static defaultProps = {
     onSelect: noop,
-    renderItem: (value: ListBaseDataItem) => value.text,
+    renderItem: (value: any) => value.text,
     getItemProps: () => ({}),
   }
 
@@ -53,15 +54,15 @@ class Base extends Component<ListBaseProps> {
     }
   }
 
-  private _handleSelect = (value: ListBaseDataItem): void => {
-    if (value.disabled) {
+  private _handleSelect = (item: ListDataItem<V>): void => {
+    if (item.disabled) {
       return
     }
     const { multiple, selected, onSelect } = this.props
     if (multiple) {
-      onSelect && onSelect(xor(selected, [value.value]))
+      onSelect && onSelect(xor(selected, [item.value]))
     } else {
-      onSelect && onSelect([value.value])
+      onSelect && onSelect([item.value])
     }
   }
 
@@ -90,20 +91,20 @@ class Base extends Component<ListBaseProps> {
         {data.map((group, gIndex) => (
           <div key={gIndex} className='gm-list-group-item'>
             <div className='gm-list-label'>{group.label}</div>
-            {group.children.map((value, index) => {
+            {group.children.map((item, index) => {
               sequenceDataIndex++
               return (
                 <div
-                  key={`${index}_${value.value}`}
-                  {...getItemProps!(value)}
+                  key={`${index}_${item.value}`}
+                  {...getItemProps!(item)}
                   className={classNames('gm-list-item', {
-                    active: selected.includes(value.value),
+                    active: selected.includes(item.value),
                     'will-active': willActiveIndex === sequenceDataIndex,
-                    disabled: value.disabled,
+                    disabled: item.disabled,
                   })}
-                  onClick={() => this._handleSelect(value)}
+                  onClick={() => this._handleSelect(item)}
                 >
-                  {renderItem!(value, index)}
+                  {renderItem!(item, index)}
                 </div>
               )
             })}

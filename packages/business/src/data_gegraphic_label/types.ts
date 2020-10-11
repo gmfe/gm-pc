@@ -16,12 +16,12 @@ interface DistrictItem {
 interface DataCityDistrictProps {
   city_ids: string[]
   selected: string[]
-  onSelect(selected: string[]): void
+  onSelect(selected?: string): void
 }
 
 interface DataStationCityDistrictProps {
   selected: string[]
-  onSelect(selected: string[]): void
+  onSelect(selected?: string): void
 }
 
 export type {

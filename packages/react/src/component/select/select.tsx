@@ -2,16 +2,17 @@ import React, { Component, createRef, KeyboardEvent } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { getLocale } from '@gm-pc/locales'
-import { Value, SelectProps } from './types'
+import { SelectProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
 import { List } from '../list'
+import { ListDataItem } from '../../types'
 
 interface SelectState {
   willActiveIndex: number
 }
 
-class Select extends Component<SelectProps, SelectState> {
+class Select<V = any> extends Component<SelectProps<V>, SelectState> {
   static defaultProps = {
     canShowClose: false,
     onKeyDown: _.noop,
@@ -40,7 +41,7 @@ class Select extends Component<SelectProps, SelectState> {
     }
   }
 
-  private _handleChange = (selected: Value): void => {
+  private _handleChange = (selected: V): void => {
     const { onChange } = this.props
     this._popupRef.current!.apiDoSetActive()
     onChange(selected)
@@ -94,7 +95,12 @@ class Select extends Component<SelectProps, SelectState> {
       isInPopup,
     } = this.props
     const { willActiveIndex } = this.state
-    const newData = all ? [{ text: allText!, value: 0 }, ...data] : [...data]
+
+    // @ts-ignore
+    const zeroItem = { text: allText!, value: 0 } as ListDataItem<V>
+
+    const newData: ListDataItem<V>[] = all ? [zeroItem, ...data] : [...data]
+
     const selected = newData.find((v) => v.value === value)
     const listStyle = listProps?.style ?? {}
 
@@ -110,7 +116,7 @@ class Select extends Component<SelectProps, SelectState> {
       />
     )
 
-    const handleChange = (selected: Value) => {
+    const handleChange = (selected: V) => {
       onChange(selected)
     }
 
@@ -137,4 +143,5 @@ class Select extends Component<SelectProps, SelectState> {
     )
   }
 }
+
 export default Select

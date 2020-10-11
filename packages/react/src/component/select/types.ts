@@ -1,22 +1,15 @@
 import { ListProps } from '../list'
 import { CSSProperties, KeyboardEvent } from 'react'
+import { ListDataItem } from '../../types'
 
-type Value = any
-
-interface SelectDataItem {
-  text: string
-  value: Value
-  disabled?: boolean
-}
-
-interface SelectProps {
-  data: SelectDataItem[]
-  value: Value
+interface SelectProps<V> {
+  data: ListDataItem<V>[]
+  value: V
   all?: Boolean
   allText?: string
-  onChange(selected: Value): void
+  onChange(selected: V): void
   disabled?: boolean
-  listProps?: ListProps
+  listProps?: ListProps<V>
   clean?: boolean
   popoverType?: 'focus' | 'realFocus'
   isInPopup?: boolean
@@ -25,4 +18,4 @@ interface SelectProps {
   style?: CSSProperties
 }
 
-export type { Value, SelectDataItem, SelectProps }
+export type { SelectProps }

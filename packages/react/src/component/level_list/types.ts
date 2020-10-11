@@ -1,20 +1,18 @@
-import { ListBaseDataItem } from '../list'
 import { CSSProperties } from 'react'
+import { TreeDataItem } from '../../types'
 
-type Value = any
-
-interface LevelListDataItem extends ListBaseDataItem {
-  children?: LevelListDataItem[]
+interface BaseLevelListProps<V> extends LevelListProps<V> {
+  willActiveSelected: V[]
+  onWillActiveSelect(selected: V[]): void
 }
 
-interface LevelListProps {
-  data: LevelListDataItem[]
-  selected: Value[]
-  onSelect(selected: Value[]): void
-  willActiveSelected: Value[]
-  onWillActiveSelect(selected: Value[]): void
+interface LevelListProps<V> {
+  data: TreeDataItem<V>[]
+  selected: V[]
+  onSelect(selected: V[]): void
+  willActiveSelected?: V[]
+  onWillActiveSelect?(selected: V[]): void
   titles?: string[]
-  // @todo 未完成
   onlySelectLeaf?: boolean
   isReverse?: boolean
   className?: string
@@ -23,4 +21,16 @@ interface LevelListProps {
   isForFunctionSet?: boolean
 }
 
-export type { Value, LevelListDataItem, LevelListProps }
+interface LevelItemProps<V> {
+  title?: string
+  data: TreeDataItem<V>[]
+  selected?: V
+  onSelect(selected: V): void
+  onListItemMouseEnter?(value: TreeDataItem<V>): void
+  willActiveSelected?: V
+  onlySelectLeaf?: boolean
+  className?: string
+  style?: CSSProperties
+}
+
+export type { BaseLevelListProps, LevelListProps, LevelItemProps }

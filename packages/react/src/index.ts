@@ -1,3 +1,4 @@
+export * from './types'
 export { default as EVENT_TYPE } from './event_type'
 export { default as Validator } from './validator'
 export * from './component/affix'

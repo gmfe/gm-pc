@@ -1,5 +1,5 @@
 import React, { Component, createRef, ReactNode, KeyboardEvent } from 'react'
-import { Value, LevelSelectDataItem, LevelSelectProps } from './types'
+import { LevelSelectDataItem, LevelSelectProps } from './types'
 import { Selection } from '../selection'
 import { Popover } from '../popover'
 import { Flex } from '../flex'
@@ -7,21 +7,19 @@ import { LevelList } from '../level_list'
 import { getLevel } from '../level_list/utils'
 import _ from 'lodash'
 
-interface LevelSelectState {
-  willActiveSelected: Value[]
-  search: string
+interface LevelSelectState<V> {
+  willActiveSelected: V[]
 }
 
-class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
+class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectState<V>> {
   static defaultProps = {
-    renderSelected: (item: LevelSelectDataItem[]) => item.map((v) => v.text).join(','),
+    renderSelected: (item: any) => item.map((v: any) => v.text).join(','),
     onKeyDown: _.noop,
     popoverType: 'focus',
   }
 
-  readonly state: LevelSelectState = {
+  readonly state: LevelSelectState<V> = {
     willActiveSelected: this.props.selected,
-    search: '',
   }
 
   private _selectionRef = createRef<Selection>()
@@ -37,35 +35,36 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
     onSelect(willActiveSelected)
   }
 
-  private _handleSelect = (selected: Value[]): void => {
+  private _handleSelect = (selected: V[]): void => {
     const { onSelect } = this.props
     this._popoverRef.current!.apiDoSetActive(false)
     onSelect(selected)
   }
 
-  private _handleWillActiveSelect = (willActiveSelected: Value[]): void => {
+  private _handleWillActiveSelect = (willActiveSelected: V[]): void => {
     this.setState({ willActiveSelected })
   }
 
   private _renderPopup = (): ReactNode => {
-    const { titles, data, selected, right } = this.props
+    const { titles, data, selected, right, onlySelectLeaf } = this.props
     const { willActiveSelected } = this.state
     return (
       <Flex justifyEnd={right}>
-        <LevelList
+        <LevelList<V>
           isReverse={right}
-          titles={titles}
-          selected={selected}
-          onWillActiveSelect={this._handleWillActiveSelect}
           data={data}
+          onWillActiveSelect={this._handleWillActiveSelect}
           willActiveSelected={willActiveSelected}
+          selected={selected}
           onSelect={this._handleSelect}
+          titles={titles}
+          onlySelectLeaf={onlySelectLeaf}
         />
       </Flex>
     )
   }
 
-  private _handleSelectionSelect = (selected: Value[] | null): void => {
+  private _handleSelectionSelect = (selected: V[] | null): void => {
     const { onSelect } = this.props
     onSelect(selected === null ? [] : selected)
   }
@@ -76,9 +75,9 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
     return renderSelected!(selectedItems)
   }
 
-  private _getSelectedItem = (): LevelSelectDataItem[] => {
+  private _getSelectedItem = (): LevelSelectDataItem<V>[] => {
     const { data, selected } = this.props
-    const items: LevelSelectDataItem[] = []
+    const items: LevelSelectDataItem<V>[] = []
     selected.forEach((value, index) => {
       const match = (index === 0 ? data : items[index - 1].children)!.find(
         (item) => item.value === value
@@ -162,7 +161,16 @@ class LevelSelect extends Component<LevelSelectProps, LevelSelectState> {
   }
 
   private _renderTarget = (): ReactNode => {
-    const { titles, data, selected, disabled, popoverType, right, ...rest } = this.props
+    const {
+      titles,
+      data,
+      selected,
+      disabled,
+      popoverType,
+      right,
+      onlySelectLeaf,
+      ...rest
+    } = this.props
 
     // 注意转换 selected onSelect renderSelected
     return (

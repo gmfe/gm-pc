@@ -109,7 +109,7 @@ class Selection extends Component<SelectionProps> {
             ref={this._inputRef as RefObject<HTMLInputElement>}
             disabled={disabled}
             value={text}
-            onChange={() => _.noop()}
+            onChange={_.noop}
             onKeyDown={onKeyDown}
             placeholder={placeholder}
             className='gm-form-control gm-selection-selected'

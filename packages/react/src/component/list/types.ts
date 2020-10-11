@@ -1,60 +1,37 @@
 import { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 
-type Value = any
+import { ListDataItem, ListGroupDataItem } from '../../types'
 
-interface ListBaseDataItem {
-  value: Value
-  text: string
-  disabled?: boolean
-  [key: string]: any
-}
-
-interface ListBaseGroupDataItem {
-  label: string | ReactNode
-  children: ListBaseDataItem[]
-}
-
-interface CommonListProps {
+interface CommonListProps<V> {
   multiple?: boolean
   isGroupList?: boolean
-  renderItem?(value: ListBaseDataItem, index: number): ReactNode
+  renderItem?(value: ListDataItem<V>, index: number): ReactNode
   willActiveIndex?: number
   isScrollTo?: boolean
   /* 少用，给与更多 Item 的响应 */
-  getItemProps?(value: ListBaseDataItem): HTMLAttributes<HTMLDivElement>
+  getItemProps?(value: ListDataItem<V>): HTMLAttributes<HTMLDivElement>
   className?: string
   style?: CSSProperties
 }
 
-interface ListBaseProps extends CommonListProps {
-  data: ListBaseGroupDataItem[]
-  selected: Value[]
-  onSelect?(selected: Value[]): void
+interface ListBaseProps<V> extends CommonListProps<V> {
+  data: ListGroupDataItem<V>[]
+  selected: V[]
+  onSelect?(selected: V[]): void
 }
 
-type ListData = (ListBaseDataItem | ListBaseGroupDataItem)[]
-
-interface ListProps extends CommonListProps {
-  /**
-   * 区分 group
-   */
-  data: ListData
+interface ListProps<V> extends CommonListProps<V> {
+  /** 区分 group */
+  data: ListDataItem<V>[] | ListGroupDataItem<V>[]
   /**
    * 多选传 value 数组
    */
-  selected?: Value | Value[]
+  selected?: V | V[]
 
   /**
    * 多选返回 value 数组
    */
-  onSelect?(selected: Value | Value[]): void
+  onSelect?(selected: V | V[]): void
 }
 
-export type {
-  Value,
-  ListBaseDataItem,
-  ListData,
-  ListBaseGroupDataItem,
-  ListBaseProps,
-  ListProps,
-}
+export type { ListBaseProps, ListProps }

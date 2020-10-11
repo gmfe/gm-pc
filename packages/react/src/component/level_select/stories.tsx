@@ -1,5 +1,6 @@
 import React from 'react'
 import LevelSelect from './level_select'
+import MultipleLevelSelect from './multiple_level_select'
 import { observable } from 'mobx'
 
 const data = [
@@ -42,8 +43,8 @@ const data = [
 ]
 
 const store = observable({
-  selected: [] as string[],
-  changeSelect(value: string[]) {
+  selected: [],
+  changeSelect(value: any) {
     console.log(value)
     this.selected = value
   },
@@ -51,20 +52,47 @@ const store = observable({
 
 export const ComLevelSelect = () => (
   <LevelSelect
-    selected={store.selected}
-    data={data}
-    onSelect={(value) => store.changeSelect(value)}
+    selected={store.selected.slice()}
+    data={data.slice()}
+    onSelect={(value) => {
+      store.changeSelect(value)
+    }}
     style={{ width: '200px' }}
+  />
+)
+
+export const ComLevelSelectWithOnlySelectLeaf = () => (
+  <LevelSelect
+    selected={store.selected.slice()}
+    data={data.slice()}
+    onSelect={(value) => {
+      store.changeSelect(value)
+    }}
+    style={{ width: '200px' }}
+    onlySelectLeaf
   />
 )
 
 export const ComLevelSelectWithRight = () => (
   <LevelSelect
-    selected={store.selected}
-    data={data}
-    onSelect={(value) => store.changeSelect(value)}
+    selected={store.selected.slice()}
+    data={data.slice()}
+    onSelect={(value) => {
+      store.changeSelect(value)
+    }}
     right
     style={{ width: '200px' }}
+  />
+)
+
+export const ComMultipleLevelSelect = () => (
+  <MultipleLevelSelect
+    selected={store.selected.slice()}
+    data={data.slice()}
+    onSelect={(value) => {
+      store.changeSelect(value)
+    }}
+    style={{ width: '400px' }}
   />
 )
 

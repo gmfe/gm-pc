@@ -1,58 +1,51 @@
 import React, { Component, createRef } from 'react'
-import { Value, ListProps, ListBaseDataItem, ListBaseGroupDataItem } from './types'
+import { ListProps } from './types'
 import Base from './base'
-import { warn, devWarn } from '@gm-common/tool'
 import _ from 'lodash'
+import { ListDataItem, ListGroupDataItem } from '../../types'
 
-class List extends Component<ListProps> {
+class List<V = any> extends Component<ListProps<V>> {
   static defaultProps = {
     onSelect: _.noop,
-    renderItem: (value: ListBaseDataItem) => value.text,
+    renderItem: (value: any) => value.text,
     getItemProps: () => ({}),
   }
 
-  private _baseRef = createRef<Base>()
-
-  constructor(props: ListProps) {
-    super(props)
-    devWarn(() => {
-      if (props.multiple && !_.isArray(props.selected)) {
-        // @ts-ignore
-        warn('多选情况下 selected 请传数组')
-      }
-    })
-  }
+  private _baseRef = createRef<Base<V>>()
 
   public apiDoSelectWillActive = (): void => {
     this._baseRef.current!.apiDoSelectWillActive()
   }
 
-  private _handleSelect = (selected: Value[]): void => {
+  private _handleSelect = (selected: V[]): void => {
     const { multiple, onSelect } = this.props
     if (multiple) {
+      // @ts-ignore
       onSelect && onSelect(selected)
     } else {
+      // @ts-ignore
       onSelect && onSelect(selected[0])
     }
   }
 
   render() {
     const { data, selected, multiple, isGroupList, ...rest } = this.props
-    let oData: ListBaseGroupDataItem[]
+
+    let oData: ListGroupDataItem<V>[]
     if (isGroupList) {
-      oData = data as ListBaseGroupDataItem[]
+      oData = data as ListGroupDataItem<V>[]
     } else {
-      oData = [{ label: '', children: data as ListBaseDataItem[] }]
+      oData = [{ label: '', children: data as ListDataItem<V>[] }]
     }
 
-    let oSelected: Value[]
+    let oSelected: V[]
     if (multiple) {
-      oSelected = (selected as Value[]) ?? []
+      oSelected = (selected as V[]) ?? []
     } else {
-      oSelected = _.isNil(selected) ? [] : [selected as Value]
+      oSelected = _.isNil(selected) ? [] : [selected as V]
     }
     return (
-      <Base
+      <Base<V>
         {...rest}
         ref={this._baseRef}
         selected={oSelected}

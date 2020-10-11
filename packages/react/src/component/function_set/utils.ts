@@ -1,12 +1,10 @@
 import { FunctionSetData } from './types'
-import { LevelListDataItem } from '../level_list'
+import { TreeDataItem } from '../../types'
 
 interface ProcessDataWithValue {
-  (
-    data: FunctionSetData[],
-    map: { [key: string]: any },
-    pre?: string
-  ): LevelListDataItem[]
+  (data: FunctionSetData[], map: { [key: string]: any }, pre?: string): TreeDataItem<
+    string
+  >[]
 }
 
 const processDataWithValue: ProcessDataWithValue = (data, map, pre = '') => {
@@ -16,7 +14,7 @@ const processDataWithValue: ProcessDataWithValue = (data, map, pre = '') => {
     if (item.children) {
       item.children = processDataWithValue(item.children, map, value)
     }
-    return { value, ...item } as LevelListDataItem
+    return { value, ...item } as TreeDataItem<string>
   })
 }
 

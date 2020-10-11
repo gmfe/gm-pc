@@ -1,0 +1,57 @@
+.gm-multiple-selection {
+  position: relative;
+  vertical-align: middle;
+  min-height: var(--gm-size-form-height);
+  border: 1px solid var(--gm-color-border);
+
+  .gm-multiple-selection-selected {
+    padding-left: 10px;
+    padding-right: 20px;
+    cursor: pointer;
+    line-height: 18px;
+    min-height: var(--gm-size-form-height);
+  }
+
+  .gm-multiple-selection-item {
+    background-color: var(--gm-color-bg-primary-more-light);
+    padding: 0 2px;
+    border-radius: 2px;
+    margin-right: 5px;
+
+    .gm-multiple-selection-item-close {
+      margin-left: 2px;
+      color: var(--gm-color-desc);
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  }
+
+  .gm-multiple-selection-icon {
+    position: absolute;
+    display: block;
+    line-height: 1;
+    top: 9px;
+    right: 6px;
+    color: var(--gm-color-desc);
+    cursor: pointer;
+  }
+
+  .gm-multiple-selection-close-icon {
+    display: none;
+    right: 6px;
+  }
+
+  .gm-multiple-selection-down-up {
+    right: 6px;
+  }
+
+  &:hover {
+    .gm-multiple-selection-close-icon {
+      display: block;
+    }
+
+    .gm-multiple-selection-fun-icon {
+      display: none;
+    }
+  }
+}

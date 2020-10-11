@@ -1,8 +1,9 @@
 import React from 'react'
 import LevelList from './level_list'
 import { observable } from 'mobx'
+import { TreeDataItem } from '../../types'
 
-const areaData = [
+const areaData: TreeDataItem<string>[] = [
   {
     value: '0',
     text: '宝安',
@@ -91,12 +92,22 @@ export const ComLevelList = () => (
     <LevelList
       data={store.data.slice()}
       selected={store.selected.slice()}
-      onSelect={(selected) => store.setSelected(selected)}
-      willActiveSelected={store.willActiveSelected.slice()}
-      onWillActiveSelect={(willActiveSelected: any) => {
-        console.log(willActiveSelected)
-        store.setWillActiveSelected(willActiveSelected)
+      onSelect={(selected) => {
+        store.setSelected(selected)
       }}
+    />
+  </div>
+)
+
+export const ComLevelListWithOnlySelectLeaf = () => (
+  <div className='gm-inline-block'>
+    <LevelList
+      data={store.data.slice()}
+      selected={store.selected.slice()}
+      onSelect={(selected) => {
+        store.setSelected(selected)
+      }}
+      onlySelectLeaf
     />
   </div>
 )
@@ -111,7 +122,9 @@ export const ComLevelListWithIsReverse = () => (
     <LevelList
       data={store.data.slice()}
       selected={store.selected.slice()}
-      onSelect={(selected) => store.setSelected(selected)}
+      onSelect={(selected) => {
+        store.setSelected(selected)
+      }}
       willActiveSelected={store.willActiveSelected.slice()}
       onWillActiveSelect={(willActiveSelected) => {
         console.log(willActiveSelected)
@@ -127,7 +140,9 @@ export const ComLevelListWithIsForFunctionSet = () => (
     <LevelList
       data={store.data.slice()}
       selected={store.selected.slice()}
-      onSelect={(selected) => store.setSelected(selected)}
+      onSelect={(selected) => {
+        store.setSelected(selected)
+      }}
       willActiveSelected={store.willActiveSelected.slice()}
       onWillActiveSelect={(willActiveSelected) => {
         console.log(willActiveSelected)

@@ -1,8 +1,9 @@
 import React from 'react'
 import List from './list'
 import { observable } from 'mobx'
+import { ListDataItem, ListGroupDataItem } from '../../types'
 
-const data = [
+const data: ListDataItem<string>[] = [
   { value: '南山', text: '南山' },
   { value: '福田', text: '福田', disabled: true },
   { value: '龙岗', text: '龙岗' },
@@ -14,7 +15,7 @@ const data = [
   { value: '罗湖5', text: '罗湖5' },
 ]
 
-const groupData = [
+const groupData: ListGroupDataItem<string>[] = [
   {
     label: '分组二',
     children: [
@@ -46,7 +47,9 @@ export const ComList = () => (
       <List
         data={data}
         selected={store.selected}
-        onSelect={(selected: string) => store.setSelected(selected)}
+        onSelect={(selected: string) => {
+          store.setSelected(selected)
+        }}
       />
     </div>
     <div>renderItem</div>
@@ -54,7 +57,9 @@ export const ComList = () => (
       <List
         data={data}
         selected={store.selected}
-        onSelect={(selected: string) => store.setSelected(selected)}
+        onSelect={(selected: string) => {
+          store.setSelected(selected)
+        }}
         renderItem={(item, index) => item.text + index}
       />
     </div>
@@ -62,22 +67,26 @@ export const ComList = () => (
 )
 export const ComListWithMultiple = () => (
   <div className='gm-inline-block'>
-    <List
+    <List<string>
       multiple
       data={data}
-      selected={store.selected}
-      onSelect={(selected: string[]) => store.setSelected(selected)}
+      selected={store.selected || []}
+      onSelect={(selected: string[]) => {
+        store.setSelected(selected)
+      }}
     />
   </div>
 )
 
 export const ComListWithIsGroupList = () => (
   <div className='gm-inline-block'>
-    <List
+    <List<string>
       data={groupData}
       isGroupList
-      selected={store.selected}
-      onSelect={(selected: string) => store.setSelected(selected)}
+      selected={store.selected || ''}
+      onSelect={(selected: string) => {
+        store.setSelected(selected)
+      }}
     />
   </div>
 )
@@ -87,7 +96,9 @@ export const ComListWithIsScrollTo = () => (
     <List
       data={data}
       selected='罗湖5'
-      onSelect={(selected) => store.setSelected(selected)}
+      onSelect={(selected: string) => {
+        store.setSelected(selected)
+      }}
       renderItem={(item, index) => item.text + index}
       isScrollTo
       style={{

@@ -1,22 +1,15 @@
 import { ReactNode, KeyboardEvent, CSSProperties } from 'react'
+import { TreeDataItem } from '../../types'
 
-type Value = any
+type LevelSelectDataItem<V> = TreeDataItem<V>
 
-interface LevelSelectDataItem {
-  value: Value
-  text: string
-  children?: LevelSelectDataItem[]
-  disabled?: boolean
-}
-
-interface LevelSelectProps {
+interface LevelSelectProps<V> {
   titles?: string[]
-  data: LevelSelectDataItem[]
-  selected: Value[]
-  onSelect(selected: Value[]): void
+  data: LevelSelectDataItem<V>[]
+  selected: V[]
+  onSelect(selected: V[]): void
   disabled?: boolean
-  renderSelected?(selected: LevelSelectDataItem[]): ReactNode
-  // @todo 只能选叶子节点
+  renderSelected?(selected: LevelSelectDataItem<V>[]): ReactNode
   onlySelectLeaf?: boolean
   popoverType?: 'focus' | 'realFocus'
   right?: boolean
@@ -25,4 +18,20 @@ interface LevelSelectProps {
   className?: string
 }
 
-export type { Value, LevelSelectDataItem, LevelSelectProps }
+interface MultipleLevelSelectProps<V> {
+  data: LevelSelectDataItem<V>[]
+  selected: V[][]
+  onSelect(selected: V[][]): void
+  disabled?: boolean
+  renderSelected?(items: LevelSelectDataItem<V>[]): ReactNode
+  titles?: string[]
+  onlySelectLeaf?: boolean
+  popoverType?: 'focus' | 'realFocus'
+  right?: boolean
+  onKeyDown?(event: KeyboardEvent): void
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+}
+
+export type { LevelSelectDataItem, LevelSelectProps, MultipleLevelSelectProps }

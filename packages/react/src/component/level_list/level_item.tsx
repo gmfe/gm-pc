@@ -1,53 +1,65 @@
-import React, { CSSProperties, HTMLAttributes, FC, useCallback, useMemo } from 'react'
+import React, { HTMLAttributes, useCallback, useMemo } from 'react'
 import classNames from 'classnames'
-import { Value, LevelListDataItem } from './types'
+import { LevelItemProps } from './types'
 import SVGRightSmall from '../../svg/right-small.svg'
 import { List } from '../list'
+import { TreeDataItem } from '../../types'
+import { Flex } from '../flex'
+import _ from 'lodash'
 
-interface LevelItemProps {
-  title?: string
-  data: LevelListDataItem[]
-  selected?: Value
-  onSelect?(selected: Value): void
-  onListItemMouseEnter?(value: LevelListDataItem): void
-  willActiveSelected?: Value
-  className?: string
-  style?: CSSProperties
+function Item<V>({ item }: { item: TreeDataItem<V> }) {
+  const hasChildren = item.children && !!item.children.length
+  return (
+    <Flex alignCenter>
+      <Flex
+        flex
+        block
+        className={classNames({ 'gm-margin-right-10 gm-text-ellipsis': hasChildren })}
+      >
+        {item.text}
+      </Flex>
+      {hasChildren && <SVGRightSmall className='gm-level-list-item-right' />}
+    </Flex>
+  )
 }
 
-const LevelItem: FC<LevelItemProps> = ({
+function LevelItem<V>({
   title,
   data,
   selected,
   onSelect,
   onListItemMouseEnter,
   willActiveSelected,
+  onlySelectLeaf,
   className,
   style,
-}) => {
-  const renderItem = useCallback((item: LevelListDataItem) => {
-    const hasChildren = item.children && !!item.children.length
-    return (
-      <div className='gm-position-relative'>
-        <div className={classNames({ 'gm-margin-right-10': hasChildren })}>
-          {item.text}
-        </div>
-        {hasChildren && <SVGRightSmall className='gm-level-list-item-right' />}
-      </div>
-    )
-  }, [])
+}: LevelItemProps<V>) {
+  const willActiveIndex = useMemo(
+    () => data.findIndex((value) => value.value === willActiveSelected),
+    [data, willActiveSelected]
+  )
 
+  const renderItem = useCallback((item: TreeDataItem<V>) => {
+    return <Item item={item} />
+  }, [])
   const getItemProps = useCallback(
-    (item: LevelListDataItem): HTMLAttributes<HTMLDivElement> => ({
+    (item: TreeDataItem<V>): HTMLAttributes<HTMLDivElement> => ({
       onMouseEnter: () => onListItemMouseEnter && onListItemMouseEnter(item),
     }),
     [onListItemMouseEnter]
   )
 
-  const willActiveIndex = useMemo(
-    () => data.findIndex((value) => value.value === willActiveSelected),
-    [data, willActiveSelected]
-  )
+  const handleSelect = (selected: V) => {
+    const item = _.find<TreeDataItem<V>>(data, (v) => v.value === selected)
+
+    if (onlySelectLeaf) {
+      if (!item!.children) {
+        onSelect(selected)
+      }
+    } else {
+      onSelect(selected)
+    }
+  }
 
   return (
     <div className={classNames('gm-level-list-item', className)} style={style}>
@@ -55,7 +67,7 @@ const LevelItem: FC<LevelItemProps> = ({
       <List
         data={data}
         selected={selected}
-        onSelect={onSelect}
+        onSelect={handleSelect}
         renderItem={renderItem}
         getItemProps={getItemProps}
         willActiveIndex={willActiveIndex}
