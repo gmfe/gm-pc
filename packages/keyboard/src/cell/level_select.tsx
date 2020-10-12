@@ -6,7 +6,7 @@ import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { KeyboardWrapData } from '../types'
 
-function KCLevelSelect({ disabled, onKeyDown, ...rest }: LevelSelectProps) {
+function KCLevelSelect<V = any>({ disabled, onKeyDown, ...rest }: LevelSelectProps<V>) {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<LevelSelect>(null)
   const { wrapData, cellKey } = useContextData()
