@@ -1162,15 +1162,6 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@gm-common/analyse@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.6.1.tgz#8687448ca9a1934fc00a8e247cf0648749616e87"
-  integrity sha512-iFGHnY//kvOK729R5EQSBPh6yQEQTBD4tFWQH5LFzgr3R6qUiGbFHLHs3xm6IUYH9yAXLm/4/2dJ6oHDAMP+Eg==
-  dependencies:
-    "@gm-common/fingerprint" "^2.6.1"
-    axios "^0.19.2"
-    query-string "^6.12.1"
-
 "@gm-common/analyse@^2.6.2":
   version "2.6.2"
   resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.6.2.tgz#4604dc275efd8665546b4831f675c3daf8df9d63"
@@ -1179,15 +1170,6 @@
     "@gm-common/fingerprint" "^2.6.2"
     axios "^0.19.2"
     query-string "^6.12.1"
-
-"@gm-common/fingerprint@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.6.1.tgz#7d13368663e7d0f3cecf16882b7313c9b86d55b9"
-  integrity sha512-4t//NeB7+WG15AamQmNCGnXFGByZSchK0J43sCq/AFIdL5wQRVoG6IMUxvfC8Qr6zCpAV71dEUy4/AFxDOJmWg==
-  dependencies:
-    "@gm-common/tool" "^2.6.1"
-    "@types/fingerprintjs2" "^2.0.0"
-    fingerprintjs2 "^2.1.0"
 
 "@gm-common/fingerprint@^2.6.2":
   version "2.6.2"
@@ -1198,40 +1180,16 @@
     "@types/fingerprintjs2" "^2.0.0"
     fingerprintjs2 "^2.1.0"
 
-"@gm-common/locales@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.6.1.tgz#21ed4ca79c6aba2c9885fcd02e88ade0a9bfdace"
-  integrity sha512-7C6jteNOKOp9tanh3lezv2fJgHQ1BA2pSz5J3Bk/yobz7Tn8fZXl8u9UXfKTym4ozxjypQDMqGje0YPaDyLHUA==
-
 "@gm-common/locales@^2.6.2":
   version "2.6.2"
   resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.6.2.tgz#ffe0fa12cb1a2db2f64edfdf679087dee45ceee5"
   integrity sha512-LiDPJ/Ul4fhMVzvJKcjN87UTxOkWxjBfMs+Ovdw6Y+ecws399lJsPUkjyf2HLX97WufLeqDArXSL5eWI2KChtg==
-
-"@gm-common/tool@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.1.tgz#8fc621ad278821773605a16543ece836de5e8f16"
-  integrity sha512-+Uq5zvu+fFNq/Z1ePA6IYScJKksQkKyybjjnNi447vfTJW+dBSI1q+QWY8d/j9jb7n5200ukHOkMzeNrdGGaZg==
-  dependencies:
-    lodash "^4.17.19"
 
 "@gm-common/tool@^2.6.2":
   version "2.6.2"
   resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.2.tgz#d77b105b15e97bc91fa80e25f2b0afb46a8a7a25"
   integrity sha512-hW1fecMMVIZ+aR5afeLYQOEPkjoq1Ff81RvdIzEkt8Ose7wEAr+UADD0gPwLErkF27qL1FT013mb5u3NNalgLw==
   dependencies:
-    lodash "^4.17.19"
-
-"@gm-common/x-request@^2.6.1":
-  version "2.6.1"
-  resolved "https://registry.npmjs.org/@gm-common/x-request/-/x-request-2.6.1.tgz#ed7983a54dba14ac67991b0239be75f529c989ba"
-  integrity sha512-wdCMMPpDq94eTk2yyZUKsXYh2cKoeSH675RVw4FwurFCfPGcxY7vKfOUs9V4cmZIcxl5ccKUgqftDxVpAHG/Lw==
-  dependencies:
-    "@gm-common/analyse" "^2.6.1"
-    "@gm-common/fingerprint" "^2.6.1"
-    "@gm-common/locales" "^2.6.1"
-    "@gm-common/tool" "^2.6.1"
-    axios "^0.19.2"
     lodash "^4.17.19"
 
 "@gm-common/x-request@^2.6.2":
@@ -5788,14 +5746,13 @@ globjoin@^0.1.4:
   resolved "https://registry.npmjs.org/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#32d3a1c75dc9be60f43dc22ea8a3eb6cf4450641":
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#f44880e35934c8805e6d5f13ef03e05606e99d96":
   version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#32d3a1c75dc9be60f43dc22ea8a3eb6cf4450641"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#f44880e35934c8805e6d5f13ef03e05606e99d96"
   dependencies:
-    "@gm-common/x-request" "^2.6.1"
     "@types/lodash" "^4.14.161"
     lodash "^4.17.20"
-    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c"
+    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9"
 
 gonzales-pe@^4.3.0:
   version "4.3.0"
@@ -8438,9 +8395,9 @@ progress@^2.0.0:
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c":
+"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9":
   version "0.1.0"
-  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c"
+  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9"
 
 promise-inflight@^1.0.1:
   version "1.0.1"

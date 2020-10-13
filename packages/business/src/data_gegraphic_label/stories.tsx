@@ -41,7 +41,7 @@ export const ComDataStationCityDistrict = () => {
 }
 
 export const ComDataAddressCityDistrict = () => {
-  return <DataAddressCityDistrict address={{ city_id: '1', district_id: '1' }} />
+  return <DataAddressCityDistrict address={{ city_id: '4403', district_id: '440307' }} />
 }
 
 export default {
