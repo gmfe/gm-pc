@@ -64,7 +64,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-gm-react-app": "^3.4.4",
     "file-loader": "^5.1.0",
-    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#f44880e35934c8805e6d5f13ef03e05606e99d96",
+    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#131783e92a31d70735b64fbd79799d8a155eb346",
     "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.3",
     "less": "^3.12.2",

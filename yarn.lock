@@ -1958,11 +1958,6 @@
   resolved "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
-"@types/lodash@^4.14.161":
-  version "4.14.161"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
-  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
-
 "@types/lodash@^4.14.162":
   version "4.14.162"
   resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.162.tgz#65d78c397e0d883f44afbf1f7ba9867022411470"
@@ -5746,13 +5741,12 @@ globjoin@^0.1.4:
   resolved "https://registry.npmjs.org/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#f44880e35934c8805e6d5f13ef03e05606e99d96":
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#131783e92a31d70735b64fbd79799d8a155eb346":
   version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#f44880e35934c8805e6d5f13ef03e05606e99d96"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#131783e92a31d70735b64fbd79799d8a155eb346"
   dependencies:
-    "@types/lodash" "^4.14.161"
+    "@types/lodash" "^4.14.162"
     lodash "^4.17.20"
-    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9"
 
 gonzales-pe@^4.3.0:
   version "4.3.0"
@@ -8394,10 +8388,6 @@ progress@^2.0.0:
   version "2.0.3"
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
-
-"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9":
-  version "0.1.0"
-  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#d8af9b3b30ec8e47980cc616a26f9e0fa30ddea9"
 
 promise-inflight@^1.0.1:
   version "1.0.1"
