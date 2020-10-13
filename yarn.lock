@@ -5788,14 +5788,14 @@ globjoin@^0.1.4:
   resolved "https://registry.npmjs.org/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#df49a815abc428b9583eb9107c93f88aa2a1cc74":
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#32d3a1c75dc9be60f43dc22ea8a3eb6cf4450641":
   version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#df49a815abc428b9583eb9107c93f88aa2a1cc74"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#32d3a1c75dc9be60f43dc22ea8a3eb6cf4450641"
   dependencies:
     "@gm-common/x-request" "^2.6.1"
     "@types/lodash" "^4.14.161"
     lodash "^4.17.20"
-    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc"
+    projectx "git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c"
 
 gonzales-pe@^4.3.0:
   version "4.3.0"
@@ -8438,9 +8438,9 @@ progress@^2.0.0:
   resolved "https://registry.npmjs.org/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc":
+"projectx@git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c":
   version "0.1.0"
-  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#b0d942044cb07286319344073d76e321333768bc"
+  resolved "git+ssh://git@code.guanmai.cn:back_end/projectx.git#faef70776621e835fd386540c83ee00605b1e04c"
 
 promise-inflight@^1.0.1:
   version "1.0.1"

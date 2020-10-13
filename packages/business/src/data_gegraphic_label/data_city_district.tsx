@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useAsync } from '@gm-common/hooks'
-import { fetchCityDistrict } from './util'
+import { fetchCityDistrictTree } from './util'
 import { LevelSelect } from '@gm-pc/react'
 import { DataCityDistrictProps } from './types'
 import _ from 'lodash'
@@ -10,7 +10,7 @@ const DataCityDistrict: FC<DataCityDistrictProps> = ({
   onSelect,
   city_ids,
 }) => {
-  const { data } = useAsync(fetchCityDistrict, {
+  const { data } = useAsync(fetchCityDistrictTree, {
     manual: false,
     defaultParams: {
       city_ids,

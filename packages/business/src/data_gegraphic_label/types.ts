@@ -1,4 +1,4 @@
-import { City, District } from 'gm_api/src/enterprise'
+import { City, District, Address } from 'gm_api/src/enterprise'
 
 interface CityItem {
   value: string
@@ -12,6 +12,10 @@ interface DistrictItem {
   text: string
   original: District
 }
+
+type AddressCityDistrict = Pick<Address, 'city_id' | 'district_id'>
+
+type CityDistrict = CityItem
 
 interface DataCityDistrictProps {
   city_ids: string[]
@@ -27,6 +31,8 @@ interface DataStationCityDistrictProps {
 export type {
   CityItem,
   DistrictItem,
+  AddressCityDistrict,
+  CityDistrict,
   DataCityDistrictProps,
   DataStationCityDistrictProps,
 }

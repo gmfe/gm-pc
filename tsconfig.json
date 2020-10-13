@@ -1,5 +1,8 @@
 {
   "extends": "ts-config-gm-react-app/tsconfig.json",
   "include": ["**/*.ts", "**/*.tsx"],
+  "files": [
+    "node_modules/gm_api/src/enterprise/types.ts"
+  ],
   "exclude": ["packages/**/types", "node_modules"]
 }

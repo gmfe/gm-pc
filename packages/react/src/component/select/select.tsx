@@ -18,7 +18,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     onKeyDown: _.noop,
     popoverType: 'focus',
     all: false,
-    allText: getLocale('选择全部'),
+    allText: getLocale('全部'),
     placeholder: '',
   }
 

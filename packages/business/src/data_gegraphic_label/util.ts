@@ -1,8 +1,30 @@
 import _ from 'lodash'
-import { ListCity, ListDistrict } from 'gm_api/src/enterprise'
-import { CityItem } from './types'
+import { ListCity, ListDistrict, City, District } from 'gm_api/src/enterprise'
+import { AddressCityDistrict, CityItem } from './types'
 
-async function fetchCityDistrict(params?: { city_ids: string[] }): Promise<CityItem[]> {
+async function fetchCityDistrict(params?: {
+  address: AddressCityDistrict
+}): Promise<{ city: City; district: District }> {
+  const { address } = params!
+
+  const [cityRes, districtRes] = await Promise.all([
+    ListCity({
+      city_ids: [address.city_id],
+    }),
+    ListDistrict({
+      district_ids: [address.district_id],
+    }),
+  ])
+
+  return {
+    city: cityRes.response.cities[0],
+    district: districtRes.response.districts[0],
+  }
+}
+
+async function fetchCityDistrictTree(params?: {
+  city_ids: string[]
+}): Promise<CityItem[]> {
   const { city_ids } = params!
 
   const [cityRes, districtRes] = await Promise.all([
@@ -43,4 +65,4 @@ async function fetchCityDistrict(params?: { city_ids: string[] }): Promise<CityI
   return cityDistrictTree
 }
 
-export { fetchCityDistrict }
+export { fetchCityDistrictTree, fetchCityDistrict }
