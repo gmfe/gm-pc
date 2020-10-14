@@ -1162,45 +1162,45 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@gm-common/analyse@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/analyse/-/analyse-2.6.2.tgz#4604dc275efd8665546b4831f675c3daf8df9d63"
-  integrity sha512-abyVOffrSEyhmFzqMRoYVkUYjJIUBSPruEgjwFV9im0J30s/euLXUZRzLVH1uJlq9mWGPgRIk6pVzstDVSw5xw==
+"@gm-common/analyse@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@gm-common/analyse/-/analyse-2.6.3.tgz#a31c0f8408b7099c43400c1a73977e127a6d78a4"
+  integrity sha512-Vch4q8MXu/GMr95PBpPXoIR953FcWcU5k/3Wy7lKz6pCOiVDclpNRrS5G21uukT4G9M5EI59k+WtCOZlERDm0g==
   dependencies:
-    "@gm-common/fingerprint" "^2.6.2"
+    "@gm-common/fingerprint" "^2.6.3"
     axios "^0.19.2"
     query-string "^6.12.1"
 
-"@gm-common/fingerprint@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/fingerprint/-/fingerprint-2.6.2.tgz#611c3adb4dab9bfa98bafd40ac4d6893e4e5f22d"
-  integrity sha512-3z7ADXY0AIrUlJtB/20oaBIt1mjreBSqlqWbzrNOAg8KwXCkgZWE6vD7GknLMLIq0XWmMyISJ7HzNgsTyEslaw==
+"@gm-common/fingerprint@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@gm-common/fingerprint/-/fingerprint-2.6.3.tgz#55a06f8c79293e74e77ed9de6a5345025de9103e"
+  integrity sha512-FX0UU7aYyfma3+tI9CflIdNE52CtIjGT0tEfdOB6Zv2WMRHC6vo3kwEvPQv0Fh8dIv3H8wDE2XD5ZOIFhEjk5w==
   dependencies:
-    "@gm-common/tool" "^2.6.2"
+    "@gm-common/tool" "^2.6.3"
     "@types/fingerprintjs2" "^2.0.0"
     fingerprintjs2 "^2.1.0"
 
-"@gm-common/locales@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/locales/-/locales-2.6.2.tgz#ffe0fa12cb1a2db2f64edfdf679087dee45ceee5"
-  integrity sha512-LiDPJ/Ul4fhMVzvJKcjN87UTxOkWxjBfMs+Ovdw6Y+ecws399lJsPUkjyf2HLX97WufLeqDArXSL5eWI2KChtg==
+"@gm-common/locales@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@gm-common/locales/-/locales-2.6.3.tgz#45906dcd73b81d3c891668e1ca12a8221d501e25"
+  integrity sha512-5pDRqRk8ZbxHS0sw6iebA1jf9gkoPTf+7E44aGBuyq5yxBECJEEu/jtmiWEUKLnnhOacIhBWh6KtCTFvp3hqlw==
 
-"@gm-common/tool@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.2.tgz#d77b105b15e97bc91fa80e25f2b0afb46a8a7a25"
-  integrity sha512-hW1fecMMVIZ+aR5afeLYQOEPkjoq1Ff81RvdIzEkt8Ose7wEAr+UADD0gPwLErkF27qL1FT013mb5u3NNalgLw==
+"@gm-common/tool@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.6.3.tgz#24b7986f25f6d5f920c27931ca37111880d37de8"
+  integrity sha512-LZIUEXswk6EVB/6CQZMPGt0xD7eYy3bF16pY6hZaCAQ1K1/V51Usd2gXPWooU+Ekbg1sH50ZoI1ih4sbhQGWIg==
   dependencies:
     lodash "^4.17.19"
 
-"@gm-common/x-request@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/x-request/-/x-request-2.6.2.tgz#ed30785db02b5b9551927c350853a7d55e43ef2e"
-  integrity sha512-c+UtXIC7mcXFrjHT/Zq/oY3CRSobvfG6k5dsTa8ymR4gZEEzXUnVIp2HgdlE4w89jpHrK8spDztI6fdO8+2GKQ==
+"@gm-common/x-request@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/@gm-common/x-request/-/x-request-2.6.3.tgz#778e214d7958f040080fa34ee02cc347053d561a"
+  integrity sha512-s9+4FNtnmhU5Ws4HGNf2HB4eZcGfldMQICRx32OXYg00Yw6jy5jj2RSTKZVbYdaR/Xn6fdVP0qUuj9ByMxSMrg==
   dependencies:
-    "@gm-common/analyse" "^2.6.2"
-    "@gm-common/fingerprint" "^2.6.2"
-    "@gm-common/locales" "^2.6.2"
-    "@gm-common/tool" "^2.6.2"
+    "@gm-common/analyse" "^2.6.3"
+    "@gm-common/fingerprint" "^2.6.3"
+    "@gm-common/locales" "^2.6.3"
+    "@gm-common/tool" "^2.6.3"
     axios "^0.19.2"
     lodash "^4.17.19"
 
