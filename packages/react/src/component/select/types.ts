@@ -6,7 +6,7 @@ interface SelectProps<V> {
   data: ListDataItem<V>[]
   value: V
   /** 默认 {value: 0, text: '全部'} */
-  all?: Boolean | { value?: V; text: string }
+  all?: Boolean | { value?: V; text?: string }
   onChange(selected: V): void
   disabled?: boolean
   listProps?: ListProps<V>
