@@ -5,8 +5,8 @@ import { ListDataItem } from '../../types'
 interface SelectProps<V> {
   data: ListDataItem<V>[]
   value: V
-  all?: Boolean
-  allText?: string
+  /** 默认 {value: 0, text: '全部'} */
+  all?: Boolean | { value?: V; text: string }
   onChange(selected: V): void
   disabled?: boolean
   listProps?: ListProps<V>

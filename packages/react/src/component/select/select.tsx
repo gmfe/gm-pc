@@ -19,6 +19,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     popoverType: 'focus',
     all: false,
     allText: getLocale('全部'),
+    allValue: 0,
     placeholder: '',
   }
 
@@ -85,7 +86,6 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       data,
       value,
       all,
-      allText,
       onChange,
       disabled,
       listProps,
@@ -97,7 +97,10 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     const { willActiveIndex } = this.state
 
     // @ts-ignore
-    const zeroItem = { text: allText!, value: 0 } as ListDataItem<V>
+    const zeroItem: ListDataItem<V> = { text: '全部', value: 0 }
+    if (_.isObject(all)) {
+      Object.assign(zeroItem, all)
+    }
 
     const newData: ListDataItem<V>[] = all ? [zeroItem, ...data] : [...data]
 

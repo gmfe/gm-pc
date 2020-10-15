@@ -30,6 +30,7 @@ const list = [
 const store = observable({
   value: 0,
   setValue(value: number) {
+    console.log(value)
     this.value = value
   },
 })
@@ -65,11 +66,21 @@ export const ComSelect = () => (
         <h3>自定义全部文案</h3>
         <Select
           data={list}
-          all
-          allText='😊全部地址😊'
+          all={{ text: '😊全部地址😊' }}
           value={store.value}
           onChange={(value) => {
             console.log({ value })
+            return store.setValue(value!)
+          }}
+        />
+      </div>
+      <div className='gm-margin-left-10'>
+        <h3>自定义全部值</h3>
+        <Select
+          data={list}
+          all={{ text: '😊全部地址😊', value: undefined }}
+          value={store.value}
+          onChange={(value) => {
             return store.setValue(value!)
           }}
         />
@@ -81,7 +92,9 @@ export const ComSelect = () => (
         data={list}
         all
         value={store.value}
-        onChange={(value) => store.setValue(value!)}
+        onChange={(value) => {
+          store.setValue(value!)
+        }}
         disabled
       />
     </div>
@@ -91,7 +104,9 @@ export const ComSelect = () => (
       all
       data={list}
       value={store.value}
-      onChange={(value) => store.setValue(value!)}
+      onChange={(value) => {
+        store.setValue(value!)
+      }}
     />
   </div>
 )
