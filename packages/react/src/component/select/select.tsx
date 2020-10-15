@@ -1,7 +1,6 @@
 import React, { Component, createRef, KeyboardEvent } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { getLocale } from '@gm-pc/locales'
 import { SelectProps } from './types'
 import { Popover } from '../popover'
 import { Selection } from '../selection'
@@ -18,8 +17,6 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     onKeyDown: _.noop,
     popoverType: 'focus',
     all: false,
-    allText: getLocale('全部'),
-    allValue: 0,
     placeholder: '',
   }
 
