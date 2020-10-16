@@ -23,6 +23,10 @@ export const ComSelectTableX = () => (
           onAction: (selected, isSelectAll) => {
             console.log(selected, isSelectAll)
           },
+          getDisabled(selected, isSelectAll: boolean): boolean {
+            console.log(selected, isSelectAll)
+            return true
+          },
         },
         {
           children: <BatchActionDelete>删除</BatchActionDelete>,

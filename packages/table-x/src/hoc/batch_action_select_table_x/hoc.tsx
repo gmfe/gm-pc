@@ -48,6 +48,7 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
           onClick: () => {
             v.onAction(selected, isSelectAll)
           },
+          getDisabled: v.getDisabled,
         }
       }
     )
@@ -63,6 +64,7 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
           selected.length > 0 && (
             <BatchActionBar
               isSelectAll={isSelectAll}
+              selected={selected}
               count={selected.length}
               batchActions={newBatchActions}
               toggleSelectAll={handleToggleSelectAll}

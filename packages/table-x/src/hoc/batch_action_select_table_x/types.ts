@@ -5,11 +5,13 @@ type Value = any
 interface BatchActionBarItem {
   children: string | ReactNode
   onClick(event: MouseEvent): void
+  getDisabled?(selected: Value[], isSelectAll: boolean): boolean
 }
 
 interface BatchActionBarProps {
   /** 是否选中所有页 */
-  isSelectAll?: boolean
+  isSelectAll: boolean
+  selected: Value[]
   /** 选中多少项 */
   count: number
   /** 批量操作按钮 */
@@ -28,6 +30,7 @@ interface BatchActionSelectTableXBatchActionsItem {
   onAction(selected: Value[], isSelectAll: boolean): void
   /** 默认显示 */
   show?: boolean
+  getDisabled?(selected: Value[], isSelectAll: boolean): boolean
 }
 
 interface BatchActionSelectTableXProps {
