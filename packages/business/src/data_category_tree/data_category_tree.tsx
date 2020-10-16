@@ -1,18 +1,24 @@
-import React, { FC } from 'react'
+import React, { FC, CSSProperties } from 'react'
 import { getCategoryTree, CategoryItem, SpuItem, SkuItem } from './util'
 import { Tree, LoadingChunk } from '@gm-pc/react'
 import { useAsync } from '@gm-common/hooks'
 
 interface DataCategoryTreeProps {
+  style: CSSProperties
+  border?: boolean
   needSku?: boolean
   onReady?(data?: CategoryItem[]): void
+  activeValue?: any
   onActiveValue?(activeValue: any, item: CategoryItem | SpuItem | SkuItem): void
   onLeafActiveValue?(activeValue: any, item: SpuItem | SkuItem): void
 }
 
 const DataCategoryTree: FC<DataCategoryTreeProps> = ({
+  style,
+  border,
   needSku,
   onReady,
+  activeValue,
   onActiveValue,
   onLeafActiveValue,
 }) => {
@@ -35,13 +41,11 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
   }
 
   return (
-    <LoadingChunk
-      loading={loading}
-      className='gmb-category-tree'
-      style={{ height: '500px', width: '200px' }}
-    >
+    <LoadingChunk loading={loading} className='gmb-category-tree' style={style}>
       <Tree
+        style={border ? {} : { border: 'none' }}
         list={data || []}
+        activeValue={activeValue}
         onActiveValue={handleActiveValue}
         disabledCheckbox
         withFilter={false}

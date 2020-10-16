@@ -1,4 +1,11 @@
-import { GetCategoryTree, ListSku, Category, Spu, Sku } from 'gm_api/src/merchandise'
+import {
+  GetCategoryTree,
+  ListSku,
+  Category,
+  Spu,
+  Sku,
+  Sku_SkuType,
+} from 'gm_api/src/merchandise'
 import { PagingMaxLimit } from 'gm_api'
 import _ from 'lodash'
 import { ListSkuResponse_SkuInfo } from 'gm_api/src/merchandise/types'
@@ -70,7 +77,11 @@ async function getCategoryTree(params?: { needSku?: boolean }) {
   })
 
   if (needSku) {
-    const skuRes = await ListSku({ paging: { limit: PagingMaxLimit } })
+    // 拉取非包材sku
+    const skuRes = await ListSku({
+      paging: { limit: PagingMaxLimit },
+      sku_type: Sku_SkuType.NOT_PACKAGE,
+    })
 
     _.each(skuRes.response.sku_infos, (skuInfo: ListSkuResponse_SkuInfo) => {
       const sku: Sku = skuInfo.sku!
