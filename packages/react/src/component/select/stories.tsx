@@ -108,6 +108,18 @@ export const ComSelect = () => (
         store.setValue(value!)
       }}
     />
+    <h3>renderItem</h3>
+    <Select
+      data={list}
+      value={store.value}
+      onChange={(value) => {
+        console.log({ value })
+        return store.setValue(value!)
+      }}
+      renderItem={(item) => {
+        return `${item.value}_${item.text}`
+      }}
+    />
   </div>
 )
 

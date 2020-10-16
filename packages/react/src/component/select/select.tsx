@@ -85,7 +85,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       all,
       onChange,
       disabled,
-      listProps,
+      renderItem,
       clean,
       className,
       popoverType,
@@ -102,17 +102,16 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     const newData: ListDataItem<V>[] = all ? [zeroItem, ...data] : [...data]
 
     const selected = newData.find((v) => v.value === value)
-    const listStyle = listProps?.style ?? {}
 
     const popup = (
       <List
-        {...listProps}
         data={newData}
         selected={value}
         onSelect={this._handleChange}
+        renderItem={renderItem}
         willActiveIndex={willActiveIndex}
         className='gm-border-0'
-        style={{ maxHeight: '250px', ...listStyle }}
+        style={{ maxHeight: '250px' }}
       />
     )
 

@@ -5,11 +5,11 @@ import { ListDataItem, ListGroupDataItem } from '../../types'
 interface CommonListProps<V> {
   multiple?: boolean
   isGroupList?: boolean
-  renderItem?(value: ListDataItem<V>, index: number): ReactNode
+  renderItem?(item: ListDataItem<V>, index: number): ReactNode | string
   willActiveIndex?: number
   isScrollTo?: boolean
   /* 少用，给与更多 Item 的响应 */
-  getItemProps?(value: ListDataItem<V>): HTMLAttributes<HTMLDivElement>
+  getItemProps?(item: ListDataItem<V>): HTMLAttributes<HTMLDivElement>
   className?: string
   style?: CSSProperties
 }

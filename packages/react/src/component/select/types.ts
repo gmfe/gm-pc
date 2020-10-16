@@ -1,5 +1,4 @@
-import { ListProps } from '../list'
-import { CSSProperties, KeyboardEvent } from 'react'
+import { CSSProperties, KeyboardEvent, ReactNode } from 'react'
 import { ListDataItem } from '../../types'
 
 interface SelectProps<V> {
@@ -9,7 +8,7 @@ interface SelectProps<V> {
   all?: Boolean | { value?: V; text?: string }
   onChange(selected: V): void
   disabled?: boolean
-  listProps?: ListProps<V>
+  renderItem?(item: ListDataItem<V>, index: number): ReactNode | string
   clean?: boolean
   popoverType?: 'focus' | 'realFocus'
   isInPopup?: boolean
