@@ -3,9 +3,11 @@ import { getLocale } from '@gm-pc/locales'
 import { Button, Flex, Popover } from '@gm-pc/react'
 import SVGRemove from '../../svg/remove.svg'
 import { BatchActionBarProps } from './types'
+import classNames from 'classnames'
 
 const BatchActionBar: FC<BatchActionBarProps> = ({
   isSelectAll,
+  selected,
   pure,
   count,
   batchActions,
@@ -39,15 +41,28 @@ const BatchActionBar: FC<BatchActionBarProps> = ({
         {getLocale('项')}
       </div>
       {!!batchActions.length && <div className='gm-margin-left-20'>|</div>}
-      {batchActions.map((item, index) => (
-        <div
-          key={index}
-          onClick={(event) => item.onClick(event)}
-          className='gm-text-hover-primary gm-cursor gm-text-bold gm-margin-left-20'
-        >
-          {item.children}
-        </div>
-      ))}
+      {batchActions.map((item, index) => {
+        let disabled = false
+
+        if (item.getDisabled) {
+          disabled = item.getDisabled(selected, isSelectAll)
+        }
+
+        return (
+          <div
+            key={index}
+            onClick={(event) => {
+              !disabled && item.onClick(event)
+            }}
+            className={classNames('gm-cursor gm-text-bold gm-margin-left-20', {
+              'gm-text-hover-primary': !disabled,
+              'gm-not-allowed': disabled,
+            })}
+          >
+            {item.children}
+          </div>
+        )
+      })}
     </Flex>
   )
 }
