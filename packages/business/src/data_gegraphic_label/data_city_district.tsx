@@ -16,16 +16,23 @@ const DataCityDistrict: FC<DataCityDistrictProps> = ({
       city_ids,
     },
   })
+  const levelSelected =
+    selected.city_id && selected.district_id
+      ? [selected.city_id, selected.district_id]
+      : []
 
   const handleSelect = (selected: string[]) => {
-    // 只给最后一个
-    onSelect(_.last(selected))
+    const city_district_label = {
+      city_id: selected[0],
+      district_id: selected[1],
+    }
+    onSelect(city_district_label)
   }
 
   return (
     <LevelSelect
       data={data || []}
-      selected={data ? selected : []}
+      selected={data ? levelSelected : []}
       onSelect={handleSelect}
       onlySelectLeaf
     />
