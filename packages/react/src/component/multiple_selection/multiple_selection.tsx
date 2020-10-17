@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
-import SVGCloseCircle from '../../svg/close-circle.svg'
+import SVGRemove from '../../svg/remove.svg'
 import { IconDownUp } from '../icon_down_up'
 import { Flex } from '../flex'
 
@@ -73,7 +73,7 @@ function MultipleSelection<V = any>({
         {_.map(selected, (item: MultipleSelectionSelectedItem<V>, i) => (
           <div key={i} className='gm-multiple-selection-item'>
             {renderSelected(item)}
-            <SVGCloseCircle
+            <SVGRemove
               onClick={() => {
                 handleClose(item)
               }}
@@ -85,7 +85,7 @@ function MultipleSelection<V = any>({
 
       {selected && !disabledClose && (
         <div onClick={handleClear}>
-          <SVGCloseCircle className='gm-multiple-selection-icon gm-multiple-selection-close-icon' />
+          <SVGRemove className='gm-multiple-selection-icon gm-multiple-selection-close-icon' />
         </div>
       )}
       {funIcon ? (
