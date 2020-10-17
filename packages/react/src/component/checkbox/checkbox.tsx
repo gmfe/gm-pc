@@ -3,10 +3,10 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
-interface CheckboxProps extends HTMLAttributes<HTMLLabelElement> {
+interface CheckboxProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
   value?: any
   checked?: boolean
-  onChange?: (event: ChangeEvent<HTMLLabelElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   indeterminate?: boolean
   name?: string
@@ -26,7 +26,7 @@ const Checkbox: FC<CheckboxProps> = ({
 }) => {
   const checkBoxGroupContext = useContext(CheckboxGroupContext)
 
-  const handleChange = (event: ChangeEvent<HTMLLabelElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event)
 
     // 代表在 CheckBoxGroup 下
@@ -58,7 +58,6 @@ const Checkbox: FC<CheckboxProps> = ({
         },
         className
       )}
-      onChange={handleChange}
     >
       <input
         className='gm-checkbox-input'
@@ -67,8 +66,7 @@ const Checkbox: FC<CheckboxProps> = ({
         value={value}
         checked={oChecked}
         disabled={disabled}
-        // eslint-disable-next-line
-        onChange={_.noop}
+        onChange={handleChange}
       />
       <span className='gm-checkbox-span' />
       {children && <span className='gm-padding-lr-5'>{children}</span>}

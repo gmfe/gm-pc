@@ -7,7 +7,7 @@ import {
 import { observable } from 'mobx'
 
 const store = observable({
-  selected: [],
+  selected: {},
   setSelected(selected: any) {
     this.selected = selected
   },

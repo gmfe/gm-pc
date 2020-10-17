@@ -1,12 +1,11 @@
 import React, { ChangeEvent, FC, HTMLAttributes, useContext } from 'react'
 import classNames from 'classnames'
-import _ from 'lodash'
 import { RadioGroupContext } from './util'
 
-interface RadioProps extends HTMLAttributes<HTMLLabelElement> {
+interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
   value?: any
   checked?: boolean
-  onChange?: (event: ChangeEvent<HTMLLabelElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   name?: string
 }
@@ -24,7 +23,7 @@ const Radio: FC<RadioProps> = ({
 }) => {
   const radioGroupContext = useContext(RadioGroupContext)
 
-  const handleChange = (event: ChangeEvent<HTMLLabelElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event)
 
     if (radioGroupContext.isInRadioGroup) {
@@ -54,7 +53,6 @@ const Radio: FC<RadioProps> = ({
         },
         className
       )}
-      onChange={handleChange}
     >
       <input
         type='radio'
@@ -64,7 +62,7 @@ const Radio: FC<RadioProps> = ({
         checked={oChecked}
         disabled={disabled}
         // eslint-disable-next-line
-        onChange={_.noop}
+        onChange={handleChange}
       />
       <span className='gm-radio-span' />
       <span className='gm-padding-lr-5'>{children}</span>
