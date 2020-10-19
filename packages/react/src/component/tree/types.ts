@@ -122,6 +122,7 @@ interface FlatListItem {
   isLeaf: boolean
   /** 层级 */
   level: number
+  unLeafValues: Value[]
   /** 当前节点的所有叶子节点 */
   leafValues: Value[]
 }

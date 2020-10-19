@@ -58,6 +58,7 @@ function listToFlat(
         pValues,
         isLeaf: !item.children,
         level,
+        unLeafValues: getUnLeafValues(item.children || []),
         leafValues: getLeafValues(item.children || []),
       })
     }

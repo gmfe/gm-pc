@@ -56,7 +56,18 @@ const List = React.forwardRef<ListApi, ListProps>(
       }
 
       const handleExpand = () => {
-        onGroupSelect(_.xor(groupSelected, [flatItem.value]))
+        let newGroupSelected = []
+
+        if (groupSelected.includes(flatItem.value)) {
+          newGroupSelected = _.difference(
+            groupSelected,
+            [flatItem.value].concat(flatItem.unLeafValues)
+          )
+        } else {
+          newGroupSelected = groupSelected.concat([flatItem.value])
+        }
+
+        onGroupSelect(newGroupSelected)
       }
 
       const handleCheck = () => {
