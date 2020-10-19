@@ -1,88 +1,89 @@
 import { CSSProperties, ReactNode } from 'react'
 
-type Value = any
-
-interface TreeListItem {
-  value: Value
+interface TreeListItem<V> {
+  value: V
   text: string
   disabled?: boolean
-  children?: TreeListItem[]
+  children?: TreeListItem<V>[]
   [key: string]: any
 }
 
-type TreeWithFilterFun = (list: TreeListItem[], query: string) => TreeListItem[]
+type TreeWithFilterFun<V> = (list: TreeListItem<V>[], query: string) => TreeListItem<V>[]
 
-type TreeWithFilter = boolean | TreeWithFilterFun
+type TreeWithFilter<V> = boolean | TreeWithFilterFun<V>
 
-interface TreeProps {
+interface TreeProps<V> {
   /** 树状列表 */
-  list: TreeListItem[]
+  list: TreeListItem<V>[]
   /** 已勾选的数据 */
-  selectedValues?: Value[]
+  selectedValues?: V[]
   /** 勾选回调 */
-  onSelectValues?(selectedValues: Value[]): void
+  onSelectValues?(selectedValues: V[]): void
   /** 点击选中的数据 */
-  activeValue?: Value
+  activeValue?: V
   /** 点击选中回调 */
-  onActiveValue?(activeValue: Value, item: TreeListItem): void
+  onActiveValue?(activeValue: V, item: TreeListItem<V>): void
 
   title?: string
-  withFilter?: TreeWithFilter
-  renderLeafItem?(item: TreeListItem): ReactNode
-  renderGroupItem?(item: TreeListItem): ReactNode
+  withFilter?: TreeWithFilter<V>
+  renderLeafItem?(item: TreeListItem<V>): ReactNode
+  renderGroupItem?(item: TreeListItem<V>): ReactNode
   placeholder?: string
   /** 是否显示全选 */
   showAllCheck?: boolean
   /** 没有勾选框 */
   disabledCheckbox?: boolean
   /** 半选 value 列表 */
-  indeterminateValues?: Value[]
+  indeterminateValues?: V[]
   showFind?: boolean
   findPlaceholder?: string
   className?: string
   style?: CSSProperties
 }
 
-interface TreeRefApi {
-  apiDoScrollToValue(value: any): void
+interface TreeRefApi<V> {
+  apiDoScrollToValue(value: V): void
 }
 
-interface TreeStatic {
+interface TreeStatic<V> {
   filterGroupList(
-    list: TreeListItem[],
-    predicate: (item: TreeListItem) => boolean
-  ): TreeListItem[]
-  selectedValues2SelectedList(list: TreeListItem[], selectValues: Value[]): TreeListItem[]
+    list: TreeListItem<V>[],
+    predicate: (item: TreeListItem<V>) => boolean
+  ): TreeListItem<V>[]
+  selectedValues2SelectedList(
+    list: TreeListItem<V>[],
+    selectValues: V[]
+  ): TreeListItem<V>[]
 }
 
-interface BottomProps {
-  list: TreeListItem[]
-  selectedValues: Value[]
+interface BottomProps<V> {
+  list: TreeListItem<V>[]
+  selectedValues: V[]
   onChange(checkedAll: boolean): void
 }
 
-interface ListProps {
-  flatList: FlatListItem[]
-  groupSelected: Value[]
-  onGroupSelect(selected: Value[]): void
-  selectedValues: Value[]
-  onSelectValues(values: Value[]): void
+interface ListProps<V> {
+  flatList: FlatListItem<V>[]
+  groupSelected: V[]
+  onGroupSelect(selected: V[]): void
+  selectedValues: V[]
+  onSelectValues(values: V[]): void
   listHeight: number
   listWidth: number
-  renderLeafItem?(item: TreeListItem): ReactNode
-  renderGroupItem?(item: TreeListItem): ReactNode
-  activeValue?: Value
-  onActiveValue?(activeValue: Value, item: TreeListItem): void
-  findValue?: any
+  renderLeafItem?(item: TreeListItem<V>): ReactNode
+  renderGroupItem?(item: TreeListItem<V>): ReactNode
+  activeValue?: V
+  onActiveValue?(activeValue: V, item: TreeListItem<V>): void
+  findValue?: V
   checkboxStatusMap: CheckboxStatusMap
   disabledCheckbox?: boolean
 }
 
-interface ListApi {
-  apiDoScrollToValue(value: any): void
+interface ListApi<V> {
+  apiDoScrollToValue(value: V): void
 }
 
-interface ItemProps {
+interface ItemProps<V> {
   expand: boolean
   onExpand(): void
   checked: boolean
@@ -91,12 +92,12 @@ interface ItemProps {
   flatItem: {
     isLeaf: boolean
     level: number
-    data: TreeListItem
+    data: TreeListItem<V>
   }
   style: CSSProperties
-  renderLeafItem?(item: TreeListItem): ReactNode
-  renderGroupItem?(item: TreeListItem): ReactNode
-  onActive(data: TreeListItem): void
+  renderLeafItem?(item: TreeListItem<V>): ReactNode
+  renderGroupItem?(item: TreeListItem<V>): ReactNode
+  onActive(data: TreeListItem<V>): void
   active?: boolean
   findActive?: boolean
   disabledCheckbox?: boolean
@@ -107,24 +108,24 @@ interface SearchProps {
   onChange(value: string): void
 }
 
-interface FindProps {
+interface FindProps<V> {
   placeholder?: string
-  flatList: FlatListItem[]
-  onFind(value: any): void
+  flatList: FlatListItem<V>[]
+  onFind(value: V): void
 }
 
-interface FlatListItem {
-  data: TreeListItem
-  value: Value
+interface FlatListItem<V> {
+  data: TreeListItem<V>
+  value: V
   /** 父亲节点的 values */
-  pValues: Value[]
+  pValues: V[]
   /** 是否叶子节点 */
   isLeaf: boolean
   /** 层级 */
   level: number
-  unLeafValues: Value[]
+  unLeafValues: V[]
   /** 当前节点的所有叶子节点 */
-  leafValues: Value[]
+  leafValues: V[]
 }
 
 interface CheckboxStatusMap {
@@ -136,7 +137,6 @@ interface CheckboxStatusMap {
 }
 
 export type {
-  Value,
   TreeListItem,
   BottomProps,
   SearchProps,

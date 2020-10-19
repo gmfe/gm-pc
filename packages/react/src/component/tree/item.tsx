@@ -1,11 +1,11 @@
-import React, { FC, MouseEvent } from 'react'
+import React, { MouseEvent } from 'react'
 import { ItemProps } from './types'
 import { Flex } from '../flex'
 import classNames from 'classnames'
 import { Checkbox } from '../checkbox'
 import { IconExpand } from '../icon_expand'
 
-const Item: FC<ItemProps> = ({
+function Item<V>({
   expand,
   onExpand,
   checked,
@@ -19,7 +19,7 @@ const Item: FC<ItemProps> = ({
   findActive,
   disabledCheckbox,
   style,
-}) => {
+}: ItemProps<V>) {
   const handleGroup = (e: MouseEvent<HTMLDivElement>) => {
     e.stopPropagation()
     onExpand()

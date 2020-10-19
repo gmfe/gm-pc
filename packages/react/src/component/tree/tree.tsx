@@ -22,7 +22,7 @@ import {
 } from './util'
 import Bottom from './bottom'
 import List from './list'
-import { Value, TreeProps, TreeRefApi, ListApi, TreeListItem } from './types'
+import { TreeProps, TreeRefApi, ListApi, TreeListItem } from './types'
 import Search from './search'
 import Find from './find'
 import _ from 'lodash'

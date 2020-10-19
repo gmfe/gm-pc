@@ -5,7 +5,7 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window'
 import { ListProps, TreeListItem, ListApi } from './types'
 import Item from './item'
 
-const List = React.forwardRef<ListApi, ListProps>(
+const List = React.forwardRef<ListApi<V>, ListProps<V>>(
   (
     {
       flatList,

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useMemo, useRef, useState } from 'react'
+import React, { ChangeEvent, useMemo, useRef, useState } from 'react'
 import { Input } from '../input'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
@@ -7,7 +7,7 @@ import { FindProps } from './types'
 import _ from 'lodash'
 import { pinYinFilter } from '@gm-common/tool/src/index'
 
-const Find: FC<FindProps> = ({ placeholder, flatList, onFind }) => {
+function Find<V>({ placeholder, flatList, onFind }: FindProps<V>) {
   const [query, setQuery] = useState('')
   // 用 ref，因为不影响 UI
   const refIndex = useRef(-1)

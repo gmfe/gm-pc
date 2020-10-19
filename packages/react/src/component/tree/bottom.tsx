@@ -1,11 +1,11 @@
 import { getLocale } from '@gm-pc/locales'
-import React, { FC, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { Flex } from '../flex'
 import { Checkbox } from '../checkbox'
 import { getLeafValues } from './util'
 import { BottomProps } from './types'
 
-const Bottom: FC<BottomProps> = ({ list, selectedValues, onChange }) => {
+function Bottom<V>({ list, selectedValues, onChange }: BottomProps<V>) {
   const leafValues = useMemo(() => {
     return getLeafValues(list)
   }, [list])
