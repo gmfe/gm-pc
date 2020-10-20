@@ -41,6 +41,7 @@ interface TreeProps {
   findPlaceholder?: string
   className?: string
   style?: CSSProperties
+  border?: boolean // 是否需要边框
 }
 
 interface TreeRefApi {

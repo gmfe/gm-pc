@@ -46,6 +46,7 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
       showFind,
       findPlaceholder = getLocale('定位信息'),
       disabledCheckbox,
+      border = true,
       ...rest
     },
     ref
@@ -160,7 +161,11 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
     }
 
     return (
-      <Flex {...rest} column className={classNames('gm-tree', className)}>
+      <Flex
+        {...rest}
+        column
+        className={classNames('gm-tree', { 'gm-border': border }, className)}
+      >
         {title && (
           <div className='gm-padding-5 gm-back-bg gm-text-center gm-border-bottom'>
             {title}
