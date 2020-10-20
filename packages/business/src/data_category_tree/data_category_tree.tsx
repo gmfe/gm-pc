@@ -1,18 +1,30 @@
-import React, { FC } from 'react'
+import React, { FC, CSSProperties } from 'react'
 import { getCategoryTree, CategoryItem, SpuItem, SkuItem } from './util'
 import { Tree, LoadingChunk } from '@gm-pc/react'
 import { useAsync } from '@gm-common/hooks'
+import classNames from 'classnames'
+import { ListSkuRequest } from 'gm_api/src/merchandise'
 
 interface DataCategoryTreeProps {
+  className?: string
+  style?: CSSProperties
+  border?: boolean
   needSku?: boolean
+  skuParams?: ListSkuRequest
   onReady?(data?: CategoryItem[]): void
+  activeValue?: any
   onActiveValue?(activeValue: any, item: CategoryItem | SpuItem | SkuItem): void
   onLeafActiveValue?(activeValue: any, item: SpuItem | SkuItem): void
 }
 
 const DataCategoryTree: FC<DataCategoryTreeProps> = ({
+  style,
+  border,
   needSku,
   onReady,
+  skuParams,
+  className,
+  activeValue,
   onActiveValue,
   onLeafActiveValue,
 }) => {
@@ -21,6 +33,7 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
     cacheKey: 'GMGetCategoryTree',
     defaultParams: {
       needSku,
+      skuParams,
     },
     onSuccess(data) {
       onReady && onReady(data)
@@ -37,11 +50,13 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
   return (
     <LoadingChunk
       loading={loading}
-      className='gmb-category-tree'
-      style={{ height: '500px', width: '200px' }}
+      className={classNames('gmb-category-tree', className)}
+      style={style}
     >
       <Tree
         list={data || []}
+        border={border}
+        activeValue={activeValue}
         onActiveValue={handleActiveValue}
         disabledCheckbox
         withFilter={false}

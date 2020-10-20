@@ -1,4 +1,11 @@
-import { GetCategoryTree, ListSku, Category, Spu, Sku } from 'gm_api/src/merchandise'
+import {
+  GetCategoryTree,
+  ListSku,
+  Category,
+  Spu,
+  Sku,
+  ListSkuRequest,
+} from 'gm_api/src/merchandise'
 import { PagingMaxLimit } from 'gm_api'
 import _ from 'lodash'
 import { ListSkuResponse_SkuInfo } from 'gm_api/src/merchandise/types'
@@ -24,8 +31,11 @@ interface SkuItem {
   original: Sku
 }
 
-async function getCategoryTree(params?: { needSku?: boolean }) {
-  const { needSku } = params || {}
+async function getCategoryTree(params?: {
+  needSku?: boolean
+  skuParams?: ListSkuRequest
+}) {
+  const { needSku, skuParams } = params || {}
   const res = await GetCategoryTree({})
 
   const { categories, spus } = res.response
@@ -70,7 +80,10 @@ async function getCategoryTree(params?: { needSku?: boolean }) {
   })
 
   if (needSku) {
-    const skuRes = await ListSku({ paging: { limit: PagingMaxLimit } })
+    const skuRes = await ListSku({
+      paging: { limit: PagingMaxLimit },
+      ...(skuParams || {}),
+    })
 
     _.each(skuRes.response.sku_infos, (skuInfo: ListSkuResponse_SkuInfo) => {
       const sku: Sku = skuInfo.sku!

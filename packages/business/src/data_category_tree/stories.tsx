@@ -4,6 +4,7 @@ import { DataCategoryTree } from './index'
 export const ComDataCategoryTree = () => {
   return (
     <DataCategoryTree
+      style={{ width: '250px', height: '500px' }}
       onReady={(data) => {
         console.log(data)
       }}
@@ -21,6 +22,8 @@ export const ComDataCategoryTreeNeedSku = () => {
   return (
     <DataCategoryTree
       needSku
+      border={false}
+      style={{ width: '250px', height: '500px' }}
       onReady={(data) => {
         console.log(data)
       }}
