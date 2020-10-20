@@ -6,8 +6,9 @@ import { getColumnKey } from './util'
 import classNames from 'classnames'
 import { TableSelectProps, TableSelectDataItem } from './types'
 
+/** todo 泛型 */
 /** 和 MoreSelect 类似。多了 columns */
-const TableSelect = React.forwardRef<MoreSelect, TableSelectProps>((props, ref) => {
+const TableSelect = React.forwardRef<MoreSelect, TableSelectProps<any>>((props, ref) => {
   const { data, columns, className, ...rest } = props
 
   const Title = (
@@ -28,7 +29,7 @@ const TableSelect = React.forwardRef<MoreSelect, TableSelectProps>((props, ref) 
     </Flex>
   )
 
-  let newData: MoreSelectGroupDataItem[] = []
+  let newData: MoreSelectGroupDataItem<any>[] = []
   if (data.length !== 0) {
     newData = [
       {
@@ -38,7 +39,7 @@ const TableSelect = React.forwardRef<MoreSelect, TableSelectProps>((props, ref) 
     ]
   }
 
-  const renderListItem = (item: TableSelectDataItem, index: number) => {
+  const renderListItem = (item: TableSelectDataItem<any>, index: number) => {
     return (
       <Flex key={item.value} alignCenter className='gm-table-select-list-item'>
         {_.map(columns, (column, i) => {

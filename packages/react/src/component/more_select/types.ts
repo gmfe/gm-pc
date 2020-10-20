@@ -1,22 +1,20 @@
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
 
-type Value = any
-
-/* 普通的数据格式 */
-interface MoreSelectDataItem {
-  value: Value
+/** 普通的数据格式 */
+interface MoreSelectDataItem<V> {
+  value: V
   text: string
   disabled?: boolean
   [key: string]: any
 }
 
-/* 分组的数据格式 */
-interface MoreSelectGroupDataItem {
+/** 分组的数据格式 */
+interface MoreSelectGroupDataItem<V> {
   label: string | ReactNode
-  children: MoreSelectDataItem[]
+  children: MoreSelectDataItem<V>[]
 }
 
-interface MoreSelectCommonProps {
+interface MoreSelectCommonProps<V> {
   multiple?: boolean
 
   disabled?: boolean
@@ -32,9 +30,9 @@ interface MoreSelectCommonProps {
   placeholder?: string
 
   /** 自定义渲染已选择项 */
-  renderSelected?(selected: MoreSelectDataItem): ReactNode
+  renderSelected?(selected: MoreSelectDataItem<V>): ReactNode
   /** 自定义渲染列表项 */
-  renderListItem?(value: MoreSelectDataItem, index: number): ReactNode
+  renderListItem?(value: MoreSelectDataItem<V>, index: number): ReactNode
 
   listHeight?: string
   isGroupList?: boolean
@@ -53,38 +51,37 @@ interface MoreSelectCommonProps {
   onKeyDown?(event: KeyboardEvent): void
 }
 
-interface MoreSelectBaseProps extends MoreSelectCommonProps {
-  data: MoreSelectGroupDataItem[]
-  selected: MoreSelectDataItem[]
-  onSelect(selected: MoreSelectDataItem[]): void
+interface MoreSelectBaseProps<V> extends MoreSelectCommonProps<V> {
+  data: MoreSelectGroupDataItem<V>[]
+  selected: MoreSelectDataItem<V>[]
+  onSelect(selected: MoreSelectDataItem<V>[]): void
 
   /** 搜索回调 */
-  onSearch?(searchWord: string, data: MoreSelectGroupDataItem[]): Promise<void> | void
+  onSearch?(searchWord: string, data: MoreSelectGroupDataItem<V>[]): Promise<void> | void
 
   /** 自定义搜索过滤展示的数据 */
   renderListFilter?(
-    data: MoreSelectGroupDataItem[],
+    data: MoreSelectGroupDataItem<V>[],
     searchValue: string
-  ): MoreSelectGroupDataItem[]
+  ): MoreSelectGroupDataItem<V>[]
 }
 
-type MoreSelectData = MoreSelectDataItem[] | MoreSelectGroupDataItem[]
-type MoreSelectSelected = MoreSelectDataItem[] | MoreSelectDataItem
+type MoreSelectData<V> = MoreSelectDataItem<V>[] | MoreSelectGroupDataItem<V>[]
+type MoreSelectSelected<V> = MoreSelectDataItem<V>[] | MoreSelectDataItem<V>
 
-interface MoreSelectProps extends MoreSelectCommonProps {
-  data: MoreSelectData
-  selected?: MoreSelectSelected
-  onSelect(selected?: MoreSelectSelected): void
+interface MoreSelectProps<V> extends MoreSelectCommonProps<V> {
+  data: MoreSelectData<V>
+  selected?: MoreSelectSelected<V>
+  onSelect(selected?: MoreSelectSelected<V>): void
 
   /** 搜索回调 */
-  onSearch?(searchWord: string, data: MoreSelectData): Promise<void> | void
+  onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void> | void
 
   /** 自定义搜索过滤展示的数据 */
-  renderListFilter?(data: MoreSelectData, searchValue: string): MoreSelectData
+  renderListFilter?(data: MoreSelectData<V>, searchValue: string): MoreSelectData<V>
 }
 
 export type {
-  Value,
   MoreSelectGroupDataItem,
   MoreSelectDataItem,
   MoreSelectBaseProps,

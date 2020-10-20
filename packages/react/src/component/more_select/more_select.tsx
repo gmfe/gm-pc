@@ -3,10 +3,10 @@ import _ from 'lodash'
 import { MoreSelectDataItem, MoreSelectGroupDataItem, MoreSelectProps } from './types'
 import MoreSelectBase from './base'
 
-class MoreSelect extends Component<MoreSelectProps> {
+class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
   static defaultProps = {
-    renderSelected: (item: MoreSelectDataItem) => item.text,
-    renderListItem: (item: MoreSelectDataItem) => item.text,
+    renderSelected: (item: MoreSelectDataItem<any>) => item.text,
+    renderListItem: (item: MoreSelectDataItem<any>) => item.text,
     delay: 500,
     listHeight: '180px',
     renderListFilterType: 'default',
@@ -24,7 +24,7 @@ class MoreSelect extends Component<MoreSelectProps> {
     this._moreSelectBaseRef.current!.apiDoSelectWillActive()
   }
 
-  private _handleSelect = (selected: MoreSelectDataItem[]): void => {
+  private _handleSelect = (selected: MoreSelectDataItem<V>[]): void => {
     const { onSelect, multiple } = this.props
     if (multiple) {
       onSelect(selected)
@@ -33,7 +33,7 @@ class MoreSelect extends Component<MoreSelectProps> {
     }
   }
 
-  _handleSearch = (searchWord: string, data: MoreSelectGroupDataItem[]) => {
+  _handleSearch = (searchWord: string, data: MoreSelectGroupDataItem<V>[]) => {
     const { onSearch, isGroupList } = this.props
     if (!onSearch) {
       return
@@ -50,17 +50,17 @@ class MoreSelect extends Component<MoreSelectProps> {
     return onSearch(searchWord, oData)
   }
 
-  _renderListFilter = (data: MoreSelectGroupDataItem[], searchValue: string) => {
+  _renderListFilter = (data: MoreSelectGroupDataItem<V>[], searchValue: string) => {
     const { renderListFilter, isGroupList } = this.props
     if (!renderListFilter) {
       return data
     }
 
     if (isGroupList) {
-      return renderListFilter(data, searchValue) as MoreSelectGroupDataItem[]
+      return renderListFilter(data, searchValue) as MoreSelectGroupDataItem<V>[]
     } else {
       const list = renderListFilter(data[0].children, searchValue)
-      return [{ label: '', children: list }] as MoreSelectGroupDataItem[]
+      return [{ label: '', children: list }] as MoreSelectGroupDataItem<V>[]
     }
   }
 
@@ -74,22 +74,22 @@ class MoreSelect extends Component<MoreSelectProps> {
       renderListFilter,
       ...rest
     } = this.props
-    let oData: MoreSelectGroupDataItem[]
+    let oData: MoreSelectGroupDataItem<V>[]
     if (isGroupList) {
-      oData = data as MoreSelectGroupDataItem[]
+      oData = data as MoreSelectGroupDataItem<V>[]
     } else {
       oData = [
         {
           label: '',
-          children: data as MoreSelectDataItem[],
+          children: data as MoreSelectDataItem<V>[],
         },
       ]
     }
-    let oSelected: MoreSelectDataItem[]
+    let oSelected: MoreSelectDataItem<V>[]
     if (multiple) {
-      oSelected = selected as MoreSelectDataItem[]
+      oSelected = selected as MoreSelectDataItem<V>[]
     } else {
-      oSelected = selected ? [selected as MoreSelectDataItem] : []
+      oSelected = selected ? [selected as MoreSelectDataItem<V>] : []
     }
 
     return (

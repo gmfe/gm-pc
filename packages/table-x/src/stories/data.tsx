@@ -8,7 +8,7 @@ import _ from 'lodash'
 import { TABLE_X } from '../utils'
 import { Input, InputNumber, MoreSelect, MoreSelectDataItem } from '@gm-pc/react'
 
-const selectData: MoreSelectDataItem[] = [
+const selectData: MoreSelectDataItem<number>[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '罗湖' },
@@ -233,7 +233,7 @@ const editColumns = [
     Cell: (cellProps: {
       row: {
         original: {
-          address: MoreSelectDataItem | MoreSelectDataItem[]
+          address: MoreSelectDataItem<number> | MoreSelectDataItem<number>[]
         }
       }
     }) => (

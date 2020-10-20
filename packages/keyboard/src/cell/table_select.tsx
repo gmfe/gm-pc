@@ -6,7 +6,7 @@ import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { KeyboardWrapData } from '../types'
 
-function KCTableSelect({ disabled, onKeyDown, ...rest }: TableSelectProps) {
+function KCTableSelect<V = any>({ disabled, onKeyDown, ...rest }: TableSelectProps<V>) {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()

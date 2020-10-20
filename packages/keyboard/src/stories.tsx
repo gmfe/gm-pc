@@ -19,14 +19,14 @@ const SelectKeyboardTableX = selectTableXHOC(keyboardTableXHOC(editTableXHOC(Tab
 
 interface InitialDataItem {
   id: number
-  position: MoreSelectDataItem | null
+  position: MoreSelectDataItem<number> | null
   name: string
   age: number | null
   date: Date | null
   status: number | null
 }
 
-const selectData: MoreSelectDataItem[] = [
+const selectData: MoreSelectDataItem<number>[] = [
   { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '宝安' },
@@ -125,7 +125,7 @@ export const ComKeyboard = () => {
             <KCMoreSelect
               data={selectData}
               selected={position}
-              onSelect={(selected: MoreSelectDataItem) => {
+              onSelect={(selected: MoreSelectDataItem<number>) => {
                 store.handleSetDataItem(index, { position: selected })
               }}
             />

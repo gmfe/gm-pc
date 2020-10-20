@@ -85,7 +85,9 @@ export const ComTableSelect = () => (
       data={mapData}
       columns={columns}
       selected={store.selected}
-      onSelect={(selected) => store.setSelect(selected)}
+      onSelect={(selected) => {
+        store.setSelect(selected)
+      }}
     />
   </div>
 )

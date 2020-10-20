@@ -6,7 +6,7 @@ import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { KeyboardWrapData } from '../types'
 
-function KCMoreSelect({ disabled, onKeyDown, ...rest }: MoreSelectProps) {
+function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()

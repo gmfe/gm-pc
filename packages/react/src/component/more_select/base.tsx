@@ -8,12 +8,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
-import {
-  Value,
-  MoreSelectBaseProps,
-  MoreSelectGroupDataItem,
-  MoreSelectDataItem,
-} from './types'
+import { MoreSelectBaseProps, MoreSelectGroupDataItem, MoreSelectDataItem } from './types'
 import { Popover } from '../popover'
 import { Flex } from '../flex'
 import SVGRemove from '../../svg/remove.svg'
@@ -34,7 +29,10 @@ interface MoreSelectBaseState {
 
 // @todo keydown item disabled
 // 目前全键盘还没有这种场景，暂时不管
-class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState> {
+class MoreSelectBase<V = any> extends Component<
+  MoreSelectBaseProps<V>,
+  MoreSelectBaseState
+> {
   static renderListFilterDefault = renderListFilterDefault
   static renderListFilterPinYin = renderListFilterPinYin
 
@@ -48,9 +46,9 @@ class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState>
   private _baseRef = createRef<HTMLDivElement>()
   private _selectionRef = createRef<HTMLDivElement>()
   private _popoverRef = createRef<Popover>()
-  private _filterData: MoreSelectGroupDataItem[] | undefined
+  private _filterData: MoreSelectGroupDataItem<V>[] | undefined
 
-  constructor(props: MoreSelectBaseProps) {
+  constructor(props: MoreSelectBaseProps<V>) {
     super(props)
     if (props.selected.length) {
       this._getFilterData()
@@ -88,13 +86,13 @@ class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState>
     }
   }
 
-  private _getFlatFilterData = (): MoreSelectDataItem[] => {
+  private _getFlatFilterData = (): MoreSelectDataItem<V>[] => {
     return _.flatMap(this._filterData, (v) => v.children)
   }
 
-  private _handleSelect = (values: Value[]): void => {
+  private _handleSelect = (values: V[]): void => {
     const { onSelect, data, multiple, selected } = this.props
-    const items: MoreSelectDataItem[] = []
+    const items: MoreSelectDataItem<V>[] = []
     data.forEach((group) => {
       group.children.forEach((child) => {
         if (values.includes(child.value)) {
@@ -147,7 +145,7 @@ class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState>
 
   private _debounceDoSearch = _.debounce(this._doSearch, this.props.delay)
 
-  private _handleClear = (clearItem: MoreSelectDataItem, event: MouseEvent): void => {
+  private _handleClear = (clearItem: MoreSelectDataItem<V>, event: MouseEvent): void => {
     event.stopPropagation()
     const { onSelect, selected } = this.props
     const willSelected = selected.filter((item) => item.value !== clearItem.value)
@@ -191,7 +189,7 @@ class MoreSelectBase extends Component<MoreSelectBaseProps, MoreSelectBaseState>
   private _getFilterData = () => {
     const { data, renderListFilter, renderListFilterType } = this.props
     const { searchValue } = this.state
-    let filterData: MoreSelectGroupDataItem[]
+    let filterData: MoreSelectGroupDataItem<V>[]
     if (renderListFilter) {
       filterData = renderListFilter(data, searchValue)
     } else if (renderListFilterType === 'pinyin') {
