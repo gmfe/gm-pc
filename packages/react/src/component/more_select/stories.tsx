@@ -95,7 +95,7 @@ const store = observable({
 
 export const ComMoreSelect = () => (
   <div>
-    <MoreSelect
+    <MoreSelect<number>
       data={store.data}
       selected={store.selected}
       onSelect={(selected) => {
@@ -104,7 +104,7 @@ export const ComMoreSelect = () => (
       }}
     />
     <div>disabled</div>
-    <MoreSelect
+    <MoreSelect<number>
       disabled
       data={store.data}
       selected={store.selected}
@@ -113,7 +113,7 @@ export const ComMoreSelect = () => (
       }}
     />
     <div>disabledClose</div>
-    <MoreSelect
+    <MoreSelect<number>
       disabledClose
       data={store.data}
       selected={store.selected}
@@ -126,7 +126,7 @@ export const ComMoreSelect = () => (
 
 export const ComMoreSelectForLongText = () => (
   <div style={{ width: '200px' }}>
-    <MoreSelect
+    <MoreSelect<number>
       data={store.data}
       selected={{
         value: 7,
@@ -141,7 +141,7 @@ export const ComMoreSelectForLongText = () => (
 )
 
 export const ComMoreSelectWithRenderListFilterType = () => (
-  <MoreSelect
+  <MoreSelect<number>
     data={store.data}
     selected={store.selected}
     onSelect={(selected) => {
@@ -151,7 +151,7 @@ export const ComMoreSelectWithRenderListFilterType = () => (
   />
 )
 export const ComMoreSelectForScrollToSelected = () => (
-  <MoreSelect
+  <MoreSelect<number>
     data={store.data}
     selected={{ value: 11, text: '西乡11' }}
     onSelect={(selected) => {
@@ -161,7 +161,7 @@ export const ComMoreSelectForScrollToSelected = () => (
 )
 
 export const ComMoreSelectWithOnSearch = () => (
-  <MoreSelect
+  <MoreSelect<number>
     data={store.data}
     selected={store.selected}
     onSelect={(selected) => {
@@ -178,7 +178,7 @@ export const ComMoreSelectWithOnSearch = () => (
 )
 
 export const ComMoreSelectWithOnSearchAsync = () => (
-  <MoreSelect
+  <MoreSelect<number>
     data={store.data}
     selected={store.selected}
     onSelect={(selected) => {
@@ -198,7 +198,7 @@ export const ComMoreSelectWithOnSearchAsync = () => (
 )
 
 export const ComMoreSelectWithMultiple = () => (
-  <MoreSelect
+  <MoreSelect<number>
     multiple
     data={store.data}
     selected={store.mulSelected}
@@ -210,7 +210,7 @@ export const ComMoreSelectWithMultiple = () => (
 
 export const ComMoreSelectWithMultipleAndOnSearch = () => {
   return (
-    <MoreSelect
+    <MoreSelect<number>
       multiple
       data={toJS(store.data)}
       selected={toJS(store.mulSelected)}
@@ -235,7 +235,7 @@ export const ComMoreSelectWithMultipleAndOnSearch = () => {
 }
 
 export const ComMoreSelectWithIsGroupList = () => (
-  <MoreSelect
+  <MoreSelect<number>
     isGroupList
     data={store.dataGroup.slice()}
     selected={store.selected}
@@ -246,7 +246,7 @@ export const ComMoreSelectWithIsGroupList = () => (
 )
 
 export const ComMoreSelectWithIsGroupListMultiple = () => (
-  <MoreSelect
+  <MoreSelect<number>
     isGroupList
     multiple
     data={store.dataGroup.slice()}

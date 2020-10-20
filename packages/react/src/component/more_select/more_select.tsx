@@ -93,7 +93,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     }
 
     return (
-      <MoreSelectBase
+      <MoreSelectBase<V>
         {...rest}
         ref={this._moreSelectBaseRef}
         data={oData}

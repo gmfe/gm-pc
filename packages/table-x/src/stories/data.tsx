@@ -237,7 +237,7 @@ const editColumns = [
         }
       }
     }) => (
-      <MoreSelect
+      <MoreSelect<number>
         selected={cellProps.row.original.address}
         data={selectData}
         onSelect={(selected) => {

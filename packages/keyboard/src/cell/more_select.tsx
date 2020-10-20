@@ -54,7 +54,7 @@ function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
       onFocus={handleFocus}
       onScroll={handleScroll}
     >
-      <MoreSelect
+      <MoreSelect<V>
         {...rest}
         disabled={disabled}
         ref={targetRef}
