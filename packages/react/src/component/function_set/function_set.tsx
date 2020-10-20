@@ -54,7 +54,7 @@ class FunctionSet extends Component<FunctionSetProps> {
 
   render() {
     const { data, right, disabled, children } = this.props
-    const newData = data.filter((value) => !value.show)
+    const newData = data.filter((value) => value.show !== false)
     if (!newData.length) {
       return null
     }
