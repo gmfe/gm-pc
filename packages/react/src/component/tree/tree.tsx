@@ -117,11 +117,18 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
       () =>
         getCheckboxStatusMap(
           filterFlatList,
-          groupSelected,
+          _.union(groupSelected, findGroupSelected, queryGroupSelected),
           selectedValues,
           indeterminateValues
         ),
-      [filterFlatList, groupSelected, selectedValues, indeterminateValues]
+      [
+        filterFlatList,
+        groupSelected,
+        findGroupSelected,
+        queryGroupSelected,
+        selectedValues,
+        indeterminateValues,
+      ]
     )
 
     const handleSelectAll = useCallback(
@@ -155,9 +162,9 @@ const Tree = forwardRef<TreeRefApi, TreeProps>(
     // 优先 find
     let newGS = groupSelected
     if (findValue) {
-      newGS = findGroupSelected
+      newGS = _.union(newGS, findGroupSelected)
     } else if (query) {
-      newGS = queryGroupSelected
+      newGS = _.union(newGS, queryGroupSelected)
     }
 
     return (
