@@ -41,9 +41,19 @@ const oStore = observable({
 
 export const ComPagination = () => (
   <div>
-    <Pagination paging={store.paging} onChange={(paging) => store.setPaging(paging)} />
+    <Pagination
+      paging={store.paging}
+      onChange={(paging) => {
+        store.setPaging(paging)
+      }}
+    />
     <div>without count</div>
-    <Pagination paging={oStore.paging} onChange={(paging) => oStore.setPaging(paging)} />
+    <Pagination
+      paging={oStore.paging}
+      onChange={(paging) => {
+        oStore.setPaging(paging)
+      }}
+    />
   </div>
 )
 

@@ -1,11 +1,13 @@
 import React from 'react'
 import Box from './box'
 import { BoxTable, BoxTableInfo } from './box_table'
+import BoxPagination from './box_pagination'
 import { BoxForm, BoxFormMore } from './box_form'
 import BoxPanel from './box_panel'
 import { FormItem, FormBlock, FormButton } from '../form'
 import { Button } from '../button'
 import { Price } from '../price'
+import { Pagination } from '../pagination'
 
 export const ComBox = () => (
   <div>
@@ -23,6 +25,25 @@ export const ComBoxTable = () => (
     >
       <div>真正的内容</div>
     </BoxTable>
+  </div>
+)
+
+export const ComBoxPagination = () => (
+  <div>
+    <BoxPagination>
+      <Pagination
+        paging={{
+          offset: 0,
+          limit: 10,
+          need_count: true,
+          count: 100,
+          has_more: true,
+        }}
+        onChange={() => {
+          // something
+        }}
+      />
+    </BoxPagination>
   </div>
 )
 
