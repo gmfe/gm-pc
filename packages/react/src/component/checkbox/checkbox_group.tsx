@@ -3,10 +3,12 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
+type Value = string | number
+
 // @ts-ignore
 interface CheckboxGroupProps extends HTMLAttributes<HTMLDivElement> {
-  value: any[]
-  onChange?: (value: any[]) => void
+  value: Value[]
+  onChange?: (value: Value[]) => void
   name?: string
   className?: string
   style?: CSSProperties
@@ -20,7 +22,7 @@ const CheckboxGroup: FC<CheckboxGroupProps> = ({
   children,
   ...rest
 }) => {
-  const handleChange = (cValue: any): void => {
+  const handleChange = (cValue: Value): void => {
     if (value.includes(cValue)) {
       onChange(_.without(value, cValue))
     } else {

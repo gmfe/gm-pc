@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { RadioGroupContext } from './util'
 
 interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
-  value?: any
+  value?: string | number
   checked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
@@ -27,7 +27,7 @@ const Radio: FC<RadioProps> = ({
     onChange && onChange(event)
 
     if (radioGroupContext.isInRadioGroup) {
-      radioGroupContext.onChange(value)
+      radioGroupContext.onChange(value!)
     }
   }
 

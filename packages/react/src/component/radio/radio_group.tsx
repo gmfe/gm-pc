@@ -3,10 +3,9 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { RadioGroupContext } from './util'
 
-// @ts-ignore
-interface RadioGroupProps extends HTMLAttributes<HTMLDivElement> {
-  value?: any
-  onChange?: (value: any) => void
+interface RadioGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  value?: string | number
+  onChange?: (value: string | number) => void
   name?: string
   className?: string
   style?: CSSProperties
@@ -20,7 +19,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
   children,
   ...rest
 }) => {
-  const handleChange = (rValue: any): void => {
+  const handleChange = (rValue: string | number): void => {
     onChange(rValue)
   }
 

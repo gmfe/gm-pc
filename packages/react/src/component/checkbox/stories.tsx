@@ -92,7 +92,9 @@ export const ComCheckboxGroup = () => (
   <CheckboxGroup
     name='city'
     value={store.value}
-    onChange={(value) => store.setValue(value)}
+    onChange={(value) => {
+      store.setValue(value)
+    }}
   >
     {store.data.map((v) => (
       <Checkbox key={v.value} value={v.value} disabled={v.disabled}>
@@ -109,7 +111,12 @@ export const ComCheckboxGroupForGrid = () => {
     <div>
       <div>垂直布局</div>
       <div>
-        <CheckboxGroup value={store.value} onChange={(value) => store.setValue(value)}>
+        <CheckboxGroup
+          value={store.value}
+          onChange={(value) => {
+            store.setValue(value)
+          }}
+        >
           {_.map(store.data, (v) => (
             <div key={v.value}>
               <Checkbox value={v.value}>{v.text}</Checkbox>
@@ -119,7 +126,12 @@ export const ComCheckboxGroupForGrid = () => {
       </div>
       <div>两列</div>
       <div style={{ width: '200px' }}>
-        <CheckboxGroup value={store.value} onChange={(value) => store.setValue(value)}>
+        <CheckboxGroup
+          value={store.value}
+          onChange={(value) => {
+            store.setValue(value)
+          }}
+        >
           {_.map(two, (one) => (
             <Row>
               {_.map(one, (v) => (

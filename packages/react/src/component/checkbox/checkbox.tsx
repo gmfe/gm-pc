@@ -1,10 +1,9 @@
-import React, { FC, ChangeEvent, useContext, HTMLAttributes } from 'react'
+import React, { ChangeEvent, useContext, HTMLAttributes } from 'react'
 import classNames from 'classnames'
-import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
 interface CheckboxProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
-  value?: any
+  value?: string | number
   checked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
@@ -12,7 +11,7 @@ interface CheckboxProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange
   name?: string
 }
 
-const Checkbox: FC<CheckboxProps> = ({
+function Checkbox({
   value,
   checked,
   onChange,
@@ -23,7 +22,7 @@ const Checkbox: FC<CheckboxProps> = ({
   className,
   style,
   ...rest
-}) => {
+}: CheckboxProps) {
   const checkBoxGroupContext = useContext(CheckboxGroupContext)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +30,7 @@ const Checkbox: FC<CheckboxProps> = ({
 
     // 代表在 CheckBoxGroup 下
     if (checkBoxGroupContext.isInCheckboxGroup) {
-      checkBoxGroupContext.onChange(value)
+      checkBoxGroupContext.onChange(value!)
     }
   }
 
@@ -40,7 +39,7 @@ const Checkbox: FC<CheckboxProps> = ({
 
   if (checkBoxGroupContext.isInCheckboxGroup) {
     oName = checkBoxGroupContext.name
-    oChecked = checkBoxGroupContext.value.includes(value)
+    oChecked = checkBoxGroupContext.value.includes(value!)
 
     if (checked !== undefined || name !== undefined || onChange !== undefined) {
       console.warn('在 CheckBoxGroup 下，不能提供 checked name onChange')

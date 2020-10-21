@@ -4,9 +4,9 @@ import _ from 'lodash'
 interface CheckboxGroupContext {
   /** 用来表示 Checkbox 被 CheckboxGroup 包着 */
   isInCheckboxGroup: boolean
-  value: any[]
+  value: (string | number)[]
   name?: string
-  onChange: (value: any) => void
+  onChange: (value: string | number) => void
 }
 
 const CheckboxGroupContext = React.createContext<CheckboxGroupContext>({
