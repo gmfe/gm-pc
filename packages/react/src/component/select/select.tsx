@@ -83,7 +83,6 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       data,
       value,
       all,
-      onChange,
       disabled,
       renderItem,
       clean,
@@ -115,9 +114,8 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       />
     )
 
-    const handleChange = (selected: V) => {
-      onChange(selected)
-    }
+    // disabledClose 了，不会触发
+    const handleChange = () => {}
 
     return (
       <Popover

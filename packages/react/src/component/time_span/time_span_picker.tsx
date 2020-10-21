@@ -29,12 +29,11 @@ const TimeSpanPicker: FC<TimeSpanPickerProps> = ({
 
   const handleSelectTime = (date: Date): void => {
     popoverRef.current!.apiDoSetActive()
-    onChange && onChange(date)
+    onChange(date)
   }
 
-  const handleSelect = (): void => {
-    onChange && onChange(null)
-  }
+  // disabledClose，此函数不会运行
+  const handleSelect = (): void => {}
 
   const popup = (
     <TimeSpan

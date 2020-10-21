@@ -74,9 +74,9 @@ class Selection extends Component<SelectionProps> {
       noInput,
       ...rest
     } = this.props
-    let text = ''
+    let text
     if (renderSelected && !_.isNil(selected)) {
-      text = renderSelected(selected) as string
+      text = renderSelected(selected)
     }
 
     return (
@@ -108,7 +108,7 @@ class Selection extends Component<SelectionProps> {
             type='text'
             ref={this._inputRef as RefObject<HTMLInputElement>}
             disabled={disabled}
-            value={text}
+            value={(text as string) || ''}
             onChange={_.noop}
             onKeyDown={onKeyDown}
             placeholder={placeholder}

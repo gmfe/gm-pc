@@ -12,7 +12,7 @@ interface TimeSelectProps {
   date?: Date
   timeLimit?: TimeLimit
   enabledTimeSelect?: boolean
-  onSelectTime?(value: Date): void
+  onSelectTime(value: Date): void
 }
 
 const TimeSelect: FC<TimeSelectProps> = ({

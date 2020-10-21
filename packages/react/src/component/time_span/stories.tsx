@@ -17,17 +17,29 @@ const store = observable({
 })
 
 export const ComTimeSpan = () => (
-  <TimeSpan time={store.date} onChange={(date) => store.setDate(date)} />
+  <TimeSpan
+    time={store.date}
+    onChange={(date) => {
+      store.setDate(date)
+    }}
+  />
 )
 
 export const ComTimeSpanPicker = () => (
-  <TimeSpanPicker date={store.date} onChange={(date) => store.setDate(date)} />
+  <TimeSpanPicker
+    date={store.date}
+    onChange={(date) => {
+      store.setDate(date)
+    }}
+  />
 )
 
 export const ComTimeSpanPickerWithDisabledSpan = () => (
   <TimeSpanPicker
     date={store.date}
-    onChange={(date) => store.setDate(date)}
+    onChange={(date) => {
+      store.setDate(date)
+    }}
     disabledSpan={(spanMoment) =>
       moment(spanMoment).isSameOrAfter(moment('11:00', 'HH:mm')) &&
       moment(spanMoment).isSameOrBefore(moment('18:30', 'HH:mm'))
@@ -40,14 +52,21 @@ export const ComTimeSpanPickerWithSpan = () => (
     date={store.date}
     max={moment().hour(23).minute(0).toDate()}
     span={60 * 60 * 1000}
-    onChange={(date) => store.setDate(date)}
+    onChange={(date) => {
+      store.setDate(date)
+    }}
   />
 )
 
 export const ComTimeSpanPickerWithCustom = () => (
   <>
     <div className='gm-margin-tb-10'>自定义children</div>
-    <TimeSpanPicker date={store.date} onChange={(date) => store.setDate(date)}>
+    <TimeSpanPicker
+      date={store.date}
+      onChange={(date) => {
+        store.setDate(date)
+      }}
+    >
       <span>{store.date ? moment(store.date).format('HH:mm') : '请点击选择'}</span>
     </TimeSpanPicker>
     <div className='gm-margin-tb-10'>自定义开始时间跟结束时间</div>
@@ -56,11 +75,13 @@ export const ComTimeSpanPickerWithCustom = () => (
       beginTime={moment().hour(8).minute(30).toDate()}
       endTime={moment().hour(22).minute(30).toDate()}
       span={60 * 60 * 1000}
-      onChange={(date) => store.setCustomDate(date)}
+      onChange={(date) => {
+        store.setCustomDate(date)
+      }}
     />
   </>
 )
 
 export default {
-  title: '表单/TimeSpanPicker',
+  title: '表单/TimeSpan',
 }
