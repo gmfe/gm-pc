@@ -37,7 +37,7 @@ const SelectCell: FC<SelectTableXCellProps> = ({
               className='gm-table-x-select'
               disabled={disabled}
               checked={isChecked}
-              onClick={() => {
+              onChange={() => {
                 onSelect(isChecked ? [] : [value])
               }}
             />

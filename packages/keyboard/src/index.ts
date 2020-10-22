@@ -13,6 +13,7 @@ export { default as KCLevelSelect } from './cell/level_select'
 export { default as KCTableSelect } from './cell/table_select'
 export { default as KCDatePicker } from './cell/date_picker'
 export { default as KCSelect } from './cell/select'
+export { default as KCDisabled } from './cell/disabled'
 
 export type {
   KeyboardTableXProps,
