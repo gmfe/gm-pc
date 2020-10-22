@@ -2,21 +2,26 @@ import React, { FC } from 'react'
 import { useContextData } from '../utils'
 
 import KeyboardCell from '../core/cell'
+import { KeyboardCellProps } from '../types'
 
-const KCDisabled: FC = ({ children }) => {
+const KC: FC<Pick<KeyboardCellProps, 'onFocus' | 'onScroll' | 'disabled'>> = ({
+  onFocus,
+  onScroll,
+  disabled,
+  children,
+}) => {
   const { wrapData, cellKey } = useContextData()
-  const handleVoid = () => {}
   return (
     <KeyboardCell
       wrapData={wrapData}
       cellKey={cellKey}
-      disabled
-      onScroll={handleVoid}
-      onFocus={handleVoid}
+      disabled={disabled}
+      onScroll={onScroll}
+      onFocus={onFocus}
     >
       {children}
     </KeyboardCell>
   )
 }
 
-export default KCDisabled
+export default KC
