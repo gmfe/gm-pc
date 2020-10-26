@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/table-x",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -28,8 +28,8 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.6.2",
-    "@gm-pc/locales": "^1.0.17",
-    "@gm-pc/react": "^1.0.17",
+    "@gm-pc/locales": "^1.0.18",
+    "@gm-pc/react": "^1.0.18",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
     "react-table": "7.0.0-rc.11",
