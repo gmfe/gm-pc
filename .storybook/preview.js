@@ -4,6 +4,7 @@ import { addDecorator, addParameters } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { Observer } from 'mobx-react'
 import { LayoutRoot } from '../packages/react/src'
+import { Token } from 'gm_api/src/oauth'
 
 // 引入样式
 import '../packages/react/src/index.less'
@@ -14,9 +15,10 @@ import '../packages/table-x/src/index.less'
 // cropper
 import '../packages/cropper/src/index.less'
 
-import { instance, configError } from '@gm-common/x-request'
+import { instance, configError, initAuth } from '@gm-common/x-request'
 
-instance.defaults.headers.authorization = '6dd24a47dd6b444f941cc86adc8e80df'
+initAuth(Token.url, 'access_token')
+
 // 后面要移除
 configError((message) => {
   console.error(message)

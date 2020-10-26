@@ -65,7 +65,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-gm-react-app": "^3.4.4",
     "file-loader": "^5.1.0",
-    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#6a660e74b9484dcf81d631442ba485a9faf85213",
+    "gm_api": "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#225074672d6349df4810b5191b63ce5ce2ccec43",
     "http-proxy-middleware": "^1.0.5",
     "husky": "^4.2.3",
     "less": "^3.12.2",
@@ -94,6 +94,8 @@
     "typescript": "^3.9.7",
     "url-loader": "^3.0.0",
     "webpack": "^4.44.1",
-    "webpackbar": "^4.0.0"
+    "webpackbar": "^4.0.0",
+    "@types/crypto-js": "^4.0.1",
+    "crypto-js": "^4.0.0"
   }
 }

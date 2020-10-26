@@ -1,5 +1,5 @@
 import React from 'react'
-import { DataCityDistrict, DataAddressCityDistrict } from './index'
+import { DataAddress, DataAddressName } from './index'
 import { observable } from 'mobx'
 
 const store = observable({
@@ -12,7 +12,7 @@ const store = observable({
 export const ComDataCityDistrict = () => {
   return (
     <div style={{ width: '300px' }}>
-      <DataCityDistrict
+      <DataAddress
         city_ids={['4401', '4403']}
         selected={store.selected}
         onSelect={(selected) => {
@@ -24,7 +24,11 @@ export const ComDataCityDistrict = () => {
 }
 
 export const ComDataAddressCityDistrict = () => {
-  return <DataAddressCityDistrict address={{ city_id: '4403', district_id: '440307' }} />
+  return (
+    <DataAddressName
+      address={{ city_id: '4403', district_id: '440307', street_id: '440103001' }}
+    />
+  )
 }
 
 export default {

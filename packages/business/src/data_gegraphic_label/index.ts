@@ -1,2 +1,2 @@
-export { default as DataCityDistrict } from './data_city_district'
-export { default as DataAddressCityDistrict } from './data_address_city_district'
+export { default as DataAddress } from './data_address'
+export { default as DataAddressName } from './data_address_name'

@@ -1,28 +1,8 @@
 import _ from 'lodash'
-import { ListCity, ListDistrict, City, District } from 'gm_api/src/enterprise'
-import { CityDistrictLabel, CityItem } from './types'
+import { ListCity, ListDistrict, ListStreet, District } from 'gm_api/src/enterprise'
+import { CityItem, DistrictItem } from './types'
 
-async function fetchCityDistrict(params: {
-  address: CityDistrictLabel
-}): Promise<{ city: City; district: District }> {
-  const address = params.address || {}
-
-  const [cityRes, districtRes] = await Promise.all([
-    ListCity({
-      city_ids: [address.city_id],
-    }),
-    ListDistrict({
-      district_ids: [address.district_id],
-    }),
-  ])
-
-  return {
-    city: cityRes.response.cities[0],
-    district: districtRes.response.districts[0],
-  }
-}
-
-async function fetchCityDistrictTree(params: {
+async function fetchCityDistrictStreetTree(params: {
   city_ids: string[]
 }): Promise<CityItem[]> {
   const { city_ids } = params
@@ -38,6 +18,7 @@ async function fetchCityDistrictTree(params: {
 
   const cityDistrictTree: CityItem[] = []
   const cityMap: { [key: string]: CityItem } = {}
+  const districtMap: { [key: string]: DistrictItem } = {}
 
   _.each(cityRes.response.cities, (city) => {
     const cityItem = {
@@ -55,14 +36,38 @@ async function fetchCityDistrictTree(params: {
       original: district,
       value: district.district_id,
       text: district.local_name,
+      children: [],
     }
+    districtMap[district.district_id] = districtItem
+
     const p = cityMap[district.city_id]
     if (p) {
       p.children.push(districtItem)
     }
   })
 
+  const district_ids = _.map(
+    districtRes.response.districts,
+    (district: District) => district.district_id
+  )
+  const streetRes = await ListStreet({
+    district_ids,
+  })
+
+  _.each(streetRes.response.streets, (street) => {
+    const streetItem = {
+      original: street,
+      value: street.street_id,
+      text: street.local_name,
+    }
+
+    const p = districtMap[street.district_id]
+    if (p) {
+      p.children.push(streetItem)
+    }
+  })
+
   return cityDistrictTree
 }
 
-export { fetchCityDistrictTree, fetchCityDistrict }
+export { fetchCityDistrictStreetTree }

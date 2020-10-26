@@ -1,40 +1,42 @@
-import { City, District, Address } from 'gm_api/src/enterprise'
+import { City, District, Street, Address } from 'gm_api/src/enterprise'
 
 interface CityItem {
   value: string
   text: string
-  children: DistrictItem[]
   original: City
+  children: DistrictItem[]
 }
 
 interface DistrictItem {
   value: string
   text: string
   original: District
+  children: StreetItem[]
 }
 
-interface CityDistrictLabel {
-  city_id: string
-  district_id: string
+interface StreetItem {
+  value: string
+  text: string
+  original: Street
 }
 
-type AddressCityDistrict = Pick<Address, 'city_id' | 'district_id'>
+interface DataAddress extends Pick<Address, 'city_id' | 'district_id' | 'street_id'> {}
 
-interface DataCityDistrictProps {
+interface DataAddressProps {
   city_ids: string[]
-  selected: CityDistrictLabel
-  onSelect(selected: CityDistrictLabel): void
+  selected: DataAddress
+  onSelect(selected: DataAddress): void
 }
 
-interface DataAddressCityDistrictProps {
-  address: CityDistrictLabel
+interface DataAddressNameProps {
+  address: DataAddress
 }
 
 export type {
   CityItem,
   DistrictItem,
-  CityDistrictLabel,
-  AddressCityDistrict,
-  DataCityDistrictProps,
-  DataAddressCityDistrictProps,
+  StreetItem,
+  DataAddress,
+  DataAddressProps,
+  DataAddressNameProps,
 }
