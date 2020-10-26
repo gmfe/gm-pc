@@ -1,33 +1,36 @@
-import React, { ChangeEvent, useEffect, useState, forwardRef, useRef } from 'react'
+import React, { ChangeEvent, useEffect, forwardRef, useRef } from 'react'
 import { Input, InputProps } from '@gm-pc/react'
 
 import { getCustomizedCode } from './util'
 
-interface CodeInputProps extends Omit<InputProps, 'value'> {
-  text: string
+interface CodeInputProps extends Omit<InputProps, 'onChange'> {
+  text?: string
+  onChange?(value: string): void
+  // 是否需要随text变化
+  needTextChange?: boolean
 }
 
 // 一旦本身输入修改，就不再根据外层变动
 const CodeInput = forwardRef<HTMLInputElement, CodeInputProps>(
-  ({ text, onChange, ...rest }, ref) => {
-    const [value, setValue] = useState<string>('')
+  ({ text, onChange, needTextChange = true, ...rest }, ref) => {
     // 记录当前自身是否编辑
     const changed = useRef<boolean>(false)
+    const random = useRef<number>(Math.floor(Math.random() * 10000))
 
     useEffect(() => {
-      if (!changed.current) {
-        setValue(getCustomizedCode(text))
+      if (!changed.current && needTextChange) {
+        const new_value: string = getCustomizedCode(text || '').trim()
+        const code: string = new_value ? `${new_value}${random.current}` : new_value
+        onChange && onChange(code)
       }
-    }, [text, changed])
+    }, [text, onChange, needTextChange])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      const new_value = e.target.value.trim()
       changed.current = true
-      setValue(new_value)
-      onChange && onChange(e)
+      onChange && onChange(e.target.value)
     }
 
-    return <Input {...rest} ref={ref} value={value} onChange={handleChange} />
+    return <Input {...rest} ref={ref} onChange={handleChange} />
   }
 )
 

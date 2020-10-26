@@ -7,6 +7,5 @@ export const getCustomizedCode = (text: string): string => {
   }
 
   const code: string = _.map(text, (t) => pinyin(t)[0]).join('')
-  const random: number = Math.floor(Math.random() * 10000)
-  return `${code}${random}`
+  return code
 }
