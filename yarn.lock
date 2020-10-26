@@ -1180,15 +1180,45 @@
     "@types/fingerprintjs2" "^2.0.0"
     fingerprintjs2 "^2.1.0"
 
+"@gm-common/hooks@^2.5.1-alpha.3":
+  version "2.7.3"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.7.3.tgz#709f9dbf235f03f33af009e5fe65ccc33383ae33"
+  integrity sha512-wUKuoCJd3WLIvr+hLX9JRGQc/X2SqwYySakBxAzvaTVRwc9uIDx9OcKoy9HTRFgr+4UiqEtTYDFXJodyKgQiEw==
+  dependencies:
+    "@gm-common/tool" "^2.7.3"
+    ts-config-gm-react-app "^3.0.6"
+
+"@gm-common/hooks@^2.6.3":
+  version "2.7.2"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.7.2.tgz#79277b0e740a04ea039b0c42fe58d60419078c8e"
+  integrity sha512-F6jkZKfVCTKwAYRqeaAX8hg7a73f9UnAJ0TjTLMGaPJzyaO773Orb7nDRV2mChVr2DQS7bZZnl6J8NRWE6ySTg==
+  dependencies:
+    "@gm-common/tool" "^2.7.2"
+    ts-config-gm-react-app "^3.0.6"
+
 "@gm-common/locales@^2.6.3":
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/@gm-common/locales/-/locales-2.6.3.tgz#45906dcd73b81d3c891668e1ca12a8221d501e25"
   integrity sha512-5pDRqRk8ZbxHS0sw6iebA1jf9gkoPTf+7E44aGBuyq5yxBECJEEu/jtmiWEUKLnnhOacIhBWh6KtCTFvp3hqlw==
 
+"@gm-common/tool@^2.6.2", "@gm-common/tool@^2.7.3":
+  version "2.7.3"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.3.tgz#5945c04bb5df6fc1e3f444bfddc3d3777b62cf77"
+  integrity sha512-xcv0RinR4vQT/ocSbBdsqehiWBk6UcSnQZxqxd0lwZ1zKfpDC0F/uTNAUV+V16I5qvWxo8DfTk0WT5CTIYhGeg==
+  dependencies:
+    lodash "^4.17.19"
+
 "@gm-common/tool@^2.6.3":
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.6.3.tgz#24b7986f25f6d5f920c27931ca37111880d37de8"
   integrity sha512-LZIUEXswk6EVB/6CQZMPGt0xD7eYy3bF16pY6hZaCAQ1K1/V51Usd2gXPWooU+Ekbg1sH50ZoI1ih4sbhQGWIg==
+  dependencies:
+    lodash "^4.17.19"
+
+"@gm-common/tool@^2.7.2":
+  version "2.7.2"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.2.tgz#599bc85e222d6c6957a023b123a5eee8aba521ee"
+  integrity sha512-fj1Ct2m6znjFNRCM3H4S55aiSM4DTS8pc1HbkZc5a0CDbrW1xmlBTXe2r43iT5Ha1frqyZQN2xjIjhpc71Libg==
   dependencies:
     lodash "^4.17.19"
 
@@ -1203,6 +1233,25 @@
     "@gm-common/tool" "^2.6.3"
     axios "^0.19.2"
     lodash "^4.17.19"
+
+"@gm-pc/locales@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/@gm-pc/locales/-/locales-1.0.15.tgz#49d650e57d1a93fdbe984851c7f5cc2327c9b24e"
+  integrity sha512-fBSBj5J0qSvK9QLoao/vl7X1I6IZqYTBeJ15AwhBhA0CCu2o/wIUcD9yNDtZLbZfN/2JGbfSnNqU795HV8Bc7A==
+
+"@gm-pc/react@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/@gm-pc/react/-/react-1.0.15.tgz#febeda4d8f9dbb1ef1ba81c5181dac3cb0ed603e"
+  integrity sha512-a852bnkLZmXAUJMt+vUOX38xX21QhpMV7CmISTDd1PPe8NOFQT/dkFPkH/1ndbXkhQWUO4pP2BjUCyK/g0oZAA==
+  dependencies:
+    "@gm-common/hooks" "^2.5.1-alpha.3"
+    "@gm-common/tool" "^2.6.2"
+    "@gm-pc/locales" "^1.0.15"
+    big.js "^5.2.2"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    moment "^2.24.0"
+    normalize.css "^8.0.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -5741,10 +5790,11 @@ globjoin@^0.1.4:
   resolved "https://registry.npmjs.org/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#131783e92a31d70735b64fbd79799d8a155eb346":
+"gm_api@git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#6a660e74b9484dcf81d631442ba485a9faf85213":
   version "1.0.0"
-  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#131783e92a31d70735b64fbd79799d8a155eb346"
+  resolved "git+ssh://git@code.guanmai.cn:fe-x/gm_api.git#6a660e74b9484dcf81d631442ba485a9faf85213"
   dependencies:
+    "@gm-common/hooks" "^2.6.3"
     "@types/lodash" "^4.14.162"
     lodash "^4.17.20"
 
@@ -7442,7 +7492,7 @@ mobx@^5.15.6:
   resolved "https://registry.npmjs.org/mobx/-/mobx-5.15.7.tgz#b9a5f2b6251f5d96980d13c78e9b5d8d4ce22665"
   integrity sha512-wyM3FghTkhmC+hQjyPGGFdpehrcX1KOXsDuERhfK2YbJemkUhEB+6wzEN639T21onxlfYBmriA1PFnvxTUhcKw==
 
-moment@^2.29.1:
+moment@^2.24.0, moment@^2.29.1:
   version "2.29.1"
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
@@ -7644,6 +7694,11 @@ normalize-url@1.9.1:
     prepend-http "^1.0.0"
     query-string "^4.1.0"
     sort-keys "^1.0.0"
+
+normalize.css@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.npmjs.org/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
 
 npm-run-path@^4.0.0:
   version "4.0.1"
@@ -10340,6 +10395,11 @@ trough@^1.0.0:
   version "1.0.5"
   resolved "https://registry.npmjs.org/trough/-/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
+
+ts-config-gm-react-app@^3.0.6:
+  version "3.4.5"
+  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
+  integrity sha512-oKn6WfN1X7XjnJYSJGn2hqp7XdjAWJ3kPf+/YFuW0Kn/eFwyUtumrsYL2EfKXm6FKIQmpqUpIfH1yJpf2Qtt7A==
 
 ts-config-gm-react-app@^3.4.4:
   version "3.4.4"

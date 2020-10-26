@@ -1,25 +1,48 @@
-import React, { FC } from 'react'
-import { useAsync } from '@gm-common/hooks'
-import { fetchCityDistrict } from './util'
-import { AddressCityDistrict } from './types'
+import React, { FC, useEffect } from 'react'
+import { DataAddressCityDistrictProps } from './types'
+import { PackageName, MessageName_enterprise } from 'gm_api/src/types'
+import { messageStore } from 'gm_api/src/pc_util'
+import { ListCity, ListDistrict } from 'gm_api/src/enterprise'
+import { observer } from 'mobx-react'
 
-interface DataAddressCityDistrictProps {
-  address: AddressCityDistrict
-}
+const DataAddressCityDistrict: FC<DataAddressCityDistrictProps> = observer(
+  ({ address }) => {
+    useEffect(() => {
+      messageStore.register(
+        PackageName.enterprise,
+        MessageName_enterprise.City,
+        address.city_id,
+        (params) => {
+          return ListCity(params).then((res) => res.response.cities)
+        }
+      )
+      messageStore.register(
+        PackageName.enterprise,
+        MessageName_enterprise.District,
+        address.district_id,
+        (params) => {
+          return ListDistrict(params).then((res) => res.response.districts)
+        }
+      )
+    }, [])
 
-const DataAddressCityDistrict: FC<DataAddressCityDistrictProps> = ({ address }) => {
-  const { data } = useAsync(fetchCityDistrict, {
-    manual: false,
-    defaultParams: {
-      address,
-    },
-  })
+    const city = messageStore.getData(
+      PackageName.enterprise,
+      MessageName_enterprise.City,
+      address.city_id
+    )
+    const district = messageStore.getData(
+      PackageName.enterprise,
+      MessageName_enterprise.District,
+      address.district_id
+    )
 
-  if (!data) {
-    return null
+    if (!city || !district) {
+      return null
+    }
+
+    return <>{`${city.local_name}/${district.local_name}`}</>
   }
-
-  return <>{`${data.city.local_name}/${data.district.local_name}`}</>
-}
+)
 
 export default DataAddressCityDistrict

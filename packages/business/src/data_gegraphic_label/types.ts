@@ -14,13 +14,11 @@ interface DistrictItem {
 }
 
 interface CityDistrictLabel {
-  city_id?: string
-  district_id?: string
+  city_id: string
+  district_id: string
 }
 
 type AddressCityDistrict = Pick<Address, 'city_id' | 'district_id'>
-
-type CityDistrict = CityItem
 
 interface DataCityDistrictProps {
   city_ids: string[]
@@ -28,16 +26,15 @@ interface DataCityDistrictProps {
   onSelect(selected: CityDistrictLabel): void
 }
 
-interface DataStationCityDistrictProps {
-  selected: CityDistrictLabel
-  onSelect(selected: CityDistrictLabel): void
+interface DataAddressCityDistrictProps {
+  address: CityDistrictLabel
 }
 
 export type {
   CityItem,
   DistrictItem,
+  CityDistrictLabel,
   AddressCityDistrict,
-  CityDistrict,
   DataCityDistrictProps,
-  DataStationCityDistrictProps,
+  DataAddressCityDistrictProps,
 }

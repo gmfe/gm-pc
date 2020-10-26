@@ -2,18 +2,18 @@
 # yarn lockfile v1
 
 
-"@gm-common/hooks@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.6.2.tgz#cabc70cc85f90e678751956790c9e5d0b2741e88"
-  integrity sha512-9MqyfRudNeySkjY67ZWS2FxBMFj10G80tI8ftOU1IAB7ho5hBgazGt5sPhEYVzwa04YDPlXNLua3Ufp6VG1gGQ==
+"@gm-common/hooks@^2.7.3":
+  version "2.7.3"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.7.3.tgz#709f9dbf235f03f33af009e5fe65ccc33383ae33"
+  integrity sha512-wUKuoCJd3WLIvr+hLX9JRGQc/X2SqwYySakBxAzvaTVRwc9uIDx9OcKoy9HTRFgr+4UiqEtTYDFXJodyKgQiEw==
   dependencies:
-    "@gm-common/tool" "^2.6.2"
+    "@gm-common/tool" "^2.7.3"
     ts-config-gm-react-app "^3.0.6"
 
-"@gm-common/tool@^2.6.2":
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.6.2.tgz#d77b105b15e97bc91fa80e25f2b0afb46a8a7a25"
-  integrity sha512-hW1fecMMVIZ+aR5afeLYQOEPkjoq1Ff81RvdIzEkt8Ose7wEAr+UADD0gPwLErkF27qL1FT013mb5u3NNalgLw==
+"@gm-common/tool@^2.7.3":
+  version "2.7.3"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.3.tgz#5945c04bb5df6fc1e3f444bfddc3d3777b62cf77"
+  integrity sha512-xcv0RinR4vQT/ocSbBdsqehiWBk6UcSnQZxqxd0lwZ1zKfpDC0F/uTNAUV+V16I5qvWxo8DfTk0WT5CTIYhGeg==
   dependencies:
     lodash "^4.17.19"
 

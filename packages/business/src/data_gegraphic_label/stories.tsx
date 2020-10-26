@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  DataCityDistrict,
-  DataStationCityDistrict,
-  DataAddressCityDistrict,
-} from './index'
+import { DataCityDistrict, DataAddressCityDistrict } from './index'
 import { observable } from 'mobx'
 
 const store = observable({
@@ -18,19 +14,6 @@ export const ComDataCityDistrict = () => {
     <div style={{ width: '300px' }}>
       <DataCityDistrict
         city_ids={['4401', '4403']}
-        selected={store.selected}
-        onSelect={(selected) => {
-          store.setSelected(selected)
-        }}
-      />
-    </div>
-  )
-}
-
-export const ComDataStationCityDistrict = () => {
-  return (
-    <div style={{ width: '300px' }}>
-      <DataStationCityDistrict
         selected={store.selected}
         onSelect={(selected) => {
           store.setSelected(selected)

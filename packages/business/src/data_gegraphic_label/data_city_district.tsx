@@ -3,7 +3,6 @@ import { useAsync } from '@gm-common/hooks'
 import { fetchCityDistrictTree } from './util'
 import { LevelSelect } from '@gm-pc/react'
 import { DataCityDistrictProps } from './types'
-import _ from 'lodash'
 
 const DataCityDistrict: FC<DataCityDistrictProps> = ({
   selected,
