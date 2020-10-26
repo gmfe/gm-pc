@@ -89,7 +89,7 @@ const FormItem: FC<FormItemProps> = ({
       )}
       <Flex flex column>
         <div className='gm-form-field'>
-          <FormControl>{childList?.[0]}</FormControl>
+          {childList[0] && <FormControl>{childList[0]}</FormControl>}
           {childList?.slice(1)}
           {!!(error && help) && (
             <div className={classNames({ 'help-block': error })}>{help}</div>
