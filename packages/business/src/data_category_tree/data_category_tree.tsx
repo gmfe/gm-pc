@@ -13,6 +13,7 @@ interface DataCategoryTreeProps {
   skuParams?: ListSkuRequest
   onReady?(data?: CategoryItem[]): void
   activeValue?: any
+  findPlaceholder?: string
   onActiveValue?(activeValue: any, item: CategoryItem | SpuItem | SkuItem): void
   onLeafActiveValue?(activeValue: any, item: SpuItem | SkuItem): void
 }
@@ -26,6 +27,7 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
   className,
   activeValue,
   onActiveValue,
+  findPlaceholder,
   onLeafActiveValue,
 }) => {
   const { data, loading } = useAsync(getCategoryTree, {
@@ -60,6 +62,7 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
         onActiveValue={handleActiveValue}
         disabledCheckbox
         withFilter={false}
+        findPlaceholder={findPlaceholder}
         showFind
       />
     </LoadingChunk>
