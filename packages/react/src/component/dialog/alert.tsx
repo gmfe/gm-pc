@@ -1,28 +1,22 @@
 import _ from 'lodash'
 import Dialog from './dialog'
-import { ConfirmProps, ConfirmOptions } from './types'
+import { AlertProps } from './types'
 import { getLocale } from '@gm-pc/locales'
 
-const Confirm = (props: ConfirmProps): Promise<void> => {
+const Alert = (props: string | AlertProps): Promise<void> => {
   let p = props
   if (!_.isObject(props)) {
     p = {
       children: props,
     }
   }
-  const { children, okBtnText, cancelBtnText, ...rest } = p as ConfirmOptions
 
-  return new Promise((resolve, reject) => {
+  const { okBtnText, children, ...rest } = p as AlertProps
+
+  return new Promise((resolve) => {
     Dialog.render({
       children,
       buttons: [
-        {
-          text: cancelBtnText || getLocale('取消'),
-          onClick() {
-            reject(new Error('cancel'))
-            Dialog.hide()
-          },
-        },
         {
           text: okBtnText || getLocale('确定'),
           btnType: 'primary',
@@ -37,4 +31,4 @@ const Confirm = (props: ConfirmProps): Promise<void> => {
   })
 }
 
-export default Confirm
+export default Alert

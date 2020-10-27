@@ -9,12 +9,13 @@ interface DialogButtonProps {
   text: string
   onClick(event?: Event): void
   btnType?: ButtonType
+  disabled?: boolean
 }
 
 interface DialogProps {
   title?: string
   size?: DialogSize
-  buttons: DialogButtonProps[]
+  buttons?: DialogButtonProps[]
   children: ReactNode
 }
 
@@ -25,26 +26,25 @@ interface DialogStatic {
   hide(): void
 }
 
-interface AlertOptions extends SpecificDialogProps {
+interface AlertProps extends SpecificDialogProps {
   okBtnText?: string
 }
 
-type AlertProps = string | AlertOptions
-
-interface ConfirmOptions extends SpecificDialogProps {
+interface ConfirmProps extends SpecificDialogProps {
   okBtnText?: string
   cancelBtnText?: string
   onValidate?: (value: string) => boolean | void
 }
 
-type ConfirmProps = string | ConfirmOptions
-
-interface PromptOptions extends ConfirmOptions {
+interface PromptProps extends ConfirmProps {
   defaultValue?: string
   placeholder?: string
 }
 
-type PromptProps = string | PromptOptions
+interface DeleteProps extends ConfirmProps {
+  /** 阅读提示 */
+  read?: boolean | string
+}
 
 export type {
   DialogProps,
@@ -53,9 +53,7 @@ export type {
   DialogSize,
   DialogStatic,
   AlertProps,
-  AlertOptions,
   ConfirmProps,
-  ConfirmOptions,
-  PromptOptions,
   PromptProps,
+  DeleteProps,
 }

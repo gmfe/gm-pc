@@ -1,10 +1,10 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react'
 import _ from 'lodash'
 import Dialog from './dialog'
-import { PromptProps, PromptOptions } from './types'
+import { PromptProps } from './types'
 import { getLocale } from '@gm-pc/locales'
 
-const prompt = (props: PromptProps) => {
+const prompt = (props: string | PromptProps) => {
   let p = props
   if (!_.isObject(props)) {
     p = {
@@ -20,7 +20,7 @@ const prompt = (props: PromptProps) => {
     placeholder,
     onValidate,
     ...rest
-  } = p as PromptOptions
+  } = p as PromptProps
 
   return new Promise((resolve, reject) => {
     // 用一个变量存即可

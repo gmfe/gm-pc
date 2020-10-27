@@ -87,7 +87,7 @@ const columns = [
     Header: '序号',
     id: 'index',
     Cell: (cellProps: any) => cellProps.row.index + 1,
-    width: 50,
+    width: 100,
   },
   { Header: '建单时间', show: false, accessor: 'submitTime' },
   { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },

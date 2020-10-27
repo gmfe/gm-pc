@@ -1,8 +1,10 @@
-import React, { HTMLAttributes, CSSProperties, FC } from 'react'
+import React, { HTMLAttributes, CSSProperties, FC, useState } from 'react'
 import classNames from 'classnames'
 import SVGRemove from '../../svg/remove.svg'
 import { Button, ButtonType } from '../button'
 import { getLocale } from '@gm-pc/locales'
+import _ from 'lodash'
+import { Radio } from '@gm-pc/react/src/index'
 
 type PopupContentConfirmType = 'save' | 'delete'
 
@@ -11,6 +13,7 @@ type ButtonMap = {
     type: ButtonType
     text: string
     onClick(): void
+    disabled?: boolean
   }
 }
 
@@ -20,6 +23,8 @@ export interface PopupContentConfirmProps extends HTMLAttributes<HTMLDivElement>
   onCancel(): void
   onDelete?(): void
   onSave?(): void
+  /** 阅读提示, type delete 用 */
+  read?: boolean | string
   className?: string
   style?: CSSProperties
 }
@@ -30,10 +35,15 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
   onCancel,
   onDelete,
   onSave,
+  read,
   className,
   children,
   ...rest
 }) => {
+  const [checked, setChecked] = useState<boolean>(false)
+
+  const readText = _.isString(read) ? read : getLocale('我已阅读以上提示，确认删除')
+
   const buttonMap: ButtonMap = {
     save: {
       text: getLocale('保存'),
@@ -48,6 +58,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
       onClick() {
         onDelete && onDelete()
       },
+      disabled: read ? !checked : false,
     },
   }
 
@@ -61,8 +72,15 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
       </div>
       <div className='gm-popup-content-confirm-content'>
         {children}
+        {read && (
+          <div className='gm-margin-top-20'>
+            <Radio checked={checked} onChange={() => setChecked(!checked)}>
+              {readText}
+            </Radio>
+          </div>
+        )}
         <div className='gm-popup-content-confirm-button'>
-          <Button className='gm-margin-right-5' onClick={onCancel}>
+          <Button className='gm-margin-right-10' onClick={onCancel}>
             {getLocale('取消')}
           </Button>
           <Button
@@ -70,6 +88,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
             onClick={() => {
               buttonMap[type].onClick()
             }}
+            disabled={buttonMap[type].disabled}
           >
             {buttonMap[type].text}
           </Button>

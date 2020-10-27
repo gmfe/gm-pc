@@ -7,11 +7,14 @@ import SVGDelete from '../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
   onClick(): void
+  /** 阅读提示, type delete 用 */
+  read?: boolean | string
 }
 
 const OperationDelete: FC<OperationDeleteProps> = ({
   title,
   onClick,
+  read,
   className,
   children,
   ...rest
@@ -32,6 +35,7 @@ const OperationDelete: FC<OperationDeleteProps> = ({
       <PopupContentConfirm
         type='delete'
         title={title}
+        read={read}
         onCancel={handleCancel}
         onDelete={handleDelete}
       >

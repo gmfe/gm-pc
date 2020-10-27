@@ -17,21 +17,23 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   return (
     <Modal title={title} size={size} className='gm-dialog' disableMaskClose noCloseBtn>
       <div>{children}</div>
-      <div className='gm-gap-10' />
-      <Flex justifyEnd className='gm-dialog-buttons'>
-        {_.map(buttons, (btn) => (
-          <Button
-            key={btn.text}
-            type={btn.btnType}
-            onClick={() => {
-              btn.onClick()
-            }}
-            className='gm-margin-left-5'
-          >
-            {btn.text}
-          </Button>
-        ))}
-      </Flex>
+      {buttons && (
+        <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>
+          {_.map(buttons, (btn) => (
+            <Button
+              key={btn.text}
+              type={btn.btnType}
+              disabled={btn.disabled}
+              onClick={() => {
+                btn.onClick()
+              }}
+              className='gm-margin-left-10'
+            >
+              {btn.text}
+            </Button>
+          ))}
+        </Flex>
+      )}
     </Modal>
   )
 }
