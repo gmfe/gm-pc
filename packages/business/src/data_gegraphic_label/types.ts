@@ -20,12 +20,13 @@ interface StreetItem {
   original: Street
 }
 
-interface DataAddress extends Pick<Address, 'city_id' | 'district_id' | 'street_id'> {}
+type DataAddress = Pick<Address, 'city_id' | 'district_id' | 'street_id'>
 
 interface DataAddressProps {
   city_ids: string[]
   selected: DataAddress
   onSelect(selected: DataAddress): void
+  onlySelectLeaf?: boolean
 }
 
 interface DataAddressNameProps {

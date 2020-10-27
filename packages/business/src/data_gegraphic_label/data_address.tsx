@@ -5,7 +5,12 @@ import { LevelSelect } from '@gm-pc/react'
 import { DataAddressProps } from './types'
 import _ from 'lodash'
 
-const DataAddress: FC<DataAddressProps> = ({ selected, onSelect, city_ids }) => {
+const DataAddress: FC<DataAddressProps> = ({
+  selected,
+  onSelect,
+  city_ids,
+  onlySelectLeaf,
+}) => {
   const { data } = useAsync(fetchCityDistrictStreetTree, {
     manual: false,
     defaultParams: {
@@ -31,6 +36,7 @@ const DataAddress: FC<DataAddressProps> = ({ selected, onSelect, city_ids }) => 
       data={data || []}
       selected={data ? oSelected : []}
       onSelect={handleSelect}
+      onlySelectLeaf={onlySelectLeaf}
     />
   )
 }
