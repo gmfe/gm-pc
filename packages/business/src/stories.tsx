@@ -23,5 +23,5 @@ export const ComLogin = () => {
 }
 
 export default {
-  title: 'Business/login',
+  title: 'Business/ceres login',
 }
