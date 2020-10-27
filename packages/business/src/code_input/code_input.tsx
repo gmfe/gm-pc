@@ -6,7 +6,7 @@ import { getCustomizedCode } from './util'
 interface CodeInputProps extends Omit<InputProps, 'onChange'> {
   text?: string
   onChange?(value: string): void
-  // 是否需要随text变化
+  /** 是否需要随text变化 */
   needTextChange?: boolean
 }
 
@@ -23,7 +23,7 @@ const CodeInput = forwardRef<HTMLInputElement, CodeInputProps>(
         const code: string = new_value ? `${new_value}${random.current}` : new_value
         onChange && onChange(code)
       }
-    }, [text, onChange, needTextChange])
+    }, [text, needTextChange])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       changed.current = true
