@@ -14,6 +14,7 @@ interface NavDataLevel2 {
 
 interface NavData {
   icon?: ReactNode
+  iconActive?: ReactNode
   link: string
   name: string
   sub: NavDataLevel2[]

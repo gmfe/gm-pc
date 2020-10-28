@@ -18,7 +18,7 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
   const ref = useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState<DOMRect | null>(null)
 
-  const { icon, name, link, sub } = data
+  const { icon, iconActive, name, link, sub } = data
   const active = isOneActive(sub, selected)
 
   useEffect(() => {
@@ -47,6 +47,11 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
     setRect(null)
   }
 
+  let iconE = icon
+  if ((rect || active) && iconActive) {
+    iconE = iconActive
+  }
+
   return (
     <div
       ref={ref}
@@ -55,8 +60,8 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
       onMouseLeave={handleMouseLeave}
     >
       <A href={link} className='gm-nav-one' onClick={handleClick}>
-        <div className='gm-nav-one-icon'>{icon}</div>
-        <div className='gm-nav-one-text'>{name}</div>
+        <span className='gm-nav-one-icon'>{iconE}</span>
+        <span className='gm-nav-one-text'>{name}</span>
       </A>
       {sub && <div className='gm-nav-one-triangle' />}
       {sub && (

@@ -8,6 +8,8 @@ const data = [
   {
     link: '/merchandise',
     name: '商品',
+    icon: <div>icon</div>,
+    iconActive: <div>a</div>,
     sub: [
       {
         name: '商品管理',
@@ -40,7 +42,7 @@ const data = [
     ],
   },
   {
-    link: '/merchandise',
+    link: '/merchandise2',
     name: '商品',
     sub: [
       {
