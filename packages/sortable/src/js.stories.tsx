@@ -6,10 +6,8 @@ import { storiesOf } from '@storybook/react'
 import { observer } from 'mobx-react'
 import { observable } from 'mobx'
 import { List, Flex } from '@gm-pc/react'
-import SortableJS, { Swap } from 'sortablejs'
+import SortableJS  from 'sortablejs'
 import _ from 'lodash'
-
-SortableJS.mount(new Swap())
 
 const store = observable({
   data: [

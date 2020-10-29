@@ -22,13 +22,13 @@
     "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
   "dependencies": {
     "@gm-pc/locales": "^1.0.26",
     "@gm-pc/react": "^1.0.26",
     "@gm-pc/table-x": "^1.0.26",
-    "cropperjs": "^1.5.6"
+    "cropperjs": "^1.5.9"
   }
 }

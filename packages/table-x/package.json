@@ -22,18 +22,18 @@
     "url": "https://github.com/gmfe/gm-pc/issues"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@gm-common/tool": "^2.6.2",
+    "@gm-common/tool": "^2.7.4",
     "@gm-pc/locales": "^1.0.26",
     "@gm-pc/react": "^1.0.26",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
     "react-table": "7.0.0-rc.11",
     "react-window": "^1.8.5",
-    "sortablejs": "^1.10.1"
+    "sortablejs": "^1.12.0"
   }
 }
