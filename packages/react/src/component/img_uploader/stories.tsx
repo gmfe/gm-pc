@@ -25,10 +25,13 @@ export const ComImgUploader = () => (
     <ImgUploader
       data={store.data}
       onUpload={handleUpload}
-      onChange={(data) => store.setData(data)}
+      onChange={(data) => {
+        store.setData(data)
+      }}
       accept='image/*'
       desc='图片尺寸720*720像素，大小小于1M'
       multiple
+      max={2}
     />
   </div>
 )
@@ -40,7 +43,9 @@ export const ComImgUploaderWithDisabled = () => (
       disabled
       data={store.data}
       onUpload={handleUpload}
-      onChange={(data) => store.setData(data)}
+      onChange={(data) => {
+        store.setData(data)
+      }}
       accept='image/*'
       desc='图片尺寸720*720像素，大小小于1M'
       multiple

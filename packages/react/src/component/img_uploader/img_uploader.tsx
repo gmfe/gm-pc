@@ -5,24 +5,26 @@ import { Flex } from '../flex'
 import SvgCloseCircle from '../../svg/close-circle.svg'
 
 export interface ImgUploaderProps {
-  /* 已上传图片 URL 集合 */
+  /** 已上传图片 URL 集合 */
   data: string[]
-  /* 图片修改回调 */
+  /** 图片修改回调 */
   onChange(urls: string[]): void
-  /* 上传按钮回调函数 */
+  /** 上传按钮回调函数 */
   onUpload(data: UploaderFile[]): Promise<string[]>
   disabled?: boolean
   accept?: string
-  /* 注意，这是添加按钮选择单图还是多图 */
+  /** 注意，这是添加按钮选择单图还是多图 */
   multiple?: boolean
-  /* 图片的尺寸 */
+  /** 图片的尺寸 */
   contentSize?: {
     width: string
     height: string
   }
   desc?: string
-  /* 自定义图片展示 */
+  /** 自定义图片展示 */
   imgRender?(url: string): ReactNode
+  /** max 最大图片数 */
+  max?: number
   className?: string
   style?: CSSProperties
 }
@@ -39,6 +41,7 @@ const ImgUploader: FC<ImgUploaderProps> = ({
   className,
   children,
   imgRender,
+  max,
   ...rest
 }) => {
   const handleUploader = useCallback(
@@ -120,7 +123,7 @@ const ImgUploader: FC<ImgUploaderProps> = ({
         ))}
         {children ?? (
           <Uploader
-            disabled={disabled}
+            disabled={disabled || (max ? data.length >= max : false)}
             accept={accept}
             onUpload={handleUploader}
             multiple={multiple}
