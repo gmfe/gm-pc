@@ -31,6 +31,7 @@ export const initialState: ReducerState = {
 export default function (state: ReducerState, action: ReducerAction): ReducerState {
   switch (action.type) {
     case 'HAS_DOM_NODE':
+      // @ts-ignore
       delete action.type
       return { ...state, ...action }
     case 'NO_DOM_NODE':
