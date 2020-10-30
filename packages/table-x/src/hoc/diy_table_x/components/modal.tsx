@@ -4,7 +4,7 @@ import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
-import SVGRemove from '@gm-pc/react/src/svg/remove.svg'
+import SVGRemove from '../../../svg/remove.svg'
 
 interface DiyTableXModalProps {
   columns: DiyTableXColumn[]
