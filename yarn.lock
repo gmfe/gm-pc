@@ -1207,19 +1207,19 @@
     axios "^0.19.2"
     lodash "^4.17.19"
 
-"@gm-pc/locales@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npm.taobao.org/@gm-pc/locales/download/@gm-pc/locales-1.0.27.tgz#a82b7a09f1b5e1f9ca6267520fcb2497b3c898a7"
-  integrity sha1-qCt6CfG14fnKYmdSD8skl7PImKc=
+"@gm-pc/locales@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/@gm-pc/locales/download/@gm-pc/locales-1.1.1.tgz?cache=0&sync_timestamp=1604026932490&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40gm-pc%2Flocales%2Fdownload%2F%40gm-pc%2Flocales-1.1.1.tgz#49b0581b322e4f6304fe70e8561273c6c19e2f5d"
+  integrity sha1-SbBYGzIuT2ME/nDoVhJzxsGeL10=
 
-"@gm-pc/react@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npm.taobao.org/@gm-pc/react/download/@gm-pc/react-1.0.27.tgz#13f5c31492761aa4da06f9f309c6807c5834e97c"
-  integrity sha1-E/XDFJJ2GqTaBvnzCcaAfFg06Xw=
+"@gm-pc/react@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.npm.taobao.org/@gm-pc/react/download/@gm-pc/react-1.1.1.tgz?cache=0&sync_timestamp=1604026959191&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40gm-pc%2Freact%2Fdownload%2F%40gm-pc%2Freact-1.1.1.tgz#e869569a2d2a34bbfdbbe4969f702f35752add08"
+  integrity sha1-6GlWmi0qNLv9u+SWn3AvNXUq3Qg=
   dependencies:
     "@gm-common/hooks" "^2.7.4"
     "@gm-common/tool" "^2.7.4"
-    "@gm-pc/locales" "^1.0.27"
+    "@gm-pc/locales" "^1.1.1"
     big.js "^6.0.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
