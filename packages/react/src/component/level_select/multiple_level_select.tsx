@@ -22,6 +22,7 @@ function MultipleLevelSelect<V = any>({
   onlySelectLeaf,
   popoverType = 'focus',
   right,
+  placeholder,
   children,
   className,
   style,
@@ -93,6 +94,7 @@ function MultipleLevelSelect<V = any>({
           onSelect={handleMultipleSelectionSelect}
           className={className}
           style={style}
+          placeholder={placeholder}
         />
       )}
     </Popover>

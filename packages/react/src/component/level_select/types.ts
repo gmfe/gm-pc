@@ -28,6 +28,7 @@ interface MultipleLevelSelectProps<V> {
   onlySelectLeaf?: boolean
   popoverType?: 'focus' | 'realFocus'
   right?: boolean
+  placeholder?: string
   onKeyDown?(event: KeyboardEvent): void
   children?: ReactNode
   className?: string

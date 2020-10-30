@@ -87,6 +87,7 @@ export const ComLevelSelectWithRight = () => (
 
 export const ComMultipleLevelSelect = () => (
   <MultipleLevelSelect
+    placeholder='多选'
     selected={store.selected.slice()}
     data={data.slice()}
     onSelect={(value) => {
