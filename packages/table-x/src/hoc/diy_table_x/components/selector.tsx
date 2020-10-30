@@ -1,13 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
-import styled from 'styled-components'
 import { DiyTableXColumn } from '../types'
 import { Checkbox, Flex } from '@gm-pc/react'
-
-const Item = styled.div`
-  width: 25%;
-  padding: 5px 0;
-`
 
 interface SelectorProps {
   columns: DiyTableXColumn[]
@@ -48,7 +42,7 @@ function Selector({ columns, onColumnsChange }: SelectorProps) {
                 const text = diyItemText ?? Header
 
                 return (
-                  <Item key={_.uniqueId(key)}>
+                  <div key={_.uniqueId(key)} style={{ width: '25%', padding: '5px 0' }}>
                     <Checkbox
                       value={key}
                       disabled={!diyEnable} // 不能编辑的字段禁用掉
@@ -59,7 +53,7 @@ function Selector({ columns, onColumnsChange }: SelectorProps) {
                     >
                       {text}
                     </Checkbox>
-                  </Item>
+                  </div>
                 )
               })}
             </Flex>

@@ -1,18 +1,5 @@
 import React, { FC, MouseEvent } from 'react'
-import styled from 'styled-components'
 import { safe } from '../utils'
-
-const SvgMaskWrapper = styled.div`
-  opacity: 0.7;
-  width: 100%;
-  left: 0;
-  top: 0;
-  height: 100%;
-  position: fixed;
-  z-index: 99999;
-  pointer-events: none;
-  color: #000;
-`
 
 interface SvgMaskProps {
   windowWidth: number
@@ -49,7 +36,20 @@ const SvgMask: FC<SvgMaskProps> = ({
   const left = safe(targetLeft - padding)
 
   return (
-    <SvgMaskWrapper onClick={onClick}>
+    <div
+      onClick={onClick}
+      style={{
+        opacity: '0.7',
+        width: '100%',
+        left: 0,
+        top: 0,
+        height: '100%',
+        position: 'fixed',
+        zIndex: 99999,
+        pointerEvents: 'none',
+        color: '#000',
+      }}
+    >
       <svg
         width={windowWidth}
         height={windowHeight}
@@ -161,7 +161,7 @@ const SvgMask: FC<SvgMaskProps> = ({
           className={disableInteractionClassName}
         />
       </svg>
-    </SvgMaskWrapper>
+    </div>
   )
 }
 

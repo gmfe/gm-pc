@@ -1,5 +1,4 @@
-import { FC, HTMLAttributes, RefObject } from 'react'
-import styled from 'styled-components'
+import React, { CSSProperties, FC, HTMLAttributes, RefObject } from 'react'
 import * as utils from '../utils'
 import { ReducerState } from '../reducer'
 import { TourStepItem } from '../types'
@@ -24,23 +23,8 @@ interface GuideProps extends HTMLAttributes<HTMLDivElement> {
   rounded: number
 }
 
-const Guide: FC<GuideProps> = styled.div`
-  max-width: 350px;
-  min-width: 200px;
-  padding-right: 40px;
-  background-color: #fff;
-  box-shadow: 0 0.5em 3em rgba(0, 0, 0, 0.3);
-  color: inherit;
-  ${(props: GuideProps) => `
-    border-radius: ${props.rounded}px;
-  `};
-  position: fixed;
-  transition: transform 0.3s;
-  top: 0;
-  left: 0;
-  outline: none;
-  z-index: 1000000;
-  transform: ${(props: GuideProps) => {
+const Guide: FC<GuideProps> = (props) => {
+  const transform = () => {
     const {
       targetTop,
       targetRight,
@@ -131,7 +115,26 @@ const Guide: FC<GuideProps> = styled.div`
     const p = pos(helperPosition)
 
     return `translate(${Math.round(p[0])}px, ${Math.round(p[1])}px)`
-  }};
-`
+  }
+
+  const style: CSSProperties = {
+    maxWidth: '350px',
+    minWidth: '200px',
+    paddingRight: '40px',
+    backgroundColor: '#fff',
+    boxShadow: '0 0.5em 3em rgba(0, 0, 0, 0.3)',
+    color: 'inherit',
+    borderRadius: `${props.rounded}px`,
+    position: 'fixed',
+    transition: 'transform 0.3s',
+    top: 0,
+    left: 0,
+    outline: 'none',
+    zIndex: 1000000,
+    transform: transform(),
+  }
+
+  return <div {...props} style={style} />
+}
 
 export default Guide

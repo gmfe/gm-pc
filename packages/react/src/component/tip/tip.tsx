@@ -14,7 +14,7 @@ const Tip: FC<TipProps> & TipStatic = ({
   children,
 }) => {
   useEffect(() => {
-    let timer: number
+    let timer: any
     if (time) {
       timer = setTimeout(() => {
         onClose()
@@ -22,10 +22,8 @@ const Tip: FC<TipProps> & TipStatic = ({
     }
 
     return () => {
-      if (time) {
-        if (time) {
-          clearTimeout(timer)
-        }
+      if (timer) {
+        clearTimeout(timer)
       }
     }
   }, [])

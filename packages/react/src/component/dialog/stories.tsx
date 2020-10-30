@@ -117,7 +117,7 @@ export const ComDelete = () => {
       </button>
       <button
         onClick={() => {
-          Delete_com({ children: '删除拉', read: true }).then(
+          Delete({ children: '删除拉', read: true }).then(
             () => {
               return console.log('delete')
             },

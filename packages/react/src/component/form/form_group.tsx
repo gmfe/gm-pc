@@ -11,17 +11,10 @@ import Affix from '../affix/affix'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import classNames from 'classnames'
-import styled from 'styled-components'
 import _ from 'lodash'
 import { useMutationObserver } from '../../common/hooks'
 import { FormGroupProps } from './types'
-const AFFIX_HEIGHT = 40
 
-const StyledAffix = styled(Affix)`
-  height: ${() => {
-    return AFFIX_HEIGHT + 'px'
-  }};
-`
 const options = {
   childList: true,
   attributes: true, // 观察属性变动
@@ -105,7 +98,7 @@ const FormGroup: FC<FormGroupProps> = ({
   return (
     <div {...rest} onSubmit={handleSubmit}>
       {children}
-      <StyledAffix bottom={0}>
+      <Affix bottom={0}>
         <div
           className={classNames(
             'gm-padding-tb-5 gm-margin-top-20 gm-text-center', // 统一padding,margin样式，保证affix切换时正常切换
@@ -122,7 +115,7 @@ const FormGroup: FC<FormGroupProps> = ({
             onCancel={onCancel}
           />
         </div>
-      </StyledAffix>
+      </Affix>
     </div>
   )
 }

@@ -1,10 +1,5 @@
 import React, { cloneElement, FC, MouseEvent, ReactElement, useRef } from 'react'
-import styled from 'styled-components'
 import { Tooltip, Popover } from '@gm-pc/react'
-
-const Icon = styled.div`
-  padding: 8px;
-`
 
 interface OperationIconTipProps {
   tip: string
@@ -19,7 +14,7 @@ const OperationIconTip: FC<OperationIconTipProps> = ({ tip, children }) => {
   }
 
   return (
-    <Tooltip popup={<Icon>{tip}</Icon>} showArrow ref={tipRef}>
+    <Tooltip popup={<div className='gm-padding-5'>{tip}</div>} showArrow ref={tipRef}>
       {cloneElement(children as ReactElement, {
         onClick: handleClick.bind(null, (children as ReactElement).props.onClick),
       })}
