@@ -4,113 +4,113 @@
 
 "@babel/runtime@^7.0.0":
   version "7.12.1"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
-  integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
+  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.12.1.tgz?cache=0&sync_timestamp=1602799933339&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
+  integrity sha1-tBFqa2cR0BCy2tO3tuQ78bmVR0A=
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@gm-common/hooks@^2.5.1-alpha.3", "@gm-common/hooks@^2.7.4":
+"@gm-common/hooks@^2.7.4":
   version "2.7.4"
-  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.7.4.tgz#f682f311e1c27e5e591a5e817bc19d03e3f015a2"
-  integrity sha512-TwKq29GCSqb8sH2S2RVT2vM9NhNhGZYJubsY2San70UT3QfnhurYXVj800TnEnEbcBeI+EcLOBNjeODUbXzOBg==
+  resolved "https://registry.npm.taobao.org/@gm-common/hooks/download/@gm-common/hooks-2.7.4.tgz#f682f311e1c27e5e591a5e817bc19d03e3f015a2"
+  integrity sha1-9oLzEeHCfl5ZGl6Be8GdA+PwFaI=
   dependencies:
     "@gm-common/tool" "^2.7.4"
     ts-config-gm-react-app "^3.0.6"
 
-"@gm-common/tool@^2.6.2", "@gm-common/tool@^2.7.4":
+"@gm-common/tool@^2.7.4":
   version "2.7.4"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
-  integrity sha512-Bnv5pNySewggb8guL2OGuNBOIkxGH8TmNF2qNSgFdt3VBKc6XEIfY88mZX3EDj9myw56p+jxXSIES0ekjoT3Cw==
+  resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
+  integrity sha1-B9uKqrOQ8Axnk4FrIM/evJTc0Bc=
   dependencies:
     lodash "^4.17.19"
 
-"@gm-pc/locales@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.npmjs.org/@gm-pc/locales/-/locales-1.0.26.tgz#d4d7c98852e45a3e29ffce4359c908db780ba486"
-  integrity sha512-A2Yy6Stgw1fs5Rc0RWbg0xbgMuc3uvsjFYh/Pf/hbOThgQswefuvA1t7mWYhdCyZAQq/6RCQqtMVJhxOm+EY8A==
+"@gm-pc/locales@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.npm.taobao.org/@gm-pc/locales/download/@gm-pc/locales-1.0.27.tgz#a82b7a09f1b5e1f9ca6267520fcb2497b3c898a7"
+  integrity sha1-qCt6CfG14fnKYmdSD8skl7PImKc=
 
-"@gm-pc/react@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.npmjs.org/@gm-pc/react/-/react-1.0.26.tgz#48108bd850ff3195e336d55a31886c94009ccc77"
-  integrity sha512-X43rVf33mfZnQJ8FOpGBLsUGKezgQwp2oQ2NhIwzNJJ9mJ7tbWHSeriC0z0aEJMlvLRfyjmPtJ57yo+0T9dDcQ==
+"@gm-pc/react@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.npm.taobao.org/@gm-pc/react/download/@gm-pc/react-1.0.27.tgz#13f5c31492761aa4da06f9f309c6807c5834e97c"
+  integrity sha1-E/XDFJJ2GqTaBvnzCcaAfFg06Xw=
   dependencies:
-    "@gm-common/hooks" "^2.5.1-alpha.3"
-    "@gm-common/tool" "^2.6.2"
-    "@gm-pc/locales" "^1.0.26"
-    big.js "^5.2.2"
+    "@gm-common/hooks" "^2.7.4"
+    "@gm-common/tool" "^2.7.4"
+    "@gm-pc/locales" "^1.0.27"
+    big.js "^6.0.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
-    moment "^2.24.0"
+    moment "^2.29.1"
     normalize.css "^8.0.1"
 
-"@gm-pc/table-x@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.npmjs.org/@gm-pc/table-x/-/table-x-1.0.26.tgz#28b6f89cec6e53b487df9c966fe4efdc79721b1c"
-  integrity sha512-/fu81Va1+0kB2ZiCe9ckRcn7IcsBj7S3EvwOoedSRB71B8R0fCnk/qlN0D1jbZp9G2zxa4A+swS860kZoK5oxw==
+"@gm-pc/table-x@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.npm.taobao.org/@gm-pc/table-x/download/@gm-pc/table-x-1.0.27.tgz#7e0d61c7f98497d44e9de63eb946996218f5ba72"
+  integrity sha1-fg1hx/mEl9ROneY+uUaZYhj1unI=
   dependencies:
-    "@gm-common/tool" "^2.6.2"
-    "@gm-pc/locales" "^1.0.26"
-    "@gm-pc/react" "^1.0.26"
+    "@gm-common/tool" "^2.7.4"
+    "@gm-pc/locales" "^1.0.27"
+    "@gm-pc/react" "^1.0.27"
     classnames "^2.2.5"
     lodash "^4.17.19"
     react-table "7.0.0-rc.11"
     react-window "^1.8.5"
-    sortablejs "^1.10.1"
+    sortablejs "^1.12.0"
 
-big.js@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.npmjs.org/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
-  integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+big.js@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npm.taobao.org/big.js/download/big.js-6.0.1.tgz#9e0a2e8b1825ce006cd4a096d6f294738cd5cff6"
+  integrity sha1-ngouixglzgBs1KCW1vKUc4zVz/Y=
 
 classnames@^2.2.5:
   version "2.2.6"
-  resolved "https://registry.npmjs.org/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
-  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
+  resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
 
 lodash@^4.17.19:
   version "4.17.20"
-  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597335994883&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
 
 "memoize-one@>=3.1.1 <6":
   version "5.1.1"
-  resolved "https://registry.npmjs.org/memoize-one/-/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
-  integrity sha512-HKeeBpWvqiVJD57ZUAsJNm71eHTykffzcLZVYWiVfQeI1rJtuEaS7hQiEpWfVVk18donPwJEcFKIkCmPJNOhHA==
+  resolved "https://registry.npm.taobao.org/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
+  integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
 
-moment@^2.24.0:
+moment@^2.29.1:
   version "2.29.1"
-  resolved "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+  resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
 
 normalize.css@^8.0.1:
   version "8.0.1"
-  resolved "https://registry.npmjs.org/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
-  integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
+  resolved "https://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
+  integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
 
 react-table@7.0.0-rc.11:
   version "7.0.0-rc.11"
-  resolved "https://registry.npmjs.org/react-table/-/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
-  integrity sha512-Wj2amgPpi69MyMvjIQZMTp+bhun5uAjBtHbDIfAT5n/xa3DN0Frby5aSlMmrmbuWAIB3BLM2ak6hfkuWspXX/A==
+  resolved "https://registry.npm.taobao.org/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
+  integrity sha1-mMUpnOFqCciJlyeVX7RQW9HtZKw=
 
 react-window@^1.8.5:
-  version "1.8.5"
-  resolved "https://registry.npmjs.org/react-window/-/react-window-1.8.5.tgz#a56b39307e79979721021f5d06a67742ecca52d1"
-  integrity sha512-HeTwlNa37AFa8MDZFZOKcNEkuF2YflA0hpGPiTT9vR7OawEt+GZbfM6wqkBahD3D3pUjIabQYzsnY/BSJbgq6Q==
+  version "1.8.6"
+  resolved "https://registry.npm.taobao.org/react-window/download/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
+  integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
 
 regenerator-runtime@^0.13.4:
   version "0.13.7"
-  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
+  resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.7.tgz?cache=0&sync_timestamp=1595456311465&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  integrity sha1-ysLazIoepnX+qrrriugziYrkb1U=
 
-sortablejs@^1.10.1:
+sortablejs@^1.12.0:
   version "1.12.0"
-  resolved "https://registry.npmjs.org/sortablejs/-/sortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
-  integrity sha512-bPn57rCjBRlt2sC24RBsu40wZsmLkSo2XeqG8k6DC1zru5eObQUIPPZAQG7W2SJ8FZQYq+BEJmvuw1Zxb3chqg==
+  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
+  integrity sha1-7m1+zjWYwq8P6xVZ2YWV5eo3y9Y=
 
 ts-config-gm-react-app@^3.0.6:
-  version "3.3.1"
-  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.3.1.tgz#22bcc87cade46363c519a94305ff25aba0032b2e"
-  integrity sha512-a9BwPLCErHXcZFdVG2GvdzS2/0UyYVqyS2oAMHXF/jEmarYIp0dt5UnVIL6KylSRQ9BnQXRrVtlkZqepKg9bzA==
+  version "3.4.5"
+  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
+  integrity sha1-CComf3iPfPW5q/TJXE7CxJfGiE4=
