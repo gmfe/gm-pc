@@ -8,7 +8,8 @@ interface SelectProps<V> {
   all?: Boolean | { value?: V; text?: string }
   onChange(selected: V): void
   disabled?: boolean
-  renderItem?(item: ListDataItem<V>, index: number): ReactNode | string
+  renderItem?(item: ListDataItem<V>, index: number): ReactNode
+  renderSelected?(selected: ListDataItem<V>): ReactNode
   clean?: boolean
   popoverType?: 'focus' | 'realFocus'
   isInPopup?: boolean

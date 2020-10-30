@@ -86,6 +86,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       disabled,
       renderItem,
       clean,
+      renderSelected,
       className,
       popoverType,
       isInPopup,
@@ -132,6 +133,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
           disabled={disabled}
           disabledClose
           clean={clean}
+          renderSelected={renderSelected}
           className={classNames('gm-select', className)}
           noInput
           onKeyDown={this._handleKeyDown}
