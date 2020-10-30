@@ -3,7 +3,7 @@ import Dialog from './dialog'
 import Alert from './alert'
 import Confirm from './confirm'
 import Prompt from './prompt'
-import Delete from './delete'
+import Delete from './delete_com'
 
 export const ComDialog = () => {
   return (
@@ -117,7 +117,7 @@ export const ComDelete = () => {
       </button>
       <button
         onClick={() => {
-          Delete({ children: '删除拉', read: true }).then(
+          Delete_com({ children: '删除拉', read: true }).then(
             () => {
               return console.log('delete')
             },

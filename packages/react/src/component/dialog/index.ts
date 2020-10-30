@@ -2,7 +2,8 @@ export { default as Dialog } from './dialog'
 export { default as Alert } from './alert'
 export { default as Confirm } from './confirm'
 export { default as Prompt } from './prompt'
-export { default as Delete } from './delete'
+// 文件名从 delete => delete_com，避免编译错误
+export { default as Delete } from './delete_com'
 
 export type {
   DialogProps,

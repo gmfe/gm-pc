@@ -73,7 +73,7 @@ const Inner: FC<InnerProps> = ({
   )
 }
 
-const Delete = (props: string | DeleteProps): Promise<void> => {
+const DeleteCom = (props: string | DeleteProps): Promise<void> => {
   let p = props
   if (!_.isObject(props)) {
     p = {
@@ -90,4 +90,4 @@ const Delete = (props: string | DeleteProps): Promise<void> => {
   })
 }
 
-export default Delete
+export default DeleteCom

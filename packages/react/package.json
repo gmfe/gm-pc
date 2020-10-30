@@ -37,7 +37,6 @@
     "react-window": "^1.8.5"
   },
   "peerDependencies": {
-    "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-window": "^1.8.5"
