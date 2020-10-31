@@ -31,7 +31,7 @@ const Tip: FC<TipProps> & TipStatic = ({
   return (
     <Flex justifyCenter className='gm-tip-warp'>
       <Flex className={`gm-tip gm-tip-${type} level`}>
-        <Flex flex>
+        <Flex flex alignCenter>
           <span className='gm-tip-icon'>
             {type === 'success' && <SVGSuccess />}
             {type === 'danger' && <SVGDanger />}
@@ -40,7 +40,7 @@ const Tip: FC<TipProps> & TipStatic = ({
         </Flex>
         {!time && (
           <span
-            className='gm-tip-close gm-margin-left-5 gm-cursor'
+            className='gm-tip-close gm-margin-left-5 gm-margin-top-5 gm-cursor'
             onClick={() => {
               onClose()
             }}
