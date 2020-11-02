@@ -3,7 +3,7 @@ import _ from 'lodash'
 import Dialog from './dialog'
 import { DeleteProps, DialogButtonProps } from './types'
 import { getLocale } from '@gm-pc/locales'
-import { Radio } from '@gm-pc/react'
+import { Checkbox } from '@gm-pc/react'
 import { Flex } from '../flex'
 import { Button } from '../button'
 
@@ -49,9 +49,9 @@ const Inner: FC<InnerProps> = ({
       {children}
       {read && (
         <div className='gm-margin-top-20'>
-          <Radio checked={checked} onChange={() => setChecked(!checked)}>
+          <Checkbox checked={checked} onChange={() => setChecked(!checked)}>
             {readText}
-          </Radio>
+          </Checkbox>
         </div>
       )}
       <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>

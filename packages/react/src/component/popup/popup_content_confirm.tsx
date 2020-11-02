@@ -4,7 +4,7 @@ import SVGRemove from '../../svg/remove.svg'
 import { Button, ButtonType } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
-import { Radio } from '@gm-pc/react/src/index'
+import { Checkbox } from '@gm-pc/react/src'
 
 type PopupContentConfirmType = 'save' | 'delete'
 
@@ -74,9 +74,9 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
         {children}
         {read && (
           <div className='gm-margin-top-20'>
-            <Radio checked={checked} onChange={() => setChecked(!checked)}>
+            <Checkbox checked={checked} onChange={() => setChecked(!checked)}>
               {readText}
-            </Radio>
+            </Checkbox>
           </div>
         )}
         <div className='gm-popup-content-confirm-button'>

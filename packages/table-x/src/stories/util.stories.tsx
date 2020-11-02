@@ -1,7 +1,7 @@
 import React from 'react'
 import { columns, store } from './data'
 import { TableX } from '../base'
-import { OperationHeader, OperationDelete } from '../components/operation'
+import { OperationHeader, OperationDelete, OperationCell } from '../components/operation'
 
 export const ComOperation = () => (
   <div>
@@ -13,14 +13,14 @@ export const ComOperation = () => (
           id: 'operation',
           Cell: () => {
             return (
-              <div>
+              <OperationCell>
                 <OperationDelete
                   onClick={() => {
                     console.log('delete')
                   }}
                   read
                 />
-              </div>
+              </OperationCell>
             )
           },
         },
