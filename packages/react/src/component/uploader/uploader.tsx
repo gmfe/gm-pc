@@ -33,6 +33,9 @@ const Uploader: FC<UploaderProps> = ({
         Object.assign(file, { preview: window.URL.createObjectURL(file) })
       )
       onUpload(files, event)
+
+      // @ts-ignore
+      event.target.value = ''
     },
     [onUpload]
   )
