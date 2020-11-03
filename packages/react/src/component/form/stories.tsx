@@ -264,7 +264,14 @@ export const ComFormGroup = () => {
     <FormGroup
       formRefs={[form1, form2]}
       onCancel={() => console.log('Cancel')}
-      onSubmit={() => console.log('onSubmit')}
+      onSubmit={() => {
+        console.log('onSubmit')
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve()
+          }, 3000)
+        })
+      }}
     >
       <div>第一个表单</div>
       <Form ref={form1} labelWidth='100px' hasButtonInGroup>
