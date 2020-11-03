@@ -81,15 +81,17 @@ const FormGroup: FC<FormGroupProps> = ({
   const handleSubmit = useCallback(
     (event: BaseSyntheticEvent) => {
       event.preventDefault()
-      onSubmit && onSubmit()
+      if (onSubmit) {
+        return onSubmit()
+      }
       let isPass = true
       formRefs.forEach((form) => {
         if (!form.current!.apiDoValidate()) {
           isPass = false
         }
       })
-      if (isPass) {
-        onSubmitValidated && onSubmitValidated()
+      if (isPass && onSubmitValidated) {
+        return onSubmitValidated()
       }
     },
     [onSubmit, formRefs, onSubmitValidated]
