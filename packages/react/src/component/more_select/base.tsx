@@ -276,7 +276,7 @@ class MoreSelectBase<V = any> extends Component<
         className={classNames(
           'gm-more-select',
           {
-            'gm-more-select-disabled': disabled,
+            disabled,
             'gm-more-select-multiple': multiple,
           },
           className
