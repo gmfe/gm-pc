@@ -61,7 +61,10 @@ const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
           </BoxFormContext.Provider>
         </Flex>
         {hasMore && (
-          <div className='gm-text-primary gm-cursor' onClick={handleToggle}>
+          <div
+            className='gm-text-primary gm-cursor gm-text-nowrap'
+            onClick={handleToggle}
+          >
             {open && getLocale('收起')}
             {getLocale('高级筛选')} <IconDownUp active={open} />
           </div>
