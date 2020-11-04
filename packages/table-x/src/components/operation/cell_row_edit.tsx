@@ -5,7 +5,7 @@ import OperationCell from './cell'
 import OperationIconTip from './icon_tip'
 import SVGPen from '../../svg/pen.svg'
 
-interface OperationRowEditProps {
+interface OperationCellRowEditProps {
   isEditing: boolean
 
   onClick?(): void
@@ -15,7 +15,7 @@ interface OperationRowEditProps {
   onCancel?(): void
 }
 
-const OperationCellRowEdit: FC<OperationRowEditProps> = ({
+const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
   children,
   isEditing,
   onClick,
