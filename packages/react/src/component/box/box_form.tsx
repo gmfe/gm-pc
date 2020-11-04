@@ -9,7 +9,6 @@ import React, {
 import _ from 'lodash'
 import { Form, FormProps } from '../form'
 import { Flex } from '../flex'
-import { Button } from '../button'
 import { IconDownUp } from '../icon_down_up'
 import { getLocale } from '@gm-pc/locales'
 
@@ -62,10 +61,10 @@ const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
           </BoxFormContext.Provider>
         </Flex>
         {hasMore && (
-          <Button type='link' className='gm-padding-right-0' onClick={handleToggle}>
+          <div className='gm-text-primary gm-cursor' onClick={handleToggle}>
             {open && getLocale('收起')}
             {getLocale('高级筛选')} <IconDownUp active={open} />
-          </Button>
+          </div>
         )}
       </Flex>
     </div>
