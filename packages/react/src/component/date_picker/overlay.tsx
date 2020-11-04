@@ -34,7 +34,7 @@ const Overlay: FC<OverlayProps> = ({
   const [selectedDate, setSelectedDate] = useState(date)
 
   // 选择日期后渲染时间，有默认时间则展示，无展示为可选的第一个时间
-  const getTime = (): Date => {
+  const getTime = (currentDate: Date): Date => {
     const { defaultTime, disabledSpan, timeSpan } = timeLimit
     if (defaultTime) {
       return defaultTime
@@ -44,8 +44,8 @@ const Overlay: FC<OverlayProps> = ({
     let index = 0
     if (disabledSpan) {
       index = _.findIndex(cells, (cell) => {
-        const _cell = setTimes(moment(date), cell)
-        const disabled = disabledSpan ? disabledSpan(_cell.toDate(), date) : false
+        const _cell = setTimes(moment(currentDate), cell)
+        const disabled = disabledSpan(_cell.toDate(), currentDate)
         return !disabled
       })
     }
@@ -61,7 +61,7 @@ const Overlay: FC<OverlayProps> = ({
     let time: Date
     if (type === 'date') {
       date = value
-      time = getTime()
+      time = getTime(value)
     } else {
       date = selectedDate!
       time = value
