@@ -39,6 +39,9 @@ function KCLevelSelect<V = any>({ disabled, onKeyDown, ...rest }: LevelSelectPro
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // enter 要选择
+      // @ts-ignore
+      targetRef.current.apiDoSelectWillActive()
       // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
