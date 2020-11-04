@@ -94,7 +94,7 @@ const store = observable({
 })
 
 export const ComMoreSelect = () => (
-  <div>
+  <div style={{ width: '200px' }}>
     <MoreSelect<number>
       data={store.data}
       selected={store.selected}

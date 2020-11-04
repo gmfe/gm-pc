@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { MoreSelectDataItem } from '@gm-pc/react'
 import _ from 'lodash'
-import { action, observable } from 'mobx'
+import { action, makeAutoObservable, observable } from 'mobx'
 import { TableX, TableXUtil, selectTableXHOC, editTableXHOC } from '@gm-pc/table-x'
 
 import {
@@ -27,7 +27,7 @@ interface InitialDataItem {
 }
 
 const selectData: MoreSelectDataItem<number>[] = [
-  { value: 1, text: '南山' },
+  { value: 1, text: '南山南山南山南山南山南山南山南山南山南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '宝安' },
   { value: 4, text: '罗湖' },
@@ -54,6 +54,10 @@ class Store {
   @observable data = initialData
 
   @observable selected: number[] = []
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   @action setSelected = (selected: number[]) => {
     this.selected = selected

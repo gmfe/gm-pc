@@ -372,12 +372,16 @@
       .gm-more-select-selected {
         .gmTableXEditTableCommonInput();
 
-        padding-top: 0;
-        padding-bottom: 0;
+        padding-right: 20px;
+      }
 
-        .gm-more-select-clear-btn {
-          padding: 0;
-          right: 5px;
+      .gm-more-select-selected-item {
+        overflow: hidden;
+
+        div {
+          overflow: hidden !important;
+          text-overflow: ellipsis !important;
+          white-space: nowrap;
         }
       }
     }
