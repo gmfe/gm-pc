@@ -5,7 +5,7 @@ import { is } from '@gm-common/tool'
 import { Loading } from '../loading'
 
 type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
-type ButtonSize = 'large'
+type ButtonSize = 'small' | 'middle' | 'large'
 type ButtonHTMLType = 'submit' | 'button' | 'reset'
 
 interface ButtonProps
@@ -24,7 +24,7 @@ interface ButtonProps
 const Button: FC<ButtonProps> = ({
   type = 'default',
   plain,
-  size,
+  size = 'middle',
   block,
   disabled,
   onClick = _.noop,

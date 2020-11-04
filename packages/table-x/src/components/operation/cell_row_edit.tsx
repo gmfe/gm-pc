@@ -15,7 +15,7 @@ interface OperationRowEditProps {
   onCancel?(): void
 }
 
-const OperationRowEdit: FC<OperationRowEditProps> = ({
+const OperationCellRowEdit: FC<OperationRowEditProps> = ({
   children,
   isEditing,
   onClick,
@@ -36,11 +36,11 @@ const OperationRowEdit: FC<OperationRowEditProps> = ({
 
   return isEditing ? (
     <OperationCell>
-      <Button type='link' onClick={handleSave}>
+      <Button size='small' type='primary' onClick={handleSave}>
         {getLocale('保存')}
       </Button>
-      <span className='gm-padding-lr-5'>|</span>
-      <Button type='link' onClick={handleCancel}>
+      <span className='gm-gap-5' />
+      <Button size='small' type='default' onClick={handleCancel}>
         {getLocale('取消')}
       </Button>
     </OperationCell>
@@ -59,4 +59,4 @@ const OperationRowEdit: FC<OperationRowEditProps> = ({
   )
 }
 
-export default OperationRowEdit
+export default OperationCellRowEdit

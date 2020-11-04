@@ -1,7 +1,11 @@
 import React from 'react'
 import { columns, store } from './data'
 import { TableX } from '../base'
-import { OperationHeader, OperationDelete, OperationCell } from '../components/operation'
+import {
+  OperationHeader,
+  OperationDelete,
+  OperationCellRowEdit,
+} from '../components/operation'
 
 export const ComOperation = () => (
   <div>
@@ -11,16 +15,17 @@ export const ComOperation = () => (
         {
           Header: <OperationHeader />,
           id: 'operation',
+          width: 110,
           Cell: () => {
             return (
-              <OperationCell>
+              <OperationCellRowEdit isEditing={false}>
                 <OperationDelete
                   onClick={() => {
                     console.log('delete')
                   }}
                   read
                 />
-              </OperationCell>
+              </OperationCellRowEdit>
             )
           },
         },

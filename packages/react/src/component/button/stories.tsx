@@ -71,6 +71,7 @@ export const ComButton = () => (
     <br />
     size
     <>
+      <Button size='small'>小的</Button>
       <Button>默认</Button>
       <Button size='large'>大的</Button>
     </>
