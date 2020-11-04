@@ -71,9 +71,9 @@ const Overlay: FC<OverlayProps> = ({
   }
 
   return (
-    <Flex column className='gm-date-picker'>
+    <Flex column className='gm-date-picker-overlay'>
       <Calendar
-        className='gm-date-picker'
+        className='gm-date-picker-overlay-calendar'
         selected={selectedDate}
         onSelect={(value) => _handelSelect(value, 'date')}
         willActiveSelected={willActiveSelected!}
