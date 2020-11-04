@@ -2,44 +2,12 @@
 # yarn lockfile v1
 
 
-"@gm-common/hooks@^2.7.4":
-  version "2.7.4"
-  resolved "https://registry.npm.taobao.org/@gm-common/hooks/download/@gm-common/hooks-2.7.4.tgz#f682f311e1c27e5e591a5e817bc19d03e3f015a2"
-  integrity sha1-9oLzEeHCfl5ZGl6Be8GdA+PwFaI=
-  dependencies:
-    "@gm-common/tool" "^2.7.4"
-    ts-config-gm-react-app "^3.0.6"
-
 "@gm-common/tool@^2.7.4":
   version "2.7.4"
   resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
   integrity sha1-B9uKqrOQ8Axnk4FrIM/evJTc0Bc=
   dependencies:
     lodash "^4.17.19"
-
-"@gm-pc/locales@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npm.taobao.org/@gm-pc/locales/download/@gm-pc/locales-1.0.27.tgz#a82b7a09f1b5e1f9ca6267520fcb2497b3c898a7"
-  integrity sha1-qCt6CfG14fnKYmdSD8skl7PImKc=
-
-"@gm-pc/react@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npm.taobao.org/@gm-pc/react/download/@gm-pc/react-1.0.27.tgz#13f5c31492761aa4da06f9f309c6807c5834e97c"
-  integrity sha1-E/XDFJJ2GqTaBvnzCcaAfFg06Xw=
-  dependencies:
-    "@gm-common/hooks" "^2.7.4"
-    "@gm-common/tool" "^2.7.4"
-    "@gm-pc/locales" "^1.0.27"
-    big.js "^6.0.1"
-    classnames "^2.2.5"
-    lodash "^4.17.19"
-    moment "^2.29.1"
-    normalize.css "^8.0.1"
-
-big.js@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.npm.taobao.org/big.js/download/big.js-6.0.1.tgz#9e0a2e8b1825ce006cd4a096d6f294738cd5cff6"
-  integrity sha1-ngouixglzgBs1KCW1vKUc4zVz/Y=
 
 classnames@^2.2.5:
   version "2.2.6"
@@ -50,18 +18,3 @@ lodash@^4.17.19:
   version "4.17.20"
   resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597335994883&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
-
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
-
-normalize.css@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
-  integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
-
-ts-config-gm-react-app@^3.0.6:
-  version "3.4.5"
-  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
-  integrity sha1-CComf3iPfPW5q/TJXE7CxJfGiE4=

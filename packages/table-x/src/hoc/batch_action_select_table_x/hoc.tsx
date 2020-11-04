@@ -1,4 +1,4 @@
-import React, { FC, ComponentType, useState } from 'react'
+import React, { FC, ComponentType, useState, useEffect } from 'react'
 import { TableXProps } from '../../base'
 import BatchActionBar from './bar'
 import _ from 'lodash'
@@ -20,6 +20,14 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
   }) => {
     const [selected, setSelected] = useState<Value[]>([])
     const [isSelectAll, setIsSelectAll] = useState<boolean>(false)
+
+    // 数据变化后更新 state
+    useEffect(() => {
+      if (selected.length !== 0) {
+        setSelected([])
+        setIsSelectAll(false)
+      }
+    }, [data])
 
     const handleSelect = (selected: Value[]) => {
       setSelected(selected)

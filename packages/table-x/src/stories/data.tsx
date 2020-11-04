@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, computed, observable } from 'mobx'
+import { action, computed, observable, makeAutoObservable } from 'mobx'
 import { TableXColumn, TableXSortType } from '../base'
 import moment from 'moment'
 import { observer } from 'mobx-react'
@@ -310,6 +310,10 @@ class Store {
   @observable data = initData
 
   @observable sortType: TableXSortType = undefined
+
+  constructor() {
+    makeAutoObservable(this)
+  }
 
   @action setSortType = (type: TableXSortType): void => {
     this.sortType = type
