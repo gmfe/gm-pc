@@ -115,8 +115,8 @@ class MoreSelectBase<V = any> extends Component<
       // 单选后关闭
       // 要异步
       window.setTimeout(() => {
-        if (!this._isUnmounted) {
-          this._popoverRef.current!.apiDoSetActive(false)
+        if (!this._isUnmounted && this._popoverRef.current) {
+          this._popoverRef.current.apiDoSetActive(false)
         }
       }, 0)
     }

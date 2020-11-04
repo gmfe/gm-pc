@@ -39,6 +39,8 @@ function KCTableSelect<V = any>({ disabled, onKeyDown, ...rest }: TableSelectPro
       cellRef.current?.apiDoTab()
     } else if (event.key === 'Enter') {
       event.preventDefault()
+      // @ts-ignore
+      targetRef.current.apiDoSelectWillActive()
       // eslint-disable-next-line
       cellRef.current?.apiDoEnter()
     }
