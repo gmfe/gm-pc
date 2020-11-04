@@ -9,14 +9,12 @@ interface TipProps {
   children: ReactNode
 }
 
-type TipOptions = string | TipProps
-
 interface TipStatic {
-  tip(props: TipOptions, type?: TipType): string
-  success(props: TipOptions): string
-  danger(props: TipOptions): string
+  tip(props: string | TipProps, type?: TipType): string
+  success(props: string | TipProps): string
+  danger(props: string | TipProps): string
   clear(id: string): void
   clearAll(): void
 }
 
-export type { TipType, TipProps, TipStatic, TipOptions }
+export type { TipType, TipProps, TipStatic }
