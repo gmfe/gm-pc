@@ -20,6 +20,16 @@ const tabs = [
     value: '2',
     children: <div>2</div>,
   },
+  {
+    text: 'Tab3',
+    value: '3',
+    children: <div>3</div>,
+  },
+  {
+    text: 'Tab4',
+    value: '4',
+    children: <div>4</div>,
+  },
 ]
 
 export const ComTabs = () => (
