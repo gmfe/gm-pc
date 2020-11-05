@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { MoreSelectDataItem } from '@gm-pc/react'
 import _ from 'lodash'
-import { action, makeAutoObservable, observable } from 'mobx'
+import { makeAutoObservable } from 'mobx'
 import { TableX, TableXUtil, selectTableXHOC, editTableXHOC } from '@gm-pc/table-x'
 
 import {
@@ -12,6 +12,7 @@ import {
   KCDatePicker,
   KCSelect,
   KCInputNumber,
+  KCLevelSelect,
 } from './'
 
 const { OperationCell, OperationHeader, EditOperation, TABLE_X } = TableXUtil
@@ -22,12 +23,13 @@ interface InitialDataItem {
   position: MoreSelectDataItem<number> | null
   name: string
   age: number | null
+  area: string[]
   date: Date | null
   status: number | null
 }
 
 const selectData: MoreSelectDataItem<number>[] = [
-  { value: 1, text: '南山南山南山南山南山南山南山南山南山南山' },
+  { value: 1, text: '南山' },
   { value: 2, text: '福田' },
   { value: 3, text: '宝安' },
   { value: 4, text: '罗湖' },
@@ -39,10 +41,50 @@ const selectData: MoreSelectDataItem<number>[] = [
   { value: 10, text: '大鹏新区' },
 ]
 
+const levelSelectData = [
+  {
+    value: 'A',
+    text: '广州越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀',
+    children: [
+      {
+        value: '1',
+        text: '越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀越秀',
+      },
+      { value: '2', text: '荔湾' },
+      { value: '3', text: '天河' },
+      { value: '4', text: '海珠' },
+      { value: '5', text: '白云' },
+      { value: '6', text: '黄埔' },
+      { value: '7', text: '番禺' },
+      { value: '8', text: '南沙' },
+      { value: '9', text: '花都' },
+      { value: '10', text: '增城' },
+      { value: '11', text: '从化' },
+    ],
+  },
+  {
+    value: 'B',
+    text: '深圳',
+    children: [
+      { value: '1', text: '福田' },
+      { value: '2', text: '罗湖' },
+      { value: '3', text: '南山' },
+      { value: '4', text: '盐田' },
+      { value: '5', text: '宝安' },
+      { value: '6', text: '龙岗' },
+      { value: '7', text: '龙华' },
+      { value: '8', text: '坪山' },
+      { value: '9', text: '光明' },
+      { value: '10', text: '大鹏' },
+    ],
+  },
+]
+
 const initialDataItem: InitialDataItem = {
   id: Math.floor(Math.random() * 10),
   name: '',
   position: null,
+  area: [],
   age: null,
   date: new Date(),
   status: 1,
@@ -51,27 +93,27 @@ const initialDataItem: InitialDataItem = {
 const initialData: InitialDataItem[] = _.times(5, (): InitialDataItem => initialDataItem)
 
 class Store {
-  @observable data = initialData
+  data = initialData
 
-  @observable selected: number[] = []
+  selected: number[] = []
 
   constructor() {
     makeAutoObservable(this)
   }
 
-  @action setSelected = (selected: number[]) => {
+  setSelected = (selected: number[]) => {
     this.selected = selected
   }
 
-  @action handleAddRow = (index = this.data.length) => {
+  handleAddRow = (index = this.data.length) => {
     this.data.splice(index, 0, initialDataItem)
   }
 
-  @action handleDeleteRow = (index: number) => {
+  handleDeleteRow = (index: number) => {
     this.data.splice(index, 1)
   }
 
-  @action handleSetDataItem = (index: number, item: Partial<InitialDataItem>) => {
+  handleSetDataItem = (index: number, item: Partial<InitialDataItem>) => {
     this.data[index] = { ...this.data[index], ...item }
   }
 }
@@ -131,6 +173,23 @@ export const ComKeyboard = () => {
               selected={position}
               onSelect={(selected: MoreSelectDataItem<number>) => {
                 store.handleSetDataItem(index, { position: selected })
+              }}
+            />
+          )
+        },
+      },
+      {
+        Header: '区域',
+        id: 'area',
+        width: 200,
+        isKeyboard: true,
+        Cell: ({ row: { original, index } }) => {
+          return (
+            <KCLevelSelect
+              data={levelSelectData}
+              selected={original.area}
+              onSelect={(value) => {
+                store.handleSetDataItem(index, { area: value })
               }}
             />
           )
