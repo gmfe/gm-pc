@@ -62,7 +62,7 @@
 
       a {
         display: inline-block;
-        color: var(--gm-color-default);
+        color: var(--gm-color-desc);
         text-decoration: none;
 
         &:hover {
@@ -80,6 +80,10 @@
         &::before {
           display: none;
         }
+      }
+
+      a:last-child {
+        color: var(--gm-color-default);
       }
     }
   }
