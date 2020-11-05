@@ -19,6 +19,9 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   title?: string
   labelType?: LabelType
   labelText?: string
+  topLabelText?: string
+  disabled?: boolean
+  onClick?(): any
   /** 右上角功能定义 */
   actions?: CardActions[]
 }
@@ -29,7 +32,10 @@ const Card: FC<CardProps> = ({
   actions,
   labelType,
   labelText,
+  topLabelText,
   children,
+  disabled,
+  onClick,
   ...rest
 }) => {
   const popoverRef = useRef<Popover>(null)
@@ -41,49 +47,90 @@ const Card: FC<CardProps> = ({
   }
 
   return (
-    <div {...rest} className={classNames('gm-card', className)}>
-      <Flex alignCenter className='gm-card-header'>
-        <Popover
-          right
-          showArrow
-          type='hover'
-          style={{ minWidth: 0, maxWidth: '300px' }}
-          popup={
-            <div className='gm-bg gm-padding-10' style={{ wordBreak: 'break-all' }}>
-              {title || '-'}
-            </div>
-          }
+    <div
+      {...rest}
+      className={classNames('gm-card', { 'gm-card-disabled': disabled }, className)}
+      onClick={disabled ? () => {} : onClick}
+    >
+      <div
+        className={classNames('gm-card-header', {
+          'gm-padding-top-15': !topLabelText,
+          'gm-card-header-disabled': disabled,
+        })}
+        style={{ height: !topLabelText ? '50px' : '65px' }}
+      >
+        <Flex>
+          {topLabelText && (
+            <Flex>
+              <TopLabel text={topLabelText} />
+            </Flex>
+          )}
+          <Flex flex justifyEnd>
+            {actions && (
+              <Popover
+                ref={popoverRef}
+                showArrow
+                type='hover'
+                right
+                popup={
+                  <List
+                    data={moreList}
+                    onSelect={handleSelect}
+                    className='gm-border-0'
+                    style={{ minWidth: '30px' }}
+                  />
+                }
+              >
+                <div className='gm-card-header-action-icon'>
+                  <SVGMore />
+                </div>
+              </Popover>
+            )}
+          </Flex>
+        </Flex>
+        <Flex
+          className={classNames({
+            'gm-padding-right-20': !topLabelText,
+            'gm-padding-top-10': !!topLabelText,
+          })}
+          alignCenter
         >
-          <div className='gm-card-header-title'>{title || '-'}</div>
-        </Popover>
-        {labelText && (
-          <Label className='gm-margin-lr-10' type={labelType}>
-            {labelText}
-          </Label>
-        )}
-        {actions && (
           <Popover
-            ref={popoverRef}
+            right
             showArrow
             type='hover'
-            right
+            style={{ minWidth: 0, maxWidth: '300px' }}
             popup={
-              <List
-                data={moreList}
-                onSelect={handleSelect}
-                className='gm-border-0'
-                style={{ minWidth: '30px' }}
-              />
+              <div className='gm-bg gm-padding-10' style={{ wordBreak: 'break-all' }}>
+                {title || '-'}
+              </div>
             }
           >
-            <div className='gm-card-header-action-icon'>
-              <SVGMore />
-            </div>
+            <div className='gm-card-header-title'>{title || '-'}</div>
           </Popover>
-        )}
-      </Flex>
+          {labelText && (
+            <Label className='gm-margin-lr-10' type={labelType}>
+              {labelText}
+            </Label>
+          )}
+        </Flex>
+      </div>
       <div className='gm-card-content'>{children}</div>
     </div>
+  )
+}
+
+const TopLabel: FC<{ text: string }> = ({ text }) => {
+  return (
+    <Flex column className='gm-label-container'>
+      <div className='gm-card-label'>
+        <Flex className='gm-card-label-text'>{text}</Flex>
+      </div>
+      <Flex className='gm-card-label-content'>
+        <div className='gm-card-label-left' />
+        <div className='gm-card-label-right' />
+      </Flex>
+    </Flex>
   )
 }
 
