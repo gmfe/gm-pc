@@ -19,11 +19,14 @@ const FormPanelMore: FC = ({ children }) => {
   return (
     <>
       <div style={{ marginTop: '-10px', paddingBottom: open ? '10px' : '20px' }}>
-        <Button type='link' className='gm-padding-right-0' onClick={handleToggle}>
+        <div
+          className='gm-text-primary gm-cursor gm-padding-right-0'
+          onClick={handleToggle}
+        >
           {open ? getLocale('收起') : getLocale('展开')}
           {getLocale('更多设置')}
           <IconDownUp active={open} />
-        </Button>
+        </div>
       </div>
       {open && children}
     </>
