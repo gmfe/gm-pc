@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useState, MouseEvent } from 'react'
 import { Flex } from '../flex'
-import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
 import { FormPanelProps } from './types'

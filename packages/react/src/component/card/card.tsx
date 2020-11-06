@@ -21,7 +21,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   labelText?: string
   topLabelText?: string
   disabled?: boolean
-  onClick?(): any
+  onClick?(...args: any[]): any
   /** 右上角功能定义 */
   actions?: CardActions[]
 }

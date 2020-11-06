@@ -17,7 +17,6 @@ function isOneActive(oneSub: NavDataLevel2[], selected: string): boolean {
 const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState<DOMRect | null>(null)
-  const [hover, setHover] = useState(false)
 
   const { icon, iconActive, name, link, sub } = data
   const active = isOneActive(sub, selected)
@@ -41,12 +40,10 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
   }
 
   const handleMouseEnter = () => {
-    setHover(true)
     setRect(ref.current!.getBoundingClientRect())
   }
 
   const handleMouseLeave = () => {
-    setHover(false)
     setRect(null)
   }
 
@@ -58,7 +55,7 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
   return (
     <div
       ref={ref}
-      className={classNames('gm-nav-one-box', { active, hover })}
+      className={classNames('gm-nav-one-box', { active, hover: !!rect })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
