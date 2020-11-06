@@ -101,7 +101,6 @@ const Breadcrumb: FC<BreadcrumbProps> = ({
       {last.link ? (
         <a
           href={last.link}
-          className='gm-text-primary'
           onClick={(event) => {
             event.preventDefault()
             onSelect(last)
