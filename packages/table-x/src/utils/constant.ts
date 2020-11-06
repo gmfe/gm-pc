@@ -9,7 +9,7 @@ const TABLE_X = {
   // 序号
   WIDTH_NO: 56,
   // 操作区
-  WIDTH_OPERATION: 100,
+  WIDTH_OPERATION: 110,
   // MoreSelect 类似
   WIDTH_SEARCH: 168,
   // number input
