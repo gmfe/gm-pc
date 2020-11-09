@@ -17,19 +17,18 @@
       position: relative;
       cursor: pointer;
       color: var(--gm-color-default);
-      background: var(--gm-color-bg-back);
       border-left: 1px solid transparent;
       border-top: 1px solid transparent;
       border-right: 1px solid transparent;
       border-bottom: none;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
-      border-left: 1px solid var(--gm-color-border);
-      border-top: 1px solid var(--gm-color-border);
-      border-right: 1px solid var(--gm-color-border);
 
       &.active {
         background: white;
+        border-left: 1px solid var(--gm-color-border);
+        border-top: 1px solid var(--gm-color-border);
+        border-right: 1px solid var(--gm-color-border);
 
         &::after {
           content: '';
