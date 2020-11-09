@@ -8,7 +8,5 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => 
   return <textarea ref={ref} {...rest} className={classNames('gm-textarea', className)} />
 })
 
-TextArea.displayName = 'TextArea'
-
 export default TextArea
 export type { TextAreaProps }

@@ -16,6 +16,7 @@ import {
   Radio,
   CheckboxGroup,
   Checkbox,
+  Input,
   InputNumber,
   Flex,
   Button,
@@ -112,7 +113,7 @@ export const ComFormWithDisabledCol = () => (
     </pre>
     <Form disabledCol labelWidth='100px' onSubmit={() => console.log('onSubmit')}>
       <FormItem label='名字' required>
-        <input
+        <Input
           type='text'
           value={store.name}
           onChange={(e) => store.setData('name', e.target.value)}

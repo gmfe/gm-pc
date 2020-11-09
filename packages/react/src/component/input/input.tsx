@@ -9,7 +9,5 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   return <input ref={ref} {...rest} className={classNames('gm-input', className)} />
 })
 
-Input.displayName = 'Input'
-
 export default Input
 export type { InputProps }

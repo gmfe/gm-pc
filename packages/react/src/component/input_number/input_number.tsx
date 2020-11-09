@@ -32,8 +32,6 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
     precision: 2,
   }
 
-  static displayName = 'InputNumber'
-
   static getDerivedStateFromProps(
     props: InputNumberProps,
     state: InputNumberState

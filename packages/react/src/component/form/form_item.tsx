@@ -121,13 +121,7 @@ const FormControl: FC = (props) => {
   if (
     (children.type === 'input' && children.props.type !== 'file') ||
     children.type === 'textarea' ||
-    children.type === 'select' ||
-    (children as ReactElement<FormControlChildrenProps, ComponentType>).type
-      .displayName === 'InputNumber' ||
-    ((children as ReactElement<FormControlChildrenProps, ComponentType>).type
-      .displayName === 'Input' &&
-      (children as ReactElement<FormControlChildrenProps, ComponentType>).props.type !==
-        'file')
+    children.type === 'select'
   ) {
     return cloneElement(children, {
       className: classNames('gm-form-control', className),
