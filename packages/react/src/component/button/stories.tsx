@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './button'
+import ButtonText from './button_text'
 
 function handleClick() {
   console.log('click')
@@ -99,6 +100,30 @@ export const ComButtonWithLoading = () => (
       </Button>
     </>
   </>
+)
+
+export const ComButtonText = () => (
+  <div>
+    <div>文本按钮</div>
+    <div>
+      <ButtonText>默认</ButtonText>
+      <ButtonText type='primary'>主色</ButtonText>
+      <ButtonText type='success'>成功</ButtonText>
+      <ButtonText type='danger'>危险</ButtonText>
+    </div>
+    <div>
+      <ButtonText disabled>默认</ButtonText>
+      <ButtonText disabled type='primary'>
+        主色
+      </ButtonText>
+      <ButtonText disabled type='success'>
+        成功
+      </ButtonText>
+      <ButtonText disabled type='danger'>
+        危险
+      </ButtonText>
+    </div>
+  </div>
 )
 
 export default {

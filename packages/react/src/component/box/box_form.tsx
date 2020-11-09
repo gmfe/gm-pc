@@ -11,6 +11,7 @@ import { Form, FormProps } from '../form'
 import { Flex } from '../flex'
 import { IconDownUp } from '../icon_down_up'
 import { getLocale } from '@gm-pc/locales'
+import { ButtonText } from '../button'
 
 interface BoxFormContext {
   open: boolean
@@ -61,13 +62,10 @@ const BoxForm: FC<BoxFormProps> = ({ btnPosition = 'left', children, ...rest }) 
           </BoxFormContext.Provider>
         </Flex>
         {hasMore && (
-          <div
-            className='gm-text-primary gm-cursor gm-text-nowrap'
-            onClick={handleToggle}
-          >
+          <ButtonText type='primary' onClick={handleToggle}>
             {open && getLocale('收起')}
             {getLocale('高级筛选')} <IconDownUp active={open} />
-          </div>
+          </ButtonText>
         )}
       </Flex>
     </div>

@@ -3,6 +3,7 @@ import { Flex } from '../flex'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
 import { FormPanelProps } from './types'
+import { ButtonText } from '../button'
 
 const FormPanelMore: FC = ({ children }) => {
   const [open, setOpen] = useState(false)
@@ -18,14 +19,11 @@ const FormPanelMore: FC = ({ children }) => {
   return (
     <>
       <div style={{ marginTop: '-10px', paddingBottom: open ? '10px' : '20px' }}>
-        <div
-          className='gm-text-primary gm-cursor gm-padding-right-0'
-          onClick={handleToggle}
-        >
+        <ButtonText type='primary' onClick={handleToggle}>
           {open ? getLocale('收起') : getLocale('展开')}
           {getLocale('更多设置')}
           <IconDownUp active={open} />
-        </div>
+        </ButtonText>
       </div>
       {open && children}
     </>

@@ -116,3 +116,36 @@
 
   .gmDisabledWith();
 }
+
+.gm-button-text {
+  &.gm-button-text-default {
+    .gmBtnTextVariants(var(--gm-color-default), var(--gm-color-default));
+  }
+
+  &.gm-button-text-primary {
+    .gmBtnTextVariants(var(--gm-color-primary), var(--gm-color-primary-active));
+  }
+
+  &.gm-button-text-success {
+    .gmBtnTextVariants(var(--gm-color-success), var(--gm-color-success-active));
+  }
+
+  &.gm-button-text-danger {
+    .gmBtnTextVariants(var(--gm-color-danger), var(--gm-color-danger-active));
+  }
+}
+
+.gmBtnTextVariants(@brand; @brandActive) {
+  display: inline-block;
+  white-space: nowrap;
+  cursor: pointer;
+  color: @brand;
+
+  &:hover:not(.disabled) {
+    color: @brandActive;
+  }
+
+  &.disabled {
+    .gmDisabled();
+  }
+}
