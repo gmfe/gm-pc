@@ -1,6 +1,7 @@
 import React, { CSSProperties, FC, useContext } from 'react'
 import { FormButtonProps } from './types'
 import FormContext from './context'
+import { Flex } from '../flex'
 
 const FormButton: FC<FormButtonProps> = ({ labelWidth, btnPosition, children }) => {
   const context = useContext(FormContext)
@@ -10,12 +11,17 @@ const FormButton: FC<FormButtonProps> = ({ labelWidth, btnPosition, children }) 
   const style: CSSProperties = {
     marginLeft: btnPosition === 'left' && !inline && labelWidth ? labelWidth : 0,
   }
-  const position = `gm-text-${btnPosition}`
 
   return (
-    <div style={style} className={position}>
-      {children}
-    </div>
+    <Flex
+      column
+      alignStart={btnPosition === 'left'}
+      alignCenter={btnPosition === 'center'}
+      alignEnd={btnPosition === 'right'}
+      style={style}
+    >
+      <div>{children}</div>
+    </Flex>
   )
 }
 

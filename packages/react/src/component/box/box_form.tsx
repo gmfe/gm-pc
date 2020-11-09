@@ -38,7 +38,7 @@ const BoxFormMore: FC = ({ children }) => {
 
 type BoxFormProps = FormProps
 
-const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
+const BoxForm: FC<BoxFormProps> = ({ btnPosition = 'left', children, ...rest }) => {
   const [hasMore, setHasMore] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -55,7 +55,7 @@ const BoxForm: FC<BoxFormProps> = ({ children, ...rest }) => {
       <Flex>
         <Flex flex column>
           <BoxFormContext.Provider value={{ open, onHasMore: handleHasMore }}>
-            <Form {...rest} inline={!open}>
+            <Form {...rest} btnPosition={btnPosition} inline={!open}>
               {children}
             </Form>
           </BoxFormContext.Provider>

@@ -50,7 +50,7 @@ export const ComBoxPagination = () => (
 export const ComBoxForm = () => (
   <div>
     <div>一定要用 FormBlock 包起来</div>
-    <BoxForm btnPosition='left'>
+    <BoxForm labelWidth='4em'>
       <FormBlock col={3}>
         <FormItem label='商品'>
           <input type='text' />
