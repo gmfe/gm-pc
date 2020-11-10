@@ -43,3 +43,38 @@
     }
   }
 }
+
+// 明亮风格的样式覆盖
+.gm-tabs-light {
+  .gm-tabs-head-fix {
+    height: 35px;
+  }
+
+  .gm-tabs-head {
+    height: 35px;
+    background: none;
+    border-bottom: none;
+
+    .gm-tabs-head-item {
+      border: none;
+      padding: 0 2.5px;
+      margin: 0 7.5px;
+      border-bottom: 2px solid transparent;
+
+      &:first-of-type {
+        margin: 0;
+        margin-right: 7.5px;
+      }
+
+      &.active {
+        color: var(--gm-color-primary);
+        border: none;
+        border-bottom: 2px solid var(--gm-color-primary);
+
+        &::after {
+          background: none;
+        }
+      }
+    }
+  }
+}

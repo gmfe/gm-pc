@@ -30,11 +30,25 @@ const tabs = [
     value: '4',
     children: <div>4</div>,
   },
+  {
+    text: '长度比较长的tabs文本',
+    value: '5',
+    children: <div>5</div>,
+  },
 ]
 
 export const ComTabs = () => (
   <Tabs
     tabs={tabs}
+    active={store.active}
+    onChange={(active) => store.setActive(active)}
+  />
+)
+
+export const LightTabs = () => (
+  <Tabs
+    tabs={tabs}
+    light
     active={store.active}
     onChange={(active) => store.setActive(active)}
   />
