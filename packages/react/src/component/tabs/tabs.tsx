@@ -15,12 +15,13 @@ interface TabsProps {
   active?: string
   onChange?(value: string): void
   keep?: boolean
+  light?: boolean
   className?: string
   style?: CSSProperties
 }
 
 const Tabs: FC<TabsProps> = (props) => {
-  const { tabs, active, defaultActive, keep, onChange, className, ...rest } = props
+  const { tabs, light, active, defaultActive, keep, onChange, className, ...rest } = props
   if (active !== undefined && defaultActive !== undefined) {
     console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
   }
@@ -57,7 +58,17 @@ const Tabs: FC<TabsProps> = (props) => {
   }
 
   return (
-    <Flex column {...rest} className={classNames('gm-tabs', className)}>
+    <Flex
+      column
+      {...rest}
+      className={classNames(
+        'gm-tabs',
+        {
+          'gm-tabs-light': light,
+        },
+        className
+      )}
+    >
       <div className='gm-tabs-head-fix'>
         <Flex alignEnd className='gm-tabs-head'>
           {_.map(tabs, (tab) => (
