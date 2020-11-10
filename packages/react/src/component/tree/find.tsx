@@ -61,9 +61,11 @@ const Find: FC<FindProps> = ({ placeholder, flatList, onFind }) => {
   }
 
   return (
-    <Flex>
+    <Flex className='gm-tree-find'>
       <Input placeholder={placeholder} onChange={handleChange} value={query} />
-      <Button onClick={handleFind}>{getLocale('定位')}</Button>
+      <Button type='primary' onClick={handleFind}>
+        {getLocale('定位')}
+      </Button>
     </Flex>
   )
 }
