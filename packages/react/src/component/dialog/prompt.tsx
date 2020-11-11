@@ -3,6 +3,7 @@ import _ from 'lodash'
 import Dialog from './dialog'
 import { PromptProps } from './types'
 import { getLocale } from '@gm-pc/locales'
+import { Input } from '../input'
 
 const prompt = (props: string | PromptProps) => {
   let p = props
@@ -44,7 +45,7 @@ const prompt = (props: string | PromptProps) => {
     const child = (
       <div>
         <div>
-          <input
+          <Input
             type='text'
             defaultValue={value}
             onChange={(e: ChangeEvent<HTMLInputElement>) => {
