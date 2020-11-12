@@ -67,7 +67,7 @@ export const ComRadio = () => (
 
 export const ComRadioGroupForGrid = () => {
   const two = _.groupBy(store.data, (v) => Math.floor((v.value - 1) / 2))
-  console.log(two)
+
   return (
     <div>
       <div>垂直布局</div>

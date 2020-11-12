@@ -1,15 +1,15 @@
 import React from 'react'
 import _ from 'lodash'
 
-interface RadioGroupContext {
+interface RadioGroupContext<V> {
   /** 用来表示 Radio 被 RadioGroup 包着 */
   isInRadioGroup: boolean
-  value?: string | number
+  value?: V
   name?: string
-  onChange: (value: string | number) => void
+  onChange: (value: V) => void
 }
 
-const RadioGroupContext = React.createContext<RadioGroupContext>({
+const RadioGroupContext = React.createContext<RadioGroupContext<any>>({
   isInRadioGroup: false,
   value: undefined,
   name: undefined,

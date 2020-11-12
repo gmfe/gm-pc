@@ -2,8 +2,8 @@ import React, { ChangeEvent, useContext, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import { CheckboxGroupContext } from './util'
 
-interface CheckboxProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
-  value?: string | number
+interface CheckboxProps<V> extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
+  value?: V
   checked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
@@ -11,7 +11,7 @@ interface CheckboxProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange
   name?: string
 }
 
-function Checkbox({
+function Checkbox<V = any>({
   value,
   checked,
   onChange,
@@ -22,7 +22,7 @@ function Checkbox({
   className,
   style,
   ...rest
-}: CheckboxProps) {
+}: CheckboxProps<V>) {
   const checkBoxGroupContext = useContext(CheckboxGroupContext)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +62,6 @@ function Checkbox({
         className='gm-checkbox-input'
         type='checkbox'
         name={oName}
-        value={value}
         checked={oChecked}
         disabled={disabled}
         onChange={handleChange}

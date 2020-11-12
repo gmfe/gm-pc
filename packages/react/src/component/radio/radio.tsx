@@ -1,16 +1,16 @@
-import React, { ChangeEvent, FC, HTMLAttributes, useContext } from 'react'
+import React, { ChangeEvent, HTMLAttributes, useContext } from 'react'
 import classNames from 'classnames'
 import { RadioGroupContext } from './util'
 
-interface RadioProps extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
-  value?: string | number
+interface RadioProps<V> extends Omit<HTMLAttributes<HTMLLabelElement>, 'onChange'> {
+  value?: V
   checked?: boolean
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   name?: string
 }
 
-const Radio: FC<RadioProps> = ({
+function Radio<V = any>({
   value,
   checked,
   onChange,
@@ -20,7 +20,7 @@ const Radio: FC<RadioProps> = ({
   disabled,
   className,
   ...rest
-}) => {
+}: RadioProps<V>) {
   const radioGroupContext = useContext(RadioGroupContext)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,10 +58,8 @@ const Radio: FC<RadioProps> = ({
         type='radio'
         className='gm-radio-input'
         name={oName}
-        value={value}
         checked={oChecked}
         disabled={disabled}
-        // eslint-disable-next-line
         onChange={handleChange}
       />
       <span className='gm-radio-span' />

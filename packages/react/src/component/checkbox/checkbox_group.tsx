@@ -1,28 +1,25 @@
-import React, { CSSProperties, FC, HTMLAttributes } from 'react'
+import React, { CSSProperties, HTMLAttributes } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { CheckboxGroupContext } from './util'
 
-type Value = string | number
-
-// @ts-ignore
-interface CheckboxGroupProps extends HTMLAttributes<HTMLDivElement> {
-  value: Value[]
-  onChange?: (value: Value[]) => void
+interface CheckboxGroupProps<V> extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  value: V[]
+  onChange?: (value: V[]) => void
   name?: string
   className?: string
   style?: CSSProperties
 }
 
-const CheckboxGroup: FC<CheckboxGroupProps> = ({
+function CheckboxGroup<V = any>({
   value,
   onChange = _.noop,
   name,
   className,
   children,
   ...rest
-}) => {
-  const handleChange = (cValue: Value): void => {
+}: CheckboxGroupProps<V>) {
+  const handleChange = (cValue: V): void => {
     if (value.includes(cValue)) {
       onChange(_.without(value, cValue))
     } else {
