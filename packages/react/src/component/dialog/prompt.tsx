@@ -5,7 +5,7 @@ import { PromptProps } from './types'
 import { getLocale } from '@gm-pc/locales'
 import { Input } from '../input'
 
-const prompt = (props: string | PromptProps) => {
+const Prompt = (props: string | PromptProps): Promise<string> => {
   let p = props
   if (!_.isObject(props)) {
     p = {
@@ -84,4 +84,4 @@ const prompt = (props: string | PromptProps) => {
   })
 }
 
-export default prompt
+export default Prompt
