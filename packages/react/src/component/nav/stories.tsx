@@ -53,6 +53,18 @@ const data = [
             link: '/merchandise/manage/tax_rate',
             name: '税率规则',
           },
+          {
+            link: '/merchandise/manage/tax_rate2',
+            name: '税率规则2',
+          },
+          {
+            link: '/merchandise/manage/tax_rate3',
+            name: '税率规则3',
+          },
+          {
+            link: '/merchandise/manage/tax_rate4',
+            name: '税率规则4',
+          },
         ],
       },
     ],

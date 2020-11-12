@@ -14,7 +14,14 @@ function isOneActive(oneSub: NavDataLevel2[], selected: string): boolean {
   })
 }
 
-const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => {
+const NavItem: FC<NavItemProps> = ({
+  data,
+  selected,
+  onSelect,
+  onMouseMove,
+  showActive,
+  showSub,
+}) => {
   const ref = useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState<DOMRect | null>(null)
 
@@ -26,6 +33,13 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
       setRect(ref.current!.getBoundingClientRect())
     }
   }, [showActive, link])
+  useEffect(() => {
+    if (showSub) {
+      setRect(ref.current!.getBoundingClientRect())
+    } else {
+      setRect(null)
+    }
+  }, [showSub])
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -39,27 +53,19 @@ const NavItem: FC<NavItemProps> = ({ data, selected, onSelect, showActive }) => 
     setRect(null)
   }
 
-  const handleMouseEnter = () => {
-    setRect(ref.current!.getBoundingClientRect())
-  }
-
-  const handleMouseLeave = () => {
-    setRect(null)
-  }
-
   let iconE = icon
   if ((rect || active) && iconActive) {
     iconE = iconActive
   }
 
   return (
-    <div
-      ref={ref}
-      className={classNames('gm-nav-one-box', { active, hover: !!rect })}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <A href={link} className='gm-nav-one' onClick={handleClick}>
+    <div ref={ref} className={classNames('gm-nav-one-box', { active, hover: !!rect })}>
+      <A
+        href={link}
+        className='gm-nav-one'
+        onClick={handleClick}
+        onMouseMove={(e) => onMouseMove(e, link)}
+      >
         <span className='gm-nav-one-icon'>{iconE}</span>
         <span className='gm-nav-one-text'>{name}</span>
       </A>
