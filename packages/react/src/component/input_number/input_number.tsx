@@ -69,7 +69,7 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
     const eValue = event.target.value
 
     // 检测是否合法输入
-    if (!checkValue(eValue, precision!)) {
+    if (!checkValue(eValue, precision!, min)) {
       return
     }
 

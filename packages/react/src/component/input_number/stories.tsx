@@ -17,6 +17,7 @@ export const ComInputNumber = () => (
       onChange={(value) => {
         store.setValue(value)
       }}
+      min={0}
     />
   </div>
 )
