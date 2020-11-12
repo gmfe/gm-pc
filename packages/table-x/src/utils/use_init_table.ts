@@ -17,9 +17,8 @@ function useInitTable(columns: TableXColumn[], data: TableXDataItem[]) {
   })
 
   let totalWidth = 0
-  if (rows[0] && rows[0].cells.length > 0) {
-    prepareRow(rows[0])
-    const last = rows[0].cells[rows[0].cells.length - 1].column
+  if (headerGroups[0] && headerGroups[0].headers) {
+    const last = headerGroups[0].headers[headerGroups[0].headers.length - 1]
     totalWidth = last.totalLeft + last.totalWidth
   }
 
