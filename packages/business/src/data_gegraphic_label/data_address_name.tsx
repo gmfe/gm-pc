@@ -8,17 +8,21 @@ const DataAddressName: FC<DataAddressNameProps> = ({
   return (
     <>
       {city_id && (
-        <MapId_City
-          id={city_id}
-          getName={(item) => item.local_name}
-          getResponseData={(response) => response.cities}
-        />
+        <>
+          <MapId_City
+            id={city_id}
+            getName={(item) => item.local_name}
+            getResponseData={(response) => response.cities}
+          />
+          /
+        </>
       )}
-      /
       {district_id && (
-        <MapId_District id={district_id} getName={(item) => item.local_name} />
+        <>
+          <MapId_District id={district_id} getName={(item) => item.local_name} />/
+        </>
       )}
-      /{street_id && <MapId_Street id={street_id} getName={(item) => item.local_name} />}
+      {street_id && <MapId_Street id={street_id} getName={(item) => item.local_name} />}
     </>
   )
 }
