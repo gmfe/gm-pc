@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from 'react'
+import { CSSProperties, ReactNode, MouseEvent } from 'react'
 
 interface NavDataLevel3 {
   link: string
@@ -39,7 +39,11 @@ interface NavItemProps {
   data: NavData
   selected: string
   onSelect(data: NavDataLevel3): void
+  /** onMouseMove 的回调 */
+  onMouseMove(event: MouseEvent, link: string): void
   showActive?: string
+  /** 控制子导航列表的显示 */
+  showSub?: boolean
 }
 
 interface PopupProps {
