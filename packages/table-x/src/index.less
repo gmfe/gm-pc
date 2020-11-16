@@ -284,6 +284,22 @@
   //}
 }
 
+// 特殊逻辑，在第一或第二个位置的 select expand 居中显示
+.gm-table-x {
+  .gm-table-x-th,
+  .gm-table-x-td {
+    &.gm-table-x-column-1,
+    &.gm-table-x-column-2 {
+      .gm-table-x-select {
+        margin-left: 5px;
+      }
+      .gm-table-x-expand {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
 /* hoc 相关 */
 .gm-table-x-select-batch-action-bar-container {
   position: relative;

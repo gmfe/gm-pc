@@ -8,10 +8,15 @@ const Th: FC<TableXThProps> = ({ column, totalWidth }) => {
 
   const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = {
     ...hp,
-    className: classNames('gm-table-x-th', hp.className, {
-      'gm-table-x-fixed-left': column.fixed === 'left',
-      'gm-table-x-fixed-right': column.fixed === 'right',
-    }),
+    className: classNames(
+      'gm-table-x-th',
+      `gm-table-x-column-${column.index}`,
+      hp.className,
+      {
+        'gm-table-x-fixed-left': column.fixed === 'left',
+        'gm-table-x-fixed-right': column.fixed === 'right',
+      }
+    ),
     style: {
       ...hp.style,
       ...getColumnStyle(column),

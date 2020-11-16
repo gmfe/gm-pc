@@ -8,7 +8,7 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
   const cp = cell.getCellProps()
   const tdProps = {
     ...cp,
-    className: classNames('gm-table-x-td', {
+    className: classNames('gm-table-x-td', `gm-table-x-column-${cell.column.index}`, {
       'gm-table-x-fixed-left': cell.column.fixed === 'left',
       'gm-table-x-fixed-right': cell.column.fixed === 'right',
     }),
