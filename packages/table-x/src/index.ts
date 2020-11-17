@@ -7,6 +7,7 @@ import {
   OperationIconTip,
   EditOperation,
   SortHeader,
+  BatchActionBar,
 } from './components'
 import { TABLE_X } from './utils'
 
@@ -21,6 +22,7 @@ export const TableXUtil = {
   OperationIconTip,
   EditOperation,
   SortHeader,
+  BatchActionBar,
 }
 
 export * from './base'

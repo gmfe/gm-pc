@@ -1,14 +1,7 @@
 import React, { FC, HTMLAttributes } from 'react'
-import classNames from 'classnames'
 
-const OperationCell: FC<HTMLAttributes<HTMLDivElement>> = ({
-  className,
-  children,
-  ...rest
-}) => (
-  <div {...rest} className={classNames('gm-text-center', className)}>
-    {children}
-  </div>
+const OperationCell: FC<HTMLAttributes<HTMLDivElement>> = ({ children, ...rest }) => (
+  <div {...rest}>{children}</div>
 )
 
 export default OperationCell

@@ -1,9 +1,9 @@
 import React, { FC, ComponentType, useState, useEffect } from 'react'
 import { TableXProps } from '../../base'
-import BatchActionBar from './bar'
+import { BatchActionBar, BatchActionBarItem } from '../../components'
 import _ from 'lodash'
 import { selectTableXHOC } from '../select_table_x'
-import { Value, BatchActionSelectTableXProps, BatchActionBarItem } from './types'
+import { Value, BatchActionSelectTableXProps } from './types'
 
 function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
