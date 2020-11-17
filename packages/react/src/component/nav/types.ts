@@ -41,7 +41,6 @@ interface NavItemProps {
   onSelect(data: NavDataLevel3): void
   /** onMouseMove 的回调 */
   onMouseMove(event: MouseEvent, link: string): void
-  showActive?: string
   /** 控制子导航列表的显示 */
   showSub?: boolean
 }

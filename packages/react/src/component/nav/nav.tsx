@@ -24,8 +24,7 @@ const Nav: FC<NavProps> = ({
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const refNav = useRef<HTMLDivElement>(null)
   // 控制菜单浮层
-  const [canShowSub, setCanShowSub] = useState(false)
-  const [hoverLink, setCanHoverLink] = useState('')
+  const [hoverLink, setCanHoverLink] = useState(showActive || '')
 
   // 每个 nav_item 的 mouseMove 的 callback
   const handleMouseMove = (event: MouseEvent, link: string) => {
@@ -48,7 +47,7 @@ const Nav: FC<NavProps> = ({
       clearTimeout(timer.current as ReturnType<typeof setTimeout>)
       const newTimer = setTimeout(() => {
         canHover.current = true
-      }, 50)
+      }, 100)
       timer.current = newTimer
     } else {
       // 左滑，不锁 hover
@@ -58,10 +57,11 @@ const Nav: FC<NavProps> = ({
   }
 
   const handleMouseLeave = () => {
-    setCanShowSub(false)
+    setCanHoverLink('')
   }
   const handleMouseEnter = () => {
-    setCanShowSub(true)
+    // 解决重新进入状态初始化问题
+    setCanHoverLink('')
   }
 
   return (
@@ -78,8 +78,7 @@ const Nav: FC<NavProps> = ({
         {data.map((one) => (
           <NavItem
             key={one.link}
-            showSub={canShowSub && hoverLink === one.link}
-            showActive={showActive}
+            showSub={hoverLink === one.link}
             onMouseMove={handleMouseMove}
             data={one}
             selected={selected}

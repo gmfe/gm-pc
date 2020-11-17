@@ -19,7 +19,6 @@ const NavItem: FC<NavItemProps> = ({
   selected,
   onSelect,
   onMouseMove,
-  showActive,
   showSub,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -28,11 +27,6 @@ const NavItem: FC<NavItemProps> = ({
   const { icon, iconActive, name, link, sub } = data
   const active = isOneActive(sub, selected)
 
-  useEffect(() => {
-    if (showActive === link) {
-      setRect(ref.current!.getBoundingClientRect())
-    }
-  }, [showActive, link])
   useEffect(() => {
     if (showSub) {
       setRect(ref.current!.getBoundingClientRect())
