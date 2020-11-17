@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/frame",
-  "version": "1.1.33",
+  "version": "1.1.34",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.7.4",
-    "@gm-pc/react": "^1.1.33",
+    "@gm-pc/react": "^1.1.34",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
   },
