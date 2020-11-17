@@ -7,7 +7,7 @@ import { generateDiyColumns, getStorageColumns } from './utils'
 import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
-import { OperationIconTip } from '../../components/operation'
+import { OperationIcon } from '../../components/operation'
 
 function diyTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
@@ -50,13 +50,9 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
                 />
               }
             >
-              <div className='gm-table-x-icon'>
-                <OperationIconTip tip={getLocale('表头设置')}>
-                  <div>
-                    <SVGSetting className='gm-cursor gm-text-hover-primary' />
-                  </div>
-                </OperationIconTip>
-              </div>
+              <OperationIcon tip={getLocale('表头设置')} style={{ marginLeft: '-5px' }}>
+                <SVGSetting />
+              </OperationIcon>
             </Popover>
           ),
         },

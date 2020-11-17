@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { Button } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import OperationCell from './cell'
-import OperationIconTip from './icon_tip'
+import OperationIcon from './icon'
 import SVGPen from '../../svg/pen.svg'
 
 interface OperationCellRowEditProps {
@@ -43,14 +43,9 @@ const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
     </OperationCell>
   ) : (
     <OperationCell>
-      <OperationIconTip tip={getLocale('编辑')}>
-        <span className='gm-padding-5'>
-          <SVGPen
-            className='gm-inline-block gm-cursor gm-text-14 gm-text gm-text-hover-primary'
-            onClick={handleClick}
-          />
-        </span>
-      </OperationIconTip>
+      <OperationIcon onClick={handleClick} tip={getLocale('编辑')}>
+        <SVGPen />
+      </OperationIcon>
       {children}
     </OperationCell>
   )
