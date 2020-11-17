@@ -7,11 +7,8 @@ import SVGPen from '../../svg/pen.svg'
 
 interface OperationCellRowEditProps {
   isEditing: boolean
-
   onClick?(): void
-
   onSave?(): void
-
   onCancel?(): void
 }
 

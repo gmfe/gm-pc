@@ -3,9 +3,15 @@ import Tooltip from './tooltip'
 
 export const ComTooltip = () => (
   <div style={{ padding: '100px' }}>
-    <Tooltip popup={<div style={{ width: '100px', height: '100px' }}>hello</div>} />
+    <Tooltip
+      popup={
+        <div style={{ width: '100px', height: '100px' }}>
+          <div>hello</div>
+        </div>
+      }
+    />
     <Tooltip popup={<div style={{ width: '100px', height: '100px' }}>hello</div>}>
-      <span>hover tip</span>
+      <span style={{ backgroundColor: 'red' }}>hover tip</span>
     </Tooltip>
     <br />
     <Tooltip right popup={<div style={{ width: '100px', height: '100px' }}>hello</div>}>

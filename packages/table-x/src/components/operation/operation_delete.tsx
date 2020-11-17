@@ -1,8 +1,7 @@
 import React, { FC, HTMLAttributes, useMemo, useRef } from 'react'
 import { Popover, PopupContentConfirm } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
-import classNames from 'classnames'
-import OperationIconTip from './icon_tip'
+import OperationIcon from './icon'
 import SVGDelete from '../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,7 +14,6 @@ const OperationDelete: FC<OperationDeleteProps> = ({
   title,
   onClick,
   read,
-  className,
   children,
   ...rest
 }) => {
@@ -47,19 +45,9 @@ const OperationDelete: FC<OperationDeleteProps> = ({
 
   return (
     <Popover popup={popup} ref={popoverRef} right showArrow>
-      <div
-        {...rest}
-        className={classNames(
-          'gm-inline-block gm-cursor gm-padding-5 gm-text-14 gm-text gm-text-hover-primary',
-          className
-        )}
-      >
-        <OperationIconTip tip={getLocale('删除')}>
-          <div>
-            <SVGDelete />
-          </div>
-        </OperationIconTip>
-      </div>
+      <OperationIcon {...rest} tip={getLocale('删除')}>
+        <SVGDelete />
+      </OperationIcon>
     </Popover>
   )
 }

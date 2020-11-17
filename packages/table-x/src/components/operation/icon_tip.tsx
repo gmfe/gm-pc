@@ -1,8 +1,15 @@
-import React, { cloneElement, FC, MouseEvent, ReactElement, useRef } from 'react'
+import React, {
+  cloneElement,
+  FC,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  useRef,
+} from 'react'
 import { Tooltip, Popover } from '@gm-pc/react'
 
 interface OperationIconTipProps {
-  tip: string
+  tip: ReactNode
 }
 
 const OperationIconTip: FC<OperationIconTipProps> = ({ tip, children }) => {

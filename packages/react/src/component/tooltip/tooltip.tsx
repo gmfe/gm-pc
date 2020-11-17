@@ -8,18 +8,22 @@ interface TooltipProps extends HTMLAttributes<HTMLSpanElement> {
   right?: boolean
   top?: boolean
   center?: boolean
+  offset?: number
   showArrow?: boolean
 }
 
 const Tooltip = forwardRef<Popover, TooltipProps>(
-  ({ popup, children, right, top, center, showArrow, className, ...rest }, ref) => (
+  (
+    { popup, children, right, top, center, offset, showArrow, className, ...rest },
+    ref
+  ) => (
     <Popover
       popup={popup}
       ref={ref}
       top={top}
       type='hover'
       right={right}
-      offset={-8}
+      offset={offset}
       center={center}
       showArrow={showArrow}
     >

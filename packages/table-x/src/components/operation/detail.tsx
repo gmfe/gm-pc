@@ -1,7 +1,6 @@
 import React, { FC, HTMLAttributes, MouseEvent } from 'react'
-import classNames from 'classnames'
 import { getLocale } from '@gm-pc/locales'
-import OperationIconTip from './icon_tip'
+import OperationIcon from './icon'
 import SVGCheckDetail from '../../svg/check-detail.svg'
 
 interface OperationDetailProps extends HTMLAttributes<HTMLDivElement> {
@@ -9,7 +8,7 @@ interface OperationDetailProps extends HTMLAttributes<HTMLDivElement> {
   open?: boolean
 }
 
-const OperationDetail: FC<OperationDetailProps> = ({ href, open, onClick, className, ...rest }) => {
+const OperationDetail: FC<OperationDetailProps> = ({ href, open, onClick, ...rest }) => {
   const handleClick = (event: MouseEvent<HTMLDivElement>): void => {
     onClick && onClick(event)
     if (href) {
@@ -22,20 +21,9 @@ const OperationDetail: FC<OperationDetailProps> = ({ href, open, onClick, classN
   }
 
   return (
-    <div
-      {...rest}
-      onClick={handleClick}
-      className={classNames(
-        'gm-inline-block gm-cursor gm-padding-5 gm-text-14 gm-text gm-text-hover-primary',
-        className
-      )}
-    >
-      <OperationIconTip tip={getLocale('详情')}>
-        <div>
-          <SVGCheckDetail />
-        </div>
-      </OperationIconTip>
-    </div>
+    <OperationIcon {...rest} onClick={handleClick} tip={getLocale('详情')}>
+      <SVGCheckDetail />
+    </OperationIcon>
   )
 }
 

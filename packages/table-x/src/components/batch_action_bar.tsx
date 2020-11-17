@@ -7,12 +7,13 @@ import classNames from 'classnames'
 interface BatchActionBarItem {
   children: string | ReactNode
   onClick(event: MouseEvent): void
-  getDisabled?(selected: any[], isSelectAll: boolean): boolean
+  /** pure 的时候 isSelectAll 不传 */
+  getDisabled?(selected: any[], isSelectAll?: boolean): boolean
 }
 
 interface BatchActionBarProps {
-  /** 是否选中所有页 */
-  isSelectAll: boolean
+  /** 是否选中所有页，pure 的时候不用传 */
+  isSelectAll?: boolean
   selected: any[]
   /** 选中多少项 */
   count: number
