@@ -31,10 +31,7 @@ const OperationIcon: FC<OperationIconProps> = ({
       <div
         {...rest}
         onClick={handleClick}
-        className={classNames(
-          'gm-inline-block gm-cursor gm-padding-5 gm-text-14 gm-text gm-text-hover-primary',
-          className
-        )}
+        className={classNames('gm-table-x-operation-icon', className)}
       >
         {children}
       </div>

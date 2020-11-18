@@ -218,6 +218,21 @@
         border-left: 1px solid var(--gm-color-border-special) !important;
       }
     }
+
+    .gm-table-x-operation-icon {
+      display: inline-block;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--gm-color-default);
+
+      &:hover {
+        color: var(--gm-color-primary);
+      }
+
+      & + .gm-table-x-operation-icon {
+        margin-left: 10px;
+      }
+    }
   }
 
   &.gm-table-x-empty {
