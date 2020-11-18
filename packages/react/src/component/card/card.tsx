@@ -20,7 +20,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   labelType?: LabelType
   labelText?: string
   topLabelText?: string
-  disabled?: boolean
+  inactive?: boolean
   onClick?(...args: any[]): any
   /** 右上角功能定义 */
   actions?: CardActions[]
@@ -34,7 +34,7 @@ const Card: FC<CardProps> = ({
   labelText,
   topLabelText,
   children,
-  disabled,
+  inactive,
   onClick,
   ...rest
 }) => {
@@ -47,15 +47,11 @@ const Card: FC<CardProps> = ({
   }
 
   return (
-    <div
-      {...rest}
-      className={classNames('gm-card', { 'gm-card-disabled': disabled }, className)}
-      onClick={disabled ? () => {} : onClick}
-    >
+    <div {...rest} className={classNames('gm-card', className)} onClick={onClick}>
       <div
         className={classNames('gm-card-header', {
           'gm-padding-top-15': !topLabelText,
-          'gm-card-header-disabled': disabled,
+          'gm-card-header-inactive': inactive,
         })}
         style={{ height: !topLabelText ? '50px' : '65px' }}
       >

@@ -8,7 +8,7 @@
     border-bottom: solid 1px var(--gm-color-border);
     background-color: var(--gm-color-bg-back);
     padding: 0px 10px;
-    font-size: 16px;
+    font-size: 14px;
     position: relative;
 
     .gm-card-header-title {
@@ -25,21 +25,16 @@
     }
   }
 
-  .gm-card-header-disabled {
-    background-color: var(--gm-color-bg-back);
-    opacity: 0.5 !important;
-    color: var(--gm-color-disabled) !important;
-
+  .gm-card-header-inactive {
     .gm-card-label {
-      background-color: var(--gm-color-border);
+      background-color: var(--gm-color-bg-inactive);
       color: var(--gm-color-default);
     }
 
     .gm-card-label-content {
-
       .gm-card-label-right,
       .gm-card-label-left {
-        background-color: var(--gm-color-border);
+        background-color: var(--gm-color-bg-inactive);
       }
     }
   }
@@ -96,10 +91,11 @@
       border-color: var(--gm-color-border-primary);
       background-color: var(--gm-color-bg-primary-light);
       color: var(--gm-color-primary);
+
+    }
+    .gm-card-header-inactive {
+      color: var(--gm-color-default);
+      background-color: var(--gm-color-bg-back);
     }
   }
-}
-
-.gm-card-disabled {
-  cursor: not-allowed !important;
 }
