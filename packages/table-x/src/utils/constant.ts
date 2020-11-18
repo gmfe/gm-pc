@@ -8,6 +8,7 @@ const TABLE_X = {
   WIDTH_FUN: 40,
   // 序号
   WIDTH_NO: 56,
+  WIDTH_EDIT_OPERATION: 75,
   // 操作区
   WIDTH_OPERATION: 110,
   // MoreSelect 类似

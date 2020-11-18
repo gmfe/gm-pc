@@ -136,7 +136,7 @@ export const ComKeyboard = () => {
         Header: OperationHeader,
         id: 'operation',
         fixed: 'left',
-        width: TABLE_X.WIDTH_OPERATION,
+        width: TABLE_X.WIDTH_EDIT_OPERATION,
         Cell: (cellProps: { row: { index: number } }) => {
           const { index } = cellProps.row
           return (
@@ -182,6 +182,7 @@ export const ComKeyboard = () => {
         Header: '区域',
         id: 'area',
         width: 200,
+        show: false,
         isKeyboard: true,
         Cell: ({ row: { original, index } }) => {
           return (
