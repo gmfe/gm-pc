@@ -47,7 +47,11 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
     const { columnKeys, newColumns } = useMemo(() => {
       const columnKeys: string[] = []
       const newColumns = columns.map((column: KeyboardTableXColumn) => {
-        if (!column.isKeyboard && column.show !== false) return column
+        // 非全键盘有效列
+        if (!(column.isKeyboard && column.show !== false)) {
+          return column
+        }
+
         const columnKey: string = getColumnKey(column) as string
         columnKeys.push(columnKey)
 

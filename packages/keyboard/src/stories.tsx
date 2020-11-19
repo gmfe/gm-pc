@@ -182,7 +182,6 @@ export const ComKeyboard = () => {
         Header: '区域',
         id: 'area',
         width: 200,
-        show: false,
         isKeyboard: true,
         Cell: ({ row: { original, index } }) => {
           return (
