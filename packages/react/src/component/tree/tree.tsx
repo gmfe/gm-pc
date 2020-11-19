@@ -10,7 +10,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import { Flex } from '../flex'
-import filterGroupListLeaf from '../../common/utils/filter_group_list_leaf'
+import { filterGroupListLeaf } from '@gm-common/tool'
 import { AutoFull } from '../auto_full'
 import {
   getLeafValues,

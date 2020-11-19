@@ -9,20 +9,20 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@gm-common/hooks@^2.7.4":
-  version "2.7.4"
-  resolved "https://registry.npm.taobao.org/@gm-common/hooks/download/@gm-common/hooks-2.7.4.tgz#f682f311e1c27e5e591a5e817bc19d03e3f015a2"
-  integrity sha1-9oLzEeHCfl5ZGl6Be8GdA+PwFaI=
+"@gm-common/hooks@^2.8.9":
+  version "2.8.9"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.8.9.tgz#d582fbc5c7dfb21f3d016a321f93b1fce867c85c"
+  integrity sha512-+MurQpH36nv10o7+g/UQF7DPkzoJwiv+3GiTiHylc6hYRgPnEim1GxSIPc5ir8bSQYbp+6IVKyUi32qmSWQGug==
   dependencies:
-    "@gm-common/tool" "^2.7.4"
-    ts-config-gm-react-app "^3.0.6"
+    "@gm-common/tool" "^2.8.9"
+    ts-config-gm-react-app "^3.4.5"
 
-"@gm-common/tool@^2.7.4":
-  version "2.7.4"
-  resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
-  integrity sha1-B9uKqrOQ8Axnk4FrIM/evJTc0Bc=
+"@gm-common/tool@^2.8.9":
+  version "2.8.9"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.8.9.tgz#81317cb81f3095625753c31c03a787195e39cbff"
+  integrity sha512-7A6bcTI+nRfB6MsLEJiNIpbLeqXnIz0vmvJzKHn79wtbVGR5p0GeOyzsYV5tBu1i96gMKG04siR3n3Vy39X1Sg==
   dependencies:
-    lodash "^4.17.19"
+    lodash "^4.17.20"
 
 big.js@^6.0.1:
   version "6.0.1"
@@ -39,10 +39,10 @@ classnames@^2.2.5:
   resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
 
-lodash@^4.17.19:
+lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597335994883&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
 loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
@@ -125,7 +125,7 @@ scheduler@^0.19.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-ts-config-gm-react-app@^3.0.6:
-  version "3.4.5"
-  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.4.5.tgz#082a267f788f7cf5b9abf4c95c4ec2c497c6884e"
-  integrity sha1-CComf3iPfPW5q/TJXE7CxJfGiE4=
+ts-config-gm-react-app@^3.4.5:
+  version "3.4.7"
+  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.4.7.tgz#51decbf847c991ae8e3bd950f3f84cfb0523ba4b"
+  integrity sha512-1XOMmAIEiUr2R0JTasF30zj5ZRZgVTOx/ycZJOh2xusQCYC4n1/wGbXfEzm8Dzhv2YSWHEWPVHpytAM3mYsu9Q==

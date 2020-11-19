@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@gm-common/tool@^2.7.4":
-  version "2.7.4"
-  resolved "https://registry.npm.taobao.org/@gm-common/tool/download/@gm-common/tool-2.7.4.tgz#07db8aaab390f00c6793816b20cfdebc94dcd017"
-  integrity sha1-B9uKqrOQ8Axnk4FrIM/evJTc0Bc=
+"@gm-common/tool@^2.8.9":
+  version "2.8.9"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.8.9.tgz#81317cb81f3095625753c31c03a787195e39cbff"
+  integrity sha512-7A6bcTI+nRfB6MsLEJiNIpbLeqXnIz0vmvJzKHn79wtbVGR5p0GeOyzsYV5tBu1i96gMKG04siR3n3Vy39X1Sg==
   dependencies:
-    lodash "^4.17.19"
+    lodash "^4.17.20"
 
-lodash@^4.17.19:
+lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.20.tgz?cache=0&sync_timestamp=1597335994883&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
-  integrity sha1-tEqbYpe8tpjxxRo1RaKzs2jVnFI=
+  resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
 sortablejs@^1.12.0:
   version "1.12.0"

@@ -9,6 +9,7 @@ import {
 import { PagingMaxLimit } from 'gm_api'
 import _ from 'lodash'
 import { ListSkuResponse_SkuInfo } from 'gm_api/src/merchandise/types'
+import { filterGroupListLeaf } from '@gm-common/tool'
 
 interface CategoryItem {
   value: string
@@ -100,7 +101,8 @@ async function getCategoryTree(params?: {
     })
   }
 
-  return tree
+  // 过滤掉没有子的数据
+  return filterGroupListLeaf(tree as any, () => true)
 }
 
 export { getCategoryTree }

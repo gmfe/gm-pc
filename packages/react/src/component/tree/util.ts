@@ -1,6 +1,5 @@
 import _ from 'lodash'
-import { pinYinFilter } from '@gm-common/tool'
-import filterGroupList from '../../common/utils/filter_group_list'
+import { pinYinFilter, filterGroupList } from '@gm-common/tool'
 import {
   TreeListItem,
   TreeWithFilter,
