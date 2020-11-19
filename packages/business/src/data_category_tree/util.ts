@@ -102,7 +102,7 @@ async function getCategoryTree(params?: {
   }
 
   // 过滤掉没有子的数据
-  return filterGroupListLeaf(tree as any, () => true)
+  return filterGroupListLeaf(tree as any, () => true) as CategoryItem[]
 }
 
 export { getCategoryTree }
