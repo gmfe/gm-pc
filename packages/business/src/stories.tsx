@@ -10,7 +10,7 @@ export const ComLogin = () => {
           Token({
             grant_type: 'password',
             username: 'admin',
-            group_id: '326311583942705176',
+            group_id: '328775773546610712',
             password: sha256('123456').toString(),
             client_id: '1',
           })

@@ -33,6 +33,7 @@ export const ComDataCategoryTreeNeedSku = () => {
         console.log('onLeafActiveValue', value, item)
       }}
       findPlaceholder='输入sku名称'
+      skuParams={{ process: 1, sku_type: 2 }}
     />
   )
 }

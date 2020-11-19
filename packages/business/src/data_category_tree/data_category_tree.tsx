@@ -10,7 +10,7 @@ interface DataCategoryTreeProps {
   style?: CSSProperties
   border?: boolean
   needSku?: boolean
-  skuParams?: ListSkuRequest
+  skuParams?: Omit<ListSkuRequest, 'paging'>
   onReady?(data?: CategoryItem[]): void
   activeValue?: any
   findPlaceholder?: string
