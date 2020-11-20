@@ -93,6 +93,13 @@ export const ComTableXChild = () => {
         keyField: 'id',
         columns: [
           {
+            Header: '子序号',
+            id: 'index',
+            Cell: (cellProps: { row: { index: number } }, row) => {
+              return `${row.index + 1} - ${cellProps.row.index + 1}`
+            },
+          },
+          {
             Header: 'ID',
             accessor: 'id',
           },
