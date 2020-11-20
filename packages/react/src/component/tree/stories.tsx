@@ -148,6 +148,21 @@ export const ComTree = () => (
   </Flex>
 )
 
+export const ComTreeBorder = () => (
+  <Flex>
+    <div style={{ height: '500px', width: '300px', padding: '10px' }}>
+      <Tree
+        // border={false}
+        // withFilter={false}
+        showFind
+        list={treeData}
+        selectedValues={store.selectedValues.slice()}
+        onSelectValues={(values) => store.setSelectedValues(values)}
+      />
+    </div>
+  </Flex>
+)
+
 export const ComTreeWithFindFilter = () => {
   return (
     <div style={{ height: '500px', width: '300px' }}>
