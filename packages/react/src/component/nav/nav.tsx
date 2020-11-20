@@ -85,7 +85,6 @@ const Nav: FC<NavProps> = ({
             onSelect={onSelect}
           />
         ))}
-        <div style={{ height: '100px' }} />
         {other}
       </Flex>
       <div id='gmNavPopupContainer' />
