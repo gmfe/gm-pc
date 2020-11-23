@@ -10,6 +10,7 @@ interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
   tip?: string
   /** 阅读提示, type delete 用 */
   read?: boolean | string
+  disabled?: boolean
 }
 
 const OperationDelete: FC<OperationDeleteProps> = ({
@@ -17,6 +18,7 @@ const OperationDelete: FC<OperationDeleteProps> = ({
   onClick,
   tip = getLocale('删除'),
   read,
+  disabled,
   children,
   ...rest
 }) => {
@@ -48,7 +50,7 @@ const OperationDelete: FC<OperationDeleteProps> = ({
 
   return (
     <Popover popup={popup} ref={popoverRef} right showArrow>
-      <OperationIcon {...rest} tip={tip}>
+      <OperationIcon {...rest} tip={tip} disabled={disabled}>
         <SVGDelete />
       </OperationIcon>
     </Popover>

@@ -7,16 +7,22 @@ interface OperationDetailProps extends HTMLAttributes<HTMLDivElement> {
   href?: string
   open?: boolean
   tip?: string
+  disabled?: boolean
 }
 
 const OperationDetail: FC<OperationDetailProps> = ({
   href,
   open,
   tip = getLocale('详情'),
+  disabled,
   onClick,
   ...rest
 }) => {
   const handleClick = (event: MouseEvent<HTMLDivElement>): void => {
+    if (disabled) {
+      return
+    }
+
     onClick && onClick(event)
     if (href) {
       if (open) {
@@ -28,7 +34,7 @@ const OperationDetail: FC<OperationDetailProps> = ({
   }
 
   return (
-    <OperationIcon {...rest} onClick={handleClick} tip={tip}>
+    <OperationIcon {...rest} onClick={handleClick} tip={tip} disabled={disabled}>
       <SVGCheckDetail />
     </OperationIcon>
   )

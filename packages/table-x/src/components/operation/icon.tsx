@@ -4,10 +4,12 @@ import { Popover, Tooltip } from '@gm-pc/react'
 
 interface OperationIconProps extends HTMLAttributes<HTMLDivElement> {
   tip?: ReactNode
+  disabled?: boolean
 }
 
 const OperationIcon: FC<OperationIconProps> = ({
   tip,
+  disabled,
   onClick,
   children,
   className,
@@ -30,8 +32,16 @@ const OperationIcon: FC<OperationIconProps> = ({
     >
       <div
         {...rest}
+        // @ts-ignore
+        disabled={disabled}
         onClick={handleClick}
-        className={classNames('gm-table-x-operation-icon', className)}
+        className={classNames(
+          'gm-table-x-operation-icon',
+          {
+            disabled,
+          },
+          className
+        )}
       >
         {children}
       </div>
