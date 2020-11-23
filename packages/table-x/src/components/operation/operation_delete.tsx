@@ -5,7 +5,9 @@ import OperationIcon from './icon'
 import SVGDelete from '../../svg/delete.svg'
 
 interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
+  title?: string
   onClick(): void
+  tip?: string
   /** 阅读提示, type delete 用 */
   read?: boolean | string
 }
@@ -13,6 +15,7 @@ interface OperationDeleteProps extends HTMLAttributes<HTMLDivElement> {
 const OperationDelete: FC<OperationDeleteProps> = ({
   title,
   onClick,
+  tip = getLocale('删除'),
   read,
   children,
   ...rest
@@ -45,7 +48,7 @@ const OperationDelete: FC<OperationDeleteProps> = ({
 
   return (
     <Popover popup={popup} ref={popoverRef} right showArrow>
-      <OperationIcon {...rest} tip={getLocale('删除')}>
+      <OperationIcon {...rest} tip={tip}>
         <SVGDelete />
       </OperationIcon>
     </Popover>
