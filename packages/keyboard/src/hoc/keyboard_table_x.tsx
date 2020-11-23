@@ -28,7 +28,6 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
     // 用 isKeyboard 也必要会用到了 Cell
     devWarnForHook(() => {
       columns.forEach((column: KeyboardTableXColumn) => {
-        console.log(column)
         if (column.isKeyboard && column.show !== false) {
           if (getColumnKey(column) === null) {
             console.error('column need accessor or id', column)

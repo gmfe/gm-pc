@@ -60,7 +60,7 @@ function getTable(dom: HTMLElement) {
   let parentNode = dom.parentNode as HTMLElement
   while (
     !(
-      parentNode.classList.contains('rt-table') ||
+      parentNode.classList.contains('gm-table-x') ||
       parentNode.classList.contains('gm-table-x-virtualized')
     )
   ) {

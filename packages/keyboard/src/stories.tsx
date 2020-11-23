@@ -198,6 +198,7 @@ export const ComKeyboard = () => {
       {
         Header: '名字',
         id: 'name',
+        width: 200,
         isKeyboard: true,
         Cell: (cellProps: any) => {
           const {
@@ -217,6 +218,7 @@ export const ComKeyboard = () => {
       {
         Header: '年龄',
         id: 'age',
+        width: 200,
         isKeyboard: true,
         Cell: (cellProps: any) => {
           const {
@@ -236,6 +238,7 @@ export const ComKeyboard = () => {
       {
         Header: '日期',
         id: 'date',
+        width: 200,
         isKeyboard: true,
         Cell: (cellProps: any) => {
           const {
@@ -255,6 +258,7 @@ export const ComKeyboard = () => {
       {
         Header: '状态',
         id: 'status',
+        width: 200,
         isKeyboard: true,
         Cell: (cellProps: any) => {
           const {
@@ -293,6 +297,7 @@ export const ComKeyboard = () => {
         onSelect={(selected: number[]) => {
           store.setSelected(selected)
         }}
+        fixedSelect
       />
     </div>
   )
