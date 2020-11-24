@@ -10,6 +10,7 @@ interface OperationCellRowEditProps {
   onClick?(): void
   onSave?(): void
   onCancel?(): void
+  disabled?: boolean
 }
 
 const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
@@ -18,8 +19,10 @@ const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
   onClick,
   onSave,
   onCancel,
+  disabled,
 }) => {
   const handleClick = (): void => {
+    if (disabled) return
     onClick && onClick()
   }
 
@@ -43,7 +46,7 @@ const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
     </OperationCell>
   ) : (
     <OperationCell>
-      <OperationIcon onClick={handleClick} tip={getLocale('编辑')}>
+      <OperationIcon onClick={handleClick} tip={getLocale('编辑')} disabled={disabled}>
         <SVGPen />
       </OperationIcon>
       {children}
