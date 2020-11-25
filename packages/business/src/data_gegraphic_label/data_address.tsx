@@ -10,6 +10,7 @@ const DataAddress: FC<DataAddressProps> = ({
   onSelect,
   city_ids,
   onlySelectLeaf,
+  placeholder,
 }) => {
   const { data } = useAsync(fetchCityDistrictStreetTree, {
     manual: false,
@@ -33,6 +34,7 @@ const DataAddress: FC<DataAddressProps> = ({
 
   return (
     <LevelSelect
+      placeholder={placeholder}
       data={data || []}
       selected={data ? oSelected : []}
       onSelect={handleSelect}

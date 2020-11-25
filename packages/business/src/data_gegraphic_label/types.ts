@@ -27,6 +27,7 @@ interface DataAddressProps {
   selected: DataAddress
   onSelect(selected: DataAddress): void
   onlySelectLeaf?: boolean
+  placeholder?: string
 }
 
 interface DataAddressNameProps {
