@@ -12,10 +12,17 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   title = getLocale('提示'),
   size = 'sm',
   buttons,
+  onHide = () => Dialog.hide(),
   children,
 }) => {
   return (
-    <Modal title={title} size={size} className='gm-dialog' disableMaskClose>
+    <Modal
+      title={title}
+      size={size}
+      className='gm-dialog'
+      disableMaskClose
+      onHide={onHide}
+    >
       <div>{children}</div>
       {buttons && (
         <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>

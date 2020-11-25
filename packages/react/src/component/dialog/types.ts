@@ -16,10 +16,12 @@ interface DialogProps {
   title?: string
   size?: DialogSize
   buttons?: DialogButtonProps[]
+  /** 如果不提供，自动调用关闭 */
+  onHide?(): void
   children: ReactNode
 }
 
-type SpecificDialogProps = Omit<DialogProps, 'buttons'>
+type SpecificDialogProps = Omit<DialogProps, 'buttons' | 'onHide'>
 
 interface DialogStatic {
   render(props: DialogProps): void
