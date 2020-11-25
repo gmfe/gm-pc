@@ -1,7 +1,7 @@
-import React, { CSSProperties, FC } from 'react'
+import React, { FC } from 'react'
 import { Flex } from '@gm-pc/react'
 
-const Mask: FC<{ style?: CSSProperties }> = ({ style, children }) => {
+const Mask: FC = ({ children }) => {
   return (
     <Flex
       column
@@ -14,7 +14,7 @@ const Mask: FC<{ style?: CSSProperties }> = ({ style, children }) => {
         left: 0,
         right: 0,
         marginTop: '46px',
-        ...style,
+        backgroundColor: 'rgba(255,255,255,0.8)',
       }}
     >
       {children}

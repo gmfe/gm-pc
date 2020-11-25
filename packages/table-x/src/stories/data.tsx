@@ -89,19 +89,29 @@ const columns = [
     Cell: (cellProps: any) => cellProps.row.index + 1,
     width: 100,
   },
-  { Header: '建单时间', show: false, accessor: 'submitTime' },
+  { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
   { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
   {
     Header: '供应商信息',
+    width: 500,
+    minWidth: 500,
     accessor: (data: any) => data.supplierName,
     id: 'supplierName',
   },
   {
     Header: '入库金额',
     accessor: 'totalMoney',
+    minWidth: 500,
     Cell: (cellProps: any) => {
       return <div>{cellProps.row.original.totalMoney}</div>
     },
+  },
+  {
+    id: 'operation',
+    Header: <OperationHeader />,
+    width: TABLE_X.WIDTH_OPERATION,
+    fixed: 'right',
+    Cell: () => <div>asfas</div>,
   },
 ]
 

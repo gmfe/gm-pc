@@ -6,7 +6,7 @@ import SVGEmpty from '../svg/empty.svg'
 const Empty: FC = () => (
   <Mask>
     <div className='gm-padding-10 gm-flex gm-flex-column gm-flex-align-center'>
-      <SVGEmpty style={{ width: '70px', height: '70px' }} />
+      <SVGEmpty style={{ width: '50px', height: '50px' }} />
       <div className='gm-text-desc'>{getLocale('没有数据了')}</div>
     </div>
   </Mask>
