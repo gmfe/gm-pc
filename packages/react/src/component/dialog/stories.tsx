@@ -94,6 +94,23 @@ export const ComConfirm = () => {
       >
         confirm okBtnText cancelBtnText
       </button>
+      <button
+        onClick={() => {
+          Confirm({
+            children: '这是Confirm',
+            read: true,
+          }).then(
+            () => {
+              return console.log('ok')
+            },
+            () => {
+              console.log('cancel')
+            }
+          )
+        }}
+      >
+        confirm read
+      </button>
     </div>
   )
 }

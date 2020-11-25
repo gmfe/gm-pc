@@ -34,8 +34,12 @@ interface AlertProps extends SpecificDialogProps {
 
 interface ConfirmProps extends SpecificDialogProps {
   okBtnText?: string
+  okBtnType?: ButtonType
   cancelBtnText?: string
+  /** prompt 用 */
   onValidate?: (value: string) => boolean | void
+  /** 阅读提示 */
+  read?: boolean | string
 }
 
 interface PromptProps extends ConfirmProps {
