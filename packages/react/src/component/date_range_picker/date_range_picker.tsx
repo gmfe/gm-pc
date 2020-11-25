@@ -28,6 +28,10 @@ class DateRangePicker extends Component<DateRangePickerProps> {
 
   private _handleOk = (begin: Date, end: Date): void => {
     this._popoverRef.current!.apiDoSetActive()
+    // 选择天时，做当天数据转换
+    if (!this.props.enabledTimeSelect && begin) {
+      end = moment(end).endOf('day').toDate()
+    }
     const { onChange } = this.props
     onChange && onChange(begin, end)
   }
@@ -36,7 +40,7 @@ class DateRangePicker extends Component<DateRangePickerProps> {
     this._popoverRef.current!.apiDoSetActive()
   }
 
-  private _handleSelect = (selected: null): void => {
+  private _handleSelect = (selected: any): void => {
     const { onChange } = this.props
     onChange && onChange(selected, selected)
   }
