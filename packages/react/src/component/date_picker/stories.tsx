@@ -5,8 +5,9 @@ import { observable } from 'mobx'
 import DatePicker from './date_picker'
 
 const datePickerStatus = {
-  date: null,
+  date: new Date('2020-11-15 23:32:22'),
   setDate(date: Date | null) {
+    console.log('selected date', date)
     this.date = date as any
   },
 }

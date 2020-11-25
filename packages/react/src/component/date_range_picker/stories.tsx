@@ -10,6 +10,8 @@ const store = observable({
   begin: new Date(),
   end: new Date(),
   changeDate(begin: Date | null, end: Date | null) {
+    console.log('begin: ', begin)
+    console.log('end: ', end)
     this.begin = begin as any
     this.end = end as any
   },
@@ -32,6 +34,8 @@ const store3 = observable({
   begin: moment().hour(14).minute(0).toDate(),
   end: moment().hour(18).minute(0).toDate(),
   changeDate(begin: Date | null, end: Date | null) {
+    console.log('begin: ', begin)
+    console.log('end: ', end)
     this.begin = begin as any
     this.end = end as any
   },
