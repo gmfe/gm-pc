@@ -91,6 +91,11 @@ const Card: FC<CardProps> = ({
           })}
           alignCenter
         >
+          {labelText && (
+            <Label className='gm-margin-right-5' type={labelType || 'default'}>
+              {labelText}
+            </Label>
+          )}
           <Popover
             right
             showArrow
@@ -104,11 +109,6 @@ const Card: FC<CardProps> = ({
           >
             <div className='gm-card-header-title'>{title || '-'}</div>
           </Popover>
-          {labelText && (
-            <Label className='gm-margin-lr-10' type={labelType}>
-              {labelText}
-            </Label>
-          )}
         </Flex>
       </div>
       <div className='gm-card-content'>{children}</div>
