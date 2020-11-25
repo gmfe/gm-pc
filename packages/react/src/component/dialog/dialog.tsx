@@ -15,7 +15,7 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   children,
 }) => {
   return (
-    <Modal title={title} size={size} className='gm-dialog' disableMaskClose noCloseBtn>
+    <Modal title={title} size={size} className='gm-dialog' disableMaskClose>
       <div>{children}</div>
       {buttons && (
         <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>
