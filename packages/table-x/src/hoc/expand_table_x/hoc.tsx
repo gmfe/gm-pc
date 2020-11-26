@@ -1,6 +1,5 @@
 import React, { ComponentType, FC, useMemo, useState } from 'react'
 import _ from 'lodash'
-import { CellProps } from 'react-table'
 import { TableXColumn, TableXProps } from '../../base'
 import ExpandTableXContext from './context'
 import { ExpandTableXProps } from './types'
@@ -9,7 +8,11 @@ import ExpandHeader from './header'
 import ExpandCell from './cell'
 import { TableXRow } from '../../base/types'
 
-function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXColumn[] {
+function getNewColumns(
+  columns: TableXColumn[],
+  fixedExpand: boolean,
+  isExpandCellHidden: any
+): TableXColumn[] {
   return [
     {
       id: TABLE_X_EXPAND_ID,
@@ -17,7 +20,15 @@ function getNewColumns(columns: TableXColumn[], fixedExpand: boolean): TableXCol
       maxWidth: TABLE_X.WIDTH_FUN,
       fixed: fixedExpand ? 'left' : undefined,
       Header: () => <ExpandHeader />,
-      Cell: ({ row }: CellProps<any>) => <ExpandCell row={row} />,
+      Cell: (cellProps) => {
+        if (isExpandCellHidden) {
+          if (isExpandCellHidden(cellProps) === false) {
+            return null
+          }
+        }
+
+        return <ExpandCell row={cellProps.row} />
+      },
     },
     ...columns,
   ]
@@ -36,6 +47,7 @@ function expandTableXHOC<Props extends TableXProps = TableXProps>(
       fixedExpand,
       expanded: expandedFromProps,
       onExpand,
+      isExpandCellHidden,
       ...rest
     } = props
 
@@ -70,8 +82,8 @@ function expandTableXHOC<Props extends TableXProps = TableXProps>(
     }
 
     const newColumns = useMemo(() => {
-      return getNewColumns(columns, !!fixedExpand)
-    }, [columns, fixedExpand])
+      return getNewColumns(columns, !!fixedExpand, isExpandCellHidden)
+    }, [columns, fixedExpand, isExpandCellHidden])
 
     return (
       <ExpandTableXContext.Provider

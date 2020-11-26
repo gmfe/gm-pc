@@ -3,6 +3,8 @@ interface ExpandTableXProps {
   expanded?: { [key: number]: boolean }
   onExpand?(expanded: { [key: number]: boolean }): void
   fixedExpand?: boolean
+  // TODO any
+  isExpandCellHidden?(cellProps: any): boolean
 }
 
 export type { ExpandTableXProps }

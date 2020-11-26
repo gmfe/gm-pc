@@ -20,6 +20,13 @@ export const ComExpandTableX = () => (
       expanded={store.expanded}
       onExpand={(expanded) => store.setExpanded(expanded)}
       SubComponent={() => <div style={{ height: '50px' }}>展开内容</div>}
+      isExpandCellHidden={(cellProps) => {
+        if (cellProps.row.index === 2) {
+          return false
+        }
+
+        return true
+      }}
     />
     <div>fixedExpand</div>
     <ExpandTableX
