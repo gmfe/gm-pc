@@ -47,6 +47,7 @@ function expandTableXHOC<Props extends TableXProps = TableXProps>(
       fixedExpand,
       expanded: expandedFromProps,
       onExpand,
+      hideExpandColumn,
       isExpandCellHidden,
       ...rest
     } = props
@@ -82,8 +83,11 @@ function expandTableXHOC<Props extends TableXProps = TableXProps>(
     }
 
     const newColumns = useMemo(() => {
+      if (hideExpandColumn) {
+        return columns
+      }
       return getNewColumns(columns, !!fixedExpand, isExpandCellHidden)
-    }, [columns, fixedExpand, isExpandCellHidden])
+    }, [columns, fixedExpand, hideExpandColumn, isExpandCellHidden])
 
     return (
       <ExpandTableXContext.Provider

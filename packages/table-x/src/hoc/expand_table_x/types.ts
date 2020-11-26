@@ -3,7 +3,10 @@ interface ExpandTableXProps {
   expanded?: { [key: number]: boolean }
   onExpand?(expanded: { [key: number]: boolean }): void
   fixedExpand?: boolean
+  /** 隐藏展开列，此时最好 expanded 展开 */
+  hideExpandColumn?: boolean
   // TODO any
+  /** 某列的 expand 不显示 */
   isExpandCellHidden?(cellProps: any): boolean
 }
 
