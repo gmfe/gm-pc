@@ -3,11 +3,20 @@ import Label from './index'
 
 export const ComLabel = () => {
   return (
-    <div>
-      <Label>标签</Label>
-      <Label type='primary'>标签</Label>
-      <Label type='success'>标签</Label>
-      <Label type='danger'>标签</Label>
+    <div className='gm-padding-10'>
+      <Label className='gm-margin-lr-5'>标签</Label>
+      <Label type='primary' className='gm-margin-lr-5'>
+        标签
+      </Label>
+      <Label type='danger' className='gm-margin-lr-5'>
+        标签
+      </Label>
+      <Label type='inactive' className='gm-margin-lr-5'>
+        标签
+      </Label>
+      <Label type='gray' className='gm-margin-lr-5'>
+        标签
+      </Label>
     </div>
   )
 }

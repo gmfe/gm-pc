@@ -5,10 +5,8 @@ import _ from 'lodash'
 import { Flex } from '../flex'
 import { Popover } from '../popover'
 import { List } from '../list'
-import Label from '../label'
+import Label, { LabelType } from '../label'
 import SVGMore from '../../svg/more.svg'
-
-type LabelType = 'default' | 'primary' | 'success' | 'danger'
 
 interface CardActions {
   text: string
@@ -111,7 +109,7 @@ const Card: FC<CardProps> = ({
           </Popover>
         </Flex>
       </div>
-      <div className='gm-card-content'>{children}</div>
+      <div className='gm-padding-10'>{children}</div>
     </div>
   )
 }

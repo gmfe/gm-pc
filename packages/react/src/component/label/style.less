@@ -1,17 +1,16 @@
 .gm-label {
   display: inline-block;
   vertical-align: middle;
-  line-height: 14px;
-  height: 14px;
   border-radius: 2px;
   font-size: 12px;
-  padding: 2px;
+  padding: 1px 8px;
   white-space: nowrap;
 }
 
 .gm-label-default {
-  background-color: var(--m-color-bg-accent-light);
-  color: var(--m-color-accent);
+  background-color: transparent;
+  color: var(--gm-color-default) !important;
+  border: 1px solid var(--gm-label-color-inactive); // 甩锅，设计觉得通用边框颜色太浅，这里做特殊取色
 }
 
 .gm-label-primary {
@@ -19,12 +18,17 @@
   color: white;
 }
 
-.gm-label-success {
-  background-color: var(--gm-color-success);
+.gm-label-danger {
+  background-color: var(--gm-label-color-danger);
   color: white;
 }
 
-.gm-label-danger {
-  background-color: var(--gm-color-danger);
+.gm-label-inactive {
+  background-color: var(--gm-label-color-inactive);
   color: white;
+}
+
+.gm-label-gray {
+  background-color: var(--gm-label-color-gray);
+  color: var(--gm-color-default);
 }
