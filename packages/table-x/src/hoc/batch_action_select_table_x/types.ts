@@ -17,8 +17,13 @@ interface BatchActionSelectTableXProps {
   batchActionBarPure?: boolean
 }
 
+interface BatchActionTableXChildProps extends BatchActionSelectTableXProps {
+  childKeyField?: string
+}
+
 export type {
   Value,
   BatchActionSelectTableXProps,
   BatchActionSelectTableXBatchActionsItem,
+  BatchActionTableXChildProps,
 }

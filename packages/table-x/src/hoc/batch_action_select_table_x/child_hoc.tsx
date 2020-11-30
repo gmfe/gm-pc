@@ -1,24 +1,33 @@
 import React, { FC, ComponentType, useState, useEffect } from 'react'
-import { TableXProps } from '../../base'
+import { TableXDataItem, TableXProps } from '../../base'
 import { BatchActionBar, BatchActionBarItem } from '../../components'
 import _ from 'lodash'
-import { selectTableXHOC } from '../select_table_x'
-import { Value, BatchActionSelectTableXProps } from './types'
+import { Value, BatchActionTableXChildProps } from './types'
 
-function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
+// 注意，对比 batchActionSelectTableXHOC
+// 1 没有 Select
+// 2 多了 Child
+// getTableXChild 本身要求 Table 被 selectTableXHOC 了
+function batchActionTableXChildHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {
-  // 基于 SelectTableX
-  const SelectTable = selectTableXHOC(Table)
-
-  const BatchActionSelectTableX: FC<Props & BatchActionSelectTableXProps> = ({
+  const BatchActionTableXChild: FC<Props & BatchActionTableXChildProps> = ({
     data,
     keyField = 'value',
+    childKeyField = 'value',
     batchActions,
     batchActionBarPure,
     ...rest
   }) => {
-    // BatchActionSelectTableX 调用方不用传 selected onSelect，
+    const getKey = (item: TableXDataItem) => {
+      return item[keyField || 'value']
+    }
+
+    const getSubKey = (item: TableXDataItem) => {
+      return item[childKeyField || 'value']
+    }
+
+    // BatchActionTableX 调用方不用传 selected onSelect，
     // 这里 keep 内部状态
     const [selected, setSelected] = useState<Value[]>([])
     const [isSelectAll, setIsSelectAll] = useState<boolean>(false)
@@ -33,16 +42,31 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
 
     const handleSelect = (selected: Value[]) => {
       setSelected(selected)
+
+      const ones = _.map(data, (v) => getKey(v))
+      const oneSelected = _.filter(selected, (v) => ones.includes(v))
       // 当不满足的时候
-      if (selected.length < data.length) {
+      if (oneSelected.length < ones.length) {
         setIsSelectAll(false)
       }
     }
 
     const handleToggleSelectAll = (isSelectAll: boolean) => {
       setIsSelectAll(isSelectAll)
+
       // 选择当前页和选择所有页，都需要把当前选中
-      setSelected(_.map(data, (v) => v[keyField]))
+      const alls: any[] = []
+
+      _.each(data, (v) => {
+        alls.push(getKey(v))
+        _.each(v.children, (vv) => {
+          alls.push(getSubKey(vv))
+        })
+      })
+
+      console.log(alls)
+
+      setSelected(alls)
     }
 
     const handleClose = () => {
@@ -64,7 +88,7 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
     )
 
     return (
-      <SelectTable
+      <Table
         {...(rest as Props)}
         keyField={keyField}
         data={data}
@@ -87,7 +111,7 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
     )
   }
 
-  return BatchActionSelectTableX
+  return BatchActionTableXChild
 }
 
-export default batchActionSelectTableXHOC
+export default batchActionTableXChildHOC

@@ -1,13 +1,20 @@
 import React from 'react'
 import getTableXChild from './get_table_x_child'
 import { TableX } from '../base'
-import { selectTableXHOC, expandTableXHOC, subTableXHOC } from '../hoc'
+import {
+  selectTableXHOC,
+  expandTableXHOC,
+  subTableXHOC,
+  batchActionTableXChildHOC,
+  BatchActionDelete,
+} from '../hoc'
 import { observable } from 'mobx'
 
 const TableOne = selectTableXHOC(expandTableXHOC(TableX))
 const TableTwo = selectTableXHOC(subTableXHOC(TableX))
-
 const Table = getTableXChild(TableOne, TableTwo)
+
+const TableChild = batchActionTableXChildHOC(Table)
 
 const initData = [
   {
@@ -119,6 +126,59 @@ export const ComTableXChild = () => {
         store.setSelected(selected)
       }}
     />
+  )
+}
+
+export const ComTableXChildAndBatchActionSelectTableX = () => {
+  return (
+    <div style={{ paddingTop: '100px' }}>
+      <TableChild
+        data={initData}
+        keyField='id'
+        columns={[
+          {
+            Header: '序号',
+            id: 'index',
+            Cell: (cellProps: { row: { index: number } }) => cellProps.row.index + 1,
+          },
+          { Header: '建单时间', show: false, accessor: 'submitTime' },
+          { Header: '地址', accessor: 'address.text' },
+        ]}
+        childKeyField='id'
+        subProps={{
+          keyField: 'id',
+          columns: [
+            {
+              Header: '子序号',
+              id: 'index',
+              Cell: (cellProps: { row: { index: number } }, row) => {
+                return `${row.index + 1} - ${cellProps.row.index + 1}`
+              },
+            },
+            {
+              Header: 'ID',
+              accessor: 'id',
+            },
+            {
+              Header: 'Name',
+              accessor: 'name',
+            },
+            {
+              Header: 'Age',
+              accessor: 'age',
+            },
+          ],
+        }}
+        batchActions={[
+          {
+            children: <BatchActionDelete>删除</BatchActionDelete>,
+            onAction: (selected, isSelectAll) => {
+              console.log(selected, isSelectAll)
+            },
+          },
+        ]}
+      />
+    </div>
   )
 }
 
