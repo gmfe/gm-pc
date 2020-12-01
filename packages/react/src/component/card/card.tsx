@@ -1,4 +1,4 @@
-import React, { FC, useRef, HTMLAttributes } from 'react'
+import React, { FC, useRef, HTMLAttributes, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 
@@ -115,15 +115,23 @@ const Card: FC<CardProps> = ({
 }
 
 const TopLabel: FC<{ text: string }> = ({ text }) => {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [width, setWidth] = useState(0)
+  useEffect(() => {
+    if (ref.current) {
+      setWidth(ref.current.getBoundingClientRect().width)
+    }
+  }, [ref])
+
   return (
     <Flex column className='gm-label-container'>
-      <div className='gm-card-label'>
-        <Flex className='gm-card-label-text'>{text}</Flex>
+      <div ref={ref} className='gm-card-label'>
+        {text}
       </div>
-      <Flex className='gm-card-label-content'>
-        <div className='gm-card-label-left' />
-        <div className='gm-card-label-right' />
-      </Flex>
+      <div
+        className='gm-label-container-bottom'
+        style={{ borderLeftWidth: `${width / 2}px`, borderRightWidth: `${width / 2}px` }}
+      />
     </Flex>
   )
 }

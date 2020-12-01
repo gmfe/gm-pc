@@ -31,11 +31,9 @@
       color: var(--gm-color-default);
     }
 
-    .gm-card-label-content {
-      .gm-card-label-right,
-      .gm-card-label-left {
-        background-color: var(--gm-card-bg-inactive);
-      }
+    .gm-label-container-bottom {
+      border-left: 20px solid var(--gm-card-bg-inactive);
+      border-right: 20px solid var(--gm-card-bg-inactive);
     }
   }
 
@@ -43,10 +41,22 @@
     margin-right: 8px;
     height: 20px;
     position: relative;
-    overflow: hidden;
+
+  }
+
+  .gm-label-container-bottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: ' ';
+    height: 5px;
+    border-left: 20px solid var(--gm-color-primary);
+    border-right: 20px solid var(--gm-color-primary);
+    border-bottom: 5px solid transparent;
   }
 
   .gm-card-label {
+    position: relative;
     font-size: 12px;
     min-width: 40px;
     height: auto;
@@ -55,29 +65,6 @@
     padding: 0 2px;
     z-index: 1;
     background-color: var(--gm-color-primary);
-  }
-
-  .gm-card-label-content {
-    width: 100%;
-    height: 9px;
-    position: absolute;
-    top: 8px;
-
-    .gm-card-label-right,
-    .gm-card-label-left {
-      width: 40px;
-      background-color: var(--gm-color-primary);
-    }
-
-    .gm-card-label-right {
-      transform: rotate(10deg);
-      margin-right: -5px;
-    }
-
-    .gm-card-label-left {
-      transform: rotate(350deg);
-      margin-left: -5px;
-    }
   }
 
   &:hover {
