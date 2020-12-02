@@ -320,7 +320,7 @@ class MoreSelectBase<V = any> extends Component<
                 ))
               ) : (
                 // 加多个 &nbsp; 避免对齐问题，有文本才有对齐
-                <div className='gm-placeholder-text'>{placeholder}&nbsp; </div>
+                <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>
               )}
             </Flex>
           )}
