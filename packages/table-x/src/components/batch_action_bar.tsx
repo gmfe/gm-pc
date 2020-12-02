@@ -1,12 +1,22 @@
-import React, { FC, MouseEvent, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { getLocale } from '@gm-pc/locales'
 import { Button, Flex, Popover } from '@gm-pc/react'
 import SVGRemove from '../svg/remove.svg'
 import classNames from 'classnames'
+import _ from 'lodash'
+
+interface ChildrenProps {
+  selected: any[]
+  isSelectAll?: boolean
+  disabled?: boolean
+}
 
 interface BatchActionBarItem {
-  children: string | ReactNode
-  onClick(event: MouseEvent): void
+  // 如果 children 是组件，行为UI都需要自己搞
+  children: string | ReactNode | ((props: ChildrenProps) => ReactNode)
+  onAction?(selected: any[], isSelectAll?: boolean): void
+  /** 是否要隐藏 */
+  getHidden?(selected: any[], isSelectAll?: boolean): boolean
   /** pure 的时候 isSelectAll 不传 */
   getDisabled?(selected: any[], isSelectAll?: boolean): boolean
 }
@@ -65,21 +75,33 @@ const BatchActionBar: FC<BatchActionBarProps> = ({
       </div>
       {!!batchActions.length && <div className='gm-margin-left-20'>|</div>}
       {batchActions.map((item, index) => {
-        let disabled = false
+        if (item.getHidden && item.getHidden(selected, isSelectAll)) {
+          return null
+        }
 
+        let disabled = false
         if (item.getDisabled) {
           disabled = item.getDisabled(selected, isSelectAll)
+        }
+
+        if (_.isFunction(item.children)) {
+          return (
+            <div className='gm-margin-left-20'>
+              {item.children({ selected, isSelectAll, disabled })}
+            </div>
+          )
         }
 
         return (
           <div
             key={index}
-            onClick={(event) => {
-              !disabled && item.onClick(event)
+            onClick={() => {
+              !disabled && item.onAction && item.onAction(selected, isSelectAll)
             }}
             className={classNames('gm-cursor gm-text-bold gm-margin-left-20', {
               'gm-text-hover-primary': !disabled,
               'gm-not-allowed': disabled,
+              'gm-text-desc': disabled,
             })}
           >
             {item.children}

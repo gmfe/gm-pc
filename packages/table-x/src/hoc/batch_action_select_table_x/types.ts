@@ -1,19 +1,10 @@
-import { ReactNode } from 'react'
+import { BatchActionBarItem } from '../../components'
 
 type Value = any
 
-interface BatchActionSelectTableXBatchActionsItem {
-  /** 如果需要 dataId，用 ReactNode 调用方自己弄 */
-  children: string | ReactNode
-  onAction(selected: Value[], isSelectAll: boolean): void
-  /** 默认显示 */
-  show?: boolean
-  getDisabled?(selected: Value[], isSelectAll: boolean): boolean
-}
-
 interface BatchActionSelectTableXProps {
   /** 重新定义 batchActions */
-  batchActions: BatchActionSelectTableXBatchActionsItem[]
+  batchActions: BatchActionBarItem[]
   batchActionBarPure?: boolean
 }
 
@@ -21,9 +12,4 @@ interface BatchActionTableXChildProps extends BatchActionSelectTableXProps {
   childKeyField?: string
 }
 
-export type {
-  Value,
-  BatchActionSelectTableXProps,
-  BatchActionSelectTableXBatchActionsItem,
-  BatchActionTableXChildProps,
-}
+export type { Value, BatchActionSelectTableXProps, BatchActionTableXChildProps }

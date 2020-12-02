@@ -23,10 +23,6 @@ export const ComSelectTableX = () => (
           onAction: (selected, isSelectAll) => {
             console.log(selected, isSelectAll)
           },
-          getDisabled(selected, isSelectAll: boolean): boolean {
-            console.log(selected, isSelectAll)
-            return true
-          },
         },
         {
           children: <BatchActionDelete>删除</BatchActionDelete>,
@@ -44,6 +40,26 @@ export const ComSelectTableX = () => (
           children: <Button>上架</Button>,
           onAction: (selected, isSelectAll) => {
             console.log(selected, isSelectAll)
+          },
+        },
+        {
+          children: 'disabled',
+          getDisabled: () => {
+            return true
+          },
+        },
+        {
+          children: 'hidden',
+          getHidden: () => {
+            return true
+          },
+        },
+        {
+          children: ({ selected, isSelectAll }) => {
+            console.log(selected, isSelectAll)
+            return (
+              <div className='gm-cursor gm-text-hover-primary'>更多能力的自定义child</div>
+            )
           },
         },
       ]}

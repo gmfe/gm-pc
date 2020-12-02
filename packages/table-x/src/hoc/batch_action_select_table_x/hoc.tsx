@@ -1,6 +1,6 @@
 import React, { FC, ComponentType, useState, useEffect } from 'react'
 import { TableXProps } from '../../base'
-import { BatchActionBar, BatchActionBarItem } from '../../components'
+import { BatchActionBar } from '../../components'
 import _ from 'lodash'
 import { selectTableXHOC } from '../select_table_x'
 import { Value, BatchActionSelectTableXProps } from './types'
@@ -50,19 +50,6 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
       setIsSelectAll(false)
     }
 
-    const newBatchActions: BatchActionBarItem[] = _.map(
-      _.filter(batchActions, (v) => v.show !== false),
-      (v) => {
-        return {
-          children: v.children,
-          onClick: () => {
-            v.onAction(selected, isSelectAll)
-          },
-          getDisabled: v.getDisabled,
-        }
-      }
-    )
-
     return (
       <SelectTable
         {...(rest as Props)}
@@ -76,7 +63,7 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
               isSelectAll={isSelectAll}
               selected={selected}
               count={selected.length}
-              batchActions={newBatchActions}
+              batchActions={batchActions}
               toggleSelectAll={handleToggleSelectAll}
               onClose={handleClose}
               pure={batchActionBarPure}
