@@ -102,8 +102,6 @@ export const ComMoreSelect = () => (
         console.log({ selected })
         store.setSelected(selected)
       }}
-      placeholder='测试'
-      searchPlaceholder='搜索'
     />
     <div>disabled</div>
     <MoreSelect<number>
