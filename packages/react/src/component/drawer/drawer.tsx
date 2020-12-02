@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import EVENT_TYPE from '../../event_type'
 import { LayoutRoot } from '../layout_root'
 import { DrawerProps } from './types'
+import SVGRemove from '../../svg/remove.svg'
 
 class Drawer extends Component<DrawerProps> {
   static defaultProps = {
@@ -55,7 +56,7 @@ class Drawer extends Component<DrawerProps> {
   private _throttleDoScroll = _.throttle(this._doScroll, 200)
 
   render() {
-    const { children, style, className, opacityMask, size } = this.props
+    const { children, style, className, opacityMask, size, onHide } = this.props
     return (
       <div>
         <div
@@ -76,6 +77,9 @@ class Drawer extends Component<DrawerProps> {
             })}
             style={style}
           >
+            <div className='gm-drawer-close gm-cursor' onClick={onHide}>
+              <SVGRemove />
+            </div>
             {children}
           </div>
         </div>
