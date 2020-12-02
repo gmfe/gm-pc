@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import _ from 'lodash'
 import { ModalProps, ModalStatic } from './types'
 import EVENT_TYPE from '../../event_type'
-import { LayoutRoot } from '../layout_root'
+import { LayoutRoot, Type } from '../layout_root'
 import SVGRemove from '../../svg/remove.svg'
 
 const Modal: FC<ModalProps> & ModalStatic = ({
@@ -16,6 +16,7 @@ const Modal: FC<ModalProps> & ModalStatic = ({
   onHide,
   children,
   className,
+  containerClassName,
   style,
 }) => {
   const refModal = useRef<HTMLDivElement>(null)
@@ -90,7 +91,7 @@ const Modal: FC<ModalProps> & ModalStatic = ({
   )
 
   return (
-    <div>
+    <div className={classNames('gm-modal-container', containerClassName)}>
       <div
         className={classNames('gm-modal-mask', {
           'gm-modal-mask-opacity': opacityMask,
@@ -106,7 +107,7 @@ const Modal: FC<ModalProps> & ModalStatic = ({
 // 做warning用
 let closeFlag = false
 
-Modal.render = function (props: ModalProps): void {
+Modal._render = function (props: ModalProps, type?: Type): void {
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_SHOW))
   const { onHide, ...rest } = props
 
@@ -118,15 +119,26 @@ Modal.render = function (props: ModalProps): void {
       Modal.hide()
     }
   }
-  LayoutRoot.setComponent(LayoutRoot.Type.MODAL, <Modal onHide={handleHide} {...rest} />)
+
+  LayoutRoot.setComponent(
+    type || LayoutRoot.Type.MODAL,
+    <Modal onHide={handleHide} {...rest} />
+  )
 }
 
-Modal.hide = function (): void {
-  console.log('hide')
+Modal._hide = function (type?: Type): void {
   closeFlag = true
 
   window.dispatchEvent(new window.CustomEvent(EVENT_TYPE.MODAL_HIDE))
-  LayoutRoot.removeComponent(LayoutRoot.Type.MODAL)
+  LayoutRoot.removeComponent(type || LayoutRoot.Type.MODAL)
+}
+
+Modal.render = function (props: ModalProps) {
+  Modal._render(props)
+}
+
+Modal.hide = function () {
+  Modal._hide()
 }
 
 export default Modal

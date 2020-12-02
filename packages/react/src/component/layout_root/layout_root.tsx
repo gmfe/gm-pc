@@ -26,7 +26,15 @@ const LayoutRoot: FC & LayoutRootStatic = () => {
     }
   })
 
-  const { drawer, popover, modal, tip, full_loading, n_progress } = state
+  const {
+    popover,
+    drawer,
+    right_side_modal,
+    modal,
+    tip,
+    full_loading,
+    n_progress,
+  } = state
 
   return (
     <div>
@@ -41,6 +49,7 @@ const LayoutRoot: FC & LayoutRootStatic = () => {
       )}
 
       {drawer && <div>{drawer}</div>}
+      {right_side_modal && <div>{right_side_modal}</div>}
       {modal && <div>{modal}</div>}
 
       {tip && tip.length > 0 && (

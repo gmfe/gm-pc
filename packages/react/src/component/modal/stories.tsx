@@ -101,12 +101,25 @@ export const ComRightSideModal = () => (
         title: 'asdf',
         children: (
           <div>
-            啦啦啦
+            <div>
+              <button
+                onClick={() => {
+                  Modal.render({
+                    children: '我是内容',
+                    title: '我是标题',
+                    onHide: Modal.hide,
+                  })
+                }}
+              >
+                other modal
+              </button>
+            </div>
+            啦啦啦，下面还有滚动内容
             <div style={{ height: '1000px' }} />
             啦啦啦
           </div>
         ),
-        onHide: Modal.hide,
+        onHide: RightSideModal.hide,
       })
     }}
   >
