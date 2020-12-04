@@ -61,8 +61,6 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
 
   useWindowEventListener(EVENT_TYPE.MODAL_SHOW, addOverflowClass)
   useWindowEventListener(EVENT_TYPE.MODAL_HIDE, removeOverflowClass)
-  useWindowEventListener(EVENT_TYPE.DRAWER_SHOW, addOverflowClass)
-  useWindowEventListener(EVENT_TYPE.DRAWER_HIDE, removeOverflowClass)
   useWindowEventListener('scroll', doScroll)
 
   return (

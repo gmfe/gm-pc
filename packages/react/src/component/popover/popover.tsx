@@ -47,7 +47,6 @@ class Popover extends Component<PopoverProps, PopoverState> {
 
     window.addEventListener(EVENT_TYPE.MODAL_SCROLL, this._debounceHandleModalScroll)
     window.addEventListener(EVENT_TYPE.BROWSER_SCROLL, this._debounceHandleBrowserScroll)
-    window.addEventListener(EVENT_TYPE.DRAWER_SCROLL, this._debounceHandleDrawerScroll)
     window.addEventListener(EVENT_TYPE.TABLE_SCROLL, this._debounceHandleTableScroll)
   }
 
@@ -66,7 +65,6 @@ class Popover extends Component<PopoverProps, PopoverState> {
       EVENT_TYPE.BROWSER_SCROLL,
       this._debounceHandleBrowserScroll
     )
-    window.removeEventListener(EVENT_TYPE.DRAWER_SCROLL, this._debounceHandleDrawerScroll)
     window.removeEventListener(EVENT_TYPE.TABLE_SCROLL, this._debounceHandleTableScroll)
   }
 
@@ -77,12 +75,6 @@ class Popover extends Component<PopoverProps, PopoverState> {
   /* 注意，先调用这个，再处理业务的 onXXX。比如 date-picker */
   public apiDoSetActive = (active?: boolean): void => {
     this._setActive(!!active)
-  }
-
-  private _handleDrawerScroll = () => {
-    if (this.state.active) {
-      this._setActive(this.state.active)
-    }
   }
 
   private _handleModalScroll = () => {
@@ -106,8 +98,6 @@ class Popover extends Component<PopoverProps, PopoverState> {
   private _debounceHandleModalScroll = _.debounce(this._handleModalScroll, 200)
 
   private _debounceHandleBrowserScroll = _.debounce(this._handleBrowserScroll, 200)
-
-  private _debounceHandleDrawerScroll = _.debounce(this._handleDrawerScroll, 200)
 
   private _debounceHandleTableScroll = _.debounce(this._handleTableScroll, 200)
 
