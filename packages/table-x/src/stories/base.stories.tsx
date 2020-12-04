@@ -3,7 +3,6 @@ import { TableX, TableXCellFull, TableXVirtualized, TableXCellFullItem } from '.
 import { columns, groupColumns, sortColumns, store } from './data'
 import { TABLE_X } from '../utils'
 import { VariableSizeList } from 'react-window'
-import classNames from 'classnames'
 
 export const ComTableX = () => (
   <div>
@@ -30,14 +29,13 @@ export const ComTableXTd = () => {
               return (
                 <TableXCellFull>
                   {cellProps.row.original.area.map((v: any, i: number) => (
-                    <div
-                      key={v}
-                      className={classNames({
-                        'gm-border-bottom': i !== cellProps.row.original.area.length - 1,
-                      })}
+                    <TableXCellFullItem
+                      item={i}
+                      key={i}
+                      total={cellProps.row.original.area.length}
                     >
-                      <TableXCellFullItem>{v}</TableXCellFullItem>
-                    </div>
+                      {v}
+                    </TableXCellFullItem>
                   ))}
                 </TableXCellFull>
               )
