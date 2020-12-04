@@ -116,7 +116,7 @@ Modal._render = function (props: ModalProps, type?: Type): void {
     onHide && onHide()
     if (!closeFlag) {
       console.warn('请在 onHide 里调用 Modal.hide。这次帮你hide')
-      Modal.hide()
+      Modal._hide(type || LayoutRoot.Type.MODAL)
     }
   }
 
