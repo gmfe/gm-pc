@@ -24,10 +24,6 @@ export const ComTableXTd = () => {
             accessor: 'city',
           },
           {
-            Header: '中间',
-            accessor: 'center',
-          },
-          {
             Header: '区域',
             id: 'area',
             Cell: (cellProps: any) => {
@@ -51,12 +47,10 @@ export const ComTableXTd = () => {
         data={[
           {
             city: '深圳',
-            center: 'aaa',
             area: ['南山', '福田', '宝安'],
           },
           {
             city: '广州',
-            center: 'bbb',
             area: ['番禺', '白云', '黄埔'],
           },
         ]}
