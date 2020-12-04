@@ -29,13 +29,7 @@ export const ComTableXTd = () => {
               return (
                 <TableXCellFull>
                   {cellProps.row.original.area.map((v: any, i: number) => (
-                    <TableXCellFullItem
-                      item={i}
-                      key={i}
-                      total={cellProps.row.original.area.length}
-                    >
-                      {v}
-                    </TableXCellFullItem>
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
                   ))}
                 </TableXCellFull>
               )
