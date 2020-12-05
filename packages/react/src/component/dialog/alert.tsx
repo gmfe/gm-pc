@@ -13,7 +13,7 @@ const Alert = (props: string | AlertProps): Promise<void> => {
 
   const { okBtnText, children, ...rest } = p as AlertProps
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     Dialog.render({
       children,
       buttons: [
@@ -26,6 +26,10 @@ const Alert = (props: string | AlertProps): Promise<void> => {
           },
         },
       ],
+      onHide: () => {
+        Dialog.hide()
+        reject(new Error('cancel'))
+      },
       ...rest,
     })
   })

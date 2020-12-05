@@ -79,6 +79,10 @@ const Prompt = (props: string | PromptProps): Promise<string> => {
           onClick: handleOk,
         },
       ],
+      onHide: () => {
+        Dialog.hide()
+        reject(new Error('cancel'))
+      },
       ...rest,
     })
   })

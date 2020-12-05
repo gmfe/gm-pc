@@ -88,6 +88,10 @@ const Confirm = (props: string | ConfirmProps): Promise<void> => {
   return new Promise((resolve, reject) => {
     Dialog.render({
       children: <Inner {...newProps} reject={reject} resolve={resolve} />,
+      onHide: () => {
+        Dialog.hide()
+        reject(new Error('cancel'))
+      },
       ...rest,
     })
   })
