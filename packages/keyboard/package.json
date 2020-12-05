@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/keyboard",
-  "version": "1.1.59",
+  "version": "1.1.60",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -27,8 +27,8 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.8.9",
-    "@gm-pc/react": "^1.1.59",
-    "@gm-pc/table-x": "^1.1.59",
+    "@gm-pc/react": "^1.1.60",
+    "@gm-pc/table-x": "^1.1.60",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
   },
