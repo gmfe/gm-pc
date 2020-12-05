@@ -19,12 +19,34 @@ export const ComTableXTd = () => {
       <TableX
         columns={[
           {
-            Header: '成熟',
-            accessor: 'city',
+            Header: '区域',
+            id: 'area0',
+            Cell: (cellProps: any) => {
+              return (
+                <TableXCellFull>
+                  {cellProps.row.original.area.map((v: any, i: number) => (
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
+                  ))}
+                </TableXCellFull>
+              )
+            },
           },
           {
             Header: '区域',
-            id: 'area',
+            id: 'area1',
+            Cell: (cellProps: any) => {
+              return (
+                <TableXCellFull>
+                  {cellProps.row.original.area.map((v: any, i: number) => (
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
+                  ))}
+                </TableXCellFull>
+              )
+            },
+          },
+          {
+            Header: '区域',
+            id: 'area2',
             Cell: (cellProps: any) => {
               return (
                 <TableXCellFull>
