@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
-import { TableX, TableXCellFull, TableXVirtualized } from '../base'
+import { TableX, TableXCellFull, TableXVirtualized, TableXCellFullItem } from '../base'
 import { columns, groupColumns, sortColumns, store } from './data'
 import { TABLE_X } from '../utils'
 import { VariableSizeList } from 'react-window'
-import classNames from 'classnames'
 
 export const ComTableX = () => (
   <div>
@@ -20,25 +19,39 @@ export const ComTableXTd = () => {
       <TableX
         columns={[
           {
-            Header: '成熟',
-            accessor: 'city',
-          },
-          {
             Header: '区域',
-            id: 'area',
+            id: 'area0',
             Cell: (cellProps: any) => {
               return (
                 <TableXCellFull>
                   {cellProps.row.original.area.map((v: any, i: number) => (
-                    <div
-                      key={v}
-                      style={{ padding: '8px' }}
-                      className={classNames({
-                        'gm-border-bottom': i !== cellProps.row.original.area.length - 1,
-                      })}
-                    >
-                      {v}
-                    </div>
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
+                  ))}
+                </TableXCellFull>
+              )
+            },
+          },
+          {
+            Header: '区域',
+            id: 'area1',
+            Cell: (cellProps: any) => {
+              return (
+                <TableXCellFull>
+                  {cellProps.row.original.area.map((v: any, i: number) => (
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
+                  ))}
+                </TableXCellFull>
+              )
+            },
+          },
+          {
+            Header: '区域',
+            id: 'area2',
+            Cell: (cellProps: any) => {
+              return (
+                <TableXCellFull>
+                  {cellProps.row.original.area.map((v: any, i: number) => (
+                    <TableXCellFullItem key={i}>{v}</TableXCellFullItem>
                   ))}
                 </TableXCellFull>
               )

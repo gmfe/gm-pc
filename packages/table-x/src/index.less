@@ -42,6 +42,15 @@
 
         .gm-table-x-cell-full {
           margin: -8px;
+
+          .gm-table-x-cell-full-item {
+            padding: 8px;
+            border-bottom: 1px solid var(--gm-color-border);
+            
+            &:last-child {
+              border-bottom: 0;
+            }
+          }
         }
 
         &:first-child {
@@ -49,6 +58,10 @@
 
           .gm-table-x-cell-full {
             margin-left: -20px;
+
+            .gm-table-x-cell-full-item {
+              padding: 8px 8px 8px 20px;
+            }
           }
         }
 
@@ -57,6 +70,10 @@
 
           .gm-table-x-cell-full {
             margin-right: -20px;
+
+            .gm-table-x-cell-full-item {
+              padding: 8px 20px 8px 8px;
+            }
           }
         }
 
