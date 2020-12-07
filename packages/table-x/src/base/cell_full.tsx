@@ -1,15 +1,17 @@
-import React, { FC, CSSProperties } from 'react'
+import classNames from 'classnames'
+import React, { FC, HTMLAttributes } from 'react'
 
 const TableXCellFull: FC = ({ children }) => {
   return <div className='gm-table-x-cell-full'>{children}</div>
 }
-interface TableXCellFullItemProps {
-  style: CSSProperties
-}
 
-const TableXCellFullItem: FC<TableXCellFullItemProps> = ({ children, style }) => {
+const TableXCellFullItem: FC<HTMLAttributes<HTMLDivElement>> = ({
+  className,
+  children,
+  ...rest
+}) => {
   return (
-    <div className='gm-table-x-cell-full-item' style={style}>
+    <div {...rest} className={classNames('gm-table-x-cell-full-item', className)}>
       {children}
     </div>
   )
