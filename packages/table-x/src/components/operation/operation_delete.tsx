@@ -33,19 +33,16 @@ const OperationDelete: FC<OperationDeleteProps> = ({
     popoverRef.current!.apiDoSetActive()
   }
 
-  const popup = useMemo(
-    () => (
-      <PopupContentConfirm
-        type='delete'
-        title={title}
-        read={read}
-        onCancel={handleCancel}
-        onDelete={handleDelete}
-      >
-        {children ?? getLocale('确定删除？')}
-      </PopupContentConfirm>
-    ),
-    []
+  const popup = () => (
+    <PopupContentConfirm
+      type='delete'
+      title={title}
+      read={read}
+      onCancel={handleCancel}
+      onDelete={handleDelete}
+    >
+      {children ?? getLocale('确定删除？')}
+    </PopupContentConfirm>
   )
 
   return (
