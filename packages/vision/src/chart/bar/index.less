@@ -1,0 +1,122 @@
+.gm-vision-flex {
+  display: flex;
+}
+
+.gm-vision-marignBottom {
+  margin-bottom: 26px;
+}
+
+.gm-vision-flex-column {
+  flex-direction: column;
+}
+
+.gm-vision-flex-flex {
+  flex: 1;
+}
+
+.gm-vision-justify-center {
+  justify-content: center;
+}
+
+.gm-vision-align-center {
+  align-items: center;
+}
+
+/* --------------- grid ----------- */
+
+.gm-vision-container {
+  color: #666;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 40px auto 60px;
+  grid-template-rows: 40px auto;
+  overflow: hidden;
+  font-family: 'Helvetica';
+
+  &.gm-vision-theme-ocean {
+    grid-template-rows: auto;
+    background: transparent;
+    color: #e2e2e2;
+    .gm-vision-title {
+      border: none;
+    }
+    .gm-vision-index {
+      padding: 10px;
+      .gm-vision-index-number {
+        width: 100%;
+        padding-bottom: 100%;
+        color: #fff;
+        text-align: center;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(to top, #48d4fb, rgb(31 88 178));
+      }
+    }
+    .gm-vision-index:nth-child(n + 4) {
+      padding: 10px;
+      .gm-vision-index-number {
+        background: transparent;
+        box-shadow: inset 0px 0px 8px #48d4fb;
+      }
+    }
+  }
+
+  &.gm-vision-theme-sunset {
+    grid-template-rows: auto;
+    background: transparent;
+    color: #e2e2e2;
+    .gm-vision-title {
+      border: none;
+    }
+    .gm-vision-index {
+      padding: 10px;
+      .gm-vision-index-number {
+        width: 100%;
+        padding-bottom: 100%;
+        color: #fff;
+        text-align: center;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(to top, #f8a91d, #f16527);
+      }
+    }
+    .gm-vision-index:nth-child(n + 4) {
+      padding: 10px;
+      .gm-vision-index-number {
+        background: transparent;
+        box-shadow: inset 0px 0px 6px 2px #eb9c00;
+      }
+    }
+  }
+}
+
+.gm-vision-title {
+  border-bottom: 2px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.gm-vision-name {
+  font-size: 12px;
+}
+
+.gm-vision-index {
+  .circle {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(to top, #48d4fb, rgb(31 88 178));
+  }
+  .circle2 {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: inset 0px 0px 8px rgb(69 205 246);
+  }
+}
