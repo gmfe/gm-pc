@@ -139,6 +139,7 @@ module.exports = {
     '../packages/tour/src/**/*stories.tsx',
     '../packages/cropper/src/**/*stories.tsx',
     '../packages/locales/src/**/*stories.js',
+    '../packages/vision/src/**/*stories.tsx',
     '../demo/**/*stories.tsx',
   ],
   webpackFinal,

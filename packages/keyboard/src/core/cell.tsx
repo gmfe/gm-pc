@@ -39,6 +39,7 @@ class KeyboardCell extends Component<KeyboardCellProps> {
 
   private _dispatch = (eventName: string, detail?: Partial<KeyboardCustomEvent>) => {
     const { wrapData, cellKey } = this.props
+    console.log(dispatchCache)
     dispatchCache[wrapData.id] = {
       eventName,
       detail,
@@ -56,6 +57,8 @@ class KeyboardCell extends Component<KeyboardCellProps> {
       return
     }
 
+    console.log('_handleFocus')
+
     if (!disabled) {
       onFocus()
       onScroll(wrapData.fixedWidths)
@@ -71,6 +74,7 @@ class KeyboardCell extends Component<KeyboardCellProps> {
 
   componentDidMount() {
     const { wrapData } = this.props
+    console.log({ wrapDataID: `${KEYBOARD_ONFOCUS}${wrapData.id}` })
     window.addEventListener(
       `${KEYBOARD_ONFOCUS}${wrapData.id}`,
       (this._handleFocus as any) as EventListener

@@ -76,6 +76,7 @@ class MoreSelectBase<V = any> extends Component<
     const { selected, onSelect, multiple } = this.props
     const { willActiveIndex } = this.state
     const flatList = this._getFlatFilterData()
+    console.log(1)
     // 没有做过键盘操作啥也不做
     if (!_.isNil(willActiveIndex) && willActiveIndex < flatList.length) {
       if (multiple) {
@@ -153,6 +154,7 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   private _handlePopupKeyDown = (event: KeyboardEvent): void => {
+    console.log(11)
     const { onKeyDown } = this.props
     let willActiveIndex = this.state.willActiveIndex as number
     if (!onKeyDown) {

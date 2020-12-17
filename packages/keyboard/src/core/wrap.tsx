@@ -57,6 +57,7 @@ const Wrap: FC<WrapProps> = ({
   const doDirectionRight = (rowKey: number, columnKey: string, cellKey: string) => {
     const columnIndex = columnKeys.indexOf(columnKey)
     // 如果不是最后一列
+    console.log(rowKey, columnKey)
     if (columnIndex < columnKeys.length - 1) {
       doFocusWithColumnRowKey(
         KeyboardActionsName.RIGHT,

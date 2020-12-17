@@ -90,7 +90,7 @@ const initialDataItem: InitialDataItem = {
   status: 1,
 }
 
-const initialData: InitialDataItem[] = _.times(5, (): InitialDataItem => initialDataItem)
+const initialData: InitialDataItem[] = _.times(1, (): InitialDataItem => initialDataItem)
 
 class Store {
   data = initialData
