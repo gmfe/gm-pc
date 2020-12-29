@@ -1,7 +1,7 @@
 import React, { FC, CSSProperties, ReactNode, useState } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
-import { Flex } from '../flex'
+import { Flex, FlexProps } from '../flex'
 
 interface TabsItem {
   text: string
@@ -9,7 +9,7 @@ interface TabsItem {
   children: ReactNode
 }
 
-interface TabsProps {
+interface TabsProps extends Omit<FlexProps, 'onChange'> {
   tabs: TabsItem[]
   defaultActive?: string
   active?: string
@@ -17,11 +17,22 @@ interface TabsProps {
   keep?: boolean
   light?: boolean
   className?: string
+  column?: boolean
   style?: CSSProperties
 }
 
 const Tabs: FC<TabsProps> = (props) => {
-  const { tabs, light, active, defaultActive, keep, onChange, className, ...rest } = props
+  const {
+    tabs,
+    light,
+    active,
+    defaultActive,
+    keep,
+    onChange,
+    className,
+    column = true,
+    ...rest
+  } = props
   if (active !== undefined && defaultActive !== undefined) {
     console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
   }
@@ -59,8 +70,8 @@ const Tabs: FC<TabsProps> = (props) => {
 
   return (
     <Flex
-      column
       {...rest}
+      column={column}
       className={classNames(
         'gm-tabs',
         {

@@ -1,12 +1,100 @@
-import React, { FC } from 'react'
+import React, { FC, useState, CSSProperties, ReactNode } from 'react'
 import classNames from 'classnames'
-import { Tabs, TabsItem, TabsProps } from '@gm-pc/react'
+import { Flex, FlexProps } from '@gm-pc/react'
+import _ from 'lodash'
 
-type FullTabsProps = TabsProps
-type FullTabsItem = TabsItem
+interface FullTabsItem {
+  text: string
+  value: string
+  children: ReactNode
+}
 
-const FullTabs: FC<FullTabsProps> = ({ className, ...rest }) => {
-  return <Tabs {...rest} className={classNames('gm-framework-full-tabs', className)} />
+interface FullTabsProps extends Omit<FlexProps, 'onChange'> {
+  tabs: FullTabsItem[]
+  defaultActive?: string
+  active?: string
+  onChange?(value: string): void
+  keep?: boolean
+  className?: string
+  column?: boolean
+  /** 使用 row，需要手动将 column 设置为false, Tip: 因为 column 默认为 true，column 会于 row 冲突 */
+  row?: boolean
+  style?: CSSProperties
+}
+
+const FullTabs: FC<FullTabsProps> = ({
+  tabs,
+  active,
+  defaultActive,
+  keep,
+  onChange,
+  className,
+  column = true,
+  ...rest
+}) => {
+  if (active !== undefined && defaultActive !== undefined) {
+    console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
+  }
+
+  if (active !== undefined && !onChange) {
+    console.warn('prop `active` `onChange` must exist at the same time!')
+  }
+
+  const [selected, setSelected] = useState(defaultActive || active)
+
+  const handleClick = (value: string) => {
+    setSelected(value)
+    onChange && onChange(value)
+  }
+
+  const tabsChildrenKeep = () => (
+    <>
+      {_.map(tabs, (tab: FullTabsItem) => (
+        <div
+          key={tab.value}
+          className={classNames('gm-framework-full-tabs-content-item', {
+            hidden: selected !== tab.value,
+          })}
+        >
+          {tab.children}
+        </div>
+      ))}
+    </>
+  )
+
+  const tabsChildren = () => {
+    const item = _.find(tabs, (tab) => tab.value === selected)
+    return (
+      <div className='gm-framework-full-tabs-content-item'>{item && item.children}</div>
+    )
+  }
+
+  return (
+    <Flex
+      {...rest}
+      column={column}
+      className={classNames('gm-framework-full-tabs', className)}
+    >
+      <div className='gm-framework-full-tabs-head-fix'>
+        <Flex alignEnd className='gm-framework-full-tabs-head'>
+          {_.map(tabs, (tab) => (
+            <div
+              key={tab.value}
+              className={classNames('gm-framework-full-tabs-head-item', {
+                active: selected === tab.value,
+              })}
+              onClick={() => handleClick(tab.value)}
+            >
+              {tab.text}
+            </div>
+          ))}
+        </Flex>
+      </div>
+      <Flex flex column className='gm-framework-full-tabs-content'>
+        {keep ? tabsChildrenKeep() : tabsChildren()}
+      </Flex>
+    </Flex>
+  )
 }
 
 export default FullTabs
