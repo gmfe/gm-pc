@@ -124,12 +124,52 @@
   .gm-framework-full-tabs {
     min-height: calc(100% - var(--gm-framework-size-top-right-height));
 
-    .gm-tabs-head {
+    .gm-framework-full-tabs-head-fix {
+      height: 40px;
+    }
+
+    .gm-framework-full-tabs-head {
       position: fixed;
       right: 0;
       top: var(--gm-framework-size-top-right-height);
       left: var(--gm-framework-size-left-width);
       z-index: var(--gm-framework-z-index-tabs-head);
+      height: 40px;
+      padding: 0 20px;
+      background: var(--gm-color-bg-back);
+      border-bottom: 1px solid var(--gm-color-border-special);
+
+      .gm-framework-full-tabs-head-item {
+        font-size: 14px;
+        line-height: 28px;
+        padding: 0 10px;
+        position: relative;
+        cursor: pointer;
+        color: var(--gm-color-default);
+        border-left: 1px solid transparent;
+        border-top: 1px solid transparent;
+        border-right: 1px solid transparent;
+        border-bottom: none;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+
+        &.active {
+          background: white;
+          border-left: 1px solid var(--gm-color-border);
+          border-top: 1px solid var(--gm-color-border);
+          border-right: 1px solid var(--gm-color-border);
+
+          &::after {
+            content: '';
+            height: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            background: white;
+          }
+        }
+      }
     }
   }
 }

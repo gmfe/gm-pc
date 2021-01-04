@@ -1,6 +1,34 @@
 import React from 'react'
 import { Breadcrumb, Framework, Left, FullTabs, Info, RightTop } from './index'
-import { Nav } from '@gm-pc/react'
+import { Nav, Tabs } from '@gm-pc/react'
+
+const tabs = [
+  {
+    text: 'Tab1',
+    value: '1',
+    children: <div>1</div>,
+  },
+  {
+    text: 'Tab2',
+    value: '2',
+    children: <div>2</div>,
+  },
+  {
+    text: 'Tab3',
+    value: '3',
+    children: <div>3</div>,
+  },
+  {
+    text: 'Tab4',
+    value: '4',
+    children: <div>4</div>,
+  },
+  {
+    text: '长度比较长的tabs文本',
+    value: '5',
+    children: <div>5</div>,
+  },
+]
 
 const data = [
   {
@@ -116,6 +144,11 @@ export const ComFrameWork = () => (
             text: '按司机查看',
             value: 'driver',
             children: <div>按司机按司机按司机</div>,
+          },
+          {
+            text: '内含tabs的例子',
+            value: 'tabs',
+            children: <Tabs tabs={tabs} />,
           },
         ]}
         defaultActive='sku'
