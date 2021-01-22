@@ -93,6 +93,7 @@
     "typescript": "^3.9.7",
     "url-loader": "^4.1.1",
     "webpack": "^4.44.1",
-    "webpackbar": "^4.0.0"
+    "webpackbar": "^4.0.0",
+    "gm_api": "git+https://code.guanmai.cn/fe-x/gm_api.git#79aa5ce2bc952a93c0e6a98c58c7ab547f9bcb32"
   }
 }
