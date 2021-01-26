@@ -35,6 +35,5 @@
     "react-table": "7.0.0-rc.11",
     "react-window": "^1.8.5",
     "sortablejs": "^1.12.0"
-  },
-  "gitHead": "5daf022320d4a006d22a79424646b7b7087ab04f"
+  }
 }

@@ -22,7 +22,7 @@ const rangeStore = observable({
   },
 })
 
-export const ComCaledar = () => (
+export const ComCalendar = () => (
   <Calendar
     selected={store.selected}
     onSelect={(selected) => store.setSelected(selected)}
@@ -30,23 +30,15 @@ export const ComCaledar = () => (
 )
 
 export const ComCalendarWithMinAndMax = () => (
-  <>
+  <div>
     <div className='gm-margin-tb-10'>设置min, max</div>
     <Calendar
       selected={store.selected}
       onSelect={(selected) => store.setSelected(selected)}
       min={moment().toDate()}
-      max={moment().add(10, 'd').toDate()}
+      max={moment().add('d', 10).toDate()}
     />
-    <div className='gm-margin-tb-10'>设置disabledDate</div>
-    <Calendar
-      selected={store.selected}
-      onSelect={(selected) => store.setSelected(selected)}
-      disabledDate={(d) => {
-        return moment(d).get('day') === 5
-      }}
-    />
-  </>
+  </div>
 )
 
 export const ComRangeCalendar = () => (

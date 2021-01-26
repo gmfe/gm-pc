@@ -31,6 +31,5 @@
     "@gm-pc/table-x": "^1.1.66",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
-  },
-  "gitHead": "5daf022320d4a006d22a79424646b7b7087ab04f"
+  }
 }

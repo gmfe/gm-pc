@@ -30,6 +30,5 @@
     "@gm-common/tool": "^2.8.9",
     "@gm-pc/react": "^1.1.66",
     "@gm-pc/table-x": "^1.1.66"
-  },
-  "gitHead": "5daf022320d4a006d22a79424646b7b7087ab04f"
+  }
 }

@@ -1,5 +1,4 @@
 const path = require('path')
-const WebpackBar = require('webpackbar')
 const _ = require('lodash')
 const webpack = require('webpack')
 
@@ -22,19 +21,6 @@ const webpackFinal = (config) => {
   })
 
   config.module.rules.push({
-    test: /(glyphicons-halflings-regular|iconfont)\.(woff|woff2|ttf|eot|svg)($|\?)/,
-    use: [
-      {
-        loader: 'url-loader',
-        options: {
-          limit: 1024,
-          name: 'static/media/font/[name].[hash:8].[ext]',
-        },
-      },
-    ],
-  })
-
-  config.module.rules.push({
     test: /\.less$/,
     use: [
       {
@@ -42,6 +28,14 @@ const webpackFinal = (config) => {
       },
       {
         loader: 'css-loader',
+      },
+      {
+        loader: require.resolve('postcss-loader'),
+        options: {
+          postcssOptions: {
+            plugins: [require('tailwindcss')],
+          },
+        },
       },
       {
         loader: 'less-loader',

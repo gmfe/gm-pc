@@ -5,7 +5,7 @@ import Price from './price'
 
 const list = [0, 10839, 2345454545, 1000, 12310, 10000000, -10, -226, -1000, -1000002323]
 
-storiesOf('Price', module).add('default', () => (
+storiesOf('其他/Price', module).add('default', () => (
   <div>
     {_.map(list, (v) => (
       <div key={v}>

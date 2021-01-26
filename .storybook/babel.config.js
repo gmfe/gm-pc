@@ -1,7 +1,2 @@
-module.exports = api => {
-  api.cache(true)
-
-  return {
-    presets: ['gm-react-app']
-  }
-}
+const config = require('../babel.config')
+module.exports = config

@@ -21,8 +21,6 @@ const _store = {
   begin: null,
   end: null,
   changeDate(begin: Date | null, end: Date | null) {
-    const value = moment(end!).format('YYYY-MM-DD')
-    console.log(moment(end!).add(1, 'ms').isSame(moment(value).add(1, 'd')))
     this.begin = begin as any
     this.end = end as any
   },
@@ -45,7 +43,7 @@ const disabledBegin = (date: Date) => {
   return moment(date).isSameOrBefore(moment(date).hour(11))
 }
 
-const lastDaysofLastMonth = moment().add(-1, 'month').endOf('month')
+const lastDaysofLastMonth = moment().add('month', -1).endOf('month')
 const diffDays = moment().diff(lastDaysofLastMonth, 'days')
 const lastMonthDays = moment(
   lastDaysofLastMonth.format('YYYY-MM'),
@@ -120,7 +118,7 @@ export const ComDateRangePickerWithDisabledDate = () => (
       end={store.end}
       onChange={(begin, end) => store.changeDate(begin, end)}
       min={moment().toDate()}
-      max={moment().add(10, 'day').toDate()}
+      max={moment().add('day', 10).toDate()}
     />
     <div className='gm-gap-10' />
     <div>限制一个月</div>
@@ -130,7 +128,7 @@ export const ComDateRangePickerWithDisabledDate = () => (
       onChange={(begin, end) => storeNull.changeDate(begin, end)}
       disabledDate={(d, { begin }) => {
         if (begin) {
-          if (+moment(d) > +moment(begin).add(1, 'month')) {
+          if (+moment(d) > +moment(begin).add('month', 1)) {
             return true
           }
         }

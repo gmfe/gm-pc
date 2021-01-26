@@ -125,7 +125,7 @@ const store = observable({
 
 const SelectTableX = selectTableXHOC(TableX)
 
-storiesOf('Tour|Tour', module)
+storiesOf('Tour/Tour', module)
   .add('默认', () => {
     const [start, setStart] = useState(false)
     return (

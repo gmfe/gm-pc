@@ -40,6 +40,5 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-window": "^1.8.5"
-  },
-  "gitHead": "5daf022320d4a006d22a79424646b7b7087ab04f"
+  }
 }

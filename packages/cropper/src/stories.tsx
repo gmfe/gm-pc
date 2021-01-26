@@ -73,5 +73,5 @@ export const ComCropperWithAspectRatio = () => {
 }
 
 export default {
-  title: 'Cropper|Cropper',
+  title: 'Cropper/Cropper',
 }

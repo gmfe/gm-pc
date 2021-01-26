@@ -74,7 +74,7 @@ const Wrap = React.forwardRef<HTMLDivElement, { className?: string }>(
   )
 )
 
-storiesOf('Sortable|Sortable', module)
+storiesOf('Sortable/Sortable', module)
   .add('说明', () => <div />, {
     info: {
       text: `
@@ -151,7 +151,7 @@ storiesOf('Sortable|Sortable', module)
     />
   ))
 
-storiesOf('Sortable|GroupSortable', module).add('default', () => (
+storiesOf('Sortable/GroupSortable', module).add('default', () => (
   <GroupSortable
     data={store.groupData.slice()}
     onChange={(newData) => {

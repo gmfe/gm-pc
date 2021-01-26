@@ -158,7 +158,7 @@ const Custom = () => {
   )
 }
 
-storiesOf('Sortable|JS', module)
+storiesOf('Sortable/JS', module)
   .add(
     'default',
     () => <Wrap data={store.data.slice()} onSortChange={(data) => store.setData(data)} />,

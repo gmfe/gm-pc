@@ -7,17 +7,14 @@ const store = observable({
 })
 
 export const demo = () => {
-  return <div>demo {store.data}</div>
+  return (
+    <div>
+      demo {store.data}
+      <div className='tw-pt-1 tw-bg-red-100 tw-bg-red tw-bg-primary'>tailwindcss</div>
+    </div>
+  )
 }
 
 export default {
-  title: 'DEMO|DEMO',
-}
-
-interface Props<V> {
-  value: V
-}
-
-const Com = <V,>(props: Props<V>) => {
-  return <div>{props.value}</div>
+  title: 'DEMO',
 }

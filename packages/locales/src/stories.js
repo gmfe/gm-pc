@@ -10,7 +10,7 @@ const store = observable({
 })
 
 
-storiesOf('locales|locales', module).add('default', () => (
+storiesOf('locales/locales', module).add('default', () => (
   <select
     value={store.lng}
     onChange={e => {

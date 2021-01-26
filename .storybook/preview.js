@@ -1,63 +1,36 @@
 import React from 'react'
-import './i18n'
-import { addDecorator, addParameters } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
 import { Observer } from 'mobx-react'
-import { LayoutRoot } from '../packages/react/src'
 import { Token } from 'gm_api/src/oauth'
+import { configError, initAuth } from '@gm-common/x-request'
+import { LayoutRoot } from '../packages/react/src'
+import { setLocale } from '../packages/locales/src'
 
-// 引入样式
-import '../packages/react/src/index.less'
-// 引入 frame 样式
-import '../packages/frame/src/index.less'
-// table-x
-import '../packages/table-x/src/index.less'
-// cropper
-import '../packages/cropper/src/index.less'
+import './style.less'
 
-import { instance, configError, initAuth } from '@gm-common/x-request'
+// 多语相关
+let lng = localStorage.getItem('_gm-pc_lng')
+lng = JSON.parse(lng)
+console.log('lng', lng)
+setLocale(lng)
 
+// 请求
 initAuth(Token.url, 'access_token')
-
-// 后面要移除
 configError((message) => {
   console.error(message)
 })
 
+// 做性能分析用
 if (process.env.NODE_ENV !== 'production') {
   // const whyDidYouRender = require('@welldone-software/why-did-you-render')
   // whyDidYouRender(React)
 }
 
-addParameters({
-  options: {
-    showRoots: true,
-  },
-})
-
-addDecorator(
-  withInfo({
-    inline: true,
-    header: false,
-    source: false,
-    styles: (stylesheet) => {
-      return {
-        ...stylesheet,
-        infoBody: {
-          ...stylesheet.infoBody,
-          borderTop: '1px solid #ccc',
-          color: '#444',
-          padding: '10px',
-          fontWeight: 'normal',
-        },
-      }
-    },
-  })
-)
-
-addDecorator((storeFn) => (
-  <React.Fragment>
-    <Observer>{() => storeFn()}</Observer>
-    <LayoutRoot />
-  </React.Fragment>
-))
+// 响应 mobx
+export const decorators = [
+  (storeFn) => (
+    <React.Fragment>
+      <Observer>{() => storeFn()}</Observer>
+      <LayoutRoot />
+    </React.Fragment>
+  ),
+]
