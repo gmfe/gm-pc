@@ -24,6 +24,11 @@
   dependencies:
     lodash "^4.17.20"
 
+"@gm-pc/locales@^1.1.66":
+  version "1.1.66"
+  resolved "https://registry.npm.taobao.org/@gm-pc/locales/download/@gm-pc/locales-1.1.66.tgz#c97a66afdf74fc053ea2b708eadb2fbc2fd6e1b1"
+  integrity sha1-yXpmr990/AU+orcI6tsvvC/W4bE=
+
 big.js@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npm.taobao.org/big.js/download/big.js-6.0.1.tgz#9e0a2e8b1825ce006cd4a096d6f294738cd5cff6"
@@ -56,15 +61,15 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   resolved "https://registry.npm.taobao.org/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
 
+modern-normalize@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/modern-normalize/download/modern-normalize-1.0.0.tgz#539d84a1e141338b01b346f3e27396d0ed17601e"
+  integrity sha1-U52EoeFBM4sBs0bz4nOW0O0XYB4=
+
 moment@^2.29.1:
   version "2.29.1"
   resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
-
-normalize.css@^8.0.1:
-  version "8.0.1"
-  resolved "https://registry.npm.taobao.org/normalize.css/download/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
-  integrity sha1-m5iiCHOLnMJjTKrLxC0THJdIe/M=
 
 object-assign@^4.1.1:
   version "4.1.1"

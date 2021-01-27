@@ -1,7 +1,12 @@
-@import '~normalize.css/normalize.css';
+@import '~modern-normalize';
 @import './var';
+
+// stylelint-disable
+@tailwind components;
+@tailwind utilities;
+// stylelint-enable
+
 @import 'css/base';
-@import 'css/common';
 @import 'css/svg';
 @import 'css/text';
 @import 'css/distance';
@@ -11,9 +16,6 @@
 @import 'css/cursor';
 @import 'css/overflow';
 @import 'css/position';
-@import 'css/shadow';
-@import 'css/arrow';
-@import 'css/rotate';
 @import 'css/error';
 @import 'css/other';
 @import 'component/affix/style';
@@ -60,25 +62,3 @@
 @import 'component/input/style';
 @import 'component/textarea/style';
 @import 'component/card/style';
-
-.gm-svg-icon {
-  vertical-align: -0.125em;
-}
-
-::-webkit-input-placeholder {
-  color: var(--gm-color-desc);
-}
-
-.gm-disabled {
-  .gmDisabledWith();
-}
-
-.gm-disabled-bg {
-  .gmDisabledBgWith();
-}
-
-// stylelint-disable
-.gm-number-family {
-  font-family: Helvetica;
-}
-// stylelint-enable

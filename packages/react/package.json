@@ -1,7 +1,7 @@
 {
   "name": "@gm-pc/react",
   "version": "1.1.66",
-  "description": "观麦科技前端基础组件库",
+  "description": "观麦前端基础组件库",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
   "license": "ISC",
@@ -28,8 +28,8 @@
     "big.js": "^6.0.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
-    "moment": "^2.29.1",
-    "normalize.css": "^8.0.1"
+    "modern-normalize": "^1.0.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "react": "^16.14.0",
@@ -37,6 +37,11 @@
     "react-window": "^1.8.5"
   },
   "peerDependencies": {
+    "big.js": "^6.0.1",
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.19",
+    "modern-normalize": "^1.0.0",
+    "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-window": "^1.8.5"
