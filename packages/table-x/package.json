@@ -35,5 +35,8 @@
     "react-table": "7.0.0-rc.11",
     "react-window": "^1.8.5",
     "sortablejs": "^1.12.0"
+  },
+  "devDependencies": {
+    "moment": "^2.29.1"
   }
 }

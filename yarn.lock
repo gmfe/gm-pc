@@ -2728,18 +2728,6 @@ atob@^2.1.2:
   resolved "https://registry.npm.taobao.org/atob/download/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
 
-autoprefixer@^10.2.3:
-  version "10.2.3"
-  resolved "https://registry.npm.taobao.org/autoprefixer/download/autoprefixer-10.2.3.tgz?cache=0&sync_timestamp=1611082039382&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fautoprefixer%2Fdownload%2Fautoprefixer-10.2.3.tgz#2834b55b75cfc10fa80c66000a66dc94b7136804"
-  integrity sha1-KDS1W3XPwQ+oDGYACmbclLcTaAQ=
-  dependencies:
-    browserslist "^4.16.1"
-    caniuse-lite "^1.0.30001178"
-    colorette "^1.2.1"
-    fraction.js "^4.0.13"
-    normalize-range "^0.1.2"
-    postcss-value-parser "^4.1.0"
-
 autoprefixer@^9.7.2, autoprefixer@^9.8.6:
   version "9.8.6"
   resolved "https://registry.npm.taobao.org/autoprefixer/download/autoprefixer-9.8.6.tgz?cache=0&sync_timestamp=1611082039382&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fautoprefixer%2Fdownload%2Fautoprefixer-9.8.6.tgz#3b73594ca1bf9266320c5acf1588d74dea74210f"
@@ -3143,7 +3131,7 @@ big.js@^5.2.2:
   resolved "https://registry.npm.taobao.org/big.js/download/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha1-ZfCvOC9Xi83HQr2cKB6cstd2gyg=
 
-big.js@^6.0.1, big.js@^6.0.3:
+big.js@^6.0.1:
   version "6.0.3"
   resolved "https://registry.npm.taobao.org/big.js/download/big.js-6.0.3.tgz#8b4d99ac7023668e0e465d3f78c23b8ac29ad381"
   integrity sha1-i02ZrHAjZo4ORl0/eMI7isKa04E=
@@ -3490,7 +3478,7 @@ camelcase@^6.2.0:
   resolved "https://registry.npm.taobao.org/camelcase/download/camelcase-6.2.0.tgz#924af881c9d525ac9d87f40d964e5cea982a1809"
   integrity sha1-kkr4gcnVJaydh/QNlk5c6pgqGAk=
 
-caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001173, caniuse-lite@^1.0.30001178:
+caniuse-lite@^1.0.30001035, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001173:
   version "1.0.30001179"
   resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30001179.tgz#b0803883b4471a6c62066fb1752756f8afc699c8"
   integrity sha1-sIA4g7RHGmxiBm+xdSdW+K/Gmcg=
@@ -4048,7 +4036,7 @@ create-react-context@0.3.0:
     gud "^1.0.0"
     warning "^4.0.3"
 
-cropperjs@^1.5.6:
+cropperjs@^1.5.9:
   version "1.5.9"
   resolved "https://registry.npm.taobao.org/cropperjs/download/cropperjs-1.5.9.tgz#4ff9d31e02ad04d2fc5df0044207c2ad53d99da8"
   integrity sha1-T/nTHgKtBNL8XfAEQgfCrVPZnag=
@@ -5494,11 +5482,6 @@ forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/forwarded/download/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
-
-fraction.js@^4.0.13:
-  version "4.0.13"
-  resolved "https://registry.npm.taobao.org/fraction.js/download/fraction.js-4.0.13.tgz?cache=0&sync_timestamp=1608864896341&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ffraction.js%2Fdownload%2Ffraction.js-4.0.13.tgz#3c1c315fa16b35c85fffa95725a36fa729c69dfe"
-  integrity sha1-PBwxX6FrNchf/6lXJaNvpynGnf4=
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -8697,7 +8680,7 @@ qs@^6.6.0:
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.9.6.tgz?cache=0&sync_timestamp=1610598235973&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
   integrity sha1-Ju08gkOkMbKSSsqEzJBHHzXVoO4=
 
-query-string@^6.13.6, query-string@^6.13.8:
+query-string@^6.13.6:
   version "6.13.8"
   resolved "https://registry.npm.taobao.org/query-string/download/query-string-6.13.8.tgz?cache=0&sync_timestamp=1609310775097&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fquery-string%2Fdownload%2Fquery-string-6.13.8.tgz#8cf231759c85484da3cf05a851810d8e825c1159"
   integrity sha1-jPIxdZyFSE2jzwWoUYENjoJcEVk=
@@ -8955,11 +8938,6 @@ react-syntax-highlighter@^13.5.0:
     prismjs "^1.21.0"
     refractor "^3.1.0"
 
-react-table@7.0.0-rc.11:
-  version "7.0.0-rc.11"
-  resolved "https://registry.npm.taobao.org/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
-  integrity sha1-mMUpnOFqCciJlyeVX7RQW9HtZKw=
-
 react-textarea-autosize@^8.1.1:
   version "8.3.0"
   resolved "https://registry.npm.taobao.org/react-textarea-autosize/download/react-textarea-autosize-8.3.0.tgz#e6e2fd186d9f61bb80ac6e2dcb4c55504f93c2fa"
@@ -8969,7 +8947,7 @@ react-textarea-autosize@^8.1.1:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
-react-window@^1.8.5:
+react-window@^1.8.6:
   version "1.8.6"
   resolved "https://registry.npm.taobao.org/react-window/download/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
   integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
@@ -9667,11 +9645,6 @@ snapdragon@^0.8.1:
     source-map "^0.5.6"
     source-map-resolve "^0.5.0"
     use "^3.1.0"
-
-sortablejs@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.13.0.tgz?cache=0&sync_timestamp=1610070448468&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.13.0.tgz#3ab2473f8c69ca63569e80b1cd1b5669b51269e9"
-  integrity sha1-OrJHP4xpymNWnoCxzRtWabUSaek=
 
 source-list-map@^2.0.0:
   version "2.0.1"

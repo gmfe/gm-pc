@@ -29,12 +29,12 @@
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
     "modern-normalize": "^1.0.0",
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "react-window": "^1.8.5"
   },
   "devDependencies": {
     "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-window": "^1.8.5"
+    "react-dom": "^16.14.0"
   },
   "peerDependencies": {
     "big.js": "^6.0.1",

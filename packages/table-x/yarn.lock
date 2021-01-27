@@ -31,6 +31,11 @@ lodash@^4.17.19, lodash@^4.17.20:
   resolved "https://registry.npm.taobao.org/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
 
+moment@^2.29.1:
+  version "2.29.1"
+  resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
+
 react-table@7.0.0-rc.11:
   version "7.0.0-rc.11"
   resolved "https://registry.npm.taobao.org/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
