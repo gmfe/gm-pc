@@ -7,7 +7,7 @@ interface TabsItem {
   text: string
   value: string
   children: ReactNode
-  disabled: boolean
+  disabled?: boolean
 }
 
 interface TabsProps extends Omit<FlexProps, 'onChange'> {
