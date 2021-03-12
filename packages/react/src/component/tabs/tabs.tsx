@@ -7,6 +7,7 @@ interface TabsItem {
   text: string
   value: string
   children: ReactNode
+  disabled?: boolean
 }
 
 interface TabsProps extends Omit<FlexProps, 'onChange'> {
@@ -82,17 +83,27 @@ const Tabs: FC<TabsProps> = (props) => {
     >
       <div className='gm-tabs-head-fix'>
         <Flex alignEnd className='gm-tabs-head'>
-          {_.map(tabs, (tab) => (
-            <div
-              key={tab.value}
-              className={classNames('gm-tabs-head-item', {
-                active: selected === tab.value,
-              })}
-              onClick={() => handleClick(tab.value)}
-            >
-              {tab.text}
-            </div>
-          ))}
+          {_.map(tabs, (tab) =>
+            tab.disabled ? (
+              <div
+                key={tab.value}
+                className='gm-tabs-head-item'
+                style={{ color: '#a9a9a9' }}
+              >
+                {tab.text}
+              </div>
+            ) : (
+              <div
+                key={tab.value}
+                className={classNames('gm-tabs-head-item', {
+                  active: selected === tab.value,
+                })}
+                onClick={() => handleClick(tab.value)}
+              >
+                {tab.text}
+              </div>
+            )
+          )}
         </Flex>
       </div>
       <Flex flex column className='gm-tabs-content'>
