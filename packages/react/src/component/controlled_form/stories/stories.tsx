@@ -15,12 +15,25 @@ import {
   OnFieldsChange,
   ControlledFormProps,
   Divider,
+  Switch,
+  TextArea,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
+  InputNumber,
+  DatePicker,
+  RecommendInput,
+  ColorPicker,
+  LevelSelect,
+  List,
 } from '../../../index'
 
 import { noop } from 'lodash'
 
 import { DateRangeFilter, SearchFilter } from './components'
-
+import { areaData } from '../../level_list/stories/constants'
+import item from '../../tree/item'
 interface FilterOptions {
   status: string
   pay_status: string
@@ -111,7 +124,34 @@ const dateFilterData = [
     // },
   },
 ]
-
+const groupOptions = [
+  {
+    value: 1,
+    children: '广州',
+  },
+  {
+    value: 2,
+    children: '深圳',
+    disabled: true,
+  },
+  {
+    value: 3,
+    children: '成都',
+  },
+  {
+    value: 4,
+    children: '东莞',
+    disabled: true,
+  },
+  {
+    value: 5,
+    children: '珠海',
+  },
+  {
+    value: 6,
+    children: '惠州',
+  },
+]
 export const ComBoxFormControl: FC = () => {
   const [searchTypeSelect, setsearchTypeSelect] = useState<1 | 2>(1)
   const [values, setValues] = useState<Partial<FilterOptions>>({})
@@ -145,7 +185,9 @@ export const ComBoxFormControl: FC = () => {
         initialValues={initialValues}
         hideItems={hideItems}
         normalizes={{
-          menu_period_group_ids: (items: any[]) => items.map((item) => item.value),
+          menu_period_group_ids: (items: any[]) => {
+            return items?.map((item) => item.value)
+          },
         }}
         labelWidth='100px'
         colWidth='385px'
@@ -224,6 +266,62 @@ export const ComBoxFormControl: FC = () => {
                 placeholder='全部餐次'
                 renderListFilterType='pinyin'
               />
+            </ControlledFormItem>
+            <ControlledFormItem label='switch' name='switch' valuePropName='checked'>
+              <Switch />
+            </ControlledFormItem>
+            <ControlledFormItem label='radio' name='radio' valuePropName='checked'>
+              <Radio />
+            </ControlledFormItem>
+            <ControlledFormItem label='checkbox' name='checkbox' valuePropName='checked'>
+              <Checkbox />
+            </ControlledFormItem>
+            <ControlledFormItem label='radioGroup' name='radioGroup'>
+              <RadioGroup options={groupOptions} />
+            </ControlledFormItem>
+            <ControlledFormItem label='checkboxGroup' name='checkboxGroup'>
+              <CheckboxGroup options={groupOptions} />
+            </ControlledFormItem>
+            <ControlledFormItem label='textarea' name='textarea'>
+              <TextArea />
+            </ControlledFormItem>
+            <ControlledFormItem label='inputNumber' name='inputNumber'>
+              <InputNumber />
+            </ControlledFormItem>
+            <ControlledFormItem label='DatePicker' name='DatePicker' valuePropName='date'>
+              <DatePicker />
+            </ControlledFormItem>
+            <ControlledFormItem label='RecommendInput' name='RecommendInput'>
+              <RecommendInput data={getStates('RecommendInput')} />
+            </ControlledFormItem>
+            <ControlledFormItem label='ColorPicker' name='ColorPicker'>
+              <ColorPicker>
+                <span>colorPicker</span>
+              </ColorPicker>
+            </ControlledFormItem>
+            <ControlledFormItem
+              label='LevelSelect'
+              name='LevelSelect'
+              valuePropName='selected'
+              trigger='onSelect'
+            >
+              <LevelSelect data={areaData} />
+            </ControlledFormItem>
+            <ControlledFormItem
+              label='onlySelectLeaf'
+              name='onlySelectLeaf'
+              valuePropName='selected'
+              trigger='onSelect'
+            >
+              <LevelSelect data={areaData} onlySelectLeaf />
+            </ControlledFormItem>
+            <ControlledFormItem
+              label='List'
+              name='List'
+              valuePropName='selected'
+              trigger='onSelect'
+            >
+              <List data={areaData} />
             </ControlledFormItem>
           </FormBlock>
         </BoxFormMore>

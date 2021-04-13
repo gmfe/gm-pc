@@ -23,7 +23,7 @@ export interface DatePickerProps {
   /* 选择的日期 */
   date?: Date | null
   /* 选择日期的回调函数 */
-  onChange(date: Date | null): void
+  onChange?(date: Date | null): void
   /* 展示栏placeholder */
   placeholder?: string
   /* 禁用 */

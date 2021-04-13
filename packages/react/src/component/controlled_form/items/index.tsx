@@ -9,7 +9,7 @@ import { cloneElement } from './utils'
 
 export interface ItemProps extends FormItemProps {
   name?: string
-  valuePropName?: 'value' | 'checked' | 'selected'
+  valuePropName?: 'value' | 'checked' | 'selected' | 'date'
   hide?: boolean
   trigger?: string
   children: ReactElement

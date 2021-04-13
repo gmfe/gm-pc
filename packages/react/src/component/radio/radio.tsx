@@ -36,7 +36,7 @@ function Radio<V = any>({
 
   if (radioGroupContext.isInRadioGroup) {
     oName = radioGroupContext.name
-    oChecked = radioGroupContext.value === value
+    oChecked = radioGroupContext.value && radioGroupContext.value === value
 
     if (checked !== undefined || name !== undefined || onChange !== undefined) {
       console.warn('在 RadioGroup 下，不能提供 checked name onChange')

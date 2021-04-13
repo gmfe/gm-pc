@@ -12,7 +12,7 @@ import { Input } from '../input'
 interface InputNumberProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
   value: number | null
-  onChange(value: number | null): void
+  onChange?(value: number | null): void
   disabled?: boolean
   placeholder?: string
   min?: number

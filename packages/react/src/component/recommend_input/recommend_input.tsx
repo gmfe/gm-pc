@@ -13,8 +13,8 @@ interface DataItem {
 
 export interface RecommendInputProps {
   data: DataItem[]
-  onChange(value: string): void
-  value: string
+  onChange?(value: string): void
+  value?: string
   disabled?: boolean
   listHeight?: string
   className?: string
