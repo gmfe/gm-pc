@@ -45,7 +45,7 @@ interface FilterOptions {
   }
 }
 
-const defaultValues = {
+const initialValues = {
   dayRange: {
     begin: moment().startOf('day').toDate(),
     end: moment().endOf('day').toDate(),
@@ -142,7 +142,7 @@ export const ComBoxFormControl: FC = () => {
     <div>
       <BoxForm<FilterOptions>
         isControl
-        defaultValues={defaultValues}
+        initialValues={initialValues}
         hideItems={hideItems}
         normalizes={{
           menu_period_group_ids: (items: any[]) => items.map((item) => item.value),
@@ -157,7 +157,7 @@ export const ComBoxFormControl: FC = () => {
           <ControlledFormItem name='dayRange'>
             <DateRangeFilter data={dateFilterData} enabledTimeSelect />
           </ControlledFormItem>
-          <SearchFilter selected={searchTypeSelect} />
+          <SearchFilter />
         </FormBlock>
         <BoxFormMore>
           <FormBlock col={3}>
@@ -216,6 +216,7 @@ export const ComBoxFormControl: FC = () => {
               name='menu_period_group_ids'
               trigger='onSelect'
               valuePropName='selected'
+              onFieldChange={(value) => console.log(value)}
             >
               <MoreSelect
                 multiple

@@ -1,9 +1,10 @@
 import { createContext } from 'react'
-
-export interface ControlledFormContextProps {
+import { FormInstance } from '../../common/hooks'
+export interface ControlledFormContextProps
+  extends Partial<Omit<FormInstance, 'apiDoValidate'>> {
   values?: { [key: string]: any }
   hideItems?: { [key: string]: boolean }
-  onChange?(fieldName: string, originValue: any): void
+  onChange?(fieldName: string, originValue: any): any
 }
 export const ControlledFormContext = createContext<ControlledFormContextProps>({
   values: {},

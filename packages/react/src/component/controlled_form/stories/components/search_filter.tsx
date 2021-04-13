@@ -17,18 +17,26 @@ const orderSearchType = [
   },
 ]
 
-interface SearchFilterProps {
-  selected?: 1 | 2
-}
-
-export const SearchFilter: FC<SearchFilterProps> = ({ selected = 1 }) => {
+export const SearchFilter: FC = () => {
+  const [selected, setSelected] = useState(1)
   const list = [...orderSearchType]
   const target = _.find(list, (v) => v.value === selected)
 
   return (
     <Flex>
       <div className='gm-padding-right-5' style={{ minWidth: '90px' }}>
-        <ControlledFormItem name='searchType' disabledCol>
+        <ControlledFormItem
+          name='searchType'
+          disabledCol
+          onFieldChange={(selected, { setFieldsValue }) => {
+            setSelected(selected)
+            if (selected === 2) {
+              setFieldsValue({
+                serial_no: 2222,
+              })
+            }
+          }}
+        >
           <Select clean className='gm-block' data={list} />
         </ControlledFormItem>
       </div>
