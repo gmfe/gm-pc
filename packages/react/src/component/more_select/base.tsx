@@ -50,7 +50,7 @@ class MoreSelectBase<V = any> extends Component<
 
   constructor(props: MoreSelectBaseProps<V>) {
     super(props)
-    if (props.selected.length) {
+    if (props.selected?.length) {
       this._getFilterData()
       const flatList = this._getFlatFilterData()
       this.state.willActiveIndex = flatList.findIndex(
@@ -91,7 +91,8 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   private _handleSelect = (values: V[]): void => {
-    const { onSelect, data, multiple, selected } = this.props
+    const { onSelect, data, multiple, selected = [] } = this.props
+
     const items: MoreSelectDataItem<V>[] = []
     data.forEach((group) => {
       group.children.forEach((child) => {
@@ -203,7 +204,7 @@ class MoreSelectBase<V = any> extends Component<
 
   private _renderList = (): ReactNode => {
     const {
-      selected,
+      selected = [],
       multiple,
       isGroupList,
       renderListItem,
@@ -261,7 +262,7 @@ class MoreSelectBase<V = any> extends Component<
       isInPopup,
       disabled,
       disabledClose,
-      selected,
+      selected = [],
       multiple,
       placeholder,
       renderSelected,

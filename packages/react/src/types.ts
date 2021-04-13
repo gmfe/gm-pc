@@ -15,5 +15,15 @@ interface ListGroupDataItem<V> {
 interface TreeDataItem<V> extends ListDataItem<V> {
   children?: TreeDataItem<V>[]
 }
+type StringOrKeyofT<T, V = keyof T> = keyof any extends V ? string : V
 
-export type { ListDataItem, ListGroupDataItem, TreeDataItem }
+type RecordPartical<K, V> = {
+  [P in StringOrKeyofT<K>]?: V
+}
+export type {
+  ListDataItem,
+  ListGroupDataItem,
+  TreeDataItem,
+  StringOrKeyofT,
+  RecordPartical,
+}
