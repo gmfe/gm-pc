@@ -11,10 +11,11 @@ import { getRecordParticalObject } from '../../utils'
 
 export type OnFieldsChange<K = any> = (
   [changeField, changedValue]: [StringOrKeyofT<K>, any],
-  allValues: UseFormProps['defaultValues']
+  allValues: UseFormProps['initialValues']
 ) => void
+
 export interface UseFormProps<K = any> {
-  defaultValues?: RecordPartical<K, any>
+  initialValues?: RecordPartical<K, any>
   normalizes?: RecordPartical<K, typeof noop>
   onFieldsChange?: OnFieldsChange<K>
 }
@@ -28,7 +29,7 @@ export interface FormInstance<Values = any> {
 export default function useForm<K = any>(props: UseFormProps<K>) {
   const {
     // 初始默认值
-    defaultValues = {},
+    initialValues = {},
     normalizes = getRecordParticalObject<K, typeof noop>(),
     // 表单项改变的回调
     onFieldsChange = _.noop,
@@ -36,7 +37,7 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
 
   // 存储表单值
   const [values, setValues] = useState<RecordPartical<K, any>>({
-    ...defaultValues,
+    ...initialValues,
   })
   /**
    * @description: 根据组件类型，name以及组件onChange的原始值获取格式化的值
@@ -53,15 +54,19 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
           : target.value
         : originValue
       setValues((values) => handleValues(values, fieldName, newValue, onFieldsChange))
+      if (normalizes[fieldName]) {
+        return normalizes[fieldName]?.(newValue)
+      }
+      return newValue
     },
-    [onFieldsChange]
+    [onFieldsChange, normalizes]
   )
   /**
    * @description: 重置表单
    */
   const resetFields = useCallback(() => {
-    setValues({ ...defaultValues })
-  }, [defaultValues])
+    setValues({ ...initialValues })
+  }, [initialValues])
   /**
    * @description: 修改表单值
    * @param {object: {fieldName: newValue}} newValues

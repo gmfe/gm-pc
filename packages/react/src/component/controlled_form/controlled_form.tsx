@@ -27,7 +27,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   const {
     form,
     // 默认值
-    defaultValues = getRecordParticalObject<K, any>(),
+    initialValues = getRecordParticalObject<K, any>(),
     normalizes = getRecordParticalObject<K, typeof noop>(),
     // 表单提交时是否去除值为undefined, null, ''的项
     isIgnoreFalsy = true,
@@ -48,7 +48,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     setFieldsValue,
     getFieldsValue,
   } = useForm<K>({
-    defaultValues,
+    initialValues,
     normalizes,
     onFieldsChange,
   })
@@ -57,7 +57,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
 
   //  表单提交
   const onSubmit = () => {
-    const tempValues: ControlledFormProps<K>['defaultValues'] = { ...values }
+    const tempValues: ControlledFormProps<K>['initialValues'] = { ...values }
     if (isIgnoreFalsy || Object.keys(normalizes).length) {
       Object.keys(values).forEach((key) => {
         const tempKey = key as StringOrKeyofT<K>
@@ -90,6 +90,9 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     values,
     hideItems,
     onChange,
+    resetFields,
+    setFieldsValue,
+    getFieldsValue,
   } as ControlledFormContextProps
   return (
     <Form {...formProps}>
