@@ -6,8 +6,8 @@ import { useCallback, useState, useRef } from 'react'
 import _, { noop } from 'lodash'
 
 import { handleValues } from './utils'
-import { RecordPartical, StringOrKeyofT } from '../../../types'
-import { getRecordParticalObject } from '../../utils'
+import { RecordPartical, StringOrKeyofT, anyCallback } from '../../../types'
+import { getRecordParticalObject, isFalsy } from '../../utils'
 
 export type OnFieldsChange<K = any> = (
   [changeField, changedValue]: [StringOrKeyofT<K>, any],
@@ -16,7 +16,7 @@ export type OnFieldsChange<K = any> = (
 
 export interface UseFormProps<K = any> {
   initialValues?: RecordPartical<K, any>
-  normalizes?: RecordPartical<K, typeof noop>
+  normalizes?: RecordPartical<K, anyCallback>
   onFieldsChange?: OnFieldsChange<K>
 }
 
@@ -30,7 +30,7 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
   const {
     // 初始默认值
     initialValues = {},
-    normalizes = getRecordParticalObject<K, typeof noop>(),
+    normalizes = getRecordParticalObject<K, anyCallback>(),
     // 表单项改变的回调
     onFieldsChange = _.noop,
   } = props
@@ -39,6 +39,15 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
   const [values, setValues] = useState<RecordPartical<K, any>>({
     ...initialValues,
   })
+  const getNormalizeValue = useCallback(
+    (key: StringOrKeyofT<K>, value: any) => {
+      if (normalizes[key] && !isFalsy(value)) {
+        return normalizes[key]?.(value)
+      }
+      return value
+    },
+    [normalizes]
+  )
   /**
    * @description: 根据组件类型，name以及组件onChange的原始值获取格式化的值
    * @param {string} type 组件类型
@@ -49,17 +58,14 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
     (fieldName: StringOrKeyofT<K>, originValue: any) => {
       const target = originValue?.target
       const newValue = target
-        ? target.checked
+        ? _.hasIn(target, 'checked')
           ? target.checked
           : target.value
         : originValue
       setValues((values) => handleValues(values, fieldName, newValue, onFieldsChange))
-      if (normalizes[fieldName]) {
-        return normalizes[fieldName]?.(newValue)
-      }
-      return newValue
+      return getNormalizeValue(fieldName, newValue)
     },
-    [onFieldsChange, normalizes]
+    [onFieldsChange, getNormalizeValue]
   )
   /**
    * @description: 重置表单
@@ -95,21 +101,21 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
           const tempKey = (key as unknown) as StringOrKeyofT<K>
           const value = tempValues[tempKey]
           // 如果有规格化，返回规格化的数据
-          if (normalizes[tempKey]) {
-            tempValues[tempKey] = normalizes[tempKey]?.(value)
-          }
+          tempValues[tempKey] = getNormalizeValue(tempKey, value)
         })
       }
       return tempValues as Partial<K>
     },
-    [values, normalizes]
+    [values, normalizes, getNormalizeValue]
   )
+
   return {
     values,
     onChange,
     resetFields,
     setFieldsValue,
     getFieldsValue,
+    getNormalizeValue,
   }
 }
 

@@ -7,9 +7,9 @@ interface BaseLevelListProps<V> extends LevelListProps<V> {
 }
 
 interface LevelListProps<V> {
-  data: TreeDataItem<V>[]
-  selected: V[]
-  onSelect(selected: V[]): void
+  data?: TreeDataItem<V>[]
+  selected?: V[]
+  onSelect?(selected: V[]): void
   willActiveSelected?: V[]
   onWillActiveSelect?(selected: V[]): void
   titles?: string[]
@@ -23,9 +23,9 @@ interface LevelListProps<V> {
 
 interface LevelItemProps<V> {
   title?: string
-  data: TreeDataItem<V>[]
+  data?: TreeDataItem<V>[]
   selected?: V
-  onSelect(selected: V): void
+  onSelect?(selected: V): void
   onListItemMouseEnter?(value: TreeDataItem<V>): void
   willActiveSelected?: V
   onlySelectLeaf?: boolean

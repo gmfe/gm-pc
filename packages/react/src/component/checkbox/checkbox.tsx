@@ -39,8 +39,7 @@ function Checkbox<V = any>({
 
   if (checkBoxGroupContext.isInCheckboxGroup) {
     oName = checkBoxGroupContext.name
-    oChecked = checkBoxGroupContext.value.includes(value!)
-
+    oChecked = checkBoxGroupContext.value?.includes(value!)
     if (checked !== undefined || name !== undefined || onChange !== undefined) {
       console.warn('在 CheckBoxGroup 下，不能提供 checked name onChange')
     }

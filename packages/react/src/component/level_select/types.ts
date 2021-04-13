@@ -5,9 +5,9 @@ type LevelSelectDataItem<V> = TreeDataItem<V>
 
 interface LevelSelectProps<V> {
   titles?: string[]
-  data: LevelSelectDataItem<V>[]
-  selected: V[]
-  onSelect(selected: V[]): void
+  data?: LevelSelectDataItem<V>[]
+  selected?: V[]
+  onSelect?(selected: V[]): void
   disabled?: boolean
   renderSelected?(selected: LevelSelectDataItem<V>[]): ReactNode
   onlySelectLeaf?: boolean

@@ -5,9 +5,9 @@ import React, { useImperativeHandle, useRef, ReactNode, Ref } from 'react'
 import { Form, FormProps } from '../form'
 import { noop } from 'lodash'
 import { useForm, UseFormProps, FormInstance } from '../../common/hooks'
-import { getRecordParticalObject } from '../../common/utils'
+import { getRecordParticalObject, isFalsy } from '../../common/utils'
 import { ControlledFormContext, ControlledFormContextProps } from './context'
-import { RecordPartical, StringOrKeyofT } from '../../types'
+import { RecordPartical, StringOrKeyofT, anyCallback } from '../../types'
 
 export interface ControlledFormProps<K = any>
   extends UseFormProps<K>,
@@ -19,16 +19,12 @@ export interface ControlledFormProps<K = any>
   onSubmit?(values: Partial<K>): void
 }
 
-function isFalsy(value: any) {
-  return [undefined, null, ''].includes(value)
-}
-
 function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   const {
     form,
     // 默认值
     initialValues = getRecordParticalObject<K, any>(),
-    normalizes = getRecordParticalObject<K, typeof noop>(),
+    normalizes = getRecordParticalObject<K, anyCallback>(),
     // 表单提交时是否去除值为undefined, null, ''的项
     isIgnoreFalsy = true,
     // 隐藏的表单项 要隐藏将fieldName设为tue ，如{ alloc_type: true }
@@ -47,6 +43,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     resetFields,
     setFieldsValue,
     getFieldsValue,
+    getNormalizeValue,
   } = useForm<K>({
     initialValues,
     normalizes,
@@ -56,7 +53,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   const formRef = useRef<Form>(null)
 
   //  表单提交
-  const onSubmit = () => {
+  const onSubmit = (): void => {
     const tempValues: ControlledFormProps<K>['initialValues'] = { ...values }
     if (isIgnoreFalsy || Object.keys(normalizes).length) {
       Object.keys(values).forEach((key) => {
@@ -66,8 +63,8 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
         // 剔除掉undefined, null和空字符串
         if (isIgnoreFalsy && isFalsy(value)) {
           delete tempValues[tempKey]
-        } else if (normalizes[tempKey]) {
-          tempValues[tempKey] = normalizes[tempKey]?.(value)
+        } else {
+          tempValues[tempKey] = getNormalizeValue(tempKey, value)
         }
       })
     }
