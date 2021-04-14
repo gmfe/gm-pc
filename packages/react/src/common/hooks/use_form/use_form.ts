@@ -120,7 +120,7 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
 }
 
 export function useControlFormRef<T>() {
-  const ref = useRef<FormInstance<T>>(({
+  const ref = useRef<Readonly<FormInstance<T>>>(({
     resetFields: noop,
     getFieldsValue: noop,
     setFieldsValue: noop,
