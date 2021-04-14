@@ -7,7 +7,7 @@ import { FormItem, FormItemProps } from '../../form'
 import { ControlledFormContext } from '../context'
 import { cloneElement } from './utils'
 
-export interface ItemProps extends FormItemProps {
+export interface ControlFormItemProps extends FormItemProps {
   name?: string
   valuePropName?: 'value' | 'checked' | 'selected' | 'date'
   hide?: boolean
@@ -15,7 +15,7 @@ export interface ItemProps extends FormItemProps {
   children: ReactElement
   onFieldChange?(newValue: any, context: Omit<FormInstance, 'apiDoValidate'>): void
 }
-function Item(props: ItemProps) {
+function Item(props: ControlFormItemProps) {
   const {
     name = '',
     valuePropName = 'value',
