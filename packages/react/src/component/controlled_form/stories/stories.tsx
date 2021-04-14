@@ -153,7 +153,6 @@ const groupOptions = [
   },
 ]
 export const ComBoxFormControl: FC = () => {
-  const [searchTypeSelect, setsearchTypeSelect] = useState<1 | 2>(1)
   const [values, setValues] = useState<Partial<FilterOptions>>({})
   const [fieldsValues, setFieldsValues] = useState<Partial<FilterOptions>>({})
 
@@ -168,7 +167,6 @@ export const ComBoxFormControl: FC = () => {
 
   const onFieldsChange: OnFieldsChange<FilterOptions> = ([changeField, changeValue]) => {
     if (changeField === 'searchType') {
-      setsearchTypeSelect(changeValue as 1 | 2)
     }
   }
 
@@ -215,7 +213,7 @@ export const ComBoxFormControl: FC = () => {
               trigger='onSelect'
               valuePropName='selected'
             >
-              <MoreSelect<number> data={getStates('报价单/菜谱')} />
+              <MoreSelect data={getStates('报价单/菜谱')} />
             </ControlledFormItem>
             <ControlledFormItem
               label='商户筛选'

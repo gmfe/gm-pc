@@ -25,7 +25,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
   }
 
   private _handleSelect = (selected: MoreSelectDataItem<V>[]): void => {
-    const { onSelect, multiple } = this.props
+    const { onSelect = _.noop, multiple } = this.props
     if (multiple) {
       onSelect(selected)
     } else {
@@ -66,7 +66,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
 
   render() {
     const {
-      data,
+      data = [],
       selected,
       multiple,
       isGroupList,

@@ -70,7 +70,7 @@ type MoreSelectData<V> = MoreSelectDataItem<V>[] | MoreSelectGroupDataItem<V>[]
 type MoreSelectSelected<V> = MoreSelectDataItem<V>[] | MoreSelectDataItem<V>
 
 interface MoreSelectProps<V> extends MoreSelectCommonProps<V> {
-  data: MoreSelectData<V>
+  data?: MoreSelectData<V>
   selected?: MoreSelectSelected<V>
   onSelect?(selected?: MoreSelectSelected<V>): void
 
