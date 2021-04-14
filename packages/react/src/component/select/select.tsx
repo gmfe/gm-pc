@@ -6,6 +6,7 @@ import { Popover } from '../popover'
 import { Selection } from '../selection'
 import { List } from '../list'
 import { ListDataItem } from '../../types'
+import { judgeFunction } from '../../common/utils'
 
 interface SelectState {
   willActiveIndex: number
@@ -32,21 +33,21 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
   }
 
   public apiDoSelectWillActive = (): void => {
-    const { data, onChange } = this.props
+    const { data = [], onChange } = this.props
     const { willActiveIndex } = this.state
     if (data[willActiveIndex]) {
-      onChange(data[willActiveIndex].value)
+      judgeFunction(onChange, data[willActiveIndex].value)
     }
   }
 
   private _handleChange = (selected: V): void => {
     const { onChange } = this.props
     this._popupRef.current!.apiDoSetActive()
-    onChange(selected)
+    judgeFunction(onChange, selected)
   }
 
   private _handleKeyDown = (event: KeyboardEvent): void => {
-    const { data, onKeyDown } = this.props
+    const { data = [], onKeyDown } = this.props
     let { willActiveIndex } = this.state
     if (!onKeyDown) {
       return
@@ -80,7 +81,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
 
   render() {
     const {
-      data,
+      data = [],
       value,
       all,
       disabled,
@@ -93,8 +94,10 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     } = this.props
     const { willActiveIndex } = this.state
 
-    // @ts-ignore
-    const zeroItem: ListDataItem<V> = { text: '全部', value: 0 }
+    const zeroItem = ({
+      text: '全部',
+      value: 0,
+    } as unknown) as ListDataItem<V>
     if (_.isObject(all)) {
       Object.assign(zeroItem, all)
     }
@@ -116,7 +119,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     )
 
     // disabledClose 了，不会触发
-    const handleChange = () => {}
+    const handleChange = _.noop
 
     return (
       <Popover

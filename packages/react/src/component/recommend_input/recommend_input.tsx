@@ -12,7 +12,7 @@ interface DataItem {
 }
 
 export interface RecommendInputProps {
-  data: DataItem[]
+  data?: DataItem[]
   onChange?(value: string): void
   value?: string
   disabled?: boolean
@@ -24,7 +24,7 @@ export interface RecommendInputProps {
 const RecommendInput: FC<RecommendInputProps> = ({
   onChange,
   value,
-  data,
+  data = [],
   listHeight = '180px',
   disabled,
   className,
