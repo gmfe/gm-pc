@@ -58,7 +58,7 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
     (fieldName: StringOrKeyofT<K>, originValue: any) => {
       const target = originValue?.target
       const newValue = target
-        ? _.hasIn(target, 'checked')
+        ? ['checkbox', 'radio'].includes(target?.type)
           ? target.checked
           : target.value
         : originValue
