@@ -12,10 +12,14 @@ import { RecordPartical, StringOrKeyofT, anyCallback } from '../../types'
 export interface ControlledFormProps<K = any>
   extends UseFormProps<K>,
     Omit<FormProps, 'onSubmit'> {
+  /* 表单实例，可拿到一些方法 */
   form?: Ref<FormInstance<K>>
+  /* 要隐藏的表单项 */
   hideItems?: RecordPartical<K, boolean>
+  /* 提交获取值是否过滤 null | undefined | '' */
   isIgnoreFalsy?: boolean
   children?: ReactNode
+  /* 表单提交的回调 */
   onSubmit?(values: Partial<K>): void
 }
 
@@ -24,6 +28,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     form,
     // 默认值
     initialValues = getRecordParticalObject<K, any>(),
+    // 规格化配置
     normalizes = getRecordParticalObject<K, anyCallback>(),
     // 表单提交时是否去除值为undefined, null, ''的项
     isIgnoreFalsy = true,
@@ -33,7 +38,8 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     // 表单项改变的时候,回调第一个是改变的字段及新的值，第二个参数是所有新的值
     onFieldsChange = noop,
     // 表单提交的回调
-    onSubmit: onTempSubmit = noop,
+    onSubmit: onTempSubmit,
+    onSubmitValidated,
     ...res
   } = props
 
@@ -68,7 +74,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
         }
       })
     }
-    onTempSubmit(tempValues as K)
+    onTempSubmit && onTempSubmit(tempValues as K)
   }
   useImperativeHandle(form, () => ({
     resetFields,
@@ -80,8 +86,12 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   const formProps = {
     ...res,
     ref: formRef,
-    onSubmit,
-    onSubmitValidated: onSubmit,
+  }
+  if (onTempSubmit) {
+    Object.assign(formProps, { onSubmit })
+  }
+  if (onSubmitValidated) {
+    Object.assign(formProps, { onSubmitValidated: onSubmit })
   }
   const providerValues = {
     values,

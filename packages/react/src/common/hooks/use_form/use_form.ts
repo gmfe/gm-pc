@@ -15,15 +15,22 @@ export type OnFieldsChange<K = any> = (
 ) => void
 
 export interface UseFormProps<K = any> {
+  /* 表单初始值 */
   initialValues?: RecordPartical<K, any>
+  /* 规格化配置 */
   normalizes?: RecordPartical<K, anyCallback>
+  /* 表单项改变的回调，产用于表单项联动 */
   onFieldsChange?: OnFieldsChange<K>
 }
 
 export interface FormInstance<Values = any> {
+  /* 重置表单为初始值 */
   resetFields(): void
+  /* 设置表单值 */
   setFieldsValue(newValues: RecordPartical<Values, any>): void
+  /* 获取表单值 */
   getFieldsValue(nameList?: StringOrKeyofT<Values>[]): Partial<Values>
+  /* 表单是否验证 */
   apiDoValidate(): boolean
 }
 export default function useForm<K = any>(props: UseFormProps<K>) {
@@ -118,7 +125,10 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
     getNormalizeValue,
   }
 }
-
+/**
+ * @description: 获取表单实例
+ * @return {Readonly<FormInstance<T>>} 表单实例
+ */
 export function useControlFormRef<T>() {
   const ref = useRef<Readonly<FormInstance<T>>>(({
     resetFields: noop,
