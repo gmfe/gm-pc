@@ -8,19 +8,22 @@ import { ControlledFormContext } from '../context'
 import { cloneElement } from './utils'
 
 export interface ControlFormItemProps extends FormItemProps {
+  /* 表单名 */
   name?: string
+  /* 组件value名 */
   valuePropName?: 'value' | 'checked' | 'selected' | 'date'
+  /* 是否隐藏表单 */
   hide?: boolean
+  /* 组件触发函数名 */
   trigger?: string
   children: ReactElement
+  /* 表单项改变的回调 */
   onFieldChange?(newValue: any, context: Omit<FormInstance, 'apiDoValidate'>): void
 }
 function Item(props: ControlFormItemProps) {
   const {
     name = '',
     valuePropName = 'value',
-    // 提示
-    // tip = null,
     // 控制表单是否隐藏
     hide,
     trigger = 'onChange',
