@@ -73,8 +73,10 @@ const initialValues = {
   is_create_stock_sheet: 0,
   has_remark: 0,
   drivers: [
-    { value: '1', text: '司机1' },
-    { value: '2', text: '司机2' },
+    '1',
+    '2',
+    // { value: '1', text: '司机1' },
+    // { value: '2', text: '司机2' },
   ],
 }
 const hideData = [
@@ -226,12 +228,7 @@ export const ComBoxFormControl: FC = () => {
             <ControlledFormItem label='订单来源' name='app_id'>
               <Select data={[...getStates('订单来源')]} />
             </ControlledFormItem>
-            <ControlledFormItem
-              label='司机筛选'
-              name='drivers'
-              trigger='onSelect'
-              valuePropName='selected'
-            >
+            <ControlledFormItem label='司机筛选' name='drivers'>
               <MoreSelect
                 multiple
                 data={getStates('司机')}
