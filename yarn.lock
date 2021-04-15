@@ -4811,10 +4811,10 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-gm-react-app@^3.6.1:
-  version "3.6.1"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-gm-react-app/download/eslint-plugin-gm-react-app-3.6.1.tgz#7f6ca11e0f63bc4101c65e16771ae10288f0302a"
-  integrity sha1-f2yhHg9jvEEBxl4WdxrhAojwMCo=
+eslint-plugin-gm-react-app@^3.6.5:
+  version "3.7.5"
+  resolved "https://registry.npm.taobao.org/eslint-plugin-gm-react-app/download/eslint-plugin-gm-react-app-3.7.5.tgz#119710772f4a763755e085157bf7b958a67b3aa9"
+  integrity sha1-EZcQdy9KdjdV4IUVe/e5WKZ7Oqk=
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.27.0"
     "@typescript-eslint/parser" "^2.27.0"
@@ -4838,7 +4838,7 @@ eslint-plugin-gm-react-app@^3.6.1:
     jsx-ast-utils "^2.2.3"
     lodash "^4.17.19"
     prettier "^2.0.4"
-    ts-config-gm-react-app "^3.6.1"
+    ts-config-gm-react-app "^3.7.5"
     typescript "^3.8.3"
 
 eslint-plugin-import@^2.20.2:
@@ -10410,10 +10410,15 @@ trough@^1.0.0:
   resolved "https://registry.npm.taobao.org/trough/download/trough-1.0.5.tgz#b8b639cefad7d0bb2abd37d433ff8293efa5f406"
   integrity sha1-uLY5zvrX0LsqvTfUM/+Ck++l9AY=
 
-ts-config-gm-react-app@^3.4.5, ts-config-gm-react-app@^3.6.1:
+ts-config-gm-react-app@^3.4.5:
   version "3.6.1"
   resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.6.1.tgz#4c78ce802c44e32e3a2e34953599eec37e5f8081"
   integrity sha1-THjOgCxE4y46LjSVNZnuw35fgIE=
+
+ts-config-gm-react-app@^3.6.5, ts-config-gm-react-app@^3.7.5:
+  version "3.7.5"
+  resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.7.5.tgz#893e272f90a57b56924eeceb11e564cadbc4ce5b"
+  integrity sha1-iT4nL5Cle1aSTuzrEeVkytvEzls=
 
 ts-dedent@^2.0.0:
   version "2.0.0"

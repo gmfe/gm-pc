@@ -72,8 +72,9 @@ type MoreSelectSelected<V> = MoreSelectDataItem<V>[] | MoreSelectDataItem<V>
 interface MoreSelectProps<V> extends MoreSelectCommonProps<V> {
   data?: MoreSelectData<V>
   selected?: MoreSelectSelected<V>
+  value?: V | V[]
   onSelect?(selected?: MoreSelectSelected<V>): void
-
+  onChange?(value: V | V[]): void
   /** 搜索回调 */
   onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void> | void
 
