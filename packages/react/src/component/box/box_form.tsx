@@ -41,11 +41,10 @@ const BoxFormMore: FC = ({ children }) => {
 
 type BoxFormProps<T> = ControlledFormProps<T> & {
   isControl?: boolean
-  hideMore?: boolean
 }
 
 function BoxForm<K = any>(props: BoxFormProps<K>) {
-  const { btnPosition = 'left', isControl, hideMore, children, ...rest } = props
+  const { btnPosition = 'left', isControl, children, ...rest } = props
   const [hasMore, setHasMore] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -68,7 +67,7 @@ function BoxForm<K = any>(props: BoxFormProps<K>) {
             </TempForm>
           </BoxFormContext.Provider>
         </Flex>
-        {!hideMore && hasMore && (
+        {hasMore && (
           <ButtonText type='primary' onClick={handleToggle}>
             {open && getLocale('收起')}
             {getLocale('高级筛选')} <IconDownUp active={open} />

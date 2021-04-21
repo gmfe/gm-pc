@@ -6,10 +6,10 @@ import { FormInstance } from '../../../common/hooks'
 import { FormItem, FormItemProps } from '../../form'
 import { ControlledFormContext } from '../context'
 import { cloneElement } from './utils'
-
-export interface ControlFormItemProps extends FormItemProps {
+import { StringOrKeyofT } from '../../../types'
+export interface ControlFormItemProps<T = any> extends FormItemProps {
   /* 表单名 */
-  name?: string
+  name?: StringOrKeyofT<T>
   /* 组件value名 */
   valuePropName?: 'value' | 'checked' | 'selected' | 'date'
   /* 是否隐藏表单 */

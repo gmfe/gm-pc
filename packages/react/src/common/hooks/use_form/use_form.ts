@@ -6,8 +6,8 @@ import { useCallback, useState, useRef } from 'react'
 import _, { noop } from 'lodash'
 
 import { handleValues } from './utils'
-import { RecordPartical, StringOrKeyofT, anyCallback } from '../../../types'
-import { getRecordParticalObject, isFalsy } from '../../utils'
+import { RecordPartial, StringOrKeyofT, anyCallback } from '../../../types'
+import { getRecordPartialObject, isFalsy } from '../../utils'
 
 export type OnFieldsChange<K = any> = (
   [changeField, changedValue]: [StringOrKeyofT<K>, any],
@@ -16,9 +16,13 @@ export type OnFieldsChange<K = any> = (
 
 export interface UseFormProps<K = any> {
   /* 表单初始值 */
-  initialValues?: RecordPartical<K, any>
+  initialValues?: RecordPartial<K, any>
   /* 规格化配置 */
-  normalizes?: RecordPartical<K, anyCallback>
+  normalizes?: keyof any extends K
+    ? { [key: string]: anyCallback }
+    : {
+        [P in keyof K]?: anyCallback<K[P]>
+      }
   /* 表单项改变的回调，产用于表单项联动 */
   onFieldsChange?: OnFieldsChange<K>
 }
@@ -27,7 +31,7 @@ export interface FormInstance<Values = any> {
   /* 重置表单为初始值 */
   resetFields(): void
   /* 设置表单值 */
-  setFieldsValue(newValues: RecordPartical<Values, any>): void
+  setFieldsValue(newValues: RecordPartial<Values, any>): void
   /* 获取表单值 */
   getFieldsValue(nameList?: StringOrKeyofT<Values>[]): Partial<Values>
   /* 表单是否验证 */
@@ -37,13 +41,13 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
   const {
     // 初始默认值
     initialValues = {},
-    normalizes = getRecordParticalObject<K, anyCallback>(),
+    normalizes = getRecordPartialObject<K, anyCallback>(),
     // 表单项改变的回调
     onFieldsChange = _.noop,
   } = props
 
   // 存储表单值
-  const [values, setValues] = useState<RecordPartical<K, any>>({
+  const [values, setValues] = useState<RecordPartial<K, any>>({
     ...initialValues,
   })
   const getNormalizeValue = useCallback(
