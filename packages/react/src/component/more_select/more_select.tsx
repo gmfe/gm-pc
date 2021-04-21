@@ -27,7 +27,8 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
   private _handleSelect = (selected: MoreSelectDataItem<V>[]): void => {
     const { onSelect = _.noop, onChange = _.noop, multiple } = this.props
     const tempSelected = multiple ? selected : selected[0]
-    const value = multiple ? selected.map((item) => item.value) : selected[0].value
+    // selected[0]?.value： selected[0]有可能为undefined，直接取value会报错
+    const value = multiple ? selected.map((item) => item.value) : selected[0]?.value
     onSelect(tempSelected)
     // 回调时将value传回
     onChange(value)
