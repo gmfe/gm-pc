@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
 
 /** 普通的数据格式 */
-interface MoreSelectDataItem<V> {
+interface MoreSelectDataItem<V extends string | number = string> {
   value: V
   text: string
   disabled?: boolean

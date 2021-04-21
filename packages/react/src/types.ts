@@ -17,16 +17,16 @@ interface TreeDataItem<V> extends ListDataItem<V> {
 }
 type StringOrKeyofT<T, V = keyof T> = keyof any extends V ? string : V
 
-type RecordPartical<K, V> = {
+type RecordPartial<K, V> = {
   [P in StringOrKeyofT<K>]?: V
 }
 
-type anyCallback = (...args: any[]) => any
+type anyCallback<T = any> = (...args: any[]) => T
 export type {
   ListDataItem,
   ListGroupDataItem,
   TreeDataItem,
   StringOrKeyofT,
-  RecordPartical,
+  RecordPartial,
   anyCallback,
 }
