@@ -13,7 +13,6 @@ import { TABLE_X } from './utils'
 
 export const TableXUtil = {
   TABLE_X,
-
   OperationHeader,
   OperationDelete,
   OperationDetail,

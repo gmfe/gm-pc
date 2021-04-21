@@ -1,13 +1,21 @@
 import React, { FC, HTMLAttributes, MouseEvent } from 'react'
 import classNames from 'classnames'
+import { SortHeaderDirectionType } from '../base/types'
 
-interface SortHeaderProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
-  type?: 'asc' | 'desc' | null
+export interface SortHeaderProps
+  extends Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
+  type?: SortHeaderDirectionType
   onClick?(event: MouseEvent<HTMLSpanElement>): void
-  onChange?(type: 'asc' | 'desc' | null): void
+  onChange?(type: SortHeaderDirectionType): void
 }
 
-const SortHeader: FC<SortHeaderProps> = ({ type, onClick, className, onChange, ...rest }) => {
+const SortHeader: FC<SortHeaderProps> = ({
+  type,
+  onClick,
+  className,
+  onChange,
+  ...rest
+}) => {
   const handleClick = (event: MouseEvent<HTMLSpanElement>): void => {
     onClick && onClick(event)
     if (!onChange) {
