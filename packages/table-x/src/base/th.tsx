@@ -3,7 +3,10 @@ import classNames from 'classnames'
 import { TableXThProps } from './types'
 import { getColumnStyle } from '../utils'
 
-const Th: FC<TableXThProps> = ({ column, totalWidth }) => {
+interface ThProps extends TableXThProps {
+  sortDirection?: 'desc' | 'asc' | null
+}
+const Th: FC<ThProps> = ({ column, totalWidth }) => {
   const hp = column.getHeaderProps()
 
   const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = {

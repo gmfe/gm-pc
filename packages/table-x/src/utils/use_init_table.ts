@@ -8,7 +8,14 @@ const defaultColumn = __DEFAULT_COLUMN
 
 function useInitTable(columns: TableXColumn[], data: TableXDataItem[]) {
   // fixed(最新rc12不支持column.show,自己实现)
-  columns = useMemo(() => columns.filter((column) => column.show !== false), [columns])
+  columns = useMemo(
+    () =>
+      columns.filter((column) => {
+        column.originHeader = column.Header
+        return column.show !== false
+      }),
+    [columns]
+  )
 
   const { getTableProps, getTableBodyProps, rows, prepareRow, headerGroups } = useTable({
     data,

@@ -13,6 +13,7 @@ interface TableXCustomerColumn {
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
+  headerSort?: boolean
   /** KeyboardTableX 用 */
   Cell?(props: TableXCellProps): ReactNode
 }
@@ -42,10 +43,15 @@ interface TableXTdProps {
   cell: TableXCell
   totalWidth: number
 }
-
+type OnHeaderSort = (sortProps: {
+  field: string
+  direction: SortHeaderDirectionType
+}) => void
 interface TableXTheadProps {
   headerGroups: TableXHeaderGroup[]
   totalWidth: number
+  sorts?: TableXDataItem
+  onHeaderSort?: OnHeaderSort
 }
 
 interface TableXTrProps {
@@ -62,7 +68,9 @@ interface TableXTrProps {
 
 // 对外 props columns
 type TableXColumn = Column<TableXDataItem> & TableXCustomerColumn
-
+type SortsType = {
+  [key: string]: SortHeaderDirectionType
+}
 interface TableXProps {
   id?: string
   columns: TableXColumn[]
@@ -74,10 +82,13 @@ interface TableXProps {
   /** table 是否平铺，准确意思应该是是否有边框 */
   tiled?: boolean
   border?: boolean
+  // 头部是否支持多列排序
+  headerSortMultiply?: boolean
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
   onScroll?(event: UIEvent<HTMLDivElement>): void
+  onHeadersSort?(sorts: SortsType): void
   className?: string
   style?: CSSProperties
 }
@@ -94,6 +105,8 @@ type TableXSortType = 'desc' | 'asc' | undefined
 
 // 不知道叫什么名字好
 type TableXPropsType = TableXProps | TableXVirtualizedProps
+// SortHeader排序方向
+type SortHeaderDirectionType = 'asc' | 'desc' | null
 
 export type {
   TableXDataItem,
@@ -111,4 +124,7 @@ export type {
   TableXVirtualizedProps,
   TableXSortType,
   TableXPropsType,
+  SortHeaderDirectionType,
+  OnHeaderSort,
+  SortsType,
 }
