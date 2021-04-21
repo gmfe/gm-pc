@@ -1,13 +1,20 @@
 /*
  * @Description: 受控表单
  */
-import React, { useImperativeHandle, useRef, ReactNode, Ref } from 'react'
+import React, {
+  useEffect,
+  useCallback,
+  useRef,
+  useImperativeHandle,
+  ReactNode,
+  Ref,
+} from 'react'
 import { Form, FormProps } from '../form'
 import { noop } from 'lodash'
 import { useForm, UseFormProps, FormInstance } from '../../common/hooks'
-import { getRecordParticalObject, isFalsy } from '../../common/utils'
+import { getRecordPartialObject, isFalsy } from '../../common/utils'
 import { ControlledFormContext, ControlledFormContextProps } from './context'
-import { RecordPartical, StringOrKeyofT, anyCallback } from '../../types'
+import { RecordPartial, StringOrKeyofT, anyCallback } from '../../types'
 
 export interface ControlledFormProps<K = any>
   extends UseFormProps<K>,
@@ -15,9 +22,11 @@ export interface ControlledFormProps<K = any>
   /* 表单实例，可拿到一些方法 */
   form?: Ref<FormInstance<K>>
   /* 要隐藏的表单项 */
-  hideItems?: RecordPartical<K, boolean>
+  hideItems?: RecordPartial<K, boolean>
   /* 提交获取值是否过滤 null | undefined | '' */
   isIgnoreFalsy?: boolean
+  // 初始化是否触发onSubmit
+  isSubmitInit?: boolean
   children?: ReactNode
   /* 表单提交的回调 */
   onSubmit?(values: Partial<K>): void
@@ -27,13 +36,14 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   const {
     form,
     // 默认值
-    initialValues = getRecordParticalObject<K, any>(),
+    initialValues = getRecordPartialObject<K, any>(),
     // 规格化配置
-    normalizes = getRecordParticalObject<K, anyCallback>(),
+    normalizes = getRecordPartialObject<K, anyCallback>(),
     // 表单提交时是否去除值为undefined, null, ''的项
     isIgnoreFalsy = true,
+    isSubmitInit,
     // 隐藏的表单项 要隐藏将fieldName设为tue ，如{ alloc_type: true }
-    hideItems = getRecordParticalObject<K, boolean>(),
+    hideItems = getRecordPartialObject<K, boolean>(),
     children,
     // 表单项改变的时候,回调第一个是改变的字段及新的值，第二个参数是所有新的值
     onFieldsChange = noop,
@@ -44,7 +54,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   } = props
 
   const {
-    values = getRecordParticalObject<K, any>(),
+    values = getRecordPartialObject<K, any>(),
     onChange,
     resetFields,
     setFieldsValue,
@@ -56,10 +66,12 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     onFieldsChange,
   })
 
+  const didMountRef = useRef(false)
+
   const formRef = useRef<Form>(null)
 
   //  表单提交
-  const onSubmit = (): void => {
+  const onSubmit = useCallback((): void => {
     const tempValues: ControlledFormProps<K>['initialValues'] = { ...values }
     if (isIgnoreFalsy || Object.keys(normalizes).length) {
       Object.keys(values).forEach((key) => {
@@ -75,7 +87,13 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
       })
     }
     onTempSubmit && onTempSubmit(tempValues as K)
-  }
+  }, [getNormalizeValue, isIgnoreFalsy, normalizes, onTempSubmit, values])
+  useEffect(() => {
+    if (isSubmitInit && !didMountRef.current) {
+      didMountRef.current = true
+      onSubmit()
+    }
+  }, [isSubmitInit, onSubmit])
   useImperativeHandle(form, () => ({
     resetFields,
     setFieldsValue,

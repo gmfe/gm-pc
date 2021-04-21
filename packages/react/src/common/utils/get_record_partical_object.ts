@@ -1,4 +1,4 @@
-import { RecordPartical } from '../../types'
-export function getRecordParticalObject<K, V>(): RecordPartical<K, V> {
+import { RecordPartial } from '../../types'
+export function getRecordPartialObject<K, V>(): RecordPartial<K, V> {
   return Object.create(null)
 }

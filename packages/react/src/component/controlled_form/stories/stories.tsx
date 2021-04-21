@@ -170,6 +170,13 @@ export const ComBoxFormControl: FC = () => {
   const onFieldsChange: OnFieldsChange<FilterOptions> = ([changeField, changeValue]) => {
     if (changeField === 'searchType') {
     }
+    switch (changeField) {
+      case 'app_id':
+        break
+
+      default:
+        break
+    }
   }
 
   const changeValue = (): void => {
@@ -180,13 +187,16 @@ export const ComBoxFormControl: FC = () => {
   }
   return (
     <div>
-      <BoxForm<FilterOptions>
+      <BoxForm
         isControl
         initialValues={initialValues}
         hideItems={hideItems}
         normalizes={{
           menu_period_group_ids: (items: any[]) => {
             return items?.map((item) => item.value)
+          },
+          aaa() {
+            return 1
           },
         }}
         labelWidth='100px'
