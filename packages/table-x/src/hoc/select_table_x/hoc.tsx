@@ -40,7 +40,7 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {
   const SelectTableX: FC<Props & SelectTableXProps> = ({
-    selected,
+    selected = [],
     onSelect,
     batchActionBar,
     isSelectorDisable = returnFalse,
