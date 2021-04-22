@@ -75,8 +75,9 @@ type SortsType = {
   [key: string]: SortHeaderDirectionType
 }
 
+type DiyShowObjType = TableXDataItem<string>
 interface TableInstance {
-  getDiyShowObj(): TableXDataItem<string>
+  getDiyShowObj(): DiyShowObjType
 }
 interface TableXProps {
   id?: string
@@ -136,4 +137,5 @@ export type {
   OnHeaderSort,
   SortsType,
   TableInstance,
+  DiyShowObjType,
 }
