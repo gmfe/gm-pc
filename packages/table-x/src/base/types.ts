@@ -1,9 +1,9 @@
 import { Cell, CellProps, Column, ColumnInstance, Row } from 'react-table'
-import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
+import { CSSProperties, ReactNode, RefObject, UIEvent, Ref } from 'react'
 import { VariableSizeList } from 'react-window'
 
-interface TableXDataItem {
-  [key: string]: any
+interface TableXDataItem<V = any> {
+  [key: string]: V
 }
 
 type TableXCellProps = CellProps<TableXDataItem>
@@ -14,6 +14,9 @@ interface TableXCustomerColumn {
   /** 固定列 */
   fixed?: 'left' | 'right'
   headerSort?: boolean
+  defaultSortDirection?: SortHeaderDirectionType
+  // 因为header有可能是组件，为了获取列的名称（为string)，故加上这个
+  label?: string
   /** KeyboardTableX 用 */
   Cell?(props: TableXCellProps): ReactNode
 }
@@ -71,24 +74,29 @@ type TableXColumn = Column<TableXDataItem> & TableXCustomerColumn
 type SortsType = {
   [key: string]: SortHeaderDirectionType
 }
+
+interface TableInstance {
+  getDiyShowObj(): TableXDataItem<string>
+}
 interface TableXProps {
   id?: string
+  /** 默认 value */
+  keyField?: string
   columns: TableXColumn[]
   data: TableXDataItem[]
   loading?: boolean
-  SubComponent?(row: TableXRow): ReactNode
-  /** 默认 value */
-  keyField?: string
   /** table 是否平铺，准确意思应该是是否有边框 */
   tiled?: boolean
   border?: boolean
   // 头部是否支持多列排序
   headerSortMultiply?: boolean
+  tableRef?: Ref<TableInstance>
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
   onScroll?(event: UIEvent<HTMLDivElement>): void
   onHeadersSort?(sorts: SortsType): void
+  SubComponent?(row: TableXRow): ReactNode
   className?: string
   style?: CSSProperties
 }
@@ -127,4 +135,5 @@ export type {
   SortHeaderDirectionType,
   OnHeaderSort,
   SortsType,
+  TableInstance,
 }

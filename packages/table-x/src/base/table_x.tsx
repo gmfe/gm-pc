@@ -4,59 +4,44 @@ import React, {
   CSSProperties,
   FC,
   UIEvent,
-  useState,
-  useCallback,
+  useImperativeHandle,
 } from 'react'
 import classNames from 'classnames'
-import _ from 'lodash'
-import { useInitTable, afterScroll } from '../utils'
+
+import { useInitTable, afterScroll, getDiyShowObj } from '../utils'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
-import {
-  TableXHeaderGroup,
-  TableXProps,
-  TableXRow,
-  OnHeaderSort,
-  SortsType,
-} from './types'
+import { TableXHeaderGroup, TableXProps, TableXRow } from './types'
 
 const TableX: FC<TableXProps> = ({
   columns,
   data,
   loading,
-  SubComponent,
   keyField = 'value',
   tiled,
   border,
   headerSortMultiply,
+  tableRef,
   isTrHighlight,
   isTrDisable,
   onScroll,
+  SubComponent,
   onHeadersSort,
   className,
   ...rest
 }) => {
   const {
+    rows,
+    headerGroups,
+    totalWidth,
+    sorts,
     getTableProps,
     getTableBodyProps,
-    totalWidth,
     prepareRow,
-    headerGroups,
-    rows,
-  } = useInitTable(columns, data)
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  const [sorts, setSorts] = useState<SortsType>(initSorts)
+    onHeaderSort,
+  } = useInitTable({ columns, data, headerSortMultiply, onHeadersSort })
 
-  function initSorts() {
-    const sortsObject: SortsType = {}
-    columns.forEach(({ headerSort, id }) => {
-      if (headerSort) {
-        sortsObject[id!] = null
-      }
-    })
-    return sortsObject
-  }
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
     ...gtp,
@@ -93,21 +78,15 @@ const TableX: FC<TableXProps> = ({
     )
   }
 
-  const onHeaderSort: OnHeaderSort = useCallback(
-    ({ field, direction }) => {
-      setSorts((sorts) => {
-        let newSorts = { [field]: direction }
-        if (headerSortMultiply) {
-          newSorts = { ...sorts, [field]: direction }
-        }
-        // 放入宏任务队列，避免警告
-        setTimeout(() => {
-          onHeadersSort && onHeadersSort(_.pickBy(newSorts, _.identity))
-        })
-        return newSorts
-      })
-    },
-    [headerSortMultiply, onHeadersSort]
+  useImperativeHandle(
+    tableRef,
+    () => ({
+      getDiyShowObj: () => {
+        const diyShowObj = getDiyShowObj(columns)
+        return diyShowObj
+      },
+    }),
+    [columns]
   )
   return (
     <div
