@@ -13,4 +13,5 @@ export type {
   TableXVirtualizedProps,
   TableXPropsType,
   DiyShowObjType,
+  SortsType,
 } from './types'
