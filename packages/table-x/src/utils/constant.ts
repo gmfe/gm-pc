@@ -1,3 +1,4 @@
+import { TableXCellProps } from '../base/types'
 const TABLE_X_SELECT_ID = 'table_x_select_id'
 const TABLE_X_EXPAND_ID = 'table_x_expand_id'
 const TABLE_X_DIY_ID = 'table_x_diy_id'
@@ -26,6 +27,11 @@ const __DEFAULT_COLUMN = {
   minWidth: 7.77,
   width: 17.77,
   maxWidth: 1777.77,
+  Cell: (cellProps: TableXCellProps) => {
+    const $cell$value = cellProps.value
+    const value = $cell$value ?? '-'
+    return value
+  },
 }
 
 export {

@@ -6,7 +6,36 @@ import { VariableSizeList } from 'react-window'
 
 export const ComTableX = () => (
   <div>
-    <TableX columns={columns} data={store.data} />
+    <TableX
+      columns={[
+        {
+          Header: '序号',
+          id: 'index',
+          Cell: (cellProps: any) => cellProps.row.index + 1,
+          width: 100,
+        },
+        { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
+        { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
+        {
+          Header: '供应商信息',
+          width: 500,
+          minWidth: 500,
+          accessor: 'address',
+          id: 'supplierName',
+        },
+        {
+          Header: '入库金额',
+          // accessor: 'totalMoney',
+          id: 'totalMoney',
+          minWidth: 500,
+          Cell: ({ value, row, index, original }) => {
+            // return row.original.totalMoney
+            return value
+          },
+        },
+      ]}
+      data={store.data}
+    />
     <TableX columns={columns} data={store.data} loading />
     <TableX columns={columns} data={[]} />
     <TableX columns={columns} data={[]} tiled className='gm-margin-10' />

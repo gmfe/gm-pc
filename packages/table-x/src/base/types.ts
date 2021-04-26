@@ -6,10 +6,13 @@ interface TableXDataItem<V = any> {
   [key: string]: V
 }
 
-type TableXCellProps = CellProps<TableXDataItem>
+type TableXCellProps<D extends object = any> = Pick<CellProps<D>, 'row' | 'value'> & {
+  index: number
+  original: D
+}
 
 // 自定义的 props
-interface TableXCustomerColumn {
+interface TableXCustomerColumn<D extends object = any> {
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
@@ -18,7 +21,7 @@ interface TableXCustomerColumn {
   // 因为header有可能是组件，为了获取列的名称（为string)，故加上这个
   label?: string
   /** KeyboardTableX 用 */
-  Cell?(props: TableXCellProps): ReactNode
+  Cell?(props: TableXCellProps<D>): ReactNode
 }
 
 // useTable 生成的 columns
@@ -70,27 +73,27 @@ interface TableXTrProps {
 /** 对外 */
 
 // 对外 props columns
-type TableXColumn = Column<TableXDataItem> & TableXCustomerColumn
+type TableXColumn<D extends object = any> = Column<D> & TableXCustomerColumn<D>
 type SortsType = {
   [key: string]: SortHeaderDirectionType
 }
 
-type DiyShowObjType = TableXDataItem<string>
+type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
-  getDiyShowObj(): DiyShowObjType
+  getDiyShowMap(): DiyShowMapType
 }
-interface TableXProps {
+interface TableXProps<D extends object = any> {
   id?: string
   /** 默认 value */
   keyField?: string
-  columns: TableXColumn[]
+  columns: TableXColumn<D>[]
   data: TableXDataItem[]
   loading?: boolean
   /** table 是否平铺，准确意思应该是是否有边框 */
   tiled?: boolean
   border?: boolean
   // 头部是否支持多列排序
-  headerSortMultiply?: boolean
+  headerSortMultiple?: boolean
   tableRef?: Ref<TableInstance>
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
@@ -137,5 +140,5 @@ export type {
   OnHeaderSort,
   SortsType,
   TableInstance,
-  DiyShowObjType,
+  DiyShowMapType,
 }

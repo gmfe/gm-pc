@@ -7,24 +7,16 @@ import _ from 'lodash'
 const defaultColumn = __DEFAULT_COLUMN
 
 function useInitTable(props: TableXProps) {
-  const { data, onHeadersSort, headerSortMultiply } = props
+  const { data, onHeadersSort, headerSortMultiple } = props
   let { columns } = props
   // fixed(最新rc12不支持column.show,自己实现)
-  columns = useMemo(
-    () =>
-      columns.filter((column) => {
-        column.originHeader = column.Header
-        return column.show !== false
-      }),
-    [columns]
-  )
+  columns = useMemo(() => columns.filter((column) => column.show !== false), [columns])
 
   const { getTableProps, getTableBodyProps, rows, prepareRow, headerGroups } = useTable({
     data,
     columns,
     defaultColumn,
   })
-
   let totalWidth = 0
   if (headerGroups[0] && headerGroups[0].headers) {
     const last = headerGroups[0].headers[headerGroups[0].headers.length - 1]
@@ -48,7 +40,7 @@ function useInitTable(props: TableXProps) {
     ({ field, direction }) => {
       setSorts((sorts) => {
         let newSorts = { [field]: direction }
-        if (headerSortMultiply) {
+        if (headerSortMultiple) {
           newSorts = { ...sorts, [field]: direction }
         }
         // 放入宏任务队列，避免警告
@@ -58,7 +50,7 @@ function useInitTable(props: TableXProps) {
         return newSorts
       })
     },
-    [headerSortMultiply, onHeadersSort]
+    [headerSortMultiple, onHeadersSort]
   )
   return {
     rows,
