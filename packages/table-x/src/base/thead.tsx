@@ -14,6 +14,10 @@ const Thead: FC<TableXTheadProps> = ({
       {headerGroups.map((headerGroup, groupIndex) => (
         <tr key={groupIndex} className='gm-table-x-tr'>
           {headerGroup.headers.map((header, headerIndex) => {
+            if (!header.originHeader) {
+              // 如果没有originHeader，则originHeader指向最初的Header
+              header.originHeader = header.Header
+            }
             if (header.headerSort) {
               const onChange: SortHeaderProps['onChange'] = (direction) => {
                 onHeaderSort && onHeaderSort({ field: header.id, direction })

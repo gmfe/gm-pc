@@ -25,9 +25,21 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
     tdProps.style.right = totalWidth - cell.column.totalLeft - cell.column.totalWidth
   }
 
+  const {
+    column: { Cell, index },
+    value,
+    row,
+  } = cell
   return (
     <td {...tdProps}>
-      <Catch>{cell.render('Cell')}</Catch>
+      <Catch>
+        {Cell!({
+          value,
+          row,
+          index,
+          original: row.original,
+        })}
+      </Catch>
     </td>
   )
 }

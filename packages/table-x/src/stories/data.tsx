@@ -82,7 +82,7 @@ const initData = [
   },
 ]
 
-const columns = [
+const columns: TableXColumn<typeof initData[0]>[] = [
   {
     Header: '序号',
     id: 'index',
@@ -95,15 +95,15 @@ const columns = [
     Header: '供应商信息',
     width: 500,
     minWidth: 500,
-    accessor: (data: any) => data.supplierName,
+    accessor: (data) => data.supplierName,
     id: 'supplierName',
   },
   {
     Header: '入库金额',
     accessor: 'totalMoney',
     minWidth: 500,
-    Cell: (cellProps: any) => {
-      return <div>{cellProps.row.original.totalMoney}</div>
+    Cell: (cellProps) => {
+      return <div>{cellProps.value}</div>
     },
   },
   {

@@ -2,26 +2,25 @@ import React, {
   HTMLAttributes,
   TableHTMLAttributes,
   CSSProperties,
-  FC,
   UIEvent,
   useImperativeHandle,
 } from 'react'
 import classNames from 'classnames'
 
-import { useInitTable, afterScroll, getDiyShowObj } from '../utils'
+import { useInitTable, afterScroll, getDiyShowMap } from '../utils'
 import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
-import { TableXHeaderGroup, TableXProps, TableXRow } from './types'
+import { TableXColumn, TableXHeaderGroup, TableXProps, TableXRow } from './types'
 
-const TableX: FC<TableXProps> = ({
+function TableX<D extends object = any>({
   columns,
   data,
   loading,
   keyField = 'value',
   tiled,
   border,
-  headerSortMultiply,
+  headerSortMultiple,
   tableRef,
   isTrHighlight,
   isTrDisable,
@@ -30,7 +29,7 @@ const TableX: FC<TableXProps> = ({
   onHeadersSort,
   className,
   ...rest
-}) => {
+}: TableXProps<D>) {
   const {
     rows,
     headerGroups,
@@ -40,7 +39,7 @@ const TableX: FC<TableXProps> = ({
     getTableBodyProps,
     prepareRow,
     onHeaderSort,
-  } = useInitTable({ columns, data, headerSortMultiply, onHeadersSort })
+  } = useInitTable({ columns, data, headerSortMultiple, onHeadersSort })
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
@@ -81,9 +80,9 @@ const TableX: FC<TableXProps> = ({
   useImperativeHandle(
     tableRef,
     () => ({
-      getDiyShowObj: () => {
-        const diyShowObj = getDiyShowObj(columns)
-        return diyShowObj
+      getDiyShowMap: () => {
+        const diyShowMaap = getDiyShowMap(columns as TableXColumn<any>[])
+        return diyShowMaap
       },
     }),
     [columns]

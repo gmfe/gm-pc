@@ -1,12 +1,12 @@
-import { DiyShowObjType, TableXColumn } from '../base/types'
+import { DiyShowMapType, TableXColumn } from '../base/types'
 
-const getDiyShowObj = (columns: TableXColumn[]) => {
-  const diyShowObj: DiyShowObjType = {}
+const getDiyShowMap = (columns: TableXColumn[]) => {
+  const diyShowMap: DiyShowMapType = {}
   columns.forEach(({ show, id, label, Header }) => {
     if (show && id) {
-      diyShowObj[id] = (label || Header) as string
+      diyShowMap[id] = (label || Header) as string
     }
   })
-  return diyShowObj
+  return diyShowMap
 }
-export default getDiyShowObj
+export default getDiyShowMap
