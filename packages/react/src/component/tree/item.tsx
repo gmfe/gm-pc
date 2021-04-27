@@ -63,7 +63,7 @@ const Item: FC<ItemProps> = ({
         column
         onClick={handleActive}
         justifyCenter
-        style={{ height: '100%' }}
+        style={{ height: '100%', minWidth: '0' }}
         className='gm-margin-left-5'
       >
         {isLeaf ? renderLeafItem(data) : renderGroupItem(data)}
