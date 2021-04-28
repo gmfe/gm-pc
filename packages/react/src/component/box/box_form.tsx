@@ -43,6 +43,15 @@ const BoxForm: FC<BoxFormProps> = ({ btnPosition = 'left', children, ...rest }) 
   const [hasMore, setHasMore] = useState(false)
   const [open, setOpen] = useState(false)
 
+  // 判断是否children内存在BoxFormMore，才去显示相关控件
+  useEffect(() => {
+    const boo = !_.find(
+      children as Array<React.ReactElement<any, React.FunctionComponent>>,
+      (item) => item?.type?.displayName === 'BoxFormMore'
+    )
+    boo && setHasMore(false)
+  }, [children])
+
   const handleToggle = (): void => {
     setOpen(!open)
   }
