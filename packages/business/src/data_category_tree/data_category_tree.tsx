@@ -1,6 +1,6 @@
-import React, { FC, CSSProperties } from 'react'
+import React, { FC, CSSProperties, ReactNode } from 'react'
 import { getCategoryTree, CategoryItem, SpuItem, SkuItem } from './util'
-import { Tree, LoadingChunk } from '@gm-pc/react'
+import { Tree, LoadingChunk, TreeListItem } from '@gm-pc/react'
 import { useAsync } from '@gm-common/hooks'
 import classNames from 'classnames'
 import { ListSkuRequest } from 'gm_api/src/merchandise'
@@ -16,6 +16,7 @@ interface DataCategoryTreeProps {
   findPlaceholder?: string
   onActiveValue?(activeValue: any, item: CategoryItem | SpuItem | SkuItem): void
   onLeafActiveValue?(activeValue: any, item: SpuItem | SkuItem): void
+  renderLeafItem?: (data: TreeListItem) => ReactNode
 }
 
 const DataCategoryTree: FC<DataCategoryTreeProps> = ({
@@ -29,6 +30,7 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
   onActiveValue,
   findPlaceholder,
   onLeafActiveValue,
+  renderLeafItem,
 }) => {
   const { data, loading } = useAsync(getCategoryTree, {
     manual: false,
@@ -63,6 +65,7 @@ const DataCategoryTree: FC<DataCategoryTreeProps> = ({
         disabledCheckbox
         withFilter={false}
         findPlaceholder={findPlaceholder}
+        renderLeafItem={renderLeafItem}
         showFind
       />
     </LoadingChunk>
