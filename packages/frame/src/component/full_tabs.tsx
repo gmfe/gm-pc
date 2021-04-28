@@ -53,7 +53,7 @@ const FullTabs: FC<FullTabsProps> = ({
         <div
           key={tab.value}
           className={classNames('gm-framework-full-tabs-content-item', {
-            hidden: selected !== tab.value,
+            'gm-hidden': selected !== tab.value,
           })}
         >
           {tab.children}

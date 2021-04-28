@@ -13,7 +13,7 @@ import Thead from './thead'
 import Tr from './tr'
 import { TableXColumn, TableXHeaderGroup, TableXProps, TableXRow } from './types'
 
-function TableX<D extends object = any>({
+function TableX<D extends object = {}>({
   columns,
   data,
   loading,

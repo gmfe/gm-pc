@@ -6,13 +6,13 @@ interface TableXDataItem<V = any> {
   [key: string]: V
 }
 
-type TableXCellProps<D extends object = any> = Pick<CellProps<D>, 'row' | 'value'> & {
+type TableXCellProps<D extends object = {}> = Pick<CellProps<D>, 'row' | 'value'> & {
   index: number
   original: D
 }
 
 // 自定义的 props
-interface TableXCustomerColumn<D extends object = any> {
+interface TableXCustomerColumn<D extends object = {}> {
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
@@ -73,7 +73,7 @@ interface TableXTrProps {
 /** 对外 */
 
 // 对外 props columns
-type TableXColumn<D extends object = any> = Column<D> & TableXCustomerColumn<D>
+type TableXColumn<D extends object = {}> = Column<D> & TableXCustomerColumn<D>
 type SortsType = {
   [key: string]: SortHeaderDirectionType
 }
@@ -82,7 +82,7 @@ type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
 }
-interface TableXProps<D extends object = any> {
+interface TableXProps<D extends object = {}> {
   id?: string
   /** 默认 value */
   keyField?: string
