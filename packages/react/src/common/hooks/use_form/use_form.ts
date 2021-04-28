@@ -21,7 +21,7 @@ export interface UseFormProps<K = any> {
   normalizes?: keyof any extends K
     ? { [key: string]: anyCallback }
     : {
-        [P in keyof K]: anyCallback<K[P]>
+        [P in keyof K]?: anyCallback<K[P]>
       }
   /* 表单项改变的回调，常用于表单项联动 */
   onFieldsChange?: OnFieldsChange<K>
