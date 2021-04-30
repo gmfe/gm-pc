@@ -32,8 +32,8 @@ export interface FormInstance<Values = any> {
   resetFields(): void
   /* 设置表单值 */
   setFieldsValue(newValues: RecordPartial<Values, any>): void
-  /* 获取表单值 */
-  getFieldsValue(nameList?: StringOrKeyofT<Values>[]): Partial<Values>
+  /* 获取表单值， isOrigin：是否获取表单原始值 */
+  getFieldsValue(nameList?: StringOrKeyofT<Values>[], isOrigin?: boolean): Partial<Values>
   /* 表单是否验证 */
   apiDoValidate(): boolean
 }
@@ -100,11 +100,14 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
    * @return {object} values 表单值
    */
   const getFieldsValue: FormInstance<K>['getFieldsValue'] = useCallback(
-    (nameList) => {
+    (nameList, isOrigin) => {
       let tempValues = { ...values }
       // 如果有传入nameList，返回nameList的值
       if (Array.isArray(nameList)) {
         tempValues = _.pick({ ...values }, nameList)
+      }
+      if (isOrigin) {
+        return tempValues as Partial<K>
       }
       // 如果配置了规格化
       if (Object.keys(normalizes).length) {

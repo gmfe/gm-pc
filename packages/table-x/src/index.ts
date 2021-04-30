@@ -28,4 +28,4 @@ export * from './base'
 export * from './hoc'
 export * from './get_table_x_child'
 
-export { useTableRef } from './hooks'
+export { useTableRef, BASE_TABLE_REF_VALUE } from './hooks'

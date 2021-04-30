@@ -14,4 +14,5 @@ export type {
   TableXPropsType,
   DiyShowMapType,
   SortsType,
+  TableInstance,
 } from './types'
