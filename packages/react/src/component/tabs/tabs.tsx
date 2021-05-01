@@ -1,28 +1,32 @@
-import React, { FC, CSSProperties, ReactNode, useState } from 'react'
+import React, { CSSProperties, ReactNode, useState, useRef } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { Flex, FlexProps } from '../flex'
 
-interface TabsItem {
+interface TabsItem<V extends string | number> {
   text: string
-  value: string
+  value: V
   children: ReactNode
   disabled?: boolean
 }
 
-interface TabsProps extends Omit<FlexProps, 'onChange'> {
-  tabs: TabsItem[]
-  defaultActive?: string
-  active?: string
-  onChange?(value: string): void
+interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange'> {
+  tabs: TabsItem<V>[]
+  defaultActive?: V
+  active?: V
+  onChange?(value: V): void
   keep?: boolean
   light?: boolean
+  /* didMount之后不再重新渲染 */
+  activeOnce?: boolean
+  /* 是否全屏 */
+  full?: boolean
   className?: string
   column?: boolean
   style?: CSSProperties
 }
 
-const Tabs: FC<TabsProps> = (props) => {
+function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   const {
     tabs,
     light,
@@ -32,8 +36,11 @@ const Tabs: FC<TabsProps> = (props) => {
     onChange,
     className,
     column = true,
+    activeOnce,
+    full,
     ...rest
   } = props
+  const baseTabClassName = `gm-${full ? 'framework-full-' : ''}tabs`
   if (active !== undefined && defaultActive !== undefined) {
     console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
   }
@@ -43,19 +50,19 @@ const Tabs: FC<TabsProps> = (props) => {
   }
 
   const [selected, setSelected] = useState(defaultActive || active)
-
-  const handleClick = (value: string) => {
+  const hasSelectedsRef = useRef<Set<V>>(new Set())
+  const handleClick = (value: V) => {
     setSelected(value)
     onChange && onChange(value)
   }
 
-  const tabsChildrenKeep = () => (
+  const tabsChildrenKeep = (tabs: TabsItem<V>[]) => (
     <>
-      {_.map(tabs, (tab: TabsItem) => (
+      {_.map(tabs, (tab: TabsItem<V>) => (
         <div
           key={tab.value}
-          className={classNames('gm-tabs-content-item', {
-            hidden: selected !== tab.value,
+          className={classNames(`${baseTabClassName}-content-item`, {
+            'gm-hidden': selected !== tab.value,
           })}
         >
           {tab.children}
@@ -65,8 +72,19 @@ const Tabs: FC<TabsProps> = (props) => {
   )
 
   const tabsChildren = () => {
-    const item = _.find(tabs, (tab) => tab.value === selected)
-    return <div className='gm-tabs-content-item'>{item && item.children}</div>
+    if (activeOnce && selected) {
+      hasSelectedsRef.current.add(selected)
+    }
+    let items: typeof tabs = []
+    if (activeOnce) {
+      items = _.filter(tabs, (tab) => hasSelectedsRef.current.has(tab.value))
+    } else {
+      const item = _.find(tabs, (tab) => tab.value === selected)
+      if (item) {
+        items = [item]
+      }
+    }
+    return tabsChildrenKeep(items)
   }
 
   return (
@@ -74,20 +92,20 @@ const Tabs: FC<TabsProps> = (props) => {
       {...rest}
       column={column}
       className={classNames(
-        'gm-tabs',
+        baseTabClassName,
         {
           'gm-tabs-light': light,
         },
         className
       )}
     >
-      <div className='gm-tabs-head-fix'>
-        <Flex alignEnd className='gm-tabs-head'>
+      <div className={`${baseTabClassName}-head-fix`}>
+        <Flex alignEnd className={`${baseTabClassName}-head`}>
           {_.map(tabs, (tab) =>
             tab.disabled ? (
               <div
                 key={tab.value}
-                className='gm-tabs-head-item'
+                className={`${baseTabClassName}-head-item`}
                 style={{ color: '#a9a9a9' }}
               >
                 {tab.text}
@@ -95,7 +113,7 @@ const Tabs: FC<TabsProps> = (props) => {
             ) : (
               <div
                 key={tab.value}
-                className={classNames('gm-tabs-head-item', {
+                className={classNames(`${baseTabClassName}-head-item`, {
                   active: selected === tab.value,
                 })}
                 onClick={() => handleClick(tab.value)}
@@ -106,8 +124,8 @@ const Tabs: FC<TabsProps> = (props) => {
           )}
         </Flex>
       </div>
-      <Flex flex column className='gm-tabs-content'>
-        {keep ? tabsChildrenKeep() : tabsChildren()}
+      <Flex flex column className={`${baseTabClassName}-content`}>
+        {keep ? tabsChildrenKeep(tabs) : tabsChildren()}
       </Flex>
     </Flex>
   )
