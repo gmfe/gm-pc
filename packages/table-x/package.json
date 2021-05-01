@@ -34,12 +34,12 @@
     "lodash": "^4.17.19",
     "react-table": "7.0.0-rc.11",
     "react-window": "^1.8.5",
-    "sortablejs": "^1.12.0"
-  },
-  "devDependencies": {
+    "sortablejs": "^1.12.0",
     "@types/react-table": "~7.0.28",
     "@types/react-window": "^1.8.2",
-    "@types/sortablejs": "^1.10.6",
+    "@types/sortablejs": "^1.10.6"
+  },
+  "devDependencies": {
     "moment": "^2.29.1"
   }
 }
