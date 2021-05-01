@@ -37,6 +37,9 @@
     "sortablejs": "^1.12.0"
   },
   "devDependencies": {
-    "moment": "^2.29.1"
+    "moment": "^2.29.1",
+    "@types/react-table": "~7.0.28",
+    "@types/react-window": "^1.8.2",
+    "@types/sortablejs": "^1.10.6"
   }
 }

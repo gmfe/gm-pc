@@ -7,6 +7,7 @@
     "prebuild": "rm -rf docs; mkdir docs;",
     "publish-latest": "lerna publish --force-publish --registry https://registry.npmjs.org/",
     "publish-beta": "lerna publish --force-publish --dist-tag beta --preid beta --registry https://registry.npmjs.org/",
+    "publish-alpha": "lerna publish --force-publish --dist-tag alpha --preid alpha --registry https://registry.npmjs.org/",
     "link": "cd packages/frame; yarn link; cd ../business; yarn link; cd ../cropper; yarn link; cd ../keyboard;  yarn link; cd ../locales; yarn link; cd ../react; yarn link; cd ../sortable; yarn link; cd ../table-x; yarn link; cd ../tour; yarn link;"
   },
   "husky": {
@@ -52,9 +53,6 @@
     "@types/lodash": "^4.14.168",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-table": "~7.0.28",
-    "@types/react-window": "^1.8.2",
-    "@types/sortablejs": "^1.10.6",
     "@welldone-software/why-did-you-render": "^6.0.5",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.2",
