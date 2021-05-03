@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 interface SwitchProps {
   type?: string
-  checked: boolean
+  checked?: boolean
   disabled?: boolean
   on?: string
   off?: string

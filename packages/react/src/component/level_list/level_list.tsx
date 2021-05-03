@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { BaseLevelListProps, LevelListProps } from './types'
 import LevelItem from './level_item'
 import { Flex } from '../flex'
 import { getLevel } from './utils'
 import { TreeDataItem } from '../../types'
+import { judgeFunction } from '../../common/utils'
 
 function BaseLevelList<V = any>({
   titles = [],
-  data,
-  selected,
+  data = [],
+  selected = [],
   onSelect,
   willActiveSelected,
   onWillActiveSelect,
@@ -18,9 +19,9 @@ function BaseLevelList<V = any>({
   isForFunctionSet,
   className,
   ...rest
-}: BaseLevelListProps<V>) {
+}: BaseLevelListProps<V>): ReactElement {
   const handleSelect = () => {
-    onSelect(willActiveSelected)
+    judgeFunction(onSelect, willActiveSelected)
   }
 
   const handleListItemMouseEnter = (index: number, item: TreeDataItem<V>) => {
@@ -30,14 +31,13 @@ function BaseLevelList<V = any>({
     onWillActiveSelect(newWill)
   }
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     // 离开的时候要重置下 willActiveSelected 为 selected
     // slice 避免引用
     onWillActiveSelect(selected.slice())
   }
 
   const level = getLevel<V>(data, willActiveSelected)
-
   let gaps: number[] = []
   if (isForFunctionSet) {
     let indexes = willActiveSelected.map((value, index) =>
@@ -89,7 +89,7 @@ function BaseLevelList<V = any>({
 }
 
 function LevelList<V = any>({
-  data,
+  data = [],
   willActiveSelected,
   onWillActiveSelect,
   ...rest

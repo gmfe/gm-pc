@@ -13,7 +13,6 @@ import { TABLE_X } from './utils'
 
 export const TableXUtil = {
   TABLE_X,
-
   OperationHeader,
   OperationDelete,
   OperationDetail,
@@ -28,3 +27,5 @@ export const TableXUtil = {
 export * from './base'
 export * from './hoc'
 export * from './get_table_x_child'
+
+export { useTableRef, BASE_TABLE_REF_VALUE } from './hooks'

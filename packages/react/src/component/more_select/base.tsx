@@ -50,7 +50,7 @@ class MoreSelectBase<V = any> extends Component<
 
   constructor(props: MoreSelectBaseProps<V>) {
     super(props)
-    if (props.selected.length) {
+    if (props.selected?.length) {
       this._getFilterData()
       const flatList = this._getFlatFilterData()
       this.state.willActiveIndex = flatList.findIndex(
@@ -73,7 +73,7 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   public apiDoSelectWillActive = (): void => {
-    const { selected, onSelect, multiple } = this.props
+    const { selected = [], onSelect = _.noop, multiple } = this.props
     const { willActiveIndex } = this.state
     const flatList = this._getFlatFilterData()
     // 没有做过键盘操作啥也不做
@@ -91,7 +91,8 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   private _handleSelect = (values: V[]): void => {
-    const { onSelect, data, multiple, selected } = this.props
+    const { onSelect = _.noop, data = [], multiple, selected = [] } = this.props
+
     const items: MoreSelectDataItem<V>[] = []
     data.forEach((group) => {
       group.children.forEach((child) => {
@@ -129,7 +130,7 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   private _doSearch = (query: string): void => {
-    const { onSearch, data } = this.props
+    const { onSearch, data = [] } = this.props
     if (!this._isUnmounted && onSearch) {
       const result = onSearch(query, data)
       if (!result) {
@@ -147,7 +148,7 @@ class MoreSelectBase<V = any> extends Component<
 
   private _handleClear = (clearItem: MoreSelectDataItem<V>, event: MouseEvent): void => {
     event.stopPropagation()
-    const { onSelect, selected } = this.props
+    const { onSelect = _.noop, selected = [] } = this.props
     const willSelected = selected.filter((item) => item.value !== clearItem.value)
     onSelect(willSelected)
   }
@@ -187,7 +188,7 @@ class MoreSelectBase<V = any> extends Component<
   }
 
   private _getFilterData = () => {
-    const { data, renderListFilter, renderListFilterType } = this.props
+    const { data = [], renderListFilter, renderListFilterType } = this.props
     const { searchValue } = this.state
     let filterData: MoreSelectGroupDataItem<V>[]
     if (renderListFilter) {
@@ -203,7 +204,7 @@ class MoreSelectBase<V = any> extends Component<
 
   private _renderList = (): ReactNode => {
     const {
-      selected,
+      selected = [],
       multiple,
       isGroupList,
       renderListItem,
@@ -261,7 +262,7 @@ class MoreSelectBase<V = any> extends Component<
       isInPopup,
       disabled,
       disabledClose,
-      selected,
+      selected = [],
       multiple,
       placeholder,
       renderSelected,

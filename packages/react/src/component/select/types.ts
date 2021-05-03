@@ -2,11 +2,11 @@ import { CSSProperties, KeyboardEvent, ReactNode } from 'react'
 import { ListDataItem } from '../../types'
 
 interface SelectProps<V> {
-  data: ListDataItem<V>[]
-  value: V
+  data?: ListDataItem<V>[]
+  value?: V
   /** 默认 {value: 0, text: '全部'} */
-  all?: Boolean | { value?: V; text?: string }
-  onChange(selected: V): void
+  all?: boolean | { value?: V; text?: string }
+  onChange?(selected: V): void
   disabled?: boolean
   renderItem?(item: ListDataItem<V>, index: number): ReactNode
   renderSelected?(selected: ListDataItem<V>): ReactNode

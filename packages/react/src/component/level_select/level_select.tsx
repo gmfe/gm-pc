@@ -6,6 +6,7 @@ import { Flex } from '../flex'
 import { LevelList } from '../level_list'
 import { getLevel } from '../level_list/utils'
 import _ from 'lodash'
+import { judgeFunction } from '../../common/utils'
 
 interface LevelSelectState<V> {
   willActiveSelected: V[]
@@ -16,6 +17,8 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
     renderSelected: (item: any) => item.map((v: any) => v.text).join(','),
     onKeyDown: _.noop,
     popoverType: 'focus',
+    selected: [],
+    onSelect: _.noop,
   }
 
   readonly state: LevelSelectState<V> = {
@@ -32,13 +35,13 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
   public apiDoSelectWillActive = (): void => {
     const { onSelect } = this.props
     const { willActiveSelected } = this.state
-    onSelect(willActiveSelected)
+    judgeFunction(onSelect, willActiveSelected)
   }
 
   private _handleSelect = (selected: V[]): void => {
     const { onSelect } = this.props
     this._popoverRef.current!.apiDoSetActive(false)
-    onSelect(selected)
+    judgeFunction(onSelect, selected)
   }
 
   private _handleWillActiveSelect = (willActiveSelected: V[]): void => {
@@ -66,7 +69,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
 
   private _handleSelectionSelect = (selected: V[] | null): void => {
     const { onSelect } = this.props
-    onSelect(selected === null ? [] : selected)
+    judgeFunction(onSelect, selected === null ? [] : selected)
   }
 
   private _getSelectItemText = (): ReactNode => {
@@ -76,7 +79,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
   }
 
   private _getSelectedItem = (): LevelSelectDataItem<V>[] => {
-    const { data, selected } = this.props
+    const { data, selected = [] } = this.props
     const items: LevelSelectDataItem<V>[] = []
     selected.forEach((value, index) => {
       const match = (index === 0 ? data : items[index - 1].children)!.find(
@@ -88,7 +91,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
   }
 
   private _handleKeyDown = (event: KeyboardEvent): void => {
-    const { data, onKeyDown } = this.props
+    const { data = [], onKeyDown } = this.props
     const { willActiveSelected } = this.state
 
     // 不是方向键，不用拦截
@@ -162,9 +165,9 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
 
   private _renderTarget = (): ReactNode => {
     const {
-      titles,
-      data,
-      selected,
+      titles = [],
+      data = [],
+      selected = [],
       disabled,
       popoverType,
       right,

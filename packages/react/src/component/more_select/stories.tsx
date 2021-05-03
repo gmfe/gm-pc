@@ -84,6 +84,10 @@ const store = observable({
     },
   ],
   selected: undefined,
+  value: undefined,
+  onChange(value: any) {
+    this.value = value
+  },
   setSelected(selected: any) {
     this.selected = selected
   },
@@ -103,6 +107,8 @@ export const ComMoreSelect = () => (
         store.setSelected(selected)
       }}
     />
+    <div>不传任何prop，也不会报错</div>
+    <MoreSelect placeholder='不传任何prop，也不会报错' />
     <div>disabled</div>
     <MoreSelect<number>
       disabled
@@ -123,7 +129,30 @@ export const ComMoreSelect = () => (
     />
   </div>
 )
-
+export const ComMoreSelectByValue = () => (
+  <div style={{ width: '200px' }}>
+    <MoreSelect<number>
+      data={store.data}
+      value={store.value}
+      onChange={(value) => store.onChange(value)}
+      onSelect={console.log}
+    />
+    <div>disabled</div>
+    <MoreSelect<number>
+      disabled
+      data={store.data}
+      value={store.value}
+      onChange={(value) => store.onChange(value)}
+    />
+    <div>disabledClose</div>
+    <MoreSelect<number>
+      disabledClose
+      data={store.data}
+      value={store.value}
+      onChange={(value) => store.onChange(value)}
+    />
+  </div>
+)
 export const ComMoreSelectForLongText = () => (
   <div style={{ width: '200px' }}>
     <MoreSelect<number>
@@ -208,6 +237,18 @@ export const ComMoreSelectWithMultiple = () => (
   />
 )
 
+export const ComMoreSelectWithMultipleByValue = () => (
+  <div>
+    <div>不传selected和onSelect，改为value和onChange</div>
+    <MoreSelect<number>
+      multiple
+      data={store.data}
+      value={store.value}
+      onChange={(value) => store.onChange(value)}
+      onSelect={console.log}
+    />
+  </div>
+)
 export const ComMoreSelectWithMultipleAndOnSearch = () => {
   return (
     <MoreSelect<number>

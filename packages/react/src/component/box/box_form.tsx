@@ -7,7 +7,9 @@ import React, {
   useState,
 } from 'react'
 import _ from 'lodash'
-import { Form, FormProps } from '../form'
+import { ControlledForm, ControlledFormProps } from '../controlled_form'
+import { Form } from '../form'
+
 import { Flex } from '../flex'
 import { IconDownUp } from '../icon_down_up'
 import { getLocale } from '@gm-pc/locales'
@@ -37,9 +39,12 @@ const BoxFormMore: FC = ({ children }) => {
   return children as ReactElement
 }
 
-type BoxFormProps = FormProps
+type BoxFormProps<T> = ControlledFormProps<T> & {
+  isControl?: boolean
+}
 
-const BoxForm: FC<BoxFormProps> = ({ btnPosition = 'left', children, ...rest }) => {
+function BoxForm<K = any>(props: BoxFormProps<K>) {
+  const { btnPosition = 'left', isControl, children, ...rest } = props
   const [hasMore, setHasMore] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -50,15 +55,16 @@ const BoxForm: FC<BoxFormProps> = ({ btnPosition = 'left', children, ...rest }) 
   const handleHasMore = (): void => {
     setHasMore(true)
   }
+  const TempForm = isControl ? ControlledForm : Form
 
   return (
     <div className='gm-box gm-box-form'>
       <Flex>
         <Flex flex column>
           <BoxFormContext.Provider value={{ open, onHasMore: handleHasMore }}>
-            <Form {...rest} btnPosition={btnPosition} inline={!open}>
+            <TempForm {...rest} btnPosition={btnPosition} inline={!open}>
               {children}
-            </Form>
+            </TempForm>
           </BoxFormContext.Provider>
         </Flex>
         {hasMore && (

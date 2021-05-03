@@ -25,12 +25,13 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
   }
 
   private _handleSelect = (selected: MoreSelectDataItem<V>[]): void => {
-    const { onSelect, multiple } = this.props
-    if (multiple) {
-      onSelect(selected)
-    } else {
-      onSelect(selected[0])
-    }
+    const { onSelect = _.noop, onChange = _.noop, multiple } = this.props
+    const tempSelected = multiple ? selected : selected[0]
+    // selected[0]?.value： selected[0]有可能为undefined，直接取value会报错
+    const value = multiple ? selected.map((item) => item.value) : selected[0]?.value
+    onSelect(tempSelected)
+    // 回调时将value传回
+    onChange(value)
   }
 
   _handleSearch = (searchWord: string, data: MoreSelectGroupDataItem<V>[]) => {
@@ -66,14 +67,18 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
 
   render() {
     const {
-      data,
+      data = [],
       selected,
+      value,
       multiple,
       isGroupList,
       onSearch,
       renderListFilter,
       ...rest
     } = this.props
+    let tempSelect = selected as MoreSelectDataItem<V>[]
+    // MoreSelect支持value和onChange
+    const tempValue = Array.isArray(value) ? value : [value]
     let oData: MoreSelectGroupDataItem<V>[]
     if (isGroupList) {
       oData = data as MoreSelectGroupDataItem<V>[]
@@ -85,12 +90,21 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
         },
       ]
     }
-    let oSelected: MoreSelectDataItem<V>[]
-    if (multiple) {
-      oSelected = selected as MoreSelectDataItem<V>[]
-    } else {
-      oSelected = selected ? [selected as MoreSelectDataItem<V>] : []
+    // 如果没有传入selected
+    if (!selected) {
+      /**
+       *  则通过value获取selected
+       *  将oData的children二维数据展开为1位[{value, text}, ...]
+       *  获取在value中的item
+       * */
+      tempSelect = oData
+        .map((item) => item.children)
+        .flat(2)
+        .filter((item) => tempValue?.includes(item.value)) as MoreSelectDataItem<V>[]
     }
+    const oSelected: MoreSelectDataItem<V>[] = Array.isArray(tempSelect)
+      ? tempSelect
+      : [tempSelect].filter(Boolean)
 
     return (
       <MoreSelectBase<V>

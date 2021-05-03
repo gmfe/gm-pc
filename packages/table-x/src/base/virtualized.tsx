@@ -46,7 +46,7 @@ const TableXVirtualized: FC<TableXVirtualizedProps> = ({
     prepareRow,
     headerGroups,
     totalWidth,
-  } = useInitTable(columns, data)
+  } = useInitTable({ columns, data })
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {

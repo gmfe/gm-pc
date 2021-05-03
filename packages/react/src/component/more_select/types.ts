@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
 
 /** 普通的数据格式 */
-interface MoreSelectDataItem<V> {
+interface MoreSelectDataItem<V extends string | number = string> {
   value: V
   text: string
   disabled?: boolean
@@ -70,10 +70,11 @@ type MoreSelectData<V> = MoreSelectDataItem<V>[] | MoreSelectGroupDataItem<V>[]
 type MoreSelectSelected<V> = MoreSelectDataItem<V>[] | MoreSelectDataItem<V>
 
 interface MoreSelectProps<V> extends MoreSelectCommonProps<V> {
-  data: MoreSelectData<V>
+  data?: MoreSelectData<V>
   selected?: MoreSelectSelected<V>
-  onSelect(selected?: MoreSelectSelected<V>): void
-
+  value?: V | V[]
+  onSelect?(selected?: MoreSelectSelected<V>): void
+  onChange?(value: V | V[]): void
   /** 搜索回调 */
   onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void> | void
 

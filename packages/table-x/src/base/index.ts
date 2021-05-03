@@ -12,4 +12,7 @@ export type {
   TableXCellProps,
   TableXVirtualizedProps,
   TableXPropsType,
+  DiyShowMapType,
+  SortsType,
+  TableInstance,
 } from './types'
