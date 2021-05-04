@@ -73,7 +73,8 @@ interface TableXTrProps {
 /** 对外 */
 
 // 对外 props columns
-type TableXColumn<D extends object = {}> = Column<D> & TableXCustomerColumn<D>
+type TableXColumn<D extends object = {}> = Omit<Column<D>, 'Cell'> &
+  TableXCustomerColumn<D>
 type SortsType = {
   [key: string]: SortHeaderDirectionType
 }

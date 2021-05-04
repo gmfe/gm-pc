@@ -180,7 +180,7 @@ export const ComBoxFormControl: FC = () => {
   }
 
   const changeValue = (): void => {
-    form.current!.setFieldsValue({
+    form.current.setFieldsValue({
       serial_no: '1',
       app_id: '1',
     })
@@ -194,9 +194,6 @@ export const ComBoxFormControl: FC = () => {
         normalizes={{
           menu_period_group_ids: (items: any[]) => {
             return items?.map((item) => item.value)
-          },
-          aaa() {
-            return 1
           },
         }}
         labelWidth='100px'

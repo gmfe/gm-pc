@@ -29,7 +29,7 @@ interface MoreSelectBaseState {
 
 // @todo keydown item disabled
 // 目前全键盘还没有这种场景，暂时不管
-class MoreSelectBase<V = any> extends Component<
+class MoreSelectBase<V extends string | number = string> extends Component<
   MoreSelectBaseProps<V>,
   MoreSelectBaseState
 > {

@@ -20,7 +20,7 @@ export interface ControlFormItemProps<T = any> extends FormItemProps {
   /* 表单项改变的回调 */
   onFieldChange?(newValue: any, context: Omit<FormInstance, 'apiDoValidate'>): void
 }
-function Item(props: ControlFormItemProps) {
+function ControlledFormItem(props: ControlFormItemProps) {
   const {
     name = '',
     valuePropName = 'value',
@@ -70,4 +70,4 @@ function Item(props: ControlFormItemProps) {
   return <FormItem {...restProps}>{cloneElement(children, childProps)}</FormItem>
 }
 
-export default Item
+export default ControlledFormItem

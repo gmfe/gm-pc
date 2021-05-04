@@ -16,7 +16,10 @@ const { Provider } = FormContext
 interface FormState {
   canValidate: boolean
 }
-
+/**
+ * 请使用ControledForm
+ * @deprecated
+ */
 class Form extends Component<FormProps, FormState> {
   static defaultProps = {
     btnPosition: 'center',

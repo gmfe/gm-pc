@@ -7,7 +7,7 @@ interface RadioGroupProps<V> extends Omit<HTMLAttributes<HTMLDivElement>, 'onCha
   value?: V
   onChange?: (value: V) => void
   name?: string
-  options: RadioProps<V>[]
+  options?: RadioProps<V>[]
   className?: string
   style?: CSSProperties
 }

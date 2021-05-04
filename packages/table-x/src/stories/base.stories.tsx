@@ -13,6 +13,8 @@ export const ComTableX = () => (
           id: 'index',
           Cell: (cellProps: any) => cellProps.row.index + 1,
           width: 100,
+          headerSort: true,
+          defaultSortDirection: 'asc',
         },
         { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
         { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
@@ -20,14 +22,15 @@ export const ComTableX = () => (
           Header: '供应商信息',
           width: 500,
           minWidth: 500,
-          accessor: 'address',
+          accessor: 'supplierName',
           id: 'supplierName',
         },
         {
           Header: '入库金额',
-          // accessor: 'totalMoney',
+          accessor: 'totalMoney',
           id: 'totalMoney',
-          minWidth: 500,
+          minWidth: 100,
+          headerSort: true,
           Cell: ({ value, row, index, original }) => {
             // return row.original.totalMoney
             return value

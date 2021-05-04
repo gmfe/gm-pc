@@ -9,12 +9,12 @@ interface MoreSelectDataItem<V extends string | number = string> {
 }
 
 /** 分组的数据格式 */
-interface MoreSelectGroupDataItem<V> {
+interface MoreSelectGroupDataItem<V extends string | number = string> {
   label: string | ReactNode
   children: MoreSelectDataItem<V>[]
 }
 
-interface MoreSelectCommonProps<V> {
+interface MoreSelectCommonProps<V extends string | number = string> {
   multiple?: boolean
 
   disabled?: boolean
@@ -51,7 +51,8 @@ interface MoreSelectCommonProps<V> {
   onKeyDown?(event: KeyboardEvent): void
 }
 
-interface MoreSelectBaseProps<V> extends MoreSelectCommonProps<V> {
+interface MoreSelectBaseProps<V extends string | number = string>
+  extends MoreSelectCommonProps<V> {
   data: MoreSelectGroupDataItem<V>[]
   selected: MoreSelectDataItem<V>[]
   onSelect(selected: MoreSelectDataItem<V>[]): void
@@ -66,10 +67,15 @@ interface MoreSelectBaseProps<V> extends MoreSelectCommonProps<V> {
   ): MoreSelectGroupDataItem<V>[]
 }
 
-type MoreSelectData<V> = MoreSelectDataItem<V>[] | MoreSelectGroupDataItem<V>[]
-type MoreSelectSelected<V> = MoreSelectDataItem<V>[] | MoreSelectDataItem<V>
+type MoreSelectData<V extends string | number = string> =
+  | MoreSelectDataItem<V>[]
+  | MoreSelectGroupDataItem<V>[]
+type MoreSelectSelected<V extends string | number = string> =
+  | MoreSelectDataItem<V>[]
+  | MoreSelectDataItem<V>
 
-interface MoreSelectProps<V> extends MoreSelectCommonProps<V> {
+interface MoreSelectProps<V extends string | number = string>
+  extends MoreSelectCommonProps<V> {
   data?: MoreSelectData<V>
   selected?: MoreSelectSelected<V>
   value?: V | V[]

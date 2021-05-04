@@ -15,7 +15,10 @@ import Validator from '../../validator'
 import { Flex } from '../flex'
 import { Tooltip } from '../tooltip'
 import { FormItemProps } from './types'
-
+/**
+ * 请使用ControlledFormItem
+ * @deprecated
+ */
 const FormItem: FC<FormItemProps> = ({
   label,
   labelWidth,

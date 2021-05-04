@@ -5,7 +5,7 @@ import { observable } from 'mobx'
 const A = ({ value }: { value: string }) => {
   useEffect(() => {
     console.log(value)
-  }, [])
+  }, [value])
   return <div>{value}</div>
 }
 const store = observable({
@@ -50,7 +50,7 @@ export const ComTabs = () => (
     onChange={(active) => store.setActive(active)}
   />
 )
-export const ActiveOOnceTabs = () => (
+export const ActiveOnceTabs = () => (
   <>
     <div>tab active后再次点击不会重新didMount</div>
     <Tabs

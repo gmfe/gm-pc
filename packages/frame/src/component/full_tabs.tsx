@@ -21,7 +21,10 @@ interface FullTabsProps extends Omit<FlexProps, 'onChange'> {
   row?: boolean
   style?: CSSProperties
 }
-
+/**
+ * 请使用Tabs,配置full
+ * @deprecated
+ */
 const FullTabs: FC<FullTabsProps> = ({
   tabs,
   active,
