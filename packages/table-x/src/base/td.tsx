@@ -26,9 +26,10 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
   }
 
   const {
-    column: { Cell, index },
     value,
     row,
+    column: { Cell },
+    row: { index, original },
   } = cell
   return (
     <td {...tdProps}>
@@ -37,7 +38,7 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
           value,
           row,
           index,
-          original: row.original,
+          original,
         })}
       </Catch>
     </td>
