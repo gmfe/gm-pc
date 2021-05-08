@@ -12,7 +12,7 @@ function List({ columns, onColumnsRemove, onColsSort }: ListProps) {
     event.stopPropagation()
     onColumnsRemove(key)
   }
-  const handleDragEnter = (event: any, key: string) => {
+  const handleDragEnter = (event: any) => {
     if(!event.target){
       return
     }
@@ -21,7 +21,7 @@ function List({ columns, onColumnsRemove, onColsSort }: ListProps) {
     event.preventDefault()
   }
   
-  const handleDragLeave = (event: any, key: string) => {
+  const handleDragLeave = (event: any) => {
     event.target.style.border = '';
     event.target.style.boxShadow = '';
     event.stopPropagation()
@@ -32,7 +32,7 @@ function List({ columns, onColumnsRemove, onColsSort }: ListProps) {
     event.dataTransfer.setData("key", key);
   }
 
-  const handleDrop = (event: any, key: string) => {
+  const handleDrop = (event: any) => {
     if(!event.target){
       return
     }
