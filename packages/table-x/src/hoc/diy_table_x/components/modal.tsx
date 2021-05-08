@@ -5,6 +5,7 @@ import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
 import SVGRemove from '../../../svg/remove.svg'
+import _ = require('lodash')
 
 interface DiyTableXModalProps {
   columns: DiyTableXColumn[]
@@ -38,6 +39,28 @@ function DiyTableXModal({ columns, onSave, onCancel }: DiyTableXModalProps) {
     }
   }
 
+  const handleColsSort = (beforeKey, afterKey) => {
+    //移动到前面，移动到后面
+    let beforeIndex, afterIndex;
+    _.forEach(diyCols, (item, index)=>{
+      if(beforeKey === item.key){
+        beforeIndex = index
+      }
+      if(afterKey === item.key){
+        afterIndex = index
+      }
+    })
+    diyCols.splice(afterIndex + 1, 0, diyCols[beforeIndex]);
+    if(afterIndex > beforeIndex){
+      diyCols.splice(beforeIndex, 1);
+    }
+    if(afterIndex < beforeIndex){
+      diyCols.splice(beforeIndex + 1, 1);
+    }
+    setDiyCols(diyCols)
+    setShowCols(columns.filter(o => o.show))
+  }
+
   const handleColumnsRemove = (key: string): void => {
     handleColumnsChange(key, false)
   }
@@ -68,7 +91,7 @@ function DiyTableXModal({ columns, onSave, onCancel }: DiyTableXModalProps) {
           <div className='gm-react-table-x-diy-modal-title'>
             {getLocale('当前选定字段')}
           </div>
-          <List columns={showCols} onColumnsRemove={handleColumnsRemove} />
+          <List columns={showCols} onColumnsRemove={handleColumnsRemove} onColsSort={handleColsSort}/>
         </div>
       </Flex>
       <Flex justifyEnd className='gm-padding-10'>
