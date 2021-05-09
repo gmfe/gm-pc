@@ -10,7 +10,7 @@ import {
   editTableXHOC,
   subTableXHOC,
 } from '../hoc'
-import { keyboardTableXHOC } from '@gm-pc/keyboard'
+
 import BaseTable from './base_table'
 import { HocMiddleware, TableProps } from './types'
 import { applyMiddleware } from './util'
@@ -26,6 +26,11 @@ function Table<D extends object = any>({
   ...res
 }: TableProps<D>) {
   const Table = useMemo(() => {
+    // 按需引入
+    let keyboardTableXHOC
+    if (isKeyboard) {
+      keyboardTableXHOC = require('@gm-pc/keyboard').keyboardTableXHOC
+    }
     // 配置中间件
     const hocMiddles = [
       isDiy && diyTableXHOC,
