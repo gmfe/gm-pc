@@ -6,7 +6,10 @@ import { TableXProps } from '../../base'
 type SubTableXProps = {
   subTableIndent?: number
 }
-
+/**
+ * 请使用Table并配置isSub
+ * @deprecated
+ */
 function subTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {

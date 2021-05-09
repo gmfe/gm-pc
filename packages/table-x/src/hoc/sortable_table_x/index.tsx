@@ -6,7 +6,10 @@ import _ from 'lodash'
 type SortableTableXProps = TableXPropsType & {
   onSortChange(data: TableXDataItem[]): void
 }
-
+/**
+ * 请使用Table并配置isSort
+ * @deprecated
+ */
 function sortableTableXHOC(Table: ComponentType<TableXPropsType>) {
   const SortableTableX: FC<SortableTableXProps> = ({
     id,

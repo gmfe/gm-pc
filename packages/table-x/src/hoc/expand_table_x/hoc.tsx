@@ -33,7 +33,10 @@ function getNewColumns(
     ...columns,
   ]
 }
-
+/**
+ * 请使用Table并配置isExpand
+ * @deprecated
+ */
 function expandTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {

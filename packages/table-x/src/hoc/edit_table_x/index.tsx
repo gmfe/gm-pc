@@ -1,7 +1,10 @@
 import React, { ComponentType, FC } from 'react'
 import classNames from 'classnames'
 import { TableXProps } from '../../base'
-
+/**
+ * 请使用Table并配置isEdit
+ * @deprecated
+ */
 function editTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {

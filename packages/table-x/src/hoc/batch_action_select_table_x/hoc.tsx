@@ -4,7 +4,10 @@ import { BatchActionBar } from '../../components'
 import _ from 'lodash'
 import { selectTableXHOC } from '../select_table_x'
 import { Value, BatchActionSelectTableXProps } from './types'
-
+/**
+ * 请使用Table并配置isBatchSelect
+ * @deprecated
+ */
 function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {
