@@ -17,7 +17,8 @@ export type TableListInstance = TableInstance & {
 }
 export type TableListRef = RefObject<TableListInstance>
 export interface TableListProps<D extends object = any>
-  extends Omit<TableProps<D>, 'tableRef'> {
+  extends Omit<TableProps<D>, 'tableRef' | 'data'> {
+  data?: TableProps<D>['data']
   tableRef?: TableListRef
   /** 列表汇总 */
   totalTextData?: TotalTextOptions[]

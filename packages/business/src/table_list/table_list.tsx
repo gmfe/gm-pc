@@ -76,7 +76,7 @@ export function TableList<D extends object = any>({
 
   const boxTableProps = {
     pagination:
-      pagination ?? isPagination ? { paging, onChange: runChangePaging } : undefined,
+      pagination || (isPagination ? { paging, onChange: runChangePaging } : undefined),
 
     info:
       info ??
