@@ -1,27 +1,39 @@
-import { Cell, CellProps, Column, ColumnInstance, Row } from 'react-table'
-import { CSSProperties, ReactNode, RefObject, UIEvent, Ref } from 'react'
+import {
+  Cell,
+  CellProps,
+  Column,
+  ColumnInstance,
+  Row,
+  Accessor,
+  StringKey,
+} from 'react-table'
+import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
 import { VariableSizeList } from 'react-window'
 
 interface TableXDataItem<V = any> {
   [key: string]: V
 }
 
-type TableXCellProps<D extends object = {}> = Pick<CellProps<D>, 'row' | 'value'> & {
+type TableXCellProps<D extends object = any> = Pick<CellProps<D>, 'row' | 'value'> & {
   index: number
   original: D
 }
 
 // 自定义的 props
-interface TableXCustomerColumn<D extends object = {}> {
+interface TableXCustomerColumn<D extends object = any> {
+  /** 列是否显示 */
   show?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
+  /** 表头是否排序 */
   headerSort?: boolean
   defaultSortDirection?: SortHeaderDirectionType
-  // 因为header有可能是组件，为了获取列的名称（为string)，故加上这个
+  /** 因为header有可能是组件，为了获取列的名称（为string)，故加上这个 */
   label?: string
   /** KeyboardTableX 用 */
   Cell?(props: TableXCellProps<D>): ReactNode
+  accessor?: StringKey<D> | Accessor<D>
+  id?: StringKey<D>
 }
 
 // useTable 生成的 columns
@@ -73,7 +85,7 @@ interface TableXTrProps {
 /** 对外 */
 
 // 对外 props columns
-type TableXColumn<D extends object = {}> = Omit<Column<D>, 'Cell'> &
+type TableXColumn<D extends object = any> = Omit<Column<D>, 'Cell' | 'accessor'> &
   TableXCustomerColumn<D>
 type SortsType = {
   [key: string]: SortHeaderDirectionType
@@ -83,7 +95,7 @@ type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
 }
-interface TableXProps<D extends object = {}> {
+interface TableXProps<D extends object = any> {
   id?: string
   /** 默认 value */
   keyField?: string
@@ -95,7 +107,7 @@ interface TableXProps<D extends object = {}> {
   border?: boolean
   // 头部是否支持多列排序
   headerSortMultiple?: boolean
-  tableRef?: Ref<TableInstance>
+  tableRef?: RefObject<TableInstance>
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
@@ -109,7 +121,7 @@ interface TableXProps<D extends object = {}> {
 interface TableXVirtualizedProps extends TableXProps {
   /** 虚拟滚动视口高度 */
   virtualizedHeight: number
-  /** 虚拟滚动行高 */
+  /** 虚拟滚动行高, 在Table中默认为TABLE_X.HEIGHT_TR */
   virtualizedItemSize: number | ((index: number) => number)
   refVirtualized: RefObject<VariableSizeList>
 }

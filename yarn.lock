@@ -2064,20 +2064,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@~7.0.28":
-  version "7.0.28"
-  resolved "https://registry.npm.taobao.org/@types/react-table/download/@types/react-table-7.0.28.tgz#763383c3e7a285892ee64f311ee97a9c254b2bb0"
-  integrity sha1-djODw+eihYku5k8xHul6nCVLK7A=
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-window@^1.8.2":
-  version "1.8.2"
-  resolved "https://registry.npm.taobao.org/@types/react-window/download/@types/react-window-1.8.2.tgz#a5a6b2762ce73ffaab7911ee1397cf645f2459fe"
-  integrity sha1-paaydiznP/qreRHuE5fPZF8kWf4=
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^17.0.0":
   version "17.0.0"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-17.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.0.tgz#5af3eb7fad2807092f0046a1302b7823e27919b8"
@@ -2092,11 +2078,6 @@
   integrity sha1-ryiuEbuyd5eLmdBNHu39BoynGDQ=
   dependencies:
     "@types/react" "*"
-
-"@types/sortablejs@^1.10.6":
-  version "1.10.6"
-  resolved "https://registry.npm.taobao.org/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
-  integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
 
 "@types/source-list-map@*":
   version "0.1.2"
@@ -4811,10 +4792,10 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-gm-react-app@^3.6.5:
-  version "3.7.5"
-  resolved "https://registry.npm.taobao.org/eslint-plugin-gm-react-app/download/eslint-plugin-gm-react-app-3.7.5.tgz#119710772f4a763755e085157bf7b958a67b3aa9"
-  integrity sha1-EZcQdy9KdjdV4IUVe/e5WKZ7Oqk=
+eslint-plugin-gm-react-app@^3.7.6:
+  version "3.7.6"
+  resolved "https://registry.nlark.com/eslint-plugin-gm-react-app/download/eslint-plugin-gm-react-app-3.7.6.tgz?cache=0&sync_timestamp=1620552856874&other_urls=https%3A%2F%2Fregistry.nlark.com%2Feslint-plugin-gm-react-app%2Fdownload%2Feslint-plugin-gm-react-app-3.7.6.tgz#b67dcdde2e0a3ca32433b985468ee12de4d881ae"
+  integrity sha1-tn3N3i4KPKMkM7mFRo7hLeTYga4=
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.27.0"
     "@typescript-eslint/parser" "^2.27.0"
@@ -4838,7 +4819,7 @@ eslint-plugin-gm-react-app@^3.6.5:
     jsx-ast-utils "^2.2.3"
     lodash "^4.17.19"
     prettier "^2.0.4"
-    ts-config-gm-react-app "^3.7.5"
+    ts-config-gm-react-app "^3.7.6"
     typescript "^3.8.3"
 
 eslint-plugin-import@^2.20.2:
@@ -10415,10 +10396,15 @@ ts-config-gm-react-app@^3.4.5:
   resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.6.1.tgz#4c78ce802c44e32e3a2e34953599eec37e5f8081"
   integrity sha1-THjOgCxE4y46LjSVNZnuw35fgIE=
 
-ts-config-gm-react-app@^3.6.5, ts-config-gm-react-app@^3.7.5:
+ts-config-gm-react-app@^3.6.5:
   version "3.7.5"
   resolved "https://registry.npm.taobao.org/ts-config-gm-react-app/download/ts-config-gm-react-app-3.7.5.tgz#893e272f90a57b56924eeceb11e564cadbc4ce5b"
   integrity sha1-iT4nL5Cle1aSTuzrEeVkytvEzls=
+
+ts-config-gm-react-app@^3.7.6:
+  version "3.7.6"
+  resolved "https://registry.nlark.com/ts-config-gm-react-app/download/ts-config-gm-react-app-3.7.6.tgz#e2e25e277d842c89e42adaaed79ca5a334ebc99d"
+  integrity sha1-4uJeJ32ELInkKtqu15ylozTryZ0=
 
 ts-dedent@^2.0.0:
   version "2.0.0"

@@ -5,7 +5,6 @@ import { devWarnForHook } from '@gm-common/tool'
 import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
 import { getColumnKey, CellKeyContext } from '../utils'
 import Wrap from '../core/wrap'
-import _ from 'lodash'
 
 function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>

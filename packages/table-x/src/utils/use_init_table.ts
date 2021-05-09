@@ -6,7 +6,9 @@ import _ from 'lodash'
 // 给定初始值，交由getColumnStyle控制。width逻辑保持跟react-table（v6）的用法一致。
 const defaultColumn = __DEFAULT_COLUMN
 
-function useInitTable(props: TableXProps) {
+function useInitTable(
+  props: Pick<TableXProps, 'data' | 'onHeadersSort' | 'headerSortMultiple' | 'columns'>
+) {
   const { data, onHeadersSort, headerSortMultiple } = props
   let { columns } = props
   // fixed(最新rc12不支持column.show,自己实现)
@@ -28,7 +30,7 @@ function useInitTable(props: TableXProps) {
       // 如果配置了headerSort,加入obj
       if (headerSort && id) {
         // 有默认排序方向，加入默认排序方向，否则为null
-        sortsObject[id] = defaultSortDirection
+        sortsObject[(id as unknown) as string] = defaultSortDirection
       }
     })
     return sortsObject

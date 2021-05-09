@@ -27,5 +27,6 @@ export const TableXUtil = {
 export * from './base'
 export * from './hoc'
 export * from './get_table_x_child'
+export * from './table'
 
 export { useTableRef, BASE_TABLE_REF_VALUE } from './hooks'

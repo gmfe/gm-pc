@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.8.9",
+    "@gm-pc/keyboard": "^1.2.3",
     "@gm-pc/locales": "^1.2.3",
     "@gm-pc/react": "^1.2.3",
     "@types/react-table": "~7.0.28",
