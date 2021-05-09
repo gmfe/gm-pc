@@ -8,7 +8,10 @@ import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIcon } from '../../components/operation'
-
+/**
+ * 请使用Table并配置isDiy
+ * @deprecated
+ */
 function diyTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {

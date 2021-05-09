@@ -12,7 +12,10 @@ import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
 import { TableXColumn, TableXHeaderGroup, TableXProps, TableXRow } from './types'
-
+/**
+ * 请使用Table
+ * @deprecated
+ */
 function TableX<D extends object = {}>({
   columns,
   data,

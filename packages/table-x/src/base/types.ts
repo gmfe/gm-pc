@@ -85,6 +85,10 @@ interface TableXTrProps {
 /** 对外 */
 
 // 对外 props columns
+/**
+ * 请使用Table的Column
+ * @deprecated
+ */
 type TableXColumn<D extends object = any> = Omit<Column<D>, 'Cell' | 'accessor'> &
   TableXCustomerColumn<D>
 type SortsType = {
@@ -95,6 +99,10 @@ type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
 }
+/**
+ * 请使用TableProps
+ * @deprecated
+ */
 interface TableXProps<D extends object = any> {
   id?: string
   /** 默认 value */
