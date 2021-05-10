@@ -25,11 +25,6 @@ function generateDiyColumns(
   mixColumns: DiyTableXColumn[]
 ): [DiyTableXColumn[], DiyTableXColumn[]] {
   const [notDiyCols, diyCols] = splitColumns(initialColumns)
-  let mixColumnsMap: Map<string, DiyTableXColumn> = new Map()
-  _.forEach(mixColumns, (item, index)=>{
-    item.sortNumber = index
-    mixColumnsMap.set(item.key, item)
-  })
   const diyColumns = diyCols.map((column) => {
     const key = getColumnKey(column)
     // 能获取 key 才可能使用 diy
@@ -46,16 +41,12 @@ function generateDiyColumns(
       diyEnable,
     }
     // localstorage中储存的列
-    const localItem = mixColumnsMap.get(key)
+    const localItem = mixColumns.find((v) => v.key === key)
     // localstorage的值覆盖初始值
     if (localItem) {
       newColumn.show = localItem.show
-      newColumn.sortNumber = localItem.sortNumber
     }
     return newColumn
-  })
-  diyColumns.sort((a,b)=>{
-    return a.sortNumber - b.sortNumber
   })
   return [notDiyCols, diyColumns]
 }

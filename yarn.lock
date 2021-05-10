@@ -2064,6 +2064,20 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-table@~7.0.28":
+  version "7.0.28"
+  resolved "https://registry.npm.taobao.org/@types/react-table/download/@types/react-table-7.0.28.tgz#763383c3e7a285892ee64f311ee97a9c254b2bb0"
+  integrity sha1-djODw+eihYku5k8xHul6nCVLK7A=
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-window@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.npm.taobao.org/@types/react-window/download/@types/react-window-1.8.2.tgz#a5a6b2762ce73ffaab7911ee1397cf645f2459fe"
+  integrity sha1-paaydiznP/qreRHuE5fPZF8kWf4=
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^17.0.0":
   version "17.0.0"
   resolved "https://registry.npm.taobao.org/@types/react/download/@types/react-17.0.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.0.tgz#5af3eb7fad2807092f0046a1302b7823e27919b8"
@@ -2078,6 +2092,11 @@
   integrity sha1-ryiuEbuyd5eLmdBNHu39BoynGDQ=
   dependencies:
     "@types/react" "*"
+
+"@types/sortablejs@^1.10.6":
+  version "1.10.6"
+  resolved "https://registry.npm.taobao.org/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
+  integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
 
 "@types/source-list-map@*":
   version "0.1.2"
