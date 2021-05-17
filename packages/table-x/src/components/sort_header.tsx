@@ -1,8 +1,6 @@
 import React, { FC, HTMLAttributes, MouseEvent } from 'react'
 import classNames from 'classnames'
 import { SortHeaderDirectionType } from '../base/types'
-import { Flex } from '@gm-pc/react'
-
 export interface SortHeaderProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, 'onChange'> {
   type?: SortHeaderDirectionType
