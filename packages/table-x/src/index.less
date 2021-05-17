@@ -46,7 +46,7 @@
           .gm-table-x-cell-full-item {
             padding: 8px;
             border-bottom: 1px solid var(--gm-color-border);
-            
+
             &:last-child {
               border-bottom: 0;
             }
@@ -151,11 +151,12 @@
     .gm-table-x-sort-header {
       position: relative;
       padding: 0 8px;
+      width: fit-content;
 
       &::before {
         content: '';
         position: absolute;
-        right: 4px;
+        right: -9px;
         bottom: 8px;
         width: 0;
         height: 0;
@@ -168,7 +169,7 @@
       &::after {
         content: '';
         position: absolute;
-        right: 4px;
+        right: -9px;
         bottom: -3px;
         width: 0;
         height: 0;
