@@ -1,7 +1,6 @@
 import React, { FC, forwardRef } from 'react'
 import classNames from 'classnames'
 import { ChartProps } from '../../../types/common'
-
 export interface TableChartProps extends ChartProps {
   name?: string
   ref?: React.ForwardedRef<HTMLDivElement>
@@ -10,9 +9,10 @@ export interface TableChartProps extends ChartProps {
 const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartProps>(
   (props, ref) => {
     const { options, data } = props
-    const { position, theme, height } = options
+    const { position, theme, height, legend } = options
     const [x, y] = position.split('*')
     // data = data.sort((a, b) => b[y] - a[y])
+    console.log(options)
 
     return (
       <div
@@ -32,7 +32,11 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
           </>
         )}
         {/* 排名 */}
-        <div className='gm-vision-flex-column gm-vision-flex'>
+        <div
+          className={classNames('gm-vision-flex-column gm-vision-flex', {
+            'gm-vision-marignBottom': legend === true,
+          })}
+        >
           {data.map((_: any, index: number) => (
             <div
               key={`title_${index}`}
@@ -51,7 +55,9 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
         >
           {/* 名称 */}
           <div
-            className='gm-vision-flex-column gm-vision-flex'
+            className={classNames('gm-vision-flex-column gm-vision-flex', {
+              'gm-vision-marignBottom': legend === true,
+            })}
             style={{
               marginRight: '20px',
             }}
@@ -77,7 +83,11 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
           />
         </div>
         {/* 数据 */}
-        <div className='gm-vision-flex-column gm-vision-flex'>
+        <div
+          className={classNames('gm-vision-flex-column gm-vision-flex', {
+            'gm-vision-marignBottom': legend === true,
+          })}
+        >
           {data.map((item: any, index: number) => (
             <div
               key={`value_${index}`}
