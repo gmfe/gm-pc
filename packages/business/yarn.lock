@@ -2,21 +2,6 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.0.0":
-  version "7.14.0"
-  resolved "https://registry.nlark.com/@babel/runtime/download/@babel/runtime-7.14.0.tgz?cache=0&sync_timestamp=1619727414495&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.14.0.tgz#46794bc20b612c5f75e62dd071e24dfd95f1cbe6"
-  integrity sha1-RnlLwgthLF915i3QceJN/ZXxy+Y=
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@gm-common/hooks@^2.8.9":
-  version "2.8.9"
-  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.8.9.tgz#d582fbc5c7dfb21f3d016a321f93b1fce867c85c"
-  integrity sha512-+MurQpH36nv10o7+g/UQF7DPkzoJwiv+3GiTiHylc6hYRgPnEim1GxSIPc5ir8bSQYbp+6IVKyUi32qmSWQGug==
-  dependencies:
-    "@gm-common/tool" "^2.8.9"
-    ts-config-gm-react-app "^3.4.5"
-
 "@gm-common/hooks@^2.9.17":
   version "2.9.17"
   resolved "https://registry.nlark.com/@gm-common/hooks/download/@gm-common/hooks-2.9.17.tgz#41ced493afe26f1f756589773ff60ccd0f467a61"
@@ -25,13 +10,6 @@
     "@gm-common/tool" "^2.9.17"
     ts-config-gm-react-app "^3.4.5"
 
-"@gm-common/tool@^2.8.9":
-  version "2.8.9"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.8.9.tgz#81317cb81f3095625753c31c03a787195e39cbff"
-  integrity sha512-7A6bcTI+nRfB6MsLEJiNIpbLeqXnIz0vmvJzKHn79wtbVGR5p0GeOyzsYV5tBu1i96gMKG04siR3n3Vy39X1Sg==
-  dependencies:
-    lodash "^4.17.20"
-
 "@gm-common/tool@^2.9.17":
   version "2.9.17"
   resolved "https://registry.nlark.com/@gm-common/tool/download/@gm-common/tool-2.9.17.tgz#eeaf48e53e082e949ecde94a49f1b66715d880db"
@@ -39,155 +17,10 @@
   dependencies:
     lodash "^4.17.20"
 
-"@gm-pc/keyboard@^1.2.4-beta.2":
-  version "1.2.4-beta.2"
-  resolved "https://registry.nlark.com/@gm-pc/keyboard/download/@gm-pc/keyboard-1.2.4-beta.2.tgz#a981e6ab31fd39ad4c5b71c0a2e8c0a7c0248490"
-  integrity sha1-qYHmqzH9Oa1MW3HAoujAp8AkhJA=
-  dependencies:
-    "@gm-common/tool" "^2.8.9"
-    "@gm-pc/react" "^1.2.4-beta.2"
-    "@gm-pc/table-x" "^1.2.4-beta.2"
-    classnames "^2.2.5"
-    lodash "^4.17.19"
-
-"@gm-pc/locales@^1.2.4-beta.2":
-  version "1.2.4-beta.2"
-  resolved "https://registry.nlark.com/@gm-pc/locales/download/@gm-pc/locales-1.2.4-beta.2.tgz#841bab23b470326bab83698f8546b3f653ee77c2"
-  integrity sha1-hBurI7RwMmurg2mPhUaz9lPud8I=
-
-"@gm-pc/react@^1.2.4-beta.2":
-  version "1.2.4-beta.2"
-  resolved "https://registry.nlark.com/@gm-pc/react/download/@gm-pc/react-1.2.4-beta.2.tgz#2a19b12466a6d5ca229aa5f658fc889dc7e6b441"
-  integrity sha1-KhmxJGam1coimqX2WPyIncfmtEE=
-  dependencies:
-    "@gm-common/hooks" "^2.8.9"
-    "@gm-common/tool" "^2.8.9"
-    "@gm-pc/locales" "^1.2.4-beta.2"
-    big.js "^6.0.1"
-    classnames "^2.2.5"
-    lodash "^4.17.19"
-    modern-normalize "^1.0.0"
-    moment "^2.29.1"
-    react-window "^1.8.5"
-
-"@gm-pc/table-x@^1.2.4-beta.2":
-  version "1.2.4-beta.2"
-  resolved "https://registry.nlark.com/@gm-pc/table-x/download/@gm-pc/table-x-1.2.4-beta.2.tgz#85e1d066e1f4338f8dea5c8710086e4db35faf66"
-  integrity sha1-heHQZuH0M4+N6lyHEAhuTbNfr2Y=
-  dependencies:
-    "@gm-common/tool" "^2.8.9"
-    "@gm-pc/keyboard" "^1.2.4-beta.2"
-    "@gm-pc/locales" "^1.2.4-beta.2"
-    "@gm-pc/react" "^1.2.4-beta.2"
-    "@types/react-table" "~7.0.28"
-    "@types/react-window" "^1.8.2"
-    "@types/sortablejs" "^1.10.6"
-    classnames "^2.2.5"
-    lodash "^4.17.19"
-    react-table "7.0.0-rc.11"
-    react-window "^1.8.5"
-    sortablejs "^1.12.0"
-
-"@types/prop-types@*":
-  version "15.7.3"
-  resolved "https://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
-  integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
-
-"@types/react-table@~7.0.28":
-  version "7.0.29"
-  resolved "https://registry.nlark.com/@types/react-table/download/@types/react-table-7.0.29.tgz#af2c82f2d6a39be5bc0f191b30501309a8db0949"
-  integrity sha1-ryyC8tajm+W8DxkbMFATCajbCUk=
-  dependencies:
-    "@types/react" "*"
-
-"@types/react-window@^1.8.2":
-  version "1.8.3"
-  resolved "https://registry.nlark.com/@types/react-window/download/@types/react-window-1.8.3.tgz#14f74b144b4e3df9421eb31182dc580b7ccc7617"
-  integrity sha1-FPdLFEtOPflCHrMRgtxYC3zMdhc=
-  dependencies:
-    "@types/react" "*"
-
-"@types/react@*":
-  version "17.0.5"
-  resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.5.tgz?cache=0&sync_timestamp=1620164119633&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.5.tgz#3d887570c4489011f75a3fc8f965bf87d09a1bea"
-  integrity sha1-PYh1cMRIkBH3Wj/I+WW/h9CaG+o=
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/scheduler@*":
-  version "0.16.1"
-  resolved "https://registry.npm.taobao.org/@types/scheduler/download/@types/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1613384488348&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fscheduler%2Fdownload%2F%40types%2Fscheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
-  integrity sha1-GIRSBehv8AOFF6q3oYpiprn3EnU=
-
-"@types/sortablejs@^1.10.6":
-  version "1.10.6"
-  resolved "https://registry.nlark.com/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
-  integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
-
-big.js@^6.0.1:
-  version "6.1.1"
-  resolved "https://registry.nlark.com/big.js/download/big.js-6.1.1.tgz#63b35b19dc9775c94991ee5db7694880655d5537"
-  integrity sha1-Y7NbGdyXdclJke5dt2lIgGVdVTc=
-
-classnames@^2.2.5:
-  version "2.3.1"
-  resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.3.1.tgz?cache=0&sync_timestamp=1617400318265&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fclassnames%2Fdownload%2Fclassnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
-  integrity sha1-38+jiR4wbsHa0QXQ6I9EF7hTXo4=
-
-csstype@^3.0.2:
-  version "3.0.8"
-  resolved "https://registry.nlark.com/csstype/download/csstype-3.0.8.tgz?cache=0&sync_timestamp=1618818466657&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
-  integrity sha1-0iZqeScp+yJ80hb7Vy9Dco4a00A=
-
-lodash@^4.17.19:
-  version "4.17.21"
-  resolved "https://registry.nlark.com/lodash/download/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
-
 lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
-
-"memoize-one@>=3.1.1 <6":
-  version "5.2.1"
-  resolved "https://registry.nlark.com/memoize-one/download/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
-  integrity sha1-gzeqPEM1WBg57AHD1ZQJDOvo8A4=
-
-modern-normalize@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.nlark.com/modern-normalize/download/modern-normalize-1.1.0.tgz?cache=0&sync_timestamp=1619951149003&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmodern-normalize%2Fdownload%2Fmodern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
-  integrity sha1-2o6AFA2SIUJr1PclxuESg9NPkLc=
-
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
-
-react-table@7.0.0-rc.11:
-  version "7.0.0-rc.11"
-  resolved "https://registry.nlark.com/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
-  integrity sha1-mMUpnOFqCciJlyeVX7RQW9HtZKw=
-
-react-window@^1.8.5:
-  version "1.8.6"
-  resolved "https://registry.npm.taobao.org/react-window/download/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
-  integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    memoize-one ">=3.1.1 <6"
-
-regenerator-runtime@^0.13.4:
-  version "0.13.7"
-  resolved "https://registry.nlark.com/regenerator-runtime/download/regenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
-  integrity sha1-ysLazIoepnX+qrrriugziYrkb1U=
-
-sortablejs@^1.12.0:
-  version "1.13.0"
-  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.13.0.tgz?cache=0&sync_timestamp=1610070448468&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.13.0.tgz#3ab2473f8c69ca63569e80b1cd1b5669b51269e9"
-  integrity sha1-OrJHP4xpymNWnoCxzRtWabUSaek=
 
 ts-config-gm-react-app@^3.4.5:
   version "3.4.7"

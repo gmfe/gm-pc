@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useEffect, useRef } from 'react'
+import React, { FC, MouseEvent, useEffect, useRef, isValidElement } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { ModalProps, ModalStatic } from './types'
@@ -72,7 +72,7 @@ const Modal: FC<ModalProps> & ModalStatic = ({
     >
       {title && (
         <div className='gm-modal-title-wrap'>
-          <div className='gm-modal-title'>{title}</div>
+          {isValidElement(title) ? title : <div className='gm-modal-title'>{title}</div>}
         </div>
       )}
       {noCloseBtn || (
