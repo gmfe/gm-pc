@@ -4,7 +4,7 @@ import { Type } from '../layout_root'
 type ModalSize = 'sm' | 'md' | 'lg' | 'xl'
 
 interface ModalProps {
-  title?: string
+  title?: string | ReactNode
   size?: ModalSize
   onHide?(): void
   disableMaskClose?: boolean
