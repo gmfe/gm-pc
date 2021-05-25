@@ -23,7 +23,11 @@ const Thead: FC<TableXTheadProps> = ({
                 onHeaderSort && onHeaderSort({ field: header.id, direction })
               }
               header.Header = (
-                <SortHeader type={sorts[header.id]} onChange={onChange}>
+                <SortHeader
+                  type={sorts[header.id]}
+                  onChange={onChange}
+                  className='gm-padding-left-0'
+                >
                   {header.originHeader}
                 </SortHeader>
               )
