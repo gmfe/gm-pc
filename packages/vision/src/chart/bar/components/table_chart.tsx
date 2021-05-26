@@ -12,7 +12,7 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
     const { position, theme, height, legend } = options
     const [x, y] = position.split('*')
     // data = data.sort((a, b) => b[y] - a[y])
-    console.log(options)
+    // console.log(options)
 
     return (
       <div
