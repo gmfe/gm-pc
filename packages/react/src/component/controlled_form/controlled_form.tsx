@@ -18,7 +18,7 @@ import { RecordPartial, StringOrKeyofT, anyCallback } from '../../types'
 
 export interface ControlledFormProps<K = any>
   extends UseFormProps<K>,
-    Omit<FormProps, 'onSubmit'> {
+    Omit<FormProps, 'onSubmit' | 'onSubmitValidated'> {
   /* 表单实例，可拿到一些方法 */
   form?: Ref<FormInstance<K>>
   /* 要隐藏的表单项 */
@@ -30,6 +30,7 @@ export interface ControlledFormProps<K = any>
   children?: ReactNode
   /* 表单提交的回调 */
   onSubmit?(values: Partial<K>): void
+  onSubmitValidated?(values: Partial<K>): void
 }
 
 function ControlledForm<K = any>(props: ControlledFormProps<K>) {
@@ -87,7 +88,15 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
       })
     }
     onTempSubmit && onTempSubmit(tempValues as K)
-  }, [getNormalizeValue, isIgnoreFalsy, normalizes, onTempSubmit, values])
+    onSubmitValidated && onSubmitValidated(tempValues as K)
+  }, [
+    values,
+    isIgnoreFalsy,
+    normalizes,
+    onTempSubmit,
+    onSubmitValidated,
+    getNormalizeValue,
+  ])
   useEffect(() => {
     if (isSubmitInit && !didMountRef.current) {
       didMountRef.current = true

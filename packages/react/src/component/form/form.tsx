@@ -42,7 +42,10 @@ class Form extends Component<FormProps, FormState> {
   ) => {
     Children.toArray(children).forEach((value: ReactNode) => {
       const child = value as ReactElement<PropsWithChildren<FormItemProps>, ComponentType>
-      if (child.type && child.type.displayName === 'FormItem') {
+      if (
+        child.type &&
+        ['FormItem', 'ControlledFormItem'].includes(child.type.displayName!)
+      ) {
         formItems.push(child)
       } else if (child.props && child.props.children) {
         this._getFormItemFields(child.props.children as ReactElement, formItems)
