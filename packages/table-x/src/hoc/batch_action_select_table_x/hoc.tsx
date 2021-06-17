@@ -2,7 +2,7 @@ import React, { FC, ComponentType, useState, useEffect } from 'react'
 import { TableXProps } from '../../base'
 import { BatchActionBar } from '../../components'
 import _ from 'lodash'
-import { selectTableXHOC } from '../select_table_x'
+import { selectTableXHOC, SelectTableXProps } from '../select_table_x'
 import { Value, BatchActionSelectTableXProps } from './types'
 /**
  * 请使用Table并配置isBatchSelect
@@ -14,13 +14,9 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
   // 基于 SelectTableX
   const SelectTable = selectTableXHOC(Table)
 
-  const BatchActionSelectTableX: FC<Props & BatchActionSelectTableXProps> = ({
-    data,
-    keyField = 'value',
-    batchActions,
-    batchActionBarPure,
-    ...rest
-  }) => {
+  const BatchActionSelectTableX: FC<
+    Props & BatchActionSelectTableXProps & SelectTableXProps
+  > = ({ data, keyField = 'value', batchActions, batchActionBarPure, ...rest }) => {
     // BatchActionSelectTableX 调用方不用传 selected onSelect，
     // 这里 keep 内部状态
     const [selected, setSelected] = useState<Value[]>([])
@@ -45,7 +41,18 @@ function batchActionSelectTableXHOC<Props extends TableXProps = TableXProps>(
     const handleToggleSelectAll = (isSelectAll: boolean) => {
       setIsSelectAll(isSelectAll)
       // 选择当前页和选择所有页，都需要把当前选中
-      setSelected(_.map(data, (v) => v[keyField]))
+      setSelected(
+        _.map(
+          data.filter((item) => {
+            const { isSelectorDisable } = rest
+            if (isSelectorDisable) {
+              return !isSelectorDisable(item)
+            }
+            return true
+          }),
+          (v) => v[keyField]
+        )
+      )
     }
 
     const handleClose = () => {
