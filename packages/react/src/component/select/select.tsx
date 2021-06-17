@@ -91,6 +91,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       className,
       popoverType,
       isInPopup,
+      ...rest
     } = this.props
     const { willActiveIndex } = this.state
 
@@ -130,6 +131,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
         isInPopup={isInPopup}
       >
         <Selection
+          {...rest}
           ref={this._selectionRef}
           selected={selected}
           onSelect={handleChange}

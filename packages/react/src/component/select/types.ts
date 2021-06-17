@@ -16,6 +16,7 @@ interface SelectProps<V> {
   onKeyDown?(event: KeyboardEvent): void
   className?: string
   style?: CSSProperties
+  placeholder?: string
 }
 
 export type { SelectProps }
