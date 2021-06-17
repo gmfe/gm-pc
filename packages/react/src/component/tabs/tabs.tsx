@@ -1,6 +1,6 @@
 import React, { CSSProperties, ReactNode, useState, useRef, useEffect, Ref } from 'react'
 import classNames from 'classnames'
-import _ from 'lodash'
+import _, { before } from 'lodash'
 import { Flex, FlexProps } from '../flex'
 import SVGCloseSquare from '../../svg/close-square.svg'
 
@@ -20,6 +20,7 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   active?: V
   onChange?(value: V): void
   onClose?(value: V): void
+  onChangeValidate?(): boolean
   keep?: boolean
   light?: boolean
   /* didMount之后不再重新渲染 */
@@ -43,6 +44,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     keep,
     onChange,
     onClose,
+    onChangeValidate,
     className,
     column = true,
     activeOnce,
@@ -74,6 +76,9 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   }, [active])
 
   const handleClick = (value: V) => {
+    // 增加切换tab的校验
+    if (typeof onChangeValidate === 'function' && !onChangeValidate()) return
+
     setSelected(value)
     if (typeof onChange === 'function') onChange(value)
   }
@@ -146,7 +151,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                   <span
                     title={tab.text}
                     className={classNames({
-                      'gm-tabs-text-overflow-ellipsis': isClose && tab.text.length > 10,
+                      'gm-tabs-text-overflow-ellipsis': type === 'editable-card',
                     })}
                     onClick={tab.disabled ? _.noop : () => handleClick(tab.value)}
                   >
