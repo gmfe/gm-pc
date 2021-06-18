@@ -8,5 +8,9 @@
       "graphType": "all"
     }
   },
+<<<<<<< HEAD
   "version": "1.3.4"
+=======
+  "version": "1.3.2-beta.0"
+>>>>>>> v1.3.2-beta.0
 }
