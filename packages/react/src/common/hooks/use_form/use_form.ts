@@ -2,7 +2,7 @@
  * @Description: 受控表单自定义hook
  */
 
-import { useCallback, useState, useRef } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import _, { noop } from 'lodash'
 
 import { handleValues } from './utils'
@@ -45,11 +45,18 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
     // 表单项改变的回调
     onFieldsChange = _.noop,
   } = props
-
+  // 由于setState后没法拿到最新值，故将最新值保存到ref中
+  const latestValuesRef = useRef<RecordPartial<K, any>>({
+    ...initialValues,
+  })
   // 存储表单值
   const [values, setValues] = useState<RecordPartial<K, any>>({
     ...initialValues,
   })
+
+  useEffect(() => {
+    latestValuesRef.current = { ...values }
+  }, [values])
   const getNormalizeValue = useCallback(
     (key: StringOrKeyofT<K>, value: any) => {
       if (normalizes[key] && !isFalsy(value)) {
@@ -73,7 +80,16 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
           ? target.checked
           : target.value
         : originValue
-      setValues((values) => handleValues(values, fieldName, newValue, onFieldsChange))
+      setValues((values) => {
+        latestValuesRef.current = handleValues(
+          values,
+          fieldName,
+          newValue,
+          onFieldsChange
+        )
+        return latestValuesRef.current
+      })
+
       return getNormalizeValue(fieldName, newValue)
     },
     [onFieldsChange, getNormalizeValue]
@@ -101,10 +117,10 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
    */
   const getFieldsValue: FormInstance<K>['getFieldsValue'] = useCallback(
     (nameList, isOrigin) => {
-      let tempValues = { ...values }
+      let tempValues = { ...latestValuesRef.current }
       // 如果有传入nameList，返回nameList的值
       if (Array.isArray(nameList)) {
-        tempValues = _.pick({ ...values }, nameList)
+        tempValues = _.pick({ ...latestValuesRef.current }, nameList)
       }
       if (isOrigin) {
         return tempValues as Partial<K>
@@ -120,7 +136,7 @@ export default function useForm<K = any>(props: UseFormProps<K>) {
       }
       return tempValues as Partial<K>
     },
-    [values, normalizes, getNormalizeValue]
+    [normalizes, getNormalizeValue]
   )
 
   return {
