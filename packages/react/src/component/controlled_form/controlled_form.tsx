@@ -2,6 +2,7 @@
  * @Description: 受控表单
  */
 import React, {
+  useState,
   useEffect,
   useCallback,
   useRef,
@@ -14,7 +15,7 @@ import { noop } from 'lodash'
 import { useForm, UseFormProps, FormInstance } from '../../common/hooks'
 import { getRecordPartialObject, isFalsy } from '../../common/utils'
 import { ControlledFormContext, ControlledFormContextProps } from './context'
-import { RecordPartial, StringOrKeyofT, anyCallback } from '../../types'
+import { RecordPartial, StringKey, anyCallback } from '../../types'
 
 export interface ControlledFormProps<K = any>
   extends UseFormProps<K>,
@@ -30,7 +31,6 @@ export interface ControlledFormProps<K = any>
   children?: ReactNode
   /* 表单提交的回调 */
   onSubmit?(values: Partial<K>): void
-  onSubmitValidated?(values: Partial<K>): void
 }
 
 function ControlledForm<K = any>(props: ControlledFormProps<K>) {
@@ -50,7 +50,6 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     onFieldsChange = noop,
     // 表单提交的回调
     onSubmit: onTempSubmit,
-    onSubmitValidated,
     ...res
   } = props
 
@@ -61,12 +60,15 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     setFieldsValue,
     getFieldsValue,
     getNormalizeValue,
+    canSubmit,
+    setCanSubmit,
+    validateFields,
   } = useForm<K>({
     initialValues,
     normalizes,
     onFieldsChange,
   })
-
+  const [didClickSubmit, setDDidClickSubmit] = useState(false)
   const didMountRef = useRef(false)
 
   const formRef = useRef<Form>(null)
@@ -76,7 +78,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     const tempValues: ControlledFormProps<K>['initialValues'] = { ...values }
     if (isIgnoreFalsy || Object.keys(normalizes).length) {
       Object.keys(values).forEach((key) => {
-        const tempKey = key as StringOrKeyofT<K>
+        const tempKey = key as StringKey<K>
 
         const value = values[tempKey]
         // 剔除掉undefined, null和空字符串
@@ -87,16 +89,9 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
         }
       })
     }
-    onTempSubmit && onTempSubmit(tempValues as K)
-    onSubmitValidated && onSubmitValidated(tempValues as K)
-  }, [
-    values,
-    isIgnoreFalsy,
-    normalizes,
-    onTempSubmit,
-    onSubmitValidated,
-    getNormalizeValue,
-  ])
+    setDDidClickSubmit(true)
+    onTempSubmit && canSubmit() && onTempSubmit(tempValues as K)
+  }, [values, isIgnoreFalsy, normalizes, onTempSubmit, getNormalizeValue, canSubmit])
   useEffect(() => {
     if (isSubmitInit && !didMountRef.current) {
       didMountRef.current = true
@@ -107,6 +102,10 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     resetFields,
     setFieldsValue,
     getFieldsValue,
+    validateFields: () => {
+      setDDidClickSubmit(true)
+      return validateFields()
+    },
     apiDoValidate: formRef.current!.apiDoValidate,
   }))
 
@@ -117,9 +116,6 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
   if (onTempSubmit) {
     Object.assign(formProps, { onSubmit })
   }
-  if (onSubmitValidated) {
-    Object.assign(formProps, { onSubmitValidated: onSubmit })
-  }
   const providerValues = {
     values,
     hideItems,
@@ -127,6 +123,8 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     resetFields,
     setFieldsValue,
     getFieldsValue,
+    setCanSubmit,
+    didClickSubmit,
   } as ControlledFormContextProps
   return (
     <Form {...formProps}>

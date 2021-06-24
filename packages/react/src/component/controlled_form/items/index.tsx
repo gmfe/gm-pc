@@ -5,22 +5,52 @@ import React, { ReactElement, useContext } from 'react'
 import { FormInstance } from '../../../common/hooks'
 import { FormItem, FormItemProps } from '../../form'
 import { ControlledFormContext } from '../context'
-import { cloneElement } from './utils'
-import { StringOrKeyofT } from '../../../types'
+import { cloneElement, getWarningMessage } from './utils'
+import { StringKey } from '../../../types'
+/** ---------Rule -------- end */
+export declare type RuleType = 'integer' | 'url' | 'email'
+type StoreValue = any
+declare type Validator = (
+  rule: RuleObject,
+  value: StoreValue,
+  callback: (error?: string) => void
+) => Promise<void | any> | void
+export declare type RuleRender<T = any> = (values: T) => string | undefined
+export interface ValidatorRule {
+  message?: string | ReactElement
+  validator: Validator
+}
+interface BaseRule {
+  len?: number
+  max?: number
+  min?: number
+  pattern?: RegExp
+  required?: boolean
+  whitespace?: boolean
+  type?: RuleType
+}
+declare type AggregationRule = BaseRule & Partial<ValidatorRule>
+export declare type RuleObject = AggregationRule
+export declare type Rule<T = any> = RuleObject | RuleRender<T>
+/** ---------Rule -------- end */
 export interface ControlFormItemProps<T = any> extends FormItemProps {
   /* 表单名 */
-  name?: StringOrKeyofT<T>
+  name?: StringKey<T>
   /* 组件value名 */
   valuePropName?: 'value' | 'checked' | 'selected' | 'date'
   /* 是否隐藏表单 */
   hide?: boolean
   /* 组件触发函数名 */
   trigger?: string
+  rules?: Rule<T>[]
   children: ReactElement
   /* 表单项改变的回调 */
-  onFieldChange?(newValue: any, context: Omit<FormInstance, 'apiDoValidate'>): void
+  onFieldChange?(
+    newValue: any,
+    context: Omit<FormInstance, 'apiDoValidate' | 'validateFields'>
+  ): void
 }
-function ControlledFormItem(props: ControlFormItemProps) {
+function ControlledFormItem<T = any>(props: ControlFormItemProps<T>) {
   const {
     name = '',
     valuePropName = 'value',
@@ -29,6 +59,7 @@ function ControlledFormItem(props: ControlFormItemProps) {
     trigger = 'onChange',
     children,
     onFieldChange,
+    rules,
     ...restProps
   } = props
 
@@ -39,6 +70,8 @@ function ControlledFormItem(props: ControlFormItemProps) {
     resetFields,
     setFieldsValue,
     getFieldsValue,
+    setCanSubmit,
+    didClickSubmit,
   } = useContext(ControlledFormContext)
   const isHide = hide || hideItems?.[name]
 
@@ -67,7 +100,16 @@ function ControlledFormItem(props: ControlFormItemProps) {
       })
     }
   }
-  return <FormItem {...restProps}>{cloneElement(children, childProps)}</FormItem>
+  const warningMessage = getWarningMessage(rules, values as T, name, restProps.required)
+  if (name) {
+    setCanSubmit(name, warningMessage)
+  }
+
+  return (
+    <FormItem {...restProps} warningMessage={didClickSubmit ? warningMessage : undefined}>
+      {cloneElement(children, childProps)}
+    </FormItem>
+  )
 }
 
 export default ControlledFormItem

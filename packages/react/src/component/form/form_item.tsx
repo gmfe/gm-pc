@@ -34,6 +34,7 @@ const FormItem: FC<FormItemProps> = ({
   colWidth,
   style,
   tooltip,
+  warningMessage,
 }) => {
   const context = useContext(FormContext)
   labelWidth = labelWidth ?? context.labelWidth
@@ -67,14 +68,13 @@ const FormItem: FC<FormItemProps> = ({
     }
     error = !!help
   }
-
   const childList = Children.toArray(children)
   return (
     <Flex
       style={_style}
       className={classNames('gm-form-group', className, {
-        'has-error': error,
-        'gm-has-error': error,
+        'has-error': (required && !!warningMessage) || error,
+        'gm-has-error': (required && !!warningMessage) || error,
       })}
     >
       {!_.isNil(label) && (
@@ -94,8 +94,15 @@ const FormItem: FC<FormItemProps> = ({
         <div className='gm-form-field'>
           {childList[0] && <FormControl>{childList[0]}</FormControl>}
           {childList?.slice(1)}
-          {!!(error && help) && (
-            <div className={classNames({ 'help-block': error })}>{help}</div>
+          {(!!(error && help) || !!warningMessage) && (
+            <div
+              className={classNames({
+                'help-block': error,
+                'help-block gm-form-warning-message': !!warningMessage,
+              })}
+            >
+              {warningMessage ?? help}
+            </div>
           )}
           {tooltip && (
             <Tooltip popup={tooltip} className='gm-padding-lr-5 gm-form-toolTip' />

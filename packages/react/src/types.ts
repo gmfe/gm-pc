@@ -16,9 +16,9 @@ interface TreeDataItem<V> extends ListDataItem<V> {
   children?: TreeDataItem<V>[]
 }
 type StringOrKeyofT<T, V = keyof T> = keyof any extends V ? string : V
-
+export type StringKey<D> = Extract<keyof D, string>
 type RecordPartial<K, V> = {
-  [P in StringOrKeyofT<K>]?: V
+  [P in StringKey<K>]?: V
 }
 
 type anyCallback<T = any> = (...args: any[]) => T
