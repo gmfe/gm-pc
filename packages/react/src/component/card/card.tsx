@@ -49,7 +49,7 @@ const Card: FC<CardProps> = (props) => {
     actions && actions[value].onClick()
   }
 
-  // 老Card不能支撑起业务，以后尽量用FromCard
+  // 老Card不能支撑起业务， 以后尽量用FromCard
   if (type === 'form-card') return <FromCard {...props} />
 
   return (

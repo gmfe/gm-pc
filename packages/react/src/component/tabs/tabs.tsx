@@ -72,7 +72,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     setSelected(active)
     // TODO: tab滚动使用
     // const node: TabsItem<V> | undefined = tabs.find((f) => f.value === active)
-    // console.log('node', node)
   }, [active])
 
   const handleClick = (value: V) => {
