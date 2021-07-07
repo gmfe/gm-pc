@@ -20,8 +20,10 @@ const LayoutRoot: FC & LayoutRootStatic = () => {
         [type]: component,
       }))
     }
+    console.log('mount setComponentFunc', setComponentFunc)
 
     return () => {
+      console.log('unmount layoutRoot', setComponentFunc)
       setComponentFunc = null
     }
   })
@@ -71,7 +73,7 @@ const componentListMap: {
 LayoutRoot.setComponentArray = (type, id, com) => {
   // @ts-ignore
   const list: ComponentListItem[] = componentListMap[type]
-
+  console.log('setComponentFunc---setComponentArray', setComponentFunc)
   if (setComponentFunc) {
     const index = _.findIndex(list, (v) => v.id === id)
 
@@ -100,6 +102,7 @@ LayoutRoot.clearComponentArray = (type) => {
 }
 
 LayoutRoot.setComponent = (type, com) => {
+  console.log('setComponentFunc---setComponent', setComponentFunc)
   if (setComponentFunc) {
     setComponentFunc(type, com)
   } else {
