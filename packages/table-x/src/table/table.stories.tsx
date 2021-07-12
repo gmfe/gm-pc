@@ -3,14 +3,12 @@ import { Alert, MoreSelectDataItem } from '@gm-pc/react'
 import { Table } from '.'
 import { store } from '../stories/data'
 
-import _ from 'lodash'
 import { makeAutoObservable } from 'mobx'
-import { TableXUtil, selectTableXHOC, editTableXHOC } from '../'
+import { TableXUtil } from '../'
 
 import {
   KCMoreSelect,
   KeyboardTableXColumn,
-  keyboardTableXHOC,
   KCInput,
   KCDatePicker,
   KCSelect,
@@ -211,7 +209,9 @@ const initialDataItem: InitialDataItem = {
   status: 1,
 }
 
-const initialData: InitialDataItem[] = _.times(5, (): InitialDataItem => initialDataItem)
+const initialData: InitialDataItem[] = Array(5)
+  .fill(initialDataItem)
+  .map((item, index) => ({ ...item, id: index }))
 
 class Store {
   data = initialData
@@ -240,7 +240,7 @@ class Store {
 }
 
 const keyboardStore = new Store()
-
+console.log(keyboardStore.data)
 export const ComKeyboard = () => {
   const columns: KeyboardTableXColumn[] = useMemo(
     (): KeyboardTableXColumn[] => [

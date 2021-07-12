@@ -9,6 +9,7 @@ import {
   sortableTableXHOC,
   editTableXHOC,
   subTableXHOC,
+  selectTableXHOC,
 } from '../hoc'
 
 import BaseTable from './base_table'
@@ -23,6 +24,7 @@ function Table<D extends object = any>({
   isEdit,
   isSub,
   isKeyboard,
+  isSelect,
   ...res
 }: TableProps<D>) {
   const Table = useMemo(() => {
@@ -35,6 +37,7 @@ function Table<D extends object = any>({
     const hocMiddles = [
       isDiy && diyTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
+      isSelect && selectTableXHOC,
       isExpand && expandTableXHOC,
       isSort && sortableTableXHOC,
       isEdit && editTableXHOC,
@@ -44,7 +47,7 @@ function Table<D extends object = any>({
 
     const TempTable = applyMiddleware(...hocMiddles)(BaseTable)
     return TempTable as typeof BaseTable
-  }, [isDiy, isBatchSelect, isExpand, isSort, isEdit, isSub, isKeyboard])
+  }, [isDiy, isBatchSelect, isExpand, isSort, isEdit, isSub, isKeyboard, isSelect])
 
   const tableProps = (res as unknown) as TableProps<D>
   return <Table {...tableProps} />

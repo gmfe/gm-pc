@@ -36,7 +36,9 @@ export interface TableProps<D extends object = any>
   isPagination?: boolean
   /** 是否Diy */
   isDiy?: boolean
-  /** 是否批量选择 */
+  /** 是否选择 */
+  isSelect?: boolean
+  /** 是否批量选择, 跟isSelect的区别是action会自动回传一些操作 */
   isBatchSelect?: boolean
   /** 是否展开 */
   isExpand?: boolean

@@ -76,6 +76,8 @@ interface FormItemProps {
   colWidth?: string
   className?: string
   style?: CSSProperties
+  /** 警告信息 */
+  warningMessage?: ReactNode | string
 }
 
 interface FormPanelProps extends HTMLAttributes<HTMLDivElement> {

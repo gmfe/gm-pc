@@ -17,6 +17,7 @@ export const ComSelectTableX = () => (
       columns={columns}
       data={store.data}
       keyField='id'
+      isSelectorDisable={(item) => item.id === 'T5991-JHD-2018-07-25-00026'}
       batchActions={[
         {
           children: <BatchActionDefault>批量</BatchActionDefault>,
