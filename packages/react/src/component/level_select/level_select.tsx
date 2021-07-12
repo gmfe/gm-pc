@@ -193,6 +193,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
   render() {
     const { disabled, children, popoverType, right } = this.props
     console.log('level-select-children', children)
+    console.log('level-select-this._renderTarget()', this._renderTarget())
     return (
       <Popover
         ref={this._popoverRef}

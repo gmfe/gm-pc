@@ -173,7 +173,6 @@ class Popover extends Component<PopoverProps, PopoverState> {
       isInPopup,
     } = this.props
     const disabled = this._getDisabled()
-    console.log('popupover-active2', active)
     if (active) {
       console.log('set componentArray')
       LayoutRoot.setComponentArray(
@@ -241,6 +240,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
   render() {
     const { type, children } = this.props
     const { active } = this.state
+    console.log('popover--children', children, type, active, !this._getDisabled())
     const child = Children.only(children) as ComponentElement<any, any>
 
     const p: HTMLAttributes<HTMLElement> = {}

@@ -24,6 +24,7 @@ const LayoutRoot: FC & LayoutRootStatic = () => {
 
     return () => {
       setComponentFunc = null
+      console.log('layoutroot hello unmount ', setComponentFunc)
     }
   })
 
