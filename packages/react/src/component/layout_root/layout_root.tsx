@@ -27,7 +27,7 @@ const LayoutRoot: FC & LayoutRootStatic = () => {
   })
 
   const { popover, right_side_modal, modal, tip, full_loading, n_progress } = state
-
+  console.log('popover---', popover)
   return (
     <div>
       {popover && popover.length > 0 && (

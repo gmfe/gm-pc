@@ -198,7 +198,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
         ref={this._popoverRef}
         right={right}
         disabled={disabled}
-        popup={this._renderPopup()}
+        popup={this._renderPopup}
         type={popoverType}
         pureContainer
       >

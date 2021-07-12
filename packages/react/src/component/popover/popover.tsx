@@ -175,6 +175,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
     const disabled = this._getDisabled()
     console.log('popupover-active2', active)
     if (active) {
+      console.log('set componentArray')
       LayoutRoot.setComponentArray(
         LayoutRoot.Type.POPOVER,
         this._id,
@@ -204,6 +205,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
         </Popup>
       )
     } else {
+      console.log('remove componentArray')
       LayoutRoot.removeComponentArray(LayoutRoot.Type.POPOVER, this._id)
     }
   }
