@@ -16,6 +16,7 @@ interface LevelSelectProps<V> {
   onKeyDown?(event: KeyboardEvent): void
   style?: CSSProperties
   className?: string
+  placeholder?: string
 }
 
 interface MultipleLevelSelectProps<V> {
