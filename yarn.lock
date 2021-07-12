@@ -5771,9 +5771,9 @@ globjoin@^0.1.4:
   resolved "https://registry.npm.taobao.org/globjoin/download/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-"gm_api@git+https://code.guanmai.cn/fe-x/gm_api.git#79aa5ce2bc952a93c0e6a98c58c7ab547f9bcb32":
+"gm_api@git+https://code.guanmai.cn/fe-x/gm_api.git#8a3d2894941548ff6a33afdd7ad78d359ef5f7d0":
   version "1.0.0"
-  resolved "git+https://code.guanmai.cn/fe-x/gm_api.git#79aa5ce2bc952a93c0e6a98c58c7ab547f9bcb32"
+  resolved "git+https://code.guanmai.cn/fe-x/gm_api.git#8a3d2894941548ff6a33afdd7ad78d359ef5f7d0"
   dependencies:
     "@gm-common/hooks" "^2.7.7"
     "@types/lodash" "^4.14.164"
