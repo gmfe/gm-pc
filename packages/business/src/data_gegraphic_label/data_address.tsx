@@ -18,6 +18,7 @@ const DataAddress: FC<DataAddressProps> = ({
       city_ids,
     },
   })
+  console.log('data-address', data)
 
   const oSelected = _.remove(
     [selected.city_id, selected.district_id, selected.street_id],
