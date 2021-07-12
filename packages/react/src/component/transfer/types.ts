@@ -35,6 +35,8 @@ interface TransferProps extends FlexProps {
   rightRenderGroupItem?(item: TransferListItem): ReactNode
   rightStyle?: CSSProperties
   rightClassName?: string
+  /** 是否展示向左箭头按钮 */
+  hideToLeftBtn?: boolean
 }
 
 export type { Value, TransferProps, TransferListItem }

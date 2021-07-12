@@ -69,6 +69,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
   }
 
   componentDidUpdate() {
+    console.log('componentDidUpdate--active1', this.state.active)
     this._doRenderPopup(this.state.active)
   }
 
@@ -172,6 +173,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
       isInPopup,
     } = this.props
     const disabled = this._getDisabled()
+    console.log('popupover-active2', active)
     if (active) {
       LayoutRoot.setComponentArray(
         LayoutRoot.Type.POPOVER,
@@ -208,6 +210,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
 
   private _handleClick = (): void => {
     const { type } = this.props
+    console.log('???type', type)
     const active = type === 'click' ? !this.state.active : true
     this._setActive(active)
   }
@@ -265,6 +268,16 @@ class Popover extends Component<PopoverProps, PopoverState> {
         )
       }
     }
+    console.log(
+      'p------',
+      p,
+      cloneElement(child, {
+        ...p,
+        className: classNames(child.props.className, {
+          'gm-popover-active': active,
+        }),
+      })
+    )
     return cloneElement(child, {
       ...p,
       className: classNames(child.props.className, {

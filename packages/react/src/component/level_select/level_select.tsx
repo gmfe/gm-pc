@@ -50,6 +50,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
 
   private _renderPopup = (): ReactNode => {
     const { titles, data, selected, right, onlySelectLeaf } = this.props
+    console.log('level_select-data', data, this.props)
     const { willActiveSelected } = this.state
     return (
       <Flex justifyEnd={right}>
@@ -191,6 +192,7 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
 
   render() {
     const { disabled, children, popoverType, right } = this.props
+    console.log('level-select-children', children)
     return (
       <Popover
         ref={this._popoverRef}
