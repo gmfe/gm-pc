@@ -5,7 +5,9 @@ import MoreSelectBase from './base'
 
 class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
   static defaultProps = {
-    renderSelected: (item: MoreSelectDataItem<any>) => item.text,
+    renderSelected: (item: MoreSelectDataItem<any>) => (
+      <span title={item.text}>{item.text}</span>
+    ), // span标签的title作用，鼠标悬浮几秒中会显示title中的内容，如果是要自定义renderSelected，内容超出标签，建议加上span标签
     renderListItem: (item: MoreSelectDataItem<any>) => item.text,
     delay: 500,
     listHeight: '180px',
