@@ -301,9 +301,15 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               {selected.length !== 0 ? (
                 selected.map((item) => (
                   <Flex key={item.value as any} className='gm-more-select-selected-item'>
-                    <Flex flex column>
-                      {renderSelected!(item)}
-                    </Flex>
+                    <Popover
+                      disabled={!this.props.isKeyboard}
+                      type='hover'
+                      popup={<div className='gm-padding-10'>{item.text}</div>}
+                    >
+                      <Flex flex column>
+                        {renderSelected!(item)}
+                      </Flex>
+                    </Popover>
                     {multiple ? (
                       <SVGRemove
                         className='gm-cursor gm-more-select-clear-btn'
