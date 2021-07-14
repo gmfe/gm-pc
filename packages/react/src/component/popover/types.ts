@@ -1,7 +1,8 @@
 import { CSSProperties, ReactNode } from 'react'
+import { anyCallback } from '../../types'
 
 type PopoverTrigger = 'focus' | 'click' | 'hover' | 'realFocus'
-type Popup = (() => ReactNode) | ReactNode
+type Popup = ((closePopover: anyCallback) => ReactNode) | ReactNode
 
 interface PopoverProps {
   type?: PopoverTrigger

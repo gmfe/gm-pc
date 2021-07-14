@@ -1,7 +1,9 @@
 .gm-tabs {
   .gm-tabs-head-fix {
+    width: 100%;
     height: 40px;
   }
+
 
   .gm-tabs-head {
     height: 40px;
@@ -43,6 +45,61 @@
   }
 }
 
+.gm-tabs-head-disabled {
+  color: '#a9a9a9';
+  cursor: not-allowed;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px 2px 0 0;
+  outline: none;
+  cursor: pointer;
+  line-height: 28px;
+  margin-left: 16px;
+  transition: all .3s cubic-bezier(.645, .045, .355, 1);
+}
+
+
+.gm-tabs-text-overflow-ellipsis {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gm-tabs-max-head-scroll {
+  max-width: calc(100% - 100px);
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(239, 239, 239);
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #bfbfbf;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #333;
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: #179a16;
+  }
+}
+
+.gm-tabs-nav-add {
+  min-width: 40px;
+  padding: 0 8px;
+}
+
 // 明亮风格的样式覆盖
 .gm-tabs-light {
   .gm-tabs-head-fix {
@@ -76,4 +133,31 @@
       }
     }
   }
+}
+
+// 可编辑风格样式
+.gm-tabs-edit {
+
+  .gm-tabs-head {
+    background: #fff !important;
+    padding: 0;
+    z-index: 9;
+    border-bottom: none;
+
+
+    .gm-tabs-head-item {
+      transition: all .3s;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      line-height: 30px;
+      border-bottom: 1px solid var(--gm-color-border-special);
+
+      &.active {
+        color: #1890ff;
+        border-bottom: none;
+      }
+    }
+  }
+
+  // 删除框的样式
 }
