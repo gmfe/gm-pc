@@ -1,4 +1,4 @@
-import React, { FC, useRef, HTMLAttributes, useEffect, useState } from 'react'
+import React, { FC, useRef, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 
@@ -7,13 +7,14 @@ import { Popover } from '../popover'
 import { List } from '../list'
 import Label, { LabelType } from '../label'
 import SVGMore from '../../svg/more.svg'
+import FromCard, { FromCardProps } from './form_card'
 
 interface CardActions {
   text: string
   onClick(): void
 }
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+interface CardProps extends FromCardProps {
   title?: string
   labelType?: LabelType
   labelText?: string
@@ -21,21 +22,25 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
   inactive?: boolean
   onClick?(...args: any[]): any
   /** 右上角功能定义 */
+  className?: string
   actions?: CardActions[]
 }
 
-const Card: FC<CardProps> = ({
-  className,
-  title,
-  actions,
-  labelType,
-  labelText,
-  topLabelText,
-  children,
-  inactive,
-  onClick,
-  ...rest
-}) => {
+const Card: FC<CardProps> = (props) => {
+  const {
+    className,
+    title,
+    actions,
+    labelType,
+    labelText,
+    topLabelText,
+    children,
+    inactive,
+    onClick,
+    type,
+    ...rest
+  } = props
+
   const popoverRef = useRef<Popover>(null)
   const moreList = _.map(actions || [], (v, i) => ({ value: i, text: v.text }))
 
@@ -43,6 +48,9 @@ const Card: FC<CardProps> = ({
     popoverRef.current!.apiDoSetActive(false)
     actions && actions[value].onClick()
   }
+
+  // 老Card不能支撑起业务， 以后尽量用FromCard
+  if (type === 'form-card') return <FromCard {...props} />
 
   return (
     <div {...rest} className={classNames('gm-card', className)} onClick={onClick}>

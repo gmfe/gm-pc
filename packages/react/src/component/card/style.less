@@ -76,9 +76,51 @@
       color: var(--gm-color-primary);
 
     }
+
     .gm-card-header-inactive {
       color: var(--gm-color-default);
       background-color: var(--gm-color-bg-back);
     }
   }
+}
+
+// ==== FormCard ====
+.gm-new-card-style {
+  vertical-align: middle;
+  background-color: #fff;
+
+  .gm-new-card-head {
+    min-height: 48px;
+    padding: 0 24px;
+    margin-bottom: -1px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.85);
+    background: 0 0;
+    border-bottom: 1px solid #f0f0f0;
+    border-radius: 2px 2px 0 0;
+
+    .gm-new-card-title {
+      display: inline-block;
+      flex: 1;
+      padding: 16px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .gm-new-card-extra {
+      float: right;
+      padding: 12px 0;
+    }
+  }
+
+  .gm-new-card-body {
+    min-height: 100px;
+    padding: 16px 24px;
+  }
+}
+
+.gm-new-card-border {
+  border: 1px solid #ccc;
 }
