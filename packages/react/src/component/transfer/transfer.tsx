@@ -60,6 +60,7 @@ const Transfer: FC<TransferProps> = ({
   rightRenderGroupItem,
   rightStyle = { width: '300px', height: '500px' },
   rightClassName,
+  hideToLeftBtn,
 
   ...rest
 }) => {
@@ -121,9 +122,11 @@ const Transfer: FC<TransferProps> = ({
         >
           <SvgRightSmall />
         </Button>
-        <Button plain disabled={rights.length === 0} onClick={handleToLeft}>
-          <SvgLeftSmall />
-        </Button>
+        {!hideToLeftBtn && (
+          <Button plain disabled={rights.length === 0} onClick={handleToLeft}>
+            <SvgLeftSmall />
+          </Button>
+        )}
       </Flex>
       <div className='gm-gap-5' />
       <Tree

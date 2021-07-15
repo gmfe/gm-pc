@@ -35,6 +35,8 @@ interface TransferProps extends FlexProps {
   rightRenderGroupItem?(item: TransferListItem): ReactNode
   rightStyle?: CSSProperties
   rightClassName?: string
+
+  hideToLeftBtn?: boolean
 }
 
 export type { Value, TransferProps, TransferListItem }
