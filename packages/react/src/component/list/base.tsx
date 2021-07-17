@@ -47,9 +47,9 @@ class Base<V = any> extends Component<ListBaseProps<V>> {
     // 找到第一个即可
     if (!this._isUnMounted) {
       const $active = this._listRef.current!.querySelector(selector)
-      if ($active) {
-        // @ts-ignore
-        $active.scrollIntoViewIfNeeded(false)
+      // active项超过list才scroll，用于模拟scrollIntoViewIfNeeded
+      if ($active && $active.offsetTop >= this._listRef.current!.offsetHeight) {
+        $active.scrollIntoView(false)
       }
     }
   }
