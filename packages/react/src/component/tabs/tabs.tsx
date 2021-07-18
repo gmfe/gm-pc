@@ -1,8 +1,11 @@
 import React, { CSSProperties, ReactNode, useState, useRef, useEffect, Ref } from 'react'
 import classNames from 'classnames'
 import _, { before } from 'lodash'
+import { getLocale } from '@gm-pc/locales'
 import { Flex, FlexProps } from '../flex'
 import SVGCloseSquare from '../../svg/close-square.svg'
+import PopupContentConfirm from '../popup/popup_content_confirm'
+import Popover from '../popover/popover'
 
 interface TabsItem<V extends string | number> {
   text: string
@@ -53,6 +56,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     extraAction,
     ...rest
   } = props
+
   const baseTabClassName = `gm-${full ? 'framework-full-' : ''}tabs`
   if (active !== undefined && defaultActive !== undefined) {
     console.warn('prop `active` and prop `defaultActive` can not exist at the same time!')
@@ -67,12 +71,23 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
   // TODO: tab滚动使用
   const tabRef = useRef(null)
+  const popoverRef = useRef<Popover>(null)
 
   useEffect(() => {
     setSelected(active)
     // TODO: tab滚动使用
     // const node: TabsItem<V> | undefined = tabs.find((f) => f.value === active)
+    // return () => {
+    //   handleCancel()
+    // }
   }, [active])
+
+  useEffect(() => {
+    // 当页面卸载的时候记得清除所有的悬浮 不然会有意想不到的后果~
+    return () => {
+      handleCancel()
+    }
+  }, [])
 
   const handleClick = (value: V) => {
     // 增加切换tab的校验
@@ -96,6 +111,9 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
       ))}
     </>
   )
+  const handleCancel = (): void => {
+    popoverRef.current!.apiDoSetActive()
+  }
 
   const tabsChildren = () => {
     if (activeOnce && selected) {
@@ -116,6 +134,22 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   const handleClose = (value: V) => {
     if (typeof onClose === 'function') onClose(value)
   }
+  const handleDelete = (value: V) => {
+    handleCancel()
+    handleClose(value)
+    // return
+  }
+
+  const popup = (value: V) => (
+    <PopupContentConfirm
+      type='delete'
+      title='删除商品规格'
+      onCancel={handleCancel}
+      onDelete={() => handleDelete(value)}
+    >
+      {getLocale('删除规格后，点击‘保存’按钮才可生效。')}
+    </PopupContentConfirm>
+  )
 
   return (
     <Flex
@@ -158,10 +192,14 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                   </span>
 
                   {isClose && (
-                    <SVGCloseSquare
-                      style={{ marginLeft: '5px', width: '10px', height: '10px' }}
-                      onClick={() => handleClose(tab.value)}
-                    />
+                    <Popover popup={() => popup(tab.value)} ref={popoverRef} showArrow>
+                      <div>
+                        <SVGCloseSquare
+                          style={{ marginLeft: '5px', width: '10px', height: '10px' }}
+                          // onClick={() => handleClose(tab.value)}
+                        />
+                      </div>
+                    </Popover>
                   )}
                 </Flex>
               )
