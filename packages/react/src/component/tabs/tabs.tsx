@@ -83,9 +83,9 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   }, [active])
 
   useEffect(() => {
-    // 当页面卸载的时候记得清除所有的悬浮 不然会有意想不到的后果~
+    // 当页面卸载的时候记得清除所有的悬浮 不然会有意想不到的后果~ 需要判断一下
     return () => {
-      handleCancel()
+      popoverRef?.current?.apiDoSetActive && handleCancel()
     }
   }, [])
 
