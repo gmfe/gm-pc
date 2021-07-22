@@ -83,7 +83,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   }, [active])
 
   useEffect(() => {
-    // 当页面卸载的时候记得清除所有的悬浮 不然会有意想不到的后果~ 需要判断一下
     return () => {
       popoverRef?.current?.apiDoSetActive && handleCancel()
     }
@@ -112,7 +111,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     </>
   )
   const handleCancel = (): void => {
-    popoverRef.current!.apiDoSetActive()
+    popoverRef.current?.apiDoSetActive()
   }
 
   const tabsChildren = () => {
@@ -135,7 +134,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     if (typeof onClose === 'function') onClose(value)
   }
   const handleDelete = (value: V) => {
-    handleCancel()
     handleClose(value)
     // return
   }
@@ -192,11 +190,15 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                   </span>
 
                   {isClose && (
-                    <Popover popup={() => popup(tab.value)} ref={popoverRef} showArrow>
+                    <Popover
+                      popup={() => popup(tab.value)}
+                      ref={(ref) => {
+                        popoverRef.current = ref
+                      }}
+                    >
                       <div>
                         <SVGCloseSquare
                           style={{ marginLeft: '5px', width: '10px', height: '10px' }}
-                          // onClick={() => handleClose(tab.value)}
                         />
                       </div>
                     </Popover>
