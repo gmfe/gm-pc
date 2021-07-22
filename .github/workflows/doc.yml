@@ -24,7 +24,7 @@ jobs:
           npm -v
           node -v
           yarn -v
-          git config --global url."git@code.guanmai.cn:".insteadOf "https://code.guanmai.cn/"
+          env GIT_TERMINAL_PROMPT=1 go get https://code.guanmai.cn/fe-x/gm_api.git
           git config --global user.email "gmfe4code@163.com"
           git config --global user.name "gmfe4code"
 
