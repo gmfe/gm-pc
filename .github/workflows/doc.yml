@@ -40,4 +40,4 @@ jobs:
           git add --all
           git commit -m 'build docs'
           ls
-          git push 'https://liyatang%40qq.com:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f
+          git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f
