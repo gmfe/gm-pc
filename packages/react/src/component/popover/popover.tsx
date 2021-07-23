@@ -198,7 +198,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
           )}
           style={style}
         >
-          {_.isFunction(popup) ? popup(this.apiDoSetActive.bind(this)) : popup}
+          {_.isFunction(popup) ? popup(this.apiDoSetActive.bind(this, false)) : popup}
         </Popup>
       )
     } else {

@@ -8,12 +8,6 @@ const A = ({ value }: { value: string }) => {
   }, [value])
   return <div>{value}</div>
 }
-const store = observable({
-  active: '1',
-  setActive(index: string) {
-    this.active = index
-  },
-})
 
 const tabs = [
   {
@@ -42,6 +36,23 @@ const tabs = [
     children: <A value='Tab5' />,
   },
 ]
+
+const store = observable({
+  tabs: [...tabs],
+  active: '1',
+  setActive(index: string) {
+    this.active = index
+  },
+
+  handleClose(value: string) {
+    const index = this.tabs.findIndex((f) => f.value === value)
+    debugger
+    this.tabs.splice(index, 1)
+    if (store.active === value) {
+      store.setActive(index === 0 ? this.tabs[index].value : this.tabs[index - 1].value)
+    }
+  },
+})
 
 export const ComTabs = () => (
   <Tabs
@@ -78,6 +89,23 @@ export const LightTabs = () => (
     active={store.active}
     onChange={(active) => store.setActive(active)}
   />
+)
+
+export const closeTabs = () => (
+  <>
+    <div>支持关闭弹出Popver</div>
+    <Tabs
+      tabs={store.tabs.slice()}
+      light
+      active={store.active}
+      isPopover
+      popverTitle='这是标题'
+      popvetContent='这是内容XXX'
+      type='editable-card'
+      onChange={(active) => store.setActive(active)}
+      onClose={(value) => store.handleClose(value)}
+    />
+  </>
 )
 
 export default {

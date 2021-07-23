@@ -45,6 +45,9 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   /* 而外操作，比如新增tab的操作 */
   extraAction?: ReactNode
   popup?(value: V, closePopup: anyCallback): ReactNode
+  isPopover?: boolean
+  popvetContent?: ReactNode
+  popverTitle?: string
 }
 
 function Tabs<V extends string | number = string>(props: TabsProps<V>) {
@@ -63,7 +66,10 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     full,
     type,
     extraAction,
+    isPopover,
     popup,
+    popvetContent,
+    popverTitle,
     ...rest
   } = props
 
@@ -81,7 +87,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
   // TODO: tab滚动使用
   const tabRef = useRef(null)
-  const lastPopoverRef = useRef<{ closed?: boolean; closePopup?: anyCallback }>({})
+  // const lastPopoverRef = useRef<{ closed?: boolean; closePopup?: anyCallback }>({})
 
   useEffect(() => {
     setSelected(active)
@@ -89,14 +95,14 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     // const node: TabsItem<V> | undefined = tabs.find((f) => f.value === active)
   }, [active])
 
-  // 卸载的时候记得关闭popup
-  const closePopupOnWillMount = useCallback(() => {
-    const { closed, closePopup } = lastPopoverRef.current
-    if (!closed && closePopup) {
-      closePopup()
-    }
-  }, [])
-  useEffect(() => closePopupOnWillMount, [closePopupOnWillMount])
+  // // 卸载的时候记得关闭popup
+  // const closePopupOnWillMount = useCallback(() => {
+  //   const { closed, closePopup } = lastPopoverRef.current
+  //   if (!closed && closePopup) {
+  //     closePopup()
+  //   }
+  // }, [])
+  // useEffect(() => closePopupOnWillMount, [closePopupOnWillMount])
 
   const handleClick = (value: V) => {
     // 增加切换tab的校验
@@ -153,11 +159,11 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     return (
       <PopupContentConfirm
         type='delete'
-        title='删除商品规格'
+        title={popverTitle}
         onCancel={closeFn}
         onDelete={() => handleDelete(value)}
       >
-        {getLocale('删除规格后，点击‘保存’按钮才可生效。')}
+        {popvetContent}
       </PopupContentConfirm>
     )
   }
@@ -202,12 +208,12 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                     {tab.text}
                   </span>
 
-                  {isClose && (
+                  {isClose && isPopover && (
                     <Popover
                       popup={(closePopover) => innerPopup(tab.value, closePopover)}
                     >
                       <div>
-                        <SVGCloseSquare className='tw-ml-5 tw-w-10 tw-h-10' />
+                        <SVGCloseSquare className='tw-ml-1 tw-w-2 tw-h-2' />
                       </div>
                     </Popover>
                   )}
@@ -216,7 +222,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
             })}
           </Flex>
           {extraAction && (
-            <Flex style={{ minWidth: '80px' }} className='tw-h-28 tw-ml-20'>
+            <Flex style={{ minWidth: '80px' }} className='tw-h-5 tw-ml-4'>
               {extraAction}
             </Flex>
           )}
