@@ -6,6 +6,7 @@ import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
 import Popover from '../popover/popover'
 import { anyCallback } from '../../types'
+
 interface TabsItem<V extends string | number> {
   text: string
   value: V
@@ -38,7 +39,7 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   extraAction?: ReactNode
   popup?(value: V, closePopup: anyCallback): ReactNode
   isPopover?: boolean
-  popvetContent?: ReactNode
+  popoverContent?: ReactNode
   popverTitle?: string
 }
 
@@ -60,7 +61,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     extraAction,
     isPopover,
     popup,
-    popvetContent,
+    popoverContent,
     popverTitle,
     ...rest
   } = props
@@ -83,15 +84,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   useEffect(() => {
     setSelected(active)
   }, [active])
-
-  // // 卸载的时候记得关闭popup(待验证)
-  // const closePopupOnWillMount = useCallback(() => {
-  //   const { closed, closePopup } = lastPopoverRef.current
-  //   if (!closed && closePopup) {
-  //     closePopup()
-  //   }
-  // }, [])
-  // useEffect(() => closePopupOnWillMount, [closePopupOnWillMount])
 
   const handleClick = (value: V) => {
     // 增加切换tab的校验
@@ -140,19 +132,19 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     // return
   }
 
-  const innerPopup: TabsProps<V>['popup'] = (value: V, closeFn) => {
+  const innerPopup: TabsProps<V>['popup'] = (value: V, closePopover) => {
     if (popup) {
-      return popup(value, closeFn)
+      return popup(value, closePopover)
     }
 
     return (
       <PopupContentConfirm
         type='delete'
         title={popverTitle}
-        onCancel={closeFn}
+        onCancel={closePopover}
         onDelete={() => handleDelete(value)}
       >
-        {popvetContent}
+        {popoverContent}
       </PopupContentConfirm>
     )
   }
