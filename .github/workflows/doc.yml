@@ -24,13 +24,28 @@ jobs:
           npm -v
           node -v
           yarn -v
-          env GIT_TERMINAL_PROMPT=1 go get https://code.guanmai.cn/fe-x/gm_api.git
-          git config --global user.email "gmfe4code@163.com"
-          git config --global user.name "gmfe4code"
+          git config --global user.email "zhujiawei@guanmai.cn"
+          git config --global user.name "jawei"
+          git config --global url.ssh://git@code.guanmai.cn/.insteadOf https://code.guanmai.cn/
 
       - run: |
           pwd
           git clone https://github.com/gmfe/gm-pc.git
+          
+      # required when install gm-api
+      - name: PUB
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PUB_KEY }}
+          name: id_ed25519.pub
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          
+      - name: PRIVATE
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_ed25519
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - run: |
           cd gm-pc
