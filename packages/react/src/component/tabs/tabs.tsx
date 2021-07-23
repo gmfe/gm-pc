@@ -203,7 +203,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
             })}
           </Flex>
           {extraAction && (
-            <Flex style={{ minWidth: '80px' }} className='tw-h-6 tw-mb-1'>
+            <Flex style={{ minWidth: '80px' }} className='tw-h-6 tw-ml-2'>
               {extraAction}
             </Flex>
           )}
