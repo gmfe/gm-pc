@@ -38,7 +38,7 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   extraAction?: ReactNode
   popup?(value: V, closePopup: anyCallback): ReactNode
   isPopover?: boolean
-  popvetContent?: ReactNode
+  popverContent?: ReactNode
   popverTitle?: string
 }
 
@@ -60,7 +60,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     extraAction,
     isPopover,
     popup,
-    popvetContent,
+    popverContent,
     popverTitle,
     ...rest
   } = props
@@ -83,15 +83,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   useEffect(() => {
     setSelected(active)
   }, [active])
-
-  // // 卸载的时候记得关闭popup(待验证)
-  // const closePopupOnWillMount = useCallback(() => {
-  //   const { closed, closePopup } = lastPopoverRef.current
-  //   if (!closed && closePopup) {
-  //     closePopup()
-  //   }
-  // }, [])
-  // useEffect(() => closePopupOnWillMount, [closePopupOnWillMount])
 
   const handleClick = (value: V) => {
     // 增加切换tab的校验
@@ -135,6 +126,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   const handleClose = (value: V) => {
     if (typeof onClose === 'function') onClose(value)
   }
+
   const handleDelete = (value: V) => {
     handleClose(value)
     // return
@@ -152,7 +144,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
         onCancel={closeFn}
         onDelete={() => handleDelete(value)}
       >
-        {popvetContent}
+        {popverContent}
       </PopupContentConfirm>
     )
   }
@@ -211,7 +203,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
             })}
           </Flex>
           {extraAction && (
-            <Flex style={{ minWidth: '80px' }} className='tw-h-5 tw-ml-4'>
+            <Flex style={{ minWidth: '80px' }} className='tw-h-6 tw-mb-1'>
               {extraAction}
             </Flex>
           )}

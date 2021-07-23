@@ -59,6 +59,13 @@ const store = observable({
       store.setActive(index === 0 ? this.tabs[index].value : this.tabs[index - 1].value)
     }
   },
+  handleAdd() {
+    store.tabs.push({
+      text: '长度比较长的tabs文本',
+      value: '' + store.tabs.length + 1,
+      children: <A value='Tab5' />,
+    })
+  },
 })
 
 export const ComTabs = () => (
@@ -107,7 +114,7 @@ export const closeTabs = () => (
       active={store.active}
       isPopover
       popverTitle='这是标题'
-      popvetContent='这是内容XXX'
+      popverContent='这是内容XXX'
       type='editable-card'
       onChange={(active) => store.setActive(active)}
       onClose={(value) => store.handleClose(value)}
@@ -137,7 +144,7 @@ export const diyPoupCloseTabs = () => (
       active={store.active}
       isPopover
       popverTitle='这是标题'
-      popvetContent='这是内容XXX'
+      popverContent='这是内容XXX'
       type='editable-card'
       popup={popup}
       onChange={(active) => store.setActive(active)}
@@ -145,7 +152,23 @@ export const diyPoupCloseTabs = () => (
     />
   </>
 )
-
+export const addTabs = () => (
+  <>
+    <div>增加添加规格</div>
+    <Tabs
+      tabs={store.tabs.slice()}
+      light
+      active={store.active}
+      isPopover
+      popverTitle='这是标题'
+      popverContent='这是内容XXX'
+      type='editable-card'
+      onChange={(active) => store.setActive(active)}
+      onClose={(value) => store.handleClose(value)}
+      extraAction={<button onClick={store.handleAdd}>添加规格</button>}
+    />
+  </>
+)
 export default {
   title: '布局/Tabs',
 }
