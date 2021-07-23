@@ -56,7 +56,7 @@ jobs:
           yarn
           npx lerna bootstrap
           npm run build
-          rm -rf .github && rm -rf .storybook && rm -rf packages
+          rm -rf .github && rm -rf .storybook && rm -rf packages && rm .gitignore
           git add --all
           git commit -m 'build docs'
           ls
