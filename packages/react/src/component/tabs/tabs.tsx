@@ -1,12 +1,19 @@
-import React, { CSSProperties, ReactNode, useState, useRef, useEffect, Ref } from 'react'
+import React, {
+  CSSProperties,
+  ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from 'react'
 import classNames from 'classnames'
-import _, { before } from 'lodash'
+import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
 import { Flex, FlexProps } from '../flex'
 import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
 import Popover from '../popover/popover'
-
+import { anyCallback } from '../../types'
 interface TabsItem<V extends string | number> {
   text: string
   value: V
@@ -35,7 +42,9 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   /* 卡片类型 editable-card 可以编辑的卡片 */
   type?: 'editable-card'
   style?: CSSProperties
+  /* 而外操作，比如新增tab的操作 */
   extraAction?: ReactNode
+  popup?(value: V, closePopup: anyCallback): ReactNode
 }
 
 function Tabs<V extends string | number = string>(props: TabsProps<V>) {
@@ -54,6 +63,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     full,
     type,
     extraAction,
+    popup,
     ...rest
   } = props
 
@@ -71,22 +81,22 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
   // TODO: tab滚动使用
   const tabRef = useRef(null)
-  const popoverRef = useRef<Popover>(null)
+  const lastPopoverRef = useRef<{ closed?: boolean; closePopup?: anyCallback }>({})
 
   useEffect(() => {
     setSelected(active)
     // TODO: tab滚动使用
     // const node: TabsItem<V> | undefined = tabs.find((f) => f.value === active)
-    // return () => {
-    //   handleCancel()
-    // }
   }, [active])
 
-  useEffect(() => {
-    return () => {
-      popoverRef?.current?.apiDoSetActive && handleCancel()
+  // 卸载的时候记得关闭popup
+  const closePopupOnWillMount = useCallback(() => {
+    const { closed, closePopup } = lastPopoverRef.current
+    if (!closed && closePopup) {
+      closePopup()
     }
   }, [])
+  useEffect(() => closePopupOnWillMount, [closePopupOnWillMount])
 
   const handleClick = (value: V) => {
     // 增加切换tab的校验
@@ -110,9 +120,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
       ))}
     </>
   )
-  const handleCancel = (): void => {
-    popoverRef.current?.apiDoSetActive()
-  }
 
   const tabsChildren = () => {
     if (activeOnce && selected) {
@@ -138,16 +145,22 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     // return
   }
 
-  const popup = (value: V) => (
-    <PopupContentConfirm
-      type='delete'
-      title='删除商品规格'
-      onCancel={handleCancel}
-      onDelete={() => handleDelete(value)}
-    >
-      {getLocale('删除规格后，点击‘保存’按钮才可生效。')}
-    </PopupContentConfirm>
-  )
+  const innerPopup: TabsProps<V>['popup'] = (value: V, closeFn) => {
+    if (popup) {
+      return popup(value, closeFn)
+    }
+
+    return (
+      <PopupContentConfirm
+        type='delete'
+        title='删除商品规格'
+        onCancel={closeFn}
+        onDelete={() => handleDelete(value)}
+      >
+        {getLocale('删除规格后，点击‘保存’按钮才可生效。')}
+      </PopupContentConfirm>
+    )
+  }
 
   return (
     <Flex
@@ -191,15 +204,10 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
                   {isClose && (
                     <Popover
-                      popup={() => popup(tab.value)}
-                      ref={(ref) => {
-                        popoverRef.current = ref
-                      }}
+                      popup={(closePopover) => innerPopup(tab.value, closePopover)}
                     >
                       <div>
-                        <SVGCloseSquare
-                          style={{ marginLeft: '5px', width: '10px', height: '10px' }}
-                        />
+                        <SVGCloseSquare className='tw-ml-5 tw-w-10 tw-h-10' />
                       </div>
                     </Popover>
                   )}
@@ -208,7 +216,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
             })}
           </Flex>
           {extraAction && (
-            <Flex style={{ lineHeight: '28px', marginLeft: '20px', minWidth: '80px' }}>
+            <Flex style={{ minWidth: '80px' }} className='tw-h-28 tw-ml-20'>
               {extraAction}
             </Flex>
           )}
