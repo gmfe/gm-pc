@@ -107,7 +107,7 @@ export const closeTabs = () => (
       active={store.active}
       isPopover
       popverTitle='这是标题'
-      popvetContent='这是内容XXX'
+      popoverContent='这是内容XXX'
       type='editable-card'
       onChange={(active) => store.setActive(active)}
       onClose={(value) => store.handleClose(value)}
@@ -137,7 +137,7 @@ export const diyPoupCloseTabs = () => (
       active={store.active}
       isPopover
       popverTitle='这是标题'
-      popvetContent='这是内容XXX'
+      popoverContent='这是内容XXX'
       type='editable-card'
       popup={popup}
       onChange={(active) => store.setActive(active)}
