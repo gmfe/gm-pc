@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
-import { getLocale } from '@gm-pc/locales'
+
 import { Flex, FlexProps } from '../flex'
 import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
