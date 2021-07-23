@@ -1,14 +1,6 @@
-import React, {
-  CSSProperties,
-  ReactNode,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from 'react'
+import React, { CSSProperties, ReactNode, useState, useRef, useEffect } from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
-
 import { Flex, FlexProps } from '../flex'
 import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
@@ -87,15 +79,12 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
   // TODO: tab滚动使用
   const tabRef = useRef(null)
-  // const lastPopoverRef = useRef<{ closed?: boolean; closePopup?: anyCallback }>({})
 
   useEffect(() => {
     setSelected(active)
-    // TODO: tab滚动使用
-    // const node: TabsItem<V> | undefined = tabs.find((f) => f.value === active)
   }, [active])
 
-  // // 卸载的时候记得关闭popup
+  // // 卸载的时候记得关闭popup(待验证)
   // const closePopupOnWillMount = useCallback(() => {
   //   const { closed, closePopup } = lastPopoverRef.current
   //   if (!closed && closePopup) {

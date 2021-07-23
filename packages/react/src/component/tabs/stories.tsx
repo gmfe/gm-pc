@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Tabs from './tabs'
+import { TabsProps } from '.'
 import { observable } from 'mobx'
 
 const A = ({ value }: { value: string }) => {
@@ -46,7 +47,13 @@ const store = observable({
 
   handleClose(value: string) {
     const index = this.tabs.findIndex((f) => f.value === value)
-    debugger
+    this.tabs.splice(index, 1)
+    if (store.active === value) {
+      store.setActive(index === 0 ? this.tabs[index].value : this.tabs[index - 1].value)
+    }
+  },
+  handleCloseDiv(value: string) {
+    const index = this.tabs.findIndex((f) => f.value === value)
     this.tabs.splice(index, 1)
     if (store.active === value) {
       store.setActive(index === 0 ? this.tabs[index].value : this.tabs[index - 1].value)
@@ -102,6 +109,37 @@ export const closeTabs = () => (
       popverTitle='这是标题'
       popvetContent='这是内容XXX'
       type='editable-card'
+      onChange={(active) => store.setActive(active)}
+      onClose={(value) => store.handleClose(value)}
+    />
+  </>
+)
+const popup: TabsProps<string>['popup'] = (value, closeFn) => (
+  <div>
+    asdasd &nbsp;
+    <button onClick={closeFn}>取消</button>
+    <button
+      onClick={() => {
+        store.handleCloseDiv(value)
+        closeFn()
+      }}
+    >
+      删除
+    </button>
+  </div>
+)
+export const diyPoupCloseTabs = () => (
+  <>
+    <div>自定义弹出poup＋关闭tabs</div>
+    <Tabs
+      tabs={store.tabs.slice()}
+      light
+      active={store.active}
+      isPopover
+      popverTitle='这是标题'
+      popvetContent='这是内容XXX'
+      type='editable-card'
+      popup={popup}
       onChange={(active) => store.setActive(active)}
       onClose={(value) => store.handleClose(value)}
     />
