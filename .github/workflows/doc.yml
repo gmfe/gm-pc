@@ -20,6 +20,10 @@ jobs:
     # 这里定义了任务运行过程中的各个步骤
     steps:
       # 环境
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - run: |
           npm -v
           node -v
