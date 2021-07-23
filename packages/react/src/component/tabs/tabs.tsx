@@ -6,6 +6,7 @@ import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
 import Popover from '../popover/popover'
 import { anyCallback } from '../../types'
+
 interface TabsItem<V extends string | number> {
   text: string
   value: V
@@ -38,8 +39,8 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   extraAction?: ReactNode
   popup?(value: V, closePopup: anyCallback): ReactNode
   isPopover?: boolean
-  popverContent?: ReactNode
-  popverTitle?: string
+  popoverContent?: ReactNode
+  popoverTitle?: string
 }
 
 function Tabs<V extends string | number = string>(props: TabsProps<V>) {
@@ -60,8 +61,8 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     extraAction,
     isPopover,
     popup,
-    popverContent,
-    popverTitle,
+    popoverContent,
+    popoverTitle,
     ...rest
   } = props
 
@@ -132,19 +133,19 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
     // return
   }
 
-  const innerPopup: TabsProps<V>['popup'] = (value: V, closeFn) => {
+  const innerPopup: TabsProps<V>['popup'] = (value: V, closePopover) => {
     if (popup) {
-      return popup(value, closeFn)
+      return popup(value, closePopover)
     }
 
     return (
       <PopupContentConfirm
         type='delete'
-        title={popverTitle}
-        onCancel={closeFn}
+        title={popoverTitle}
+        onCancel={closePopover}
         onDelete={() => handleDelete(value)}
       >
-        {popverContent}
+        {popoverContent}
       </PopupContentConfirm>
     )
   }
