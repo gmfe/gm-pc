@@ -6,14 +6,14 @@ const webpackFinal = (config) => {
   config.resolve.extensions = ['.tsx', '.ts', '.js', '.json']
 
   _.each(config.module.rules, (rule) => {
-    if (rule.use && rule.use[0] && rule.use[0].loader) {
-      if (rule.use[0].loader.includes('babel-loader')) {
-        rule.include.push(/gm-/)
-        rule.exclude = function (filepath) {
-          return filepath.includes('/node_modules/')
-        }
-      }
-    }
+    // if (rule.use && rule.use[0] && rule.use[0].loader) {
+    //   if (rule.use[0].loader.includes('babel-loader')) {
+    //     rule.include.push(/gm-/)
+    //     rule.exclude = function (filepath) {
+    //       return filepath.includes('/node_modules/')
+    //     }
+    //   }
+    // }
 
     if (rule.loader && rule.loader.includes('file-loader')) {
       rule.test = /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani|pdf)(\?.*)?$/
@@ -98,29 +98,29 @@ const webpackFinal = (config) => {
 module.exports = {
   addons: [
     '@storybook/addon-storysource',
-    {
-      name: '@storybook/preset-typescript',
-      options: {
-        tsLoaderOptions: {
-          transpileOnly: true,
-          happyPackMode: true,
-          configFile: path.resolve(__dirname, '../tsconfig.json'),
-        },
-        forkTsCheckerWebpackPluginOptions: {
-          checkSyntacticErrors: true,
-          tsconfig: path.resolve(__dirname, '../tsconfig.json'),
-          reportFiles: [
-            'packages/business/src/**/*.{ts,tsx}',
-            'packages/cropper/src/**/*.{ts,tsx}',
-            'packages/keyboard/src/**/*.{ts,tsx}',
-            'packages/react/src/**/*.{ts,tsx}',
-            'packages/sortable/src/**/*.{ts,tsx}',
-            'packages/table-x/src/**/*.{ts,tsx}',
-            'packages/tour/src/**/*.{ts,tsx}',
-          ],
-        },
-      },
-    },
+    // {
+    //   name: '@storybook/preset-typescript',
+    //   options: {
+    //     tsLoaderOptions: {
+    //       transpileOnly: true,
+    //       happyPackMode: true,
+    //       configFile: path.resolve(__dirname, '../tsconfig.json'),
+    //     },
+    //     forkTsCheckerWebpackPluginOptions: {
+    //       checkSyntacticErrors: true,
+    //       // tsconfig: path.resolve(__dirname, '../tsconfig.json'),
+    //       reportFiles: [
+    //     //     'packages/business/src/**/*.{ts,tsx}',
+    //     //     'packages/cropper/src/**/*.{ts,tsx}',
+    //     //     'packages/keyboard/src/**/*.{ts,tsx}',
+    //     //     'packages/react/src/**/*.{ts,tsx}',
+    //     //     'packages/sortable/src/**/*.{ts,tsx}',
+    //     //     'packages/table-x/src/**/*.{ts,tsx}',
+    //     //     'packages/tour/src/**/*.{ts,tsx}',
+    //       ],
+    //     },
+    //   },
+    // },
   ],
   // 写清晰一点，否则容易碰到 node_modules 里的 stories
   stories: [
