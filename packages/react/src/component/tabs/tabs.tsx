@@ -195,7 +195,10 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                       popup={(closePopover) => innerPopup(tab.value, closePopover)}
                     >
                       <div>
-                        <SVGCloseSquare className='tw-ml-1 tw-w-2 tw-h-2' />
+                        <SVGCloseSquare
+                          className='tw-ml-1 tw-w-2 tw-h-2'
+                          style={{ marginBottom: '2px' }}
+                        />
                       </div>
                     </Popover>
                   )}

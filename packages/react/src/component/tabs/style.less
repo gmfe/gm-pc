@@ -141,16 +141,20 @@
   .gm-tabs-head {
     background: #fff !important;
     padding: 0;
+    z-index: 9;
+    border-bottom: none;
+
 
     .gm-tabs-head-item {
       transition: all .3s;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       line-height: 30px;
+      border-bottom: 1px solid var(--gm-color-border-special);
 
       &.active {
         color: #1890ff;
-
+        border-bottom: none;
       }
     }
   }

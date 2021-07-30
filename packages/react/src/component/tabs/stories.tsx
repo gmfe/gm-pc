@@ -140,7 +140,6 @@ export const diyPoupCloseTabs = () => (
     <div>自定义弹出poup＋关闭tabs</div>
     <Tabs
       tabs={store.tabs.slice()}
-      light
       active={store.active}
       isPopover
       popoverTitle='这是标题'
@@ -157,7 +156,6 @@ export const addTabs = () => (
     <div>增加添加规格</div>
     <Tabs
       tabs={store.tabs.slice()}
-      light
       active={store.active}
       isPopover
       popoverTitle='这是标题'
