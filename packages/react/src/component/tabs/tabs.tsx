@@ -196,8 +196,8 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
                     >
                       <div>
                         <SVGCloseSquare
-                          className='tw-ml-1 tw-w-2 tw-h-2'
-                          style={{ marginBottom: '2px' }}
+                          className='tw-ml-1'
+                          style={{ width: '10px', height: '10px', marginBottom: '2px' }}
                         />
                       </div>
                     </Popover>
