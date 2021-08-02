@@ -24,11 +24,6 @@
   dependencies:
     lodash "^4.17.20"
 
-"@gm-pc/locales@^1.3.2":
-  version "1.3.2"
-  resolved "https://registry.nlark.com/@gm-pc/locales/download/@gm-pc/locales-1.3.2.tgz#ae104e48561bcee67190e05eef32fb293253cad2"
-  integrity sha1-rhBOSFYbzuZxkOBe7zL7KTJTytI=
-
 big.js@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npm.taobao.org/big.js/download/big.js-6.0.1.tgz#9e0a2e8b1825ce006cd4a096d6f294738cd5cff6"
