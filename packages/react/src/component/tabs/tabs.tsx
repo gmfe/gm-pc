@@ -6,7 +6,7 @@ import SVGCloseSquare from '../../svg/close-square.svg'
 import PopupContentConfirm from '../popup/popup_content_confirm'
 import Popover from '../popover/popover'
 import { anyCallback } from '../../types'
-
+import { judgeFunction } from '../../common/utils/utils'
 interface TabsItem<V extends string | number> {
   text: string
   value: V
@@ -76,7 +76,6 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   if (active !== undefined && !onChange) {
     console.warn('prop `active` `onChange` must exist at the same time!')
   }
-
   const [selected, setSelected] = useState(defaultActive || active)
   const hasSelectedsRef = useRef<Set<V>>(new Set())
 
@@ -84,15 +83,14 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   const tabRef = useRef(null)
 
   useEffect(() => {
-    setSelected(active)
-  }, [active])
+    defaultActive === undefined && active !== undefined && setSelected(active)
+  }, [active, defaultActive])
 
+  // 增加切换tab的校验
   const handleClick = (value: V) => {
-    // 增加切换tab的校验
-    if (typeof onChangeValidate === 'function' && !onChangeValidate()) return
-
+    if (!judgeFunction(onChangeValidate)) return
     setSelected(value)
-    if (typeof onChange === 'function') onChange(value)
+    judgeFunction(onChange, value)
   }
 
   const tabsChildrenKeep = (tabs: TabsItem<V>[]) => (
@@ -127,7 +125,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
   }
 
   const handleClose = (value: V) => {
-    if (typeof onClose === 'function') onClose(value)
+    judgeFunction(onClose, value)
   }
 
   const handleDelete = (value: V) => {
@@ -193,6 +191,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
                   {isClose && isPopover && (
                     <Popover
+                      center
                       popup={(closePopover) => innerPopup(tab.value, closePopover)}
                     >
                       <div>
