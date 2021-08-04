@@ -53,12 +53,12 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
         >
           {/* 名称 */}
           <div
-            className={classNames('gm-vision-flex-column gm-vision-flex', {
-              'gm-vision-marignBottom': legend === true,
-            })}
-            style={{
-              marginRight: '20px',
-            }}
+            className={classNames(
+              'gm-vision-flex-column gm-margin-right-10 gm-vision-flex',
+              {
+                'gm-vision-marignBottom': legend === true,
+              }
+            )}
           >
             {data.map((item: any, index: number) => (
               <div
@@ -82,9 +82,12 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
         </div>
         {/* 数据 */}
         <div
-          className={classNames('gm-vision-flex-column gm-vision-flex', {
-            'gm-vision-marignBottom': legend === true,
-          })}
+          className={classNames(
+            'gm-vision-flex-column gm-margin-left-10 gm-vision-flex',
+            {
+              'gm-vision-marignBottom': legend === true,
+            }
+          )}
         >
           {data.map((item: any, index: number) => (
             <div
