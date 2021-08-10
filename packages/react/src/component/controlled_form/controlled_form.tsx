@@ -68,7 +68,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     normalizes,
     onFieldsChange,
   })
-  const [didClickSubmit, setDDidClickSubmit] = useState(false)
+  const [didClickSubmit, setDidClickSubmit] = useState(false)
   const didMountRef = useRef(false)
 
   const formRef = useRef<Form>(null)
@@ -89,7 +89,7 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
         }
       })
     }
-    setDDidClickSubmit(true)
+    setDidClickSubmit(true)
     onTempSubmit && canSubmit() && onTempSubmit(tempValues as K)
   }, [values, isIgnoreFalsy, normalizes, onTempSubmit, getNormalizeValue, canSubmit])
   useEffect(() => {
@@ -103,10 +103,13 @@ function ControlledForm<K = any>(props: ControlledFormProps<K>) {
     setFieldsValue,
     getFieldsValue,
     validateFields: () => {
-      setDDidClickSubmit(true)
+      setDidClickSubmit(true)
       return validateFields()
     },
-    apiDoValidate: formRef.current!.apiDoValidate,
+    apiDoValidate: () => {
+      setDidClickSubmit(true)
+      return canSubmit()
+    },
   }))
 
   const formProps = {
