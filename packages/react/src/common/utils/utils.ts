@@ -9,8 +9,8 @@ export function isFalsy(value: any): boolean {
  * @param {} args fn的参数
  */
 
-export function judgeFunction(fn?: anyCallback, ...args: any[]): void {
+export function judgeFunction(fn?: anyCallback, ...args: any[]) {
   if (typeof fn === 'function') {
-    fn(...args)
+    return fn(...args)
   }
 }

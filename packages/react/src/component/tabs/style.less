@@ -1,9 +1,9 @@
 .gm-tabs {
+
   .gm-tabs-head-fix {
     width: 100%;
     height: 40px;
   }
-
 
   .gm-tabs-head {
     height: 40px;
@@ -25,21 +25,23 @@
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
 
+      &::before {
+        position: absolute;
+        width: 100%;
+        content: ' ';
+        height: 2px;
+        right: 0;
+        bottom: 0 !important;
+        z-index: 999;
+        background-color: #fff;
+      }
+
       &.active {
         background: white;
         border-left: 1px solid var(--gm-color-border);
         border-top: 1px solid var(--gm-color-border);
+        box-sizing: border-box;
         border-right: 1px solid var(--gm-color-border);
-
-        &::after {
-          content: '';
-          height: 1px;
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: -1px;
-          background: white;
-        }
       }
     }
   }
@@ -72,8 +74,9 @@
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    height: 3px;
+    width: 100px;
+    border-radius: 2px;
   }
 
   &::-webkit-scrollbar-track {
@@ -87,7 +90,7 @@
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #333;
+    background: #bfbfbf;
   }
 
   &::-webkit-scrollbar-corner {
@@ -142,22 +145,20 @@
     background: #fff !important;
     padding: 0;
     z-index: 9;
-    border-bottom: none;
-
+    position: relative;
 
     .gm-tabs-head-item {
-      transition: all .3s;
+      transition: all 0.3s;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       line-height: 30px;
-      border-bottom: 1px solid var(--gm-color-border-special);
+      // border-bottom: 1px solid var(--gm-color-border-special);
 
       &.active {
         color: #1890ff;
-        border-bottom: none;
+        box-sizing: border-box;
+
       }
     }
   }
-
-  // 删除框的样式
 }
