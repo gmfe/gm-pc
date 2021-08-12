@@ -88,7 +88,7 @@ function Tabs<V extends string | number = string>(props: TabsProps<V>) {
 
   // 增加切换tab的校验
   const handleClick = (value: V) => {
-    if (!judgeFunction(onChangeValidate)) return
+    if (judgeFunction(onChangeValidate)) return
     setSelected(value)
     judgeFunction(onChange, value)
   }
