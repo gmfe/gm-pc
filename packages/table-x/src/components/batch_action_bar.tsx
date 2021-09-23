@@ -11,14 +11,14 @@ interface ChildrenProps {
   disabled?: boolean
 }
 
-interface BatchActionBarItem {
+interface BatchActionBarItem<T = string> {
   // 如果 children 是组件，行为UI都需要自己搞
   children: string | ReactNode | ((props: ChildrenProps) => ReactNode)
-  onAction?(selected: any[], isSelectAll?: boolean): void
+  onAction?(selected: T[], isSelectAll: boolean): void
   /** 是否要隐藏 */
-  getHidden?(selected: any[], isSelectAll?: boolean): boolean
+  getHidden?(selected: T[], isSelectAll: boolean): boolean
   /** pure 的时候 isSelectAll 不传 */
-  getDisabled?(selected: any[], isSelectAll?: boolean): boolean
+  getDisabled?(selected: T[], isSelectAll: boolean): boolean
 }
 
 interface BatchActionBarProps {

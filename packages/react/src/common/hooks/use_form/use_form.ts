@@ -178,7 +178,7 @@ export function useControlFormRef<T>() {
     getFieldsValue: noop,
     setFieldsValue: noop,
     apiDoValidate: noop,
-    validateFields: () => new Promise(r),
+    validateFields: () => Promise.resolve(),
   } as unknown) as FormInstance<T>)
   return ref
 }

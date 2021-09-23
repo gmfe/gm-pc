@@ -1,15 +1,7 @@
-import {
-  Cell,
-  CellProps,
-  Column,
-  ColumnInstance,
-  Row,
-  Accessor,
-  StringKey,
-} from 'react-table'
+import { Cell, CellProps, Column, ColumnInstance, Row, Accessor } from 'react-table'
 import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
 import { VariableSizeList } from 'react-window'
-
+import { StringKey } from '@gm-pc/react'
 interface TableXDataItem<V = any> {
   [key: string]: V
 }
@@ -35,7 +27,6 @@ interface TableXCustomerColumn<D extends object = any> {
   accessor?: StringKey<D> | Accessor<D>
   id?: StringKey<D>
 }
-
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
 
