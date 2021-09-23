@@ -25,7 +25,7 @@ interface TableXCustomerColumn<D extends object = any> {
   /** KeyboardTableX 用 */
   Cell?(props: TableXCellProps<D>): ReactNode
   accessor?: StringKey<D> | Accessor<D>
-  id?: StringKey<D>
+  id?: StringKey<D> | (number & {})
 }
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
@@ -80,7 +80,7 @@ interface TableXTrProps {
  * 请使用Table的Column
  * @deprecated
  */
-type TableXColumn<D extends object = any> = Omit<Column<D>, 'Cell' | 'accessor'> &
+type TableXColumn<D extends object = any> = Omit<Column<D>, 'Cell' | 'accessor' | 'id'> &
   TableXCustomerColumn<D>
 type SortsType = {
   [key: string]: SortHeaderDirectionType
