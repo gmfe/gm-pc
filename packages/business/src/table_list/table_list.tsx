@@ -69,6 +69,7 @@ export function TableList<D extends object = any>({
   useImperativeHandle(tableRef, () => ({
     ..._tableRef.current,
     refresh,
+    run,
   }))
   const onHeadersSort: TableProps['onHeadersSort'] = (sorts) => {
     setSorts(sorts)

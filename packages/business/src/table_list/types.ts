@@ -14,6 +14,7 @@ export type TableListColumn<D extends object = any> = Column<D>
 export type FormatDataType = (data: { paging: PagingRes; data: any[] }) => any[]
 export type TableListInstance = TableInstance & {
   refresh(): Promise<any>
+  run(): Promise<any>
 }
 export type TableListRef = RefObject<TableListInstance>
 export interface TableListProps<D extends object = any>
