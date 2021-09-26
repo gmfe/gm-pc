@@ -1136,21 +1136,21 @@
   dependencies:
     purgecss "^3.1.3"
 
-"@gm-common/analyse@^2.9.12":
-  version "2.9.12"
-  resolved "https://registry.npm.taobao.org/@gm-common/analyse/download/@gm-common/analyse-2.9.12.tgz#8dd5131c4b7e1a81d4225a33611a95cb60f2bb63"
-  integrity sha1-jdUTHEt+GoHUIlozYRqVy2Dyu2M=
+"@gm-common/analyse@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/analyse/download/@gm-common/analyse-2.10.0.tgz#7062b315f84a45206b1240b5509f0cd005c5a4ee"
+  integrity sha1-cGKzFfhKRSBrEkC1UJ8M0AXFpO4=
   dependencies:
-    "@gm-common/fingerprint" "^2.9.12"
+    "@gm-common/fingerprint" "^2.10.0"
     axios "^0.21.0"
     query-string "^6.13.6"
 
-"@gm-common/fingerprint@^2.9.12":
-  version "2.9.12"
-  resolved "https://registry.npm.taobao.org/@gm-common/fingerprint/download/@gm-common/fingerprint-2.9.12.tgz#cedc24325562f56b58fd8cc27ae09c87162fd29d"
-  integrity sha1-ztwkMlVi9WtY/YzCeuCchxYv0p0=
+"@gm-common/fingerprint@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/fingerprint/download/@gm-common/fingerprint-2.10.0.tgz#c545e17acade95d51172d8d72c3a24248c5e2a90"
+  integrity sha1-xUXhesreldURctjXLDokJIxeKpA=
   dependencies:
-    "@gm-common/tool" "^2.9.12"
+    "@gm-common/tool" "^2.10.0"
     "@types/fingerprintjs2" "^2.0.0"
     fingerprintjs2 "^2.1.2"
 
@@ -1162,10 +1162,17 @@
     "@gm-common/tool" "^2.9.12"
     ts-config-gm-react-app "^3.4.5"
 
-"@gm-common/locales@^2.9.12":
-  version "2.9.12"
-  resolved "https://registry.npm.taobao.org/@gm-common/locales/download/@gm-common/locales-2.9.12.tgz#86b36d436777cc5a562d13f205b55a37f5de92ff"
-  integrity sha1-hrNtQ2d3zFpWLRPyBbVaN/Xekv8=
+"@gm-common/locales@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/locales/download/@gm-common/locales-2.10.0.tgz?cache=0&sync_timestamp=1632654333672&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40gm-common%2Flocales%2Fdownload%2F%40gm-common%2Flocales-2.10.0.tgz#3c0a181635d25fc2eaffc5869bd82b360a08430f"
+  integrity sha1-PAoYFjXSX8Lq/8WGm9grNgoIQw8=
+
+"@gm-common/tool@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/tool/download/@gm-common/tool-2.10.0.tgz#f4f512233ff1118eff8bbdeca9762f0e65ce26bd"
+  integrity sha1-9PUSIz/xEY7/i73sqXYvDmXOJr0=
+  dependencies:
+    lodash "^4.17.20"
 
 "@gm-common/tool@^2.8.9", "@gm-common/tool@^2.9.12":
   version "2.9.12"
@@ -1174,15 +1181,15 @@
   dependencies:
     lodash "^4.17.20"
 
-"@gm-common/x-request@^2.9.12":
-  version "2.9.12"
-  resolved "https://registry.npm.taobao.org/@gm-common/x-request/download/@gm-common/x-request-2.9.12.tgz#192a03de09df6da03bfd29301e9db118547f767d"
-  integrity sha1-GSoD3gnfbaA7/SkwHp2xGFR/dn0=
+"@gm-common/x-request@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/x-request/download/@gm-common/x-request-2.10.0.tgz#055ce5b4dd807cb7dc862db91af4255e8f6e662e"
+  integrity sha1-BVzltN2AfLfchi25GvQlXo9uZi4=
   dependencies:
-    "@gm-common/analyse" "^2.9.12"
-    "@gm-common/fingerprint" "^2.9.12"
-    "@gm-common/locales" "^2.9.12"
-    "@gm-common/tool" "^2.9.12"
+    "@gm-common/analyse" "^2.10.0"
+    "@gm-common/fingerprint" "^2.10.0"
+    "@gm-common/locales" "^2.10.0"
+    "@gm-common/tool" "^2.10.0"
     axios "^0.21.0"
     js-base64 "^3.6.0"
     lodash "^4.17.19"

@@ -32,11 +32,12 @@ export function TableList<D extends object = any>({
 }: TableListProps<D>) {
   const {
     paging,
+    loading,
+    data = {},
     runChangePaging,
     run,
     refresh,
-    loading,
-    data = {},
+    refreshAfterDelete,
   } = usePagination<any>(service, { ...paginationOptions }, false)
 
   const [sorts, setSorts] = useState<SortsType>({})
@@ -66,11 +67,6 @@ export function TableList<D extends object = any>({
     isUpdateEffect
   )
 
-  useImperativeHandle(tableRef, () => ({
-    ..._tableRef.current,
-    refresh,
-    run,
-  }))
   const onHeadersSort: TableProps['onHeadersSort'] = (sorts) => {
     setSorts(sorts)
   }
@@ -97,6 +93,15 @@ export function TableList<D extends object = any>({
     ...res,
     tableRef: _tableRef,
   } as unknown) as TableProps<D>
+
+  useImperativeHandle(tableRef, () => ({
+    ..._tableRef.current,
+    refresh,
+    run,
+    refreshAfterDelete: (delNum: number) => {
+      return refreshAfterDelete(tableProps.data, delNum)
+    },
+  }))
   return (
     <BoxTable {...boxTableProps}>
       <Table {...tableProps} />

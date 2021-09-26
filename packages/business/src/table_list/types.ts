@@ -14,6 +14,8 @@ export type TableListColumn<D extends object = any> = Column<D>
 export type FormatDataType = (data: { paging: PagingRes; data: any[] }) => any[]
 export type TableListInstance = TableInstance & {
   refresh(): Promise<any>
+  /** 对应删除的刷新，如果当前页有10条数据，一次性删除了10条，那么会调用run跳到第一条，否则调用refresh刷新当前页 */
+  refreshAfterDelete(delNum: number): Promise<any>
   run(): Promise<any>
 }
 export type TableListRef = RefObject<TableListInstance>

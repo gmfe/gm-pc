@@ -9,18 +9,18 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@gm-common/hooks@^2.8.9":
-  version "2.8.9"
-  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.8.9.tgz#d582fbc5c7dfb21f3d016a321f93b1fce867c85c"
-  integrity sha512-+MurQpH36nv10o7+g/UQF7DPkzoJwiv+3GiTiHylc6hYRgPnEim1GxSIPc5ir8bSQYbp+6IVKyUi32qmSWQGug==
+"@gm-common/hooks@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/hooks/download/@gm-common/hooks-2.10.0.tgz#c67e02875b4d266ef911e7828257d957e923826b"
+  integrity sha1-xn4Ch1tNJm75EeeCglfZV+kjgms=
   dependencies:
-    "@gm-common/tool" "^2.8.9"
+    "@gm-common/tool" "^2.10.0"
     ts-config-gm-react-app "^3.4.5"
 
-"@gm-common/tool@^2.8.9":
-  version "2.8.9"
-  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.8.9.tgz#81317cb81f3095625753c31c03a787195e39cbff"
-  integrity sha512-7A6bcTI+nRfB6MsLEJiNIpbLeqXnIz0vmvJzKHn79wtbVGR5p0GeOyzsYV5tBu1i96gMKG04siR3n3Vy39X1Sg==
+"@gm-common/tool@^2.10.0":
+  version "2.10.0"
+  resolved "https://registry.npmmirror.com/@gm-common/tool/download/@gm-common/tool-2.10.0.tgz#f4f512233ff1118eff8bbdeca9762f0e65ce26bd"
+  integrity sha1-9PUSIz/xEY7/i73sqXYvDmXOJr0=
   dependencies:
     lodash "^4.17.20"
 
