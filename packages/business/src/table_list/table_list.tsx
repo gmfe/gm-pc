@@ -98,7 +98,7 @@ export function TableList<D extends object = any>({
     ..._tableRef.current,
     refresh,
     run,
-    refreshAfterDelete: (delNum: number) => {
+    refreshAfterDelete: (delNum = 1) => {
       return refreshAfterDelete(tableProps.data, delNum)
     },
   }))
