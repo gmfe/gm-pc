@@ -1,11 +1,11 @@
-import React, { FC, HTMLAttributes } from 'react'
+import React, { FC, HTMLAttributes, ReactNode } from 'react'
 import { Flex } from '../flex'
 import classNames from 'classnames'
 import _ from 'lodash'
 
 interface StepProps {
   title?: string
-  description?: string
+  description?: string | ReactNode
   index: number
 }
 
@@ -16,9 +16,9 @@ const Step: FC<StepProps> = (props) => {
     <Flex row className='gm-steps-step gm-margin-top-5'>
       <Flex column alignCenter className='gm-margin-right-10'>
         <div className='gm-steps-step-icon'>{index}</div>
-        <div className='gm-steps-step-tag gm-margin-top-5' />
+        <div className='gm-flex-flex gm-steps-step-tag gm-margin-top-5' />
       </Flex>
-      <div>
+      <div className='gm-flex-flex'>
         {title && <div className='gm-steps-step-title'>{title}</div>}
         {description && <div className='gm-steps-step-description'>{description}</div>}
       </div>
@@ -31,8 +31,8 @@ export interface StepsProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export interface StepsDataOptions {
-  title: string
-  description?: string
+  title?: string
+  description?: string | ReactNode
 }
 
 const Steps: FC<StepsProps> = (props) => {
