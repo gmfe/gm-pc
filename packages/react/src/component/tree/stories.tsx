@@ -195,7 +195,7 @@ export const ComTreeForRenderItem = () => (
         <div>
           <span
             style={{
-              backgroundColor: '#56a3f2',
+              backgroundColor: '#0363ff',
               color: 'white',
               padding: '1px',
               borderRadius: '2px',

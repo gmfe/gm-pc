@@ -344,10 +344,10 @@ export const ComFormPanel = () => {
               required
               tooltip={
                 <div className='gm-padding-10 gm-bg' style={{ width: '455px' }}>
-                  <p style={{ marginBottom: '4px', fontSize: '12px' }}>
+                  <p style={{ marginBottom: '4px', fontSize: '14px' }}>
                     23333333333333333
                   </p>
-                  <p style={{ marginBottom: 0, fontSize: '12px' }}>4555555555555555</p>
+                  <p style={{ marginBottom: 0, fontSize: '14px' }}>4555555555555555</p>
                 </div>
               }
             >

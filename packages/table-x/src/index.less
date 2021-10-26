@@ -78,7 +78,7 @@
         }
 
         .gm-table-x-expand {
-          font-size: 14px;
+          font-size: var(--gm-size-text-16);
           padding-top: 2px;
         }
       }
@@ -238,7 +238,7 @@
     .gm-table-x-operation-icon {
       display: inline-block;
       cursor: pointer;
-      font-size: 14px;
+      font-size: var(--gm-size-text-16);
       color: var(--gm-color-default);
 
       &:hover:not(.disabled) {
@@ -281,7 +281,7 @@
   // edit button 和 gm-table-x-edit 没有关系，只是名字相近
   //.gm-table-x-edit-button {
   //  visibility: hidden;
-  //  font-size: 14px;
+  //  font-size: var(--gm-size-text-16);
   //  display: inline-block;
   //  cursor: pointer;
   //  width: 20px;
@@ -488,12 +488,12 @@
     height: var(--gm-modal-size-title-height);
 
     .gm-react-table-x-diy-modal-header-title {
-      font-size: 14px;
+      font-size: var(--gm-size-text-16);
       border-left: 3px solid var(--gm-color-primary);
     }
 
     .gm-react-table-x-diy-modal-header-close {
-      font-size: 16px;
+      font-size: var(--gm-size-text-18);
       padding: 10px;
       position: absolute;
       right: 0;
@@ -541,7 +541,7 @@
 
         &::before {
           content: '\2022'; //圆点
-          font-size: 16px;
+          font-size: var(--gm-size-text-18);
           margin-right: 2px;
         }
 

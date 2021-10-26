@@ -12,11 +12,11 @@ storiesOf('其他/Price', module).add('default', () => (
         <Price value={v} />
       </div>
     ))}
-    <Price isFenUnit value={1234} style={{ fontSize: '28px', color: 'red' }} /> <br />
+    <Price isFenUnit value={1234} style={{ fontSize: '30px', color: 'red' }} /> <br />
     <Price
       value={40002288}
       currencyScale={0.8}
-      style={{ fontSize: '28px', color: 'red' }}
+      style={{ fontSize: '30px', color: 'red' }}
     />
   </div>
 ))
