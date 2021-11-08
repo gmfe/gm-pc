@@ -98,27 +98,24 @@ const FormGroup: FC<FormGroupProps> = ({
   )
 
   return (
-    <div {...rest} onSubmit={handleSubmit}>
-      {children}
-      <Affix bottom={0}>
-        <div
-          className={classNames(
-            'gm-padding-tb-5 gm-margin-top-20 gm-text-center', // 统一padding,margin样式，保证affix切换时正常切换
-            {
-              'gm-form-group-sticky-box': affix, // 仅处理粘底样式
-            }
-          )}
-        >
-          <Action
-            disabled={disabled}
-            actions={actions}
-            onSubmit={handleSubmit}
-            saveText={saveText}
-            onCancel={onCancel}
-          />
-        </div>
-      </Affix>
-    </div>
+    <>
+      <div {...rest} onSubmit={handleSubmit} className='gm-margin-bottom-40'>
+        {children}
+      </div>
+      {/* <Affix bottom={0}> */}
+      <div
+        className='gm-padding-tb-5 gm-margin-top-20 gm-text-center gm-form-group-position-fixed-box gm-form-group-sticky-box' // 统一padding,margin样式，保证affix切换时正常切换
+      >
+        <Action
+          disabled={disabled}
+          actions={actions}
+          onSubmit={handleSubmit}
+          saveText={saveText}
+          onCancel={onCancel}
+        />
+      </div>
+      {/* </Affix> */}
+    </>
   )
 }
 
@@ -133,12 +130,12 @@ const Action: FC<ActionProps> = ({ onCancel, onSubmit, disabled, saveText, actio
     <>
       {onCancel && (
         <>
-          <Button onClick={onCancel}>{getLocale('取消')}</Button>
+          <Button onClick={onCancel}>{getLocale('取消1')}</Button>
           <div className='gm-gap-10' />
         </>
       )}
       <Button type='primary' disabled={disabled} onClick={onSubmit}>
-        {saveText || getLocale('确定')}
+        {saveText || getLocale('确定---')}
       </Button>
       {actions}
     </>
