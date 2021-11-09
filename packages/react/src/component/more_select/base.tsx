@@ -257,7 +257,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         {!loading &&
           !!filterData.length &&
           renderCustomizedBottom &&
-          renderCustomizedBottom()}
+          renderCustomizedBottom(this._popoverRef)}
       </div>
     )
   }

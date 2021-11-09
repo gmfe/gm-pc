@@ -1,3 +1,4 @@
+import { Popover } from '@gm-pc/react'
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
 
 /** 普通的数据格式 */
@@ -35,7 +36,7 @@ interface MoreSelectCommonProps<V extends string | number = string> {
   renderListItem?(value: MoreSelectDataItem<V>, index: number): ReactNode
 
   /** 自定义popup底部渲染 */
-  renderCustomizedBottom?(): ReactNode
+  renderCustomizedBottom?(ref: React.RefObject<Popover>): ReactNode
 
   listHeight?: string
   isGroupList?: boolean
