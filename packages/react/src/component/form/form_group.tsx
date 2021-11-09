@@ -7,13 +7,12 @@ import React, {
   useState,
 } from 'react'
 import { devWarnForHook, warn } from '@gm-common/tool'
-import Affix from '../affix/affix'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
-import classNames from 'classnames'
 import _ from 'lodash'
 import { useMutationObserver } from '../../common/hooks'
 import { FormGroupProps } from './types'
+import classNames from 'classnames'
 
 const options = {
   childList: true,
@@ -31,6 +30,7 @@ const FormGroup: FC<FormGroupProps> = ({
   saveText,
   actions,
   onSubmitValidated,
+  className,
   ...rest
 }) => {
   devWarnForHook(() => {
@@ -98,27 +98,26 @@ const FormGroup: FC<FormGroupProps> = ({
   )
 
   return (
-    <div {...rest} onSubmit={handleSubmit}>
-      {children}
-      <Affix bottom={0}>
-        <div
-          className={classNames(
-            'gm-padding-tb-5 gm-margin-top-20 gm-text-center', // 统一padding,margin样式，保证affix切换时正常切换
-            {
-              'gm-form-group-sticky-box': affix, // 仅处理粘底样式
-            }
-          )}
-        >
-          <Action
-            disabled={disabled}
-            actions={actions}
-            onSubmit={handleSubmit}
-            saveText={saveText}
-            onCancel={onCancel}
-          />
-        </div>
-      </Affix>
-    </div>
+    <>
+      <div
+        {...rest}
+        onSubmit={handleSubmit}
+        className={classNames('gm-margin-bottom-40', className)}
+      >
+        {children}
+      </div>
+      <div
+        className='gm-padding-tb-5 gm-margin-top-20 gm-text-center gm-form-group-position-fixed-box gm-form-group-sticky-box' // 统一padding,margin样式，保证affix切换时正常切换
+      >
+        <Action
+          disabled={disabled}
+          actions={actions}
+          onSubmit={handleSubmit}
+          saveText={saveText}
+          onCancel={onCancel}
+        />
+      </div>
+    </>
   )
 }
 
