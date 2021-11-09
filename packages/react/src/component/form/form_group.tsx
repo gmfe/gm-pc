@@ -31,6 +31,7 @@ const FormGroup: FC<FormGroupProps> = ({
   actions,
   onSubmitValidated,
   className,
+  absolute = false,
   ...rest
 }) => {
   devWarnForHook(() => {
@@ -107,7 +108,11 @@ const FormGroup: FC<FormGroupProps> = ({
         {children}
       </div>
       <div
-        className='gm-padding-tb-5 gm-margin-top-20 gm-text-center gm-form-group-position-fixed-box gm-form-group-sticky-box' // 统一padding,margin样式，保证affix切换时正常切换
+        className={classNames(
+          'gm-padding-tb-5 gm-margin-top-20 gm-text-center gm-form-group-position-fixed-box gm-form-group-sticky-box',
+          { 'gm-form-group-position-absolute-box': absolute }
+        )}
+        // 统一padding,margin样式，保证affix切换时正常切换
       >
         <Action
           disabled={disabled}
