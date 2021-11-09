@@ -211,6 +211,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       searchPlaceholder,
       listHeight,
       popupClassName,
+      renderCustomizedBottom,
     } = this.props
     const { loading, searchValue, willActiveIndex } = this.state
     const filterData = this._getFilterData()
@@ -253,6 +254,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
             />
           )}
         </div>
+        {!loading &&
+          !!filterData.length &&
+          renderCustomizedBottom &&
+          renderCustomizedBottom()}
       </div>
     )
   }
