@@ -34,6 +34,9 @@ interface MoreSelectCommonProps<V extends string | number = string> {
   /** 自定义渲染列表项 */
   renderListItem?(value: MoreSelectDataItem<V>, index: number): ReactNode
 
+  /** 自定义popup底部渲染 */
+  renderCustomizedBottom?(): ReactNode
+
   listHeight?: string
   isGroupList?: boolean
   popoverType?: 'focus' | 'realFocus'
