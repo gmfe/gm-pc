@@ -96,6 +96,7 @@ interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
   /* 确定按钮的文案，默认为保存 */
   saveText?: string
   actions?: ReactNode
+  absolute?: boolean
 }
 
 export type {
