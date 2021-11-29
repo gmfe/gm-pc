@@ -24,7 +24,9 @@ function generateDiyColumns(
   initialColumns: DiyTableXColumn[],
   mixColumns: DiyTableXColumn[]
 ): [DiyTableXColumn[], DiyTableXColumn[]] {
-  const [notDiyCols, diyCols] = splitColumns(initialColumns)
+  const [notDiyCols, diyCols] = splitColumns(
+    initialColumns.filter((column) => !column.hide)
+  )
   const diyColumns = diyCols.map((column) => {
     const key = getColumnKey(column)
     // 能获取 key 才可能使用 diy

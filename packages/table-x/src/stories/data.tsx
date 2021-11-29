@@ -89,6 +89,15 @@ const columns: TableXColumn<typeof initData[0]>[] = [
     Cell: (cellProps: any) => cellProps.row.index + 1,
     width: 100,
   },
+  {
+    Header: '始终隐藏的，不出现在diy',
+    accessor: 'hide',
+    minWidth: 80,
+    hide: true,
+    Cell: (cellProps) => {
+      return <div>{cellProps.value}</div>
+    },
+  },
   { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
   { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
   {

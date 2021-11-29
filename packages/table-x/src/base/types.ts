@@ -13,8 +13,10 @@ type TableXCellProps<D extends object = any> = Pick<CellProps<D>, 'row' | 'value
 
 // 自定义的 props
 interface TableXCustomerColumn<D extends object = any> {
-  /** 列是否显示 */
+  /** 列是否显示，DiyTableX 中的 show 与其他 TableX 不同，DiyTableX 中的 show 代表的是默认是否展示 */
   show?: boolean
+  /** 列是否隐藏，优先级最高，设置为false后diy里面也显示不了 */
+  hide?: boolean
   /** 固定列 */
   fixed?: 'left' | 'right'
   /** 表头是否排序 */
