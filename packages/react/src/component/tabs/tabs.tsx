@@ -1,4 +1,11 @@
-import React, { CSSProperties, ReactNode, useState, useRef, useEffect } from 'react'
+import React, {
+  CSSProperties,
+  ReactNode,
+  useState,
+  useRef,
+  useEffect,
+  useMemo,
+} from 'react'
 import classNames from 'classnames'
 import _ from 'lodash'
 import { Flex, FlexProps } from '../flex'
@@ -15,6 +22,8 @@ interface TabsItem<V extends string | number> {
   /* 是否可关闭 */
   closable?: boolean
   ref?: HTMLDivElement | null
+  /** 是否隐藏 */
+  hide?: boolean
 }
 
 interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange'> {
@@ -43,29 +52,28 @@ interface TabsProps<V extends string | number> extends Omit<FlexProps, 'onChange
   popverTitle?: string
 }
 
-function Tabs<V extends string | number = string>(props: TabsProps<V>) {
-  const {
-    tabs,
-    light,
-    active,
-    defaultActive,
-    keep,
-    onChange,
-    onClose,
-    onChangeValidate,
-    className,
-    column = true,
-    activeOnce,
-    full,
-    type,
-    extraAction,
-    isPopover,
-    popup,
-    popoverContent,
-    popverTitle,
-    ...rest
-  } = props
-
+function Tabs<V extends string | number = string>({
+  tabs,
+  light,
+  active,
+  defaultActive,
+  keep,
+  onChange,
+  onClose,
+  onChangeValidate,
+  className,
+  column = true,
+  activeOnce,
+  full,
+  type,
+  extraAction,
+  isPopover,
+  popup,
+  popoverContent,
+  popverTitle,
+  ...rest
+}: TabsProps<V>) {
+  tabs = useMemo(() => tabs.filter((tab) => !tab.hide), [tabs])
   const editableCard: boolean = type === 'editable-card'
 
   const baseTabClassName = `gm-${full ? 'framework-full-' : ''}tabs`
