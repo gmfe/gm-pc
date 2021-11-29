@@ -35,10 +35,10 @@ function Table<D extends object = any>({
     }
     // 配置中间件
     const hocMiddles = [
+      isExpand && expandTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
       isDiy && diyTableXHOC,
       isSelect && selectTableXHOC,
-      isExpand && expandTableXHOC,
       isSort && sortableTableXHOC,
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
