@@ -12,10 +12,14 @@ function useInitTable(
   const { data, onHeadersSort, headerSortMultiple } = props
   let { columns } = props
   // fixed(最新rc12不支持column.show,自己实现)
-  columns = useMemo(() => columns.filter((column) => column.show !== false), [columns])
+  columns = useMemo(
+    () => columns.filter((column) => !column.hide && column.show !== false),
+    [columns]
+  )
 
   const { getTableProps, getTableBodyProps, rows, prepareRow, headerGroups } = useTable({
     data,
+    // @ts-ignore
     columns,
     defaultColumn,
   })
