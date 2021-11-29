@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { Alert, MoreSelectDataItem } from '@gm-pc/react'
-import { Table } from '.'
+import { Column, Table } from '.'
 import { store } from '../stories/data'
 
 import { makeAutoObservable } from 'mobx'
@@ -15,10 +15,10 @@ import {
   KCInputNumber,
   KCLevelSelect,
 } from '@gm-pc/keyboard'
-
 const initState = {
   isDiy: false,
   isBatchSelect: false,
+  rowSelect: false,
   isExpand: false,
   isSort: false,
   isEdit: false,
@@ -28,7 +28,16 @@ const initState = {
 }
 export const ComTable = () => {
   const [state, setState] = useState<Partial<typeof initState>>({})
-  const { isDiy, isBatchSelect, isExpand, isSort, isEdit, isSub, isVirtualized } = state
+  const {
+    isDiy,
+    isBatchSelect,
+    isExpand,
+    isSort,
+    isEdit,
+    isSub,
+    isVirtualized,
+    rowSelect,
+  } = state
   const [limit, setLimit] = useState(12)
 
   const iter = isVirtualized ? 20 : 1
@@ -58,6 +67,7 @@ export const ComTable = () => {
           </button>
         )
       })}
+      <h2 className='gm-margin-top-10 gm-text-red'>注意：rowSelect使用过程中不能修改</h2>
       {isVirtualized && (
         <>
           <button onClick={() => setLimit((limit) => limit + 1)}>+</button>
@@ -85,10 +95,11 @@ export const ComTable = () => {
         isSort={isSort}
         isEdit={isEdit}
         isSub={isSub}
+        rowSelect={rowSelect}
         isVirtualized={isVirtualized}
         style={{ marginTop: 100 }}
         fixedSelect
-        columns={[
+        columns={([
           {
             Header: '序号',
             id: 'index' as any,
@@ -100,6 +111,20 @@ export const ComTable = () => {
             defaultSortDirection: 'asc',
           },
           { Header: '建单时间', accessor: 'submitTime', minWidth: 200 },
+          rowSelect && {
+            Header: '链接',
+            accessor: () => (
+              <a
+                onClick={(e) => e.stopPropagation()}
+                href='https://github.com/gmfe/gm-pc'
+                target='_blank'
+                rel='noreferrer'
+              >
+                github.com/gmfe/gm-pc
+              </a>
+            ),
+            minWidth: 200,
+          },
           { Header: '商品价格', accessor: 'skuMoney', width: 300 },
           { Header: '供应商编号', accessor: 'supplierCustomerId', width: 300 },
           { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
@@ -120,7 +145,7 @@ export const ComTable = () => {
               return value
             },
           },
-        ]}
+        ] as Column<typeof store.data[0]>[]).filter(Boolean)}
         data={newData}
         batchActions={[
           {

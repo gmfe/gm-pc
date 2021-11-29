@@ -19,13 +19,15 @@ const SelectCell: FC<SelectTableXCellProps> = ({
       {({ selected, onSelect }) => {
         const isChecked = selected.includes(value)
         const disabled = isSelectorDisable(row.original)
-
         if (selectType === 'checkbox') {
           return (
             <Checkbox
               className='gm-table-x-select'
               disabled={disabled}
               checked={isChecked}
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
               onChange={() => {
                 onSelect(_.xor(selected, [value]))
               }}
@@ -37,6 +39,9 @@ const SelectCell: FC<SelectTableXCellProps> = ({
               className='gm-table-x-select'
               disabled={disabled}
               checked={isChecked}
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
               onChange={() => {
                 onSelect(isChecked ? [] : [value])
               }}
