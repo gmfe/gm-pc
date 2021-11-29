@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC, useContext, memo } from 'react'
 import classNames from 'classnames'
 import Td from './td'
 import { TableXTrProps } from './types'
 import _ from 'lodash'
+import SelectTableXContext from '../hoc/select_table_x/context'
 
 const Tr: FC<TableXTrProps> = ({
   row,
@@ -13,8 +14,11 @@ const Tr: FC<TableXTrProps> = ({
   isTrDisable = _.noop,
   isTrHighlight = _.noop,
 }) => {
-  // 手动设置active态
+  const { onRowSelect } = useContext(SelectTableXContext)
+  // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
+  const trId = row.original[keyField]
   const props = {
+    onClick: () => onRowSelect(trId),
     ...row.getRowProps(),
     style,
     className: classNames('gm-table-x-tr', {
@@ -25,11 +29,9 @@ const Tr: FC<TableXTrProps> = ({
     }),
   }
 
-  // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
-  const trId = row.original[keyField]
-
   return (
     <>
+      {/* @ts-ignore */}
       <tr {...props} data-id={trId}>
         {row.cells.map((cell, index) => (
           <Td key={index} totalWidth={totalWidth} cell={cell} />
@@ -40,4 +42,4 @@ const Tr: FC<TableXTrProps> = ({
   )
 }
 
-export default React.memo(Tr)
+export default memo(Tr)

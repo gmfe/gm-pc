@@ -16,6 +16,7 @@ export interface RenderRowProps {
 }
 const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowProps) => {
   if (!isMap && index === 0) {
+    // @ts-ignore
     return <div style={style} />
   }
   if (index !== undefined) {
@@ -40,6 +41,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
         row={row as TableXRow}
         SubComponent={SubComponent}
         keyField={keyField as never}
+        // @ts-ignore
         style={style}
         isTrDisable={isTrDisable}
         isTrHighlight={isTrHighlight}

@@ -1,7 +1,7 @@
-import React, { ComponentType, FC, useMemo } from 'react'
+import React, { ComponentType, FC, useMemo, useCallback } from 'react'
 import { SelectTableXProps, SelectTableXValue } from './types'
 import { TableXColumn, TableXDataItem, TableXProps } from '../../base/types'
-import SelectTableXContext from './context'
+import SelectTableXContext, { SelectTableXContextOptions } from './context'
 import { Flex } from '@gm-pc/react'
 import { TABLE_X, TABLE_X_SELECT_ID } from '../../utils'
 import SelectHeader from './header'
@@ -23,6 +23,7 @@ function getNewColumns(
     maxWidth: TABLE_X.WIDTH_FUN,
     fixed: fixedSelect ? 'left' : undefined,
     Header: () => <SelectHeader selectType={selectType} />,
+    // @ts-ignore
     Cell: ({ row }: CellProps<any>) => (
       <SelectCell
         keyField={keyField}
@@ -49,6 +50,7 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
     fixedSelect,
     columns,
     data,
+    rowSelect,
     ...rest
   }) => {
     // 不响应 isSelectorDisable
@@ -76,7 +78,22 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
     const handleSelectAll = (): void => {
       onSelect(!isSelectAll ? canSelectData.map((v) => v[keyField]) : [])
     }
-
+    // 行选择
+    const onRowSelect: SelectTableXContextOptions['onRowSelect'] = useCallback(
+      (select) => {
+        if (rowSelect) {
+          const tempSelected = [...selected]
+          const index = tempSelected.indexOf(select)
+          if (!~index) {
+            tempSelected.push(select)
+          } else {
+            tempSelected.splice(index, 1)
+          }
+          onSelect(tempSelected)
+        }
+      },
+      [rowSelect, selected, onSelect]
+    )
     return (
       <SelectTableXContext.Provider
         value={{
@@ -84,6 +101,7 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
           isSelectAll,
           onSelect: handleSelect,
           onSelectAll: handleSelectAll,
+          onRowSelect,
         }}
       >
         <div className='gm-table-x-select-container'>
@@ -94,7 +112,12 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
               </Flex>
             </div>
           )}
-          <Table {...(rest as Props)} columns={newColumns} data={data} />
+          <Table
+            {...(rest as Props)}
+            columns={newColumns}
+            data={data}
+            keyField={keyField}
+          />
         </div>
       </SelectTableXContext.Provider>
     )

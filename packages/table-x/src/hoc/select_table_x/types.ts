@@ -11,6 +11,8 @@ interface SelectTableXProps {
   isSelectorDisable?(item: TableXDataItem): boolean
   selectType?: 'checkbox' | 'radio'
   fixedSelect?: boolean
+  /** 点击行是否要选择，对于cell有按钮、输入框、或链接的记得加上stopPropagation */
+  rowSelect?: boolean
 }
 
 interface SelectTableXCellProps {

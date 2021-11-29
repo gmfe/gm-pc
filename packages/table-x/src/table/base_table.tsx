@@ -75,6 +75,7 @@ function BaseTable<D extends object = {}>({
       }
       // 获取body参数 end
       return (
+        // @ts-ignore
         <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
           <Thead
             headerGroups={headerGroups as TableXHeaderGroup[]}
@@ -82,6 +83,7 @@ function BaseTable<D extends object = {}>({
             onHeaderSort={onHeaderSort}
             sorts={sorts}
           />
+          {/* @ts-ignore */}
           <tbody {...tableBodyProps}>{children}</tbody>
         </table>
       )
@@ -125,6 +127,7 @@ function BaseTable<D extends object = {}>({
   })
   // 获取虚拟列表参数 end
   return (
+    // @ts-ignore
     <div
       {...rest}
       className={classNames(
