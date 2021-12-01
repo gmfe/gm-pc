@@ -2,6 +2,7 @@
 
 1. table的column增加hide字段，用于隐藏列
 2. Tabs的每一项增加hide字段，用于隐藏该tab
+3. Table增加rowSelect，支持点击行选择，demo参照[table.stories](packages/table-x/src/table/table.stories.tsx)
 
 全新库
 
