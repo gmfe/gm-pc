@@ -56,7 +56,7 @@ const BoxPanel: FC<BoxPanelProps> = ({
               {_.map(summary, (s: BoxPanelSummaryData, i) => {
                 if (i < summary.length - 1)
                   return (
-                    <span>
+                    <span key={s.value}>
                       {s.text}:&nbsp;
                       <span className='gm-text-primary gm-text-bold'>{s.value}</span>
                       ,&nbsp;
@@ -64,7 +64,7 @@ const BoxPanel: FC<BoxPanelProps> = ({
                   )
                 else
                   return (
-                    <span>
+                    <span key={s.value}>
                       {s.text}:&nbsp;
                       <span className='gm-text-primary gm-text-bold'>{s.value}</span>
                     </span>
