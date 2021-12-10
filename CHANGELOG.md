@@ -1,3 +1,7 @@
+# 1.6.3
+
+1. column加上`isKeyboard`的prop
+2. 修复`BoxPanel`map时没加key导致警告
 # 1.6.2
 
 1. table的column增加hide字段，用于隐藏列
