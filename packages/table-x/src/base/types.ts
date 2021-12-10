@@ -28,6 +28,8 @@ interface TableXCustomerColumn<D extends object = any> {
   Cell?(props: TableXCellProps<D>): ReactNode
   accessor?: StringKey<D> | Accessor<D>
   id?: StringKey<D> | (number & {})
+  /** 用来配置该列是否需要keyboard */
+  isKeyboard?: boolean
 }
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
