@@ -37,8 +37,8 @@ function Table<D extends object = any>({
     const hocMiddles = [
       isExpand && expandTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
-      isDiy && diyTableXHOC,
       isSelect && selectTableXHOC,
+      isDiy && diyTableXHOC,
       isSort && sortableTableXHOC,
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
