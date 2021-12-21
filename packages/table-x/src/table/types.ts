@@ -47,6 +47,8 @@ export interface TableProps<D extends object = any>
   /** 是否编辑 */
   isEdit?: boolean
   isSub?: boolean
+  /** 是否需要序号 */
+  isIndex?: boolean
   /** 是否开启keyboard */
   isKeyboard?: boolean
 

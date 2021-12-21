@@ -25,6 +25,7 @@ const initState = {
   isSub: false,
   isKeyboard: false,
   isVirtualized: false,
+  isIndex: false,
 }
 export const ComTable = () => {
   const [state, setState] = useState<Partial<typeof initState>>({})
@@ -36,6 +37,7 @@ export const ComTable = () => {
     isEdit,
     isSub,
     isVirtualized,
+    isIndex,
     rowSelect,
   } = state
   const [limit, setLimit] = useState(12)
@@ -89,6 +91,7 @@ export const ComTable = () => {
       )}
       <Table<typeof store.data[0]>
         keyField='id'
+        isIndex={isIndex}
         isDiy={isDiy}
         isBatchSelect={isBatchSelect}
         isExpand={isExpand}
@@ -100,16 +103,6 @@ export const ComTable = () => {
         style={{ marginTop: 100 }}
         fixedSelect
         columns={([
-          {
-            Header: '序号',
-            id: 'index' as any,
-            // Cell: ({ index }) => index + 1,
-            accessor: (_, index) => index + 1,
-            fixed: 'left',
-            width: 100,
-            headerSort: true,
-            defaultSortDirection: 'asc',
-          },
           { Header: '建单时间', accessor: 'submitTime', minWidth: 200 },
           rowSelect && {
             Header: '链接',
