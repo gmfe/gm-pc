@@ -1,12 +1,26 @@
-# 1.6.3
+#### 参照antd前缀字符
 
-1. column加上`isKeyboard`的prop
-2. 修复`BoxPanel`map时没加key导致警告
-# 1.6.2
+- 🔥：支持新特性
+- 🐞：修复bug
+- 💄：样式修改
+- 🛠：优化或重构
 
-1. table的column增加hide字段，用于隐藏列
-2. Tabs的每一项增加hide字段，用于隐藏该tab
-3. Table增加rowSelect，支持点击行选择，demo参照[table.stories](packages/table-x/src/table/table.stories.tsx)
+## 1.7.0
+
+`2021-12-21`
+
+- 🔥 `table-x` 增加`indexTableHoc`, ,通过配置prop为`isInex`自动增加序号列。[#68](https://github.com/gmfe/gm-pc/pull/68) [@bozouai](https://github.com/baozouai)
+## 1.6.3
+`2021-12-10`
+1. 🔥 column加上`isKeyboard`的prop [#65](https://github.com/gmfe/gm-pc/pull/65) [@bozouai](https://github.com/baozouai)
+2. 🐞 修复`BoxPanel`map时没加key导致警告 [#66](https://github.com/gmfe/gm-pc/pull/66) [@bozouai](https://github.com/baozouai)
+## 1.6.2
+
+`2021-12-01`
+
+1. 🔥 table的column增加hide字段，用于隐藏列 [#62](https://github.com/gmfe/gm-pc/pull/62) [@bozouai](https://github.com/baozouai)
+2. 🔥 Tabs的每一项增加hide字段，用于隐藏该tab [#64](https://github.com/gmfe/gm-pc/pull/64) [@bozouai](https://github.com/baozouai)
+3. 🔥 Table增加rowSelect，支持点击行选择，demo参照[table.stories](packages/table-x/src/table/table.stories.tsx) [#61][https://github.com/gmfe/gm-pc/pull/61] [@bozouai](https://github.com/baozouai)
 
 全新库
 
