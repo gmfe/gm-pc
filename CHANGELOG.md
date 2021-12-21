@@ -9,7 +9,7 @@
 
 `2021-12-21`
 
-- 🔥 `table-x` 增加`indexTableHoc`, ,通过配置prop为`isInex`自动增加序号列。[#68](https://github.com/gmfe/gm-pc/pull/68) [@bozouai](https://github.com/baozouai)
+- 🔥 `table-x` 增加`indexTableHoc`, ,通过配置prop为`isIndex`自动增加序号列。[#68](https://github.com/gmfe/gm-pc/pull/68) [@bozouai](https://github.com/baozouai)
 ## 1.6.3
 `2021-12-10`
 1. 🔥 column加上`isKeyboard`的prop [#65](https://github.com/gmfe/gm-pc/pull/65) [@bozouai](https://github.com/baozouai)
