@@ -1,6 +1,5 @@
 name: doc
 
-# event type（此处我们选择 push，且仅当 push 到 master 分支触发）
 on:
   push:
     branches:
@@ -35,20 +34,20 @@ jobs:
           pwd
           git clone https://github.com/gmfe/gm-pc.git
           
-      # required when install gm-api
-      - name: PUB
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PUB_KEY }}
-          name: id_ed25519.pub
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+#       # required when install gm-api
+#       - name: PUB
+#         uses: shimataro/ssh-key-action@v2
+#         with:
+#           key: ${{ secrets.SSH_PUB_KEY }}
+#           name: id_ed25519.pub
+#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           
-      - name: PRIVATE
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          name: id_ed25519
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+#       - name: PRIVATE
+#         uses: shimataro/ssh-key-action@v2
+#         with:
+#           key: ${{ secrets.SSH_PRIVATE_KEY }}
+#           name: id_ed25519
+#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - run: |
           cd gm-pc
@@ -58,5 +57,4 @@ jobs:
           rm -rf .github && rm -rf .storybook && rm -rf packages && rm .gitignore
           git add --all
           git commit -m 'build docs'
-          ls
           git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f
