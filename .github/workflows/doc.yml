@@ -27,27 +27,29 @@ jobs:
           npm -v
           node -v
           yarn -v
-          git config --global user.email "gmfe4code@163.com"
-          git config --global user.name "gmfe4code"
+          # 安装gm-api必须要有ssh，gmfe4code账号没有配，暂时先用个人的
+          git config --global user.email "zhujiawei@guanmai.cn"
+          git config --global user.name "jawei"
+          git config --global url.ssh://git@code.guanmai.cn/.insteadOf https://code.guanmai.cn/
 
       - run: |
           pwd
           git clone https://github.com/gmfe/gm-pc.git
           
-#       # required when install gm-api
-#       - name: PUB
-#         uses: shimataro/ssh-key-action@v2
-#         with:
-#           key: ${{ secrets.SSH_PUB_KEY }}
-#           name: id_ed25519.pub
-#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      # required when install gm-api
+      - name: PUB
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PUB_KEY }}
+          name: id_ed25519.pub
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
           
-#       - name: PRIVATE
-#         uses: shimataro/ssh-key-action@v2
-#         with:
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           name: id_ed25519
-#           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: PRIVATE
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_ed25519
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - run: |
           cd gm-pc
@@ -57,4 +59,4 @@ jobs:
           rm -rf .github && rm -rf .storybook && rm -rf packages && rm .gitignore
           git add --all
           git commit -m 'build docs'
-          git push 'https://gmfe4code:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f
+          git push 'https://zhujiawei:${{secrets.PASSWORD}}@github.com/gmfe/gm-pc-docs.git' master:master -f
