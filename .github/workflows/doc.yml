@@ -28,9 +28,8 @@ jobs:
           npm -v
           node -v
           yarn -v
-          git config --global user.email "zhujiawei@guanmai.cn"
-          git config --global user.name "jawei"
-          git config --global url.ssh://git@code.guanmai.cn/.insteadOf https://code.guanmai.cn/
+          git config --global user.email "gmfe4code@163.com"
+          git config --global user.name "gmfe4code"
 
       - run: |
           pwd
