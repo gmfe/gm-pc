@@ -54,11 +54,12 @@ const Right: FC<PaginationProps> = ({ paging, onChange }) => {
     }
   }
 
-  const all = Math.ceil((paging.count || 0) / paging.limit)
+  const all = Math.ceil((paging.count || 1) / paging.limit)
 
   return (
     <Flex className='gm-pagination-right'>
       <InputNumber
+        disabled={all <= 1}
         precision={0}
         value={index}
         onChange={handleInput}
