@@ -13,6 +13,7 @@ interface InfoProps {
   children?: any
 }
 
+// test
 const Info: FC<InfoProps> = ({ more, children }) => {
   const listData = _.map(more, (v, i) => ({ value: i, text: v.text }))
 
