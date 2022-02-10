@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode, MouseEvent } from 'react'
+import React, { CSSProperties, ReactNode, MouseEvent, ReactElement } from 'react'
 
 interface NavExtraProps {
   /** 直接到达新建页面 */
@@ -40,6 +40,8 @@ interface NavProps extends NavExtraProps {
   selected: string
   /** 如果是选中一二级，会直接返回改分级下第三级的 item */
   onSelect(data: NavDataLevel3): void
+  /** 直接到达新建页面 */
+  onPushCreate(data: NavDataLevel3): void
   /** 控制 浮层的线上，如商品库传 merchandise */
   showActive?: string
   other?: ReactNode
@@ -53,10 +55,12 @@ interface NavItemProps extends NavExtraProps {
   data: NavData
   selected: string
   onSelect(data: NavDataLevel3): void
+  onPushCreate(data: NavDataLevel3): void
   /** onMouseMove 的回调 */
   onMouseMove(event: MouseEvent, link: string): void
   /** 控制子导航列表的显示 */
   showSub?: boolean
+  footerImage?: ReactNode
 }
 
 interface PopupProps {
