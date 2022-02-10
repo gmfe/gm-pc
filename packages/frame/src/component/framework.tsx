@@ -10,6 +10,7 @@ interface FrameworkProps {
   showMobileMenu?: boolean
   isFullScreen?: boolean
   children: ReactNode
+  className?: string
 }
 
 interface FrameworkStatic {
@@ -35,6 +36,7 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
   menu,
   rightTop,
   children,
+  className,
 }) => {
   const addOverflowClass = () => {
     let flag: any = window.document.body.dataset.overflowFlag || 0
@@ -65,9 +67,13 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
 
   return (
     <div
-      className={classNames('gm-framework', {
-        'gm-framework-mobile-menu': showMobileMenu,
-      })}
+      className={classNames(
+        'gm-framework',
+        {
+          'gm-framework-mobile-menu': showMobileMenu,
+        },
+        className
+      )}
     >
       <div className='gm-framework-inner'>
         {isFullScreen ? (
