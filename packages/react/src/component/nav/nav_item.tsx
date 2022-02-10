@@ -19,7 +19,9 @@ const NavItem: FC<NavItemProps> = ({
   selected,
   onSelect,
   onMouseMove,
+  onPushCreate,
   showSub,
+  footerImage,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [rect, setRect] = useState<DOMRect | null>(null)
@@ -47,6 +49,10 @@ const NavItem: FC<NavItemProps> = ({
     setRect(null)
   }
 
+  const handlePushCreate = (data: NavDataLevel2) => {
+    onPushCreate(data)
+  }
+
   let iconE = icon
   if ((rect || active) && iconActive) {
     iconE = iconActive
@@ -54,15 +60,22 @@ const NavItem: FC<NavItemProps> = ({
 
   return (
     <div ref={ref} className={classNames('gm-nav-one-box', { active, hover: !!rect })}>
-      <A
-        href={link}
-        className='gm-nav-one'
-        onClick={handleClick}
-        onMouseMove={(e) => onMouseMove(e, link)}
-      >
-        <span className='gm-nav-one-icon'>{iconE}</span>
-        <span className='gm-nav-one-text'>{name}</span>
-      </A>
+      {footerImage ? (
+        <A href={link} onClick={handleClick} onMouseMove={(e) => onMouseMove(e, link)}>
+          {footerImage}
+        </A>
+      ) : (
+        <A
+          href={link}
+          className='gm-nav-one'
+          onClick={handleClick}
+          onMouseMove={(e) => onMouseMove(e, link)}
+        >
+          <span className='gm-nav-one-icon'>{iconE}</span>
+          <span className='gm-nav-one-text'>{name}</span>
+        </A>
+      )}
+
       {sub && <div className='gm-nav-one-triangle' />}
       {sub && (
         <Portal>
@@ -72,6 +85,7 @@ const NavItem: FC<NavItemProps> = ({
               data={sub}
               selected={selected}
               onSelect={handleSelect}
+              onPushCreate={handlePushCreate}
             />
           )}
         </Portal>
