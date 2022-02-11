@@ -3,7 +3,7 @@ import { CSSProperties, ReactNode, MouseEvent } from 'react'
 interface NavExtraProps {
   /** 直接到达新建页面 */
   onPushCreate(data: NavDataLevel3): void
-  // 底部图片显示
+  /** 底部一级菜单显示图片 */
   footerImage?: ReactNode
 }
 

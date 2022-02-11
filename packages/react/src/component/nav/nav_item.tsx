@@ -49,10 +49,6 @@ const NavItem: FC<NavItemProps> = ({
     setRect(null)
   }
 
-  const handlePushCreate = (data: NavDataLevel2) => {
-    onPushCreate(data)
-  }
-
   let iconE = icon
   if ((rect || active) && iconActive) {
     iconE = iconActive
