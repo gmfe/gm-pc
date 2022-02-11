@@ -3,14 +3,14 @@ import { CSSProperties, ReactNode, MouseEvent } from 'react'
 interface NavExtraProps {
   /** 直接到达新建页面 */
   onPushCreate(data: NavDataLevel3): void
-  // 底部图片显示
+  /** 底部一级菜单显示图片 */
   footerImage?: ReactNode
 }
 
 interface NavDataLevel3 {
   link: string
   name: string
-  // 配置跳转到对应新建页的 提示 和 地址
+  /** 配置跳转到对应新建页的 提示 和 地址 */
   toCreate?: {
     tip: string
     href: string
@@ -45,7 +45,7 @@ interface NavProps extends NavExtraProps {
   other?: ReactNode
   className?: string
   style?: CSSProperties
-  // 底部 iot 图片 & 数据
+  /** 底部 iot 图片 & 数据 */
   footerConfig?: NavData[]
 }
 
