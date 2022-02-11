@@ -22,15 +22,18 @@ const Popup: FC<PopupProps> = ({
     }
   }, [parentRect])
 
-  // 获取不同数量二级菜单的宽度
+  /**
+   * 在 对应的 div 设置了 最大宽度 900 px
+   * @description UI 图是超过五个换行, 现在无论多少模块都在一行, 根据UI图对宽度进行处理
+   * @param number 二级菜单的个数
+   * @returns popup 的宽度
+   */
   const setPopupWidth = (number: number): string => {
+    // 只有一个的基本宽度, 根据 UI图, 一个三级路由占据的 宽度 + 左右margin
     const baseWidth = 212
-    const arr: number[] = []
-    for (let i = 1; i < 20; i++) {
-      arr.push(baseWidth + i * 172)
-    }
-    const widthArray = [baseWidth].concat(arr).map((i) => i + 'px')
-    return widthArray[number - 1]
+    // 有多个模块 半句的最大宽段, 超出 900 换行
+    const maxWidth = baseWidth + (number - 1) * 172
+    return maxWidth + 'px'
   }
 
   const handleMouseEnter: MouseEventHandler<HTMLDivElement> = (e) => {
