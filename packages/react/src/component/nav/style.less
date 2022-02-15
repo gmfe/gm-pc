@@ -1,5 +1,5 @@
 :root {
-  --gm-nav-popup-item-color: #454545;
+  --gm-nav-popup-item-color: #333;
   --gm-nav-popup-item-hover-color: #0363ff;
   --gm-nav-background-color: #282c36;
 }
@@ -21,18 +21,13 @@
   }
 
   .gm-nav-content {
+    padding-top: 16px;
     overflow-y: auto;
 
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
-  }
-
-  .gm-nav-footer-iot {
-    width: 100%;
-    height: 64px;
-    cursor: pointer;
   }
 
   .gm-nav-one {
@@ -57,7 +52,7 @@
       content: '';
       position: absolute;
       right: 20px;
-      top: 21px;
+      top: 23px;
       height: 7px;
       width: 7px;
       border: 1px solid #fff;
@@ -107,9 +102,9 @@
       .gm-nav-three {
         display: inline-block;
         padding: 8px;
-        // width: 100%;
+        width: 100%;
         font-size: 14px;
-        color: var(--gm-color-default);
+        color: #333;
         text-decoration: none;
         white-space: nowrap;
         border-radius: 2px;
@@ -159,7 +154,7 @@
     // 三角形
     .gm-nav-one-triangle {
       position: absolute;
-      top: 19px;
+      top: 21px;
       right: -1px;
       display: none;
       width: 0;
@@ -181,28 +176,29 @@
     }
 
     &.active {
-      .gm-nav-one {
-        position: relative;
-        color: #fff;
-        background: #181b23;
-        opacity: 1;
-        font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 136px;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
 
-        &::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          width: 3px;
-          background-color: #0363ff;
-        }
+      // active hack
+      .gm-nav-one {
+        width: 120px;
+        height: 34px;
+        color: #fff;
+        font-weight: 600;
+        background: #0363ff;
+        border-radius: 4px;
+        padding-left: 12px;
 
         &::after {
           content: '';
           position: absolute;
-          right: 20px;
-          top: 22px;
+          right: 12px;
+          top: 14px;
           height: 7px;
           width: 7px;
           border: 1px solid #fff;
@@ -216,6 +212,20 @@
       .gm-nav-one-triangle {
         display: block;
       }
+    }
+  }
+
+  .gm-nav-footer-iot {
+    width: 100%;
+    height: 64px;
+    cursor: pointer;
+
+    // 兼容 footImage 下的 active 样式不变化
+    .gm-nav-one-box.active {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-top: 0;
     }
   }
 }
