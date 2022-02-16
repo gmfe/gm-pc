@@ -91,7 +91,7 @@ const Nav: FC<NavProps> = ({
         ))}
         {other}
       </Flex>
-      <div className='gm-nav-footer-iot'>
+      <div className={footerConfig && footerConfig.length > 0 ? 'gm-nav-footer-iot' : ''}>
         {footerConfig?.map((item) => (
           <NavItem
             key={item.link}
