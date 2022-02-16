@@ -40,7 +40,7 @@
 
     .gm-nav-one-icon {
       margin-right: 10px;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 1;
     }
 
@@ -48,18 +48,33 @@
       font-size: 16px;
     }
 
-    &::after {
-      content: '';
+    .gm-nav-one-arrow {
       position: absolute;
-      right: 20px;
-      top: 23px;
-      height: 7px;
-      width: 7px;
-      border: 1px solid #fff;
-      opacity: 0.36;
-      border-top: none;
-      border-left: none;
-      transform: rotate(-45deg);
+      top: 25px;
+      right: 16px;
+      width: 10px;
+      color: rgba(0, 0, 0, 0.85);
+      transform: rotate(-90deg);
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background-color: #fff;
+        border-radius: 2px;
+        transform: rotate(-45deg) translateX(2.5px);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 1.5px;
+        background-color: #fff;
+        border-radius: 2px;
+        transform: rotate(45deg) translateX(-2.5px);
+      }
     }
   }
 
@@ -197,23 +212,14 @@
         border-radius: 4px;
         padding-left: 12px;
 
-        &::after {
-          content: '';
-          position: absolute;
-          right: 12px;
-          top: 14px;
-          height: 7px;
-          width: 7px;
-          border: 1px solid #fff;
-          opacity: 1;
-          border-top: none;
-          border-left: none;
-          transform: rotate(-45deg);
+        .gm-nav-one-arrow {
+          right: 8px;
+          top: 20px;
         }
       }
 
       .gm-nav-one-triangle {
-        display: block;
+        display: none;
       }
     }
   }

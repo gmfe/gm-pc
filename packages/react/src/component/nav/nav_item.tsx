@@ -69,6 +69,7 @@ const NavItem: FC<NavItemProps> = ({
         >
           <span className='gm-nav-one-icon'>{iconE}</span>
           <span className='gm-nav-one-text'>{name}</span>
+          <i className='gm-nav-one-arrow' />
         </A>
       )}
 
