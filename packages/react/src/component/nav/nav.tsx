@@ -10,10 +10,13 @@ const Nav: FC<NavProps> = ({
   data,
   selected,
   onSelect,
+  onPushCreate,
   showActive,
   other,
   className,
   style,
+  footerImage,
+  footerConfig,
   ...rest
 }) => {
   // 根据鼠标点到导航栏右边的线距离，判断移动方向
@@ -83,10 +86,25 @@ const Nav: FC<NavProps> = ({
             data={one}
             selected={selected}
             onSelect={onSelect}
+            onPushCreate={onPushCreate}
           />
         ))}
         {other}
       </Flex>
+      <div className={footerConfig && footerConfig.length > 0 ? 'gm-nav-footer-iot' : ''}>
+        {footerConfig?.map((item) => (
+          <NavItem
+            key={item.link}
+            showSub={hoverLink === item.link}
+            onMouseMove={handleMouseMove}
+            data={item}
+            selected={selected}
+            onSelect={onSelect}
+            onPushCreate={onPushCreate}
+            footerImage={footerImage}
+          />
+        ))}
+      </div>
       <div id='gmNavPopupContainer' />
     </Flex>
   )

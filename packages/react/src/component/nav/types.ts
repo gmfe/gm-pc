@@ -1,8 +1,27 @@
 import { CSSProperties, ReactNode, MouseEvent } from 'react'
 
+interface NavExtraProps {
+  /** 直接到达新建页面 */
+  onPushCreate(data: NavDataLevel3): void
+  /** 底部一级菜单显示图片 */
+  footerImage?: ReactNode
+}
+
+interface NavExtraProps {
+  /** 直接到达新建页面 */
+  onPushCreate(data: NavDataLevel3): void
+  /** 底部一级菜单显示图片 */
+  footerImage?: ReactNode
+}
+
 interface NavDataLevel3 {
   link: string
   name: string
+  /** 配置跳转到对应新建页的 提示 和 地址 */
+  toCreate?: {
+    tip: string
+    href: string
+  }
 }
 
 interface NavDataLevel2 {
@@ -20,7 +39,7 @@ interface NavData {
   sub: NavDataLevel2[]
 }
 
-interface NavProps {
+interface NavProps extends NavExtraProps {
   logo?: ReactNode
   /** 三级菜单 没有sub就没有浮层 */
   data: NavData[]
@@ -33,9 +52,11 @@ interface NavProps {
   other?: ReactNode
   className?: string
   style?: CSSProperties
+  /** 底部 iot 图片 & 数据 */
+  footerConfig?: NavData[]
 }
 
-interface NavItemProps {
+interface NavItemProps extends NavExtraProps {
   data: NavData
   selected: string
   onSelect(data: NavDataLevel3): void
@@ -50,6 +71,7 @@ interface PopupProps {
   data: NavDataLevel2[]
   selected: string
   onSelect(data: NavDataLevel3): void
+  onPushCreate(data: NavDataLevel3): void
 }
 
 type NavSingleItemData = Omit<NavData, 'sub'>
