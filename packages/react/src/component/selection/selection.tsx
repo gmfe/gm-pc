@@ -97,7 +97,7 @@ class Selection extends Component<SelectionProps> {
             ref={this._inputRef}
             // @ts-ignore
             disabled={disabled}
-            className='gm-form-control gm-selection-selected'
+            className='gm-form-control gm-selection-selected gm-text-ellipsis'
             tabIndex={0}
             onKeyDown={onKeyDown}
           >
