@@ -49,6 +49,11 @@ const NavItem: FC<NavItemProps> = ({
     setRect(null)
   }
 
+  const handlePushCreate = (data: NavDataLevel2) => {
+    onPushCreate(data)
+    setRect(null)
+  }
+
   let iconE = icon
   if ((rect || active) && iconActive) {
     iconE = iconActive
@@ -82,7 +87,7 @@ const NavItem: FC<NavItemProps> = ({
               data={sub}
               selected={selected}
               onSelect={handleSelect}
-              onPushCreate={(data) => onPushCreate(data)}
+              onPushCreate={handlePushCreate}
             />
           )}
         </Portal>
