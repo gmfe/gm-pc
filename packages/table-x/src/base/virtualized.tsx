@@ -32,6 +32,7 @@ const TableXVirtualized: FC<TableXVirtualizedProps> = ({
   onScroll,
   isTrDisable,
   isTrHighlight,
+  trHighlightClass,
 
   virtualizedHeight,
   virtualizedItemSize,
@@ -106,6 +107,7 @@ const TableXVirtualized: FC<TableXVirtualizedProps> = ({
     totalWidth,
     isTrDisable,
     isTrHighlight,
+    trHighlightClass,
   }
 
   return (
@@ -160,6 +162,7 @@ const RenderRow = memo(({ data, index, style }: RenderRowProps) => {
     keyField,
     isTrDisable,
     isTrHighlight,
+    trHighlightClass,
     totalWidth,
   } = data
   const row = rows[index]
@@ -174,6 +177,7 @@ const RenderRow = memo(({ data, index, style }: RenderRowProps) => {
       style={style}
       isTrDisable={isTrDisable}
       isTrHighlight={isTrHighlight}
+      trHighlightClass={trHighlightClass}
     />
   )
 }, areEqual)

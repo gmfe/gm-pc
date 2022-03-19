@@ -202,6 +202,23 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     return filterData
   }
 
+  private _renderEmpty = (): ReactNode => {
+    const { renderEmpty } = this.props
+
+    if (typeof renderEmpty === 'function') {
+      const result = renderEmpty(this.state.searchValue)
+      if (result !== undefined) {
+        return result
+      }
+    }
+
+    return (
+      <Flex alignCenter justifyCenter className='gm-bg gm-padding-5 gm-text-desc'>
+        {getLocale('没有数据')}
+      </Flex>
+    )
+  }
+
   private _renderList = (): ReactNode => {
     const {
       selected = [],
@@ -234,11 +251,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               <Loading size='20px' />
             </Flex>
           )}
-          {!loading && !filterData.length && (
-            <Flex alignCenter justifyCenter className='gm-bg gm-padding-5 gm-text-desc'>
-              {getLocale('没有数据')}
-            </Flex>
-          )}
+          {!loading && !filterData.length && this._renderEmpty()}
           {!loading && !!filterData.length && (
             <ListBase
               selected={selected.map((v) => v.value)}
