@@ -8,7 +8,12 @@ export interface RenderRowProps {
   data: Pick<UseTableInstanceProps<any>, 'rows' | 'prepareRow'> &
     Pick<
       TableXTrProps,
-      'SubComponent' | 'isTrDisable' | 'isTrHighlight' | 'keyField' | 'totalWidth'
+      | 'SubComponent'
+      | 'isTrDisable'
+      | 'isTrHighlight'
+      | 'trHighlightClass'
+      | 'keyField'
+      | 'totalWidth'
     >
   index?: number
   style?: CSSProperties
@@ -29,6 +34,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
     keyField,
     isTrDisable,
     isTrHighlight,
+    trHighlightClass,
     totalWidth,
   } = data
 
@@ -45,6 +51,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
         style={style}
         isTrDisable={isTrDisable}
         isTrHighlight={isTrHighlight}
+        trHighlightClass={trHighlightClass}
       />
     )
   }

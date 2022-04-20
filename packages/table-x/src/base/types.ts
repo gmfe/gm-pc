@@ -75,6 +75,14 @@ interface TableXTrProps {
   SubComponent?(row: TableXRow): ReactNode
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
+  /**
+   * 自定义高亮类名，支持字符串或函数
+   *
+   * 函数返回 falsy 值则表示使用默认类名
+   */
+  trHighlightClass?:
+    | string
+    | ((original: TableXDataItem, index: number) => void | string | null)
 }
 
 /** 对外 */
@@ -113,6 +121,14 @@ interface TableXProps<D extends object = any> {
   tableRef?: RefObject<TableInstance>
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
+  /**
+   * 自定义高亮类名，支持字符串或函数
+   *
+   * 函数返回 falsy 值则表示使用默认类名
+   */
+  trHighlightClass?:
+    | string
+    | ((original: TableXDataItem, index: number) => void | string | null)
   isTrHighlight?(original: TableXDataItem, index: number): boolean
   onScroll?(event: UIEvent<HTMLDivElement>): void
   onHeadersSort?(sorts: SortsType): void

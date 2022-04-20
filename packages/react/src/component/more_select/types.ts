@@ -38,6 +38,13 @@ interface MoreSelectCommonProps<V extends string | number = string> {
   /** 自定义popup底部渲染 */
   renderCustomizedBottom?(ref: React.RefObject<Popover>): ReactNode
 
+  /**
+   * 自定义“空状态”渲染
+   *
+   * 若函数返回 undefined 则使用默认的空状态
+   */
+  renderEmpty?(searchValue?: string): ReactNode
+
   listHeight?: string
   isGroupList?: boolean
   popoverType?: 'focus' | 'realFocus'

@@ -27,6 +27,7 @@ function BaseTable<D extends object = {}>({
   headerSortMultiple,
   tableRef,
   isTrHighlight,
+  trHighlightClass,
   isTrDisable,
   onScroll,
   SubComponent,
@@ -112,6 +113,7 @@ function BaseTable<D extends object = {}>({
     SubComponent,
     isTrDisable,
     isTrHighlight,
+    trHighlightClass,
   }
 
   // 获取虚拟列表参数 start

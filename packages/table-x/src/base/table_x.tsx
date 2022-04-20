@@ -26,6 +26,7 @@ function TableX<D extends object = {}>({
   headerSortMultiple,
   tableRef,
   isTrHighlight,
+  trHighlightClass,
   isTrDisable,
   onScroll,
   SubComponent,
@@ -75,6 +76,7 @@ function TableX<D extends object = {}>({
         style={style}
         totalWidth={totalWidth}
         isTrHighlight={isTrHighlight}
+        trHighlightClass={trHighlightClass}
         isTrDisable={isTrDisable}
       />
     )
