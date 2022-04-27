@@ -1,4 +1,11 @@
-import React, { FC, useRef, FocusEvent, KeyboardEvent } from 'react'
+import React, {
+  useRef,
+  FocusEvent,
+  KeyboardEvent,
+  useImperativeHandle,
+  forwardRef,
+  ForwardRefRenderFunction,
+} from 'react'
 import { InputNumber, InputNumberProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
@@ -6,12 +13,14 @@ import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
 import { KeyboardWrapData } from '../types'
 
-const KCInputNumber: FC<InputNumberProps> = ({
-  disabled,
-  onKeyDown,
-  onFocus,
-  ...rest
-}) => {
+interface RefFunctionProps {
+  focus(): void
+}
+
+const KCInputNumber: ForwardRefRenderFunction<RefFunctionProps, InputNumberProps> = (
+  { disabled, onKeyDown, onFocus, ...rest },
+  ref
+) => {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<InputNumber>(null)
   const { cellKey, wrapData } = useContextData()
@@ -56,6 +65,9 @@ const KCInputNumber: FC<InputNumberProps> = ({
       cellRef.current?.apiDoEnter()
     }
   }
+  useImperativeHandle(ref, () => ({
+    focus: handleFocus,
+  }))
 
   return (
     <KeyboardCell
@@ -77,4 +89,4 @@ const KCInputNumber: FC<InputNumberProps> = ({
   )
 }
 
-export default KCInputNumber
+export default forwardRef(KCInputNumber)
