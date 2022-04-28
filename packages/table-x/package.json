@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/table-x",
-  "version": "1.9.2-beta.0",
+  "version": "1.9.2-beta.2",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/keyboard": "^1.9.2-beta.0",
-    "@gm-pc/locales": "^1.9.2-beta.0",
-    "@gm-pc/react": "^1.9.2-beta.0",
+    "@gm-pc/keyboard": "^1.9.2-beta.2",
+    "@gm-pc/locales": "^1.9.2-beta.2",
+    "@gm-pc/react": "^1.9.2-beta.2",
     "@types/react-table": "~7.0.28",
     "@types/react-window": "^1.8.2",
     "@types/sortablejs": "^1.10.6",
