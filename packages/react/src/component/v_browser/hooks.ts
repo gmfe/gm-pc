@@ -6,10 +6,11 @@ import Context from './context'
 /**
  * 当前窗口在VBrowser中获得焦点后调用
  */
-export function useVWindowShow<T>(onHide: () => Function | void) {
+export function useVWindowShow<T>(cb: () => Function | void) {
   const context = useContext(Context)
   useEffect(() => {
     //
+    addEventListener('')
     return () => {
       //
     }
