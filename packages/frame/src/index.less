@@ -14,14 +14,16 @@
 
   .gm-framework-left {
     z-index: 990; // 需要少于1000大于950。1000-浮层的最小值，950-stick的值，先取990
+    width: var(--gm-framework-size-left-width);
+
     .gm-framework-left-default {
-      width: var(--gm-framework-size-left-width);
+      width: inherit;
 
       .gm-framework-left-default-inner {
         z-index: 110;
         position: fixed;
         height: 100vh;
-        width: var(--gm-framework-size-left-width);
+        width: inherit;
       }
     }
   }
