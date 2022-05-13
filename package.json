@@ -88,5 +88,8 @@
     "typescript": "^3.9.7",
     "url-loader": "^4.1.1",
     "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@types/history": "4.x"
   }
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/左右滑动/禁用@2x</title>
+    <g id="控件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="icon/左右滑动/右/禁用" stroke="#575757" stroke-width="1.5">
+            <path d="M3.8822128,6.07106781 L3.8822128,13.8710678 C3.8822128,13.9815248 3.97175585,14.0710678 4.0822128,14.0710678 L11.8822128,14.0710678 L11.8822128,14.0710678" id="路径-4" transform="translate(7.882213, 10.071068) rotate(-135.000000) translate(-7.882213, -10.071068) "></path>
+        </g>
+    </g>
+</svg>

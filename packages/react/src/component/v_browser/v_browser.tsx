@@ -1,126 +1,115 @@
 import React from 'react'
-import { noop } from 'lodash'
-import { makeAutoObservable } from 'mobx'
-import { Observer } from 'mobx-react'
-import { VBrowserContainer } from './ui'
-import Context from './context'
+import { makeAutoObservable, observable } from 'mobx'
+import VBrowserContainer from './ui/index'
+import BrowserContext from './context/browser'
+import { CacheItem, VBrowserProps, VBrowserWindow } from './types'
 
-export interface VBrowserWindow {
-  path: string
-  query?: { [key: string]: string }
-  title?: string
-  closeable?: boolean
-}
-
-export interface VBrowserProps {
-  /** 设置初始窗口列表 */
-  defaultWindows: VBrowserWindow[]
-  /** VBrowser挂载完成 */
-  onMounted?: VBrowser['onMounted']
-  /** 窗口变化事件 */
-  onChange?: VBrowser['onChange']
-  /** 窗口打开/切换前调用，返回false会阻止窗口打开/切换 */
-  auth?: VBrowser['auth']
-}
-
-export interface CacheItem {
-  vNode: JSX.Element & {
-    ref: {
-      current: HTMLDivElement | undefined
-    }
+// @ts-ignore
+const req = require.context('@/pages', true, __AUTO_ROUTER_REG__, 'lazy')
+export const pages = req.keys().map((key) => {
+  return {
+    path: key.replace(/^\./, '').replace('/index.page.tsx', ''),
+    loader: () => Promise.resolve(req(key)),
   }
-}
-
-export enum VBrowserEvent {
-  /** 更新UI */
-  UI_UPDATE = 'update',
-  /** 已更新UI */
-  UI_UPDATED = 'updated',
-  /** 页面显示 */
-  PAGE_SHOW = 'show',
-}
+})
 
 class VBrowser {
-  constructor({ defaultWindows, onChange, onMounted, auth = () => true }: VBrowserProps) {
-    this.onChange = onChange || noop
-    this.onMounted = onMounted || noop
-    this._defaultWindows = defaultWindows
+  constructor(props: VBrowserProps) {
+    this.props = props
+    this.props.restore = this.props.restore ?? true
     this.ui = (
-      <Observer>
-        {() => (
-          <Context.Provider value={this._value}>
-            <VBrowserContainer data-vbrowser='' />
-          </Context.Provider>
-        )}
-      </Observer>
+      <BrowserContext.Provider value={this}>
+        <VBrowserContainer />
+      </BrowserContext.Provider>
     )
-    this.auth = auth
-    makeAutoObservable(this, { ui: false })
+    if (this.props.restore) this._loadStash()
+    makeAutoObservable(this, { ui: false, windows: observable.shallow })
   }
 
-  // #region 窗口管理
-  _defaultWindows: VBrowserWindow[] = []
+  props!: VBrowserProps
+
   /** 窗口列表 */
   windows: VBrowserWindow[] = []
   /** 选中窗口索引 */
-  private _activeIndex = 0
+  activeIndex = 0
   /** 选中窗口 */
   get activeWindow() {
-    return this.windows[this._activeIndex]
+    return this.windows[this.activeIndex]
   }
 
-  readonly onMounted!: () => void
-  /** 跳转鉴权 */
-  auth!: (from?: VBrowserWindow, to?: VBrowserWindow) => Promise<boolean> | boolean
-  /** 窗口变化 */
-  readonly onChange!: (
-    from: VBrowserWindow,
-    to: VBrowserWindow,
-    windows: VBrowserWindow[]
-  ) => void
-
-  private _onChange(from: VBrowserWindow, to: VBrowserWindow) {
-    this.onChange(from, to, this.windows)
-    //
+  /** 切换已打开tab */
+  switchWindow(w: number | VBrowserWindow) {
+    const oldWindow = typeof w === 'number' ? this.windows[w] : w
+    if (typeof w === 'number') {
+      this.activeIndex = w
+    } else {
+      const index = this.windows.findIndex((item) => item.path === w.path)
+      if (index === -1) {
+        console.warn('switchTab error: not found', w)
+      }
+      this.activeIndex = index
+    }
+    this.props.onChange && this.props.onChange(oldWindow, this.activeWindow, this.windows)
   }
 
   /** 打开新窗口，已存在则切换 */
   async open(w: VBrowserWindow) {
-    const index = this.windows.findIndex((item) => item.path === w.path)
-    if (index === -1) {
-      this.windows.push(w)
-    }
-    this._activeIndex = this.windows.indexOf(w)
     let pass = true
+    const auth = this.props.auth || (() => true)
     // @ts-ignore
-    if (this.auth[Symbol.toStringTag] === 'AsyncFunction') {
-      pass = (await this.auth(this.activeWindow, w)) ?? false
+    if (auth[Symbol.toStringTag] === 'AsyncFunction') {
+      pass = (await auth(this.activeWindow, w)) ?? false
     } else {
-      pass = (this.auth(this.activeWindow, w) as boolean) ?? false
+      pass = (auth(this.activeWindow, w) as boolean) ?? false
     }
     if (!pass) return
-    return this._updateUI(w)
-  }
+    const index = this.windows.findIndex((item) => item.path === w.path)
+    if (index === -1) {
+      if (this.props.maxLength && this.windows.length >= this.props.maxLength) {
+        const error = new Error('超过最大允许的窗口数量')
+        this.props.onError && this.props.onError(error)
+        throw error
+      }
+      this.windows.push({ ...w, closeable: w.closeable ?? true })
+    } else {
+      Object.assign(this.windows[index], w)
+    }
 
-  /** 在当前窗口进入到新页面 */
-  async go(w: VBrowserWindow) {
-    //
-  }
+    this.props.onChange && this.props.onChange(this.activeWindow, w, this.windows)
+    this.activeIndex = this.windows.findIndex(({ path }) => path === w.path)
 
-  /** 返回上一页面 */
-  async back() {
-    //
+    this._stash()
   }
 
   /** 关闭窗口 */
-  close() {
-    delete this._cache[this.activeWindow.path]
+  close(i: number | VBrowserWindow) {
+    if (typeof i !== 'number') {
+      i = this.windows.findIndex((item) => item.path === (i as VBrowserWindow).path)
+    }
+    const originWindows = this.windows.slice()
+    const activeWindow = this.activeWindow
+    this.windows.splice(i, 1)
+    delete this._cache[i]
+    if (this.activeIndex === i) {
+      this.activeIndex = this.windows[i + 1] ? i : i - 1
+    } else {
+      this.activeIndex = this.windows.indexOf(activeWindow)
+    }
+    this._stash()
   }
-  // #endregion
 
-  // #region UI
+  scrollToActiveTab() {
+    const tabEl: HTMLDivElement | null = document.querySelector(
+      `[data-tab-id="${this.activeWindow.path}"]`
+    )
+    if (!tabEl) return
+    tabEl.scrollIntoView()
+  }
+
   /** 注意：重新渲染ui会造成窗口内组件状态丢失 */
   ui!: JSX.Element
+
+  mounted = false
 
   /** 窗口组件的缓存 */
   private _cache: { [key: string]: CacheItem } = {}
@@ -129,65 +118,24 @@ class VBrowser {
     this._cache[key] = { vNode }
   }
 
-  /** Provider value */
-  get _value() {
-    return {
-      portalContainer: document.createElement('div'),
-      cache: this._cache,
-      activeWindow: this.activeWindow || {},
-      setCache: this._setCache.bind(this),
-      onMounted: this._onMounted.bind(this),
-    }
-  }
-
-  /** 显示activeWindow */
-  private async _updateUI(w: VBrowserWindow): Promise<VBrowserWindow> {
-    const from = this.activeWindow
-    const { path } = w
-    return new Promise((resolve, reject) => {
-      dispatchEvent(
-        new CustomEvent(VBrowserEvent.UI_UPDATE, {
-          detail: w,
-        })
-      )
-      const onUpdated = (e: any) => {
-        if (e.detail !== path) return
-        removeEventListener(VBrowserEvent.UI_UPDATED, onUpdated)
-        this._onChange(from, w)
-        resolve(w)
-      }
-      addEventListener(VBrowserEvent.UI_UPDATED, onUpdated)
-      setTimeout(() => reject(new Error('打开窗口超时')), 5000)
-    })
-  }
-
   /** ui挂载成功 */
   private async _onMounted() {
-    console.log('mounted')
-    for (const w of this._defaultWindows.reverse()) {
-      await this.open(w)
-    }
+    this.mounted = true
   }
-
   // #endregion
 
-  // #region  边框管理
-  /** 是否显示边框 */
-  private _showFrame = true
-  /** 见hideFrame方法 */
-  private _autoShowFrame = true
-
-  /**
-   * 隐藏虚拟浏览器边框，只显示内容，
-   * - options.autoShowFrame: 默认为true，是否离开当前窗口后，自动恢复显示
-   */
-  hideFrame({ autoShowFrame = true }) {
-    this._autoShowFrame = autoShowFrame
-    //
+  // #region 保存/恢复已开窗口
+  private async _stash() {
+    const windows = this.windows.slice().map((item) => ({ ...item }))
+    const string = JSON.stringify(windows)
+    localStorage.setItem('vbrowser-windows', string)
   }
 
-  showFrame() {
-    this._showFrame = false
+  private _loadStash() {
+    const windows: VBrowserWindow[] = JSON.parse(
+      localStorage.getItem('vbrowser-windows') || '[]'
+    )
+    this.windows = windows
   }
   // #endregion
 }

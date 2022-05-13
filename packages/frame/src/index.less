@@ -42,7 +42,6 @@
           right: 0;
           z-index: 101;
           background: white;
-          border-bottom: 1px solid var(--gm-color-border-special);
           height: var(--gm-framework-size-top-right-height);
 
           .gm-framework-right-top-default-mobile-nav {
@@ -133,9 +132,9 @@
     .gm-framework-full-tabs-head {
       position: fixed;
       right: 0;
-      top: var(--gm-framework-size-top-right-height);
+      top: calc(var(--gm-framework-size-top-right-height) + var(--v-browser-tabs-height));
       left: var(--gm-framework-size-left-width);
-      z-index: var(--gm-framework-z-index-tabs-head);
+      z-index: 0;
       height: 40px;
       padding: 0 20px;
       background: var(--gm-color-bg-back);
