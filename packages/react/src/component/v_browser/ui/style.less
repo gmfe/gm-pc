@@ -93,16 +93,26 @@
     }
   }
 
-  .v-browser-window-wrapper {
-    //
+  &.hiding-tabs {
+    height: 100vh;
   }
 
   &-window {
-    height:
-      calc(
-        100vh - var(--gm-framework-size-top-right-height) - var(--v-browser-tabs-height)
-      );
-    overflow: auto;
-    background-color: white;
+    .v-browser-window-content {
+      height:
+        calc(
+          100vh - var(--gm-framework-size-top-right-height) - var(--v-browser-tabs-height)
+        );
+      overflow: auto;
+      background-color: white;
+    }
+
+    &.hiding-tabs {
+      height: 100vh;
+
+      .v-browser-window-content {
+        height: 100vh;
+      }
+    }
   }
 }

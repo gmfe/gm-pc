@@ -5,23 +5,16 @@ import BrowserWindowContext from '../context/browserWindow'
 
 type Noop = () => void
 /**
- * 子窗口中使用useWindowEffect来替换useEffect.
+ * 多窗口中的子页面组件因为被缓存，原来的useEffect受到影响： effect仅在子窗口创建时触发，销毁函数仅在窗口关闭时触发；子窗口失活时依然会观察deps，并触发effect；
  *
- * 功能：
- *
- * 观察deps的更新并执行fn，fn可选的返回一个方法，其会在窗口失活时被执行；
- *
- * 如果当前子窗口为失活状态，不观察deps的更新；
- *
- * 要监听窗口关闭事件，可以继续使用useEffect；
+ * 根据情况可以考虑使用useWindowEffect来替换useEffect，功能： 窗口激活时、deps更新时，触发fn执行； 窗口失活时执行fn返回的销毁函数； 如果子窗口为失活状态，不观察deps的更新；
  *
  */
-export default function useWindowEffect(fn: () => Noop | void, deps: Array<any> = []) {
+export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>) {
   const browser = useContext(BrowserContext)
   const browserWindow = useContext(BrowserWindowContext)
 
   let cb: Noop | void
-
   useEffect(() => {
     if (!browser || !browserWindow) {
       console.warn('useWindowEffect需要在VBrowser中使用, 否则将回退到useEffect')
@@ -29,14 +22,14 @@ export default function useWindowEffect(fn: () => Noop | void, deps: Array<any> 
       return cb
     }
 
-    const alive = browserWindow.path === browser.activeWindow.path
+    const alive = browserWindow.path === browser.activeWindow?.path
     if (!alive) return
 
     const dispose = reaction(
       () => browser.activeWindow,
       (cur, pre) => {
-        const activate = cur.path === browserWindow.path
-        const deactivate = pre.path === browserWindow.path
+        const activate = cur?.path === browserWindow.path
+        const deactivate = pre?.path === browserWindow.path
         if (activate) cb = fn()
         if (deactivate) cb && cb()
       }
