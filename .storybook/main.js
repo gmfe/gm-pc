@@ -2,10 +2,9 @@ const path = require('path')
 const _ = require('lodash')
 const webpack = require('webpack')
 const fs = require('fs')
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 
 const webpackFinal = (config) => {
-  const appDirectory = fs.realpathSync(process.cwd())
-
   config.resolve.extensions = ['.tsx', '.ts', '.js', '.json']
 
   _.each(config.module.rules, (rule) => {
@@ -94,6 +93,10 @@ const webpackFinal = (config) => {
       __AUTO_ROUTER_REG__: '/index\\.page\\./',
     })
   )
+
+  // VBrowser用到了这个alias，需要存在
+  config.resolve.alias['@/pages'] = path.resolve(__dirname)
+
 
   return config
 }

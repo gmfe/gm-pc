@@ -90,6 +90,7 @@
     "webpack": "^4.46.0"
   },
   "devDependencies": {
-    "@types/history": "4.x"
+    "@types/history": "4.x",
+    "tsconfig-paths-webpack-plugin": "^3.5.2"
   }
 }
