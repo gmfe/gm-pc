@@ -7,7 +7,7 @@ import { parse, stringify } from 'querystring'
 import { isEqual } from 'lodash'
 
 // @ts-ignore
-const req = require.context('/src/pages', true, __AUTO_ROUTER_REG__, 'lazy')
+const req = require.context('@/pages', true, __AUTO_ROUTER_REG__, 'lazy')
 export const pages = req.keys().map((key) => {
   return {
     path: key.replace(/^\./, '').replace('/index.page.tsx', ''),
