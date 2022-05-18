@@ -5,7 +5,7 @@ const fs = require('fs')
 
 const webpackFinal = (config) => {
   const appDirectory = fs.realpathSync(process.cwd())
-  
+
   config.resolve.extensions = ['.tsx', '.ts', '.js', '.json']
 
   _.each(config.module.rules, (rule) => {
@@ -95,9 +95,6 @@ const webpackFinal = (config) => {
     })
   )
 
-  config.resolve.alias['@'] = appDirectory + '/src/'
-
-  
   return config
 }
 
