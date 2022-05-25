@@ -55,7 +55,6 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
       if (!wrapper) return
       wrapper.scrollTo({
         left: clamp(wrapper.scrollLeft + offset, 0, wrapper.scrollWidth),
-        behavior: 'smooth',
       })
     }
     // #endregion
@@ -94,7 +93,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
             // }}
             onMouseEnter={() => {
               leftInterval.current = setInterval(() => {
-                _handleScroll(-15)
+                _handleScroll(-1)
               }, 0) as any
             }}
             onMouseLeave={() => {
@@ -171,7 +170,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
             // }}
             onMouseEnter={() => {
               rightInterval.current = setInterval(() => {
-                _handleScroll(+15)
+                _handleScroll(+1)
               }, 0) as any
             }}
             onMouseLeave={() => {

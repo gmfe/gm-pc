@@ -14,7 +14,7 @@ export interface VBrowserWindow {
 export interface VBrowserProps {
   /** 窗口数量限制 */
   maxLength?: number
-  /** 这里的路由将全屏显示,且不会呈现在Tab栏中 */
+  /**  */
   onReady?: Function
   /** 重新打开vBrowser时恢复已打开窗口, 默认为true */
   restore?: boolean
