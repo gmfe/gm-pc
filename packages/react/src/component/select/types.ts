@@ -17,6 +17,8 @@ interface SelectProps<V> {
   className?: string
   style?: CSSProperties
   placeholder?: string
+  /** 在下拉选项最后自定义内容 */
+  addonLast?: ReactNode
 }
 
 export type { SelectProps }
