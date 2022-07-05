@@ -119,7 +119,15 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
           className='gm-border-0'
           style={{ maxHeight: '250px' }}
         />
-        {addonLast}
+        {addonLast && (
+          <div
+            onClick={() => {
+              this._popupRef.current!.apiDoSetActive()
+            }}
+          >
+            {addonLast}
+          </div>
+        )}
       </>
     )
 
