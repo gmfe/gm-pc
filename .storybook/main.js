@@ -56,6 +56,7 @@ const webpackFinal = (config) => {
     enforce: 'pre',
   })
 
+
   config.module.rules.push({
     test: /\.tsx?$/,
     use: [require.resolve('babel-loader')],
@@ -127,6 +128,15 @@ module.exports = {
     //     },
     //   },
     // },
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        // sourceLoaderOptions: null,
+        transcludeMarkdown: true,
+      },
+    },
   ],
   // 写清晰一点，否则容易碰到 node_modules 里的 stories
   stories: [

@@ -1,8 +1,6 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
-import { Vbrowser } from './v_browser.tsx'
 
-<Meta title="窗口/页签" component={Vbrowser} />
-
+<Meta title='窗口/VBrowser(页签)' />
 
 # Vbrowser
 
@@ -13,6 +11,7 @@ VBrowser 即虚拟浏览器，用以实现页签形式的多窗口管理。
 实例化一个 VBrowser, 接受一下参数：
 
 ```
+import { VBrowser } from '@gm-pc/react'
 const vbrowser = new VBrowser({
   /** 窗口数量限制 */
   maxLength?: number
@@ -43,51 +42,65 @@ vbrowser 暴露了以下属性和方法，详细信息见类型声明/代码提�
 属性
 
 - `props`
+
   实例化传入的参数，可以更改；
 
 - `windows`
+
   已存的窗口列表；
 
 - `activeIndex`
+
   活动窗口索引；
 
 - `activeWindow`
+
   活动窗口；
 
 - `ui`
+
   UI 组件，放在页面要显示到的位置，只读；
 
 - `mounted`
+
   标识`ui`是否已挂载；
 
 方法
 
 - `open`
+
   打开窗口；
 
 - `close`
+
   关闭窗口；
 
 - `switchWindow`
+
   切换窗口；
 
 - `showTabs`
+
   显示窗口管理栏；
 
 - `hideTabs`
+
   隐藏窗口管理栏，可以用于进入全屏模式；
 
 - `on`
+
   事件监听, `'error' | 'change' | 'close' | 'show'`，分别对应错误、窗口切换、窗口关闭、窗口激活事件；
 
 - `off`
+
   取消监听；
 
 ## Hook 函数
 
 当前提供的 Hook 函数有：
 
-- useWindowEffect
+- `useWindowEffect`
+
   使用方式同 `useEffect`，功能： 窗口激活时、deps 更新时，触发 fn 执行； 窗口失活时执行 fn 返回的销毁函数； 如果子窗口为失活状态，不观察 deps 的更新；
 
 ## 路由跳转
