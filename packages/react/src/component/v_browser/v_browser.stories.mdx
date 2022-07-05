@@ -1,0 +1,110 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Vbrowser } from './v_browser.tsx'
+
+<Meta title="窗口/页签" component={Vbrowser} />
+
+
+# Vbrowser
+
+VBrowser 即虚拟浏览器，用以实现页签形式的多窗口管理。
+
+## 使用方式
+
+实例化一个 VBrowser, 接受一下参数：
+
+```
+const vbrowser = new VBrowser({
+  /** 窗口数量限制 */
+  maxLength?: number
+  /** 准备就绪 */
+  onReady?: Function
+  /** 重新打开vBrowser时恢复已打开窗口, 默认为true */
+  restore?: boolean
+  /** 窗口变化事件 */
+  onChange?: (
+    from: VBrowserWindow | undefined,
+    to: VBrowserWindow,
+    windows: VBrowserWindow[]
+  ) => void
+  /** 窗口打开/切换前调用，返回false会阻止窗口打开/切换 */
+  auth?: (from?: VBrowserWindow, to?: VBrowserWindow) => Promise<boolean> | boolean
+  /**
+   * 错误码参考
+   * code: 0, message: '超过最大允许的窗口数量'
+   */
+  onError?: (error: { code: number; message: string }) => void
+  /** 打开窗口如果没有传入标题，则使用此方法取标题 */
+  autoTitle?: (path: string) => string
+})
+```
+
+vbrowser 暴露了以下属性和方法，详细信息见类型声明/代码提示：
+
+属性
+
+- `props`
+  实例化传入的参数，可以更改；
+
+- `windows`
+  已存的窗口列表；
+
+- `activeIndex`
+  活动窗口索引；
+
+- `activeWindow`
+  活动窗口；
+
+- `ui`
+  UI 组件，放在页面要显示到的位置，只读；
+
+- `mounted`
+  标识`ui`是否已挂载；
+
+方法
+
+- `open`
+  打开窗口；
+
+- `close`
+  关闭窗口；
+
+- `switchWindow`
+  切换窗口；
+
+- `showTabs`
+  显示窗口管理栏；
+
+- `hideTabs`
+  隐藏窗口管理栏，可以用于进入全屏模式；
+
+- `on`
+  事件监听, `'error' | 'change' | 'close' | 'show'`，分别对应错误、窗口切换、窗口关闭、窗口激活事件；
+
+- `off`
+  取消监听；
+
+## Hook 函数
+
+当前提供的 Hook 函数有：
+
+- useWindowEffect
+  使用方式同 `useEffect`，功能： 窗口激活时、deps 更新时，触发 fn 执行； 窗口失活时执行 fn 返回的销毁函数； 如果子窗口为失活状态，不观察 deps 的更新；
+
+## 路由跳转
+
+erp 中做了向后兼容，可以继续使用原有的`history.push`等方法来跳转页面，其会被表现为打开或切换子窗口，也可以直接使用上述 vbrowser 的方法来跳转页面；
+
+需要注意的是如果想在新浏览器窗口中打开某个页面，不建议使用`window.open`方法，`window.open`打开的浏览器窗口会加载缓存恢复 VBrowser 的子窗口，
+如果其行为不符合预期可以考虑传入 target 到 vbrowser.open 来打开新浏览器窗口：
+
+```
+vbrowser.open('/order/order_manage/create' , { target: '_blank' })
+```
+
+## 注意事项
+
+VBrowser 中打开的窗口中的组件，其生命周期会和预期略有不同：
+
+多窗口中的子页面组件因为被缓存，原来的 `useEffect` 受到影响，即 effect 仅在子窗口创建时触发，销毁函数仅在子窗口关闭时触发；子窗口失活时依然会观察 deps，并触发 effect;
+
+基本大多数情况下可以继续使用 `useEffect`，某些场景下则需要改用 `useWindowEffect`，比如希望窗口激活后刷新数据。
