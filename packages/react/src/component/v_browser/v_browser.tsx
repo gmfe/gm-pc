@@ -45,7 +45,7 @@ class VBrowser implements VBrowser {
 
   props!: VBrowserProps
 
-  /** 窗口列表 */
+  /** 子窗口列表 */
   windows: VBrowserWindow[] = []
   /** 选中窗口索引 */
   activeIndex = -1
@@ -73,7 +73,7 @@ class VBrowser implements VBrowser {
     this._stash()
   }
 
-  /** 打开新子窗口,路由已打开则判断query是否相等，相等则切换，不相等则销毁重新加载，未打开则新建子窗口
+  /** 打开新子窗口, 子窗口已存在则判断query是否相等，相等则切换，不相等则隐性销毁重新加载；子窗口不存在则新建子窗口；
    *
    * target为'_blank'时，新开浏览器窗口
    */
@@ -153,7 +153,7 @@ class VBrowser implements VBrowser {
     // #endregion
   }
 
-  /** 关闭窗口 */
+  /** 关闭子窗口 */
   close(i: number | VBrowserWindow) {
     if (typeof i !== 'number') {
       i = this.windows.findIndex((item) => item.path === (i as VBrowserWindow).path)
