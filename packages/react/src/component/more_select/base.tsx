@@ -275,6 +275,13 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     )
   }
 
+  private _handleMoreSelectClick = () => {
+    const { onClick, selected } = this.props
+    if (typeof onClick === 'function') {
+      return onClick(selected)
+    }
+  }
+
   render() {
     const {
       isInPopup,
@@ -292,6 +299,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     return (
       <div
         ref={this._baseRef}
+        onClick={this._handleMoreSelectClick}
         className={classNames(
           'gm-more-select',
           {
