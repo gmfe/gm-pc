@@ -73,6 +73,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
       multiple,
       isGroupList,
       onSearch,
+      onClick,
       renderListFilter,
       ...rest
     } = this.props
@@ -109,6 +110,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     return (
       <MoreSelectBase<V>
         {...rest}
+        onClick={onClick}
         ref={this._moreSelectBaseRef}
         data={oData}
         selected={oSelected}
