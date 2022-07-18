@@ -70,6 +70,8 @@ interface MoreSelectBaseProps<V extends string | number = string>
 
   /** 搜索回调 */
   onSearch?(searchWord: string, data: MoreSelectGroupDataItem<V>[]): Promise<void> | void
+  /** 点击回调 */
+  onClick?(selected: MoreSelectSelected<V>[]): void
 
   /** 自定义搜索过滤展示的数据 */
   renderListFilter?(
@@ -94,6 +96,8 @@ interface MoreSelectProps<V extends string | number = string>
   onChange?(value: V | V[]): void
   /** 搜索回调 */
   onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void> | void
+  /** 点击回调 */
+  onClick?(selected: MoreSelectSelected<V>[]): void
 
   /** 自定义搜索过滤展示的数据 */
   renderListFilter?(data: MoreSelectData<V>, searchValue: string): MoreSelectData<V>

@@ -91,6 +91,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
       className,
       popoverType,
       isInPopup,
+      addonLast,
       ...rest
     } = this.props
     const { willActiveIndex } = this.state
@@ -108,15 +109,26 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     const selected = newData.find((v) => v.value === value)
 
     const popup = (
-      <List
-        data={newData}
-        selected={value}
-        onSelect={this._handleChange}
-        renderItem={renderItem}
-        willActiveIndex={willActiveIndex}
-        className='gm-border-0'
-        style={{ maxHeight: '250px' }}
-      />
+      <>
+        <List
+          data={newData}
+          selected={value}
+          onSelect={this._handleChange}
+          renderItem={renderItem}
+          willActiveIndex={willActiveIndex}
+          className='gm-border-0'
+          style={{ maxHeight: '250px' }}
+        />
+        {addonLast && (
+          <div
+            onClick={() => {
+              this._popupRef.current!.apiDoSetActive()
+            }}
+          >
+            {addonLast}
+          </div>
+        )}
+      </>
     )
 
     // disabledClose 了，不会触发

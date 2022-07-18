@@ -95,6 +95,9 @@ const store = observable({
   setMulSelected(selected: any) {
     this.mulSelected = selected
   },
+  clickFn(selected: any) {
+    this.selected = selected
+  },
 })
 
 export const ComMoreSelect = () => (
@@ -249,6 +252,23 @@ export const ComMoreSelectWithMultipleByValue = () => (
     />
   </div>
 )
+
+export const ComMoreSelectClick = () => (
+  <>
+    <MoreSelect<number>
+      isGroupList
+      multiple
+      data={store.dataGroup.slice()}
+      onClick={store.clickFn}
+      selected={store.selected}
+      onSelect={(selected) => {
+        store.setSelected(selected)
+      }}
+    />
+    <div>{_.map(store.selected, (item) => item.text).join('')}</div>
+  </>
+)
+
 export const ComMoreSelectWithMultipleAndOnSearch = () => {
   return (
     <MoreSelect<number>
