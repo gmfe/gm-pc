@@ -34,6 +34,8 @@ const vbrowser = new VBrowser({
   onError?: (error: { code: number; message: string }) => void
   /** 打开窗口如果没有传入标题，则使用此方法取标题 */
   autoTitle?: (path: string) => string
+  /** 不以子窗口形式展示的页面名单（视觉上）, 这些页面会子窗口形式打开，但是视觉上会隐藏子窗口标签栏，且在离开页面时自动close掉，以达到子页面不在vbrowser中的视觉效果 */
+  ignoredPath?: Array<string | RegExp>
 })
 ```
 
@@ -43,7 +45,7 @@ vbrowser 暴露了以下属性和方法，详细信息见类型声明/代码提�
 
 - `props`
 
-  实例化传入的参数，可以更改；
+  实例化传入的参数；
 
 - `windows`
 
@@ -64,10 +66,6 @@ vbrowser 暴露了以下属性和方法，详细信息见类型声明/代码提�
 - `mounted`
 
   `ui`是否已挂载；
-
-- `ignoredPath`
-
-  不以子窗口形式展示的页面名单（视觉上）, 这些页面会子窗口形式打开，但是视觉上会隐藏子窗口标签栏，且在离开页面时自动 close 掉，以达到子页面不在 vbrowser 中的视觉效果
 
 方法
 
