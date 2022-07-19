@@ -33,6 +33,8 @@ export interface VBrowserProps {
   onError?: (error: { code: number; message: string }) => void
   /** 打开窗口如果没有传入标题，则使用此方法取标题 */
   autoTitle?: (path: string) => string
+  /** 不以子窗口形式展示的页面名单（视觉上）, 这些页面会子窗口形式打开，但是视觉上会隐藏子窗口标签栏，且在离开页面时自动close掉，以达到子页面不在vbrowser中的视觉效果 */
+  ignoredPath?: Array<string | RegExp>
 }
 
 export interface CacheItem {

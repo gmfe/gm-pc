@@ -71,21 +71,27 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
         browser['_portal']
       )
     )
+    const ignored = browser.props.ignoredPath?.find((p) =>
+      typeof p === 'string'
+        ? p === browser.activeWindow?.path
+        : p.test(browser.activeWindow?.path!)
+    )
     return (
       <div
         className={classNames('v-browser tw-relative', {
-          'hiding-tabs': browser['_hidingTabs'],
+          'hiding-tabs': browser['_hidingTabs'] || ignored,
         })}
       >
         <div
           className={classNames(
             'v-browser-tabs tw-w-full tw-flex tw-items-center tw-overflow-x-auto tw-shadow',
-            { 'tw-hidden': browser['_hidingTabs'] }
+            { 'tw-hidden': browser['_hidingTabs'] || ignored }
           )}
         >
           <div
             className={classNames('v-browser-tabs-left tw-font-sm tw-px-2.5', {
               disabled: state.scrollLeft === 0,
+              'tw-hidden': state.width === state.scrollWidth,
             })}
             // onClick={(e) => {
             //   e.stopPropagation()
@@ -133,8 +139,9 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
                       {w.faviconURL && (
                         <img
                           src={w.faviconURL}
-                          className='tw-w-3.5 tw-h-3.5 tw-mr-0.5'
-                          style={{ color: '#6A6A6A' }}
+                          className={classNames('tw-w-3.5 tw-h-3.5 tw-mr-0.5', {
+                            'tw-opacity-70': i !== browser.activeIndex,
+                          })}
                         />
                       )}
                       <span>{w.title || '-'}</span>
@@ -163,6 +170,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
           <div
             className={classNames('v-browser-tabs-right tw-font-sm tw-px-2.5', {
               disabled: state.scrollWidth - state.width - state.scrollLeft === 0,
+              'tw-hidden': state.width === state.scrollWidth,
             })}
             // onClick={(e) => {
             //   e.stopPropagation()
@@ -188,7 +196,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
         <div className='v-browser-window-wrapper'>
           <div
             className={classNames('v-browser-window', className, {
-              'hiding-tabs': browser['_hidingTabs'],
+              'hiding-tabs': browser['_hidingTabs'] || ignored,
             })}
             ref={containerRef}
             {...props}

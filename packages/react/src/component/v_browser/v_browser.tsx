@@ -57,6 +57,16 @@ class VBrowser implements VBrowser {
   /** 切换已打开窗口 */
   switchWindow(w: number | VBrowserWindow) {
     const oldWindow = this.activeWindow
+
+    const ignored = this.props.ignoredPath?.find((p) =>
+      typeof p === 'string' ? p === oldWindow?.path : p.test(oldWindow?.path!)
+    )
+    if (ignored) {
+      const i = this.windows.indexOf(oldWindow!)
+      this.windows.splice(i, 1)
+      delete this._cache[i]
+    }
+
     if (typeof w === 'number') {
       this.activeIndex = w
     } else {
@@ -116,6 +126,7 @@ class VBrowser implements VBrowser {
             this.props.onError({ code: 0, message: '超过最大允许的窗口数量' })
           return
         }
+
         this.windows.push(w)
       } else {
         /**
@@ -153,7 +164,7 @@ class VBrowser implements VBrowser {
     // #endregion
   }
 
-  /** 关闭子窗口 */
+  /** 关闭子窗口  */
   close(i: number | VBrowserWindow) {
     if (typeof i !== 'number') {
       i = this.windows.findIndex((item) => item.path === (i as VBrowserWindow).path)
