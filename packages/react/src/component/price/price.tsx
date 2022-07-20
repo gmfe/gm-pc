@@ -101,6 +101,10 @@ class Price extends Component<PriceProps> {
     keepZero: boolean,
     isFenUnit: boolean
   ): string => {
+    if (isNaN(value)) {
+      console.trace('value can not be NaN')
+      return ''
+    }
     const divRatio = isFenUnit ? 100 : 1
     const result = Big(Math.abs(value)).div(divRatio).toFixed(precision)
     return keepZero ? result : `${parseFloat(result)}`
