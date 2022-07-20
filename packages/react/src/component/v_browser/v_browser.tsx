@@ -172,7 +172,7 @@ class VBrowser implements VBrowser {
     const originWindows = this.windows.slice()
     const activeWindow = this.activeWindow
     this.windows.splice(i, 1)
-    delete this._cache[i]
+    delete this._cache[originWindows[i].path]
     if (this.activeIndex === i) {
       const left = originWindows.slice(0, i).reverse()[0]
       const right = originWindows.slice(i + 1, originWindows.length)[0]

@@ -2,6 +2,7 @@
 import { get } from 'lodash'
 import { observer } from 'mobx-react'
 import React, { createRef, FC, useContext, useEffect } from 'react'
+import { NProgress } from '../../n_progress'
 import BrowserContext from '../context/browser'
 import { CacheItem } from '../types'
 import { pages } from '../v_browser'
@@ -32,21 +33,28 @@ const WindowWrapper: FC<WindowWrapperProps> = ({ path }) => {
       // 创建缓存
       const page = pages.find((p) => p.path === path)
       if (!page) throw new Error('[VBrowser] page not found: ' + path)
-      page.loader().then((module) => {
-        const Component = module.default
-        const vNode = (
-          <div
-            className='v-browser-window-content'
-            data-vbrowser-window={path}
-            ref={createRef()}
-          >
-            <Component />
-          </div>
-        ) as CacheItem['vNode']
-        browser['_setCache'](path, { vNode })
-        browser['_fire']('show', w!)
-        return null
-      })
+
+      NProgress.start()
+      page
+        .loader()
+        .then((module) => {
+          const Component = module.default
+          const vNode = (
+            <div
+              className='v-browser-window-content'
+              data-vbrowser-window={path}
+              ref={createRef()}
+            >
+              <Component />
+            </div>
+          ) as CacheItem['vNode']
+          browser['_setCache'](path, { vNode })
+          browser['_fire']('show', w!)
+          return null
+        })
+        .finally(() => {
+          NProgress.done()
+        })
       return
     }
 

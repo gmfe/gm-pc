@@ -169,7 +169,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
 
           <div
             className={classNames('v-browser-tabs-right tw-font-sm tw-px-2.5', {
-              disabled: state.scrollWidth - state.width - state.scrollLeft === 0,
+              disabled: state.scrollWidth - state.width - state.scrollLeft < 1,
               'tw-hidden': state.width === state.scrollWidth,
             })}
             // onClick={(e) => {
