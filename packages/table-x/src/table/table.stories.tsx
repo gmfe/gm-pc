@@ -427,8 +427,13 @@ export const ComKeyboard = () => {
       <Table
         isEdit
         isKeyboard
+        isVirtualized
         isBatchSelect
         id='keyboard_table_x'
+        onRowClick={(original, e) => {
+          e.stopPropagation()
+          console.log('asdasdas', original, e)
+        }}
         columns={columns}
         onAddRow={() => {
           keyboardStore.handleAddRow()

@@ -14,7 +14,7 @@ import RenderRow from './render_row'
 import LoadingAndEmpty from './loading_and_empty'
 
 import { useInitTable, afterScroll, getDiyShowMap, getVirtualizedParams } from '../utils'
-import { TableXHeaderGroup } from '../base/types'
+import { TableXHeaderGroup, TableXRow } from '../base/types'
 import { Column, TableProps } from './types'
 
 function BaseTable<D extends object = {}>({
@@ -30,6 +30,7 @@ function BaseTable<D extends object = {}>({
   trHighlightClass,
   isTrDisable,
   onScroll,
+  onRowClick,
   SubComponent,
   onHeadersSort,
   className,
@@ -114,6 +115,7 @@ function BaseTable<D extends object = {}>({
     isTrDisable,
     isTrHighlight,
     trHighlightClass,
+    onRowClick,
   }
 
   // 获取虚拟列表参数 start
@@ -128,6 +130,7 @@ function BaseTable<D extends object = {}>({
     virtualizedItemSize,
   })
   // 获取虚拟列表参数 end
+
   return (
     // @ts-ignore
     <div
