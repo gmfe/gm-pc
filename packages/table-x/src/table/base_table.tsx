@@ -67,10 +67,6 @@ function BaseTable<D extends object = {}>({
     afterScroll()
   }
 
-  // const handleRowSelect = (row: TableXRow, e: Event) => {
-  //   onRowClick && onRowClick(row.original as any, e)
-  // }
-
   const TableContainer = useMemo((): ReactElementType => {
     const Table: FC<HTMLTableElement> = ({ children, style, ...rest }) => {
       // 获取body参数 start

@@ -2,7 +2,7 @@ import React, { FC, CSSProperties, memo } from 'react'
 import { UseTableInstanceProps } from 'react-table'
 import { areEqual } from 'react-window'
 import Tr from '../base/tr'
-import { TableXTrProps, TableXRow } from '../base/types'
+import { TableXTrProps, TableXRow, TableXDataItem } from '../base/types'
 
 export interface RenderRowProps {
   data: Pick<UseTableInstanceProps<any>, 'rows' | 'prepareRow'> &
@@ -14,7 +14,7 @@ export interface RenderRowProps {
       | 'trHighlightClass'
       | 'keyField'
       | 'totalWidth'
-    > & { onRowClick?: (row: TableXRow, e: Event) => void }
+    > & { onRowClick?: (row: TableXDataItem<any>, e: Event) => void }
   index?: number
   style?: CSSProperties
   isMap?: boolean
@@ -54,7 +54,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
         isTrHighlight={isTrHighlight}
         trHighlightClass={trHighlightClass}
         onRowClick={(e: Event) => {
-          onRowClick && onRowClick(row, e)
+          onRowClick && onRowClick(row.original, e)
           // onRowClickProp && onRowClickProp(row, e)
         }}
       />

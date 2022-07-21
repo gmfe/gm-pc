@@ -11,7 +11,7 @@ import {
 } from '../hoc'
 import { BoxTableProps } from '@gm-pc/react'
 import { KeyboardTableXProps } from '@gm-pc/keyboard'
-import { TableXRow } from '../base/types'
+import { TableXDataItem } from '../base/types'
 export interface VirtualizedProps
   extends Pick<TableXVirtualizedProps, 'virtualizedItemSize' | 'virtualizedHeight'> {
   /** 用于计算虚拟列表高度，默认为limit = 12 */
@@ -59,5 +59,5 @@ export interface TableProps<D extends object = any>
   refVirtualized?: RefObject<VariableSizeList>
 
   /** 公用属性 */
-  onRowClick?(original: TableXRow, e: Event): void
+  onRowClick?(original: TableXDataItem<any>, e: Event): void
 }
