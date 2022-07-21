@@ -16,6 +16,7 @@ const Tr: FC<TableXTrProps> = ({
   isTrDisable = _.noop,
   isTrHighlight = _.noop,
   trHighlightClass = DEFAULT_HIGHLIGHT_CLASS,
+  onRowClick,
 }) => {
   const { onRowSelect } = useContext(SelectTableXContext)
   // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
@@ -24,7 +25,10 @@ const Tr: FC<TableXTrProps> = ({
     ? trHighlightClass(row.original, row.index) || DEFAULT_HIGHLIGHT_CLASS
     : trHighlightClass
   const props = {
-    onClick: () => onRowSelect(trId),
+    onClick: (e: Event) => {
+      onRowClick && onRowClick(e)
+      onRowSelect(trId)
+    },
     ...row.getRowProps(),
     style,
     className: classNames('gm-table-x-tr', {
