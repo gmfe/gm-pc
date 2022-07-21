@@ -427,6 +427,7 @@ export const ComKeyboard = () => {
       <Table
         isEdit
         isKeyboard
+        isVirtualized
         isBatchSelect
         id='keyboard_table_x'
         onRowClick={(original, e) => {

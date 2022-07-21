@@ -67,9 +67,9 @@ function BaseTable<D extends object = {}>({
     afterScroll()
   }
 
-  const handleRowSelect = (row: TableXRow, e: Event) => {
-    onRowClick && onRowClick(row.original as any, e)
-  }
+  // const handleRowSelect = (row: TableXRow, e: Event) => {
+  //   onRowClick && onRowClick(row.original as any, e)
+  // }
 
   const TableContainer = useMemo((): ReactElementType => {
     const Table: FC<HTMLTableElement> = ({ children, style, ...rest }) => {
@@ -119,6 +119,7 @@ function BaseTable<D extends object = {}>({
     isTrDisable,
     isTrHighlight,
     trHighlightClass,
+    onRowClick,
   }
 
   // 获取虚拟列表参数 start
@@ -133,6 +134,8 @@ function BaseTable<D extends object = {}>({
     virtualizedItemSize,
   })
   // 获取虚拟列表参数 end
+  console.log('isVirtualized', isVirtualized, RenderRow)
+
   return (
     // @ts-ignore
     <div
@@ -163,7 +166,7 @@ function BaseTable<D extends object = {}>({
         </VariableSizeList>
       ) : (
         <TableContainer>
-          <RenderRow onRowClick={handleRowSelect} data={renderRowData} isMap />
+          <RenderRow data={renderRowData} isMap />
         </TableContainer>
       )}
       <LoadingAndEmpty loading={loading} length={dataLength} />

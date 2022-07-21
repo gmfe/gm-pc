@@ -76,6 +76,7 @@ interface TableXTrProps {
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
   onRowClick?: (event: Event) => void
+
   /**
    * 自定义高亮类名，支持字符串或函数
    *

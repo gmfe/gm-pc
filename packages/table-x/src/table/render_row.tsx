@@ -14,19 +14,12 @@ export interface RenderRowProps {
       | 'trHighlightClass'
       | 'keyField'
       | 'totalWidth'
-    >
+    > & { onRowClick?: (row: TableXRow, e: Event) => void }
   index?: number
   style?: CSSProperties
   isMap?: boolean
-  onRowClick?: (row: TableXRow, e: Event) => void
 }
-const RenderRow: FC<RenderRowProps> = ({
-  data,
-  index,
-  style,
-  isMap,
-  onRowClick,
-}: RenderRowProps) => {
+const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowProps) => {
   if (!isMap && index === 0) {
     // @ts-ignore
     return <div style={style} />
@@ -43,9 +36,10 @@ const RenderRow: FC<RenderRowProps> = ({
     isTrHighlight,
     trHighlightClass,
     totalWidth,
+    onRowClick,
   } = data
 
-  const _renderRow = (row: TableXRow, index: number) => {
+  const _renderRow = (row: TableXRow) => {
     prepareRow(row)
     return (
       <Tr
@@ -61,6 +55,7 @@ const RenderRow: FC<RenderRowProps> = ({
         trHighlightClass={trHighlightClass}
         onRowClick={(e: Event) => {
           onRowClick && onRowClick(row, e)
+          // onRowClickProp && onRowClickProp(row, e)
         }}
       />
     )
