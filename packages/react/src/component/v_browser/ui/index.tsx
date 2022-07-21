@@ -17,8 +17,8 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
   ({ className, ...props }) => {
     const containerRef = createRef<HTMLDivElement>()
     const browser = useContext(Context)
-    const leftInterval = useRef<number>()
-    const rightInterval = useRef<number>()
+    // const leftInterval = useRef<number>()
+    // const rightInterval = useRef<number>()
 
     const [state, setState] = useState({ scrollLeft: 0, scrollWidth: 0, width: 0 })
 
@@ -55,6 +55,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
       if (!wrapper) return
       wrapper.scrollTo({
         left: clamp(wrapper.scrollLeft + offset, 0, wrapper.scrollWidth),
+        behavior: 'smooth',
       })
     }
     // #endregion
@@ -93,18 +94,18 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
               disabled: state.scrollLeft === 0,
               'tw-hidden': state.width === state.scrollWidth,
             })}
-            // onClick={(e) => {
-            //   e.stopPropagation()
-            //   _handleScroll(-150)
+            onClick={(e) => {
+              e.stopPropagation()
+              _handleScroll(-160)
+            }}
+            // onMouseEnter={() => {
+            //   leftInterval.current = setInterval(() => {
+            //     _handleScroll(-1)
+            //   }, 0) as any
             // }}
-            onMouseEnter={() => {
-              leftInterval.current = setInterval(() => {
-                _handleScroll(-1)
-              }, 0) as any
-            }}
-            onMouseLeave={() => {
-              clearInterval(leftInterval.current)
-            }}
+            // onMouseLeave={() => {
+            //   clearInterval(leftInterval.current)
+            // }}
           >
             <Left
               className={classNames(
@@ -116,53 +117,54 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
           <div className='v-browser-tabs-items tw-w-full tw-h-full tw-flex tw-items-center'>
             {browser.windows.map((w, i) => {
               return (
-                <div
-                  key={i}
-                  className={classNames(
-                    'v-browser-tabs-items-item tw-font-sm tw-px-2.5 tw-flex-shrink-0 tw-flex tw-items-center tw-truncate tw-w-min',
-                    {
-                      active: i === browser.activeIndex,
-                      border:
-                        i !== browser.windows.length - 1 &&
-                        i !== browser.activeIndex &&
-                        i !== browser.activeIndex - 1,
-                    }
-                  )}
-                  data-tab-id={w.path}
-                  onClick={() => browser.switchWindow(w)}
-                >
+                <>
                   <div
-                    className='tw-flex-grow tw-text-sm'
-                    style={{ minWidth: typeof w.title !== 'string' ? 'auto' : '100px' }}
+                    key={i}
+                    className={classNames(
+                      'v-browser-tabs-items-item tw-font-sm tw-px-2.5 tw-flex-shrink-0 tw-flex tw-items-center tw-truncate tw-w-min',
+                      {
+                        active: i === browser.activeIndex,
+                        border:
+                          i !== browser.activeIndex && i !== browser.activeIndex - 1,
+                      }
+                    )}
+                    data-tab-id={w.path}
+                    onClick={() => browser.switchWindow(w)}
                   >
-                    <div className='tw-flex tw-items-center'>
-                      {w.faviconURL && (
-                        <img
-                          src={w.faviconURL}
-                          className={classNames('tw-w-3.5 tw-h-3.5 tw-mr-0.5', {
-                            'tw-opacity-70': i !== browser.activeIndex,
-                          })}
-                        />
-                      )}
-                      <span>{w.title || '-'}</span>
+                    <div
+                      className='tw-flex-grow tw-text-sm'
+                      style={{ minWidth: typeof w.title !== 'string' ? 'auto' : '100px' }}
+                    >
+                      <div className='tw-flex tw-items-center'>
+                        {w.faviconURL && (
+                          <img
+                            src={w.faviconURL}
+                            className={classNames('tw-w-3.5 tw-h-3.5 tw-mr-0.5', {
+                              'tw-opacity-70': i !== browser.activeIndex,
+                            })}
+                          />
+                        )}
+                        <span>{w.title || '-'}</span>
+                      </div>
+                    </div>
+
+                    <div className='tw-pl-2 tw-flex tw-items-center'>
+                      <Delete
+                        className={classNames(
+                          'v-browser-tabs-items-item-close tw-w-3.5 tw-h-3.5',
+                          {
+                            'tw-hidden': !w.closeable,
+                          }
+                        )}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          browser.close(w)
+                        }}
+                      />
                     </div>
                   </div>
-
-                  <div className='tw-pl-2 tw-flex tw-items-center'>
-                    <Delete
-                      className={classNames(
-                        'v-browser-tabs-items-item-close tw-w-3.5 tw-h-3.5',
-                        {
-                          'tw-hidden': !w.closeable,
-                        }
-                      )}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        browser.close(w)
-                      }}
-                    />
-                  </div>
-                </div>
+                  <div key={`divider-${i}`} className='v-browser-tabs-items-divider' />
+                </>
               )
             })}
           </div>
@@ -172,18 +174,18 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
               disabled: state.scrollWidth - state.width - state.scrollLeft < 1,
               'tw-hidden': state.width === state.scrollWidth,
             })}
-            // onClick={(e) => {
-            //   e.stopPropagation()
-            //   _handleScroll(150)
+            onClick={(e) => {
+              e.stopPropagation()
+              _handleScroll(160)
+            }}
+            // onMouseEnter={() => {
+            //   rightInterval.current = setInterval(() => {
+            //     _handleScroll(+1)
+            //   }, 0) as any
             // }}
-            onMouseEnter={() => {
-              rightInterval.current = setInterval(() => {
-                _handleScroll(+1)
-              }, 0) as any
-            }}
-            onMouseLeave={() => {
-              clearInterval(rightInterval.current)
-            }}
+            // onMouseLeave={() => {
+            //   clearInterval(rightInterval.current)
+            // }}
           >
             <Right
               className={classNames(

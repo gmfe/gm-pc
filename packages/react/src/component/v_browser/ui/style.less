@@ -57,22 +57,16 @@
           background-color: #dae7ff !important;
         }
 
-        &.border::after {
-          content: '';
-          position: absolute;
-          right: 0;
-          width: 1px;
-          height: 24px;
-          background-color: #e8ecf3;
-        }
-
-        &:hover::after {
-          content: none;
-        }
-
         &-close:hover {
           filter: brightness(0);
         }
+      }
+
+      &-divider {
+        width: 1px;
+        height: 24px;
+        background-color: #e8ecf3;
+        flex-shrink: 0;
       }
     }
 

@@ -4,7 +4,7 @@ import VBrowserContainer from './ui/index'
 import BrowserContext from './context/browser'
 import { CacheItem, VBrowserProps, VBrowserWindow } from './types'
 import { parse, stringify } from 'querystring'
-import { isEqual } from 'lodash'
+import { debounce, isEqual } from 'lodash'
 
 // @ts-ignore
 const req = require.context('@/pages', true, __AUTO_ROUTER_REG__, 'lazy')
@@ -35,6 +35,7 @@ class VBrowser implements VBrowser {
         <VBrowserContainer />
       </BrowserContext.Provider>
     )
+    // this.open = debounce(this.open).bind(this) as typeof this.open
     this._loadStash().then(async () => {
       await when(() => this.mounted)
       this.props.onReady && this.props.onReady()
@@ -222,20 +223,14 @@ class VBrowser implements VBrowser {
   }
 
   // 恢复已开窗口
-  private _loadStash() {
-    return new Promise((resolve, reject) => {
-      const { windows = [], activeIndex = 0 } = JSON.parse(
-        sessionStorage.getItem(STORAGE_KEY) || '{}'
-      )
-      if (windows.length === 0) return resolve(undefined)
-      this.windows = windows
-      const onShow = (w: VBrowserWindow) => {
-        this.switchWindow(activeIndex)
-        this.off('show', onShow)
-        resolve(undefined)
-      }
-      this.on('show', onShow)
-    })
+  private async _loadStash() {
+    await new Promise((resolve) => setTimeout(resolve, 100))
+    const { windows = [], activeIndex = 0 } = JSON.parse(
+      sessionStorage.getItem(STORAGE_KEY) || '{}'
+    )
+    if (windows.length === 0) return
+    this.windows = windows
+    this.open(windows[activeIndex])
   }
 
   /** 隐藏标签栏  */

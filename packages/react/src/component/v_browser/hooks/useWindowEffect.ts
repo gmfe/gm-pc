@@ -1,5 +1,5 @@
 import { reaction } from 'mobx'
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useRef } from 'react'
 import BrowserContext from '../context/browser'
 import BrowserWindowContext from '../context/browserWindow'
 
@@ -12,29 +12,46 @@ type Noop = () => void
  */
 export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>) {
   const browser = useContext(BrowserContext)
+  /** hook所在窗口 */
   const browserWindow = useContext(BrowserWindowContext)
+  const cb = useRef<Noop | void>()
 
-  let cb: Noop | void
   useEffect(() => {
     if (!browser || !browserWindow) {
       console.warn('useWindowEffect需要在VBrowser中使用, 否则将回退到useEffect')
-      cb = fn()
-      return cb
+      cb.current = fn()
+      return cb.current
     }
 
     const alive = browserWindow.path === browser.activeWindow?.path
     if (!alive) return
 
+    // 激活\失活
     const dispose = reaction(
       () => browser.activeWindow,
       (cur, pre) => {
+        if (pre?.path !== browserWindow.path && cur?.path !== browserWindow.path) {
+          return
+        }
         const activate = cur?.path === browserWindow.path
         const deactivate = pre?.path === browserWindow.path
-        if (activate) cb = fn()
-        if (deactivate) cb && cb()
+        if (activate) {
+          cb.current = fn()
+          console.log('activate', browserWindow.path)
+        }
+        if (deactivate) {
+          cb.current && cb.current()
+          console.log('deactivate', browserWindow.path)
+        }
       }
+      // { fireImmediately: true }
     )
-    cb = fn()
-    return dispose
+    cb.current = fn()
+    console.log('effect', browserWindow.path, deps)
+    return () => {
+      console.log('dispose', browserWindow.path)
+      dispose()
+      cb.current && cb.current()
+    }
   }, deps)
 }
