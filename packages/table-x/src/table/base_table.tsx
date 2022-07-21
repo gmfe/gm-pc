@@ -130,7 +130,6 @@ function BaseTable<D extends object = {}>({
     virtualizedItemSize,
   })
   // 获取虚拟列表参数 end
-  console.log('isVirtualized', isVirtualized, RenderRow)
 
   return (
     // @ts-ignore
