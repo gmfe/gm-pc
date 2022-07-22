@@ -64,7 +64,7 @@ const VBrowserContainer: FC<{ className?: string }> = observer(
       createPortal(
         pages.map((page, i) => {
           return (
-            <BrowserWindowContext.Provider key={i} value={page}>
+            <BrowserWindowContext.Provider key={i} value={page.path}>
               <WindowWrapper key={i} path={page.path} />
             </BrowserWindowContext.Provider>
           )

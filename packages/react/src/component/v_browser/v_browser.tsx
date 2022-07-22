@@ -15,7 +15,7 @@ export const pages = req.keys().map((key) => {
   }
 })
 
-const STORAGE_KEY = 'vbrowser-cache'
+export const VBROWSER_STORAGE_KEY = 'gm_vbrowser-cache'
 
 type EventName = 'error' | 'change' | 'close' | 'show'
 
@@ -151,16 +151,18 @@ class VBrowser implements VBrowser {
     // #region 打开新浏览器窗口
     if (target === '_blank') {
       // 避免继承
-      const currentCache = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}')
+      const currentCache = JSON.parse(
+        sessionStorage.getItem(VBROWSER_STORAGE_KEY) || '{}'
+      )
       const newCache = { windows: [] as VBrowserWindow[], activeIndex: 0 }
       newCache.windows.push(...this.windows.filter((w) => !w.closeable))
       newCache.windows.push(w)
       newCache.activeIndex = newCache.windows.findIndex(
         (item) => item.path === (w as VBrowserWindow).path
       )
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(newCache))
+      sessionStorage.setItem(VBROWSER_STORAGE_KEY, JSON.stringify(newCache))
       window.open(`#${w.path}?${stringify(w.query || {})}`, '_blank')
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(currentCache))
+      sessionStorage.setItem(VBROWSER_STORAGE_KEY, JSON.stringify(currentCache))
     }
     // #endregion
   }
@@ -219,14 +221,14 @@ class VBrowser implements VBrowser {
       windows,
       activeIndex: this.activeIndex,
     })
-    sessionStorage.setItem(STORAGE_KEY, string)
+    sessionStorage.setItem(VBROWSER_STORAGE_KEY, string)
   }
 
   // 恢复已开窗口
   private async _loadStash() {
     await new Promise((resolve) => setTimeout(resolve, 100))
     const { windows = [], activeIndex = 0 } = JSON.parse(
-      sessionStorage.getItem(STORAGE_KEY) || '{}'
+      sessionStorage.getItem(VBROWSER_STORAGE_KEY) || '{}'
     )
     if (windows.length === 0) return
     this.windows = windows

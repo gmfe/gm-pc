@@ -76,19 +76,21 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
       )}
     >
       <div className='gm-framework-inner'>
-        {isFullScreen ? (
-          children
-        ) : (
-          <div className='gm-framework-full-height'>
-            <Flex className='gm-framework-container'>
-              {menu && <div className='gm-framework-left'>{menu}</div>}
-              <Flex flex column className='gm-framework-right'>
-                {rightTop && <div className='gm-framework-right-top'>{rightTop}</div>}
-                <div className='gm-framework-content'>{children}</div>
-              </Flex>
+        <div className='gm-framework-full-height'>
+          <Flex className='gm-framework-container'>
+            {menu && <div className='gm-framework-left'>{menu}</div>}
+            <Flex flex column className='gm-framework-right'>
+              {rightTop && <div className='gm-framework-right-top'>{rightTop}</div>}
+              <div
+                className={classNames('gm-framework-content', {
+                  'gm-framework-content-fullscreen': isFullScreen,
+                })}
+              >
+                {children}
+              </div>
             </Flex>
-          </div>
-        )}
+          </Flex>
+        </div>
       </div>
     </div>
   )

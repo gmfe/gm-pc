@@ -12,8 +12,8 @@ type Noop = () => void
  */
 export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>) {
   const browser = useContext(BrowserContext)
-  /** hook所在窗口 */
-  const browserWindow = useContext(BrowserWindowContext)
+  const path = useContext(BrowserWindowContext)
+  const browserWindow = browser.windows.find((w) => w.path === path)!
   const cb = useRef<Noop | void>()
 
   useEffect(() => {
@@ -37,21 +37,15 @@ export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>)
         const deactivate = pre?.path === browserWindow.path
         if (activate) {
           cb.current = fn()
-          console.log('activate', browserWindow.path)
+          // console.log('activate', browserWindow.path)
         }
         if (deactivate) {
           cb.current && cb.current()
-          console.log('deactivate', browserWindow.path)
+          // console.log('deactivate', browserWindow.path)
         }
       }
-      // { fireImmediately: true }
     )
     cb.current = fn()
-    console.log('effect', browserWindow.path, deps)
-    return () => {
-      console.log('dispose', browserWindow.path)
-      dispose()
-      cb.current && cb.current()
-    }
+    return dispose
   }, deps)
 }

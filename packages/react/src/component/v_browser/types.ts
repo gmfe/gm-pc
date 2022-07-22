@@ -14,7 +14,7 @@ export interface VBrowserWindow {
 export interface VBrowserProps {
   /** 窗口数量限制 */
   maxLength?: number
-  /** 准备就绪 */
+  /** 准备就绪 (读取Storage) */
   onReady?: Function
   /** 重新打开vBrowser时恢复已打开窗口, 默认为true */
   restore?: boolean
