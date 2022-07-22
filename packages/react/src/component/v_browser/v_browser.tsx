@@ -36,7 +36,7 @@ class VBrowser implements VBrowser {
       </BrowserContext.Provider>
     )
     // this.open = debounce(this.open).bind(this) as typeof this.open
-    this._loadStash().then(async () => {
+    this._restoreSession().then(async () => {
       await when(() => this.mounted)
       this.props.onReady && this.props.onReady()
       return null
@@ -81,7 +81,7 @@ class VBrowser implements VBrowser {
 
     this.props.onChange &&
       this.props.onChange(oldWindow, this.windows[this.activeIndex], this.windows)
-    this._stash()
+    this._stashSession()
   }
 
   /** 打开新子窗口, 子窗口已存在则判断query是否相等，相等则切换，不相等则隐性销毁重新加载；子窗口不存在则新建子窗口；
@@ -215,7 +215,7 @@ class VBrowser implements VBrowser {
   }
 
   // 保存已开窗口
-  private async _stash() {
+  private async _stashSession() {
     const windows = this.windows.slice().map((item) => ({ ...item }))
     const string = JSON.stringify({
       windows,
@@ -225,7 +225,7 @@ class VBrowser implements VBrowser {
   }
 
   // 恢复已开窗口
-  private async _loadStash() {
+  private async _restoreSession() {
     await new Promise((resolve) => setTimeout(resolve, 100))
     const { windows = [], activeIndex = 0 } = JSON.parse(
       sessionStorage.getItem(VBROWSER_STORAGE_KEY) || '{}'
@@ -233,6 +233,11 @@ class VBrowser implements VBrowser {
     if (windows.length === 0) return
     this.windows = windows
     this.open(windows[activeIndex])
+  }
+
+  /** 清除会话缓存，使重新进入不恢复vbrowser窗口标签栏 */
+  clearSession() {
+    sessionStorage.removeItem(VBROWSER_STORAGE_KEY)
   }
 
   /** 隐藏标签栏  */
