@@ -28,7 +28,13 @@ export interface VBrowserProps {
   auth?: (from?: VBrowserWindow, to?: VBrowserWindow) => Promise<boolean> | boolean
   /**
    * 错误码参考
+   *
    * code: 0, message: '超过最大允许的窗口数量'
+   *
+   * code: 1, message: '鉴权失败'
+   *
+   * code: 2, message: '路由不存在‘
+   *
    */
   onError?: (error: { code: number; message: string }) => void
   /** 打开窗口如果没有传入标题，则使用此方法取标题 */

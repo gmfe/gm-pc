@@ -48,11 +48,9 @@ const WindowWrapper: FC<WindowWrapperProps> = ({ path }) => {
           data-vbrowser-window={path}
           ref={createRef()}
         >
-          {/* <BrowserWindowContext.Provider value={page.path}> */}
           <Suspense fallback={loading}>
             <Component />
           </Suspense>
-          {/* </BrowserWindowContext.Provider> */}
         </div>
       ) as CacheItem['vNode']
       browser['_setCache'](path, { vNode })

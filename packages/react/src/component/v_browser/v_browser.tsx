@@ -65,7 +65,7 @@ class VBrowser implements VBrowser {
     if (ignored) {
       const i = this.windows.indexOf(oldWindow!)
       this.windows.splice(i, 1)
-      delete this._cache[i]
+      delete this._cache[oldWindow?.path!]
     }
 
     if (typeof w === 'number') {
@@ -110,9 +110,16 @@ class VBrowser implements VBrowser {
     } else {
       pass = (auth(this.activeWindow, w as VBrowserWindow) as boolean) ?? false
     }
-    if (!pass) return this._fire('error', new Error('鉴权失败'))
+    if (!pass) {
+      this._fire('error', { code: 1, message: '鉴权失败' })
+      return
+    }
     if (!pages.find((p) => p.path === (w as VBrowserWindow).path)) {
-      console.error(w.path, '页面不存在')
+      this._fire('error', {
+        code: 2,
+        message: `无法找到页面 ${w.path}, 可用路径：${pages.map((p) => p.path)}`,
+      })
+      return
     }
     // #endregion
 
@@ -123,8 +130,7 @@ class VBrowser implements VBrowser {
       )
       if (index === -1) {
         if (this.props.maxLength && this.windows.length >= this.props.maxLength) {
-          this.props.onError &&
-            this.props.onError({ code: 0, message: '超过最大允许的窗口数量' })
+          this._fire('error', { code: 0, message: '超过最大允许的窗口数量' })
           return
         }
 
@@ -271,6 +277,9 @@ class VBrowser implements VBrowser {
   private _fire(eventName: EventName, ...args: any[]) {
     const events = this._events[eventName] || []
     events.forEach((item) => item.event(...args))
+    if (eventName === 'error') {
+      this.props.onError && this.props.onError(args?.[0])
+    }
   }
 }
 
