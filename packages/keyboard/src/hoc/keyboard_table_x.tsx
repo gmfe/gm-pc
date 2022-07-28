@@ -76,17 +76,28 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
     // fix hoc 带来的问题
     let leftFixedWidth = 0
     let rightFixedWidth = 0
-    useMemo(() => {
-      columns.forEach((column: KeyboardTableXColumn) => {
-        if (column.show !== false) {
-          if (column.fixed === 'left' && column.width) {
-            leftFixedWidth += column.width as number
-          } else if (column.fixed === 'right' && column.width) {
-            rightFixedWidth += column.width as number
-          }
+    // useMemo(() => {
+    //   columns.forEach((column: KeyboardTableXColumn) => {
+    //     if (column.show !== false) {
+    //       if (column.fixed === 'left' && column.width) {
+    //         leftFixedWidth += column.width as number
+    //       } else if (column.fixed === 'right' && column.width) {
+    //         rightFixedWidth += column.width as number
+    //       }
+    //     }
+    //   })
+    // }, [columns])
+
+    // 这里缓存的话，会导致keyboardleft时滚动条无法跟随焦点走
+    columns.forEach((column: KeyboardTableXColumn) => {
+      if (column.show !== false) {
+        if (column.fixed === 'left' && column.width) {
+          leftFixedWidth += column.width as number
+        } else if (column.fixed === 'right' && column.width) {
+          rightFixedWidth += column.width as number
         }
-      })
-    }, [columns])
+      }
+    })
 
     return (
       <Wrap
