@@ -35,11 +35,14 @@ const KCInputNumber: ForwardRefRenderFunction<RefFunctionProps, InputNumberProps
   }
 
   const handleInputFocus = (event: FocusEvent<HTMLInputElement>) => {
+    event.persist()
     if (onFocus) {
       onFocus(event)
       return
     }
-    event.target && event.target.select()
+    setTimeout(() => {
+      event.target && event.target.select()
+    })
   }
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
