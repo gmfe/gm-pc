@@ -64,6 +64,13 @@ class InputNumber extends Component<InputNumberProps, InputNumberState> {
     this._inputRef.current!.focus()
   }
 
+  public apiDoSelect(): void {
+    if (this._isUnmount) {
+      return
+    }
+    this._inputRef.current!.select()
+  }
+
   private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { min, max, precision, onChange } = this.props
     const eValue = event.target.value
