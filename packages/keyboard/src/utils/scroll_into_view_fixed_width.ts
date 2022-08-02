@@ -27,8 +27,6 @@ function scrollIntoViewFixedWidth(
     scrollLeft
   ) {
     table.scrollLeft = offsetLeft + offsetWidth - (table.offsetWidth - rightFixedWidth)
-  } else {
-    table.scrollLeft = 0
   }
 
   // 只 tablex 生效
@@ -44,7 +42,7 @@ function scrollIntoViewFixedWidth(
 export default scrollIntoViewFixedWidth
 
 function getTd(dom: HTMLElement) {
-  let parentNode = dom.parentNode as HTMLElement
+  let parentNode = dom?.parentNode as HTMLElement
   while (
     !(
       parentNode.classList.contains('rt-td') ||
@@ -59,7 +57,7 @@ function getTd(dom: HTMLElement) {
 }
 
 function getTable(dom: HTMLElement) {
-  let parentNode = dom.parentNode as HTMLElement
+  let parentNode = dom?.parentNode as HTMLElement
   while (
     !(
       parentNode.classList.contains('gm-table-x') ||

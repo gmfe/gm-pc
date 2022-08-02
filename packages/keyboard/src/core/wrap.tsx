@@ -96,6 +96,8 @@ const Wrap: FC<WrapProps> = ({
           columnKeys[0],
           cellKey
         )
+        const table = document.querySelector('.gm-table-x')
+        if (table) table.scrollLeft = 0
       }, 10)
     }
   }
