@@ -9,12 +9,76 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@gm-common/hooks@^2.10.0":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/hooks/-/hooks-2.12.1.tgz#7daf1c8db19bc817ddf423c67d6c5a025afe3836"
+  integrity sha512-tV7oUnAeDsoZfoYcgk8YhfdibG598RLFku5QQMkOxErlS7nLvL+5Hc9CRMtBT+G+edommUCp6Z4FbEUlWdum3g==
+  dependencies:
+    "@gm-common/tool" "^2.12.1"
+    ts-config-gm-react-app "^3.4.5"
+
 "@gm-common/tool@^2.10.0":
   version "2.10.0"
   resolved "https://registry.npmmirror.com/@gm-common/tool/download/@gm-common/tool-2.10.0.tgz#f4f512233ff1118eff8bbdeca9762f0e65ce26bd"
   integrity sha1-9PUSIz/xEY7/i73sqXYvDmXOJr0=
   dependencies:
     lodash "^4.17.20"
+
+"@gm-common/tool@^2.12.1":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.12.1.tgz#93d6c82480065b8aad65073c5da38515fbfbaae6"
+  integrity sha512-fDYGxY4uSyADzxdNvoE+rpIb4soCOr1fJzkU240NpBbkWKRe4kBtCTL+uLcrMADkc35oMiaUrGudF0zIHL1e6g==
+  dependencies:
+    lodash "^4.17.20"
+
+"@gm-pc/keyboard@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/keyboard/-/keyboard-1.14.0.tgz#74e5a968a629892c21b34b2f6ad63fc29c960fb4"
+  integrity sha512-fDIss/ewG39SK4/McLlOWrTYituiQS9GUOHjoN7QpDb/oaXkIm/PXmCmIbPAb5HOCQNyp8NThG7s7cxF/Gr73A==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/react" "^1.14.0"
+    "@gm-pc/table-x" "^1.14.0"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+
+"@gm-pc/locales@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/locales/-/locales-1.14.0.tgz#7c0d776b73f3fb4a11edfc1ce84ce27e76961be4"
+  integrity sha512-XX7vINxNfI3ihd34q5/fFgBnwoD9kN446PXsmmnXkoYXBxiHOkkg9xkz9M0GLoR7vE1sPeHQtVbQLKnBwaNKbA==
+
+"@gm-pc/react@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/react/-/react-1.14.0.tgz#c01d184120abe978ee0bc14d3181fae590bae8bb"
+  integrity sha512-jskLRDk/rFeJqxIrnTJIAaPmB0h5gxXTNK2Hheo39iqqUDcy8s7Lq74ULBGq8OsXtbxsgfega7IURwhqK3cFFA==
+  dependencies:
+    "@gm-common/hooks" "^2.10.0"
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/locales" "^1.14.0"
+    big.js "^6.0.1"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    modern-normalize "^1.0.0"
+    moment "^2.29.1"
+    react-window "^1.8.5"
+
+"@gm-pc/table-x@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/table-x/-/table-x-1.14.0.tgz#edc4d6843d157fb5e9988957ee7f188e4f83b60d"
+  integrity sha512-Dqrkh5e3uxoMm1Cr6j7H31/r+rsMfn4y1srHDfVy3aLIEaRKQhZd1PEiwkunXX/M5rJqCkOFypRadlGN6nuUVQ==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/keyboard" "^1.14.0"
+    "@gm-pc/locales" "^1.14.0"
+    "@gm-pc/react" "^1.14.0"
+    "@types/react-table" "~7.0.28"
+    "@types/react-window" "^1.8.2"
+    "@types/sortablejs" "^1.10.6"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    react-table "7.0.0-rc.11"
+    react-window "^1.8.5"
+    sortablejs "^1.12.0"
 
 "@types/prop-types@*":
   version "15.7.3"
@@ -54,6 +118,11 @@
   resolved "https://registry.nlark.com/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
   integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
 
+big.js@^6.0.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/big.js/-/big.js-6.2.1.tgz#7205ce763efb17c2e41f26f121c420c6a7c2744f"
+  integrity sha512-bCtHMwL9LeDIozFn+oNhhFoq+yQ3BNdnsLSASUxLciOb1vgvpHsIO1dsENiGMgbb4SkP5TrzWzRiLddn8ahVOQ==
+
 classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
@@ -73,6 +142,11 @@ lodash@^4.17.19, lodash@^4.17.20:
   version "5.1.1"
   resolved "https://registry.npm.taobao.org/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
+
+modern-normalize@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
+  integrity sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==
 
 moment@^2.29.1:
   version "2.29.1"
@@ -101,3 +175,8 @@ sortablejs@^1.12.0:
   version "1.12.0"
   resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
   integrity sha1-7m1+zjWYwq8P6xVZ2YWV5eo3y9Y=
+
+ts-config-gm-react-app@^3.4.5:
+  version "3.10.7"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-3.10.7.tgz#079ee5f12d8508a810cbd348998f7bde671b79e8"
+  integrity sha512-Nri1WWW7EA5hsdoQfShLaUNrIIDN0d+fQ7m19pZC3NEO/6siJ5BbOKPKveuhtUnenlOSdXaGhb3Nc2XGs3AvRA==

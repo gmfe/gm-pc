@@ -3,7 +3,7 @@ import { Popover, Storage } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
 import { TableXColumn, TableXProps } from '../../base'
-import { generateDiyColumns, getStorageColumns } from './utils'
+import { generateDiyColumns, getSortedColumns, getStorageColumns } from './utils'
 import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
@@ -15,7 +15,12 @@ import { OperationIcon } from '../../components/operation'
 function diyTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
 ) {
-  const DiyTableX: FC<Props & DiyTableXProps> = ({ id, columns, ...rest }) => {
+  const DiyTableX: FC<Props & DiyTableXProps> = ({
+    id,
+    columns,
+    customSequence,
+    ...rest
+  }) => {
     const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
       () => generateDiyColumns(columns, (Storage.get(id) ?? []) as DiyTableXColumn[])[1]
@@ -32,6 +37,10 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
 
     const newColumns: TableXColumn[] = useMemo(() => {
       const [notDiyCols, cols] = generateDiyColumns(columns, diyCols)
+      let diyColumns = cols
+      if (customSequence) {
+        diyColumns = getSortedColumns(cols)
+      }
       return [
         {
           id: TABLE_X_DIY_ID,
@@ -47,6 +56,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
               offset={-10}
               popup={
                 <DiyTableXModal
+                  customSequence={customSequence}
                   columns={cols}
                   onSave={handleDiyColumnsSave}
                   onCancel={handleCancel}
@@ -60,7 +70,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
           ),
         },
         ...notDiyCols,
-        ...cols,
+        ...diyColumns,
       ]
     }, [columns, diyCols])
 

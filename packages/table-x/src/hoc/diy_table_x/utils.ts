@@ -47,9 +47,19 @@ function generateDiyColumns(
     // localstorage的值覆盖初始值
     if (localItem) {
       newColumn.show = localItem.show
+      newColumn.sequence = localItem.sequence
     }
     return newColumn
   })
+
+  // 按mixColumns顺序排序
+  // diyColumns.sort((a, b) => {
+  //   return (
+  //     mixColumns.findIndex((col) => col.key === a.key) -
+  //     mixColumns.findIndex((col) => col.key === b.key)
+  //   )
+  // })
+
   return [notDiyCols, diyColumns]
 }
 
@@ -72,9 +82,19 @@ function getColumnKey(column: DiyTableXColumn) {
  */
 function getStorageColumns(columns: DiyTableXColumn[]) {
   return columns.map((column) => {
-    const { key, show, diyEnable } = column
-    return { key, show, diyEnable }
+    const { key, show, diyEnable, sequence } = column
+    return { key, show, diyEnable, sequence }
   })
 }
 
-export { generateDiyColumns, getStorageColumns }
+function getSortedColumns(initialColumns: DiyTableXColumn[]) {
+  const sortedColumns = initialColumns.slice()
+  sortedColumns.sort((a, b) => {
+    if (a.sequence === undefined) return 0
+    if (b.sequence === undefined) return 0
+    return a.sequence - b.sequence
+  })
+  return sortedColumns
+}
+
+export { generateDiyColumns, getStorageColumns, getSortedColumns }

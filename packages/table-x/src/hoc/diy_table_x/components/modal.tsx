@@ -10,17 +10,28 @@ interface DiyTableXModalProps {
   columns: DiyTableXColumn[]
   onSave(columns: DiyTableXColumn[]): void
   onCancel(): void
+  /** 表头设置中启用选定字段排序 */
+  customSequence?: boolean
 }
 
-function DiyTableXModal({ columns, onSave, onCancel }: DiyTableXModalProps) {
+function DiyTableXModal({
+  columns,
+  onSave,
+  customSequence,
+  onCancel,
+}: DiyTableXModalProps) {
   const [diyCols, setDiyCols] = useState(columns)
   const [showCols, setShowCols] = useState(columns.filter((v) => v.show))
 
   const handleSave = (): void => {
-    const columns = diyCols.map((col) => ({
-      ...col,
-      show: showCols.findIndex((v) => v.key === col.key) > -1, // 大于 -1 才会显示
-    }))
+    const columns = diyCols.map((col) => {
+      const show = showCols.find((v) => v.key === col.key)
+      return {
+        ...col,
+        show: !!show,
+        sequence: show?.sequence,
+      }
+    })
     onSave(columns)
     onCancel()
   }
@@ -68,7 +79,12 @@ function DiyTableXModal({ columns, onSave, onCancel }: DiyTableXModalProps) {
           <div className='gm-react-table-x-diy-modal-title'>
             {getLocale('当前选定字段')}
           </div>
-          <List columns={showCols} onColumnsRemove={handleColumnsRemove} />
+          <List
+            columns={showCols}
+            onColumnsRemove={handleColumnsRemove}
+            onSort={(cols) => setShowCols(cols)}
+            sortable={customSequence}
+          />
         </div>
       </Flex>
       <Flex justifyEnd className='gm-padding-10'>

@@ -58,6 +58,9 @@ export interface TableProps<D extends object = any>
   /** 虚拟列表方法，scrollTo、scrollToItem、resetAfterIndex */
   refVirtualized?: RefObject<VariableSizeList>
 
+  /** 表头设置中启用选定字段排序 */
+  customSequence?: boolean
+
   /** 公用属性 */
   onRowClick?(original: TableXDataItem<any>, e: Event): void
 }

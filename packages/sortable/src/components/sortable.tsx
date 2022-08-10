@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { devWarnForHook } from '@gm-common/tool'
 import { Value, SortableDataItem, SortableProps } from './types'
 import SortableBase from './sortable_base'
+import { Options } from 'sortablejs'
 
 const Sortable = ({
   data,

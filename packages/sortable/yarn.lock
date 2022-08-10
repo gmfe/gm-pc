@@ -2,6 +2,21 @@
 # yarn lockfile v1
 
 
+"@babel/runtime@^7.0.0":
+  version "7.18.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.18.9.tgz#b4fcfce55db3d2e5e080d2490f608a3b9f407f4a"
+  integrity sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@gm-common/hooks@^2.10.0":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/hooks/-/hooks-2.12.1.tgz#7daf1c8db19bc817ddf423c67d6c5a025afe3836"
+  integrity sha512-tV7oUnAeDsoZfoYcgk8YhfdibG598RLFku5QQMkOxErlS7nLvL+5Hc9CRMtBT+G+edommUCp6Z4FbEUlWdum3g==
+  dependencies:
+    "@gm-common/tool" "^2.12.1"
+    ts-config-gm-react-app "^3.4.5"
+
 "@gm-common/tool@^2.10.0":
   version "2.10.0"
   resolved "https://registry.npmmirror.com/@gm-common/tool/download/@gm-common/tool-2.10.0.tgz#f4f512233ff1118eff8bbdeca9762f0e65ce26bd"
@@ -9,12 +24,87 @@
   dependencies:
     lodash "^4.17.20"
 
+"@gm-common/tool@^2.12.1":
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/@gm-common/tool/-/tool-2.12.1.tgz#93d6c82480065b8aad65073c5da38515fbfbaae6"
+  integrity sha512-fDYGxY4uSyADzxdNvoE+rpIb4soCOr1fJzkU240NpBbkWKRe4kBtCTL+uLcrMADkc35oMiaUrGudF0zIHL1e6g==
+  dependencies:
+    lodash "^4.17.20"
+
+"@gm-pc/locales@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/locales/-/locales-1.14.0.tgz#7c0d776b73f3fb4a11edfc1ce84ce27e76961be4"
+  integrity sha512-XX7vINxNfI3ihd34q5/fFgBnwoD9kN446PXsmmnXkoYXBxiHOkkg9xkz9M0GLoR7vE1sPeHQtVbQLKnBwaNKbA==
+
+"@gm-pc/react@^1.13.3-alpha.2":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@gm-pc/react/-/react-1.14.0.tgz#c01d184120abe978ee0bc14d3181fae590bae8bb"
+  integrity sha512-jskLRDk/rFeJqxIrnTJIAaPmB0h5gxXTNK2Hheo39iqqUDcy8s7Lq74ULBGq8OsXtbxsgfega7IURwhqK3cFFA==
+  dependencies:
+    "@gm-common/hooks" "^2.10.0"
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/locales" "^1.14.0"
+    big.js "^6.0.1"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    modern-normalize "^1.0.0"
+    moment "^2.29.1"
+    react-window "^1.8.5"
+
+"@types/sortablejs@^1.13.0":
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/@types/sortablejs/-/sortablejs-1.13.0.tgz#870223438f8f2cd81157b128a4c0261adbcaa946"
+  integrity sha512-C3064MH72iEfeGCYEGCt7FCxXoAXaMPG0QPnstcxvPmbl54erpISu06d++FY37Smja64iWy5L8wOyHHBghWbJQ==
+
+big.js@^6.0.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/big.js/-/big.js-6.2.1.tgz#7205ce763efb17c2e41f26f121c420c6a7c2744f"
+  integrity sha512-bCtHMwL9LeDIozFn+oNhhFoq+yQ3BNdnsLSASUxLciOb1vgvpHsIO1dsENiGMgbb4SkP5TrzWzRiLddn8ahVOQ==
+
+classnames@^2.2.5:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+
 lodash@^4.17.19, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
+"memoize-one@>=3.1.1 <6":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-5.2.1.tgz#8337aa3c4335581839ec01c3d594090cebe8f00e"
+  integrity sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==
+
+modern-normalize@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
+  integrity sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==
+
+moment@^2.29.1:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
+react-window@^1.8.5:
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.7.tgz#5e9fd0d23f48f432d7022cdb327219353a15f0d4"
+  integrity sha512-JHEZbPXBpKMmoNO1bNhoXOOLg/ujhL/BU4IqVU9r8eQPcy5KQnGHIHDRkJ0ns9IM5+Aq5LNwt3j8t3tIrePQzA==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    memoize-one ">=3.1.1 <6"
+
+regenerator-runtime@^0.13.4:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
+
 sortablejs@^1.12.0:
   version "1.12.0"
   resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
   integrity sha1-7m1+zjWYwq8P6xVZ2YWV5eo3y9Y=
+
+ts-config-gm-react-app@^3.4.5:
+  version "3.10.7"
+  resolved "https://registry.yarnpkg.com/ts-config-gm-react-app/-/ts-config-gm-react-app-3.10.7.tgz#079ee5f12d8508a810cbd348998f7bde671b79e8"
+  integrity sha512-Nri1WWW7EA5hsdoQfShLaUNrIIDN0d+fQ7m19pZC3NEO/6siJ5BbOKPKveuhtUnenlOSdXaGhb3Nc2XGs3AvRA==

@@ -46,7 +46,7 @@
           .gm-table-x-cell-full-item {
             padding: 8px;
             border-bottom: 1px solid var(--gm-color-border);
-            
+
             &:last-child {
               border-bottom: 0;
             }
@@ -539,16 +539,9 @@
         user-select: none;
         padding: 5px 10px;
 
-        &::before {
-          content: '\2022'; //圆点
-          font-size: 16px;
-          margin-right: 2px;
-        }
-
         .gm-react-table-x-diy-modal-list-li-remove {
           position: absolute;
-          top: 10px;
-          right: 0px;
+          right: 10px;
           width: 14px;
           height: 14px;
         }
@@ -560,6 +553,10 @@
 
       .gm-react-table-x-diy-modal-list-li:hover {
         background: #d7e8fc;
+      }
+
+      .gm-react-table-x-diy-modal-list-li:active {
+        background: none;
       }
     }
   }

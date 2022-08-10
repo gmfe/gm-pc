@@ -11,6 +11,8 @@ type DiyTableXColumn = TableXColumn & {
    * DiyTableX 中的 show 代表的是默认是否展示
    */
   show?: boolean
+  /** 字段顺序排序支持 */
+  sequence?: number
 }
 
 interface DiyTableXProps {
@@ -19,6 +21,9 @@ interface DiyTableXProps {
   // /** 分组排序 */
   // diyGroupSorting: string[]
   columns: DiyTableXColumn[]
+
+  /** 表头设置中启用选定字段排序 */
+  customSequence?: boolean
 }
 
 export type { DiyTableXColumn, DiyTableXProps }
