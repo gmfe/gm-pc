@@ -90,9 +90,7 @@ function getStorageColumns(columns: DiyTableXColumn[]) {
 function getSortedColumns(initialColumns: DiyTableXColumn[]) {
   const sortedColumns = initialColumns.slice()
   sortedColumns.sort((a, b) => {
-    if (a.sequence === undefined) return 0
-    if (b.sequence === undefined) return 0
-    return a.sequence - b.sequence
+    return (a.sequence ?? sortedColumns.length) - (b.sequence ?? sortedColumns.length)
   })
   return sortedColumns
 }
