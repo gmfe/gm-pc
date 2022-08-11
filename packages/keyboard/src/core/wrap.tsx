@@ -138,7 +138,7 @@ const Wrap: FC<WrapProps> = ({
         (handleDirection as any) as EventListener
       )
     }
-  }, [dataLength, columnKeys.length])
+  }, [dataLength, columnKeys.join('')])
 
   // 处理 Enter，依赖 dataLength 的变动
   useEffect(() => {
@@ -195,7 +195,7 @@ const Wrap: FC<WrapProps> = ({
         (handleEnter as any) as EventListener
       )
     }
-  }, [dataLength, columnKeys.length])
+  }, [dataLength, columnKeys.join('')])
 
   // 处理 Tab 键
   useEffect(() => {
@@ -238,7 +238,8 @@ const Wrap: FC<WrapProps> = ({
         (handleTab as any) as EventListener
       )
     }
-  }, [dataLength, columnKeys.length])
+  }, [dataLength, columnKeys.join('')])
+
   return (
     <WrapContext.Provider value={JSON.stringify({ id, fixedWidths })}>
       {children}

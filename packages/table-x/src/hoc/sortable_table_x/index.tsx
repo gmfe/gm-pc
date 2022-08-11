@@ -16,6 +16,7 @@ function sortableTableXHOC(Table: ComponentType<TableXPropsType>) {
     data,
     onSortChange,
     keyField = 'value',
+    columns,
     ...rest
   }) => {
     id = id ?? `id${+new Date()}${String(Math.random()).slice(2)}`
@@ -45,7 +46,7 @@ function sortableTableXHOC(Table: ComponentType<TableXPropsType>) {
       }
     }, [data])
 
-    return <Table {...rest} id={id} data={data} keyField={keyField} />
+    return <Table {...rest} id={id} columns={columns} data={data} keyField={keyField} />
   }
   return SortableTableX
 }
