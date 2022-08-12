@@ -10,7 +10,7 @@ type Noop = () => void
  * 根据情况可以考虑使用useWindowEffect来替换useEffect，功能： 窗口激活时、deps更新时，触发fn执行； 窗口失活时执行fn返回的销毁函数； 如果子窗口为失活状态，不观察deps的更新；
  *
  */
-export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>) {
+export default function useWindowEffect(fn: () => Noop | void, deps: Array<any> = []) {
   const browser = useContext(BrowserContext)
   /** hook所在窗口 */
   const browserWindow = useContext(BrowserWindowContext)
@@ -37,19 +37,15 @@ export default function useWindowEffect(fn: () => Noop | void, deps: Array<any>)
         const deactivate = pre?.path === browserWindow.path
         if (activate) {
           cb.current = fn()
-          console.log('activate', browserWindow.path)
         }
         if (deactivate) {
           cb.current && cb.current()
-          console.log('deactivate', browserWindow.path)
         }
       }
       // { fireImmediately: true }
     )
     cb.current = fn()
-    console.log('effect', browserWindow.path, deps)
     return () => {
-      console.log('dispose', browserWindow.path)
       dispose()
       cb.current && cb.current()
     }

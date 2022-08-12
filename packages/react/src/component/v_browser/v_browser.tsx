@@ -55,6 +55,12 @@ class VBrowser implements VBrowser {
     return this.windows[this.activeIndex] as VBrowserWindow | undefined
   }
 
+  private _histories: VBrowserWindow[] = []
+  /** 窗口打开/切换记录，最多10, 不包含当前 */
+  get histories() {
+    return this._histories
+  }
+
   /** 切换已打开窗口 */
   switchWindow(w: number | VBrowserWindow) {
     const oldWindow = this.activeWindow
@@ -79,6 +85,9 @@ class VBrowser implements VBrowser {
     }
     setTimeout(() => this._scrollToActiveTab(), 100)
 
+    if (oldWindow) {
+      this._histories = [...[...this._histories, oldWindow].slice(-10)]
+    }
     this.props.onChange &&
       this.props.onChange(oldWindow, this.windows[this.activeIndex], this.windows)
     this._stash()
@@ -165,8 +174,11 @@ class VBrowser implements VBrowser {
     // #endregion
   }
 
-  /** 关闭子窗口  */
-  close(i: number | VBrowserWindow) {
+  /** 关闭子窗口, 不指定则关闭当前窗口  */
+  close(i?: number | VBrowserWindow) {
+    if (i === undefined) {
+      i = this.activeIndex
+    }
     if (typeof i !== 'number') {
       i = this.windows.findIndex((item) => item.path === (i as VBrowserWindow).path)
     }
@@ -231,6 +243,11 @@ class VBrowser implements VBrowser {
     if (windows.length === 0) return
     this.windows = windows
     this.open(windows[activeIndex])
+  }
+
+  /** 清除后重新进入无法恢复已开窗口 */
+  deleteStash() {
+    sessionStorage.removeItem(STORAGE_KEY)
   }
 
   /** 隐藏标签栏  */
