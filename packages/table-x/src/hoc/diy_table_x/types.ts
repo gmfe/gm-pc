@@ -22,7 +22,7 @@ interface DiyTableXProps {
   // diyGroupSorting: string[]
   columns: DiyTableXColumn[]
 
-  /** 表头设置中启用选定字段排序 */
+  /** 表头设置中启用选定字段排序, 其中fixed的字段不可排序 */
   customSequence?: boolean
 }
 

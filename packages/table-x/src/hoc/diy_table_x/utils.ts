@@ -89,10 +89,21 @@ function getStorageColumns(columns: DiyTableXColumn[]) {
 
 function getSortedColumns(initialColumns: DiyTableXColumn[]) {
   const sortedColumns = initialColumns.slice()
-  sortedColumns.sort((a, b) => {
-    return (a.sequence ?? sortedColumns.length) - (b.sequence ?? sortedColumns.length)
+  const left = sortedColumns.filter((column) => column.fixed === 'left')
+  const normal = sortedColumns.filter(
+    (column) => column.fixed !== 'left' && column.fixed !== 'right'
+  )
+  const right = sortedColumns.filter((column) => column.fixed === 'right')
+  left.sort((a, b) => {
+    return (a.sequence ?? left.length) - (b.sequence ?? left.length)
   })
-  return sortedColumns
+  normal.sort((a, b) => {
+    return (a.sequence ?? normal.length) - (b.sequence ?? normal.length)
+  })
+  right.sort((a, b) => {
+    return (a.sequence ?? right.length) - (b.sequence ?? right.length)
+  })
+  return [...left, ...normal, ...right]
 }
 
 export { generateDiyColumns, getStorageColumns, getSortedColumns }

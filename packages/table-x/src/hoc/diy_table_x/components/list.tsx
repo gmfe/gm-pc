@@ -44,14 +44,14 @@ function List({ columns, onColumnsRemove, onSort, sortable }: ListProps) {
         }}
         disabled={!sortable}
         renderItem={(item, index) => {
-          const { diyItemText, Header, key, diyEnable } = sortedColumns[index]
+          const { diyItemText, Header, key, diyEnable, fixed } = sortedColumns[index]
           const text = diyItemText ?? Header
           return (
             <li
               className='gm-react-table-x-diy-modal-list-li tw-cursor-default'
               key={index}
             >
-              {sortable ? (
+              {sortable && !fixed ? (
                 <SVGDragable className='tw-cursor-move tw-mr-1' />
               ) : (
                 <span className='tw-text-gray-300 tw-mr-1'>•</span>
