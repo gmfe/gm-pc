@@ -24,11 +24,21 @@ export interface AutoCompleteOption {
 type InputProps = InputHTMLAttributes<HTMLInputElement>
 
 export interface AutoCompleteProps extends Omit<InputProps, 'value' | 'onChange'> {
+  /** input value */
   value?: string
+  /** 填充文本列表 */
   options?: AutoCompleteOption[]
-  popoverClassName?: string
-  popoverStyle?: CSSProperties
+  /** 自定义 options 外层容器类名 */
+  optionsWrapClassName?: string
+  /** 自定义 options 外层容器行内样式 */
+  optionsWrapStyle?: CSSProperties
+  /** 自定义 option 渲染 */
   renderOption?: (value: AutoCompleteOption, index: number) => ReactNode
+  /** 在 options 前追加内容 */
+  addonOptionsBefore?: () => ReactNode
+  /** 在 options 后追加内容 */
+  addonOptionsAfter?: () => ReactNode
+  /** input onChange 触发、点击 option 时触发、键盘选择 option 并回车时触发 */
   onChange?: (value: string) => void
 }
 
@@ -43,21 +53,32 @@ const preventDefault = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
   e.preventDefault()
 }
 
+const LIST_ITEM_PROPS: React.HTMLAttributes<HTMLDivElement> = {
+  onPointerDown: preventDefault,
+  onMouseDown: preventDefault,
+  onClick: preventDefault,
+}
+
+const listItemProps = () => LIST_ITEM_PROPS
+
 const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref) => {
   const {
     value,
     options: externalOptions,
-    popoverClassName,
-    popoverStyle,
+    optionsWrapClassName,
+    optionsWrapStyle,
     onChange,
     onKeyDown,
     onBlur,
     renderOption,
+    addonOptionsAfter,
+    addonOptionsBefore,
     ...rest
   } = props
 
   const [willActiveIndex, setWillActiveIndex] = useState(0)
   const popoverNode = useRef<Popover | null>(null)
+  const popoverVisible = useRef(false)
   const inputNode = useRef<HTMLInputElement | null>(null)
 
   const triggerPopover = (value: boolean) => {
@@ -76,6 +97,10 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
   }, [value, options])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!popoverVisible.current) {
+      onKeyDown && onKeyDown(event)
+      return
+    }
     if (event.key === 'Enter') {
       onChange && onChange(options[willActiveIndex].value)
       triggerPopover(false)
@@ -132,25 +157,29 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
     <Popover
       ref={popoverNode}
       type='click'
+      disabled={options.length === 0}
+      onVisibleChange={(visible) => {
+        popoverVisible.current = visible
+      }}
       popup={
-        <List
-          data={options}
-          selected={value}
-          onSelect={(val) => {
-            onChange && onChange(val as string)
-            triggerPopover(false)
-            inputNode.current && inputNode.current.focus()
-          }}
-          willActiveIndex={willActiveIndex}
-          className={classNames('gm-border-0', popoverClassName)}
-          renderItem={renderItem}
-          style={popoverStyle}
-          getItemProps={() => ({
-            onPointerDown: preventDefault,
-            onMouseDown: preventDefault,
-            onClick: preventDefault,
-          })}
-        />
+        <>
+          {addonOptionsBefore && <div {...LIST_ITEM_PROPS}>{addonOptionsBefore()}</div>}
+          <List
+            data={options}
+            selected={value}
+            onSelect={(val) => {
+              onChange && onChange(val as string)
+              triggerPopover(false)
+              inputNode.current && inputNode.current.focus()
+            }}
+            willActiveIndex={willActiveIndex}
+            className={classNames('gm-border-0', optionsWrapClassName)}
+            renderItem={renderItem}
+            style={{ maxHeight: 250, ...optionsWrapStyle }}
+            getItemProps={listItemProps}
+          />
+          {addonOptionsAfter && <div {...LIST_ITEM_PROPS}>{addonOptionsAfter()}</div>}
+        </>
       }
     >
       <Input
