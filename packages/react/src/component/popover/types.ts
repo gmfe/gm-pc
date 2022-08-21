@@ -19,6 +19,7 @@ interface PopoverProps {
   predictingHeight?: number
   className?: string
   style?: CSSProperties
+  onVisibleChange?: (value: boolean) => void
 }
 
 export type { Popup, PopoverTrigger, PopoverProps }

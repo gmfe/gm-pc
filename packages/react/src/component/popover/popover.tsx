@@ -105,6 +105,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
     if (this._isUnmounted) {
       return
     }
+    const { onVisibleChange } = this.props
     if (active) {
       // eslint-disable-next-line react/no-find-dom-node
       const dom = findDOMNode(this) as HTMLElement
@@ -116,6 +117,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
         width: dom.offsetWidth,
       }
     }
+    onVisibleChange && onVisibleChange(active)
     this.setState({ active })
   }
 

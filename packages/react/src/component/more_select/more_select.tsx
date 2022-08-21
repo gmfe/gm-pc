@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef, ChangeEvent } from 'react'
 import _ from 'lodash'
 import { MoreSelectDataItem, MoreSelectGroupDataItem, MoreSelectProps } from './types'
 import MoreSelectBase from './base'
@@ -34,7 +34,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     onChange(value)
   }
 
-  _handleSearch = (searchWord: string, data: MoreSelectGroupDataItem<V>[]) => {
+  public _handleSearch = (searchWord?: string, data: MoreSelectGroupDataItem<V>[]) => {
     const { onSearch, isGroupList } = this.props
     if (!onSearch) {
       return
@@ -49,6 +49,16 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     }
 
     return onSearch(searchWord, oData)
+  }
+
+  public _handleInitSearch = (q?: string) => {
+    // eslint-disable-next-line no-unused-expressions
+    this._moreSelectBaseRef?.current?._handleChange(
+      {
+        target: { value: q },
+      } as ChangeEvent<HTMLInputElement>,
+      true
+    )
   }
 
   _renderListFilter = (data: MoreSelectGroupDataItem<V>[], searchValue: string) => {
