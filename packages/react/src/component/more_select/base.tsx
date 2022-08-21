@@ -123,7 +123,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     }
   }
 
-  private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  public _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const searchValue = event.target.value
     this.setState({ searchValue })
     this._debounceDoSearch(searchValue)

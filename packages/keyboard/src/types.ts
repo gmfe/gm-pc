@@ -65,6 +65,11 @@ interface WrapProps {
   }
 }
 
+type MoreSelectRef = {
+  /**  默认搜索 */
+  handleInitSearch: (q?: string) => void
+}
+
 export type {
   KeyboardCellProps,
   WrapProps,
@@ -73,4 +78,5 @@ export type {
   KeyboardCustomEvent,
   KeyboardDirection,
   KeyboardWrapData,
+  MoreSelectRef,
 }

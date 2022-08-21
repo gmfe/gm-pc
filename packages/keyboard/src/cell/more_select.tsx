@@ -1,15 +1,24 @@
-import React, { useRef, KeyboardEvent } from 'react'
+import React, { useRef, KeyboardEvent, forwardRef, useImperativeHandle } from 'react'
 import { MoreSelect, MoreSelectProps } from '@gm-pc/react'
 import { findDOMNode } from 'react-dom'
 
 import KeyboardCell from '../core/cell'
 import { isInputUnBoundary, scrollIntoViewFixedWidth, useContextData } from '../utils'
-import { KeyboardWrapData } from '../types'
+import { KeyboardWrapData, MoreSelectRef } from '../types'
 
-function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
+function KCMoreSelect<V>(
+  { disabled, onKeyDown, ...rest }: MoreSelectProps<V>,
+  ref: React.ForwardedRef<MoreSelectRef>
+) {
   const cellRef = useRef<KeyboardCell>(null)
   const targetRef = useRef<MoreSelect>(null)
   const { wrapData, cellKey } = useContextData()
+
+  useImperativeHandle(ref, () => {
+    return {
+      handleInitSearch,
+    }
+  })
 
   const handleFocus = () => {
     // eslint-disable-next-line
@@ -45,6 +54,11 @@ function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
     }
   }
 
+  const handleInitSearch = (q?: string) => {
+    // eslint-disable-next-line no-unused-expressions
+    targetRef.current?._handleInitSearch(q)
+  }
+
   return (
     <KeyboardCell
       ref={cellRef}
@@ -66,4 +80,4 @@ function KCMoreSelect<V>({ disabled, onKeyDown, ...rest }: MoreSelectProps<V>) {
   )
 }
 
-export default KCMoreSelect
+export default forwardRef(KCMoreSelect)
