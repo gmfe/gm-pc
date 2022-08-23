@@ -113,26 +113,15 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
       return
     }
     let index = willActiveIndex
-    if (event.key === 'ArrowUp' && index === 0) {
-      event.preventDefault()
-      onKeyDown && onKeyDown(event)
-      return
-    }
-    if (event.key === 'ArrowDown' && index === options.length - 1) {
-      event.preventDefault()
-      onKeyDown && onKeyDown(event)
-      return
-    }
-    event.preventDefault()
     if (event.key === 'ArrowUp') {
-      index -= 1
+      index--
     } else if (event.key === 'ArrowDown') {
-      index += 1
+      index++
     }
     if (index < 0) {
-      index = 0
-    } else if (index > options.length - 1) {
       index = options.length - 1
+    } else if (index > options.length - 1) {
+      index = 0
     }
     setWillActiveIndex(index)
   }
