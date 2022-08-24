@@ -82,6 +82,7 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
   const inputNode = useRef<HTMLInputElement | null>(null)
 
   const triggerPopover = (value: boolean) => {
+    if (value === true && options.length <= 0) return
     popoverNode.current && popoverNode.current.apiDoSetActive(value)
   }
 
@@ -97,13 +98,21 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
   }, [value, options])
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!popoverVisible.current) {
+    if (event.key === 'Enter') {
+      triggerPopover(false)
+      if (willActiveIndex >= 0) {
+        const val = options[willActiveIndex]?.value
+        if (!_.isNil(val) && value !== val) {
+          onChange && onChange(val)
+          return
+        }
+      }
       onKeyDown && onKeyDown(event)
       return
     }
-    if (event.key === 'Enter') {
-      onChange && onChange(options[willActiveIndex].value)
-      triggerPopover(false)
+    if (!popoverVisible.current) {
+      onKeyDown && onKeyDown(event)
+      return
     }
     if (event.key === 'Escape') {
       triggerPopover(false)
@@ -177,9 +186,7 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
         value={value}
         onChange={(e) => {
           const val = e.target.value
-          if (val.length === 0) {
-            triggerPopover(true)
-          }
+          triggerPopover(val.length === 0)
           onChange && onChange(val)
         }}
         onBlur={(e) => {
