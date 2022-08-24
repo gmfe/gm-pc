@@ -99,11 +99,15 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      triggerPopover(false)
       if (willActiveIndex >= 0) {
         const val = options[willActiveIndex]?.value
         if (!_.isNil(val) && value !== val) {
           onChange && onChange(val)
+          triggerPopover(false)
+          return
+        }
+        if (popoverVisible.current) {
+          triggerPopover(false)
           return
         }
       }
