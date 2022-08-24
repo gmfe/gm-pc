@@ -31,7 +31,7 @@ const KCInputNumber: ForwardRefRenderFunction<RefFunctionProps, InputNumberProps
 
   const handleFocus = () => {
     // eslint-disable-next-line
-    targetRef.current?.apiDoSelect()
+    targetRef.current?.apiDoFocus()
   }
 
   const handleInputFocus = (event: FocusEvent<HTMLInputElement>) => {
