@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react'
 import { DiyTableXColumn } from '../types'
 import SVGRemove from '../../../svg/remove.svg'
 import SVGDragable from '../../../svg/dragable.svg'
-import { Sortable, SortableBase, SortableDataItem } from '../../../../../sortable/src'
+import { Sortable, SortableDataItem } from '@gm-pc/sortable'
 import { getSortedColumns } from '../utils'
 interface ListProps {
   columns: DiyTableXColumn[]
