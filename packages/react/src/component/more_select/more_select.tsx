@@ -53,9 +53,12 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
 
   public _handleInitSearch = (q?: string) => {
     // eslint-disable-next-line no-unused-expressions
-    this._moreSelectBaseRef?.current?._handleChange({
-      target: { value: q },
-    } as ChangeEvent<HTMLInputElement>)
+    this._moreSelectBaseRef?.current?._handleChange(
+      {
+        target: { value: q },
+      } as ChangeEvent<HTMLInputElement>,
+      true
+    )
   }
 
   _renderListFilter = (data: MoreSelectGroupDataItem<V>[], searchValue: string) => {
