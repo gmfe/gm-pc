@@ -46,6 +46,8 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   private _baseRef = createRef<HTMLDivElement>()
   private _selectionRef = createRef<HTMLDivElement>()
   private _popoverRef = createRef<Popover>()
+  private _inputRef = createRef<HTMLInputElement>()
+
   private _filterData: MoreSelectGroupDataItem<V>[] | undefined
 
   constructor(props: MoreSelectBaseProps<V>) {
@@ -123,10 +125,17 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     }
   }
 
-  private _handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  public _handleChange = (
+    event: ChangeEvent<HTMLInputElement>,
+    isInitSearch?: boolean
+  ): void => {
     const searchValue = event.target.value
     this.setState({ searchValue })
     this._debounceDoSearch(searchValue)
+    setTimeout(() => {
+      // eslint-disable-next-line no-unused-expressions
+      isInitSearch && this._inputRef.current?.select()
+    }, 100)
   }
 
   private _doSearch = (query: string): void => {
@@ -239,6 +248,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       >
         <div className='gm-more-select-popup-input'>
           <Input
+            ref={this._inputRef}
             autoFocus
             value={searchValue}
             onChange={this._handleChange}
