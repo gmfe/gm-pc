@@ -140,20 +140,16 @@ const AutoComplete = forwardRef<AutoCompleteRef, AutoCompleteProps>((props, ref)
   }
 
   const renderItem = useMemo(() => {
-    if (renderOption) {
-      return (value: ListDataItem<string>, index: number) => {
-        return renderOption({ value: value.value }, index)
-      }
+    if (!renderOption) return
+    return (value: ListDataItem<string>, index: number) => {
+      return renderOption({ value: value.value }, index)
     }
-    return undefined
   }, [renderOption])
 
-  useImperativeHandle(ref, () => {
-    return {
-      input: inputNode.current,
-      triggerPopover,
-    }
-  })
+  useImperativeHandle(ref, () => ({
+    input: inputNode.current,
+    triggerPopover,
+  }))
 
   return (
     <Popover

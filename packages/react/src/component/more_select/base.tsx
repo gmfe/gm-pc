@@ -132,7 +132,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     const searchValue = event.target.value
     this.setState({ searchValue })
     this._debounceDoSearch(searchValue)
-    console.log(this._inputRef.current, this._baseRef, 'this._inputRef.current')
     setTimeout(() => {
       // eslint-disable-next-line no-unused-expressions
       isInitSearch && this._inputRef.current?.select()
