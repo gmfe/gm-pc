@@ -135,6 +135,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     setTimeout(() => {
       // eslint-disable-next-line no-unused-expressions
       isInitSearch && this._inputRef.current?.select()
+      if (this.props.searchOnActive) {
+        localStorage.setItem('_GM-PC_MORESELECT_SEARCHVALUE', this.state.searchValue)
+      }
     }, 100)
   }
 
@@ -292,6 +295,20 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     }
   }
 
+  private _handlePopoverVisibleChange = (active: boolean) => {
+    if (active && this.props.searchOnActive) {
+      const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
+      if (searchValue) {
+        this.setState({ searchValue })
+        setTimeout(() => {
+          // eslint-disable-next-line no-unused-expressions
+          this._inputRef.current?.select()
+          this._debounceDoSearch(searchValue)
+        }, 0)
+      }
+    }
+  }
+
   render() {
     const {
       isInPopup,
@@ -326,6 +343,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           popup={this._renderList}
           disabled={disabled}
           isInPopup={isInPopup}
+          onVisibleChange={this._handlePopoverVisibleChange}
         >
           {children ?? (
             <Flex

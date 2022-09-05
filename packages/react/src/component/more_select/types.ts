@@ -78,6 +78,8 @@ interface MoreSelectBaseProps<V extends string | number = string>
     data: MoreSelectGroupDataItem<V>[],
     searchValue: string
   ): MoreSelectGroupDataItem<V>[]
+  /** 是否在active的时候搜索，订单业务相关，searchValue放在localstorage */
+  searchOnActive?: boolean
 }
 
 type MoreSelectData<V extends string | number = string> =
@@ -88,7 +90,8 @@ type MoreSelectSelected<V extends string | number = string> =
   | MoreSelectDataItem<V>
 
 interface MoreSelectProps<V extends string | number = string>
-  extends MoreSelectCommonProps<V> {
+  extends MoreSelectCommonProps<V>,
+    Pick<MoreSelectBaseProps, 'searchOnActive'> {
   data?: MoreSelectData<V>
   selected?: MoreSelectSelected<V>
   value?: V | V[]
