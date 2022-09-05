@@ -135,6 +135,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     setTimeout(() => {
       // eslint-disable-next-line no-unused-expressions
       isInitSearch && this._inputRef.current?.select()
+      if (this.props.searchWhenActive) {
+        localStorage.setItem('_GM-PC_MORESELECT_SEARCHVALUE', this.state.searchValue)
+      }
     }, 100)
   }
 
@@ -286,6 +289,17 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   private _handleMoreSelectClick = () => {
+    if (this.props.searchWhenActive) {
+      const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
+      if (searchValue) {
+        this.setState({ searchValue })
+        setTimeout(() => {
+          // eslint-disable-next-line no-unused-expressions
+          this._inputRef.current?.select()
+          this._debounceDoSearch(searchValue)
+        }, 0)
+      }
+    }
     const { onClick, selected } = this.props
     if (typeof onClick === 'function') {
       return onClick(selected)
