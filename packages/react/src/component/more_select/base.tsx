@@ -289,7 +289,14 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   private _handleMoreSelectClick = () => {
-    if (this.props.searchWhenActive) {
+    const { onClick, selected } = this.props
+    if (typeof onClick === 'function') {
+      return onClick(selected)
+    }
+  }
+
+  private _handlePopoverVisibleChange = (active: boolean) => {
+    if (active && this.props.searchWhenActive) {
       const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
       if (searchValue) {
         this.setState({ searchValue })
@@ -299,10 +306,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           this._debounceDoSearch(searchValue)
         }, 0)
       }
-    }
-    const { onClick, selected } = this.props
-    if (typeof onClick === 'function') {
-      return onClick(selected)
     }
   }
 
@@ -340,6 +343,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           popup={this._renderList}
           disabled={disabled}
           isInPopup={isInPopup}
+          onVisibleChange={(active) => {
+            this._handlePopoverVisibleChange(active)
+          }}
         >
           {children ?? (
             <Flex
