@@ -21,6 +21,8 @@ interface TableXCustomerColumn<D extends object = any> {
   fixed?: 'left' | 'right'
   /** 表头是否排序 */
   headerSort?: boolean
+  /** 点击排序时，传递给 `onHeaderSort` 的字段 */
+  sortField?: string | number
   defaultSortDirection?: SortHeaderDirectionType
   /** 因为header有可能是组件，为了获取列的名称（为string)，故加上这个 */
   label?: string
@@ -57,7 +59,7 @@ interface TableXTdProps {
   totalWidth: number
 }
 type OnHeaderSort = (sortProps: {
-  field: string
+  field: string | number
   direction: SortHeaderDirectionType
 }) => void
 interface TableXTheadProps {
@@ -133,7 +135,7 @@ interface TableXProps<D extends object = any> {
     | ((original: TableXDataItem, index: number) => void | string | null)
   isTrHighlight?(original: TableXDataItem, index: number): boolean
   onScroll?(event: UIEvent<HTMLDivElement>): void
-  onHeadersSort?(sorts: SortsType): void
+  onHeadersSort?(sorts: SortsType, sortField: string | number): void
   SubComponent?(row: TableXRow): ReactNode
   className?: string
   style?: CSSProperties

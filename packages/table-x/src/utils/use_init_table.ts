@@ -51,7 +51,7 @@ function useInitTable(
         }
         // 放入宏任务队列，避免警告
         setTimeout(() => {
-          onHeadersSort && onHeadersSort(_.pickBy(newSorts, _.identity))
+          onHeadersSort && onHeadersSort(_.pickBy(newSorts, _.identity), field)
         })
         return newSorts
       })

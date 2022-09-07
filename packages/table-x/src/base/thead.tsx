@@ -20,7 +20,8 @@ const Thead: FC<TableXTheadProps> = ({
             }
             if (header.headerSort) {
               const onChange: SortHeaderProps['onChange'] = (direction) => {
-                onHeaderSort && onHeaderSort({ field: header.id, direction })
+                onHeaderSort &&
+                  onHeaderSort({ field: header.sortField ?? header.id, direction })
               }
               header.Header = (
                 <SortHeader
