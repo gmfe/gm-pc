@@ -102,7 +102,7 @@ class Popover extends Component<PopoverProps, PopoverState> {
   private _debounceHandleTableScroll = _.debounce(this._handleTableScroll, 200)
 
   private _setActive = (active: boolean): void => {
-    if (this._isUnmounted) {
+    if (this._isUnmounted || this.state.active === active) {
       return
     }
     const { onVisibleChange } = this.props
