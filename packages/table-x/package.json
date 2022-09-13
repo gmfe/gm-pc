@@ -31,6 +31,7 @@
     "@gm-pc/keyboard": "^1.18.1",
     "@gm-pc/locales": "^1.18.1",
     "@gm-pc/react": "^1.18.1",
+    "@gm-pc/sortable": "^1.18.1",
     "@types/react-table": "~7.0.28",
     "@types/react-window": "^1.8.2",
     "@types/sortablejs": "^1.10.6",
