@@ -18,6 +18,7 @@ import {
 const initState = {
   isDiy: false,
   isBatchSelect: false,
+  customSequence: false,
   rowSelect: false,
   isExpand: false,
   isSort: false,
@@ -32,6 +33,7 @@ export const ComTable = () => {
   const {
     isDiy,
     isBatchSelect,
+    customSequence,
     isExpand,
     isSort,
     isEdit,
@@ -90,10 +92,12 @@ export const ComTable = () => {
         </>
       )}
       <Table<typeof store.data[0]>
+        id='table'
         keyField='id'
         isIndex={isIndex}
         isDiy={isDiy}
         isBatchSelect={isBatchSelect}
+        customSequence={customSequence}
         isExpand={isExpand}
         isSort={isSort}
         isEdit={isEdit}
@@ -103,7 +107,7 @@ export const ComTable = () => {
         style={{ marginTop: 100 }}
         fixedSelect
         columns={([
-          { Header: '建单时间', accessor: 'submitTime', minWidth: 200 },
+          { Header: '建单时间', accessor: 'submitTime', minWidth: 200, fixed: 'left' },
           rowSelect && {
             Header: '链接',
             accessor: () => (

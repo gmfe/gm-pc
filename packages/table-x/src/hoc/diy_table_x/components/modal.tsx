@@ -5,6 +5,7 @@ import { DiyTableXColumn } from '../types'
 import Selector from './selector'
 import List from './list'
 import SVGRemove from '../../../svg/remove.svg'
+import { getSortedColumns, getStorageColumns } from '../utils'
 
 interface DiyTableXModalProps {
   columns: DiyTableXColumn[]
@@ -24,14 +25,17 @@ function DiyTableXModal({
   const [showCols, setShowCols] = useState(columns.filter((v) => v.show))
 
   const handleSave = (): void => {
-    const columns = diyCols.map((col) => {
+    let columns = diyCols.map((col) => {
       const show = showCols.find((v) => v.key === col.key)
       return {
         ...col,
         show: !!show,
         sequence: show?.sequence,
-      }
+      } as DiyTableXColumn
     })
+    // 再考虑固定列来更新sequence
+    columns = getSortedColumns(columns)
+    columns = columns.map((column, index) => Object.assign(column, { sequence: index }))
     onSave(columns)
     onCancel()
   }
