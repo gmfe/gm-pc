@@ -30,7 +30,7 @@ function Selector({ columns, onColumnsChange }: SelectorProps) {
   })
 
   return (
-    <div>
+    <div className='gm-react-table-x-diy-modal-selector-content'>
       {arr.map((groupName) => {
         const cols = map[groupName]
         return (
