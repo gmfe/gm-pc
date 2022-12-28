@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/react",
-  "version": "1.20.0",
+  "version": "1.20.1",
   "description": "观麦前端基础组件库",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@gm-common/hooks": "^2.10.0",
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/locales": "^1.20.0",
+    "@gm-pc/locales": "^1.20.1",
     "big.js": "^6.0.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
