@@ -6,8 +6,11 @@ import Selector from './selector'
 import List from './list'
 import SVGRemove from '../../../svg/remove.svg'
 import { getSortedColumns, getStorageColumns } from '../utils'
+import classNames from 'classnames'
 
 interface DiyTableXModalProps {
+  /** diy 字段面板 className */
+  diyModalClassName?: string
   columns: DiyTableXColumn[]
   onSave(columns: DiyTableXColumn[]): void
   onCancel(): void
@@ -20,6 +23,7 @@ function DiyTableXModal({
   onSave,
   customSequence,
   onCancel,
+  diyModalClassName,
 }: DiyTableXModalProps) {
   const [diyCols, setDiyCols] = useState(columns)
   const [showCols, setShowCols] = useState(columns.filter((v) => v.show))
@@ -58,7 +62,7 @@ function DiyTableXModal({
   }
 
   return (
-    <div className='gm-react-table-x-diy-modal'>
+    <div className={classNames('gm-react-table-x-diy-modal', diyModalClassName)}>
       <Flex
         className='gm-react-table-x-diy-modal-header gm-padding-tb-5'
         justifyBetween

@@ -21,7 +21,8 @@ interface DiyTableXProps {
   // /** 分组排序 */
   // diyGroupSorting: string[]
   columns: DiyTableXColumn[]
-
+  /** diy 字段面板 className */
+  diyModalClassName?: string
   /** 表头设置中启用选定字段排序, 其中fixed的字段不可排序 */
   customSequence?: boolean
 }

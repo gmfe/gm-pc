@@ -19,6 +19,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     id,
     columns,
     customSequence,
+    diyModalClassName,
     ...rest
   }) => {
     const diyModalRef = useRef<Popover>(null)
@@ -56,6 +57,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
               offset={-10}
               popup={
                 <DiyTableXModal
+                  diyModalClassName={diyModalClassName}
                   customSequence={customSequence}
                   columns={cols}
                   onSave={handleDiyColumnsSave}
