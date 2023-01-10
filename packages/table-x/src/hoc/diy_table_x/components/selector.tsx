@@ -42,7 +42,10 @@ function Selector({ columns, onColumnsChange }: SelectorProps) {
                 const text = diyItemText ?? Header
 
                 return (
-                  <div key={_.uniqueId(key)} style={{ width: '25%', padding: '5px 0' }}>
+                  <div
+                    key={_.uniqueId(key)}
+                    style={{ width: '33.3%', padding: '5px 0', paddingRight: 5 }}
+                  >
                     <Checkbox
                       value={key}
                       disabled={!diyEnable} // 不能编辑的字段禁用掉

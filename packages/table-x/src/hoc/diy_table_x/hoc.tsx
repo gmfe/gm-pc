@@ -1,5 +1,5 @@
 import React, { ComponentType, FC, useMemo, useRef, useState } from 'react'
-import { Popover, Storage } from '@gm-pc/react'
+import { Storage } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import { DiyTableXColumn, DiyTableXProps } from './types'
 import { TableXColumn, TableXProps } from '../../base'
@@ -8,6 +8,7 @@ import SVGSetting from '../../svg/setting.svg'
 import { TABLE_X, TABLE_X_DIY_ID } from '../../utils'
 import DiyTableXModal from './components/modal'
 import { OperationIcon } from '../../components/operation'
+import { Modal } from '@gm-pc/react'
 /**
  * 请使用Table并配置isDiy
  * @deprecated
@@ -22,7 +23,6 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     diyModalClassName,
     ...rest
   }) => {
-    const diyModalRef = useRef<Popover>(null)
     const [diyCols, setDiyCols] = useState(
       () => generateDiyColumns(columns, (Storage.get(id) ?? []) as DiyTableXColumn[])[1]
     )
@@ -33,7 +33,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     }
 
     const handleCancel = (): void => {
-      diyModalRef.current!.apiDoSetActive()
+      Modal.hide()
     }
 
     const newColumns: TableXColumn[] = useMemo(() => {
@@ -51,24 +51,27 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
           fixed: 'left',
           Cell: () => null,
           Header: () => (
-            <Popover
-              ref={diyModalRef}
-              showArrow
-              offset={-10}
-              popup={
-                <DiyTableXModal
-                  diyModalClassName={diyModalClassName}
-                  customSequence={customSequence}
-                  columns={cols}
-                  onSave={handleDiyColumnsSave}
-                  onCancel={handleCancel}
-                />
-              }
+            <OperationIcon
+              tip={getLocale('表头设置')}
+              style={{ marginLeft: '-5px' }}
+              onClick={() => {
+                Modal.render({
+                  size: 'md',
+                  noContentPadding: true,
+                  children: (
+                    <DiyTableXModal
+                      diyModalClassName={diyModalClassName}
+                      customSequence={customSequence}
+                      columns={cols}
+                      onSave={handleDiyColumnsSave}
+                      onCancel={handleCancel}
+                    />
+                  ),
+                })
+              }}
             >
-              <OperationIcon tip={getLocale('表头设置')} style={{ marginLeft: '-5px' }}>
-                <SVGSetting />
-              </OperationIcon>
-            </Popover>
+              <SVGSetting />
+            </OperationIcon>
           ),
         },
         ...notDiyCols,

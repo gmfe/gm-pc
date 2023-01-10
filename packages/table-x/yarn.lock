@@ -31,30 +31,30 @@
   dependencies:
     lodash "^4.17.20"
 
-"@gm-pc/keyboard@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@gm-pc/keyboard/-/keyboard-1.14.0.tgz#74e5a968a629892c21b34b2f6ad63fc29c960fb4"
-  integrity sha512-fDIss/ewG39SK4/McLlOWrTYituiQS9GUOHjoN7QpDb/oaXkIm/PXmCmIbPAb5HOCQNyp8NThG7s7cxF/Gr73A==
+"@gm-pc/keyboard@^1.20.1":
+  version "1.20.1"
+  resolved "https://registry.npmmirror.com/@gm-pc/keyboard/-/keyboard-1.20.1.tgz#bb0a9824f90d7fb6904268941d83df69ee9fecfc"
+  integrity sha512-loI0yk8aKVuxY8MYQLwXrSsCJtFZSZ7ECQvb7QnbCRkKhWcxFv02JzPLsOIVgttmqjT5d0fFnZp1+6Y3Ud3pxA==
   dependencies:
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/react" "^1.14.0"
-    "@gm-pc/table-x" "^1.14.0"
+    "@gm-pc/react" "^1.20.1"
+    "@gm-pc/table-x" "^1.20.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
 
-"@gm-pc/locales@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@gm-pc/locales/-/locales-1.14.0.tgz#7c0d776b73f3fb4a11edfc1ce84ce27e76961be4"
-  integrity sha512-XX7vINxNfI3ihd34q5/fFgBnwoD9kN446PXsmmnXkoYXBxiHOkkg9xkz9M0GLoR7vE1sPeHQtVbQLKnBwaNKbA==
+"@gm-pc/locales@^1.20.1":
+  version "1.20.1"
+  resolved "https://registry.npmmirror.com/@gm-pc/locales/-/locales-1.20.1.tgz#c307fbcbbe59f77a81bb60de979d6a180908917f"
+  integrity sha512-avVDK6wDtdGfzRzkDDb9Ee16a5wxvDkRFIlsZEiGX3OUyecNEzi6gbCVr2poQCyYKRBhXG6hTbcZRIdBv8m+lw==
 
-"@gm-pc/react@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@gm-pc/react/-/react-1.14.0.tgz#c01d184120abe978ee0bc14d3181fae590bae8bb"
-  integrity sha512-jskLRDk/rFeJqxIrnTJIAaPmB0h5gxXTNK2Hheo39iqqUDcy8s7Lq74ULBGq8OsXtbxsgfega7IURwhqK3cFFA==
+"@gm-pc/react@^1.20.1":
+  version "1.20.1"
+  resolved "https://registry.npmmirror.com/@gm-pc/react/-/react-1.20.1.tgz#038423576c8c5484c90406cb3414d5757c2c0d0a"
+  integrity sha512-5IITZNEquBPOCDLAOM82q8gBeP9OVYoF1optAty8riObqCR7aM4mNARxJymPErI788tBE4v7oMdZcN6xT7hhxw==
   dependencies:
     "@gm-common/hooks" "^2.10.0"
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/locales" "^1.14.0"
+    "@gm-pc/locales" "^1.20.1"
     big.js "^6.0.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
@@ -62,15 +62,26 @@
     moment "^2.29.1"
     react-window "^1.8.5"
 
-"@gm-pc/table-x@^1.14.0":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@gm-pc/table-x/-/table-x-1.14.0.tgz#edc4d6843d157fb5e9988957ee7f188e4f83b60d"
-  integrity sha512-Dqrkh5e3uxoMm1Cr6j7H31/r+rsMfn4y1srHDfVy3aLIEaRKQhZd1PEiwkunXX/M5rJqCkOFypRadlGN6nuUVQ==
+"@gm-pc/sortable@^1.20.1":
+  version "1.20.1"
+  resolved "https://registry.npmmirror.com/@gm-pc/sortable/-/sortable-1.20.1.tgz#2a9b615e17c9c6e118c20e0ad46145bdc62bd914"
+  integrity sha512-yGO+KfAU86Df7MZ5ZwiOTO6s2ouFVlLMnVj8g72HzARx/3QYHpUtXMEcjjPofaI0ZjxvgsPLF+k1AghvhhTZ5w==
   dependencies:
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/keyboard" "^1.14.0"
-    "@gm-pc/locales" "^1.14.0"
-    "@gm-pc/react" "^1.14.0"
+    "@gm-pc/react" "^1.20.1"
+    lodash "^4.17.19"
+    sortablejs "^1.12.0"
+
+"@gm-pc/table-x@^1.20.1":
+  version "1.20.1"
+  resolved "https://registry.npmmirror.com/@gm-pc/table-x/-/table-x-1.20.1.tgz#d97266937eec2e8b80f328ba749662e7d75b43ca"
+  integrity sha512-vKwmOoZ2ZoqnukM3fulJY26vb4AdmB9yysiIeF36LiMG2uoGIGTIiuJugt+TGm9xzwNP0d1c7Envs5oTcWTslA==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/keyboard" "^1.20.1"
+    "@gm-pc/locales" "^1.20.1"
+    "@gm-pc/react" "^1.20.1"
+    "@gm-pc/sortable" "^1.20.1"
     "@types/react-table" "~7.0.28"
     "@types/react-window" "^1.8.2"
     "@types/sortablejs" "^1.10.6"
