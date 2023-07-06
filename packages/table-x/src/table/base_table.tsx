@@ -3,6 +3,7 @@ import React, {
   HTMLAttributes,
   TableHTMLAttributes,
   UIEvent,
+  useContext,
   useImperativeHandle,
   useMemo,
 } from 'react'
@@ -16,6 +17,7 @@ import LoadingAndEmpty from './loading_and_empty'
 import { useInitTable, afterScroll, getDiyShowMap, getVirtualizedParams } from '../utils'
 import { TableXHeaderGroup, TableXRow } from '../base/types'
 import { Column, TableProps } from './types'
+import { ConfigContext } from '@gm-pc/react'
 
 function BaseTable<D extends object = {}>({
   columns,
@@ -54,6 +56,7 @@ function BaseTable<D extends object = {}>({
     prepareRow,
     onHeaderSort,
   } = useInitTable({ columns, data, headerSortMultiple, onHeadersSort })
+  const { fontSize } = useContext(ConfigContext)
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
@@ -141,6 +144,7 @@ function BaseTable<D extends object = {}>({
           'gm-table-x-empty': dataLength === 0,
           'gm-table-x-tiled': tiled,
           'gm-table-x-border': border,
+          [`gm-table-x-text-${fontSize}`]: fontSize,
         },
         className
       )}

@@ -12,6 +12,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import SVGCloseCircle from '../../svg/close-circle.svg'
 import { IconDownUp } from '../icon_down_up'
+import { ConfigConsumer } from '../config_provider'
 
 type Selected = any
 
@@ -80,67 +81,79 @@ class Selection extends Component<SelectionProps> {
     }
 
     return (
-      <div
-        {...rest}
-        className={classNames(
-          'gm-selection',
-          {
-            disabled,
-            'gm-selection-disabled-clean': clean,
-            'gm-selection-disabled-close': disabledClose,
-          },
-          className
-        )}
-      >
-        {noInput ? (
+      <ConfigConsumer>
+        {({ fontSize }) => (
           <div
-            ref={this._inputRef}
-            // @ts-ignore
-            disabled={disabled}
-            className='gm-form-control gm-selection-selected gm-text-ellipsis'
-            tabIndex={0}
-            onKeyDown={onKeyDown}
-          >
-            {text || <span className='gm-text-desc'>{placeholder}</span>}
-          </div>
-        ) : (
-          <input
-            type='text'
-            ref={this._inputRef as RefObject<HTMLInputElement>}
-            disabled={disabled}
-            value={(text as string) || ''}
-            onChange={_.noop}
-            onKeyDown={onKeyDown}
-            placeholder={placeholder}
-            className='gm-form-control gm-selection-selected'
-          />
-        )}
-        {selected && !disabledClose && !clean && (
-          <SVGCloseCircle
-            onClick={this._handleClear}
-            className='gm-selection-icon gm-selection-close-icon'
-          />
-        )}
-        {funIcon ? (
-          cloneElement(funIcon as ReactElement, {
-            className: classNames(
-              'gm-selection-icon',
+            {...rest}
+            className={classNames(
+              'gm-selection',
               {
-                'gm-selection-fun-icon': selected && !disabledClose && !clean,
+                disabled,
+                'gm-selection-disabled-clean': clean,
+                'gm-selection-disabled-close': disabledClose,
+                [`gm-selection-text-${fontSize}`]: fontSize,
               },
-              (funIcon as ReactElement).props?.className
-            ),
-          })
-        ) : (
-          <IconDownUp
-            disabled={disabled}
-            active={(className ?? '').includes('gm-popover-active')}
-            className={classNames('gm-selection-icon', 'gm-selection-down-up', {
-              'gm-selection-fun-icon': selected && !disabledClose && !clean,
-            })}
-          />
+              className
+            )}
+          >
+            {noInput ? (
+              <div
+                ref={this._inputRef}
+                // @ts-ignore
+                disabled={disabled}
+                className={classNames(
+                  'gm-form-control gm-selection-selected gm-text-ellipsis',
+                  {
+                    [`gm-form-control-text-${fontSize}`]: fontSize,
+                  }
+                )}
+                tabIndex={0}
+                onKeyDown={onKeyDown}
+              >
+                {text || <span className='gm-text-desc'>{placeholder}</span>}
+              </div>
+            ) : (
+              <input
+                type='text'
+                ref={this._inputRef as RefObject<HTMLInputElement>}
+                disabled={disabled}
+                value={(text as string) || ''}
+                onChange={_.noop}
+                onKeyDown={onKeyDown}
+                placeholder={placeholder}
+                className={classNames('gm-form-control gm-selection-selected', {
+                  [`gm-form-control-text-${fontSize}`]: fontSize,
+                })}
+              />
+            )}
+            {selected && !disabledClose && !clean && (
+              <SVGCloseCircle
+                onClick={this._handleClear}
+                className='gm-selection-icon gm-selection-close-icon'
+              />
+            )}
+            {funIcon ? (
+              cloneElement(funIcon as ReactElement, {
+                className: classNames(
+                  'gm-selection-icon',
+                  {
+                    'gm-selection-fun-icon': selected && !disabledClose && !clean,
+                  },
+                  (funIcon as ReactElement).props?.className
+                ),
+              })
+            ) : (
+              <IconDownUp
+                disabled={disabled}
+                active={(className ?? '').includes('gm-popover-active')}
+                className={classNames('gm-selection-icon', 'gm-selection-down-up', {
+                  'gm-selection-fun-icon': selected && !disabledClose && !clean,
+                })}
+              />
+            )}
+          </div>
         )}
-      </div>
+      </ConfigConsumer>
     )
   }
 }

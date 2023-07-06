@@ -24,6 +24,11 @@
   dependencies:
     lodash "^4.17.20"
 
+"@gm-pc/locales@^1.21.0":
+  version "1.21.0"
+  resolved "https://registry.npmmirror.com/@gm-pc/locales/-/locales-1.21.0.tgz#022be7764548befc2a041fb2fc75334bf7b36449"
+  integrity sha512-pxIC9E/cR1HpAC76woPrkXbNA7C0wCeXKzjC8Byy+jOXdLMHFNhWKMGIe3fQmmiuHpr/MRr1mLsgLIsZGlZXPw==
+
 "@types/history@^4.7.11":
   version "4.7.11"
   resolved "https://registry.npmmirror.com/@types/history/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"

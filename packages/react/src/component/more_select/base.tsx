@@ -19,6 +19,7 @@ import { Loading } from '../loading'
 import { getLocale } from '@gm-pc/locales'
 import { ListBase } from '../list'
 import { findDOMNode } from 'react-dom'
+import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_provider'
 
 interface MoreSelectBaseState {
   searchValue: string
@@ -231,7 +232,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     )
   }
 
-  private _renderList = (): ReactNode => {
+  private _renderList = (config: ConfigProviderProps): ReactNode => {
     const {
       selected = [],
       multiple,
@@ -245,46 +246,48 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     const { loading, searchValue, willActiveIndex } = this.state
     const filterData = this._getFilterData()
     return (
-      <div
-        className={classNames('gm-more-select-popup', popupClassName)}
-        onKeyDown={this._handlePopupKeyDown}
-      >
-        <div className='gm-more-select-popup-input'>
-          <Input
-            ref={this._inputRef}
-            autoFocus
-            value={searchValue}
-            onChange={this._handleChange}
-            placeholder={searchPlaceholder}
-          />
-        </div>
-        <div style={{ height: listHeight }}>
-          {loading && (
-            <Flex alignCenter justifyCenter className='gm-bg gm-padding-5'>
-              <Loading size='20px' />
-            </Flex>
-          )}
-          {!loading && !filterData.length && this._renderEmpty()}
-          {!loading && !!filterData.length && (
-            <ListBase
-              selected={selected.map((v) => v.value)}
-              data={filterData}
-              multiple={multiple}
-              isGroupList={isGroupList}
-              className='gm-border-0'
-              renderItem={renderListItem}
-              onSelect={this._handleSelect}
-              isScrollTo
-              willActiveIndex={willActiveIndex!}
-              style={{ height: listHeight }}
+      <ConfigProvider {...config}>
+        <div
+          className={classNames('gm-more-select-popup', popupClassName)}
+          onKeyDown={this._handlePopupKeyDown}
+        >
+          <div className='gm-more-select-popup-input'>
+            <Input
+              ref={this._inputRef}
+              autoFocus
+              value={searchValue}
+              onChange={this._handleChange}
+              placeholder={searchPlaceholder}
             />
-          )}
+          </div>
+          <div style={{ height: listHeight }}>
+            {loading && (
+              <Flex alignCenter justifyCenter className='gm-bg gm-padding-5'>
+                <Loading size='20px' />
+              </Flex>
+            )}
+            {!loading && !filterData.length && this._renderEmpty()}
+            {!loading && !!filterData.length && (
+              <ListBase
+                selected={selected.map((v) => v.value)}
+                data={filterData}
+                multiple={multiple}
+                isGroupList={isGroupList}
+                className='gm-border-0'
+                renderItem={renderListItem}
+                onSelect={this._handleSelect}
+                isScrollTo
+                willActiveIndex={willActiveIndex!}
+                style={{ height: listHeight }}
+              />
+            )}
+          </div>
+          {!loading &&
+            !!filterData.length &&
+            renderCustomizedBottom &&
+            renderCustomizedBottom(this._popoverRef)}
         </div>
-        {!loading &&
-          !!filterData.length &&
-          renderCustomizedBottom &&
-          renderCustomizedBottom(this._popoverRef)}
-      </div>
+      </ConfigProvider>
     )
   }
 
@@ -324,69 +327,80 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       children,
     } = this.props
     return (
-      <div
-        ref={this._baseRef}
-        onClick={this._handleMoreSelectClick}
-        className={classNames(
-          'gm-more-select',
-          {
-            disabled,
-            'gm-more-select-multiple': multiple,
-          },
-          className
-        )}
-        style={style}
-      >
-        <Popover
-          ref={this._popoverRef}
-          type={popoverType}
-          popup={this._renderList}
-          disabled={disabled}
-          isInPopup={isInPopup}
-          onVisibleChange={this._handlePopoverVisibleChange}
-        >
-          {children ?? (
-            <Flex
-              ref={this._selectionRef}
-              tabIndex={0}
-              wrap
-              className='gm-more-select-selected'
+      <ConfigConsumer>
+        {(config) => (
+          <div
+            ref={this._baseRef}
+            onClick={this._handleMoreSelectClick}
+            className={classNames(
+              'gm-more-select',
+              {
+                disabled,
+                'gm-more-select-multiple': multiple,
+              },
+              className
+            )}
+            style={style}
+          >
+            <Popover
+              ref={this._popoverRef}
+              type={popoverType}
+              popup={() => this._renderList(config)}
+              disabled={disabled}
+              isInPopup={isInPopup}
+              onVisibleChange={this._handlePopoverVisibleChange}
             >
-              {selected.length !== 0 ? (
-                selected.map((item) => (
-                  <Flex key={item.value as any} className='gm-more-select-selected-item'>
-                    <Popover
-                      disabled={!this.props.isKeyboard}
-                      type='hover'
-                      popup={<div className='gm-padding-10'>{item.text}</div>}
-                    >
-                      <Flex flex column>
-                        {renderSelected!(item)}
+              {children ?? (
+                <Flex
+                  ref={this._selectionRef}
+                  tabIndex={0}
+                  wrap
+                  className='gm-more-select-selected'
+                >
+                  {selected.length !== 0 ? (
+                    selected.map((item) => (
+                      <Flex
+                        key={item.value as any}
+                        className='gm-more-select-selected-item'
+                      >
+                        <Popover
+                          disabled={!this.props.isKeyboard}
+                          type='hover'
+                          popup={<div className='gm-padding-10'>{item.text}</div>}
+                        >
+                          <Flex flex column>
+                            {renderSelected!(item)}
+                          </Flex>
+                        </Popover>
+                        {multiple ? (
+                          <SVGRemove
+                            className='gm-cursor gm-more-select-clear-btn'
+                            onClick={
+                              disabled ? _.noop : this._handleClear.bind(this, item)
+                            }
+                          />
+                        ) : (
+                          !disabledClose && ( // 是否不限时清除按钮，仅单选可用
+                            <SVGCloseCircle
+                              onClick={
+                                disabled ? _.noop : this._handleClear.bind(this, item)
+                              }
+                              className='gm-cursor gm-more-select-clear-btn'
+                            />
+                          )
+                        )}
                       </Flex>
-                    </Popover>
-                    {multiple ? (
-                      <SVGRemove
-                        className='gm-cursor gm-more-select-clear-btn'
-                        onClick={disabled ? _.noop : this._handleClear.bind(this, item)}
-                      />
-                    ) : (
-                      !disabledClose && ( // 是否不限时清除按钮，仅单选可用
-                        <SVGCloseCircle
-                          onClick={disabled ? _.noop : this._handleClear.bind(this, item)}
-                          className='gm-cursor gm-more-select-clear-btn'
-                        />
-                      )
-                    )}
-                  </Flex>
-                ))
-              ) : (
-                // 加多个 &nbsp; 避免对齐问题，有文本才有对齐
-                <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>
+                    ))
+                  ) : (
+                    // 加多个 &nbsp; 避免对齐问题，有文本才有对齐
+                    <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>
+                  )}
+                </Flex>
               )}
-            </Flex>
-          )}
-        </Popover>
-      </div>
+            </Popover>
+          </div>
+        )}
+      </ConfigConsumer>
     )
   }
 }

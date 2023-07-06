@@ -11,6 +11,7 @@ import classNames from 'classnames'
 import FormContext from './context'
 import Validator from '../../validator'
 import { FormProps, FormItemProps } from './types'
+import { ConfigConsumer } from '../config_provider'
 const { Provider } = FormContext
 
 interface FormState {
@@ -117,14 +118,22 @@ class Form extends Component<FormProps, FormState> {
       <Provider
         value={{ labelWidth, disabledCol, inline, btnPosition, colWidth, canValidate }}
       >
-        <form
-          {...rest}
-          className={classNames('gm-form', { 'form-inline': inline }, className)}
-          onSubmit={this._handleSubmit}
-        >
-          {children}
-          {hasButtonInGroup && <button type='submit' style={{ display: 'none' }} />}
-        </form>
+        <ConfigConsumer>
+          {({ fontSize }) => (
+            <form
+              {...rest}
+              className={classNames(
+                'gm-form',
+                { 'form-inline': inline, [`gm-form-text-${fontSize}`]: fontSize },
+                className
+              )}
+              onSubmit={this._handleSubmit}
+            >
+              {children}
+              {hasButtonInGroup && <button type='submit' style={{ display: 'none' }} />}
+            </form>
+          )}
+        </ConfigConsumer>
       </Provider>
     )
   }

@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, FC, FocusEvent } from 'react'
+import React, { useMemo, useRef, FC, FocusEvent, useContext } from 'react'
 import { Popover } from '../popover'
 import { Input } from '../input'
 import { List } from '../list'
@@ -6,6 +6,7 @@ import _ from 'lodash'
 import { pinYinFilter } from '@gm-common/tool'
 import SVGCloseCircle from '../../svg/close-circle.svg'
 import classNames from 'classnames'
+import { ConfigContext, ConfigProvider } from '../config_provider'
 
 interface DataItem {
   text: string
@@ -31,6 +32,7 @@ const RecommendInput: FC<RecommendInputProps> = ({
   ...rest
 }) => {
   const popoverRef = useRef<Popover>(null)
+  const config = useContext(ConfigContext)
 
   // 构造list需要的数据结构
   const _data = useMemo(() => {
@@ -68,11 +70,13 @@ const RecommendInput: FC<RecommendInputProps> = ({
       type='realFocus'
       popup={
         searchData.length > 0 ? (
-          <List
-            data={searchData}
-            onSelect={handleSelect}
-            style={{ height: listHeight }}
-          />
+          <ConfigProvider {...config}>
+            <List
+              data={searchData}
+              onSelect={handleSelect}
+              style={{ height: listHeight }}
+            />
+          </ConfigProvider>
         ) : (
           <></> // 需要element
         )

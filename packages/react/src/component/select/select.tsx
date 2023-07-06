@@ -7,6 +7,8 @@ import { Selection } from '../selection'
 import { List } from '../list'
 import { ListDataItem } from '../../types'
 import { judgeFunction } from '../../common/utils'
+import { ConfigConsumer, ConfigProvider } from '../config_provider'
+import { ConfigProviderProps, FontSizeType } from '../config_provider/config_provider'
 
 interface SelectState {
   willActiveIndex: number
@@ -108,26 +110,28 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
 
     const selected = newData.find((v) => v.value === value)
 
-    const popup = (
+    const popup = (config?: ConfigProviderProps) => (
       <>
-        <List
-          data={newData}
-          selected={value}
-          onSelect={this._handleChange}
-          renderItem={renderItem}
-          willActiveIndex={willActiveIndex}
-          className='gm-border-0'
-          style={{ maxHeight: '250px' }}
-        />
-        {addonLast && (
-          <div
-            onClick={() => {
-              this._popupRef.current!.apiDoSetActive()
-            }}
-          >
-            {addonLast}
-          </div>
-        )}
+        <ConfigProvider {...config}>
+          <List
+            data={newData}
+            selected={value}
+            onSelect={this._handleChange}
+            renderItem={renderItem}
+            willActiveIndex={willActiveIndex}
+            className='gm-border-0'
+            style={{ maxHeight: '250px' }}
+          />
+          {addonLast && (
+            <div
+              onClick={() => {
+                this._popupRef.current!.apiDoSetActive()
+              }}
+            >
+              {addonLast}
+            </div>
+          )}
+        </ConfigProvider>
       </>
     )
 
@@ -135,27 +139,31 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     const handleChange = _.noop
 
     return (
-      <Popover
-        ref={this._popupRef}
-        type={popoverType}
-        disabled={disabled}
-        popup={popup}
-        isInPopup={isInPopup}
-      >
-        <Selection
-          {...rest}
-          ref={this._selectionRef}
-          selected={selected}
-          onSelect={handleChange}
-          disabled={disabled}
-          disabledClose
-          clean={clean}
-          renderSelected={renderSelected}
-          className={classNames('gm-select', className)}
-          noInput
-          onKeyDown={this._handleKeyDown}
-        />
-      </Popover>
+      <ConfigConsumer>
+        {(config) => (
+          <Popover
+            ref={this._popupRef}
+            type={popoverType}
+            disabled={disabled}
+            popup={popup(config)}
+            isInPopup={isInPopup}
+          >
+            <Selection
+              {...rest}
+              ref={this._selectionRef}
+              selected={selected}
+              onSelect={handleChange}
+              disabled={disabled}
+              disabledClose
+              clean={clean}
+              renderSelected={renderSelected}
+              className={classNames('gm-select', className)}
+              noInput
+              onKeyDown={this._handleKeyDown}
+            />
+          </Popover>
+        )}
+      </ConfigConsumer>
     )
   }
 }
