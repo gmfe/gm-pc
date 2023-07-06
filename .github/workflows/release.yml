@@ -32,9 +32,12 @@ jobs:
   
       - name: Install
         run: |
-          git config --global --add url."https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_PASSWORD }}@code.guanmai.cn".insteadOf "https://code.guanmai.cn"
-          yarn 
-  
+          # yarn安装gm-api必须要有ssh，gmfe4code账号没有配，暂时先用个人的
+          git config --global user.email "zhujiawei@guanmai.cn"
+          git config --global user.name "jawei"
+          git config --global url.ssh://git@code.guanmai.cn/.insteadOf https://code.guanmai.cn/
+          yarn
+
       - name: Publish packages
         run:
           yarn lerna publish from-package --no-verify-access --yes
