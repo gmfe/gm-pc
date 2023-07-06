@@ -25,17 +25,16 @@ jobs:
           node-version: 16.x
           registry-url: 'https://registry.npmjs.org'
 
-      - name: ChangeLog
-        run: npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      # - name: ChangeLog
+      #   run: npx changelogithub
+      #   env:
+      #     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   
-      - name: Setup
-        run: npm i -g @antfu/ni
-
       - name: Install
-        run: nci
-
+        run: |
+          git config --global --add url."https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_PASSWORD }}@code.guanmai.cn".insteadOf "https://code.guanmai.cn"
+          yarn 
+  
       - name: Publish packages
         run:
           yarn lerna publish from-package --no-verify-access --yes
