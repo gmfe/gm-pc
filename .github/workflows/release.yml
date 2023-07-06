@@ -32,10 +32,7 @@ jobs:
   
       - name: Install
         run: |
-          # yarn安装gm-api必须要有ssh，gmfe4code账号没有配，暂时先用个人的
-          git config --global user.email "zhujiawei@guanmai.cn"
-          git config --global user.name "jawei"
-          git config --global url.ssh://git@code.guanmai.cn/.insteadOf https://code.guanmai.cn/
+          git config --global --add url."https://hufeiyu@guanmai.cn:hufeiyu123@code.guanmai.cn".insteadOf "https://code.guanmai.cn"
           yarn
 
       - name: Publish packages
