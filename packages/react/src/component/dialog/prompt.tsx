@@ -4,6 +4,7 @@ import Dialog from './dialog'
 import { PromptProps } from './types'
 import { getLocale } from '@gm-pc/locales'
 import { Input } from '../input'
+import { ConfigProvider } from '../config_provider'
 
 const Prompt = (props: string | PromptProps): Promise<string> => {
   let p = props
@@ -20,6 +21,7 @@ const Prompt = (props: string | PromptProps): Promise<string> => {
     defaultValue,
     placeholder,
     onValidate,
+    fontSize,
     ...rest
   } = p as PromptProps
 
@@ -43,24 +45,26 @@ const Prompt = (props: string | PromptProps): Promise<string> => {
     }
 
     const child = (
-      <div>
+      <ConfigProvider fontSize={fontSize}>
         <div>
-          <Input
-            type='text'
-            defaultValue={value}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              value = e.target.value
-            }}
-            placeholder={placeholder}
-            onKeyDown={(e: KeyboardEvent) => {
-              if (e.key === 'Enter') {
-                handleOk()
-              }
-            }}
-          />
+          <div>
+            <Input
+              type='text'
+              defaultValue={value}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                value = e.target.value
+              }}
+              placeholder={placeholder}
+              onKeyDown={(e: KeyboardEvent) => {
+                if (e.key === 'Enter') {
+                  handleOk()
+                }
+              }}
+            />
+          </div>
+          {children}
         </div>
-        {children}
-      </div>
+      </ConfigProvider>
     )
 
     Dialog.render({
