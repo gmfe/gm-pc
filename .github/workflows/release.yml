@@ -32,7 +32,7 @@ jobs:
   
       - name: Install
         run: |
-          git config --global --add url."https://${{ secrets.GITLAB_USERNAME }}:${{ secrets.GITLAB_PASSWORD }}@code.guanmai.cn".insteadOf "https://code.guanmai.cn"
+          git config --global --add url."https://hufeiyu:hufeiyu123@code.guanmai.cn".insteadOf "https://code.guanmai.cn"
           yarn 
   
       - name: Publish packages
