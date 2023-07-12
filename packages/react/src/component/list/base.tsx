@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { xor, flatMap, isNil, noop } from 'lodash'
 import { ListBaseProps } from './types'
 import { ListDataItem } from '../../types'
+import { ConfigConsumer } from '../config_provider'
 
 class Base<V = any> extends Component<ListBaseProps<V>> {
   static defaultProps = {
@@ -83,34 +84,45 @@ class Base<V = any> extends Component<ListBaseProps<V>> {
 
     let sequenceDataIndex = -1
     return (
-      <div
-        {...rest}
-        ref={this._listRef}
-        className={classNames('gm-list', { 'gm-list-group': isGroupList }, className)}
-      >
-        {data.map((group, gIndex) => (
-          <div key={gIndex} className='gm-list-group-item'>
-            <div className='gm-list-label'>{group.label}</div>
-            {group.children.map((item, index) => {
-              sequenceDataIndex++
-              return (
-                <div
-                  key={`${index}_${item.value}`}
-                  {...getItemProps!(item)}
-                  className={classNames('gm-list-item', {
-                    active: selected.includes(item.value),
-                    'will-active': willActiveIndex === sequenceDataIndex,
-                    disabled: item.disabled,
-                  })}
-                  onClick={() => this._handleSelect(item)}
-                >
-                  {renderItem!(item, index)}
-                </div>
-              )
-            })}
+      <ConfigConsumer>
+        {({ fontSize }) => (
+          <div
+            {...rest}
+            ref={this._listRef}
+            className={classNames(
+              'gm-list',
+              {
+                'gm-list-group': isGroupList,
+                [`gm-list-text-${fontSize}`]: fontSize,
+              },
+              className
+            )}
+          >
+            {data.map((group, gIndex) => (
+              <div key={gIndex} className='gm-list-group-item'>
+                <div className='gm-list-label'>{group.label}</div>
+                {group.children.map((item, index) => {
+                  sequenceDataIndex++
+                  return (
+                    <div
+                      key={`${index}_${item.value}`}
+                      {...getItemProps!(item)}
+                      className={classNames('gm-list-item', {
+                        active: selected.includes(item.value),
+                        'will-active': willActiveIndex === sequenceDataIndex,
+                        disabled: item.disabled,
+                      })}
+                      onClick={() => this._handleSelect(item)}
+                    >
+                      {renderItem!(item, index)}
+                    </div>
+                  )
+                })}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        )}
+      </ConfigConsumer>
     )
   }
 }

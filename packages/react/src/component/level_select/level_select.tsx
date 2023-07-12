@@ -7,6 +7,7 @@ import { LevelList } from '../level_list'
 import { getLevel } from '../level_list/utils'
 import _ from 'lodash'
 import { judgeFunction } from '../../common/utils'
+import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_provider'
 
 interface LevelSelectState<V> {
   willActiveSelected: V[]
@@ -48,22 +49,24 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
     this.setState({ willActiveSelected })
   }
 
-  private _renderPopup = (): ReactNode => {
+  private _renderPopup = (config: ConfigProviderProps): ReactNode => {
     const { titles, data, selected, right, onlySelectLeaf } = this.props
     const { willActiveSelected } = this.state
     return (
-      <Flex justifyEnd={right}>
-        <LevelList<V>
-          isReverse={right}
-          data={data}
-          onWillActiveSelect={this._handleWillActiveSelect}
-          willActiveSelected={willActiveSelected}
-          selected={selected}
-          onSelect={this._handleSelect}
-          titles={titles}
-          onlySelectLeaf={onlySelectLeaf}
-        />
-      </Flex>
+      <ConfigProvider {...config}>
+        <Flex justifyEnd={right}>
+          <LevelList<V>
+            isReverse={right}
+            data={data}
+            onWillActiveSelect={this._handleWillActiveSelect}
+            willActiveSelected={willActiveSelected}
+            selected={selected}
+            onSelect={this._handleSelect}
+            titles={titles}
+            onlySelectLeaf={onlySelectLeaf}
+          />
+        </Flex>
+      </ConfigProvider>
     )
   }
 
@@ -192,16 +195,20 @@ class LevelSelect<V = any> extends Component<LevelSelectProps<V>, LevelSelectSta
   render() {
     const { disabled, children, popoverType, right } = this.props
     return (
-      <Popover
-        ref={this._popoverRef}
-        right={right}
-        disabled={disabled}
-        popup={this._renderPopup()}
-        type={popoverType}
-        pureContainer
-      >
-        {children ?? this._renderTarget()}
-      </Popover>
+      <ConfigConsumer>
+        {(config) => (
+          <Popover
+            ref={this._popoverRef}
+            right={right}
+            disabled={disabled}
+            popup={this._renderPopup(config)}
+            type={popoverType}
+            pureContainer
+          >
+            {children ?? this._renderTarget()}
+          </Popover>
+        )}
+      </ConfigConsumer>
     )
   }
 }

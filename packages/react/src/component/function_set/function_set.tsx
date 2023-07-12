@@ -5,6 +5,7 @@ import Overlay from './overlay'
 import { Button } from '../button'
 import { getLocale } from '@gm-pc/locales'
 import { IconDownUp } from '../icon_down_up'
+import { ConfigConsumer, ConfigProvider } from '../config_provider'
 
 interface InnerProps extends HTMLAttributes<HTMLDivElement> {
   disabled: boolean
@@ -59,16 +60,24 @@ class FunctionSet extends Component<FunctionSetProps> {
       return null
     }
     return (
-      <Popover
-        ref={this._popoverRef}
-        popup={<Overlay data={newData} onSelect={this._handleSelect} isReverse={right} />}
-        right={right}
-        type='hover'
-        disabled={disabled}
-        pureContainer
-      >
-        <Inner disabled={!!disabled}>{children}</Inner>
-      </Popover>
+      <ConfigConsumer>
+        {(config) => (
+          <Popover
+            ref={this._popoverRef}
+            popup={
+              <ConfigProvider {...config}>
+                <Overlay data={newData} onSelect={this._handleSelect} isReverse={right} />
+              </ConfigProvider>
+            }
+            right={right}
+            type='hover'
+            disabled={disabled}
+            pureContainer
+          >
+            <Inner disabled={!!disabled}>{children}</Inner>
+          </Popover>
+        )}
+      </ConfigConsumer>
     )
   }
 }

@@ -4,6 +4,7 @@ import React, {
   CSSProperties,
   UIEvent,
   useImperativeHandle,
+  useContext,
 } from 'react'
 import classNames from 'classnames'
 
@@ -12,6 +13,7 @@ import { Empty, Loading } from '../components'
 import Thead from './thead'
 import Tr from './tr'
 import { TableXColumn, TableXHeaderGroup, TableXProps, TableXRow } from './types'
+import { ConfigContext } from '@gm-pc/react'
 /**
  * 请使用Table
  * @deprecated
@@ -44,12 +46,15 @@ function TableX<D extends object = {}>({
     prepareRow,
     onHeaderSort,
   } = useInitTable({ columns, data, headerSortMultiple, onHeadersSort })
+  const { fontSize } = useContext(ConfigContext)
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
     ...gtp,
     style: { minWidth: `${totalWidth}px` },
-    className: classNames('gm-table-x-table', gtp.className),
+    className: classNames('gm-table-x-table', gtp.className, {
+      [`gm-table-x-text-${fontSize}`]: fontSize,
+    }),
   }
 
   const gtbp = getTableBodyProps()

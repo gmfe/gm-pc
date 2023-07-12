@@ -1,8 +1,9 @@
-import React, { FC, useState, MouseEvent, AnchorHTMLAttributes } from 'react'
+import React, { FC, useState, MouseEvent, AnchorHTMLAttributes, useContext } from 'react'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { is } from '@gm-common/tool'
 import { Loading } from '../loading'
+import { ConfigContext } from '../config_provider'
 
 type ButtonType = 'default' | 'primary' | 'success' | 'danger' | 'link'
 type ButtonSize = 'small' | 'middle' | 'large'
@@ -36,6 +37,7 @@ const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const [isLoading, setIsLoading] = useState(false)
+  const { fontSize } = useContext(ConfigContext)
 
   const loadFlag = loading || isLoading
 
@@ -69,8 +71,9 @@ const Button: FC<ButtonProps> = ({
         `gm-btn gm-btn-${type}`,
         {
           'gm-btn-block': block,
-          [`gm-btn-${size}`]: size,
           'gm-btn-plain': type !== 'link' && plain,
+          [`gm-btn-${size}`]: size,
+          [`gm-btn-text-${fontSize}`]: !!fontSize,
         },
         className
       )}

@@ -4,6 +4,7 @@ import Alert from './alert'
 import Confirm from './confirm'
 import Prompt from './prompt'
 import Delete from './delete_com'
+import { ConfigProvider } from '../config_provider'
 
 export const ComDialog = () => {
   return (
@@ -156,6 +157,7 @@ export const ComPrompt = () => {
       <button
         onClick={() => {
           Prompt({
+            fontSize: 'sm',
             size: 'sm',
             children: '请填写，< 5 不通过',
             // @ts-ignore
@@ -181,6 +183,12 @@ export const ComPrompt = () => {
     </div>
   )
 }
+
+export const ComPromptFontSize = () => (
+  <ConfigProvider fontSize='sm'>
+    <ComPrompt />
+  </ConfigProvider>
+)
 
 export default {
   title: '反馈/Dialog',

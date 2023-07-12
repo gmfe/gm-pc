@@ -1,5 +1,6 @@
 import { HTMLAttributes, ReactNode } from 'react'
 import { ButtonType } from '../button'
+import { ConfigProviderProps } from '../config_provider'
 
 type DialogSize = 'sm' | 'md' | 'lg' | 'xl'
 
@@ -12,7 +13,7 @@ interface DialogButtonProps {
   disabled?: boolean
 }
 
-interface DialogProps {
+interface DialogProps extends ConfigProviderProps {
   title?: string
   size?: DialogSize
   buttons?: DialogButtonProps[]
@@ -42,7 +43,7 @@ interface ConfirmProps extends SpecificDialogProps {
   read?: boolean | string
 }
 
-interface PromptProps extends ConfirmProps {
+interface PromptProps extends ConfirmProps, ConfigProviderProps {
   defaultValue?: string
   placeholder?: string
 }
