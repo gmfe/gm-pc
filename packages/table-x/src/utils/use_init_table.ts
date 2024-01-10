@@ -7,7 +7,7 @@ import _ from 'lodash'
 const defaultColumn = __DEFAULT_COLUMN
 
 function useInitTable(
-  props: Pick<TableXProps, 'data' | 'onHeadersSort' | 'headerSortMultiple' | 'columns'>
+  props: Pick<TableXProps, 'data' | 'onHeadersSort' | 'headerSortMultiple' | 'columns' | 'outerUpdateSorts'>
 ) {
   const { data, onHeadersSort, headerSortMultiple } = props
   let { columns } = props
@@ -42,6 +42,10 @@ function useInitTable(
   // 用于表头排序
   const [sorts, setSorts] = useState<SortsType>(initSorts)
 
+  const outerUpdateSorts = (sorts:SortsType) => {
+    setSorts(sorts)
+  }
+
   const onHeaderSort: OnHeaderSort = useCallback(
     ({ field, direction }) => {
       setSorts((sorts) => {
@@ -67,6 +71,7 @@ function useInitTable(
     getTableBodyProps,
     prepareRow,
     onHeaderSort,
+    outerUpdateSorts
   }
 }
 

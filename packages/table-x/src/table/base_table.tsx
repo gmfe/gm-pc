@@ -55,6 +55,7 @@ function BaseTable<D extends object = {}>({
     getTableBodyProps,
     prepareRow,
     onHeaderSort,
+    outerUpdateSorts
   } = useInitTable({ columns, data, headerSortMultiple, onHeadersSort })
   const { fontSize } = useContext(ConfigContext)
 
@@ -104,6 +105,7 @@ function BaseTable<D extends object = {}>({
         const diyShowMaap = getDiyShowMap(columns as Column<any>[])
         return diyShowMaap
       },
+      updateSorts: outerUpdateSorts,
     }),
     [columns]
   )

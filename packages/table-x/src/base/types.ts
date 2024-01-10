@@ -103,6 +103,7 @@ type SortsType = {
 type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
+  updateSorts: (sorts: SortsType) => void
 }
 /**
  * 请使用TableProps
@@ -137,6 +138,8 @@ interface TableXProps<D extends object = any> {
   SubComponent?(row: TableXRow): ReactNode
   className?: string
   style?: CSSProperties
+  /** 外部更新表头排序状态 */
+  outerUpdateSorts?(sorts: SortsType): void
 }
 
 interface TableXVirtualizedProps extends TableXProps {
