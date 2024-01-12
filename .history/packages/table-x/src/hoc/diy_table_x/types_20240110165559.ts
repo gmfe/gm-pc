@@ -25,8 +25,6 @@ interface DiyTableXProps {
   diyModalClassName?: string
   /** 表头设置中启用选定字段排序, 其中fixed的字段不可排序 */
   customSequence?: boolean
-  /** 保存可选表头设置回调 */
-  handleAvailableHeaderOnSave?(columns: DiyTableXColumn[]): void
 }
 
 export type { DiyTableXColumn, DiyTableXProps }

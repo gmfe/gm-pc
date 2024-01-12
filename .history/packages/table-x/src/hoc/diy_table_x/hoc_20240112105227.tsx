@@ -21,7 +21,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     columns,
     customSequence,
     diyModalClassName,
-    handleAvailableHeaderOnSave,
+    handleOnSave,
     ...rest
   }) => {
     const [diyCols, setDiyCols] = useState(
@@ -33,7 +33,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     const handleDiyColumnsSave = (columns: DiyTableXColumn[]): void => {
       setDiyCols(columns)
       Storage.set(id, getStorageColumns(columns))
-      handleAvailableHeaderOnSave(columns)
+      handleOnSave()
     }
 
     const handleCancel = (): void => {
