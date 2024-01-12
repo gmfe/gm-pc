@@ -62,6 +62,8 @@ export interface TableProps<D extends object = any>
   diyModalClassName?: string
   /** 表头设置中启用选定字段排序 */
   customSequence?: boolean
+  /** 保存可选表头设置回调 */
+  handleAvailableHeaderOnSave?(columns: DiyTableXColumn[]): void
 
   /** 公用属性 */
   onRowClick?(original: TableXDataItem<any>, e: Event): void
