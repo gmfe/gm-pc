@@ -33,9 +33,7 @@ function diyTableXHOC<Props extends TableXProps = TableXProps>(
     const handleDiyColumnsSave = (columns: DiyTableXColumn[]): void => {
       setDiyCols(columns)
       Storage.set(id, getStorageColumns(columns))
-      if (handleAvailableHeaderOnSave) {
-        handleAvailableHeaderOnSave(columns)
-      }
+      handleAvailableHeaderOnSave(columns)
     }
 
     const handleCancel = (): void => {
