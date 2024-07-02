@@ -7,6 +7,7 @@ import { TABLE_X, TABLE_X_SELECT_ID } from '../../utils'
 import SelectHeader from './header'
 import SelectCell from './cell'
 import { CellProps } from 'react-table'
+import _ from 'lodash'
 
 const returnFalse = () => false
 
@@ -69,14 +70,18 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
       )
     }, [columns])
 
-    const isSelectAll = !!selected.length && selected.length === canSelectData.length
+    const isSelectAll = canSelectData.every(can => selected?.includes(can[keyField]))
 
     const handleSelect = (selected: SelectTableXValue[]): void => {
       onSelect(selected)
     }
 
     const handleSelectAll = (): void => {
-      onSelect(!isSelectAll ? canSelectData.map((v) => v[keyField]) : [])
+      if (isSelectAll) {
+        onSelect(selected.filter(select => !canSelectData.some(can => can[keyField] === select)))
+      } else {
+        onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)))
+      }
     }
     // 行选择
     const onRowSelect: SelectTableXContextOptions['onRowSelect'] = useCallback(
