@@ -4,6 +4,7 @@ import Td from './td'
 import { TableXTrProps } from './types'
 import _ from 'lodash'
 import SelectTableXContext from '../hoc/select_table_x/context'
+import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
 
 const DEFAULT_HIGHLIGHT_CLASS = 'gm-table-x-tr-highlight'
 
@@ -18,6 +19,7 @@ const Tr: FC<TableXTrProps> = ({
   trHighlightClass = DEFAULT_HIGHLIGHT_CLASS,
   onRowClick,
 }) => {
+  const { highlight } = useHighlightTableXContext()
   const { onRowSelect } = useContext(SelectTableXContext)
   // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
   const trId = row.original[keyField]
@@ -36,6 +38,7 @@ const Tr: FC<TableXTrProps> = ({
       [highlightClass]: isTrHighlight(row.original, row.index),
       'gm-table-x-tr-odd': row.index % 2 === 0,
       'gm-table-x-tr-even': row.index % 2 !== 0,
+      'gm-table-x-tr-current': row.index === highlight,
     }),
   }
 

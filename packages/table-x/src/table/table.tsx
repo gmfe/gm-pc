@@ -11,6 +11,7 @@ import {
   subTableXHOC,
   selectTableXHOC,
   indexTableXHOC,
+  highlightTableXHOC,
 } from '../hoc'
 
 import BaseTable from './base_table'
@@ -27,6 +28,7 @@ function Table<D extends object = any>({
   isKeyboard,
   isSelect,
   isIndex,
+  isHighlight,
   ...res
 }: TableProps<D>) {
   const Table = useMemo(() => {
@@ -46,6 +48,7 @@ function Table<D extends object = any>({
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
       isKeyboard && keyboardTableXHOC,
+      isHighlight && highlightTableXHOC,
     ].filter(Boolean) as HocMiddleware[]
 
     const TempTable = applyMiddleware(...hocMiddles)(BaseTable)
@@ -60,6 +63,7 @@ function Table<D extends object = any>({
     isKeyboard,
     isSelect,
     isIndex,
+    isHighlight,
   ])
 
   const tableProps = (res as unknown) as TableProps<D>

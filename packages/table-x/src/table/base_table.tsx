@@ -6,9 +6,10 @@ import React, {
   useContext,
   useImperativeHandle,
   useMemo,
+  useRef,
 } from 'react'
 import classNames from 'classnames'
-import { ReactElementType, VariableSizeList } from 'react-window'
+import { Align, ReactElementType, VariableSizeList } from 'react-window'
 
 import Thead from '../base/thead'
 import RenderRow from './render_row'
@@ -57,6 +58,8 @@ function BaseTable<D extends object = {}>({
     onHeaderSort,
   } = useInitTable({ columns, data, headerSortMultiple, onHeadersSort })
   const { fontSize } = useContext(ConfigContext)
+  const virtualizedRef = useRef<VariableSizeList>(null)
+  const tableWrapperRef = useRef<HTMLDivElement>(null)
 
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
@@ -97,12 +100,90 @@ function BaseTable<D extends object = {}>({
     // headerGroups 会因为coluns变化而变化，所以无需加入，否则会造成重复渲染
   }, [columns, totalWidth, sorts, onHeaderSort])
 
+  useImperativeHandle(refVirtualized, () => virtualizedRef.current)
   useImperativeHandle(
     tableRef,
     () => ({
       getDiyShowMap: () => {
         const diyShowMaap = getDiyShowMap(columns as Column<any>[])
         return diyShowMaap
+      },
+      scrollToItem: (index: number, align?: Align) => {
+        if (isVirtualized) {
+          // eslint-disable-next-line no-unused-expressions
+          virtualizedRef.current?.scrollToItem(index, align)
+          return
+        }
+        if (!tableWrapperRef.current) return
+
+        const tableWrapper = tableWrapperRef.current
+        const tableBody = tableWrapper.querySelector('tbody')
+        if (!tableBody) return
+
+        const targetRow = tableBody.children[index]
+        if (!targetRow) return
+
+        const rowCount = tableBody.children.length
+        if (index < 0 || index >= rowCount) {
+          console.warn(`超出范围：${index}`)
+          return
+        }
+
+        const tableHeight = tableWrapper.offsetHeight
+        // 获取 thead 的高度
+        const theadHeight = tableWrapper.querySelector('thead')?.offsetHeight || 0
+        const tableRect = tableWrapper.getBoundingClientRect()
+        const rowRect = targetRow.getBoundingClientRect()
+        const rowHeight = targetRow.clientHeight
+
+        const visibleHeight = tableHeight - theadHeight
+        console.log(visibleHeight)
+
+        let scrollTop
+        switch (align) {
+          case 'start':
+            scrollTop = rowRect.top - tableRect.top - theadHeight
+            break
+          case 'center':
+            scrollTop = rowRect.top - tableRect.top - (visibleHeight - rowHeight) / 2
+            break
+          case 'end':
+            scrollTop = rowRect.top - tableRect.top - tableHeight + rowHeight
+            break
+          case 'smart':
+            // 在一个屏幕内，则不做处理
+            if (
+              rowRect.top >= tableRect.top + theadHeight &&
+              rowRect.bottom <= tableRect.bottom
+            ) {
+              return
+            } else if (
+              Math.abs(rowRect.top - (tableRect.top + theadHeight)) < visibleHeight &&
+              Math.abs(rowRect.bottom - tableRect.bottom) < visibleHeight
+            ) {
+              if (rowRect.top < tableRect.top + theadHeight) {
+                scrollTop = rowRect.top - tableRect.top - theadHeight
+              } else {
+                scrollTop = rowRect.top - tableRect.top - tableHeight + rowHeight
+              }
+            } else {
+              // Item is more than one viewport away, center it
+              scrollTop = rowRect.top - tableRect.top - (visibleHeight - rowHeight) / 2
+            }
+            break
+          default:
+            // 'auto'
+            if (rowRect.top < tableRect.top + theadHeight) {
+              scrollTop = rowRect.top - tableRect.top - theadHeight
+            } else if (rowRect.bottom > tableRect.bottom) {
+              scrollTop = rowRect.top - tableRect.top - tableHeight + rowHeight
+            }
+            break
+        }
+
+        if (scrollTop !== undefined) {
+          tableWrapper.scrollTop += scrollTop
+        }
       },
     }),
     [columns]
@@ -148,11 +229,12 @@ function BaseTable<D extends object = {}>({
         },
         className
       )}
+      ref={tableWrapperRef}
       onScroll={handleScroll}
     >
       {isVirtualized ? (
         <VariableSizeList
-          ref={refVirtualized}
+          ref={virtualizedRef}
           height={newVirtualizedHeight}
           itemCount={itemCount}
           innerElementType={TableContainer}

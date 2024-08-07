@@ -1,4 +1,11 @@
-import React, { ComponentType, FC, useMemo, useCallback } from 'react'
+import React, {
+  ComponentType,
+  FC,
+  useMemo,
+  useCallback,
+  useEffect,
+  useContext,
+} from 'react'
 import { SelectTableXProps, SelectTableXValue } from './types'
 import { TableXColumn, TableXDataItem, TableXProps } from '../../base/types'
 import SelectTableXContext, { SelectTableXContextOptions } from './context'
@@ -8,6 +15,7 @@ import SelectHeader from './header'
 import SelectCell from './cell'
 import { CellProps } from 'react-table'
 import _ from 'lodash'
+import { isInputUnBoundary } from '@gm-pc/keyboard/src/utils'
 
 const returnFalse = () => false
 
@@ -70,7 +78,7 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
       )
     }, [columns])
 
-    const isSelectAll = canSelectData.every(can => selected?.includes(can[keyField]))
+    const isSelectAll = canSelectData.every((can) => selected?.includes(can[keyField]))
 
     const handleSelect = (selected: SelectTableXValue[]): void => {
       onSelect(selected)
@@ -78,7 +86,11 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
 
     const handleSelectAll = (): void => {
       if (isSelectAll) {
-        onSelect(selected.filter(select => !canSelectData.some(can => can[keyField] === select)))
+        onSelect(
+          selected.filter(
+            (select) => !canSelectData.some((can) => can[keyField] === select)
+          )
+        )
       } else {
         onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)))
       }

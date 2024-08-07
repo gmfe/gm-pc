@@ -1,49 +1,72 @@
-import React, { useRef } from 'react'
-import { TableX, TableXCellFull, TableXVirtualized, TableXCellFullItem } from '../base'
+import React, { useRef, useState } from 'react'
+import {
+  TableX,
+  TableXCellFull,
+  TableXVirtualized,
+  TableXCellFullItem,
+  TableInstance,
+} from '../base'
 import { columns, groupColumns, sortColumns, store } from './data'
 import { TABLE_X } from '../utils'
 import { VariableSizeList } from 'react-window'
+import { Table } from '../table'
 
-export const ComTableX = () => (
-  <div>
-    <TableX
-      columns={[
-        {
-          Header: '序号',
-          id: 'index',
-          Cell: (cellProps: any) => cellProps.row.index + 1,
-          width: 100,
-          headerSort: true,
-          defaultSortDirection: 'asc',
-        },
-        { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
-        { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
-        {
-          Header: '供应商信息',
-          width: 500,
-          minWidth: 500,
-          accessor: 'supplierName',
-          id: 'supplierName',
-        },
-        {
-          Header: '入库金额',
-          accessor: 'totalMoney',
-          id: 'totalMoney',
-          minWidth: 100,
-          headerSort: true,
-          Cell: ({ value, row, index, original }) => {
-            // return row.original.totalMoney
-            return value
+export const ComTableX = () => {
+  const [selected, setSelected] = useState<number[]>([])
+  const tableRef = useRef<TableInstance>(null)
+  return (
+    <div>
+      <button onClick={() => tableRef.current?.scrollToItem(9)}>滚到第 10 行</button>
+      <Table
+        tableRef={tableRef}
+        columns={[
+          {
+            Header: '序号',
+            id: 'index',
+            Cell: (cellProps: any) => cellProps.row.index + 1,
+            width: 100,
+            headerSort: true,
+            defaultSortDirection: 'asc',
           },
-        },
-      ]}
-      data={store.data}
-    />
-    <TableX columns={columns} data={store.data} loading />
-    <TableX columns={columns} data={[]} />
-    <TableX columns={columns} data={[]} tiled className='gm-margin-10' />
-  </div>
-)
+          { Header: '建单时间', show: false, accessor: 'submitTime', minWidth: 200 },
+          { Header: '地址', accessor: 'address.text' as any, width: 200, maxWidth: 200 },
+          {
+            Header: '供应商信息',
+            width: 500,
+            minWidth: 500,
+            accessor: 'supplierName',
+            id: 'supplierName',
+          },
+          {
+            Header: '入库金额',
+            accessor: 'totalMoney',
+            id: 'totalMoney',
+            minWidth: 100,
+            headerSort: true,
+            Cell: ({ value, row, index, original }) => {
+              // return row.original.totalMoney
+              return value
+            },
+          },
+        ]}
+        data={store.data}
+        isHighlight
+        isSelect
+        isVirtualized
+        virtualizedHeight={200}
+        keyField='id'
+        selected={selected}
+        onSelect={(selected) => {
+          setSelected(selected)
+        }}
+        style={{ height: 200 }}
+      />
+      <Table columns={columns} data={store.data} loading />
+      <Table columns={columns} data={[]} />
+      <Table columns={columns} data={[]} tiled className='gm-margin-10' />
+    </div>
+  )
+}
 
 export const ComTableXTd = () => {
   return (
@@ -116,13 +139,16 @@ export const ComTableXVirtualized = () => {
       <div>
         <button
           onClick={() => {
+            console.log(ref.current)
             ref.current!.scrollToItem(9, 'start')
           }}
         >
           滚到第 10 行
         </button>
       </div>
-      <TableXVirtualized
+      <Table
+        isHighlight
+        isVirtualized
         virtualizedHeight={height}
         virtualizedItemSize={TABLE_X.HEIGHT_TR}
         refVirtualized={ref}

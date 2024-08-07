@@ -1,6 +1,6 @@
 import { Cell, CellProps, Column, ColumnInstance, Row, Accessor } from 'react-table'
 import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
-import { VariableSizeList } from 'react-window'
+import { Align, VariableSizeList } from 'react-window'
 import { StringKey } from '@gm-pc/react'
 interface TableXDataItem<V = any> {
   [key: string]: V
@@ -103,6 +103,7 @@ type SortsType = {
 type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
+  scrollToItem(index: number, align?: Align): void
 }
 /**
  * 请使用TableProps

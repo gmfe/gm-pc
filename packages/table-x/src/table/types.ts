@@ -52,6 +52,8 @@ export interface TableProps<D extends object = any>
   isIndex?: boolean
   /** 是否开启keyboard */
   isKeyboard?: boolean
+  /** 是否高亮 */
+  isHighlight?: boolean
 
   /** 是否虚拟列表 */
   isVirtualized?: boolean
@@ -64,5 +66,5 @@ export interface TableProps<D extends object = any>
   customSequence?: boolean
 
   /** 公用属性 */
-  onRowClick?(original: TableXDataItem<any>, e: Event): void
+  onRowClick?(original: TableXDataItem<any>, e: Event, index: number): void
 }

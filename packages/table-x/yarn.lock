@@ -4,7 +4,7 @@
 
 "@babel/runtime@^7.0.0":
   version "7.12.1"
-  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.12.1.tgz?cache=0&sync_timestamp=1602799933339&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
+  resolved "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.12.1.tgz?cache=0&sync_timestamp=1602799933339&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
   integrity sha1-tBFqa2cR0BCy2tO3tuQ78bmVR0A=
   dependencies:
     regenerator-runtime "^0.13.4"
@@ -18,26 +18,26 @@
 
 "@types/prop-types@*":
   version "15.7.3"
-  resolved "https://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
+  resolved "https://registry.npmmirror.com/@types/prop-types/download/@types/prop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
 
 "@types/react-table@~7.0.28":
   version "7.0.29"
-  resolved "https://registry.nlark.com/@types/react-table/download/@types/react-table-7.0.29.tgz#af2c82f2d6a39be5bc0f191b30501309a8db0949"
+  resolved "https://registry.npmmirror.com/@types/react-table/download/@types/react-table-7.0.29.tgz#af2c82f2d6a39be5bc0f191b30501309a8db0949"
   integrity sha1-ryyC8tajm+W8DxkbMFATCajbCUk=
   dependencies:
     "@types/react" "*"
 
 "@types/react-window@^1.8.2":
   version "1.8.3"
-  resolved "https://registry.nlark.com/@types/react-window/download/@types/react-window-1.8.3.tgz#14f74b144b4e3df9421eb31182dc580b7ccc7617"
+  resolved "https://registry.npmmirror.com/@types/react-window/download/@types/react-window-1.8.3.tgz#14f74b144b4e3df9421eb31182dc580b7ccc7617"
   integrity sha1-FPdLFEtOPflCHrMRgtxYC3zMdhc=
   dependencies:
     "@types/react" "*"
 
 "@types/react@*":
   version "17.0.4"
-  resolved "https://registry.nlark.com/@types/react/download/@types/react-17.0.4.tgz?cache=0&sync_timestamp=1619433141889&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.4.tgz#a67c6f7a460d2660e950d9ccc1c2f18525c28220"
+  resolved "https://registry.npmmirror.com/@types/react/download/@types/react-17.0.4.tgz?cache=0&sync_timestamp=1619433141889&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Freact%2Fdownload%2F%40types%2Freact-17.0.4.tgz#a67c6f7a460d2660e950d9ccc1c2f18525c28220"
   integrity sha1-pnxvekYNJmDpUNnMwcLxhSXCgiA=
   dependencies:
     "@types/prop-types" "*"
@@ -46,22 +46,22 @@
 
 "@types/scheduler@*":
   version "0.16.1"
-  resolved "https://registry.npm.taobao.org/@types/scheduler/download/@types/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1613384488348&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fscheduler%2Fdownload%2F%40types%2Fscheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
+  resolved "https://registry.npmmirror.com/@types/scheduler/download/@types/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1613384488348&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2F%40types%2Fscheduler%2Fdownload%2F%40types%2Fscheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha1-GIRSBehv8AOFF6q3oYpiprn3EnU=
 
 "@types/sortablejs@^1.10.6":
   version "1.10.6"
-  resolved "https://registry.nlark.com/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
+  resolved "https://registry.npmmirror.com/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
   integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
 
 classnames@^2.2.5:
   version "2.2.6"
-  resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  resolved "https://registry.npmmirror.com/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
 
 csstype@^3.0.2:
   version "3.0.8"
-  resolved "https://registry.nlark.com/csstype/download/csstype-3.0.8.tgz?cache=0&sync_timestamp=1618818466657&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
+  resolved "https://registry.npmmirror.com/csstype/download/csstype-3.0.8.tgz?cache=0&sync_timestamp=1618818466657&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcsstype%2Fdownload%2Fcsstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha1-0iZqeScp+yJ80hb7Vy9Dco4a00A=
 
 lodash@^4.17.19, lodash@^4.17.20:
@@ -71,22 +71,22 @@ lodash@^4.17.19, lodash@^4.17.20:
 
 "memoize-one@>=3.1.1 <6":
   version "5.1.1"
-  resolved "https://registry.npm.taobao.org/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
+  resolved "https://registry.npmmirror.com/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
 
 moment@^2.29.1:
   version "2.29.1"
-  resolved "https://registry.npm.taobao.org/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  resolved "https://registry.npmmirror.com/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
 
 react-table@7.0.0-rc.11:
   version "7.0.0-rc.11"
-  resolved "https://registry.npm.taobao.org/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
+  resolved "https://registry.npmmirror.com/react-table/download/react-table-7.0.0-rc.11.tgz#98c5299ce16a09c8899727955fb4505bd1ed64ac"
   integrity sha1-mMUpnOFqCciJlyeVX7RQW9HtZKw=
 
 react-window@^1.8.5:
   version "1.8.6"
-  resolved "https://registry.npm.taobao.org/react-window/download/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
+  resolved "https://registry.npmmirror.com/react-window/download/react-window-1.8.6.tgz#d011950ac643a994118632665aad0c6382e2a112"
   integrity sha1-0BGVCsZDqZQRhjJmWq0MY4LioRI=
   dependencies:
     "@babel/runtime" "^7.0.0"
@@ -94,10 +94,10 @@ react-window@^1.8.5:
 
 regenerator-runtime@^0.13.4:
   version "0.13.7"
-  resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.7.tgz?cache=0&sync_timestamp=1595456311465&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
+  resolved "https://registry.npmmirror.com/regenerator-runtime/download/regenerator-runtime-0.13.7.tgz?cache=0&sync_timestamp=1595456311465&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fregenerator-runtime%2Fdownload%2Fregenerator-runtime-0.13.7.tgz#cac2dacc8a1ea675feaabaeb8ae833898ae46f55"
   integrity sha1-ysLazIoepnX+qrrriugziYrkb1U=
 
 sortablejs@^1.12.0:
   version "1.12.0"
-  resolved "https://registry.npm.taobao.org/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
+  resolved "https://registry.npmmirror.com/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
   integrity sha1-7m1+zjWYwq8P6xVZ2YWV5eo3y9Y=
