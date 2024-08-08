@@ -1,11 +1,5 @@
 import React, { useRef, useState } from 'react'
-import {
-  TableX,
-  TableXCellFull,
-  TableXVirtualized,
-  TableXCellFullItem,
-  TableInstance,
-} from '../base'
+import { TableX, TableXCellFull, TableXCellFullItem, TableInstance } from '../base'
 import { columns, groupColumns, sortColumns, store } from './data'
 import { TABLE_X } from '../utils'
 import { VariableSizeList } from 'react-window'
@@ -49,7 +43,7 @@ export const ComTableX = () => {
             },
           },
         ]}
-        data={store.data}
+        data={store.virtualData}
         isHighlight
         isSelect
         isVirtualized
@@ -59,7 +53,6 @@ export const ComTableX = () => {
         onSelect={(selected) => {
           setSelected(selected)
         }}
-        style={{ height: 200 }}
       />
       <Table columns={columns} data={store.data} loading />
       <Table columns={columns} data={[]} />
@@ -71,7 +64,7 @@ export const ComTableX = () => {
 export const ComTableXTd = () => {
   return (
     <div className='gm-padding-10'>
-      <TableX
+      <Table
         columns={[
           {
             Header: '区域',
@@ -169,11 +162,11 @@ export const ComTableXForGroup = () => (
 export const ComTableXForSort = () => <TableX columns={sortColumns} data={store.data} />
 
 export const ComTableXForLimitHeight = () => (
-  <TableX columns={columns} data={store.data} style={{ height: '200px' }} />
+  <Table columns={columns} data={store.data} style={{ height: '200px' }} />
 )
 
 export const ComTableForIsTrDisabledIsTrHighlight = () => (
-  <TableX
+  <Table
     columns={columns}
     data={store.data}
     isTrHighlight={(_, index) => index === 0}

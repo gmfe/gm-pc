@@ -34,7 +34,6 @@ function highlightTableXHOC<Props extends TableProps = TableProps>(
     // 按上下键切换高亮
     const handleKeyDown = useCallback(
       (e: KeyboardEvent) => {
-        console.log(e.key)
         if (highlight === undefined) {
           return
         }

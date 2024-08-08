@@ -104,6 +104,11 @@ type DiyShowMapType = TableXDataItem<string>
 interface TableInstance {
   getDiyShowMap(): DiyShowMapType
   scrollToItem(index: number, align?: Align): void
+  /**
+   * 设置某一行高亮，并且滚动到该行
+   * @param index
+   */
+  setHighlight(index: number): void
 }
 /**
  * 请使用TableProps
