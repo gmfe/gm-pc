@@ -29,7 +29,7 @@ const SelectCell: FC<SelectTableXCellProps> = ({
                 e.stopPropagation()
               }}
               onChange={() => {
-                onSelect(_.xor(selected, [value]))
+                onSelect(_.xor(selected, [value]), !isChecked, row.index)
               }}
             />
           )
@@ -43,7 +43,7 @@ const SelectCell: FC<SelectTableXCellProps> = ({
                 e.stopPropagation()
               }}
               onChange={() => {
-                onSelect(isChecked ? [] : [value])
+                onSelect(isChecked ? [] : [value], !isChecked, row.index)
               }}
             />
           )

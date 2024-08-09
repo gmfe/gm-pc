@@ -14,7 +14,7 @@ export interface RenderRowProps {
       | 'trHighlightClass'
       | 'keyField'
       | 'totalWidth'
-    > & { onRowClick?: (row: TableXDataItem<any>, e: Event) => void }
+    > & { onRowClick?: (row: TableXDataItem<any>, e: Event, index: number) => void }
   index?: number
   style?: CSSProperties
   isMap?: boolean
@@ -54,7 +54,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
         isTrHighlight={isTrHighlight}
         trHighlightClass={trHighlightClass}
         onRowClick={(e: Event) => {
-          onRowClick && onRowClick(row.original, e)
+          onRowClick && onRowClick(row.original, e, row.index)
           // onRowClickProp && onRowClickProp(row, e)
         }}
       />

@@ -5,7 +5,7 @@
     "node_modules/gm_api/src/enterprise/types.ts"
   ],
   "compilerOptions": {
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
   "exclude": ["packages/**/types", "node_modules"]
 }
