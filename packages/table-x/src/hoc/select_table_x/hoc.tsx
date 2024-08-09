@@ -1,11 +1,4 @@
-import React, {
-  ComponentType,
-  FC,
-  useMemo,
-  useCallback,
-  useEffect,
-  useContext,
-} from 'react'
+import React, { ComponentType, FC, useMemo, useCallback } from 'react'
 import { SelectTableXProps, SelectTableXValue } from './types'
 import { TableXColumn, TableXDataItem, TableXProps } from '../../base/types'
 import SelectTableXContext, { SelectTableXContextOptions } from './context'
@@ -15,7 +8,6 @@ import SelectHeader from './header'
 import SelectCell from './cell'
 import { CellProps } from 'react-table'
 import _ from 'lodash'
-import { isInputUnBoundary } from '@gm-pc/keyboard/src/utils'
 
 const returnFalse = () => false
 
@@ -80,8 +72,12 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
 
     const isSelectAll = canSelectData.every((can) => selected?.includes(can[keyField]))
 
-    const handleSelect = (selected: SelectTableXValue[]): void => {
-      onSelect(selected)
+    const handleSelect = (
+      selected: SelectTableXValue[],
+      isSelected: boolean,
+      index: number
+    ): void => {
+      onSelect(selected, isSelected, index)
     }
 
     const handleSelectAll = (): void => {
@@ -89,24 +85,26 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
         onSelect(
           selected.filter(
             (select) => !canSelectData.some((can) => can[keyField] === select)
-          )
+          ),
+          false
         )
       } else {
-        onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)))
+        onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)), true)
       }
     }
     // 行选择
     const onRowSelect: SelectTableXContextOptions['onRowSelect'] = useCallback(
-      (select) => {
+      (select, i) => {
         if (rowSelect) {
           const tempSelected = [...selected]
           const index = tempSelected.indexOf(select)
           if (!~index) {
             tempSelected.push(select)
+            onSelect(tempSelected, true, i)
           } else {
             tempSelected.splice(index, 1)
+            onSelect(tempSelected, false, i)
           }
-          onSelect(tempSelected)
         }
       },
       [rowSelect, selected, onSelect]

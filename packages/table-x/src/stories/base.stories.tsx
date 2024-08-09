@@ -53,6 +53,20 @@ export const ComTableX = () => {
         onSelect={(selected) => {
           setSelected(selected)
         }}
+        onRowClick={(original, e) => {
+          if (e instanceof KeyboardEvent) {
+            const key = original.id
+            setSelected((selected) => {
+              const temp = [...selected]
+              if (selected.includes(key)) {
+                temp.splice(temp.indexOf(key), 1)
+              } else {
+                temp.push(key)
+              }
+              return temp
+            })
+          }
+        }}
       />
       <Table columns={columns} data={store.data} loading />
       <Table columns={columns} data={[]} />

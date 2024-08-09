@@ -29,7 +29,7 @@ const Tr: FC<TableXTrProps> = ({
   const props = {
     onClick: (e: Event) => {
       onRowClick && onRowClick(e)
-      onRowSelect(trId)
+      onRowSelect(trId, row.index)
     },
     ...row.getRowProps(),
     style,

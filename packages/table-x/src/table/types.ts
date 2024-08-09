@@ -12,6 +12,7 @@ import {
 import { BoxTableProps } from '@gm-pc/react'
 import { KeyboardTableXProps } from '@gm-pc/keyboard'
 import { TableXDataItem } from '../base/types'
+import { HighlightTableXProps } from '../hoc/highlight_table_x/types'
 export interface VirtualizedProps
   extends Pick<TableXVirtualizedProps, 'virtualizedItemSize' | 'virtualizedHeight'> {
   /** 用于计算虚拟列表高度，默认为limit = 12 */
@@ -31,7 +32,8 @@ export interface TableProps<D extends object = any>
     Partial<BatchActionSelectTableXProps>,
     Partial<SelectTableXProps>,
     Partial<VirtualizedProps>,
-    Partial<Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch'>> {
+    Partial<Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch'>>,
+    Partial<HighlightTableXProps> {
   columns: Column<D>[]
   /** 是否需要分页 */
   isPagination?: boolean
@@ -52,7 +54,10 @@ export interface TableProps<D extends object = any>
   isIndex?: boolean
   /** 是否开启keyboard */
   isKeyboard?: boolean
-  /** 是否高亮 */
+  /**
+   * 是否高亮，可以用键盘的上下键来切换高亮行
+   * 按回车键会触发 onRowClick 事件，可以判断 event 是否是 KeyboardEvent 来判断
+   */
   isHighlight?: boolean
 
   /** 是否虚拟列表 */

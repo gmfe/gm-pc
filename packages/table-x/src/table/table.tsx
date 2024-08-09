@@ -41,6 +41,7 @@ function Table<D extends object = any>({
     const hocMiddles = [
       isExpand && expandTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
+      isHighlight && highlightTableXHOC,
       isSelect && selectTableXHOC,
       isIndex && indexTableXHOC,
       isDiy && diyTableXHOC,
@@ -48,7 +49,6 @@ function Table<D extends object = any>({
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
       isKeyboard && keyboardTableXHOC,
-      isHighlight && highlightTableXHOC,
     ].filter(Boolean) as HocMiddleware[]
 
     const TempTable = applyMiddleware(...hocMiddles)(BaseTable)
