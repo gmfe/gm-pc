@@ -23,6 +23,7 @@ const Wrap: FC<WrapProps> = ({
   id,
   children,
   onAddRow,
+  allowAddRow,
   columnKeys,
   dataLength,
   fixedWidths,
@@ -87,7 +88,9 @@ const Wrap: FC<WrapProps> = ({
     }
     // 最后一行
     else if (rowKey === dataLength - 1) {
-      onAddRow()
+      if (allowAddRow) {
+        onAddRow()
+      }
       timer.current = window.setTimeout(() => {
         // 去到第一列
         doFocusWithColumnRowKey(

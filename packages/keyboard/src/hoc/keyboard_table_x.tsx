@@ -21,6 +21,7 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
     id,
     onAddRow,
     onBeforeDispatch,
+    allowAddRow = true,
     ...tableProps
   }) => {
     const { data, columns } = tableProps
@@ -106,6 +107,7 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
         fixedWidths={{ leftFixedWidth, rightFixedWidth }}
         dataLength={data.length}
         onAddRow={onAddRow}
+        allowAddRow={allowAddRow}
         onBeforeDispatch={onBeforeDispatch}
       >
         <Table {...(tableProps as Props)} id={id} columns={newColumns} />

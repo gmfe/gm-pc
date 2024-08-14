@@ -32,7 +32,7 @@ export interface TableProps<D extends object = any>
     Partial<BatchActionSelectTableXProps>,
     Partial<SelectTableXProps>,
     Partial<VirtualizedProps>,
-    Partial<Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch'>>,
+    Partial<Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch' | 'allowAddRow'>>,
     Partial<HighlightTableXProps> {
   columns: Column<D>[]
   /** 是否需要分页 */

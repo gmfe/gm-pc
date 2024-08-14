@@ -8,6 +8,8 @@ interface KeyboardTableXProps {
   /* 通过 id 来确定本单元格内通信，避免多表格时混了。请确保 id 唯一 */
   id: string
   columns: KeyboardTableXColumn[]
+  /** 按下键是否允许增加一行数据 */
+  allowAddRow?: boolean
   /* 增加一行数据 */
   onAddRow(): void
   onBeforeDispatch?(options: {
@@ -54,6 +56,9 @@ interface WrapProps {
     to: { rowKey: number; columnKey: string }
     from: { rowKey: number; columnKey: string }
   }): boolean
+
+  /** 按下键是否允许增加一行数据 */
+  allowAddRow?: boolean
 
   /** Wrap 需要知道字段集合，以便能找到相应的单元格，请确保表格的顺序一致 */
   columnKeys: string[]
