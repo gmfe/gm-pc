@@ -9,7 +9,7 @@ interface KeyboardTableXProps {
   id: string
   columns: KeyboardTableXColumn[]
   /** 按下键是否允许增加一行数据 */
-  allowAddRow?: boolean
+  allowAddRowOnDownKey?: boolean
   /* 增加一行数据 */
   onAddRow(): void
   onBeforeDispatch?(options: {
@@ -58,7 +58,7 @@ interface WrapProps {
   }): boolean
 
   /** 按下键是否允许增加一行数据 */
-  allowAddRow?: boolean
+  allowAddRowOnDownKey?: boolean
 
   /** Wrap 需要知道字段集合，以便能找到相应的单元格，请确保表格的顺序一致 */
   columnKeys: string[]

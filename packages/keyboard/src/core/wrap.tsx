@@ -23,7 +23,7 @@ const Wrap: FC<WrapProps> = ({
   id,
   children,
   onAddRow,
-  allowAddRow,
+  allowAddRowOnDownKey,
   columnKeys,
   dataLength,
   fixedWidths,
@@ -88,7 +88,7 @@ const Wrap: FC<WrapProps> = ({
     }
     // 最后一行
     else if (rowKey === dataLength - 1) {
-      if (allowAddRow) {
+      if (allowAddRowOnDownKey) {
         onAddRow()
       }
       timer.current = window.setTimeout(() => {
