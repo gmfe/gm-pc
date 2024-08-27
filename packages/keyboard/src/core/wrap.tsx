@@ -23,7 +23,7 @@ const Wrap: FC<WrapProps> = ({
   id,
   children,
   onAddRow,
-  allowAddRowOnDownKey,
+  allowAddRowOnDownKey = true,
   columnKeys,
   dataLength,
   fixedWidths,
