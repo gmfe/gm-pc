@@ -21,7 +21,7 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
     id,
     onAddRow,
     onBeforeDispatch,
-    allowAddRowOnDownKey = false,
+    allowAddRowOnDownKey = true,
     ...tableProps
   }) => {
     const { data, columns } = tableProps
