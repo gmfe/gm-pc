@@ -11,6 +11,7 @@ import {
   subTableXHOC,
   selectTableXHOC,
   indexTableXHOC,
+  highlightTableXHOC,
 } from '../hoc'
 
 import BaseTable from './base_table'
@@ -27,6 +28,7 @@ function Table<D extends object = any>({
   isKeyboard,
   isSelect,
   isIndex,
+  isHighlight,
   ...res
 }: TableProps<D>) {
   const Table = useMemo(() => {
@@ -39,6 +41,7 @@ function Table<D extends object = any>({
     const hocMiddles = [
       isExpand && expandTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
+      isHighlight && highlightTableXHOC,
       isSelect && selectTableXHOC,
       isIndex && indexTableXHOC,
       isDiy && diyTableXHOC,
@@ -60,6 +63,7 @@ function Table<D extends object = any>({
     isKeyboard,
     isSelect,
     isIndex,
+    isHighlight,
   ])
 
   const tableProps = (res as unknown) as TableProps<D>

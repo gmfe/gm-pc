@@ -433,6 +433,7 @@ export const ComKeyboard = () => {
         isKeyboard
         isVirtualized
         isBatchSelect
+        allowAddRow={false}
         id='keyboard_table_x'
         onRowClick={(original, e) => {
           e.stopPropagation()

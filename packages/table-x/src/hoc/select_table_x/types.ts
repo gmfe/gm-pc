@@ -6,7 +6,7 @@ type SelectTableXValue = any
 
 interface SelectTableXProps {
   selected: SelectTableXValue[]
-  onSelect(selected: SelectTableXValue[]): void
+  onSelect(selected: SelectTableXValue[], isSelected: boolean, index?: number): void
   batchActionBar?: ReactNode
   isSelectorDisable?(item: TableXDataItem): boolean
   selectType?: 'checkbox' | 'radio'

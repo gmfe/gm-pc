@@ -99,6 +99,7 @@
       display: block; // 覆盖tbody 默认display
 
       .gm-table-x-tr {
+
         &.gm-table-x-tr-even {
           .gm-table-x-td {
             background: var(--gm-color-bg-back);
@@ -116,6 +117,12 @@
             .gm-table-x-td {
               background-color: var(--gm-color-table-td-active);
             }
+          }
+        }
+        // 主动选中的高亮行
+        &.gm-table-x-tr-current {
+          .gm-table-x-td {
+            background: var(--gm-color-bg-primary-light) !important;
           }
         }
       }

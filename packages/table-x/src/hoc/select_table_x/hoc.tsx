@@ -70,31 +70,41 @@ function selectTableXHOC<Props extends TableXProps = TableXProps>(
       )
     }, [columns])
 
-    const isSelectAll = canSelectData.every(can => selected?.includes(can[keyField]))
+    const isSelectAll = canSelectData.every((can) => selected?.includes(can[keyField]))
 
-    const handleSelect = (selected: SelectTableXValue[]): void => {
-      onSelect(selected)
+    const handleSelect = (
+      selected: SelectTableXValue[],
+      isSelected: boolean,
+      index: number
+    ): void => {
+      onSelect(selected, isSelected, index)
     }
 
     const handleSelectAll = (): void => {
       if (isSelectAll) {
-        onSelect(selected.filter(select => !canSelectData.some(can => can[keyField] === select)))
+        onSelect(
+          selected.filter(
+            (select) => !canSelectData.some((can) => can[keyField] === select)
+          ),
+          false
+        )
       } else {
-        onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)))
+        onSelect(_.uniq(canSelectData.map((v) => v[keyField]).concat(selected)), true)
       }
     }
     // 行选择
     const onRowSelect: SelectTableXContextOptions['onRowSelect'] = useCallback(
-      (select) => {
+      (select, i) => {
         if (rowSelect) {
           const tempSelected = [...selected]
           const index = tempSelected.indexOf(select)
           if (!~index) {
             tempSelected.push(select)
+            onSelect(tempSelected, true, i)
           } else {
             tempSelected.splice(index, 1)
+            onSelect(tempSelected, false, i)
           }
-          onSelect(tempSelected)
         }
       },
       [rowSelect, selected, onSelect]
