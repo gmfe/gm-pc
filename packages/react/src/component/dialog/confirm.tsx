@@ -10,6 +10,7 @@ import { Button } from '../button'
 interface InnerProps extends ConfirmProps {
   resolve: any
   reject: any
+  confirmLoading?: boolean
 }
 
 const Inner: FC<InnerProps> = ({
@@ -20,6 +21,7 @@ const Inner: FC<InnerProps> = ({
   read,
   resolve,
   reject,
+  confirmLoading,
 }) => {
   const [checked, setChecked] = useState<boolean>(false)
 
@@ -41,6 +43,7 @@ const Inner: FC<InnerProps> = ({
         resolve()
         Dialog.hide()
       },
+      loading: confirmLoading,
       disabled: read ? !checked : false,
     },
   ]

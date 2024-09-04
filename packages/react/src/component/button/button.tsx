@@ -80,7 +80,11 @@ const Button: FC<ButtonProps> = ({
       disabled={loadFlag || disabled}
       onClick={handleClick}
     >
-      {loadFlag && <Loading size='1em' />}
+      {loadFlag && (
+        <div style={{ marginRight: 4 }}>
+          <Loading size='1em' />
+        </div>
+      )}
       {children}
     </Tag>
   )

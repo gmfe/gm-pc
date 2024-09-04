@@ -11,6 +11,7 @@ interface DialogButtonProps {
   onClick(event?: Event): void
   btnType?: ButtonType
   disabled?: boolean
+  loading?: boolean
 }
 
 interface DialogProps extends ConfigProviderProps {
@@ -41,6 +42,7 @@ interface ConfirmProps extends SpecificDialogProps {
   onValidate?: (value: string) => boolean | void
   /** 阅读提示 */
   read?: boolean | string
+  confirmLoading?: boolean
 }
 
 interface PromptProps extends ConfirmProps, ConfigProviderProps {

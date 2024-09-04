@@ -28,6 +28,7 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
         <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>
           {_.map(buttons, (btn) => (
             <Button
+              loading={btn.loading}
               key={btn.text}
               type={btn.btnType}
               disabled={btn.disabled}

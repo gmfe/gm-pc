@@ -14,6 +14,7 @@ type ButtonMap = {
     text: string
     onClick(): void
     disabled?: boolean
+    loading?: boolean
   }
 }
 
@@ -27,6 +28,7 @@ export interface PopupContentConfirmProps extends HTMLAttributes<HTMLDivElement>
   read?: boolean | string
   className?: string
   style?: CSSProperties
+  loading?: boolean
 }
 
 const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
@@ -38,6 +40,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
   read,
   className,
   children,
+  loading,
   ...rest
 }) => {
   const [checked, setChecked] = useState<boolean>(false)
@@ -51,6 +54,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
       onClick() {
         onSave && onSave()
       },
+      loading: loading,
     },
     delete: {
       text: getLocale('删除'),
@@ -58,6 +62,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
       onClick() {
         onDelete && onDelete()
       },
+      loading: loading,
       disabled: read ? !checked : false,
     },
   }
@@ -88,6 +93,7 @@ const PopupContentConfirm: FC<PopupContentConfirmProps> = ({
             onClick={() => {
               buttonMap[type].onClick()
             }}
+            loading={loading}
             disabled={buttonMap[type].disabled}
           >
             {buttonMap[type].text}
