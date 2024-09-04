@@ -82,7 +82,7 @@ const Button: FC<ButtonProps> = ({
     >
       {loadFlag && (
         <div style={{ marginRight: 4 }}>
-          <Loading size='1em' />
+          <Loading size='1em' type={type} />
         </div>
       )}
       {children}

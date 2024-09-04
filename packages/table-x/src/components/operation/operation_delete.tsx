@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes, useMemo, useRef } from 'react'
+import React, { FC, HTMLAttributes, useMemo, useRef, useState } from 'react'
 import { Popover, PopupContentConfirm } from '@gm-pc/react'
 import { getLocale } from '@gm-pc/locales'
 import OperationIcon from './icon'
@@ -23,10 +23,17 @@ const OperationDelete: FC<OperationDeleteProps> = ({
   ...rest
 }) => {
   const popoverRef = useRef<Popover>(null)
+  const [loading, setLoading] = useState(false)
 
-  const handleDelete = (): void => {
+  const handleDelete = async () => {
     handleCancel()
-    return onClick()
+    try {
+      setLoading(true)
+      const res = await onClick?.()
+      return res
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleCancel = (): void => {
@@ -40,6 +47,7 @@ const OperationDelete: FC<OperationDeleteProps> = ({
       read={read}
       onCancel={handleCancel}
       onDelete={handleDelete}
+      loading={loading}
     >
       {children ?? getLocale('确定删除？')}
     </PopupContentConfirm>
