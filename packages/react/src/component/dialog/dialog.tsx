@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { DialogProps, DialogStatic } from './types'
 import { getLocale } from '@gm-pc/locales'
 import _ from 'lodash'
@@ -15,6 +15,7 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   onHide = () => Dialog.hide(),
   children,
 }) => {
+  const [loading, setLoading] = useState(false)
   return (
     <Modal
       title={title}
@@ -26,20 +27,28 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
       <div>{children}</div>
       {buttons && (
         <Flex justifyEnd className='gm-dialog-buttons gm-margin-top-10'>
-          {_.map(buttons, (btn) => (
-            <Button
-              loading={btn.loading}
-              key={btn.text}
-              type={btn.btnType}
-              disabled={btn.disabled}
-              onClick={() => {
-                btn.onClick()
-              }}
-              className='gm-margin-left-10'
-            >
-              {btn.text}
-            </Button>
-          ))}
+          {_.map(buttons, (btn) => {
+            const isPrimary = btn.btnType === 'primary' || btn.btnType === 'danger'
+
+            return (
+              <Button
+                loading={btn.loading || (isPrimary && loading)}
+                key={btn.text}
+                type={btn.btnType}
+                disabled={btn.disabled}
+                onClick={() => {
+                  setLoading(true)
+                  // console.log('btn.onClick', btn.onClick())
+                  Promise.resolve(btn.onClick()).finally(() => {
+                    setLoading(false)
+                  })
+                }}
+                className='gm-margin-left-10'
+              >
+                {btn.text}
+              </Button>
+            )
+          })}
         </Flex>
       )}
     </Modal>
