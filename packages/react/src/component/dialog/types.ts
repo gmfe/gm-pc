@@ -43,8 +43,8 @@ interface ConfirmProps extends SpecificDialogProps {
   /** 阅读提示 */
   read?: boolean | string
   confirmLoading?: boolean
-  onOk: () => any
-  onCancel: (error: any) => any
+  onOk?: () => any
+  onCancel?: (error: any) => any
 }
 
 interface PromptProps extends ConfirmProps, ConfigProviderProps {
