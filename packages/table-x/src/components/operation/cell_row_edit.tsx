@@ -11,6 +11,7 @@ interface OperationCellRowEditProps {
   onSave?(): void
   onCancel?(): void
   disabled?: boolean
+  loading?: boolean
 }
 
 const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
@@ -20,14 +21,15 @@ const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
   onSave,
   onCancel,
   disabled,
+  loading,
 }) => {
   const handleClick = (): void => {
     if (disabled) return
     onClick && onClick()
   }
 
-  const handleSave = (): void => {
-    onSave && onSave()
+  const handleSave = () => {
+    return onSave?.()
   }
 
   const handleCancel = (): void => {
@@ -36,7 +38,7 @@ const OperationCellRowEdit: FC<OperationCellRowEditProps> = ({
 
   return isEditing ? (
     <OperationCell>
-      <Button size='small' type='primary' onClick={handleSave}>
+      <Button size='small' type='primary' loading={loading} onClick={handleSave}>
         {getLocale('保存')}
       </Button>
       <span className='gm-gap-5' />

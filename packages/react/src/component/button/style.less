@@ -1,7 +1,7 @@
 .gm-btn {
   height: 30px;
   border-radius: 2px;
-  display: inline-block;
+  display: inline-flex;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
@@ -11,6 +11,8 @@
   font-size: 12px;
   line-height: 30px;
   user-select: none;
+  flex-direction: row;
+  align-items: center;
 
   &.gm-btn-default {
     .gmBtnVariants(var(--gm-color-default), white, white);

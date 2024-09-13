@@ -10,6 +10,11 @@ import { Button } from '../button'
 interface InnerProps extends ConfirmProps {
   resolve: any
   reject: any
+  /**
+   * @deprecated
+   * 这个没用
+   * */
+  confirmLoading?: boolean
 }
 
 const Inner: FC<InnerProps> = ({
@@ -20,27 +25,43 @@ const Inner: FC<InnerProps> = ({
   read,
   resolve,
   reject,
+  confirmLoading,
+  onOk,
+  onCancel,
 }) => {
   const [checked, setChecked] = useState<boolean>(false)
 
   const readText = _.isString(read) ? read : getLocale('我已阅读以上提示，确认删除')
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const handleOk = async () => {
+    const fn = onOk || resolve
+    try {
+      setLoading(true)
+      await fn()
+      Dialog.hide()
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const buttons: DialogButtonProps[] = [
     {
       text: cancelBtnText || getLocale('取消'),
       btnType: 'default',
       onClick() {
-        reject(new Error('cancel'))
+        const fn = onCancel || reject
+
+        fn(new Error('cancel'))
+
         Dialog.hide()
       },
     },
     {
       text: okBtnText || getLocale('确定'),
       btnType: okBtnType || 'primary',
-      onClick() {
-        resolve()
-        Dialog.hide()
-      },
+      onClick: handleOk,
+      loading: loading,
       disabled: read ? !checked : false,
     },
   ]
@@ -61,9 +82,8 @@ const Inner: FC<InnerProps> = ({
             key={btn.text}
             type={btn.btnType}
             disabled={btn.disabled}
-            onClick={() => {
-              btn.onClick()
-            }}
+            onClick={() => btn.onClick()}
+            loading={btn.loading}
             className='gm-margin-left-10'
           >
             {btn.text}

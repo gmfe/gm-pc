@@ -129,10 +129,17 @@ const FormGroup: FC<FormGroupProps> = ({
 export default FormGroup
 
 type ActionProps = Omit<FormGroupProps, 'formRefs' | 'onSubmitValidated' | 'onSubmit'> & {
-  onSubmit?(event: BaseSyntheticEvent): void
+  onSubmit?(event: BaseSyntheticEvent): Promise<void> | void
 }
 
 const Action: FC<ActionProps> = ({ onCancel, onSubmit, disabled, saveText, actions }) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = (e: BaseSyntheticEvent) => {
+    setLoading(true)
+    Promise.resolve(onSubmit?.(e)).finally(() => setLoading(false))
+  }
+
   return (
     <>
       {onCancel && (
@@ -141,7 +148,7 @@ const Action: FC<ActionProps> = ({ onCancel, onSubmit, disabled, saveText, actio
           <div className='gm-gap-10' />
         </>
       )}
-      <Button type='primary' disabled={disabled} onClick={onSubmit}>
+      <Button type='primary' disabled={disabled} loading={loading} onClick={handleClick}>
         {saveText || getLocale('确定')}
       </Button>
       {actions}
