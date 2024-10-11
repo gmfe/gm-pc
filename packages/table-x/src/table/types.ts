@@ -1,4 +1,4 @@
-import { ReactNode, RefObject } from 'react'
+import { Component, ReactNode, RefObject } from 'react'
 import { VariableSizeList } from 'react-window'
 import { TableXColumn, TableXProps, TableXVirtualizedProps } from '../base'
 import {
@@ -22,6 +22,14 @@ export type HocMiddleware = (...args: any) => ReactNode
 
 export type Column<D extends object = any> = TableXColumn<D> &
   Pick<DiyTableXColumn, 'diyEnable' | 'diyItemText' | 'diyGroupName'>
+
+export type CustomizeComponent = Component<any>
+
+export interface TableComponents {
+  header?: {
+    cell?: CustomizeComponent
+  }
+}
 
 export interface TableProps<D extends object = any>
   extends Omit<TableXProps<D>, 'columns'>,
@@ -59,6 +67,8 @@ export interface TableProps<D extends object = any>
    * 按回车键会触发 onRowClick 事件，可以判断 event 是否是 KeyboardEvent 来判断
    */
   isHighlight?: boolean
+  /** 是否开启伸缩列 */
+  isResizable?: boolean
 
   /** 是否虚拟列表 */
   isVirtualized?: boolean
@@ -72,4 +82,7 @@ export interface TableProps<D extends object = any>
 
   /** 公用属性 */
   onRowClick?(original: TableXDataItem<any>, e: Event, index: number): void
+
+  /** 表格插件 */
+  components?: TableComponents
 }

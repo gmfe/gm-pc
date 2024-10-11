@@ -28,6 +28,7 @@ function BaseTable<D extends object = {}>({
   keyField = 'value',
   tiled,
   border,
+  components,
   headerSortMultiple,
   tableRef,
   isHighlight,
@@ -191,6 +192,7 @@ function BaseTable<D extends object = {}>({
         // @ts-ignore
         <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
           <Thead
+            components={components}
             headerGroups={headerGroups as TableXHeaderGroup[]}
             totalWidth={totalWidth}
             onHeaderSort={onHeaderSort}
@@ -203,7 +205,7 @@ function BaseTable<D extends object = {}>({
     }
     return Table
     // headerGroups 会因为coluns变化而变化，所以无需加入，否则会造成重复渲染
-  }, [columns, totalWidth, sorts, onHeaderSort])
+  }, [columns, totalWidth, sorts, onHeaderSort, components])
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   useImperativeHandle(refVirtualized, () => virtualizedRef.current!)

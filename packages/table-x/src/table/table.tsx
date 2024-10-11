@@ -12,6 +12,7 @@ import {
   selectTableXHOC,
   indexTableXHOC,
   highlightTableXHOC,
+  resizeableTableXHOC,
 } from '../hoc'
 
 import BaseTable from './base_table'
@@ -29,6 +30,7 @@ function Table<D extends object = any>({
   isSelect,
   isIndex,
   isHighlight,
+  isResizable = true,
   ...res
 }: TableProps<D>) {
   const Table = useMemo(() => {
@@ -49,6 +51,7 @@ function Table<D extends object = any>({
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
       isKeyboard && keyboardTableXHOC,
+      isResizable && resizeableTableXHOC,
     ].filter(Boolean) as HocMiddleware[]
 
     const TempTable = applyMiddleware(...hocMiddles)(BaseTable)
@@ -64,6 +67,7 @@ function Table<D extends object = any>({
     isSelect,
     isIndex,
     isHighlight,
+    isResizable,
   ])
 
   const tableProps = (res as unknown) as TableProps<D>
