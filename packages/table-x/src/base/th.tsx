@@ -2,11 +2,13 @@ import React, { FC, ThHTMLAttributes } from 'react'
 import classNames from 'classnames'
 import { TableXThProps } from './types'
 import { getColumnStyle } from '../utils'
+import { TableComponents } from '../table'
 
 interface ThProps extends TableXThProps {
   sortDirection?: 'desc' | 'asc' | null
+  components?: TableComponents
 }
-const Th: FC<ThProps> = ({ column, totalWidth }) => {
+const Th: FC<ThProps> = ({ components, column, totalWidth }) => {
   const hp = column.getHeaderProps()
 
   const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = {
@@ -32,7 +34,13 @@ const Th: FC<ThProps> = ({ column, totalWidth }) => {
     thProps.style!.right = totalWidth - column.totalLeft - column.totalWidth
   }
 
-  return <th {...thProps}>{column.render('Header')}</th>
+  return components?.header?.cell ? (
+    <components.header.cell {...thProps} {...(column?.onHeaderCell?.(column) || {})}>
+      {column.render('Header')}
+    </components.header.cell>
+  ) : (
+    <th {...thProps}>{column.render('Header')}</th>
+  )
 }
 
 export default React.memo(Th)

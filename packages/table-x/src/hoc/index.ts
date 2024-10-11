@@ -9,5 +9,6 @@ export * from './batch_action_select_table_x'
 export * from './sub_table_x'
 export * from './index_table_x'
 export * from './highlight_table_x'
+export * from './resizable_table_x'
 
 export type { SortableTableXProps } from './sortable_table_x'
