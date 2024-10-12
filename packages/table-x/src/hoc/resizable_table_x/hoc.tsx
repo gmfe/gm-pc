@@ -22,11 +22,10 @@ const clearSelection = () => {
 }
 
 const ResizeableTitle = (props: Record<string, any>) => {
-  const { onResize, width, ...restProps } = props
+  const { onResize, ...restProps } = props
 
-  if (!width) {
-    return <th {...restProps} />
-  }
+  // 宽度取style上的宽度
+  const width = parseInt(restProps?.style.width)
 
   return (
     <Resizable
@@ -70,11 +69,11 @@ function resizeableTableXHOC<Props extends TableProps = TableProps>(
     useEffect(() => {
       const _columns = rest.columns.map((col, index) => ({
         ...col,
-        onHeaderCell: (column: Column<any>) => ({
-          width: column.width,
+        onHeaderCell: () => ({
           onResize: handleResize(index),
         }),
       }))
+
       setNewColumns(_columns)
     }, [rest.columns])
 
