@@ -47,7 +47,7 @@ const Tr: FC<TableXTrProps> = ({
       {/* @ts-ignore */}
       <tr {...props} data-id={trId} data-index={row.index}>
         {row.cells.map((cell, index) => (
-          <Td key={index} totalWidth={totalWidth} cell={cell} />
+          <Td rowIndex={index} key={index} totalWidth={totalWidth} cell={cell} />
         ))}
       </tr>
       {SubComponent && SubComponent(row)}

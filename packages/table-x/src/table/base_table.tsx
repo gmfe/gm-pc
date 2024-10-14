@@ -7,6 +7,8 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
+  
 } from 'react'
 import classNames from 'classnames'
 import { Align, ReactElementType, VariableSizeList } from 'react-window'
@@ -20,6 +22,13 @@ import { TableXHeaderGroup } from '../base/types'
 import { Column, TableProps } from './types'
 import { ConfigContext } from '@gm-pc/react'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
+
+export interface TableResizeProps {
+  widthList:Record<string,string>
+  setWidthList:(val: Record<string,string>)=>void
+}
+
+export const TableReSize = React.createContext<TableResizeProps>()
 
 function BaseTable<D extends object = {}>({
   columns,
@@ -64,7 +73,7 @@ function BaseTable<D extends object = {}>({
   const { fontSize } = useContext(ConfigContext)
   const virtualizedRef = useRef<VariableSizeList>(null)
   const tableWrapperRef = useRef<HTMLDivElement>(null)
-
+  const [widthList,setWidthList] = useState({})
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
     ...gtp,
@@ -187,20 +196,22 @@ function BaseTable<D extends object = {}>({
         ...gtbp,
         className: 'gm-table-x-tbody',
       }
+   
       // 获取body参数 end
       return (
         // @ts-ignore
-        <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
-          <Thead
-            components={components}
-            headerGroups={headerGroups as TableXHeaderGroup[]}
-            totalWidth={totalWidth}
-            onHeaderSort={onHeaderSort}
-            sorts={sorts}
-          />
-          {/* @ts-ignore */}
-          <tbody {...tableBodyProps}>{children}</tbody>
-        </table>
+     
+           <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
+            <Thead
+              components={components}
+              headerGroups={headerGroups as TableXHeaderGroup[]}
+              totalWidth={totalWidth}
+              onHeaderSort={onHeaderSort}
+              sorts={sorts}
+            />
+           {/* @ts-ignore */}
+            <tbody {...tableBodyProps}>{children}</tbody>
+           </table>
       )
     }
     return Table
@@ -252,7 +263,8 @@ function BaseTable<D extends object = {}>({
   // 获取虚拟列表参数 end
 
   return (
-    // @ts-ignore
+    <TableReSize.Provider value={{widthList,setWidthList}}>
+    {/*  @ts-ignore */}
     <div
       {...rest}
       className={classNames(
@@ -288,6 +300,7 @@ function BaseTable<D extends object = {}>({
       )}
       <LoadingAndEmpty loading={loading} length={dataLength} />
     </div>
+    </TableReSize.Provider>
   )
 }
 

@@ -51,7 +51,7 @@ function Table<D extends object = any>({
       isEdit && editTableXHOC,
       isSub && subTableXHOC,
       isKeyboard && keyboardTableXHOC,
-      isResizable && resizeableTableXHOC,
+      // isResizable && resizeableTableXHOC,
     ].filter(Boolean) as HocMiddleware[]
 
     const TempTable = applyMiddleware(...hocMiddles)(BaseTable)

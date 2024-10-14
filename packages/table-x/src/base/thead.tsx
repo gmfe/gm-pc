@@ -1,8 +1,8 @@
-import React, { FC, memo } from 'react'
+import React, { FC, memo, useEffect, useLayoutEffect, useState } from 'react'
 import Th from './th'
 import { TableXTheadProps } from './types'
 import SortHeader, { SortHeaderProps } from '../components/sort_header'
-
+import { getColumnStyle } from '../utils'
 const Thead: FC<TableXTheadProps> = ({
   components,
   headerGroups,
@@ -41,6 +41,7 @@ const Thead: FC<TableXTheadProps> = ({
                 //  由于Th加了memo，当header配置了排序增加sortDirection触发Th diff
                 sortDirection={sorts[header.id]}
                 column={header}
+                index={headerIndex}
                 key={headerIndex}
                 totalWidth={totalWidth}
               />

@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import classNames from 'classnames'
 import { getColumnStyle } from '../utils'
 import { TableXTdProps } from './types'
 import Catch from '../utils/catch'
+import { TableReSize, TableResizeProps } from '../table/base_table'
 
-const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
+const Td: FC<TableXTdProps> = ({ cell, totalWidth,rowIndex }) => {
+  const tableResize = useContext(TableReSize) as TableResizeProps
   const cp = cell.getCellProps()
   const tdProps = {
     ...cp,
@@ -15,6 +17,8 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
     style: {
       ...cp.style,
       ...getColumnStyle(cell.column),
+      width: tableResize?.widthList[rowIndex] || getColumnStyle(cell.column).width,
+      maxWidth: tableResize?.widthList[rowIndex] || getColumnStyle(cell.column).maxWidth,
     },
   }
 
