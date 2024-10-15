@@ -1,4 +1,11 @@
-import React, { FC, ThHTMLAttributes, useContext, useEffect, useMemo, useState } from 'react'
+import React, {
+  FC,
+  ThHTMLAttributes,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { Resizable } from 'react-resizable'
 import classNames from 'classnames'
 import { TableXThProps } from './types'
@@ -27,19 +34,20 @@ const clearSelection = () => {
 interface ThProps extends TableXThProps {
   sortDirection?: 'desc' | 'asc' | null
   components?: TableComponents
-  index:number
+  index: number
+  isResizable?: boolean
 }
 
-const Th: FC<ThProps> = ({ components, column,index, totalWidth }) => {
+const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const hp = column.getHeaderProps()
-  const handleResize = (e:Event,resizeRes:any) => {
+  const handleResize = (_: Event, resizeRes: any) => {
     tableResize.setWidthList({
       ...tableResize?.widthList,
-      [index]:resizeRes.size.width+'px'
+      [index]: resizeRes.size.width + 'px',
     })
   }
-  const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = useMemo(()=>{
+  const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = useMemo(() => {
     return {
       ...hp,
       className: classNames(
@@ -56,9 +64,9 @@ const Th: FC<ThProps> = ({ components, column,index, totalWidth }) => {
         ...getColumnStyle(column),
         width: tableResize?.widthList[index] || getColumnStyle(column).width,
         maxWidth: tableResize?.widthList[index] || getColumnStyle(column).maxWidth,
-      }
+      },
     }
-  },[tableResize?.widthList])
+  }, [tableResize?.widthList, hp, column])
   if (column.fixed === 'left') {
     thProps.style = {
       ...thProps.style,
@@ -70,26 +78,32 @@ const Th: FC<ThProps> = ({ components, column,index, totalWidth }) => {
       right: totalWidth - column.totalLeft - column.totalWidth,
     }
   }
- 
- return  <Resizable
-          width={ parseInt(tableResize?.widthList[index] ||getColumnStyle(column).width,10) }
-          height={0}
-          onResize={handleResize}
-          draggableOpts={{
-            enableUserSelectHack: false,
-            onMouseDown: () => {
-              // 处理Windows Chrome 和 Edge 松开鼠标依然能拖动的问题
-              clearSelection()
-            },
-}}>{ components?.header?.cell ? (
-    <components.header.cell {...thProps} {...(column?.onHeaderCell?.(column) || {})}>
-      {column.render('Header')}
-    </components.header.cell>
-  ) : (
-    <th {...thProps}  >{column.render('Header')}</th>
-  )}
 
-  </Resizable>
+  const isFixed =
+    typeof thProps.style?.left === 'number' || typeof thProps.style?.right === 'number'
+
+  if (isResizable && !isFixed) {
+    return (
+      <Resizable
+        width={parseInt(
+          tableResize?.widthList[index] || getColumnStyle(column).width,
+          10
+        )}
+        height={0}
+        onResize={handleResize}
+        draggableOpts={{
+          enableUserSelectHack: false,
+          onMouseDown: () => {
+            // 处理Windows Chrome 和 Edge 松开鼠标依然能拖动的问题
+            clearSelection()
+          },
+        }}
+      >
+        <th {...thProps}>{column.render('Header')}</th>
+      </Resizable>
+    )
+  }
+  return <th {...thProps}>{column.render('Header')}</th>
 }
 
 export default React.memo(Th)

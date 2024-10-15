@@ -4,6 +4,7 @@ import { TableXTheadProps } from './types'
 import SortHeader, { SortHeaderProps } from '../components/sort_header'
 import { getColumnStyle } from '../utils'
 const Thead: FC<TableXTheadProps> = ({
+  isResizable,
   components,
   headerGroups,
   totalWidth,
@@ -37,6 +38,7 @@ const Thead: FC<TableXTheadProps> = ({
             }
             return (
               <Th
+                isResizable={isResizable}
                 components={components}
                 //  由于Th加了memo，当header配置了排序增加sortDirection触发Th diff
                 sortDirection={sorts[header.id]}

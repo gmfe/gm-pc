@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "gm-pc",
   "private": true,
   "scripts": {
     "start": "start-storybook -p 7000",
