@@ -18,8 +18,15 @@ export interface RenderRowProps {
   index?: number
   style?: CSSProperties
   isMap?: boolean
+  isResizable?: boolean
 }
-const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowProps) => {
+const RenderRow: FC<RenderRowProps> = ({
+  isResizable,
+  data,
+  index,
+  style,
+  isMap,
+}: RenderRowProps) => {
   if (!isMap && index === 0) {
     // @ts-ignore
     return <div style={style} />
@@ -43,6 +50,7 @@ const RenderRow: FC<RenderRowProps> = ({ data, index, style, isMap }: RenderRowP
     prepareRow(row)
     return (
       <Tr
+        isResizable={isResizable}
         key={row.index}
         totalWidth={totalWidth}
         row={row as TableXRow}

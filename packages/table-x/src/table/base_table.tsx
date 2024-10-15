@@ -8,7 +8,6 @@ import React, {
   useMemo,
   useRef,
   useState,
-  
 } from 'react'
 import classNames from 'classnames'
 import { Align, ReactElementType, VariableSizeList } from 'react-window'
@@ -24,8 +23,8 @@ import { ConfigContext } from '@gm-pc/react'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
 
 export interface TableResizeProps {
-  widthList:Record<string,string>
-  setWidthList:(val: Record<string,string>)=>void
+  widthList: Record<string, string>
+  setWidthList: (val: Record<string, string>) => void
 }
 
 export const TableReSize = React.createContext<TableResizeProps>()
@@ -57,6 +56,7 @@ function BaseTable<D extends object = {}>({
   refVirtualized,
   fixedSelect,
   batchActions,
+  isResizable,
   ...rest
 }: TableProps<D>) {
   const highlightTableXContext = useHighlightTableXContext()
@@ -73,7 +73,7 @@ function BaseTable<D extends object = {}>({
   const { fontSize } = useContext(ConfigContext)
   const virtualizedRef = useRef<VariableSizeList>(null)
   const tableWrapperRef = useRef<HTMLDivElement>(null)
-  const [widthList,setWidthList] = useState({})
+  const [widthList, setWidthList] = useState({})
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
     ...gtp,
@@ -196,27 +196,28 @@ function BaseTable<D extends object = {}>({
         ...gtbp,
         className: 'gm-table-x-tbody',
       }
-   
+
       // 获取body参数 end
       return (
         // @ts-ignore
-     
-           <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
-            <Thead
-              components={components}
-              headerGroups={headerGroups as TableXHeaderGroup[]}
-              totalWidth={totalWidth}
-              onHeaderSort={onHeaderSort}
-              sorts={sorts}
-            />
-           {/* @ts-ignore */}
-            <tbody {...tableBodyProps}>{children}</tbody>
-           </table>
+
+        <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
+          <Thead
+            isResizable={isResizable}
+            components={components}
+            headerGroups={headerGroups as TableXHeaderGroup[]}
+            totalWidth={totalWidth}
+            onHeaderSort={onHeaderSort}
+            sorts={sorts}
+          />
+          {/* @ts-ignore */}
+          <tbody {...tableBodyProps}>{children}</tbody>
+        </table>
       )
     }
     return Table
     // headerGroups 会因为coluns变化而变化，所以无需加入，否则会造成重复渲染
-  }, [columns, totalWidth, sorts, onHeaderSort, components])
+  }, [columns, totalWidth, sorts, onHeaderSort, components, isResizable])
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   useImperativeHandle(refVirtualized, () => virtualizedRef.current!)
@@ -263,43 +264,43 @@ function BaseTable<D extends object = {}>({
   // 获取虚拟列表参数 end
 
   return (
-    <TableReSize.Provider value={{widthList,setWidthList}}>
-    {/*  @ts-ignore */}
-    <div
-      {...rest}
-      className={classNames(
-        'gm-table-x',
-        {
-          'gm-table-x-empty': dataLength === 0,
-          'gm-table-x-tiled': tiled,
-          'gm-table-x-border': border,
-          [`gm-table-x-text-${fontSize}`]: fontSize,
-        },
-        className
-      )}
-      ref={tableWrapperRef}
-      onScroll={handleScroll}
-    >
-      {isVirtualized ? (
-        <VariableSizeList
-          ref={virtualizedRef}
-          height={newVirtualizedHeight}
-          itemCount={itemCount}
-          innerElementType={TableContainer}
-          itemData={renderRowData}
-          width='100%'
-          className='gm-table-x-virtualized'
-          itemSize={itemSize}
-        >
-          {RenderRow}
-        </VariableSizeList>
-      ) : (
-        <TableContainer>
-          <RenderRow data={renderRowData} isMap />
-        </TableContainer>
-      )}
-      <LoadingAndEmpty loading={loading} length={dataLength} />
-    </div>
+    <TableReSize.Provider value={{ widthList, setWidthList }}>
+      {/*  @ts-ignore */}
+      <div
+        {...rest}
+        className={classNames(
+          'gm-table-x',
+          {
+            'gm-table-x-empty': dataLength === 0,
+            'gm-table-x-tiled': tiled,
+            'gm-table-x-border': border,
+            [`gm-table-x-text-${fontSize}`]: fontSize,
+          },
+          className
+        )}
+        ref={tableWrapperRef}
+        onScroll={handleScroll}
+      >
+        {isVirtualized ? (
+          <VariableSizeList
+            ref={virtualizedRef}
+            height={newVirtualizedHeight}
+            itemCount={itemCount}
+            innerElementType={TableContainer}
+            itemData={renderRowData}
+            width='100%'
+            className='gm-table-x-virtualized'
+            itemSize={itemSize}
+          >
+            {RenderRow}
+          </VariableSizeList>
+        ) : (
+          <TableContainer>
+            <RenderRow data={renderRowData} isMap />
+          </TableContainer>
+        )}
+        <LoadingAndEmpty loading={loading} length={dataLength} />
+      </div>
     </TableReSize.Provider>
   )
 }

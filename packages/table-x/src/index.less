@@ -100,10 +100,13 @@
 
         .react-resizable-handle {
           position: absolute;
-          width: 10px;
-          height: 100%;
+          width: 1px;
+          height: 20px;
           bottom: 0;
-          right: -5px;
+          top: 0;
+          background-color: #c2c2c2;
+          margin: auto;
+          right: 5px;
           cursor: col-resize;
           z-index: 1;
         }
@@ -228,7 +231,6 @@
     // 最后一个需要去掉
     // stylelint-disable-next-line
     .gm-table-x-th {
-
       // stylelint-disable-next-line
       &:last-child {
         .gm-table-x-resizer {
@@ -243,7 +245,6 @@
 
     .gm-table-x-th,
     .gm-table-x-td {
-
       &.gm-table-x-fixed-left,
       &.gm-table-x-fixed-right {
         position: sticky !important;
@@ -271,7 +272,7 @@
 
       .gmDisabledWith ();
 
-      &+.gm-table-x-operation-icon {
+      & + .gm-table-x-operation-icon {
         margin-left: 10px;
       }
     }
@@ -338,10 +339,8 @@
 
 // 特殊逻辑，在第一或第二个位置的 select expand 居中显示
 .gm-table-x {
-
   .gm-table-x-th,
   .gm-table-x-td {
-
     &.gm-table-x-column-1,
     &.gm-table-x-column-2 {
       .gm-table-x-select {
@@ -395,7 +394,6 @@
 }
 
 .gm-table-x-edit-table {
-
   // action
   .gm-table-x-edit-action-add {
     display: inline-block;
@@ -558,7 +556,7 @@
   }
 
   .gm-react-table-x-diy-modal-list {
-    &>div {
+    & > div {
       padding: 10px;
     }
 
