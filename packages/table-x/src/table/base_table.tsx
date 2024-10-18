@@ -56,7 +56,7 @@ function BaseTable<D extends object = {}>({
   refVirtualized,
   fixedSelect,
   batchActions,
-  isResizable,
+  isResizable = true,
   ...rest
 }: TableProps<D>) {
   const highlightTableXContext = useHighlightTableXContext()
