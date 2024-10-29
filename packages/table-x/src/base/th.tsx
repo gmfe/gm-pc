@@ -99,7 +99,17 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
           },
         }}
       >
-        <th {...thProps}>{column.render('Header')}</th>
+        <th {...thProps}>
+          <div
+            style={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {column.render('Header')}
+          </div>
+        </th>
       </Resizable>
     )
   }
