@@ -101,14 +101,14 @@
         .react-resizable-handle {
           position: absolute;
           width: 1px;
-          height: 20px;
+          height: 16px;
           bottom: 0;
           top: 0;
           background-color: #c2c2c2;
           margin: auto;
           right: 5px;
           cursor: col-resize;
-          z-index: 1;
+          z-index: 0 !important;
         }
       }
     }
@@ -142,6 +142,13 @@
           .gm-table-x-td {
             background: var(--gm-color-bg-primary-light) !important;
           }
+        }
+
+        .gm-table-x-td {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          word-break: break-all;
+          white-space: nowrap;
         }
       }
 
