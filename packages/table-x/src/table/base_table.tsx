@@ -17,7 +17,7 @@ import RenderRow from './render_row'
 import LoadingAndEmpty from './loading_and_empty'
 
 import { afterScroll, getDiyShowMap, getVirtualizedParams, useInitTable } from '../utils'
-import { TableXHeaderGroup } from '../base/types'
+import { SortsType, TableXHeaderGroup } from '../base/types'
 import { Column, TableProps } from './types'
 import { ConfigContext } from '@gm-pc/react'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
@@ -65,6 +65,7 @@ function BaseTable<D extends object = {}>({
     headerGroups,
     totalWidth,
     sorts,
+    setSorts,
     getTableProps,
     getTableBodyProps,
     prepareRow,
@@ -232,6 +233,9 @@ function BaseTable<D extends object = {}>({
         if (!isHighlight) return
         highlightTableXContext.setHighlight(index)
         scrollToItem(index, align)
+      },
+      updateSorts: (value: React.SetStateAction<SortsType>) => {
+        setSorts(value)
       },
     }),
     [columns]
