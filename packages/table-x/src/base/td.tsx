@@ -5,7 +5,7 @@ import { TableXTdProps } from './types'
 import Catch from '../utils/catch'
 import { TableReSize, TableResizeProps } from '../table/base_table'
 
-const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowIndex }) => {
+const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const cp = cell.getCellProps()
   const tdProps = {
@@ -17,8 +17,8 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowIndex }) => {
     style: {
       ...cp.style,
       ...getColumnStyle(cell.column),
-      width: tableResize?.widthList[rowIndex] || getColumnStyle(cell.column).width,
-      maxWidth: tableResize?.widthList[rowIndex] || getColumnStyle(cell.column).maxWidth,
+      width: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).width,
+      maxWidth: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).maxWidth,
     },
   }
 

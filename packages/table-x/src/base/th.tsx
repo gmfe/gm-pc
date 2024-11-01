@@ -12,6 +12,9 @@ import { TableXThProps } from './types'
 import { getColumnStyle } from '../utils'
 import { TableComponents } from '../table'
 import { TableReSize, TableResizeProps } from '../table/base_table'
+import { Flex } from '@gm-pc/react'
+import { LocalStorage } from '@gm-common/tool'
+import { isUndefined } from 'lodash'
 
 const clearSelection = () => {
   const _document = document as any
@@ -36,16 +39,27 @@ interface ThProps extends TableXThProps {
   components?: TableComponents
   index: number
   isResizable?: boolean
+  id?: string
 }
 
-const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
+const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const hp = column.getHeaderProps()
   const handleResize = (_: Event, resizeRes: any) => {
-    tableResize.setWidthList({
+    const width =
+      +resizeRes.size.width < 100
+        ? 100
+        : +resizeRes.size.width > 1000
+        ? 1000
+        : +resizeRes.size.width
+    const widthList = {
       ...tableResize?.widthList,
-      [index]: resizeRes.size.width + 'px',
-    })
+      [column.id]: width + 'px',
+    }
+    if (!isUndefined(id)) {
+      LocalStorage.set(id, widthList)
+    }
+    tableResize.setWidthList(widthList)
   }
   const thProps: ThHTMLAttributes<HTMLTableHeaderCellElement> = useMemo(() => {
     return {
@@ -62,11 +76,21 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
       style: {
         ...hp.style,
         ...getColumnStyle(column),
-        width: tableResize?.widthList[index] || getColumnStyle(column).width,
-        maxWidth: tableResize?.widthList[index] || getColumnStyle(column).maxWidth,
+        width: tableResize?.widthList[column.id] || getColumnStyle(column).width,
+        maxWidth: tableResize?.widthList[column.id] || getColumnStyle(column).maxWidth,
       },
     }
-  }, [tableResize?.widthList, hp, column])
+  }, [hp, column, tableResize])
+
+  useEffect(() => {
+    if (!isUndefined(id)) {
+      const widthList = LocalStorage.get(id)
+      if (widthList) {
+        tableResize.setWidthList(widthList)
+      }
+    }
+  }, [])
+
   if (column.fixed === 'left') {
     thProps.style = {
       ...thProps.style,
@@ -86,7 +110,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
     return (
       <Resizable
         width={parseInt(
-          tableResize?.widthList[index] || getColumnStyle(column).width,
+          tableResize?.widthList[column.id] || getColumnStyle(column).width!,
           10
         )}
         height={0}
@@ -100,7 +124,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
         }}
       >
         <th {...thProps}>
-          <div
+          <Flex
             style={{
               overflow: 'hidden',
               textOverflow: 'ellipsis',
@@ -108,7 +132,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth }) => {
             }}
           >
             {column.render('Header')}
-          </div>
+          </Flex>
         </th>
       </Resizable>
     )

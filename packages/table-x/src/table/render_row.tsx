@@ -44,6 +44,7 @@ const RenderRow: FC<RenderRowProps> = ({
     trHighlightClass,
     totalWidth,
     onRowClick,
+    resizeKey,
   } = data
 
   const _renderRow = (row: TableXRow) => {
@@ -56,6 +57,7 @@ const RenderRow: FC<RenderRowProps> = ({
         row={row as TableXRow}
         SubComponent={SubComponent}
         keyField={keyField as never}
+        resizeKey={resizeKey}
         // @ts-ignore
         style={style}
         isTrDisable={isTrDisable}

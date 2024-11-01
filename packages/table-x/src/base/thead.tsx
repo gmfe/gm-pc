@@ -9,6 +9,7 @@ const Thead: FC<TableXTheadProps> = ({
   headerGroups,
   totalWidth,
   onHeaderSort,
+  id,
   sorts = {},
 }) => {
   return (
@@ -38,6 +39,7 @@ const Thead: FC<TableXTheadProps> = ({
             }
             return (
               <Th
+                id={id}
                 isResizable={isResizable}
                 components={components}
                 //  由于Th加了memo，当header配置了排序增加sortDirection触发Th diff
