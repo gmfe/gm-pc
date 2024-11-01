@@ -47,8 +47,8 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
   const hp = column.getHeaderProps()
   const handleResize = (_: Event, resizeRes: any) => {
     const width =
-      +resizeRes.size.width < 100
-        ? 100
+      +resizeRes.size.width < 50
+        ? 50
         : +resizeRes.size.width > 1000
         ? 1000
         : +resizeRes.size.width
@@ -124,15 +124,17 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
         }}
       >
         <th {...thProps}>
-          <Flex
+          <div
             style={{
+              lineClamp: 1,
+              position: 'relative',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
             }}
           >
             {column.render('Header')}
-          </Flex>
+          </div>
         </th>
       </Resizable>
     )
