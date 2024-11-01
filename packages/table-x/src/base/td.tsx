@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import React, { FC, useContext, useMemo } from 'react'
 import classNames from 'classnames'
 import { getColumnStyle } from '../utils'
 import { TableXTdProps } from './types'
@@ -38,13 +38,19 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
   return (
     <td {...tdProps}>
       <div
-        style={{
-          width: '100%',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          display: 'block',
-        }}
+        style={
+          cell.column.fixed
+            ? {
+                width: '100%',
+              }
+            : {
+                width: '100%',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+                display: 'block',
+              }
+        }
       >
         <Catch>
           {Cell!({
