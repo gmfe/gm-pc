@@ -31,7 +31,7 @@ interface TableXCustomerColumn<D extends object = any> {
   id?: StringKey<D> | (number & {})
   /** 用来配置该列是否需要keyboard */
   isKeyboard?: boolean
-  onHeaderCell: (column: TableXColumnInstance) => Record<string, any>
+  onHeaderCell?: (column: TableXColumnInstance) => Record<string, any>
 }
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn

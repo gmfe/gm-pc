@@ -5,6 +5,7 @@ import React, {
   UIEvent,
   useContext,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -21,7 +22,8 @@ import { SortsType, TableXHeaderGroup } from '../base/types'
 import { Column, TableProps } from './types'
 import { ConfigContext } from '@gm-pc/react'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
-import _ from 'lodash'
+import _, { isUndefined } from 'lodash'
+import { LocalStorage } from '@gm-common/tool'
 
 export interface TableResizeProps {
   widthList: Record<string, string>
@@ -61,6 +63,7 @@ function BaseTable<D extends object = {}>({
   ...rest
 }: TableProps<D>) {
   const highlightTableXContext = useHighlightTableXContext()
+  const [widthList, setWidthList] = useState({})
   const {
     rows,
     headerGroups,
@@ -75,13 +78,22 @@ function BaseTable<D extends object = {}>({
   const { fontSize } = useContext(ConfigContext)
   const virtualizedRef = useRef<VariableSizeList>(null)
   const tableWrapperRef = useRef<HTMLDivElement>(null)
-  const [widthList, setWidthList] = useState({})
+
   const gtp = getTableProps()
   const tableProps: TableHTMLAttributes<HTMLTableElement> = {
     ...gtp,
     style: { minWidth: totalWidth },
     className: classNames('gm-table-x-table', gtp.className),
   }
+  useLayoutEffect(() => {
+    if (!isUndefined(rest.id)) {
+      const widthList = LocalStorage.get(rest.id)
+      if (widthList) {
+        console.log(widthList, 'widthList')
+        setWidthList(widthList)
+      }
+    }
+  }, [])
 
   const handleScroll = (event: UIEvent<HTMLDivElement>): void => {
     onScroll && onScroll(event)
@@ -270,6 +282,7 @@ function BaseTable<D extends object = {}>({
   // 获取虚拟列表参数 end
 
   return (
+    // setNewColumns
     <TableReSize.Provider value={{ widthList, setWidthList }}>
       {/*  @ts-ignore */}
       <div

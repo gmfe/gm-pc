@@ -1,18 +1,10 @@
-import React, {
-  FC,
-  ThHTMLAttributes,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
+import React, { FC, ThHTMLAttributes, useContext, useMemo } from 'react'
 import { Resizable } from 'react-resizable'
 import classNames from 'classnames'
 import { TableXThProps } from './types'
 import { getColumnStyle } from '../utils'
 import { TableComponents } from '../table'
 import { TableReSize, TableResizeProps } from '../table/base_table'
-import { Flex } from '@gm-pc/react'
 import { LocalStorage } from '@gm-common/tool'
 import { isUndefined } from 'lodash'
 
@@ -45,17 +37,20 @@ interface ThProps extends TableXThProps {
 const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const hp = column.getHeaderProps()
+
   const handleResize = (_: Event, resizeRes: any) => {
     const width =
-      +resizeRes.size.width < 50
-        ? 50
+      +resizeRes.size.width < 100
+        ? 100
         : +resizeRes.size.width > 1000
         ? 1000
         : +resizeRes.size.width
+    // console.log(width, 'width')
     const widthList = {
       ...tableResize?.widthList,
       [column.id]: width + 'px',
     }
+
     if (!isUndefined(id)) {
       LocalStorage.set(id, widthList)
     }
@@ -81,15 +76,6 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
       },
     }
   }, [hp, column, tableResize])
-
-  useEffect(() => {
-    if (!isUndefined(id)) {
-      const widthList = LocalStorage.get(id)
-      if (widthList) {
-        tableResize.setWidthList(widthList)
-      }
-    }
-  }, [])
 
   if (column.fixed === 'left') {
     thProps.style = {
