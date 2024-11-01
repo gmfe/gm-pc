@@ -39,9 +39,11 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
     <td {...tdProps}>
       <div
         style={{
+          width: '100%',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
+          display: 'block',
         }}
       >
         <Catch>
