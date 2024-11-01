@@ -21,6 +21,7 @@ import { SortsType, TableXHeaderGroup } from '../base/types'
 import { Column, TableProps } from './types'
 import { ConfigContext } from '@gm-pc/react'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
+import _ from 'lodash'
 
 export interface TableResizeProps {
   widthList: Record<string, string>
@@ -188,9 +189,8 @@ function BaseTable<D extends object = {}>({
       baseScrollToItem(index, align)
     }
   }
-
   const TableContainer = useMemo((): ReactElementType => {
-    const Table: FC<HTMLTableElement> = ({ children, style, ...rest }) => {
+    const Table: FC<HTMLTableElement> = ({ children, style, ...restTable }) => {
       // 获取body参数 start
       const gtbp = getTableBodyProps()
       const tableBodyProps: HTMLAttributes<HTMLTableSectionElement> = {
@@ -202,8 +202,9 @@ function BaseTable<D extends object = {}>({
       return (
         // @ts-ignore
 
-        <table {...rest} {...tableProps} style={{ ...style, ...tableProps.style }}>
+        <table {...restTable} {...tableProps} style={{ ...style, ...tableProps.style }}>
           <Thead
+            id={rest.id}
             isResizable={isResizable}
             components={components}
             headerGroups={headerGroups as TableXHeaderGroup[]}
@@ -242,6 +243,7 @@ function BaseTable<D extends object = {}>({
   )
   // 列表数量
   const dataLength = data.length
+
   const renderRowData = {
     keyField,
     totalWidth,
