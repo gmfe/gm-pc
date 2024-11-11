@@ -93,6 +93,7 @@ export const ComDatePickerWithTimeSelect = () => (
   <>
     <div className='gm-margin-tb-10'>增加时间选择</div>
     <DatePicker
+      preserveTime
       date={addTimeStore.date}
       placeholder='请选择日期'
       onChange={(date) => {
