@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { OperationCell } from '../operation'
 import SVGPlusSquare from '../../svg/plus-square.svg'
 import SVGMinusSquare from '../../svg/minus-square.svg'
+import { getLocale } from '@gm-pc/locales'
 
 interface EditOperationProps {
   onAddRow?(): void
@@ -16,7 +17,7 @@ const EditOperation: FC<EditOperationProps> = ({ onAddRow, onDeleteRow }) => {
       <Popover
         showArrow
         type='hover'
-        popup={<div className='gm-padding-5'>添加</div>}
+        popup={<div className='gm-padding-5'>{getLocale('添加')}</div>}
         disabled={!onAddRow}
       >
         <span
@@ -31,7 +32,7 @@ const EditOperation: FC<EditOperationProps> = ({ onAddRow, onDeleteRow }) => {
       <Popover
         showArrow
         type='hover'
-        popup={<div className='gm-padding-5'>删除</div>}
+        popup={<div className='gm-padding-5'>{getLocale('删除')}</div>}
         disabled={!onDeleteRow}
       >
         <span
