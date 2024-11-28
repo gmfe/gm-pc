@@ -9,6 +9,7 @@ import { ListDataItem } from '../../types'
 import { judgeFunction } from '../../common/utils'
 import { ConfigConsumer, ConfigProvider } from '../config_provider'
 import { ConfigProviderProps, FontSizeType } from '../config_provider/config_provider'
+import { getLocale } from '@gm-pc/locales'
 
 interface SelectState {
   willActiveIndex: number
@@ -99,7 +100,7 @@ class Select<V = any> extends Component<SelectProps<V>, SelectState> {
     const { willActiveIndex } = this.state
 
     const zeroItem = ({
-      text: '全部',
+      text: getLocale('全部'),
       value: 0,
     } as unknown) as ListDataItem<V>
     if (_.isObject(all)) {

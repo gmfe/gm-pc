@@ -2,6 +2,7 @@ import React, { ComponentType, FC, useMemo } from 'react'
 import { TABLE_X } from '../../utils'
 import { TableXProps } from '../../base'
 import { Column } from '../../'
+import { getLocale } from '@gm-pc/locales'
 
 function indexTableXHOC<Props extends TableXProps = TableXProps>(
   Table: ComponentType<Props>
@@ -10,7 +11,7 @@ function indexTableXHOC<Props extends TableXProps = TableXProps>(
     const _columns: Column[] = useMemo(
       () => [
         {
-          Header: '序号',
+          Header: getLocale('序号'),
           diyEnable: false,
           accessor: (_, index) => index + 1,
           fixed: 'left',
