@@ -3,6 +3,7 @@ import { Select } from '../select'
 import { Flex } from '../flex'
 import { PaginationProps } from './types'
 import _ from 'lodash'
+import { getLocale } from '@gm-pc/locales'
 
 function getLimitData(limit: number) {
   const limitData = [
@@ -29,15 +30,21 @@ const Left: FC<PaginationProps> = ({ paging, onChange }) => {
 
   return (
     <Flex alignCenter>
-      {need_count && <span>共{count}条记录,&nbsp;</span>}
-      <span>每页&nbsp;</span>
+      {need_count && (
+        <span>
+          {getLocale('共')}
+          {count}
+          {getLocale('条记录')},&nbsp;
+        </span>
+      )}
+      <span>{getLocale('每页')}&nbsp;</span>
       <Select
         data={getLimitData(limit)}
         value={limit}
         onChange={handleChange}
         style={{ width: '60px' }}
       />
-      <span>&nbsp;条</span>
+      <span>&nbsp;{getLocale('条')}</span>
     </Flex>
   )
 }
