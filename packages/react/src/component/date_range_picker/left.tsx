@@ -85,7 +85,7 @@ const Left: FC<LeftProps> = ({
   }
 
   return (
-    <div className='gm-border-right gm-margin-top-0' style={{ width: '70px' }}>
+    <div className='gm-border-right gm-margin-top-0' style={{ minWidth: '70px' }}>
       {list.map((item) => (
         <div
           key={item.text}
