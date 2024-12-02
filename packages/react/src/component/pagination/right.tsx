@@ -1,4 +1,5 @@
 import React, { useState, useEffect, FC, KeyboardEvent, useRef } from 'react'
+import { getLocale } from '@gm-pc/locales'
 import { InputNumber } from '../input_number'
 import { Flex } from '../flex'
 import { PaginationProps } from './types'
@@ -70,7 +71,7 @@ const Right: FC<PaginationProps> = ({ paging, onChange }) => {
         onKeyDown={handleKeyDown}
         style={{ width: '40px' }}
       />
-      <div className='gm-pagination-right-total-page'>{`/${all}页`}</div>
+      <div className='gm-pagination-right-total-page'>{`/${all}${getLocale('页')}`}</div>
     </Flex>
   )
 }
