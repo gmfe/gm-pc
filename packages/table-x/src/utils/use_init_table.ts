@@ -63,6 +63,7 @@ function useInitTable(
     headerGroups,
     totalWidth,
     sorts,
+    setSorts,
     getTableProps,
     getTableBodyProps,
     prepareRow,
