@@ -30,8 +30,8 @@ function getCurrentFromType(type: string): CurrencyListOptions | undefined {
   return currencyList.find((value) => value.type === type)
 }
 
-const symbol = Storage.get(symbolKey) ?? '¥'
-const unit = Storage.get(unitKey) ?? '元'
+let symbol = Storage.get(symbolKey) ?? '¥'
+let unit = Storage.get(unitKey) ?? '元'
 
 class Price extends Component<PriceProps> {
   /**
@@ -52,6 +52,7 @@ class Price extends Component<PriceProps> {
       return
     }
     Storage.set(symbolKey, _symbol)
+    symbol = _symbol
     eventBus.dispatch('REACT_GM_UPDATE_PRICE')
   }
 
@@ -68,6 +69,7 @@ class Price extends Component<PriceProps> {
       return
     }
     Storage.set(unitKey, _unit)
+    unit = _unit
   }
 
   static getUnit(type = ''): string {
