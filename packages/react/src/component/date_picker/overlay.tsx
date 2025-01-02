@@ -19,6 +19,7 @@ interface OverlayProps {
   disabledDate?(date: Date): boolean
   timeLimit: TimeLimit
   enabledTimeSelect?: boolean
+  preserveTime?: boolean
 }
 
 const Overlay: FC<OverlayProps> = ({
@@ -30,6 +31,7 @@ const Overlay: FC<OverlayProps> = ({
   timeLimit,
   disabledDate,
   enabledTimeSelect,
+  preserveTime,
 }) => {
   const [selectedDate, setSelectedDate] = useState(date)
 
@@ -62,6 +64,13 @@ const Overlay: FC<OverlayProps> = ({
     if (type === 'date') {
       date = value
       time = getTime(value)
+      if (preserveTime && selectedDate) {
+        // 不修改时分秒，否则会导致时间变化
+        time = moment(date)
+          .set('hour', selectedDate.getHours())
+          .set('minute', selectedDate.getMinutes())
+          .toDate()
+      }
     } else {
       date = selectedDate!
       time = value

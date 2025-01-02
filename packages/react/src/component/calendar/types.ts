@@ -49,6 +49,8 @@ interface CalendarProps {
   style?: CSSProperties
   /* 全键盘 */
   onKeyDown?(event: KeyboardEvent<HTMLDivElement>): void
+  /** 选择日期之后是否保留时间 */
+  preserveTime?: boolean
 }
 
 export type { DisabledYearAndMonth, RangeCalendarProps, CalendarProps }

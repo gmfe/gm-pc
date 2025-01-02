@@ -45,6 +45,8 @@ export interface DatePickerProps {
   timeLimit?: TimeLimit
   /* 目前内部用，触发方式 */
   popoverType?: PopoverTrigger
+  /** 选择日期之后是否保留时间 */
+  preserveTime?: boolean
 }
 
 class DatePicker extends Component<DatePickerProps, DatePickerState> {
@@ -138,6 +140,7 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
       enabledTimeSelect,
       popoverType,
       children,
+      preserveTime,
       ...rest
     } = this.props
     const { willActiveSelected } = this.state
@@ -151,6 +154,7 @@ class DatePicker extends Component<DatePickerProps, DatePickerState> {
         min={min}
         timeLimit={timeLimit!}
         enabledTimeSelect={enabledTimeSelect}
+        preserveTime={preserveTime}
       />
     )
     return (
