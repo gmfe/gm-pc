@@ -14,12 +14,13 @@ const DataAddressName: FC<DataAddressNameProps> = ({
             getName={(item) => item.local_name}
             getResponseData={(response) => response.cities}
           />
-          /
+          {(district_id || street_id) && '/'}
         </>
       )}
       {district_id && (
         <>
-          <MapId_District id={district_id} getName={(item) => item.local_name} />/
+          <MapId_District id={district_id} getName={(item) => item.local_name} />
+          {street_id && '/'}
         </>
       )}
       {street_id && <MapId_Street id={street_id} getName={(item) => item.local_name} />}
