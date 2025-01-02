@@ -24,7 +24,7 @@ async function fetchCityDistrictStreetTree(params: {
     const cityItem = {
       value: city.city_id,
       text: city.local_name,
-      children: [],
+      // children: [], // 不一定有下一级
       original: city,
     }
     cityDistrictTree.push(cityItem)
@@ -36,13 +36,17 @@ async function fetchCityDistrictStreetTree(params: {
       original: district,
       value: district.district_id,
       text: district.local_name,
-      children: [],
+      // children: [], // 不一定有下一级
     }
     districtMap[district.district_id] = districtItem
 
     const p = cityMap[district.city_id]
     if (p) {
-      p.children.push(districtItem)
+      if (Array.isArray(p.children)) {
+        p.children.push(districtItem)
+      } else {
+        p.children = [districtItem]
+      }
     }
   })
 
@@ -63,7 +67,11 @@ async function fetchCityDistrictStreetTree(params: {
 
     const p = districtMap[street.district_id]
     if (p) {
-      p.children.push(streetItem)
+      if (Array.isArray(p.children)) {
+        p.children.push(streetItem)
+      } else {
+        p.children = [streetItem]
+      }
     }
   })
 
