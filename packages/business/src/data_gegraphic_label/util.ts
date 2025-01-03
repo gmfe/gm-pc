@@ -54,6 +54,10 @@ async function fetchCityDistrictStreetTree(params: {
     districtRes.response.districts,
     (district: District) => district.district_id
   )
+
+  // 空数组会报错阻塞后续执行，后端不改，所以判断一下
+  if (!district_ids.length) return cityDistrictTree
+
   const streetRes = await ListStreet({
     district_ids,
   })
