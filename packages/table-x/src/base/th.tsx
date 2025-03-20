@@ -111,12 +111,14 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
       >
         <th {...thProps}>
           <div
+            className='gm-table-x-header-wrap'
             style={{
               lineClamp: 1,
               position: 'relative',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
+              display: 'flex',
             }}
           >
             {column.render('Header')}

@@ -4,6 +4,7 @@ import { Flex } from '@gm-pc/react'
 const Mask: FC = ({ children }) => {
   return (
     <Flex
+      className='gm-table-x-mask'
       column
       alignCenter
       justifyCenter
