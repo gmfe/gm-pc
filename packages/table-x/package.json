@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/table-x",
-  "version": "1.26.0-beta.0",
+  "version": "1.26.0-beta.1",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -28,10 +28,10 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/keyboard": "^1.26.0-beta.0",
-    "@gm-pc/locales": "^1.26.0-beta.0",
-    "@gm-pc/react": "^1.26.0-beta.0",
-    "@gm-pc/sortable": "^1.26.0-beta.0",
+    "@gm-pc/keyboard": "^1.26.0-beta.1",
+    "@gm-pc/locales": "^1.26.0-beta.1",
+    "@gm-pc/react": "^1.26.0-beta.1",
+    "@gm-pc/sortable": "^1.26.0-beta.1",
     "@types/react-table": "~7.0.28",
     "@types/react-window": "^1.8.2",
     "@types/sortablejs": "^1.10.6",
