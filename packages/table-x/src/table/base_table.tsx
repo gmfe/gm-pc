@@ -89,7 +89,6 @@ function BaseTable<D extends object = {}>({
     if (!isUndefined(rest.id)) {
       const widthList = LocalStorage.get(rest.id)
       if (widthList) {
-        console.log(widthList, 'widthList')
         setWidthList(widthList)
       }
     }

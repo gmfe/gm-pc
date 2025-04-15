@@ -4,7 +4,7 @@ import { getColumnStyle } from '../utils'
 import { TableXTdProps } from './types'
 import Catch from '../utils/catch'
 import { TableReSize, TableResizeProps } from '../table/base_table'
-
+import './td.less'
 const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const cp = cell.getCellProps()
@@ -38,19 +38,9 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
   return (
     <td {...tdProps}>
       <div
-        style={
-          cell.column.fixed
-            ? {
-                width: '100%',
-              }
-            : {
-                width: '100%',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                display: 'block',
-              }
-        }
+        className={classNames('gm-td-cell', {
+          'gm-td-cell-fixed': !cell.column.fixed,
+        })}
       >
         <Catch>
           {Cell!({
