@@ -92,6 +92,24 @@
 
       .gm-table-x-tr {
         min-height: 46px;
+
+        .react-resizable {
+          position: relative;
+          background-clip: padding-box;
+        }
+
+        .react-resizable-handle {
+          position: absolute;
+          width: 1px;
+          height: 16px;
+          bottom: 0;
+          top: 0;
+          background-color: #c2c2c2;
+          margin: auto;
+          right: 5px;
+          cursor: col-resize;
+          z-index: 0 !important;
+        }
       }
     }
 
@@ -99,7 +117,6 @@
       display: block; // 覆盖tbody 默认display
 
       .gm-table-x-tr {
-
         &.gm-table-x-tr-even {
           .gm-table-x-td {
             background: var(--gm-color-bg-back);
@@ -119,11 +136,20 @@
             }
           }
         }
+
         // 主动选中的高亮行
         &.gm-table-x-tr-current {
           .gm-table-x-td {
             background: var(--gm-color-bg-primary-light) !important;
           }
+        }
+
+        .gm-table-x-td {
+          // text-overflow: ellipsis;
+          // overflow: hidden;
+          // word-break: break-all;
+          // white-space: nowrap;
+          // overflow: hidden;
         }
       }
 
@@ -252,7 +278,7 @@
         color: var(--gm-color-primary);
       }
 
-      .gmDisabledWith();
+      .gmDisabledWith ();
 
       & + .gm-table-x-operation-icon {
         margin-left: 10px;
@@ -289,6 +315,7 @@
   &.gm-table-x-text-sm {
     font-size: var(--gm-size-text-sm);
   }
+
   // edit button 和 gm-table-x-edit 没有关系，只是名字相近
   //.gm-table-x-edit-button {
   //  visibility: hidden;
@@ -327,6 +354,7 @@
       .gm-table-x-select {
         margin-left: 5px;
       }
+
       .gm-table-x-expand {
         margin-left: 5px;
       }
@@ -524,6 +552,7 @@
     .gm-react-table-x-diy-modal-title {
       padding: 10px;
     }
+
     .gm-react-table-x-diy-modal-selector-content {
       padding: 5px 10px;
       overflow: auto;

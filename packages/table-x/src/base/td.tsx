@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
+import React, { FC, useContext, useMemo } from 'react'
 import classNames from 'classnames'
 import { getColumnStyle } from '../utils'
 import { TableXTdProps } from './types'
 import Catch from '../utils/catch'
-
-const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
+import { TableReSize, TableResizeProps } from '../table/base_table'
+import './td.less'
+const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
+  const tableResize = useContext(TableReSize) as TableResizeProps
   const cp = cell.getCellProps()
   const tdProps = {
     ...cp,
@@ -15,6 +17,8 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
     style: {
       ...cp.style,
       ...getColumnStyle(cell.column),
+      width: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).width,
+      maxWidth: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).maxWidth,
     },
   }
 
@@ -33,14 +37,20 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth }) => {
   } = cell
   return (
     <td {...tdProps}>
-      <Catch>
-        {Cell!({
-          value,
-          row,
-          index,
-          original,
+      <div
+        className={classNames('gm-td-cell', {
+          'gm-td-cell-fixed': !cell.column.fixed,
         })}
-      </Catch>
+      >
+        <Catch>
+          {Cell!({
+            value,
+            row,
+            index,
+            original,
+          })}
+        </Catch>
+      </div>
     </td>
   )
 }

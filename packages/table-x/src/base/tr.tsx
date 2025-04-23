@@ -41,13 +41,12 @@ const Tr: FC<TableXTrProps> = ({
       'gm-table-x-tr-current': row.index === highlight,
     }),
   }
-
   return (
     <>
       {/* @ts-ignore */}
       <tr {...props} data-id={trId} data-index={row.index}>
         {row.cells.map((cell, index) => (
-          <Td key={index} totalWidth={totalWidth} cell={cell} />
+          <Td rowKey={cell.column.id} key={index} totalWidth={totalWidth} cell={cell} />
         ))}
       </tr>
       {SubComponent && SubComponent(row)}

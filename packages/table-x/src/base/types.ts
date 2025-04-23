@@ -2,6 +2,7 @@ import { Cell, CellProps, Column, ColumnInstance, Row, Accessor } from 'react-ta
 import { CSSProperties, ReactNode, RefObject, UIEvent } from 'react'
 import { Align, VariableSizeList } from 'react-window'
 import { StringKey } from '@gm-pc/react'
+import { TableComponents } from '../table'
 interface TableXDataItem<V = any> {
   [key: string]: V
 }
@@ -30,6 +31,7 @@ interface TableXCustomerColumn<D extends object = any> {
   id?: StringKey<D> | (number & {})
   /** 用来配置该列是否需要keyboard */
   isKeyboard?: boolean
+  onHeaderCell?: (column: TableXColumnInstance) => Record<string, any>
 }
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
@@ -55,6 +57,7 @@ interface TableXThProps {
 interface TableXTdProps {
   cell: TableXCell
   totalWidth: number
+  rowKey: string
 }
 type OnHeaderSort = (sortProps: {
   field: string
@@ -65,6 +68,9 @@ interface TableXTheadProps {
   totalWidth: number
   sorts?: TableXDataItem
   onHeaderSort?: OnHeaderSort
+  components?: TableComponents
+  isResizable?: boolean
+  id?: string
 }
 
 interface TableXTrProps {
@@ -129,6 +135,7 @@ interface TableXProps<D extends object = any> {
   tableRef?: RefObject<TableInstance>
   /** 当前行禁用 */
   isTrDisable?(original: TableXDataItem, index: number): boolean
+  isResizable?: boolean
   /**
    * 自定义高亮类名，支持字符串或函数
    *

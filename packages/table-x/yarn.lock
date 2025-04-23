@@ -9,12 +9,87 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@gm-common/hooks@^2.10.0":
+  version "2.14.9"
+  resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.14.9.tgz#0fa055673bc3af348c2ce6e5db35136f72309d90"
+  integrity sha512-N8s+GYAqUTgVNL3e8oBFNl7vMUSQzysvh3wVEMiP0DVsGkZ0L3Wyljg4HQWIYw6PPudppP06Pz7glagBaMew+g==
+  dependencies:
+    "@gm-common/tool" "^2.14.9"
+    ts-config-gm-react-app "^3.4.5"
+
 "@gm-common/tool@^2.10.0":
   version "2.10.0"
   resolved "https://registry.npmmirror.com/@gm-common/tool/download/@gm-common/tool-2.10.0.tgz#f4f512233ff1118eff8bbdeca9762f0e65ce26bd"
   integrity sha1-9PUSIz/xEY7/i73sqXYvDmXOJr0=
   dependencies:
     lodash "^4.17.20"
+
+"@gm-common/tool@^2.14.9":
+  version "2.14.9"
+  resolved "https://registry.npmjs.org/@gm-common/tool/-/tool-2.14.9.tgz#8136b3e8070a7168b892db492c0fcb11b144d7c1"
+  integrity sha512-diGdsJTnWzV9IzbguBIBxxc96adY4i81kv2XUj/T/CibTxtF0b1+nETUfoIx07eTvEFZLspzmoKkDLK0+gAAwQ==
+  dependencies:
+    lodash "^4.17.20"
+
+"@gm-pc/keyboard@^1.24.7":
+  version "1.24.7"
+  resolved "https://registry.npmjs.org/@gm-pc/keyboard/-/keyboard-1.24.7.tgz#db3eb2a690e3b6c87b98d1cba61153d62215b201"
+  integrity sha512-oLhogJYUaEV2jaKqnRWm4Z2UuBOkQtEzJGicTNmiVjf6dUGSmP4QF+uqcEx0uMUqai1JgJwulL5/E/U/9ROdYQ==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/react" "^1.24.7"
+    "@gm-pc/table-x" "^1.24.7"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+
+"@gm-pc/locales@^1.24.7":
+  version "1.24.7"
+  resolved "https://registry.npmjs.org/@gm-pc/locales/-/locales-1.24.7.tgz#689f250673bc94848efcd9e5444bf661a79b75f1"
+  integrity sha512-9J0Ysx3tFUkvuAzF0AsKF2uORXWuhY6IEG0sfsIIHqIadMKG/i5b6Wdyst6NJlAIirimZOOWrZg/gVSraaF3FA==
+
+"@gm-pc/react@^1.24.7":
+  version "1.24.7"
+  resolved "https://registry.npmjs.org/@gm-pc/react/-/react-1.24.7.tgz#d378704d11c39b23af795fb88f1bf90fa8a27db3"
+  integrity sha512-lR3FxjXwxg2vp0HCgC03ZXTtoMnLFzcy90rNCH+RTpRrOPcmT6NScpFztJIitwtp7itDS2qVneLBVwQP4RrjSA==
+  dependencies:
+    "@gm-common/hooks" "^2.10.0"
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/locales" "^1.24.7"
+    big.js "^6.0.1"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    modern-normalize "^1.0.0"
+    moment "^2.29.1"
+    react-window "^1.8.5"
+
+"@gm-pc/sortable@^1.24.7":
+  version "1.24.7"
+  resolved "https://registry.npmjs.org/@gm-pc/sortable/-/sortable-1.24.7.tgz#29abc4ee7e49cd7d07a027c36da115e272ea2615"
+  integrity sha512-3V4YlWftJ2HDzQydB4IuyCkUVBg0sxC9R7f+3B3jm7fccTczlNCFl/sWPHCDyRoU2VUUqmTtdwzB6r6odNriNw==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/react" "^1.24.7"
+    lodash "^4.17.19"
+    sortablejs "^1.12.0"
+
+"@gm-pc/table-x@^1.24.7":
+  version "1.24.7"
+  resolved "https://registry.npmjs.org/@gm-pc/table-x/-/table-x-1.24.7.tgz#a77d2359d6140d36e4d20d0c9a83a653b40f4891"
+  integrity sha512-L2VXoTeLuF0ituBGv6Nu6q5Jcj9pkwVD5YIw2pC76RffnKLox1RUZlM537/rii+lP6gn158ilYJRBt5RsT3T9g==
+  dependencies:
+    "@gm-common/tool" "^2.10.0"
+    "@gm-pc/keyboard" "^1.24.7"
+    "@gm-pc/locales" "^1.24.7"
+    "@gm-pc/react" "^1.24.7"
+    "@gm-pc/sortable" "^1.24.7"
+    "@types/react-table" "~7.0.28"
+    "@types/react-window" "^1.8.2"
+    "@types/sortablejs" "^1.10.6"
+    classnames "^2.2.5"
+    lodash "^4.17.19"
+    react-table "7.0.0-rc.11"
+    react-window "^1.8.5"
+    sortablejs "^1.12.0"
 
 "@types/prop-types@*":
   version "15.7.3"
@@ -54,6 +129,11 @@
   resolved "https://registry.npmmirror.com/@types/sortablejs/download/@types/sortablejs-1.10.6.tgz#98725ae08f1dfe28b8da0fdf302c417f5ff043c0"
   integrity sha1-mHJa4I8d/ii42g/fMCxBf1/wQ8A=
 
+big.js@^6.0.1:
+  version "6.2.2"
+  resolved "https://registry.npmjs.org/big.js/-/big.js-6.2.2.tgz#be3bb9ac834558b53b099deef2a1d06ac6368e1a"
+  integrity sha512-y/ie+Faknx7sZA5MfGA2xKlu0GDv8RWrXGsmlteyJQ2lvoKv9GBK/fpRMc2qlSoBAgNxrixICFCBefIq8WCQpQ==
+
 classnames@^2.2.5:
   version "2.2.6"
   resolved "https://registry.npmmirror.com/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
@@ -73,6 +153,11 @@ lodash@^4.17.19, lodash@^4.17.20:
   version "5.1.1"
   resolved "https://registry.npmmirror.com/memoize-one/download/memoize-one-5.1.1.tgz#047b6e3199b508eaec03504de71229b8eb1d75c0"
   integrity sha1-BHtuMZm1COrsA1BN5xIpuOsddcA=
+
+modern-normalize@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/modern-normalize/-/modern-normalize-1.1.0.tgz#da8e80140d9221426bd4f725c6e11283d34f90b7"
+  integrity sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==
 
 moment@^2.29.1:
   version "2.29.1"
@@ -101,3 +186,8 @@ sortablejs@^1.12.0:
   version "1.12.0"
   resolved "https://registry.npmmirror.com/sortablejs/download/sortablejs-1.12.0.tgz?cache=0&sync_timestamp=1601884638047&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsortablejs%2Fdownload%2Fsortablejs-1.12.0.tgz#ee6d7ece3598c2af0feb1559d98595e5ea37cbd6"
   integrity sha1-7m1+zjWYwq8P6xVZ2YWV5eo3y9Y=
+
+ts-config-gm-react-app@^3.4.5:
+  version "3.10.7"
+  resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.10.7.tgz#079ee5f12d8508a810cbd348998f7bde671b79e8"
+  integrity sha512-Nri1WWW7EA5hsdoQfShLaUNrIIDN0d+fQ7m19pZC3NEO/6siJ5BbOKPKveuhtUnenlOSdXaGhb3Nc2XGs3AvRA==
