@@ -60,6 +60,7 @@ interface TableXTdProps {
   cell: TableXCell
   totalWidth: number
   rowKey: string
+  totalLeft: number
 }
 type OnHeaderSort = (sortProps: {
   field: string

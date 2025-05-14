@@ -32,9 +32,10 @@ interface ThProps extends TableXThProps {
   index: number
   isResizable?: boolean
   id?: string
+  totalLeft?: number
 }
 
-const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
+const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id, totalLeft }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const hp = column.getHeaderProps()
 
@@ -80,7 +81,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id }) => {
   if (column.fixed === 'left') {
     thProps.style = {
       ...thProps.style,
-      left: column.totalLeft,
+      left: totalLeft,
     }
   } else if (column.fixed === 'right') {
     thProps.style = {
