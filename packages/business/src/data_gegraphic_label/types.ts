@@ -4,7 +4,7 @@ interface CityItem {
   value: string
   text: string
   original: City
-  children: DistrictItem[]
+  children?: DistrictItem[]
 }
 
 interface DistrictItem {
