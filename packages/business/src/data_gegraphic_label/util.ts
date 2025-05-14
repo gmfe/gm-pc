@@ -24,7 +24,7 @@ async function fetchCityDistrictStreetTree(params: {
     const cityItem = {
       value: city.city_id,
       text: city.local_name,
-      children: [],
+      // children: [],
       original: city,
     }
     cityDistrictTree.push(cityItem)
@@ -42,6 +42,9 @@ async function fetchCityDistrictStreetTree(params: {
 
     const p = cityMap[district.city_id]
     if (p) {
+      if (typeof p.children === 'undefined') {
+        p.children = []
+      }
       p.children.push(districtItem)
     }
   })
