@@ -5,7 +5,7 @@ import { TableXTdProps } from './types'
 import Catch from '../utils/catch'
 import { TableReSize, TableResizeProps } from '../table/base_table'
 import './td.less'
-const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
+const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey, totalLeft }) => {
   const tableResize = useContext(TableReSize) as TableResizeProps
   const cp = cell.getCellProps()
   const tdProps = {
@@ -24,7 +24,7 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey }) => {
 
   if (cell.column.fixed === 'left') {
     // 用到 fixed，可以利用 totalLeft
-    tdProps.style.left = cell.column.totalLeft
+    tdProps.style.left = totalLeft || cell.column.totalLeft
   } else if (cell.column.fixed === 'right') {
     tdProps.style.right = totalWidth - cell.column.totalLeft - cell.column.totalWidth
   }
