@@ -6,10 +6,10 @@ import PageWithoutCount from './page_without_count'
 import { PaginationProps } from './types'
 import { Flex } from '../flex'
 
-const Pagination: FC<PaginationProps> = ({ paging, onChange }) => {
+const Pagination: FC<PaginationProps> = ({ paging, pageSizeOptions, onChange }) => {
   return (
     <Flex wrap className='gm-pagination'>
-      <Left paging={paging} onChange={onChange} />
+      <Left pageSizeOptions={pageSizeOptions} paging={paging} onChange={onChange} />
       {paging.need_count ? (
         <PageWithCount paging={paging} onChange={onChange} />
       ) : (

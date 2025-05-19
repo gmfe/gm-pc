@@ -10,6 +10,8 @@ interface PaginationPaging {
 
 interface PaginationProps {
   paging: PaginationPaging
+  // 指定每页可以显示多少条
+  pageSizeOptions?: string[]
   onChange(paging: PaginationPaging): void
 }
 
