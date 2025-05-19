@@ -50,6 +50,7 @@ export const ComPagination = () => (
     <div>without count</div>
     <Pagination
       paging={oStore.paging}
+      pageSizeOptions={['100']}
       onChange={(paging) => {
         oStore.setPaging(paging)
       }}
