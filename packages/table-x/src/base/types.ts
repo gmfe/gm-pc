@@ -32,6 +32,8 @@ interface TableXCustomerColumn<D extends object = any> {
   /** 用来配置该列是否需要keyboard */
   isKeyboard?: boolean
   onHeaderCell?: (column: TableXColumnInstance) => Record<string, any>
+  /** fixed 列默认不可以拖动，但是给个开关让他可以调整宽度 */
+  isFixedCanResize?: boolean
 }
 // useTable 生成的 columns
 type TableXColumnInstance = ColumnInstance<TableXDataItem> & TableXCustomerColumn
@@ -58,6 +60,7 @@ interface TableXTdProps {
   cell: TableXCell
   totalWidth: number
   rowKey: string
+  totalLeft: number
 }
 type OnHeaderSort = (sortProps: {
   field: string

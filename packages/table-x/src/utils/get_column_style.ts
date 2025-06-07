@@ -33,4 +33,29 @@ function getColumnStyle({ width, minWidth, maxWidth }: TableXColumn) {
   }
 }
 
+const getPx = (val: string) => {
+  const pattern = /^(\d+)px$/
+
+  return val?.match(pattern)?.[1]
+}
+
+export function getColumnFixedWidth(
+  columns: TableXColumn[],
+  tableSize: Record<string, string>
+) {
+  const leftFixSum: Record<string, number> = {}
+
+  let sum = 0
+
+  columns.forEach((column) => {
+    const tempSum = +(getPx(tableSize[column.id!]) || (column as any).totalWidth)
+    leftFixSum[column.id!] = sum
+    sum += tempSum
+  })
+
+  return {
+    leftFixSum,
+  }
+}
+
 export default getColumnStyle

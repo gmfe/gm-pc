@@ -1,10 +1,12 @@
-import React, { FC, useContext, memo } from 'react'
+import React, { FC, useContext, memo, useMemo } from 'react'
 import classNames from 'classnames'
 import Td from './td'
 import { TableXTrProps } from './types'
 import _ from 'lodash'
 import SelectTableXContext from '../hoc/select_table_x/context'
 import { useHighlightTableXContext } from '../hoc/highlight_table_x/context'
+import { TableReSize, TableResizeProps } from '../table/base_table'
+import { getColumnFixedWidth } from '../utils/get_column_style'
 
 const DEFAULT_HIGHLIGHT_CLASS = 'gm-table-x-tr-highlight'
 
@@ -19,6 +21,8 @@ const Tr: FC<TableXTrProps> = ({
   trHighlightClass = DEFAULT_HIGHLIGHT_CLASS,
   onRowClick,
 }) => {
+  const tableResize = useContext(TableReSize) as TableResizeProps
+
   const { highlight } = useHighlightTableXContext()
   const { onRowSelect } = useContext(SelectTableXContext)
   // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
@@ -26,6 +30,17 @@ const Tr: FC<TableXTrProps> = ({
   const highlightClass = _.isFunction(trHighlightClass)
     ? trHighlightClass(row.original, row.index) || DEFAULT_HIGHLIGHT_CLASS
     : trHighlightClass
+
+  const memoSize = useMemo(() => {
+    const { leftFixSum } = getColumnFixedWidth(
+      row.cells.map((_item) => {
+        return _item.column
+      }) as any,
+      tableResize.widthList
+    )
+    return leftFixSum
+  }, [row.cells, tableResize.widthList])
+
   const props = {
     onClick: (e: Event) => {
       onRowClick && onRowClick(e)
@@ -46,7 +61,13 @@ const Tr: FC<TableXTrProps> = ({
       {/* @ts-ignore */}
       <tr {...props} data-id={trId} data-index={row.index}>
         {row.cells.map((cell, index) => (
-          <Td rowKey={cell.column.id} key={index} totalWidth={totalWidth} cell={cell} />
+          <Td
+            rowKey={cell.column.id}
+            key={index}
+            totalWidth={totalWidth}
+            cell={cell}
+            totalLeft={memoSize[cell.column.id]}
+          />
         ))}
       </tr>
       {SubComponent && SubComponent(row)}
