@@ -9,5 +9,6 @@ yarn-error.log
 .eslintcache
 *.less.json
 docs
+.history
 
 packages/qiniu-image/node/token.js

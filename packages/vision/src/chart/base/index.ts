@@ -81,7 +81,11 @@ export abstract class Base {
   }
 
   updateOptions(options: ChartOptions) {
-    this.options = _.merge(options, this.options)
+    // this.options = _.merge(options, this.options)
+    this.options = {
+      ...this.options,
+      ...options,
+    }
     this.render()
   }
 

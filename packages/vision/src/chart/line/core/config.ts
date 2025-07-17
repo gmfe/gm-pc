@@ -148,6 +148,7 @@ function tooltip(params: Instance) {
         marginRight: '6px',
       },
     },
+    ...(params?.options?.customTooltip || {}),
   })
 
   return params
@@ -184,6 +185,7 @@ function theme(params: Instance) {
             display: 'none',
           },
         },
+        ...(options?.customTooltip || {}),
       })
 
       // ---------- area图 ----------------
