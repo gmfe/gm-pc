@@ -53,6 +53,9 @@ async function fetchCityDistrictStreetTree(params: {
     districtRes.response.districts,
     (district: District) => district.district_id
   )
+  if (!district_ids.length) {
+    return cityDistrictTree
+  }
   const streetRes = await ListStreet({
     district_ids,
   })
