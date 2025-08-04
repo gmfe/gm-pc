@@ -93,7 +93,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id, totalLeft
   const isFixed = column.fixed && ['left', 'right'].includes(column.fixed)
   const canResize = isFixed && column.isFixedCanResize
 
-  if (isResizable && canResize) {
+  if ((isResizable && !isFixed) || (canResize && isResizable)) {
     return (
       <Resizable
         width={parseInt(
