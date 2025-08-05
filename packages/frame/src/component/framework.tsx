@@ -11,6 +11,7 @@ interface FrameworkProps {
   isFullScreen?: boolean
   children: ReactNode
   className?: string
+  topExtra?: ReactNode
 }
 
 interface FrameworkStatic {
@@ -37,6 +38,7 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
   rightTop,
   children,
   className,
+  topExtra,
 }) => {
   const addOverflowClass = () => {
     let flag: any = window.document.body.dataset.overflowFlag || 0
@@ -80,6 +82,7 @@ const Framework: FC<FrameworkProps> & FrameworkStatic = ({
           children
         ) : (
           <div className='gm-framework-full-height'>
+            {topExtra}
             <Flex className='gm-framework-container'>
               {menu && <div className='gm-framework-left'>{menu}</div>}
               <Flex flex column className='gm-framework-right'>
