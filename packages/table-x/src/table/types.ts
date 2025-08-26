@@ -13,6 +13,7 @@ import { BoxTableProps } from '@gm-pc/react'
 import { KeyboardTableXProps } from '@gm-pc/keyboard'
 import { TableXDataItem } from '../base/types'
 import { HighlightTableXProps } from '../hoc/highlight_table_x/types'
+import { DndTableXProps } from '../hoc/dnd_table_x'
 export interface VirtualizedProps
   extends Pick<TableXVirtualizedProps, 'virtualizedItemSize' | 'virtualizedHeight'> {
   /** 用于计算虚拟列表高度，默认为limit = 12 */
@@ -29,6 +30,9 @@ export interface TableComponents {
   header?: {
     cell?: CustomizeComponent
   }
+  body?: {
+    row?: CustomizeComponent
+  }
 }
 
 export interface TableProps<D extends object = any>
@@ -37,6 +41,7 @@ export interface TableProps<D extends object = any>
     SubTableXProps,
     ExpandTableXProps,
     Partial<Pick<SortableTableXProps, 'onSortChange'>>,
+    Partial<DndTableXProps>,
     Partial<BatchActionSelectTableXProps>,
     Partial<SelectTableXProps>,
     Partial<VirtualizedProps>,
@@ -47,6 +52,8 @@ export interface TableProps<D extends object = any>
   isPagination?: boolean
   /** 是否Diy */
   isDiy?: boolean
+  /** 是否拖拽 */
+  isDnd?: boolean
   /** 是否选择 */
   isSelect?: boolean
   /** 是否批量选择, 跟isSelect的区别是action会自动回传一些操作 */

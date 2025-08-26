@@ -173,7 +173,31 @@ export const ComTableXForGroup = () => (
   </div>
 )
 
-export const ComTableXForSort = () => <TableX columns={sortColumns} data={store.data} />
+export const ComTableXForSort = () => {
+  const [selected, setSelected] = useState<string[]>([])
+  const handleSelect = (selected: string[]) => {
+    setSelected(selected)
+  }
+  return (
+    <Table
+      isSelect
+      onSelect={handleSelect}
+      selected={selected}
+      keyField='id'
+      isDnd
+      isMultiSelect
+      trHighlightClass={(original, index) => {
+        const isSelected = selected.includes(original.id)
+        return isSelected ? 'gm-table-x-tr-selected' : ''
+      }}
+      onSortChange={(data) => {
+        store.setData(data)
+      }}
+      columns={sortColumns}
+      data={store.data}
+    />
+  )
+}
 
 export const ComTableXForLimitHeight = () => (
   <Table columns={columns} data={store.data} style={{ height: '200px' }} />
