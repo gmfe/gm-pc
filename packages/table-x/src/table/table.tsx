@@ -67,6 +67,7 @@ function Table<D extends object = any>({
     isSelect,
     isIndex,
     isHighlight,
+    isDnd,
   ])
 
   const tableProps = (res as unknown) as TableProps<D>
