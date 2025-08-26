@@ -28,6 +28,10 @@ const SelectCell: FC<SelectTableXCellProps> = ({
               onClick={(e) => {
                 e.stopPropagation()
               }}
+              onMouseDown={(event) => {
+                event.stopPropagation()
+              }}
+              onPointerDown={(event) => event.stopPropagation()}
               onChange={() => {
                 onSelect(_.xor(selected, [value]), !isChecked, row.index)
               }}

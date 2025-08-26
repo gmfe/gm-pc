@@ -12,6 +12,7 @@ const DEFAULT_HIGHLIGHT_CLASS = 'gm-table-x-tr-highlight'
 
 const Tr: FC<TableXTrProps> = ({
   row,
+  components,
   SubComponent,
   keyField,
   style,
@@ -24,7 +25,7 @@ const Tr: FC<TableXTrProps> = ({
   const tableResize = useContext(TableReSize) as TableResizeProps
 
   const { highlight } = useHighlightTableXContext()
-  const { onRowSelect } = useContext(SelectTableXContext)
+  const { onRowSelect, selected } = useContext(SelectTableXContext)
   // 目前是为了 sortable 用。值可能是 undefined，keyField 没作用的情况
   const trId = row.original[keyField]
   const highlightClass = _.isFunction(trHighlightClass)
@@ -54,23 +55,38 @@ const Tr: FC<TableXTrProps> = ({
       'gm-table-x-tr-odd': row.index % 2 === 0,
       'gm-table-x-tr-even': row.index % 2 !== 0,
       'gm-table-x-tr-current': row.index === highlight,
+      'gm-table-x-tr-selected': selected?.includes(trId),
     }),
   }
+  // 使用 useMemo 缓存子元素，避免每次重新创建
+  const children = useMemo(
+    () =>
+      row.cells.map((cell) => (
+        <Td
+          rowKey={cell.column.id}
+          key={cell.column.id}
+          totalWidth={totalWidth}
+          cell={cell}
+          totalLeft={memoSize[cell.column.id]}
+        />
+      )),
+    [row.cells, totalWidth, memoSize]
+  )
+
+  // 提取公共 props，避免重复
+  const trProps = {
+    ...props,
+    'data-id': trId,
+    'data-index': row.index,
+  }
+
+  // 选择组件类型，避免条件渲染中的重复代码
+  const TrComponent = components?.body?.row || 'tr'
+
   return (
     <>
-      {/* @ts-ignore */}
-      <tr {...props} data-id={trId} data-index={row.index}>
-        {row.cells.map((cell, index) => (
-          <Td
-            rowKey={cell.column.id}
-            key={index}
-            totalWidth={totalWidth}
-            cell={cell}
-            totalLeft={memoSize[cell.column.id]}
-          />
-        ))}
-      </tr>
-      {SubComponent && SubComponent(row)}
+      <TrComponent {...trProps}>{children}</TrComponent>
+      {SubComponent?.(row)}
     </>
   )
 }
