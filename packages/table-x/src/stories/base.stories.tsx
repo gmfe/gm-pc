@@ -179,23 +179,35 @@ export const ComTableXForSort = () => {
     setSelected(selected)
   }
   return (
-    <Table
-      isSelect
-      onSelect={handleSelect}
-      selected={selected}
-      keyField='id'
-      isDnd
-      isMultiSelect
-      trHighlightClass={(original, index) => {
-        const isSelected = selected.includes(original.id)
-        return isSelected ? 'gm-table-x-tr-selected' : ''
-      }}
-      onSortChange={(data) => {
-        store.setData(data)
-      }}
-      columns={sortColumns}
-      data={store.data}
-    />
+    <div>
+      <Table
+        isSelect
+        onSelect={handleSelect}
+        selected={selected}
+        keyField='id'
+        isDnd
+        style={{
+          maxHeight: '400px',
+        }}
+        fixedSelect
+        isMultiSelect
+        isDiy
+        trHighlightClass={(original, index) => {
+          const isSelected = selected.includes(original.id)
+          return isSelected ? 'gm-table-x-tr-selected' : ''
+        }}
+        onSortChange={(data) => {
+          store.setData(data)
+        }}
+        columns={sortColumns}
+        data={store.data}
+      />
+      <div
+        style={{
+          height: 1200,
+        }}
+      />
+    </div>
   )
 }
 
