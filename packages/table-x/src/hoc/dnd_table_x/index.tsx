@@ -21,24 +21,12 @@ export interface DndTableXProps extends TableXProps {
 // 拖拽预览组件
 function DragOverlayContent({ dragLen }: { dragLen: number }) {
   // 是否是选中的
-  if (dragLen > 1) {
-    return (
-      <div className='gm-dnd-overlay'>
-        <div className='flex items-center space-x-2'>
-          <span className='font-medium text-blue-800'>拖拽 {dragLen} 个项目</span>
-        </div>
-      </div>
-    )
-  }
-
   return (
-    <tr
-      style={{
-        background: '#fff',
-      }}
-    >
-      <span className='font-medium text-gray-800'>已选一个商品</span>
-    </tr>
+    <div className='gm-dnd-overlay'>
+      <div className='flex items-center space-x-2'>
+        <span className='font-medium text-blue-800'>拖拽 {dragLen} 个项目</span>
+      </div>
+    </div>
   )
 }
 const Row = (isMultiSelect?: boolean, dragLen? = 0): React.FC<Readonly<RowProps>> => (
@@ -73,7 +61,7 @@ const Row = (isMultiSelect?: boolean, dragLen? = 0): React.FC<Readonly<RowProps>
       ? {
           position: 'relative',
           zIndex: 9999,
-          opacity: isSelectedAndDragging && dragLen > 1 ? 0 : 1,
+          opacity: isSelectedAndDragging ? 0 : 1,
         }
       : {}),
   }
@@ -181,11 +169,9 @@ function dndTableXHOC(Table: ComponentType<TableXPropsType>) {
             keyField={keyField}
           />
         </SortableContext>
-        {isMultiSelect && len > 1 ? (
-          <DragOverlay>
-            <DragOverlayContent dragLen={len} />
-          </DragOverlay>
-        ) : null}
+        <DragOverlay>
+          <DragOverlayContent dragLen={len} />
+        </DragOverlay>
       </DndContext>
     )
   }
