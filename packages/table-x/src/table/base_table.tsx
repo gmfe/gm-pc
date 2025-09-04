@@ -264,6 +264,8 @@ function BaseTable<D extends object = {}>({
     isTrDisable,
     isTrHighlight,
     trHighlightClass,
+    selected: rest.selected,
+    components,
     onRowClick,
   }
 
@@ -314,7 +316,7 @@ function BaseTable<D extends object = {}>({
           </VariableSizeList>
         ) : (
           <TableContainer>
-            <RenderRow data={renderRowData} isMap />
+            <RenderRow key={keyField} data={renderRowData} isMap />
           </TableContainer>
         )}
         <LoadingAndEmpty loading={loading} length={dataLength} />

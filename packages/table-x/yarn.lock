@@ -9,6 +9,45 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@dnd-kit/accessibility@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/@dnd-kit/accessibility/-/accessibility-3.1.1.tgz#3b4202bd6bb370a0730f6734867785919beac6af"
+  integrity sha512-2P+YgaXF+gRsIihwwY1gCsQSYnu9Zyj2py8kY5fFvUM1qm2WA2u639R6YNVfU4GWr+ZM5mqEsfHZZLoRONbemw==
+  dependencies:
+    tslib "^2.0.0"
+
+"@dnd-kit/core@^6.3.1":
+  version "6.3.1"
+  resolved "https://registry.npmjs.org/@dnd-kit/core/-/core-6.3.1.tgz#4c36406a62c7baac499726f899935f93f0e6d003"
+  integrity sha512-xkGBRQQab4RLwgXxoqETICr6S5JlogafbhNsidmrkVv2YRs5MLwpjoF2qpiGjQt8S9AoxtIV603s0GIUpY5eYQ==
+  dependencies:
+    "@dnd-kit/accessibility" "^3.1.1"
+    "@dnd-kit/utilities" "^3.2.2"
+    tslib "^2.0.0"
+
+"@dnd-kit/modifiers@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@dnd-kit/modifiers/-/modifiers-9.0.0.tgz#96a0280c77b10c716ef79d9792ce7ad04370771d"
+  integrity sha512-ybiLc66qRGuZoC20wdSSG6pDXFikui/dCNGthxv4Ndy8ylErY0N3KVxY2bgo7AWwIbxDmXDg3ylAFmnrjcbVvw==
+  dependencies:
+    "@dnd-kit/utilities" "^3.2.2"
+    tslib "^2.0.0"
+
+"@dnd-kit/sortable@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/@dnd-kit/sortable/-/sortable-10.0.0.tgz#1f9382b90d835cd5c65d92824fa9dafb78c4c3e8"
+  integrity sha512-+xqhmIIzvAYMGfBYYnbKuNicfSsk4RksY2XdmJhT+HAC01nix6fHCztU68jooFiMUB01Ky3F0FyOvhG/BZrWkg==
+  dependencies:
+    "@dnd-kit/utilities" "^3.2.2"
+    tslib "^2.0.0"
+
+"@dnd-kit/utilities@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.npmjs.org/@dnd-kit/utilities/-/utilities-3.2.2.tgz#5a32b6af356dc5f74d61b37d6f7129a4040ced7b"
+  integrity sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg==
+  dependencies:
+    tslib "^2.0.0"
+
 "@gm-common/hooks@^2.10.0":
   version "2.14.9"
   resolved "https://registry.npmjs.org/@gm-common/hooks/-/hooks-2.14.9.tgz#0fa055673bc3af348c2ce6e5db35136f72309d90"
@@ -31,30 +70,30 @@
   dependencies:
     lodash "^4.17.20"
 
-"@gm-pc/keyboard@^1.24.7":
-  version "1.24.7"
-  resolved "https://registry.npmjs.org/@gm-pc/keyboard/-/keyboard-1.24.7.tgz#db3eb2a690e3b6c87b98d1cba61153d62215b201"
-  integrity sha512-oLhogJYUaEV2jaKqnRWm4Z2UuBOkQtEzJGicTNmiVjf6dUGSmP4QF+uqcEx0uMUqai1JgJwulL5/E/U/9ROdYQ==
+"@gm-pc/keyboard@^1.27.2-beta.1":
+  version "1.27.2-beta.1"
+  resolved "https://registry.npmjs.org/@gm-pc/keyboard/-/keyboard-1.27.2-beta.1.tgz#8f9efc62815e89fc31949ed7a72aab9e64dc4b7f"
+  integrity sha512-UYRT4B5oLTIthLwwWGvT1n8awSs0Ms92rY6jAyDxC5C36P3xSn+QLETZmsRLE6Msrt/oCR03jFdkUAMEeeSh9Q==
   dependencies:
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/react" "^1.24.7"
-    "@gm-pc/table-x" "^1.24.7"
+    "@gm-pc/react" "^1.27.2-beta.1"
+    "@gm-pc/table-x" "^1.27.2-beta.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
 
-"@gm-pc/locales@^1.24.7":
-  version "1.24.7"
-  resolved "https://registry.npmjs.org/@gm-pc/locales/-/locales-1.24.7.tgz#689f250673bc94848efcd9e5444bf661a79b75f1"
-  integrity sha512-9J0Ysx3tFUkvuAzF0AsKF2uORXWuhY6IEG0sfsIIHqIadMKG/i5b6Wdyst6NJlAIirimZOOWrZg/gVSraaF3FA==
+"@gm-pc/locales@^1.27.2-beta.1":
+  version "1.27.2-beta.1"
+  resolved "https://registry.npmjs.org/@gm-pc/locales/-/locales-1.27.2-beta.1.tgz#64ca1f128f6ff5fdbc1d775be8cf6b7752a635d2"
+  integrity sha512-SHPkMZFSYvlUSCopcXsRDPEpu5e8e+F5RC8rRLw/9PjVDqBClIPAKYFnXUsxPkRZ38n+szLzLvBYU7FbUqRpYA==
 
-"@gm-pc/react@^1.24.7":
-  version "1.24.7"
-  resolved "https://registry.npmjs.org/@gm-pc/react/-/react-1.24.7.tgz#d378704d11c39b23af795fb88f1bf90fa8a27db3"
-  integrity sha512-lR3FxjXwxg2vp0HCgC03ZXTtoMnLFzcy90rNCH+RTpRrOPcmT6NScpFztJIitwtp7itDS2qVneLBVwQP4RrjSA==
+"@gm-pc/react@^1.27.2-beta.1":
+  version "1.27.2-beta.1"
+  resolved "https://registry.npmjs.org/@gm-pc/react/-/react-1.27.2-beta.1.tgz#063fd57d613a996a660f004ef125bc56f27c0e85"
+  integrity sha512-GonjxIXmsjImeKBGSJrNy4XBaD0x13GtYdnmPVorEsGu917iKSROJ57XFeQ1o4M7AdHMBUtwVqQTr+sPY9Oq4A==
   dependencies:
     "@gm-common/hooks" "^2.10.0"
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/locales" "^1.24.7"
+    "@gm-pc/locales" "^1.27.2-beta.1"
     big.js "^6.0.1"
     classnames "^2.2.5"
     lodash "^4.17.19"
@@ -62,26 +101,26 @@
     moment "^2.29.1"
     react-window "^1.8.5"
 
-"@gm-pc/sortable@^1.24.7":
-  version "1.24.7"
-  resolved "https://registry.npmjs.org/@gm-pc/sortable/-/sortable-1.24.7.tgz#29abc4ee7e49cd7d07a027c36da115e272ea2615"
-  integrity sha512-3V4YlWftJ2HDzQydB4IuyCkUVBg0sxC9R7f+3B3jm7fccTczlNCFl/sWPHCDyRoU2VUUqmTtdwzB6r6odNriNw==
+"@gm-pc/sortable@^1.27.2-beta.1":
+  version "1.27.2-beta.1"
+  resolved "https://registry.npmjs.org/@gm-pc/sortable/-/sortable-1.27.2-beta.1.tgz#0edf9c7b7885e255e78a77a087b62a4d4b0947ef"
+  integrity sha512-dQdBkTHIYmVIwZ577a9F0TLL1UDDidFKVTQAK4YK8nEIjDy3orS8eBfp5HxcWcSCDEwJwLHurJibqWrgb4o7oQ==
   dependencies:
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/react" "^1.24.7"
+    "@gm-pc/react" "^1.27.2-beta.1"
     lodash "^4.17.19"
     sortablejs "^1.12.0"
 
-"@gm-pc/table-x@^1.24.7":
-  version "1.24.7"
-  resolved "https://registry.npmjs.org/@gm-pc/table-x/-/table-x-1.24.7.tgz#a77d2359d6140d36e4d20d0c9a83a653b40f4891"
-  integrity sha512-L2VXoTeLuF0ituBGv6Nu6q5Jcj9pkwVD5YIw2pC76RffnKLox1RUZlM537/rii+lP6gn158ilYJRBt5RsT3T9g==
+"@gm-pc/table-x@^1.27.2-beta.1":
+  version "1.27.2-beta.1"
+  resolved "https://registry.npmjs.org/@gm-pc/table-x/-/table-x-1.27.2-beta.1.tgz#28795ccc610e4ca14da345d85ed7958f7be1bcee"
+  integrity sha512-JKi0T9j3+LvRqF5JXv3cwIiVcfoq5gAPB4JuWGHjRitTsa9nT/SezjZWGSQ/Bdx48l1umKVecjwhBFrFhv60jw==
   dependencies:
     "@gm-common/tool" "^2.10.0"
-    "@gm-pc/keyboard" "^1.24.7"
-    "@gm-pc/locales" "^1.24.7"
-    "@gm-pc/react" "^1.24.7"
-    "@gm-pc/sortable" "^1.24.7"
+    "@gm-pc/keyboard" "^1.27.2-beta.1"
+    "@gm-pc/locales" "^1.27.2-beta.1"
+    "@gm-pc/react" "^1.27.2-beta.1"
+    "@gm-pc/sortable" "^1.27.2-beta.1"
     "@types/react-table" "~7.0.28"
     "@types/react-window" "^1.8.2"
     "@types/sortablejs" "^1.10.6"
@@ -191,3 +230,8 @@ ts-config-gm-react-app@^3.4.5:
   version "3.10.7"
   resolved "https://registry.npmjs.org/ts-config-gm-react-app/-/ts-config-gm-react-app-3.10.7.tgz#079ee5f12d8508a810cbd348998f7bde671b79e8"
   integrity sha512-Nri1WWW7EA5hsdoQfShLaUNrIIDN0d+fQ7m19pZC3NEO/6siJ5BbOKPKveuhtUnenlOSdXaGhb3Nc2XGs3AvRA==
+
+tslib@^2.0.0:
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==

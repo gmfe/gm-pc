@@ -66,7 +66,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0002122',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -82,7 +82,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-000123',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -98,7 +98,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-000263',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -114,7 +114,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-000278',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -130,7 +130,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00023224',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -146,7 +146,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00023123244',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -162,7 +162,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00024231',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -178,7 +178,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-000265757',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -194,7 +194,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0002545',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -210,7 +210,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0002345',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -226,7 +226,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0008784',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -242,7 +242,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0056724',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -258,7 +258,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0345024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -274,7 +274,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00665024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -290,7 +290,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-5640024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -306,7 +306,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00434024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -322,7 +322,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-00766024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -338,7 +338,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-420024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -354,7 +354,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-0053524',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -370,7 +370,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-4243024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -386,7 +386,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-532524',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -402,7 +402,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-897924',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -418,7 +418,7 @@ const initData = [
   },
   {
     totalMoney: 176,
-    id: 'T5991-JHD-2018-07-25-00024',
+    id: 'T5991-JHD-2018-07-25-6456024',
     skuMoney: '279.02',
     supplierCustomerId: 'sc215',
     submitTime: '2018-07-27',
@@ -528,6 +528,11 @@ const sortColumns: TableXColumn[] = [
       </div>
     )),
     accessor: 'submitTime',
+  },
+  {
+    Header: 'ID',
+    accessor: 'id',
+    width: 200,
   },
   {
     Header: '供应商信息',

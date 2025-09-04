@@ -81,6 +81,8 @@ interface TableXTrProps {
   keyField: string
   style: CSSProperties
   totalWidth: number
+  selected: string[]
+  components?: TableComponents
   SubComponent?(row: TableXRow): ReactNode
   isTrDisable?(original: TableXDataItem, index: number): boolean
   isTrHighlight?(original: TableXDataItem, index: number): boolean
@@ -153,6 +155,7 @@ interface TableXProps<D extends object = any> {
   SubComponent?(row: TableXRow): ReactNode
   className?: string
   style?: CSSProperties
+  components?: TableComponents
 }
 
 interface TableXVirtualizedProps extends TableXProps {

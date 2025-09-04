@@ -17,9 +17,11 @@ import {
 import BaseTable from './base_table'
 import { HocMiddleware, TableProps } from './types'
 import { applyMiddleware } from './util'
+import dndTableXHOC from '../hoc/dnd_table_x'
 
 function Table<D extends object = any>({
   isDiy,
+  isDnd,
   isBatchSelect,
   isExpand,
   isSort,
@@ -39,6 +41,7 @@ function Table<D extends object = any>({
     }
     // 配置中间件
     const hocMiddles = [
+      isDnd && dndTableXHOC,
       isExpand && expandTableXHOC,
       isBatchSelect && batchActionSelectTableXHOC,
       isHighlight && highlightTableXHOC,
@@ -64,6 +67,7 @@ function Table<D extends object = any>({
     isSelect,
     isIndex,
     isHighlight,
+    isDnd,
   ])
 
   const tableProps = (res as unknown) as TableProps<D>

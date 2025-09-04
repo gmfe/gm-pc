@@ -1,6 +1,15 @@
 @import '~@gm-pc/react/src/var.less';
 @import './variables.less';
 
+// 拖拽样式
+.gm-dnd-overlay {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--gm-color-border);
+}
+
 .gm-table-x {
   border-bottom: 1px solid var(--gm-color-border-special);
   overflow: auto;
@@ -11,6 +20,7 @@
     z-index: 1;
     transform: translateZ(0);
     display: block; // 覆盖table 默认display
+
 
     .gm-table-x-tr {
       display: flex;
