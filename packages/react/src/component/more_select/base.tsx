@@ -22,10 +22,11 @@ import { findDOMNode } from 'react-dom'
 import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_provider'
 
 interface MoreSelectBaseState {
-  searchValue: string
+  searchValue: string | undefined
   loading: boolean
   /* keyboard 默认第一个位置 */
   willActiveIndex: number | null
+  isOpen: boolean
 }
 
 // @todo keydown item disabled
@@ -38,9 +39,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   static renderListFilterPinYin = renderListFilterPinYin
 
   readonly state: MoreSelectBaseState = {
-    searchValue: '',
+    searchValue: (undefined as unknown) as string,
     loading: false,
     willActiveIndex: this.props.isKeyboard ? 0 : null,
+    isOpen: false,
   }
 
   private _isUnmounted = false
@@ -133,6 +135,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     const searchValue = event.target.value
     this.setState({ searchValue })
     this._debounceDoSearch(searchValue)
+    if (this.props.isSameAntd) {
+      // eslint-disable-next-line no-unused-expressions
+      this._popoverRef.current?.apiDoSetActive(true)
+    }
     setTimeout(() => {
       // eslint-disable-next-line no-unused-expressions
       isInitSearch && this._inputRef.current?.select()
@@ -232,18 +238,34 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     )
   }
 
+  private _renderSearchInput = () => {
+    const { searchPlaceholder } = this.props
+    const { searchValue } = this.state
+    return (
+      <div className='gm-more-select-popup-input'>
+        <Input
+          ref={this._inputRef}
+          autoFocus
+          value={searchValue}
+          onChange={this._handleChange}
+          placeholder={searchPlaceholder}
+        />
+      </div>
+    )
+  }
+
   private _renderList = (config: ConfigProviderProps): ReactNode => {
     const {
       selected = [],
       multiple,
       isGroupList,
       renderListItem,
-      searchPlaceholder,
       listHeight,
       popupClassName,
       renderCustomizedBottom,
+      isSameAntd = false,
     } = this.props
-    const { loading, searchValue, willActiveIndex } = this.state
+    const { loading, willActiveIndex } = this.state
     const filterData = this._getFilterData()
     return (
       <ConfigProvider {...config}>
@@ -251,15 +273,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           className={classNames('gm-more-select-popup', popupClassName)}
           onKeyDown={this._handlePopupKeyDown}
         >
-          <div className='gm-more-select-popup-input'>
-            <Input
-              ref={this._inputRef}
-              autoFocus
-              value={searchValue}
-              onChange={this._handleChange}
-              placeholder={searchPlaceholder}
-            />
-          </div>
+          {isSameAntd ? null : this._renderSearchInput()}
           <div style={{ height: listHeight }}>
             {loading && (
               <Flex alignCenter justifyCenter className='gm-bg gm-padding-5'>
@@ -299,7 +313,16 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   private _handlePopoverVisibleChange = (active: boolean) => {
-    if (active && this.props.searchOnActive) {
+    if (this.props.isSameAntd) {
+      this.setState({
+        isOpen: active,
+      })
+      if (!this.props.multiple && !active) {
+        this.setState({ searchValue: undefined })
+      }
+    }
+
+    if (active && this.props.searchOnActive && !this.props.isSameAntd) {
       const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
       if (searchValue) {
         this.setState({ searchValue })
@@ -325,7 +348,11 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       style,
       popoverType,
       children,
+      searchPlaceholder,
+      isSameAntd = false,
     } = this.props
+    const { searchValue } = this.state
+
     return (
       <ConfigConsumer>
         {(config) => (
@@ -346,7 +373,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               ref={this._popoverRef}
               type={popoverType}
               popup={() => this._renderList(config)}
-              disabled={disabled}
+              disabled={
+                disabled || (!isSameAntd ? false : this.state.searchValue === undefined)
+              }
               isInPopup={isInPopup}
               onVisibleChange={this._handlePopoverVisibleChange}
             >
@@ -355,13 +384,17 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                   ref={this._selectionRef}
                   tabIndex={0}
                   wrap
-                  className='gm-more-select-selected'
+                  className={classNames({
+                    'gm-more-select-selected': true,
+                    'gm-more-select-selected-antd': isSameAntd,
+                  })}
                 >
                   {selected.length !== 0 ? (
                     selected.map((item) => (
                       <Flex
                         key={item.value as any}
                         className='gm-more-select-selected-item'
+                        alignCenter
                       >
                         <Popover
                           disabled={!this.props.isKeyboard}
@@ -369,7 +402,23 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                           popup={<div className='gm-padding-10'>{item.text}</div>}
                         >
                           <Flex flex column>
-                            {renderSelected!(item)}
+                            {isSameAntd ? (
+                              <div className='gm-more-select-popup-input'>
+                                <Input
+                                  ref={this._inputRef}
+                                  value={
+                                    !this.state.isOpen
+                                      ? renderSelected!(item)
+                                      : searchValue
+                                  }
+                                  onChange={this._handleChange}
+                                  placeholder={searchPlaceholder}
+                                  className='gm-more-select-popup-input-no-border'
+                                />
+                              </div>
+                            ) : (
+                              renderSelected!(item)
+                            )}
                           </Flex>
                         </Popover>
                         {multiple ? (
@@ -393,7 +442,20 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                     ))
                   ) : (
                     // 加多个 &nbsp; 避免对齐问题，有文本才有对齐
-                    <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>
+                    <>
+                      {isSameAntd ? (
+                        <Input
+                          ref={this._inputRef}
+                          value={searchValue}
+                          onChange={this._handleChange}
+                          placeholder={searchPlaceholder}
+                          className='gm-more-select-popup-input-no-border'
+                        />
+                      ) : (
+                        <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>
+                      )}
+                    </>
+                    //
                   )}
                 </Flex>
               )}

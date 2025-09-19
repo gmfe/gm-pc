@@ -80,6 +80,8 @@ interface MoreSelectBaseProps<V extends string | number = string>
   ): MoreSelectGroupDataItem<V>[]
   /** 是否在active的时候搜索，订单业务相关，searchValue放在localstorage */
   searchOnActive?: boolean
+  /** 是否用select */
+  isSameAntd?: boolean
 }
 
 type MoreSelectData<V extends string | number = string> =

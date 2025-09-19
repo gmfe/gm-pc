@@ -14,10 +14,15 @@
     }
   }
 
+  .gm-more-select-selected-antd {
+    padding: 0 12px;
+  }
+
   .gm-more-select-clear-btn {
     position: absolute;
-    right: 5px;
-    top: 7px;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
     color: var(--gm-color-desc);
   }
@@ -69,4 +74,11 @@
       outline: none;
     }
   }
+}
+
+.gm-more-select-popup-input-no-border {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
