@@ -6,13 +6,17 @@ import _ from 'lodash'
 import { getLocale } from '@gm-pc/locales'
 
 function getLimitData(limit: number, pageSizeOptions?: string[]) {
-  const limitData = [
-    { value: limit, text: limit + '' },
-    { value: 10, text: '10' },
-    { value: 20, text: '20' },
-    { value: 50, text: '50' },
-    ...(pageSizeOptions?.map((v) => ({ value: Number(v), text: v })) || []),
-  ]
+  let limitData = []
+  if (pageSizeOptions) {
+    limitData = pageSizeOptions.map((v) => ({ value: Number(v), text: v }))
+  } else {
+    limitData = [
+      { value: limit, text: limit + '' },
+      { value: 10, text: '10' },
+      { value: 20, text: '20' },
+      { value: 50, text: '50' },
+    ]
+  }
 
   return _.orderBy(
     _.uniqBy(limitData, (v) => v.value),
