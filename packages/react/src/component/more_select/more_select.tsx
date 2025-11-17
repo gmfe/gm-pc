@@ -85,6 +85,8 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
       onSearch,
       onClick,
       renderListFilter,
+      maxTagCount,
+      maxTagPlaceholder,
       ...rest
     } = this.props
     let tempSelect = selected as MoreSelectDataItem<V>[]
@@ -129,6 +131,8 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
         isGroupList={isGroupList}
         onSearch={onSearch && this._handleSearch}
         renderListFilter={renderListFilter && this._renderListFilter}
+        maxTagCount={maxTagCount}
+        maxTagPlaceholder={maxTagPlaceholder}
       />
     )
   }
