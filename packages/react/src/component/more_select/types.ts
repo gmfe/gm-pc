@@ -1,5 +1,5 @@
-import { Popover } from '@gm-pc/react'
 import { CSSProperties, ReactNode, KeyboardEvent } from 'react'
+import { Popover } from '../popover'
 
 /** 普通的数据格式 */
 interface MoreSelectDataItem<V extends string | number = string> {
@@ -36,10 +36,13 @@ interface MoreSelectCommonProps<V extends string | number = string> {
   renderListItem?(value: MoreSelectDataItem<V>, index: number): ReactNode
 
   /** 自定义popup底部渲染 */
-  renderCustomizedBottom?(ref: React.RefObject<Popover>): ReactNode
+  renderCustomizedBottom?(
+    ref: React.RefObject<Popover>,
+    defaultBottom: () => ReactNode
+  ): ReactNode
 
   /**
-   * 自定义“空状态”渲染
+   * 自定义"空状态"渲染
    *
    * 若函数返回 undefined 则使用默认的空状态
    */
@@ -60,6 +63,14 @@ interface MoreSelectCommonProps<V extends string | number = string> {
   /** 目前为了 keyboard */
   isKeyboard?: boolean
   onKeyDown?(event: KeyboardEvent): void
+
+  /** 最多显示的选中项数量，超出部分会折叠 */
+  maxTagCount?: number | 'responsive'
+  /** 自定义超出 maxTagCount 时显示的内容 */
+  maxTagPlaceholder?: (
+    omittedValues: MoreSelectDataItem<V>[],
+    omittedCount: number
+  ) => ReactNode
 }
 
 interface MoreSelectBaseProps<V extends string | number = string>
@@ -80,6 +91,12 @@ interface MoreSelectBaseProps<V extends string | number = string>
   ): MoreSelectGroupDataItem<V>[]
   /** 是否在active的时候搜索，订单业务相关，searchValue放在localstorage */
   searchOnActive?: boolean
+  /** 是否展示全选以及过滤已删除商品 */
+  isRenderDefaultBottom?: boolean
+  /** 是否展示已删除商品 */
+  isShowDeletedSwitch?: boolean
+  /** 是否展示全选 */
+  isShowCheckedAll?: boolean
 }
 
 type MoreSelectData<V extends string | number = string> =

@@ -20,12 +20,16 @@ import { getLocale } from '@gm-pc/locales'
 import { ListBase } from '../list'
 import { findDOMNode } from 'react-dom'
 import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_provider'
+import { Checkbox, Switch } from '@gm-pc/react'
 
 interface MoreSelectBaseState {
   searchValue: string
   loading: boolean
   /* keyboard 默认第一个位置 */
   willActiveIndex: number | null
+  isCheckedAll: boolean
+  isFilterDelete: boolean
+  displayCount: number
 }
 
 // @todo keydown item disabled
@@ -41,6 +45,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     searchValue: '',
     loading: false,
     willActiveIndex: this.props.isKeyboard ? 0 : null,
+    isCheckedAll: false,
+    isFilterDelete: false,
+    displayCount: 0,
   }
 
   private _isUnmounted = false
@@ -48,6 +55,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   private _selectionRef = createRef<HTMLDivElement>()
   private _popoverRef = createRef<Popover>()
   private _inputRef = createRef<HTMLInputElement>()
+  private _resizeObserver: ResizeObserver | null = null
 
   private _filterData: MoreSelectGroupDataItem<V>[] | undefined
 
@@ -62,8 +70,44 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     }
   }
 
+  componentDidMount() {
+    const { maxTagCount } = this.props
+    if (maxTagCount === 'responsive' && this._selectionRef.current) {
+      // HACK: 首次计算
+      setTimeout(() => {
+        if (this._selectionRef.current) {
+          const { width } = this._selectionRef.current.getBoundingClientRect()
+          const omittedTagWidth = 50 // for "+N..."
+          const availableWidth = width - omittedTagWidth
+          const newDisplayCount = Math.floor(availableWidth / 80)
+          if (this.state.displayCount !== newDisplayCount) {
+            this.setState({ displayCount: newDisplayCount > 0 ? newDisplayCount : 0 })
+          }
+        }
+      }, 0)
+
+      this._resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const { width } = entry.contentRect
+          // Estimate item width, let's say 80px.
+          const omittedTagWidth = 50 // for "+N..."
+          const availableWidth = width - omittedTagWidth
+          const newDisplayCount = Math.floor(availableWidth / 80)
+
+          if (this.state.displayCount !== newDisplayCount) {
+            this.setState({ displayCount: newDisplayCount > 0 ? newDisplayCount : 0 })
+          }
+        }
+      })
+      this._resizeObserver.observe(this._selectionRef.current)
+    }
+  }
+
   componentWillUnmount() {
-    this._isUnmounted = false
+    this._isUnmounted = true
+    if (this._resizeObserver) {
+      this._resizeObserver.disconnect()
+    }
   }
 
   public apiDoFocus = (): void => {
@@ -166,7 +210,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     onSelect(willSelected)
   }
 
-  private _handlePopupKeyDown = (event: KeyboardEvent): void => {
+  private _handlePopupKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
     const { onKeyDown } = this.props
     let willActiveIndex = this.state.willActiveIndex as number
     if (!onKeyDown) {
@@ -232,6 +276,84 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     )
   }
 
+  renderBottom = () => {
+    const {
+      selected = [],
+      isShowDeletedSwitch = true,
+      isShowCheckedAll = true,
+    } = this.props
+    const { isCheckedAll, isFilterDelete } = this.state
+    const flatFilterData = this._getFlatFilterData()
+
+    // 根据过滤状态决定是否过滤已删除商品
+    const availableData = isFilterDelete
+      ? flatFilterData.filter((item) => !item.deleted)
+      : flatFilterData
+
+    // 检查是否所有可用数据都被选中
+    const allSelected =
+      availableData.length > 0 &&
+      availableData.every((item) =>
+        selected.some((selectedItem) => selectedItem.value === item.value)
+      )
+
+    return (
+      <Flex
+        justifyBetween
+        className='tw-p-[8px]'
+        alignCenter
+        style={{ borderTop: '1px solid #aeaeae' }}
+      >
+        {isShowCheckedAll && (
+          <Checkbox
+            checked={allSelected}
+            onChange={(e) => {
+              const isChecked = e.target.checked
+              this.setState({
+                isCheckedAll: isChecked,
+              })
+
+              if (isChecked) {
+                // 全选当前过滤后的可用数据
+                const valuesToSelect = availableData.map((item) => item.value)
+                this._handleSelect(valuesToSelect)
+              } else {
+                // 取消全选
+                this._handleSelect([])
+              }
+            }}
+          >
+            全选
+          </Checkbox>
+        )}
+        {isShowDeletedSwitch && (
+          <Flex alignCenter>
+            <Flex row>
+              <Switch
+                style={{ width: 48 }}
+                checked={isFilterDelete}
+                onChange={(open) => {
+                  this.setState({
+                    isFilterDelete: open,
+                  })
+                  if (isCheckedAll) {
+                    const newAvailableData = open
+                      ? flatFilterData.filter((item) => !item.deleted)
+                      : flatFilterData
+
+                    const valuesToSelect = newAvailableData.map((item) => item.value)
+                    this._handleSelect(valuesToSelect)
+                  }
+                }}
+              />
+            </Flex>
+            <span className='gm-margin-left-5'>过滤已删除商品</span>
+          </Flex>
+        )}
+      </Flex>
+    )
+  }
+
   private _renderList = (config: ConfigProviderProps): ReactNode => {
     const {
       selected = [],
@@ -242,9 +364,21 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       listHeight,
       popupClassName,
       renderCustomizedBottom,
+      isRenderDefaultBottom = false,
     } = this.props
-    const { loading, searchValue, willActiveIndex } = this.state
-    const filterData = this._getFilterData()
+    const { loading, searchValue, willActiveIndex, isFilterDelete } = this.state
+    let filterData = this._getFilterData()
+
+    // 如果开启了过滤已删除商品功能，需要过滤掉已删除的商品
+    if (isFilterDelete) {
+      filterData = filterData
+        .map((group) => ({
+          ...group,
+          children: group.children.filter((item) => !item.deleted),
+        }))
+        .filter((group) => group.children.length > 0)
+    }
+
     return (
       <ConfigProvider {...config}>
         <div
@@ -284,8 +418,11 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           </div>
           {!loading &&
             !!filterData.length &&
-            renderCustomizedBottom &&
-            renderCustomizedBottom(this._popoverRef)}
+            (renderCustomizedBottom
+              ? renderCustomizedBottom(this._popoverRef, this.renderBottom)
+              : isRenderDefaultBottom
+              ? this.renderBottom()
+              : null)}
         </div>
       </ConfigProvider>
     )
@@ -325,7 +462,91 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       style,
       popoverType,
       children,
+      maxTagCount,
+      maxTagPlaceholder,
+      isRenderDefaultBottom = false,
     } = this.props
+
+    // 处理 maxTagCount 逻辑
+    const renderSelectedItems = () => {
+      if (!multiple || !maxTagCount || selected.length === 0) {
+        return selected.map((item) => (
+          <Flex key={item.value as any} className='gm-more-select-selected-item'>
+            <Popover
+              disabled={!this.props.isKeyboard}
+              type='hover'
+              popup={<div className='gm-padding-10'>{item.text}</div>}
+            >
+              <Flex flex column>
+                {renderSelected!(item)}
+              </Flex>
+            </Popover>
+            {multiple ? (
+              <SVGRemove
+                className='gm-cursor gm-more-select-clear-btn'
+                onClick={disabled ? _.noop : this._handleClear.bind(this, item)}
+              />
+            ) : (
+              !disabledClose && ( // 是否不限时清除按钮，仅单选可用
+                <SVGCloseCircle
+                  onClick={disabled ? _.noop : this._handleClear.bind(this, item)}
+                  className='gm-cursor gm-more-select-clear-btn'
+                />
+              )
+            )}
+          </Flex>
+        ))
+      }
+
+      // 处理 maxTagCount 逻辑
+      const isResponsive = maxTagCount === 'responsive'
+      let displayCount: number
+
+      if (isResponsive) {
+        displayCount = this.state.displayCount
+      } else {
+        displayCount = maxTagCount as number
+      }
+
+      const itemsToShow = selected.slice(0, displayCount)
+      const omittedItems = selected.slice(displayCount)
+      const omittedCount = selected.length - displayCount
+
+      return (
+        <>
+          {itemsToShow.map((item) => (
+            <Flex key={item.value as any} className='gm-more-select-selected-item'>
+              <Popover
+                disabled={!this.props.isKeyboard}
+                type='hover'
+                popup={<div className='gm-padding-10'>{item.text}</div>}
+              >
+                <Flex flex column>
+                  {renderSelected!(item)}
+                </Flex>
+              </Popover>
+              <SVGRemove
+                className='gm-cursor gm-more-select-clear-btn'
+                onClick={disabled ? _.noop : this._handleClear.bind(this, item)}
+              />
+            </Flex>
+          ))}
+          {omittedCount > 0 && (
+            <Flex
+              key='omitted'
+              className='gm-more-select-selected-item gm-more-select-omitted-item'
+            >
+              {maxTagPlaceholder ? (
+                maxTagPlaceholder(omittedItems, omittedCount)
+              ) : (
+                <span className='gm-more-select-omitted-count'>+{omittedCount}...</span>
+              )}
+            </Flex>
+          )}
+        </>
+      )
+    }
+
     return (
       <ConfigConsumer>
         {(config) => (
@@ -340,7 +561,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               },
               className
             )}
-            style={style}
+            style={style as any}
           >
             <Popover
               ref={this._popoverRef}
@@ -358,39 +579,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                   className='gm-more-select-selected'
                 >
                   {selected.length !== 0 ? (
-                    selected.map((item) => (
-                      <Flex
-                        key={item.value as any}
-                        className='gm-more-select-selected-item'
-                      >
-                        <Popover
-                          disabled={!this.props.isKeyboard}
-                          type='hover'
-                          popup={<div className='gm-padding-10'>{item.text}</div>}
-                        >
-                          <Flex flex column>
-                            {renderSelected!(item)}
-                          </Flex>
-                        </Popover>
-                        {multiple ? (
-                          <SVGRemove
-                            className='gm-cursor gm-more-select-clear-btn'
-                            onClick={
-                              disabled ? _.noop : this._handleClear.bind(this, item)
-                            }
-                          />
-                        ) : (
-                          !disabledClose && ( // 是否不限时清除按钮，仅单选可用
-                            <SVGCloseCircle
-                              onClick={
-                                disabled ? _.noop : this._handleClear.bind(this, item)
-                              }
-                              className='gm-cursor gm-more-select-clear-btn'
-                            />
-                          )
-                        )}
-                      </Flex>
-                    ))
+                    renderSelectedItems()
                   ) : (
                     // 加多个 &nbsp; 避免对齐问题，有文本才有对齐
                     <div className='gm-text-placeholder'>{placeholder}&nbsp; </div>

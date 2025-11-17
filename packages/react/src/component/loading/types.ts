@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from 'react'
 
 interface LoadingProps {
   size?: string
-  type: any
+  type?: any
 }
 
 interface LoadingChunkProps extends HTMLAttributes<HTMLDivElement> {
