@@ -12,6 +12,12 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     renderListFilterType: 'default',
     popoverType: 'focus',
     onKeyDown: _.noop,
+    /** 是否展示全选以及过滤已删除商品 */
+    isRenderDefaultBottom: false,
+    /** 是否展示已删除商品 */
+    isShowDeletedSwitch: true,
+    /** 是否展示全选 */
+    isShowCheckedAll: true,
   }
 
   private _moreSelectBaseRef = createRef<MoreSelectBase>()

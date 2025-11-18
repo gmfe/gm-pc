@@ -73,6 +73,17 @@ interface MoreSelectCommonProps<V extends string | number = string> {
     omittedValues: MoreSelectDataItem<V>[],
     omittedCount: number
   ) => ReactNode
+
+  /** 是否展示全选以及过滤已删除商品 */
+  isRenderDefaultBottom?: boolean
+  /** 是否展示已删除商品 */
+  isShowDeletedSwitch?: boolean
+  /** 是否展示全选 */
+  isShowCheckedAll?: boolean
+  /** 当设置 maxTagCount 的时候的宽度, 根据这个去计算显示内容 */
+  tagItemWidth?: number
+  /** +N 显示的宽度 */
+  omittedTagWidth?: number
 }
 
 interface MoreSelectBaseProps<V extends string | number = string>

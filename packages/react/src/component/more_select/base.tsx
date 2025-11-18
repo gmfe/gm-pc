@@ -46,7 +46,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     loading: false,
     willActiveIndex: this.props.isKeyboard ? 0 : null,
     isCheckedAll: false,
-    isFilterDelete: false,
+    isFilterDelete: true,
     displayCount: 0,
   }
 
@@ -71,15 +71,14 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   componentDidMount() {
-    const { maxTagCount } = this.props
+    const { maxTagCount, tagItemWidth = 80, omittedTagWidth = 45 } = this.props
     if (maxTagCount === 'responsive' && this._selectionRef.current) {
       // HACK: 首次计算
       setTimeout(() => {
         if (this._selectionRef.current) {
           const { width } = this._selectionRef.current.getBoundingClientRect()
-          const omittedTagWidth = 50 // for "+N..."
           const availableWidth = width - omittedTagWidth
-          const newDisplayCount = Math.floor(availableWidth / 80)
+          const newDisplayCount = Math.floor(availableWidth / tagItemWidth)
           if (this.state.displayCount !== newDisplayCount) {
             this.setState({ displayCount: newDisplayCount > 0 ? newDisplayCount : 0 })
           }
@@ -90,12 +89,11 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         for (const entry of entries) {
           const { width } = entry.contentRect
           // Estimate item width, let's say 80px.
-          const omittedTagWidth = 50 // for "+N..."
           const availableWidth = width - omittedTagWidth
-          const newDisplayCount = Math.floor(availableWidth / 80)
+          const newDisplayCount = Math.floor(availableWidth / tagItemWidth)
 
           if (this.state.displayCount !== newDisplayCount) {
-            this.setState({ displayCount: newDisplayCount > 0 ? newDisplayCount : 0 })
+            this.setState({ displayCount: newDisplayCount })
           }
         }
       })
@@ -300,9 +298,8 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     return (
       <Flex
         justifyBetween
-        className='tw-p-[8px]'
+        className='tw-p-[8px] gm-more-select-default-bottom'
         alignCenter
-        style={{ borderTop: '1px solid #aeaeae' }}
       >
         {isShowCheckedAll && (
           <Checkbox
@@ -323,7 +320,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               }
             }}
           >
-            全选
+            全选({availableData.length})
           </Checkbox>
         )}
         {isShowDeletedSwitch && (
@@ -464,7 +461,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       children,
       maxTagCount,
       maxTagPlaceholder,
-      isRenderDefaultBottom = false,
     } = this.props
 
     // 处理 maxTagCount 逻辑
