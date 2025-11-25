@@ -20,8 +20,8 @@ import { getLocale } from '@gm-pc/locales'
 import { ListBase } from '../list'
 import { findDOMNode } from 'react-dom'
 import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_provider'
-import { Checkbox, Switch } from '@gm-pc/react'
-
+import { Checkbox } from '../checkbox'
+import { Switch } from '../switch'
 interface MoreSelectBaseState {
   searchValue: string
   loading: boolean
@@ -327,7 +327,8 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           <Flex alignCenter>
             <Flex row>
               <Switch
-                style={{ width: 48 }}
+                size='small'
+                style={{ width: 32 }}
                 checked={isFilterDelete}
                 onChange={(open) => {
                   this.setState({
@@ -344,7 +345,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                 }}
               />
             </Flex>
-            <span className='gm-margin-left-5'>过滤已删除商品</span>
+            <span className='gm-margin-left-5'>过滤已删除数据</span>
           </Flex>
         )}
       </Flex>
