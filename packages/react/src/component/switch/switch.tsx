@@ -11,6 +11,7 @@ interface SwitchProps {
   onChange?(checked: boolean): void
   className?: string
   style?: CSSProperties
+  size?: 'small' | 'middle'
 }
 
 interface SwitchState {
@@ -26,10 +27,11 @@ class Switch extends Component<SwitchProps, SwitchState> {
     on: '',
     off: '',
     onChange: _.noop,
+    size: 'middle',
   }
 
   readonly state: SwitchState = {
-    checked: this.props.checked,
+    checked: !!this.props.checked,
     labelWidth: null,
     isReady: false,
   }
@@ -53,7 +55,7 @@ class Switch extends Component<SwitchProps, SwitchState> {
   UNSAFE_componentWillReceiveProps(nextProps: Readonly<SwitchProps>) {
     if ('checked' in nextProps) {
       this.setState({
-        checked: nextProps.checked,
+        checked: !!nextProps.checked,
       })
     }
   }
@@ -82,6 +84,7 @@ class Switch extends Component<SwitchProps, SwitchState> {
       disabled,
       on,
       off,
+      size,
       ...rest
     } = this.props
 
@@ -101,8 +104,9 @@ class Switch extends Component<SwitchProps, SwitchState> {
           ref={this._inputOffRef}
           className={classNames('gm-switch gm-switch-' + type, className, {
             disabled,
+            [`gm-switch-${size}`]: size,
           })}
-          style={style}
+          style={style as any}
           data-attr={this.state.labelWidth}
           disabled={disabled}
           type='checkbox'
