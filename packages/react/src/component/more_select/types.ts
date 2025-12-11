@@ -93,7 +93,7 @@ interface MoreSelectBaseProps<V extends string | number = string>
   onSelect(selected: MoreSelectDataItem<V>[]): void
 
   /** 搜索回调 */
-  onSearch?(searchWord: string, data: MoreSelectGroupDataItem<V>[]): Promise<void> | void
+  onSearch?(searchWord: string, data: MoreSelectGroupDataItem<V>[]): Promise<any> | any
   /** 点击回调 */
   onClick?(selected: MoreSelectSelected<V>[]): void
 
@@ -128,7 +128,7 @@ interface MoreSelectProps<V extends string | number = string>
   onSelect?(selected?: MoreSelectSelected<V>): void
   onChange?(value: V | V[]): void
   /** 搜索回调 */
-  onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void> | void
+  onSearch?(searchWord: string, data: MoreSelectData<V>): Promise<void | any> | any
   /** 点击回调 */
   onClick?(selected: MoreSelectSelected<V>[]): void
 

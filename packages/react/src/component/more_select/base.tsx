@@ -172,8 +172,14 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     event: ChangeEvent<HTMLInputElement>,
     isInitSearch?: boolean
   ): void => {
+    const { onSearch } = this.props
     const searchValue = event.target.value
     this.setState({ searchValue })
+    if (onSearch && !this._isUnmounted) {
+      this.setState({
+        loading: true,
+      })
+    }
     this._debounceDoSearch(searchValue)
     setTimeout(() => {
       // eslint-disable-next-line no-unused-expressions
@@ -187,14 +193,12 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   private _doSearch = (query: string): void => {
     const { onSearch, data = [] } = this.props
     if (!this._isUnmounted && onSearch) {
-      const result = onSearch(query, data)
-      if (!result) {
-        return
-      }
       this.setState({ loading: true })
-
+      const result = onSearch(query, data)
       Promise.resolve(result).finally(() => {
-        this.setState({ loading: false })
+        setTimeout(() => {
+          this.setState({ loading: false })
+        }, 50)
       })
     }
   }
@@ -243,9 +247,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   private _getFilterData = () => {
-    const { data = [], renderListFilter, renderListFilterType } = this.props
+    const { data = [], renderListFilter, renderListFilterType, onSearch } = this.props
     const { searchValue } = this.state
-    let filterData: MoreSelectGroupDataItem<V>[]
+    let filterData: MoreSelectGroupDataItem<V>[] = []
     if (renderListFilter) {
       filterData = renderListFilter(data, searchValue)
     } else if (renderListFilterType === 'pinyin') {
@@ -352,12 +356,60 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     )
   }
 
+  renderContent = () => {
+    const { loading, willActiveIndex, isFilterDelete } = this.state
+
+    if (loading) {
+      return (
+        <Flex alignCenter justifyCenter className='gm-bg gm-padding-5'>
+          <Loading size='20px' />
+        </Flex>
+      )
+    }
+
+    let filterData = this._getFilterData()
+
+    // 如果开启了过滤已删除商品功能，需要过滤掉已删除的商品
+    if (isFilterDelete) {
+      filterData = filterData
+        .map((group) => ({
+          ...group,
+          children: group.children.filter((item) => !item.deleted),
+        }))
+        .filter((group) => group.children.length > 0)
+    }
+
+    if (!loading && filterData.length === 0) {
+      return this._renderEmpty()
+    }
+
+    if (!loading && filterData.length > 0) {
+      const {
+        selected = [],
+        multiple,
+        isGroupList,
+        renderListItem,
+        listHeight,
+      } = this.props
+      return (
+        <ListBase
+          selected={selected.map((v) => v.value)}
+          data={filterData}
+          multiple={multiple}
+          isGroupList={isGroupList}
+          className='gm-border-0'
+          renderItem={renderListItem}
+          onSelect={this._handleSelect}
+          isScrollTo
+          willActiveIndex={willActiveIndex!}
+          style={{ height: listHeight }}
+        />
+      )
+    }
+  }
+
   private _renderList = (config: ConfigProviderProps): ReactNode => {
     const {
-      selected = [],
-      multiple,
-      isGroupList,
-      renderListItem,
       searchPlaceholder,
       listHeight,
       popupClassName,
@@ -392,28 +444,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               placeholder={searchPlaceholder}
             />
           </div>
-          <div style={{ height: listHeight }}>
-            {loading && (
-              <Flex alignCenter justifyCenter className='gm-bg gm-padding-5'>
-                <Loading size='20px' />
-              </Flex>
-            )}
-            {!loading && !filterData.length && this._renderEmpty()}
-            {!loading && !!filterData.length && (
-              <ListBase
-                selected={selected.map((v) => v.value)}
-                data={filterData}
-                multiple={multiple}
-                isGroupList={isGroupList}
-                className='gm-border-0'
-                renderItem={renderListItem}
-                onSelect={this._handleSelect}
-                isScrollTo
-                willActiveIndex={willActiveIndex!}
-                style={{ height: listHeight }}
-              />
-            )}
-          </div>
+          <div style={{ height: listHeight }}>{this.renderContent()}</div>
           {!loading &&
             !!filterData.length &&
             (renderCustomizedBottom
