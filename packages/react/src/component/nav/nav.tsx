@@ -13,6 +13,7 @@ const Nav: FC<NavProps> = ({
   onPushCreate,
   showActive,
   other,
+  otherFirst,
   className,
   style,
   footerImage,
@@ -78,6 +79,8 @@ const Nav: FC<NavProps> = ({
     >
       <div className='gm-nav-logo'>{logo}</div>
       <Flex flex column className='gm-nav-content'>
+        {otherFirst}
+
         {data.map((one) => (
           <NavItem
             key={one.link}

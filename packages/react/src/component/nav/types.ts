@@ -50,6 +50,7 @@ interface NavProps extends NavExtraProps {
   /** 控制 浮层的线上，如商品库传 merchandise */
   showActive?: string
   other?: ReactNode
+  otherFirst?: ReactNode
   className?: string
   style?: CSSProperties
   /** 底部 iot 图片 & 数据 */
