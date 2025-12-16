@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/cropper",
-  "version": "1.30.0-beta.4",
+  "version": "1.27.4-beta.7",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -26,9 +26,9 @@
     "react-dom": "^16.14.0"
   },
   "dependencies": {
-    "@gm-pc/locales": "^1.30.0-beta.4",
-    "@gm-pc/react": "^1.30.0-beta.4",
-    "@gm-pc/table-x": "^1.30.0-beta.4",
+    "@gm-pc/locales": "^1.27.4-beta.7",
+    "@gm-pc/react": "^1.27.4-beta.7",
+    "@gm-pc/table-x": "^1.27.4-beta.7",
     "cropperjs": "^1.5.9"
   },
   "gitHead": "4d6e05f631a4d3aab8bca0b8305b79e91891a0b2"
