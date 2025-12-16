@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/sortable",
-  "version": "1.29.0-beta.4",
+  "version": "1.29.0-beta.5",
   "description": "观麦科技拖拽组件",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -27,11 +27,11 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/react": "^1.29.0-beta.4",
+    "@gm-pc/react": "^1.29.0-beta.5",
     "lodash": "^4.17.19",
     "sortablejs": "^1.12.0"
   },
-  "gitHead": "97a5be9841f9e34433cbb99d707c9922a1836f1d",
+  "gitHead": "d86b9739317159c55368fb943f8c482db54cd860",
   "devDependencies": {
     "@types/sortablejs": "^1.13.0"
   }
