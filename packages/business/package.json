@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/business",
-  "version": "1.29.0-beta.2",
+  "version": "1.29.0-beta.3",
   "description": "观麦科技业务组件库",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -28,8 +28,8 @@
   "dependencies": {
     "@gm-common/hooks": "^2.10.0",
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/react": "^1.29.0-beta.2",
-    "@gm-pc/table-x": "^1.29.0-beta.2"
+    "@gm-pc/react": "^1.29.0-beta.3",
+    "@gm-pc/table-x": "^1.29.0-beta.3"
   },
   "gitHead": "97a5be9841f9e34433cbb99d707c9922a1836f1d"
 }
