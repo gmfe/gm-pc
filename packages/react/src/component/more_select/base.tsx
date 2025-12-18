@@ -317,10 +317,20 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               if (isChecked) {
                 // 全选当前过滤后的可用数据
                 const valuesToSelect = availableData.map((item) => item.value)
-                this._handleSelect(valuesToSelect)
+                const prevSelectedValue = selected.map((item) => item.value)
+                // console.log(valuesToSelect, selected)
+                const newSelected = Array.from(
+                  new Set([...prevSelectedValue, ...valuesToSelect])
+                )
+                this._handleSelect(newSelected)
               } else {
-                // 取消全选
-                this._handleSelect([])
+                // 取消全选 - 只反勾选availableData的数据
+                const { selected = [] } = this.props
+                const availableValues = availableData.map((item) => item.value)
+                const newSelected = selected.filter(
+                  (item) => !availableValues.includes(item.value)
+                )
+                this._handleSelect(newSelected.map((item) => item.value))
               }
             }}
           >
