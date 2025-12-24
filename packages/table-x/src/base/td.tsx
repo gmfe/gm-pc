@@ -17,8 +17,8 @@ const Td: FC<TableXTdProps> = ({ cell, totalWidth, rowKey, totalLeft }) => {
     style: {
       ...cp.style,
       ...getColumnStyle(cell.column),
-      width: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).width,
-      maxWidth: tableResize?.widthList[rowKey] || getColumnStyle(cell.column).maxWidth,
+      width: tableResize?.widthList?.[rowKey] || getColumnStyle(cell.column).width,
+      maxWidth: tableResize?.widthList?.[rowKey] || getColumnStyle(cell.column).maxWidth,
     },
   }
 
