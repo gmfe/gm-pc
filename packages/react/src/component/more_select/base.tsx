@@ -348,14 +348,14 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                   this.setState({
                     isFilterDelete: open,
                   })
-                  if (isCheckedAll) {
-                    const newAvailableData = open
-                      ? flatFilterData.filter((item) => !item.deleted)
-                      : flatFilterData
+                  // if (isCheckedAll) {
+                  //   const newAvailableData = open
+                  //     ? flatFilterData.filter((item) => !item.deleted)
+                  //     : flatFilterData
 
-                    const valuesToSelect = newAvailableData.map((item) => item.value)
-                    this._handleSelect(valuesToSelect)
-                  }
+                  //   const valuesToSelect = newAvailableData.map((item) => item.value)
+                  //   this._handleSelect(valuesToSelect)
+                  // }
                 }}
               />
             </Flex>
