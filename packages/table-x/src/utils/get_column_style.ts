@@ -48,7 +48,7 @@ export function getColumnFixedWidth(
   let sum = 0
 
   columns.forEach((column) => {
-    const tempSum = +(getPx(tableSize[column.id!]) || (column as any).totalWidth)
+    const tempSum = +(getPx(tableSize?.[column.id!]) || (column as any).totalWidth)
     leftFixSum[column.id!] = sum
     sum += tempSum
   })
