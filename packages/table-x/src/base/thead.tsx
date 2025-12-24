@@ -21,7 +21,7 @@ const Thead: FC<TableXTheadProps> = ({
       {headerGroups.map((headerGroup, groupIndex) => {
         const { leftFixSum } = getColumnFixedWidth(
           headerGroup.headers,
-          tableResize.widthList
+          tableResize?.widthList
         )
         return (
           <tr key={groupIndex} className='gm-table-x-tr'>
