@@ -37,10 +37,10 @@ const Tr: FC<TableXTrProps> = ({
       row.cells.map((_item) => {
         return _item.column
       }) as any,
-      tableResize.widthList
+      tableResize?.widthList
     )
     return leftFixSum
-  }, [row.cells, tableResize.widthList])
+  }, [row.cells, tableResize?.widthList])
 
   const props = {
     onClick: (e: Event) => {

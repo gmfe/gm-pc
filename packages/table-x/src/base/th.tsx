@@ -72,8 +72,8 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id, totalLeft
       style: {
         ...hp.style,
         ...getColumnStyle(column),
-        width: tableResize?.widthList[column.id] || getColumnStyle(column).width,
-        maxWidth: tableResize?.widthList[column.id] || getColumnStyle(column).maxWidth,
+        width: tableResize?.widthList?.[column.id] || getColumnStyle(column).width,
+        maxWidth: tableResize?.widthList?.[column.id] || getColumnStyle(column).maxWidth,
       },
     }
   }, [hp, column, tableResize])
@@ -97,7 +97,7 @@ const Th: FC<ThProps> = ({ isResizable, column, index, totalWidth, id, totalLeft
     return (
       <Resizable
         width={parseInt(
-          tableResize?.widthList[column.id] || getColumnStyle(column).width!,
+          tableResize?.widthList?.[column.id] || getColumnStyle(column).width!,
           10
         )}
         height={0}
