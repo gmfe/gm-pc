@@ -8,7 +8,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     renderSelected: (item: MoreSelectDataItem<any>) => item.text,
     renderListItem: (item: MoreSelectDataItem<any>) => item.text,
     delay: 500,
-    listHeight: '180px',
+    listHeight: '280px',
     renderListFilterType: 'default',
     popoverType: 'focus',
     onKeyDown: _.noop,

@@ -401,19 +401,74 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         renderListItem,
         listHeight,
       } = this.props
+
+      const selectedValues = new Set(selected.map((v) => v.value))
+
+      // 分离已勾选和未勾选的数据
+      const selectedGroups: MoreSelectGroupDataItem<V>[] = []
+      const availableGroups: MoreSelectGroupDataItem<V>[] = []
+
+      filterData.forEach((group) => {
+        const selectedChildren = group.children.filter((item) =>
+          selectedValues.has(item.value)
+        )
+        const availableChildren = group.children.filter(
+          (item) => !selectedValues.has(item.value)
+        )
+
+        if (selectedChildren.length > 0) {
+          selectedGroups.push({
+            ...group,
+            children: selectedChildren,
+          })
+        }
+        if (availableChildren.length > 0) {
+          availableGroups.push({
+            ...group,
+            children: availableChildren,
+          })
+        }
+      })
+
       return (
-        <ListBase
-          selected={selected.map((v) => v.value)}
-          data={filterData}
-          multiple={multiple}
-          isGroupList={isGroupList}
-          className='gm-border-0'
-          renderItem={renderListItem}
-          onSelect={this._handleSelect}
-          isScrollTo
-          willActiveIndex={willActiveIndex!}
-          style={{ height: listHeight }}
-        />
+        <div style={{ height: listHeight, overflow: 'auto' }}>
+          {selectedGroups.length > 0 && (
+            <>
+              <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
+                已勾选
+              </div>
+              <ListBase
+                selected={selected.map((v) => v.value)}
+                data={selectedGroups}
+                multiple={multiple}
+                isGroupList={isGroupList}
+                className='gm-border-0'
+                renderItem={renderListItem}
+                onSelect={this._handleSelect}
+                isScrollTo={false}
+                willActiveIndex={willActiveIndex!}
+              />
+            </>
+          )}
+          {availableGroups.length > 0 && (
+            <>
+              <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
+                可选择的筛选项
+              </div>
+              <ListBase
+                selected={selected.map((v) => v.value)}
+                data={availableGroups}
+                multiple={multiple}
+                isGroupList={isGroupList}
+                className='gm-border-0'
+                renderItem={renderListItem}
+                onSelect={this._handleSelect}
+                isScrollTo={false}
+                willActiveIndex={willActiveIndex!}
+              />
+            </>
+          )}
+        </div>
       )
     }
   }
