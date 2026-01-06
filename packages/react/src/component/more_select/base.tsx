@@ -447,7 +447,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                 renderItem={renderListItem}
                 onSelect={this._handleSelect}
                 isScrollTo={false}
-                willActiveIndex={willActiveIndex!}
               />
             </>
           )}
