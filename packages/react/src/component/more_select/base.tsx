@@ -405,23 +405,13 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       const selectedValues = new Set(selected.map((v) => v.value))
 
       // 分离已勾选和未勾选的数据
-      const selectedGroups: MoreSelectGroupDataItem<V>[] = []
       const availableGroups: MoreSelectGroupDataItem<V>[] = []
 
       filterData.forEach((group) => {
-        const selectedChildren = group.children.filter((item) =>
-          selectedValues.has(item.value)
-        )
         const availableChildren = group.children.filter(
           (item) => !selectedValues.has(item.value)
         )
 
-        if (selectedChildren.length > 0) {
-          selectedGroups.push({
-            ...group,
-            children: selectedChildren,
-          })
-        }
         if (availableChildren.length > 0) {
           availableGroups.push({
             ...group,
@@ -430,18 +420,27 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         }
       })
 
+      // 已选中区域直接使用 selected 构建，不受筛选影响
+      const selectedGroups: MoreSelectGroupDataItem<V>[] = []
+      if (selected.length > 0) {
+        selectedGroups.push({
+          label: '',
+          children: selected,
+        })
+      }
+
       return (
         <div style={{ height: listHeight, overflow: 'auto' }}>
           {selectedGroups.length > 0 && (
             <>
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
-                已勾选
+                已选中
               </div>
               <ListBase
                 selected={selected.map((v) => v.value)}
                 data={selectedGroups}
                 multiple={multiple}
-                isGroupList={isGroupList}
+                isGroupList={false}
                 className='gm-border-0'
                 renderItem={renderListItem}
                 onSelect={this._handleSelect}
@@ -453,7 +452,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           {availableGroups.length > 0 && (
             <>
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
-                可选择的筛选项
+                未选中
               </div>
               <ListBase
                 selected={selected.map((v) => v.value)}
