@@ -1,23 +1,4 @@
-import { TableXColumn } from '@gm-pc/table-x'
-
-type KeyboardTableXColumn = {
-  isKeyboard?: boolean
-} & TableXColumn
-
-interface KeyboardTableXProps {
-  /* 通过 id 来确定本单元格内通信，避免多表格时混了。请确保 id 唯一 */
-  id: string
-  columns: KeyboardTableXColumn[]
-  /** 按下键是否允许增加一行数据 */
-  allowAddRowOnDownKey?: boolean
-  /* 增加一行数据 */
-  onAddRow(): void
-  onBeforeDispatch?(options: {
-    actionName: string
-    to: { rowKey: number; columnKey: string }
-    from: { rowKey: number; columnKey: string }
-  }): boolean
-}
+import { KeyboardTableXColumn, KeyboardTableXProps } from '@gm-pc/table-x'
 
 type KeyboardDirection = 'left' | 'right' | 'up' | 'down'
 interface KeyboardCustomEvent {

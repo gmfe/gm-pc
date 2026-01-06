@@ -430,17 +430,17 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           }
         })
 
-        // if (selected.length > 0) {
-        //   selectedGroups.push({
-        //     label: '',
-        //     children: selected,
-        //   })
-        // }
+        if (selected.length > 0) {
+          selectedGroups.push({
+            label: '',
+            children: selected,
+          })
+        }
       }
 
       return (
         <div style={{ height: listHeight, overflow: 'auto' }}>
-          {/* {selected.length > 0 && multiple && (
+          {selected.length > 0 && multiple && (
             <>
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
                 已选中
@@ -456,7 +456,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                 isScrollTo={false}
               />
             </>
-          )} */}
+          )}
           <>
             {multiple && (
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>

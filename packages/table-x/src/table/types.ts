@@ -1,6 +1,11 @@
 import { Component, ReactNode, RefObject } from 'react'
 import { VariableSizeList } from 'react-window'
-import { TableXColumn, TableXProps, TableXVirtualizedProps } from '../base'
+import {
+  TableXColumn,
+  TableXProps,
+  TableXVirtualizedProps,
+  KeyboardTableXProps,
+} from '../base'
 import {
   DiyTableXColumn,
   ExpandTableXProps,
@@ -10,7 +15,6 @@ import {
   SortableTableXProps,
 } from '../hoc'
 import { BoxTableProps } from '@gm-pc/react'
-import { KeyboardTableXProps } from '@gm-pc/keyboard'
 import { TableXDataItem } from '../base/types'
 import { HighlightTableXProps } from '../hoc/highlight_table_x/types'
 import { DndTableXProps } from '../hoc/dnd_table_x'
@@ -45,7 +49,9 @@ export interface TableProps<D extends object = any>
     Partial<BatchActionSelectTableXProps>,
     Partial<SelectTableXProps>,
     Partial<VirtualizedProps>,
-    Partial<Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch' | 'allowAddRow'>>,
+    Partial<
+      Pick<KeyboardTableXProps, 'onAddRow' | 'onBeforeDispatch' | 'allowAddRowOnDownKey'>
+    >,
     Partial<HighlightTableXProps> {
   columns: Column<D>[]
   /** 是否需要分页 */

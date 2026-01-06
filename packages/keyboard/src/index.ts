@@ -14,9 +14,7 @@ export { default as KCTableSelect } from './cell/table_select'
 export { default as KCDatePicker } from './cell/date_picker'
 export { default as KCSelect } from './cell/select'
 
-export type {
-  KeyboardTableXProps,
-  KeyboardTableXColumn,
-  KeyboardCustomEvent,
-  KeyboardDirection,
-} from './types'
+// 从 @gm-pc/table-x 重新导出这些类型以保持向后兼容
+export type { KeyboardTableXProps, KeyboardTableXColumn } from '@gm-pc/table-x'
+
+export type { KeyboardCustomEvent, KeyboardDirection } from './types'

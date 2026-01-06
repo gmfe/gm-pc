@@ -195,3 +195,25 @@ export type {
   TableInstance,
   DiyShowMapType,
 }
+
+// KeyboardTableX 相关类型，从 @gm-pc/keyboard 移动到这里以解决循环依赖
+type KeyboardTableXColumn = {
+  isKeyboard?: boolean
+} & TableXColumn
+
+interface KeyboardTableXProps {
+  /* 通过 id 来确定本单元格内通信，避免多表格时混了。请确保 id 唯一 */
+  id: string
+  columns: KeyboardTableXColumn[]
+  /** 按下键是否允许增加一行数据 */
+  allowAddRowOnDownKey?: boolean
+  /* 增加一行数据 */
+  onAddRow(): void
+  onBeforeDispatch?(options: {
+    actionName: string
+    to: { rowKey: number; columnKey: string }
+    from: { rowKey: number; columnKey: string }
+  }): boolean
+}
+
+export type { KeyboardTableXProps, KeyboardTableXColumn }
