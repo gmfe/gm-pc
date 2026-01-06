@@ -23,6 +23,7 @@ import { ConfigConsumer, ConfigProvider, ConfigProviderProps } from '../config_p
 import { Checkbox } from '../checkbox'
 import { Switch } from '../switch'
 interface MoreSelectBaseState {
+  canClear?: boolean
   searchValue: string
   loading: boolean
   /* keyboard 默认第一个位置 */
@@ -210,6 +211,12 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     const { onSelect = _.noop, selected = [] } = this.props
     const willSelected = selected.filter((item) => item.value !== clearItem.value)
     onSelect(willSelected)
+  }
+
+  private _handleClearAll = (event: MouseEvent): void => {
+    event.stopPropagation()
+    const { onSelect = _.noop } = this.props
+    onSelect([])
   }
 
   private _handlePopupKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
@@ -458,7 +465,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
             )}
 
             <ListBase
-              selected={selected.map((v) => v.value)}
+              selected={selected?.map((v) => v.value)}
               data={multiple ? availableGroups : filterData}
               multiple={multiple}
               isGroupList={isGroupList}
@@ -637,6 +644,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               )}
             </Flex>
           )}
+          <SVGRemove
+            className='gm-cursor gm-more-select-clear-btn'
+            onClick={disabled ? _.noop : this._handleClearAll}
+          />
         </>
       )
     }
