@@ -31,6 +31,9 @@ interface MoreSelectBaseState {
   isCheckedAll: boolean
   isFilterDelete: boolean
   displayCount: number
+  // isPopupJustOpened: boolean
+  previousSelected?: MoreSelectDataItem<V>[]
+  previousCurrentSelected: MoreSelectDataItem<V>[]
 }
 
 // @todo keydown item disabled
@@ -49,6 +52,8 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     isCheckedAll: false,
     isFilterDelete: true,
     displayCount: 0,
+    previousSelected: [],
+    previousCurrentSelected: [],
   }
 
   private _isUnmounted = false
@@ -176,6 +181,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     const { onSearch } = this.props
     const searchValue = event.target.value
     this.setState({ searchValue })
+    this.setState({
+      previousSelected: this.props.selected,
+      previousCurrentSelected: this.props.selected,
+    })
     if (onSearch && !this._isUnmounted) {
       this.setState({
         loading: true,
@@ -206,8 +215,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
 
   private _debounceDoSearch = _.debounce(this._doSearch, this.props.delay)
 
-  private _handleClear = (clearItem: MoreSelectDataItem<V>, event: MouseEvent): void => {
-    event.stopPropagation()
+  private _handleClear = (clearItem: MoreSelectDataItem<V>, event?: MouseEvent): void => {
+    if (event) {
+      event.stopPropagation()
+    }
     const { onSelect = _.noop, selected = [] } = this.props
     const willSelected = selected.filter((item) => item.value !== clearItem.value)
     onSelect(willSelected)
@@ -299,9 +310,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       ? flatFilterData.filter((item) => !item.deleted)
       : flatFilterData
 
-    // 计算总数：availableData + selected，过滤重复值
-    const totalCount = _.uniqBy([...availableData, ...selected], 'value').length
-
     // 检查是否所有可用数据都被选中
     const allSelected =
       availableData.length > 0 &&
@@ -333,6 +341,12 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                   new Set([...prevSelectedValue, ...valuesToSelect])
                 )
                 this._handleSelect(newSelected)
+                // 更新 previousCurrentSelected
+                this.setState({
+                  previousCurrentSelected: Array.from(
+                    new Set([...this.state.previousCurrentSelected, ...availableData])
+                  ),
+                })
               } else {
                 // 取消全选 - 只反勾选availableData的数据
                 const { selected = [] } = this.props
@@ -341,10 +355,16 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                   (item) => !availableValues.includes(item.value)
                 )
                 this._handleSelect(newSelected.map((item) => item.value))
+                // 更新 previousCurrentSelected
+                this.setState({
+                  previousCurrentSelected: this.state.previousCurrentSelected.filter(
+                    (item) => !availableValues.includes(item.value)
+                  ),
+                })
               }
             }}
           >
-            全选({totalCount})
+            全选({availableData.length})
           </Checkbox>
         )}
         {isShowDeletedSwitch && (
@@ -410,9 +430,11 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         isGroupList,
         renderListItem,
         listHeight,
+        showSelectedIcon,
       } = this.props
+      const { previousSelected = [], previousCurrentSelected = [] } = this.state
 
-      const selectedValues = new Set(selected?.map((v) => v.value))
+      const selectedValues = new Set(previousSelected?.map((v) => v.value))
 
       // 分离已勾选和未勾选的数据
       const availableGroups: MoreSelectGroupDataItem<V>[] = []
@@ -421,9 +443,10 @@ class MoreSelectBase<V extends string | number = string> extends Component<
 
       if (multiple) {
         filterData.forEach((group) => {
-          const availableChildren = group.children.filter(
-            (item) => !selectedValues.has(item.value)
-          )
+          const availableChildren = group.children.filter((item) => {
+            // return true
+            return !selectedValues.has(item.value)
+          })
 
           if (availableChildren.length > 0) {
             availableGroups.push({
@@ -433,43 +456,65 @@ class MoreSelectBase<V extends string | number = string> extends Component<
           }
         })
 
-        if (selected.length > 0) {
+        if (previousSelected.length > 0) {
           selectedGroups.push({
             label: '',
-            children: selected,
+            children: previousSelected,
           })
         }
       }
 
       return (
         <div style={{ height: listHeight, overflow: 'auto' }}>
-          {selected.length > 0 && multiple && (
+          {previousSelected.length > 0 && multiple && !this.state.searchValue && (
             <>
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
                 已选中
               </div>
               <ListBase
-                selected={selected.map((v) => v.value)}
+                showSelectedIcon={showSelectedIcon}
+                selected={previousCurrentSelected.map((v) => v.value)}
                 data={selectedGroups}
                 multiple={multiple}
                 isGroupList={false}
                 className='gm-border-0'
                 renderItem={renderListItem}
-                onSelect={this._handleSelect}
+                onSelect={(v, target) => {
+                  this._handleSelect(v)
+                  // 判断是勾选还是反选：如果 v 中包含 target.value，说明是勾选操作；否则是反选操作
+                  const isChecked = v.includes(target.value)
+                  if (isChecked) {
+                    // 勾选：添加到 previousCurrentSelected
+                    this.setState({
+                      previousCurrentSelected: [
+                        ...this.state.previousCurrentSelected,
+                        target,
+                      ],
+                    })
+                  } else {
+                    // 反选：从 previousCurrentSelected 中移除
+                    this.setState({
+                      previousCurrentSelected: this.state.previousCurrentSelected?.filter(
+                        (item) => item.value !== target.value
+                      ),
+                    })
+                  }
+                }}
                 isScrollTo={false}
               />
             </>
           )}
           <>
-            {multiple && (
+            {multiple && !this.state.searchValue && (
               <div className='gm-more-select-section-title gm-padding-5 gm-text-desc gm-text-12'>
                 未选中
               </div>
             )}
 
             <ListBase
+              showSelectedIcon={showSelectedIcon}
               selected={selected?.map((v) => v.value)}
-              data={multiple ? availableGroups : filterData}
+              data={multiple && !this.state.searchValue ? availableGroups : filterData}
               multiple={multiple}
               isGroupList={isGroupList}
               className='gm-border-0'
@@ -541,15 +586,21 @@ class MoreSelectBase<V extends string | number = string> extends Component<
   }
 
   private _handlePopoverVisibleChange = (active: boolean) => {
-    if (active && this.props.searchOnActive) {
-      const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
-      if (searchValue) {
-        this.setState({ searchValue })
-        setTimeout(() => {
-          // eslint-disable-next-line no-unused-expressions
-          this._inputRef.current?.select()
-          this._debounceDoSearch(searchValue)
-        }, 0)
+    if (active) {
+      this.setState({
+        previousSelected: this.props.selected,
+        previousCurrentSelected: this.props.selected,
+      })
+      if (this.props.searchOnActive) {
+        const searchValue = localStorage.getItem('_GM-PC_MORESELECT_SEARCHVALUE')
+        if (searchValue) {
+          this.setState({ searchValue })
+          setTimeout(() => {
+            // eslint-disable-next-line no-unused-expressions
+            this._inputRef.current?.select()
+            this._debounceDoSearch(searchValue)
+          }, 0)
+        }
       }
     }
   }

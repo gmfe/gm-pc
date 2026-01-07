@@ -18,6 +18,7 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     isShowDeletedSwitch: true,
     /** 是否展示全选 */
     isShowCheckedAll: true,
+    showSelectedIcon: true,
   }
 
   private _moreSelectBaseRef = createRef<MoreSelectBase>()

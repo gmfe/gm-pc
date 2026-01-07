@@ -110,6 +110,7 @@ interface MoreSelectBaseProps<V extends string | number = string>
   isShowDeletedSwitch?: boolean
   /** 是否展示全选 */
   isShowCheckedAll?: boolean
+  showSelectedIcon?: boolean
 }
 
 type MoreSelectData<V extends string | number = string> =
