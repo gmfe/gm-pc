@@ -299,6 +299,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
       ? flatFilterData.filter((item) => !item.deleted)
       : flatFilterData
 
+    // 计算总数：availableData + selected，过滤重复值
+    const totalCount = _.uniqBy([...availableData, ...selected], 'value').length
+
     // 检查是否所有可用数据都被选中
     const allSelected =
       availableData.length > 0 &&
@@ -341,7 +344,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
               }
             }}
           >
-            全选({availableData.length})
+            全选({totalCount})
           </Checkbox>
         )}
         {isShowDeletedSwitch && (
