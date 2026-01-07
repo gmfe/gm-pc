@@ -152,6 +152,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         }
       })
     })
+    console.log(data, selected)
     selected.forEach((item) => {
       let flag = true // 判断当前已选择的选项中是否存在不在当前data里面的，解决onSearch异步，true则表示都不在data里面
       data.forEach((group) => {
@@ -161,6 +162,7 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         items.push(item)
       }
     })
+    console.log(items)
     onSelect(items)
 
     if (!multiple) {
@@ -483,7 +485,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                 className='gm-border-0'
                 renderItem={renderListItem}
                 onSelect={(v, target) => {
-                  this._handleSelect(v)
                   // 判断是勾选还是反选：如果 v 中包含 target.value，说明是勾选操作；否则是反选操作
                   const isChecked = v.includes(target.value)
                   if (isChecked) {
@@ -494,6 +495,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                         target,
                       ],
                     })
+                    const newSelected = [...selected, target]
+
+                    this.props.onSelect(newSelected)
                   } else {
                     // 反选：从 previousCurrentSelected 中移除
                     this.setState({
@@ -501,6 +505,11 @@ class MoreSelectBase<V extends string | number = string> extends Component<
                         (item) => item.value !== target.value
                       ),
                     })
+                    const newSelected = selected.filter(
+                      (item) => item.value !== target.value
+                    )
+
+                    this.props.onSelect(newSelected)
                   }
                 }}
                 isScrollTo={false}
