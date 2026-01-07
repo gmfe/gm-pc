@@ -228,6 +228,9 @@ class MoreSelectBase<V extends string | number = string> extends Component<
     event.stopPropagation()
     const { onSelect = _.noop } = this.props
     onSelect([])
+    this.setState({
+      previousCurrentSelected: [],
+    })
   }
 
   private _handlePopupKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
