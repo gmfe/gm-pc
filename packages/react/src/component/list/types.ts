@@ -12,12 +12,14 @@ interface CommonListProps<V> {
   getItemProps?(item: ListDataItem<V>): HTMLAttributes<HTMLDivElement>
   className?: string
   style?: CSSProperties
+  /** 是否显示选中状态的图标，默认为 true */
+  showSelectedIcon?: boolean
 }
 
 interface ListBaseProps<V> extends CommonListProps<V> {
   data: ListGroupDataItem<V>[]
   selected: V[]
-  onSelect?(selected: V[]): void
+  onSelect?(selected: V[], item: ListDataItem<V>): void
 }
 
 interface ListProps<V> extends CommonListProps<V> {

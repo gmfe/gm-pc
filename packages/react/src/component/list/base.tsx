@@ -4,12 +4,14 @@ import { xor, flatMap, isNil, noop } from 'lodash'
 import { ListBaseProps } from './types'
 import { ListDataItem } from '../../types'
 import { ConfigConsumer } from '../config_provider'
+import SVGOk from '../../svg/ok.svg'
 
 class Base<V = any> extends Component<ListBaseProps<V>> {
   static defaultProps = {
     onSelect: noop,
     renderItem: (value: any) => value.text,
     getItemProps: () => ({}),
+    showSelectedIcon: true,
   }
 
   private _listRef = createRef<HTMLDivElement>()
@@ -61,9 +63,9 @@ class Base<V = any> extends Component<ListBaseProps<V>> {
     }
     const { multiple, selected, onSelect } = this.props
     if (multiple) {
-      onSelect && onSelect(xor(selected, [item.value]))
+      onSelect && onSelect(xor(selected, [item.value]), item)
     } else {
-      onSelect && onSelect([item.value])
+      onSelect && onSelect([item.value], item)
     }
   }
 
@@ -79,6 +81,7 @@ class Base<V = any> extends Component<ListBaseProps<V>> {
       className,
       willActiveIndex,
       getItemProps,
+      showSelectedIcon,
       ...rest
     } = this.props
 
@@ -115,6 +118,9 @@ class Base<V = any> extends Component<ListBaseProps<V>> {
                       onClick={() => this._handleSelect(item)}
                     >
                       {renderItem!(item, index)}
+                      {multiple && showSelectedIcon && selected.includes(item.value) && (
+                        <SVGOk />
+                      )}
                     </div>
                   )
                 })}

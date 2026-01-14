@@ -318,6 +318,98 @@ export const ComMoreSelectWithIsGroupListMultiple = () => (
   />
 )
 
+export const ComMoreSelectWithMaxTagCount = () => {
+  // 创建一个包含多个选项的数据集
+  const manyOptions = [
+    { value: 1, text: '选项1' },
+    { value: 2, text: '选项2' },
+    { value: 3, text: '选项3' },
+    { value: 4, text: '选项4' },
+    { value: 5, text: '选项5' },
+    { value: 6, text: '选项6' },
+    { value: 7, text: '选项7' },
+    { value: 8, text: '选项8' },
+  ]
+
+  // 预选多个选项
+  const preSelected = manyOptions.slice(0, 6)
+
+  return (
+    <div style={{ width: '300px' }}>
+      <h3>maxTagCount 示例</h3>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h4>不使用 maxTagCount（显示所有选项）</h4>
+        <MoreSelect<number>
+          multiple
+          data={manyOptions}
+          selected={preSelected}
+          onSelect={(selected) => {
+            console.log('不限制显示数量:', selected)
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h4>maxTagCount={2}（最多显示2个选项）</h4>
+        <MoreSelect<number>
+          multiple
+          maxTagCount={2}
+          data={manyOptions}
+          selected={preSelected}
+          onSelect={(selected) => {
+            console.log('最多显示2个:', selected)
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h4>maxTagCount={3}（最多显示3个选项）</h4>
+        <MoreSelect<number>
+          multiple
+          maxTagCount={3}
+          data={manyOptions}
+          selected={preSelected}
+          onSelect={(selected) => {
+            console.log('最多显示3个:', selected)
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h4>maxTagCount=responsive（响应式模式）</h4>
+        <MoreSelect<number>
+          multiple
+          maxTagCount='responsive'
+          data={manyOptions}
+          selected={preSelected}
+          onSelect={(selected) => {
+            console.log('响应式模式:', selected)
+          }}
+        />
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h4>自定义 maxTagPlaceholder</h4>
+        <MoreSelect<number>
+          multiple
+          maxTagCount={2}
+          maxTagPlaceholder={(omittedValues, omittedCount) => (
+            <span style={{ color: '#1890ff', fontWeight: 'bold' }}>
+              还有{omittedCount}项未显示
+            </span>
+          )}
+          data={manyOptions}
+          selected={preSelected}
+          onSelect={(selected) => {
+            console.log('自定义占位符:', selected)
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default {
   title: '表单/MoreSelect',
 }

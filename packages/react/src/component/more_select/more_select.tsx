@@ -8,10 +8,17 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
     renderSelected: (item: MoreSelectDataItem<any>) => item.text,
     renderListItem: (item: MoreSelectDataItem<any>) => item.text,
     delay: 500,
-    listHeight: '180px',
+    listHeight: '280px',
     renderListFilterType: 'default',
     popoverType: 'focus',
     onKeyDown: _.noop,
+    /** 是否展示全选以及过滤已删除商品 */
+    isRenderDefaultBottom: false,
+    /** 是否展示已删除商品 */
+    isShowDeletedSwitch: true,
+    /** 是否展示全选 */
+    isShowCheckedAll: true,
+    showSelectedIcon: true,
   }
 
   private _moreSelectBaseRef = createRef<MoreSelectBase>()
@@ -85,6 +92,8 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
       onSearch,
       onClick,
       renderListFilter,
+      maxTagCount,
+      maxTagPlaceholder,
       ...rest
     } = this.props
     let tempSelect = selected as MoreSelectDataItem<V>[]
@@ -129,6 +138,8 @@ class MoreSelect<V = any> extends Component<MoreSelectProps<V>> {
         isGroupList={isGroupList}
         onSearch={onSearch && this._handleSearch}
         renderListFilter={renderListFilter && this._renderListFilter}
+        maxTagCount={maxTagCount}
+        maxTagPlaceholder={maxTagPlaceholder}
       />
     )
   }

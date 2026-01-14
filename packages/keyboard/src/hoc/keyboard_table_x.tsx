@@ -1,8 +1,11 @@
 import React, { ComponentType, FC, useMemo } from 'react'
-import { TableXCellProps, TableXProps } from '@gm-pc/table-x'
+import {
+  TableXCellProps,
+  TableXProps,
+  KeyboardTableXColumn,
+  KeyboardTableXProps,
+} from '@gm-pc/table-x'
 import { devWarnForHook } from '@gm-common/tool'
-
-import { KeyboardTableXColumn, KeyboardTableXProps } from '../types'
 import { getColumnKey, CellKeyContext } from '../utils'
 import Wrap from '../core/wrap'
 /**
@@ -99,6 +102,7 @@ function keyboardTableXHOC<Props extends TableXProps = TableXProps>(
         }
       }
     })
+    console.log(id, { leftFixedWidth, rightFixedWidth })
 
     return (
       <Wrap

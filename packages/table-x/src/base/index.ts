@@ -15,4 +15,6 @@ export type {
   DiyShowMapType,
   SortsType,
   TableInstance,
+  KeyboardTableXProps,
+  KeyboardTableXColumn,
 } from './types'

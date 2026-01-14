@@ -1,7 +1,6 @@
-import { TableXUtil } from '@gm-pc/table-x'
+import { TABLE_X } from '@gm-pc/table-x'
 
 import { KeyboardWrapData } from '../types'
-const { TABLE_X } = TableXUtil
 
 function scrollIntoViewFixedWidth(
   dom: HTMLElement,
