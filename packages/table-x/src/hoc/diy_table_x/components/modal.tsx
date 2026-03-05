@@ -47,10 +47,12 @@ function DiyTableXModal({
   const handleColumnsChange = (key: string, show: boolean): void => {
     const index = diyCols.findIndex((o) => o.key === key)
     const currentItem = diyCols[index]
-    currentItem.show = show
-    setDiyCols(diyCols)
-    if (currentItem.show) {
-      setShowCols(diyCols.filter((v) => v.show))
+    // 使用不可变更新，创建新数组和新对象，避免修改原始引用
+    const newDiyCols = [...diyCols]
+    newDiyCols[index] = { ...currentItem, show }
+    setDiyCols(newDiyCols)
+    if (show) {
+      setShowCols(newDiyCols.filter((v) => v.show))
     } else {
       const _showCols = showCols.filter((value) => value.key !== key)
       setShowCols(_showCols)
