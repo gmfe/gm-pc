@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/frame",
-  "version": "1.30.0-beta.1",
+  "version": "1.30.0-beta.2",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/react": "^1.30.0-beta.1",
+    "@gm-pc/react": "^1.30.0-beta.2",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
   },
@@ -31,5 +31,5 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },
-  "gitHead": "3e931f3fec4e6d112b620d52975a1b372dfa1b7d"
+  "gitHead": "e185d01ea6aa1baf6b7d6fc3f81c2af6498a049f"
 }
