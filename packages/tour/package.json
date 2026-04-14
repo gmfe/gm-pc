@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/tour",
-  "version": "1.29.0-beta.7",
+  "version": "1.29.0-beta.8",
   "description": "观麦科技引导设置",
   "author": "zhongsink <zhongink@gmail.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -27,12 +27,12 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@gm-pc/locales": "^1.29.0-beta.7",
-    "@gm-pc/react": "^1.29.0-beta.7",
-    "@gm-pc/table-x": "^1.29.0-beta.7",
+    "@gm-pc/locales": "^1.29.0-beta.8",
+    "@gm-pc/react": "^1.29.0-beta.8",
+    "@gm-pc/table-x": "^1.29.0-beta.8",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
     "styled-components": "^5.1.0"
   },
-  "gitHead": "52556d59f82545c9ac126606928a43aef9abedfd"
+  "gitHead": "d15e45e360b2c34d732d028f253a9c46de10bb6f"
 }
