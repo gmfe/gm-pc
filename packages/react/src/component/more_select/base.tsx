@@ -152,7 +152,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         }
       })
     })
-    console.log(data, selected)
     selected.forEach((item) => {
       let flag = true // 判断当前已选择的选项中是否存在不在当前data里面的，解决onSearch异步，true则表示都不在data里面
       data.forEach((group) => {
@@ -162,7 +161,6 @@ class MoreSelectBase<V extends string | number = string> extends Component<
         items.push(item)
       }
     })
-    console.log(items)
     onSelect(items)
 
     if (!multiple) {
