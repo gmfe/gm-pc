@@ -5,9 +5,10 @@
     "start": "start-storybook -p 7000",
     "build": "build-storybook -c .storybook -o docs",
     "prebuild": "rm -rf docs; mkdir docs;",
-    "publish-latest": "lerna publish --force-publish --registry https://code.guanmai.cn/api/v4/projects/695/packages/npm/",
-    "publish-beta": "lerna publish --force-publish --dist-tag beta --preid beta --registry https://code.guanmai.cn/api/v4/projects/695/packages/npm/",
-    "publish-alpha": "lerna publish --force-publish --dist-tag alpha --preid alpha --registry https://code.guanmai.cn/api/v4/projects/695/packages/npm/",
+    "publish": "node scripts/publish.js",
+    "publish:beta": "node scripts/publish.js --tag beta --preid beta",
+    "publish:alpha": "node scripts/publish.js --tag alpha --preid alpha",
+    "publish:latest": "node scripts/publish.js --tag latest --bump patch",
     "link": "cd packages/frame; yarn link; cd ../business; yarn link; cd ../cropper; yarn link; cd ../keyboard;  yarn link; cd ../locales; yarn link; cd ../react; yarn link; cd ../sortable; yarn link; cd ../table-x; yarn link; cd ../tour; yarn link;"
   },
   "husky": {

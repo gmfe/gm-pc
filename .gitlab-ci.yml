@@ -1,0 +1,34 @@
+stages:
+  - publish
+
+.publish_template: &publish_template
+  stage: publish
+  image: node:16
+  before_script:
+    - yarn install --frozen-lockfile || yarn install
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
+  script:
+    - node scripts/publish.js --tag $NPM_TAG --bump $BUMP_TYPE --preid $PREID
+  only:
+    - tags
+
+publish-beta:
+  <<: *publish_template
+  variables:
+    NPM_TAG: "beta"
+    BUMP_TYPE: "prerelease"
+    PREID: "beta"
+  only:
+    variables:
+      - $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+-beta/
+
+publish-latest:
+  <<: *publish_template
+  variables:
+    NPM_TAG: "latest"
+    BUMP_TYPE: "patch"
+    PREID: "latest"
+  only:
+    variables:
+      - $CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+$/
