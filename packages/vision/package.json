@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/vision",
-  "version": "1.29.0-beta.13",
+  "version": "1.29.0-beta.14",
   "description": "> TODO: description",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -27,5 +27,5 @@
     "size-sensor": "^1.0.1",
     "ts-config-gm-react-app": "^3.0.6"
   },
-  "gitHead": "a6229db274c010a881d890e7a9f251e07e1ce7a6"
+  "gitHead": "cc771a3cc0d00579b01fe23b6a1112bf3cd784df"
 }
