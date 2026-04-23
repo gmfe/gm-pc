@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/react",
-  "version": "1.29.0-beta.30",
+  "version": "1.29.0-beta.31",
   "description": "观麦前端基础组件库",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -24,7 +24,7 @@
   "dependencies": {
     "@gm-common/hooks": "^2.10.0",
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/locales": "^1.29.0-beta.30",
+    "@gm-pc/locales": "^1.29.0-beta.31",
     "big.js": "^6.0.1",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19",
@@ -48,5 +48,5 @@
     "react-router-dom": "^5.2.0",
     "react-window": "^1.8.5"
   },
-  "gitHead": "ca097171a93249ae97245aca17bef9b5a03ae323"
+  "gitHead": "553986cf02efc2bd8b573d1a577411aa1ecdbaa4"
 }
