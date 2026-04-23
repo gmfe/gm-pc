@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/locales",
-  "version": "1.29.0-beta.27",
+  "version": "1.29.0-beta.28",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -20,5 +20,5 @@
   "bugs": {
     "url": "https://github.com/gmfe/gm-pc/issues"
   },
-  "gitHead": "0183a5a9554fdcbeba4b88958f0b1689720f896a"
+  "gitHead": "1020e064ac5bd741b829edba004bc18027de82c0"
 }
