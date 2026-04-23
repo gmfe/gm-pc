@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/keyboard",
-  "version": "1.29.0-beta.10",
+  "version": "1.29.0-beta.11",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/react": "^1.29.0-beta.10",
-    "@gm-pc/table-x": "^1.29.0-beta.10",
+    "@gm-pc/react": "^1.29.0-beta.11",
+    "@gm-pc/table-x": "^1.29.0-beta.11",
     "classnames": "^2.2.5",
     "lodash": "^4.17.19"
   },
-  "gitHead": "167dd217cb1e77cef8c315dc1e3bfb13f7500df1"
+  "gitHead": "2580aadc09e000ed4aff53b25bd1a03cf761b105"
 }
