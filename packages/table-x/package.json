@@ -1,6 +1,6 @@
 {
   "name": "@gm-pc/table-x",
-  "version": "1.29.0-beta.24",
+  "version": "1.29.0-beta.25",
   "description": "",
   "author": "liyatang <liyatang@qq.com>",
   "homepage": "https://github.com/gmfe/gm-pc#readme",
@@ -31,10 +31,10 @@
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
     "@gm-common/tool": "^2.10.0",
-    "@gm-pc/keyboard": "^1.29.0-beta.24",
-    "@gm-pc/locales": "^1.29.0-beta.24",
-    "@gm-pc/react": "^1.29.0-beta.24",
-    "@gm-pc/sortable": "^1.29.0-beta.24",
+    "@gm-pc/keyboard": "^1.29.0-beta.25",
+    "@gm-pc/locales": "^1.29.0-beta.25",
+    "@gm-pc/react": "^1.29.0-beta.25",
+    "@gm-pc/sortable": "^1.29.0-beta.25",
     "@types/react-table": "~7.0.28",
     "@types/react-window": "^1.8.2",
     "@types/sortablejs": "^1.10.6",
@@ -47,5 +47,5 @@
   "devDependencies": {
     "moment": "^2.29.1"
   },
-  "gitHead": "7b340badaebc4cdb020099fbc2fa2c3c71810765"
+  "gitHead": "2408087a4dcf94d6b2391ae92755dd3e98e6bfc1"
 }
