@@ -5,9 +5,8 @@ stages:
   stage: publish
   image: node:16
   before_script:
+    - echo -e "machine code.guanmai.cn\nlogin fake_user\npassword $GM_GITLAB_TOKEN" > ~/.netrc
     - yarn install --frozen-lockfile || yarn install
-    - git config --global user.email "$GITLAB_USER_EMAIL"
-    - git config --global user.name "$GITLAB_USER_NAME"
   script:
     - node scripts/publish.js --tag $NPM_TAG --bump $BUMP_TYPE --preid $PREID
   only:
