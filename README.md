@@ -85,7 +85,7 @@ yarn publish --tag rc --preid rc --bump prerelease
 **方式一：环境变量（推荐）**
 
 ```bash
-cross-env NPM_AUTH_TOKEN=<your-token> yarn publish:beta
+npx cross-env NPM_AUTH_TOKEN=<your-token> yarn publish:beta
 ```
 
 **方式二：.npmrc 文件**
