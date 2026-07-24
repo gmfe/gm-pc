@@ -9,8 +9,9 @@ export interface TableChartProps extends ChartProps {
 const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartProps>(
   (props, ref) => {
     const { options, data } = props
-    const { position, theme, height, legend } = options
+    const { position, theme, height, legend, displayField } = options
     const [x, y] = position.split('*')
+    const displayY = displayField || y
 
     return (
       <div
@@ -94,7 +95,7 @@ const TableChart: FC<TableChartProps> = forwardRef<HTMLDivElement, TableChartPro
               key={`value_${index}`}
               className='gm-vision-flex-flex gm-vision-align-center gm-vision-flex'
             >
-              {item[y]}
+              {item[displayY]}
             </div>
           ))}
         </div>
